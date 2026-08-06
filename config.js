@@ -1,0 +1,23 @@
+/* config.js — Konfigurasi frontend.
+ *  IMPORTANT: JANGAN taruh secret/token apa pun di file ini (frontend publik).
+ *  Secret (GAS_EXEC_URL, GAS_SECRET) hanya di env Cloudflare Worker.
+ */
+window.APP_CONFIG = {
+  /* Mode transport data (flag transisi — Fase 3):
+   *   'gas'  → halaman disajikan oleh Google Apps Script → pakai google.script.run
+   *   'rest' → halaman di Cloudflare Pages → pakai fetch('/api/...') via Worker
+   * Ganti SATU baris ini untuk berpindah transport; UI tidak berubah.
+   */
+  transport: 'gas',
+
+  /* Base URL endpoint API saat mode 'rest'.
+   * 'gas'  dipakai kita bareng route Worker pada domain sama: '/api'
+   * Bila API ada di subdomain terpisah, ganti: 'https://api.domain.my.id'
+   */
+  apiBase: '/api',
+
+  // --- Identitas & peta ---
+  appName: 'GeoPORTAL Angkutan BPTD Jabar',
+  regionCenter: [-6.9, 107.6],
+  regionZoom: 8
+};

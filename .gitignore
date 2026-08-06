@@ -1,0 +1,28 @@
+# ===== Geo12-pages — Cloudflare Pages frontend =====
+# Hindari commit aset tersembunyi / lokal
+
+# Dependensi (bila nanti pakai build tool)
+node_modules/
+
+# Build output
+dist/
+public/build/
+
+# File konfigurasi lokal yang bisa memuat secret
+.env
+.env.*
+!.env.example
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Log
+*.log
+npm-debug.log*
+
+# Jangan commit salinan besar sementara (backup hasil split di luar src/)
+tmp/
+*.bak

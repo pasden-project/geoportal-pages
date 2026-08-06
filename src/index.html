@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>GeoPORTAL BPTD Jabar</title>
+  <style>
+    body{margin:0;display:flex;justify-content:center;align-items:center;height:100vh;
+      font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0}
+    .card{text-align:center;padding:32px;border-radius:18px;background:#111a2e}
+    h1{margin:0 0 8px;font-size:20px}
+    p{color:#94a3b8;font-size:14px}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>GeoPORTAL BPTD Jabar</h1>
+    <p>Frontend Cloudflare Pages — placeholder migrasi.<br>
+       File frontend sebenarnya (index.html, style.css, script.js, api.js)
+       diisi pada Fase 4 setelah REST API siap.</p>
+  </div>
+  <!-- config + api adapter (di-load via script tag saat frontend nyata sudah diisi) -->
+  <script>
+    // Sementara hanya pastikan config termuat untuk uji API later.
+    try { Object.assign(window, window.APP_CONFIG || {}); } catch (e) {}
+  </script>
+</body>
+</html>
