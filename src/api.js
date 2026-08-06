@@ -10,13 +10,18 @@
 (function (window) {
   var C = window.APP_CONFIG || { transport: 'gas', apiBase: '/api' };
 
-  // Kirim panggilan fungsi backend (name) dengan daftar arg (args array).
-  function rpc(name) {
-    var args = Array.prototype.slice.call(arguments, 1);
+  // Cache memori pendek (TTL) utk panggilan baca yang sering & IDEMA (mengurangi
+  // tekanan ke /exec Apps Script yang lambat/cold-start). Dibersihkan saat aksi tulis.
+  var mem = {};                                  // "fn|jsonArgs" -> { ts, data }
+  var MEM_TTL = 20000;                            // 20 detik
+  var MEM_READ = { getAvailableYears: 1, getDashboardData: 1 };
+  var MEM_WRITE = { saveRoute: 1, deleteRoute: 1, saveTerminalDetail: 1, savePotretRows: 1, sinkronisasiProduksi: 1 };
+  var delay2 = function (ms) { return new Promise(function (rs) { setTimeout(rs, ms); }); };
 
-    // ---------- mode REST (Cloudflare Pages → Worker → Apps Script) ----------
+  // Inti: kirim panggilan fungsi backend (name) → Promise.
+  function rpcCore(name, args) {
+    // ---------- mode REST (Cloudflare Pages → Gateway → Apps Script) ----------
     if (C.transport === 'rest') {
-      var delay = function (ms) { return new Promise(function (rs) { setTimeout(rs, ms); }); };
       var doFetch = function (attempt) {
         return fetch(C.apiBase + '/' + name, {
           method: 'POST',
@@ -26,23 +31,20 @@
           return res.text().then(function (txt) {
             var j = null;
             try { j = JSON.parse(txt); } catch (e) { j = null; }
-            var adalahJson = (j !== null && typeof j === 'object');
-            if (adalahJson) {
-              // Kesalahan bisnis yang nyata (mis. Forbidden / path tak dikenal) → jangan retry.
+            if (j !== null && typeof j === 'object') {
+              // Error bisnis nyata (mis. Forbidden/path tak dikenal) → jangan retry.
               if (j.ok === false) { var e0 = new Error((j.error) || ('RPC ' + name + ' gagal')); e0.soft = false; throw e0; }
               return j;
             }
-            // Bukan JSON (mis. halaman "loading"/error dari Apps Script yang dingin) → retry.
+            // Bukan JSON (mis. halaman "load"/cold-start Apps Script) → retry.
             var e1 = new Error('Respons tidak valid (HTTP ' + res.status + ').'); e1.soft = true; throw e1;
           });
         }, function (err) { err.soft = true; throw err; })
         .then(function (j) {
-          // Kontrak sukses = { data } ; error = { ok:false, error } ; atau plain object.
-          if (j && Object.prototype.hasOwnProperty.call(j, 'data')) return j.data;
-          return j;
+          return (j && Object.prototype.hasOwnProperty.call(j, 'data')) ? j.data : j;
         }, function (err) {
-          // Retry hanya untuk kegagalan "lunak" (cold-start / non-JSON / jaringan intermitten).
-          if (err && err.soft && attempt < 3) return delay(400 * (attempt + 1)).then(function () { return doFetch(attempt + 1); });
+          // Retry hanya kegagalan lunak (cold-start / non-JSON / jaringan intermitten).
+          if (err && err.soft && attempt < 3) return delay2(500 * (attempt + 1)).then(function () { return doFetch(attempt + 1); });
           throw err;
         });
       };
@@ -58,6 +60,24 @@
         });
       run[name].apply(run, args);
     });
+  }
+
+  // Pembungkus: cache untuk baca, invalidasi untuk tulis.
+  function rpc(name) {
+    var args = Array.prototype.slice.call(arguments, 1);
+    var ck = name + '|' + JSON.stringify(args);
+    if (MEM_READ[name]) {
+      var hit = mem[ck];
+      if (hit && (Date.now() - hit.ts) < MEM_TTL) { return Promise.resolve(hit.data); }
+    }
+    var p = rpcCore(name, args);
+    if (MEM_READ[name]) {
+      p = p.then(function (d) { mem[ck] = { ts: Date.now(), data: d }; return d; });
+    }
+    if (MEM_WRITE[name]) {
+      p = p.then(function (res) { mem = {}; return res; });
+    }
+    return p;
   }
 
   // --- read: dashboard ---
