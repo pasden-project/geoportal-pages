@@ -30,13 +30,28 @@ async function proxy(context) {
     '&key=' + encodeURIComponent(env.GAS_SECRET || '');
 
   const body = request.body ? await request.text() : '{}';
-  const gas = await fetch(gasUrl, {
-    method: 'POST',
-    headers: { 'content-type': 'application/json', Accept: 'application/json' },
-    body: body
-  });
+  let gas;
+  try {
+    gas = await fetch(gasUrl, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', Accept: 'application/json' },
+      body: body
+    });
+  } catch (e) {
+    return new Response(JSON.stringify({ ok: false, error: 'gateway: backend tidak terjangkau.' }),
+      { status: 502, headers: OK_JSON });
+  }
 
-  return new Response(gas.body, { status: gas.status, headers: OK_JSON });
+  // Pastikan respons SELALU JSON untuk frontend. Jika Apps Script (dalam kondisi
+  // cold-start / throttle) mengembalikan halaman HTML, bungkus jadi { ok:false }.
+  const txt = await gas.text();
+  try {
+    JSON.parse(txt);
+    return new Response(txt, { status: gas.status, headers: OK_JSON });
+  } catch (e) {
+    return new Response(JSON.stringify({ ok: false, error: 'Backend tidak merespons JSON (sedang hangat/terbatas). Coba lagi.' }),
+      { status: 502, headers: OK_JSON });
+  }
 }
 
 export async function onRequestPost(context) { return proxy(context); }

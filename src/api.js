@@ -16,19 +16,37 @@
 
     // ---------- mode REST (Cloudflare Pages → Worker → Apps Script) ----------
     if (C.transport === 'rest') {
-      return fetch(C.apiBase + '/' + name, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ fn: name, args: args })
-      }).then(function (res) {
-        if (!res.ok) return res.text().then(function (t) { throw new Error('HTTP ' + res.status + (t ? ': ' + t : '')); });
-        return res.json().catch(function () { throw new Error('Respons bukan JSON'); });
-      }).then(function (j) {
-        // Kontrak sukses = { data } ; error = { ok:false, error } ; atau plain object.
-        if (j && j.ok === false) throw new Error((j && j.error) || ('RPC ' + name + ' gagal'));
-        if (j && Object.prototype.hasOwnProperty.call(j, 'data')) return j.data;
-        return j;
-      });
+      var delay = function (ms) { return new Promise(function (rs) { setTimeout(rs, ms); }); };
+      var doFetch = function (attempt) {
+        return fetch(C.apiBase + '/' + name, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({ fn: name, args: args })
+        }).then(function (res) {
+          return res.text().then(function (txt) {
+            var j = null;
+            try { j = JSON.parse(txt); } catch (e) { j = null; }
+            var adalahJson = (j !== null && typeof j === 'object');
+            if (adalahJson) {
+              // Kesalahan bisnis yang nyata (mis. Forbidden / path tak dikenal) → jangan retry.
+              if (j.ok === false) { var e0 = new Error((j.error) || ('RPC ' + name + ' gagal')); e0.soft = false; throw e0; }
+              return j;
+            }
+            // Bukan JSON (mis. halaman "loading"/error dari Apps Script yang dingin) → retry.
+            var e1 = new Error('Respons tidak valid (HTTP ' + res.status + ').'); e1.soft = true; throw e1;
+          });
+        }, function (err) { err.soft = true; throw err; })
+        .then(function (j) {
+          // Kontrak sukses = { data } ; error = { ok:false, error } ; atau plain object.
+          if (j && Object.prototype.hasOwnProperty.call(j, 'data')) return j.data;
+          return j;
+        }, function (err) {
+          // Retry hanya untuk kegagalan "lunak" (cold-start / non-JSON / jaringan intermitten).
+          if (err && err.soft && attempt < 3) return delay(400 * (attempt + 1)).then(function () { return doFetch(attempt + 1); });
+          throw err;
+        });
+      };
+      return doFetch(0);
     }
 
     // ---------- mode legacy: google.script.run (halaman Apps Script) ----------
