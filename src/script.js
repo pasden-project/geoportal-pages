@@ -1241,18 +1241,17 @@ function toggleViaMode() {
     routeBuilder.active = true;
     btn.textContent = '⏹️ Hentikan Tambah Via';
     btn.style.background = '#ef4444';
-    document.getElementById('routeStatus').textContent = 'Klik peta untuk menambahkan titik via.';
+    document.getElementById('routeStatus').textContent = 'Klik titik pada peta untuk menambahkan via point.';
     document.getElementById('map').style.cursor = 'crosshair';
-    // Ciutkan panel secara otomatis supaya peta bebas & mudah men-tap titik via.
-    ciutkanRouteBuilder(true);
   } else {
     routeBuilder.active = false;
     btn.textContent = '➕ Tambah Via Point';
     btn.style.background = '';
     document.getElementById('routeStatus').textContent = 'Mode tambah via nonaktif.';
     document.getElementById('map').style.cursor = '';
-    ciutkanRouteBuilder(false);
   }
+  // Panel TIDAK menciut otomatis: karena latar transparan, peta tetap bisa
+  // diklik walau panel terbuka. Pengguna bisa ciutkan manual lewat tombol ▾.
 }
 
 function addViaPoint(e) {
