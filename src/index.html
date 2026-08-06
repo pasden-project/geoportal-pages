@@ -1,28 +1,211 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+  <base target="_top">
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>GeoPORTAL BPTD Jabar</title>
-  <style>
-    body{margin:0;display:flex;justify-content:center;align-items:center;height:100vh;
-      font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0}
-    .card{text-align:center;padding:32px;border-radius:18px;background:#111a2e}
-    h1{margin:0 0 8px;font-size:20px}
-    p{color:#94a3b8;font-size:14px}
-  </style>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=yes,maximum-scale=5">
+  <title>Dashboard Angkutan BPTD Jabar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="card">
-    <h1>GeoPORTAL BPTD Jabar</h1>
-    <p>Frontend Cloudflare Pages — placeholder migrasi.<br>
-       File frontend sebenarnya (index.html, style.css, script.js, api.js)
-       diisi pada Fase 4 setelah REST API siap.</p>
+  <div id="loadingOverlay" class="loading-overlay">
+    <div class="spinner"></div>
+    <div class="loading-text">Memuat Data...</div>
   </div>
-  <!-- config + api adapter (di-load via script tag saat frontend nyata sudah diisi) -->
-  <script>
-    // Sementara hanya pastikan config termuat untuk uji API later.
-    try { Object.assign(window, window.APP_CONFIG || {}); } catch (e) {}
-  </script>
+  <div id="map"></div>
+  <header class="topbar">
+    <button id="btnMenu" class="icon-btn" aria-label="Menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+    <div class="title-block">
+      <h1>GeoPORTAL Angkutan BPTD Jabar</h1>
+      <p>Dashboard Peta Interaktif &middot; Jawa Barat</p>
+      <p>&copy; Tim Seksi Angkutan Jalan <span id="tahunHeader">2025</span></p>
+      <p>#MakeAngkutanGreatAgain</p>
+    </div>
+    <span id="lastUpdateValue" class="topbar-lu hidden" title="Terakhir diperbarui"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><span class="lu-date"></span><span class="lu-time"></span></span>
+    <button id="btnSearch" class="icon-btn" aria-label="Cari"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
+    <button id="btnUpdateData" class="update-btn" aria-label="Update data produksi" title="Sinkronisasi data produksi">
+      <svg class="updater-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+      <span>Update Data</span>
+    </button>
+    <button id="btnTheme" class="icon-btn" aria-label="Ubah tema" title="Ubah tema (terang/gelap)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button>
+    <button id="btnFilter" class="icon-btn home-btn" aria-label="Filter"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg></button>
+  </header>
+  <div id="filterChip" class="filter-chip hidden"></div>
+  <div id="sideMenuOverlay" class="overlay hidden" style="justify-content:flex-start;padding:0;background:rgba(15,23,42,0.4);">
+    <div class="side-menu">
+      <div class="menu-header"><h2>Menu Utama</h2><button id="btnTutupMenu" class="close-btn">&times;</button></div>
+      <ul class="menu-list">
+        <li class="menu-item active" data-view="home"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg> Home (Dashboard)</li>
+        <li class="menu-item sub-item" data-view="route" style="padding-left:40px;font-size:14px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg> Buat Trayek</li>
+        <li class="menu-item" data-view="gis"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg> GIS Jabar (Reset)</li>
+        <li class="menu-item" data-view="data"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg> Data Produksi Mentah</li>
+        <li class="menu-section">Potret Angkutan</li>
+        <li class="menu-item sub-item" data-potret="barang"><span class="potret-ico">🚚</span> Angkutan Barang</li>
+        <li class="menu-item sub-item" data-potret="pariwisata"><span class="potret-ico">🚌</span> Angkutan Pariwisata</li>
+        <li class="menu-item sub-item" data-potret="perintis"><span class="potret-ico">🚐</span> Angkutan Perintis</li>
+        <li class="menu-item sub-item" data-potret="ajap"><span class="potret-ico">🚗</span> AJAP / AJDP</li>
+        <li class="menu-item sub-item" data-potret="akap"><span class="potret-ico">📊</span> Analisis AKAP / AKDP</li>
+      </ul>
+    </div>
+  </div>
+  <div id="routeBuilderOverlay" class="overlay hidden" style="align-items:flex-start;padding-top:80px;background:rgba(15,23,42,0.5);backdrop-filter:blur(2px);">
+    <div class="overlay-card" style="max-width:460px;max-height:80vh;display:flex;flex-direction:column;">
+      <div class="overlay-header"><h2 class="card-title" style="margin-bottom:0;">Buat Trayek</h2><button id="btnTutupRouteBuilder" class="close-btn">&times;</button></div>
+      <label class="field-label">Terminal Asal</label><div class="select-wrapper" style="margin-bottom:16px;"><select id="routeOriginSelect" class="input-select"><option value="">-- Pilih Asal --</option></select></div>
+      <label class="field-label">Terminal Tujuan</label><div class="select-wrapper" style="margin-bottom:16px;"><select id="routeDestSelect" class="input-select"><option value="">-- Pilih Tujuan --</option></select></div>
+      <div style="display:flex;gap:8px;align-items:center;margin-bottom:12px;"><button id="btnToggleViaMode" class="btn-primary" style="flex:2;padding:12px;font-size:14px;">➕ Tambah Via Point</button><button id="btnClearVia" class="btn-primary" style="flex:1;padding:12px;font-size:14px;background:#ef4444;box-shadow:none;">Hapus Semua</button></div>
+      <div id="viaPointsStatus" style="font-size:13px;color:var(--gray-text);margin-bottom:12px;">Belum ada titik via.</div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;">
+        <label class="field-label" style="margin:0;">WARNA TRAYEK</label>
+        <div class="color-palette" id="routeColorPalette">
+          <button type="button" class="csw active" data-c="#3b82f6" style="background:#3b82f6" aria-label="Biru"></button>
+          <button type="button" class="csw" data-c="#10b981" style="background:#10b981" aria-label="Hijau"></button>
+          <button type="button" class="csw" data-c="#f59e0b" style="background:#f59e0b" aria-label="Kuning"></button>
+          <button type="button" class="csw" data-c="#ef4444" style="background:#ef4444" aria-label="Merah"></button>
+          <button type="button" class="csw" data-c="#8b5cf6" style="background:#8b5cf6" aria-label="Ungu"></button>
+          <button type="button" class="csw" data-c="#06b6d4" style="background:#06b6d4" aria-label="Cyan"></button>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;"><button id="btnRouteNow" class="btn-primary" style="flex:2;background:#10b981;box-shadow:0 8px 20px rgba(16,185,129,0.3);">🚌 Rutekan</button><button id="btnSaveRoute" class="btn-primary" style="flex:1;background:#8b5cf6;box-shadow:0 8px 20px rgba(139,92,246,0.3);display:none;">💾 Simpan Trayek</button></div>
+      <button id="btnSaveRouteAsCorridor" style="display:none;"></button>
+      <div style="margin-top:10px;font-size:12px;color:var(--gray-text);text-align:center;"><span id="routeStatus">Klik peta untuk menambahkan titik via (gerbang tol, simpang, dll.)</span></div>
+    </div>
+  </div>
+  <div id="searchOverlay" class="overlay hidden" style="align-items:flex-start;padding-top:80px;background:rgba(15,23,42,0.4);">
+    <div class="overlay-card" style="max-height:80vh;display:flex;flex-direction:column;">
+      <div class="overlay-header" style="margin-bottom:12px;"><h2 class="card-title" style="margin-bottom:0;">Cari Terminal</h2><button id="btnTutupSearch" class="close-btn">&times;</button></div>
+      <input type="text" id="searchInput" class="input-select" placeholder="Ketik nama terminal atau kota..." style="margin-bottom:12px;">
+      <div id="searchResults" class="search-results"></div>
+    </div>
+  </div>
+  <div id="dataViewContainer" class="data-view-container hidden">
+    <div class="data-view-header"><h2 class="card-title" style="margin:0;">Data Produksi Mentah</h2><p style="margin:4px 0 16px;font-size:13px;color:var(--gray-text);">Menampilkan 500 data terbaru.</p></div>
+    <div class="table-wrap"><table id="tabelRawData"><thead><tr><th>Tanggal</th><th>Terminal</th><th>Tipe</th><th class="num">Dtg(K)</th><th class="num">Dtg(P)</th><th class="num">Bkt(K)</th><th class="num">Bkt(P)</th></tr></thead><tbody></tbody></table></div>
+  </div>
+  <!-- Potret Angkutan: view per bidang (data dari PPT / sumber BPTD Jabar) -->
+  <div id="potretContainer" class="potret-container hidden">
+    <div class="potret-header">
+      <div class="potret-title-wrap">
+        <span id="potretIcon" class="potret-icon">🚚</span>
+        <div>
+          <h2 id="potretTitle" class="potret-title">Potret Angkutan</h2>
+          <p id="potretSubtitle" class="potret-subtitle">BPTD Kelas I Jawa Barat · Seksi Angkutan Jalan</p>
+        </div>
+      </div>
+      <button id="btnEditPotret" class="btn-back" aria-label="Edit data" title="Edit data potret ini" style="background:var(--green);color:#fff;border-color:var(--green);">✏️ Edit Data</button>
+      <button id="btnTutupPotret" class="icon-btn" aria-label="Tutup"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+    </div>
+    <div id="potretBody" class="potret-body"></div>
+  </div>
+  <div id="filterOverlay" class="overlay hidden">
+    <div class="overlay-card">
+      <div class="overlay-header"><h2 class="card-title">Filter Data</h2><button id="btnTutupFilter" class="close-btn">&times;</button></div>
+      <label class="field-label">BULAN</label><div class="select-wrapper"><select id="filterBulan" class="input-select"><option value="">Semua Bulan</option><option value="1">Januari</option><option value="2">Februari</option><option value="3">Maret</option><option value="4">April</option><option value="5">Mei</option><option value="6">Juni</option><option value="7">Juli</option><option value="8">Agustus</option><option value="9">September</option><option value="10">Oktober</option><option value="11">November</option><option value="12">Desember</option></select></div>
+      <label class="field-label">TAHUN</label><div class="select-wrapper"><select id="filterTahun" class="input-select"></select></div>
+      <button id="btnTerapkan" class="btn-primary" style="margin-top:24px;">Terapkan Filter</button>
+    </div>
+  </div>
+  <div id="sheet" class="sheet collapsed">
+    <div id="sheetHandle" class="sheet-handle-wrap"><div class="sheet-handle"></div></div>
+    <div class="sheet-header">
+      <div class="header-text-wrap"><div class="sheet-eyebrow" id="sheetEyebrow">RINGKASAN TOTAL</div><h2 class="sheet-title" id="sheetTitle">Semua Terminal</h2><p class="sheet-subtitle" id="sheetSubtitle">Ketuk titik marker di peta untuk analitik spesifik</p></div>
+      <div style="display:flex;gap:8px;">
+        <button id="btnKembali" class="btn-back hidden"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg> Semua</button>
+        <button id="btnEditProfile" class="btn-back" style="display:none;background:var(--blue);color:#fff;border-color:var(--blue);">✏️ Edit Profil</button>
+      </div>
+    </div>
+    <div class="sheet-body">
+      <div id="infoTerminal" class="card info-terminal hidden"><div class="info-row"><span>Alamat Lengkap</span><b id="infoAlamat">-</b></div><div class="info-row"><span>Kabupaten/Kota</span><b id="infoKabkota">-</b></div><div class="info-row"><span>Tipe Terminal</span><span class="badge" id="infoTipe">-</span></div><div class="info-row"><span>Status Kelola</span><b id="infoStatus">-</b></div></div>
+      <div id="insightRow" class="insight-row"></div>
+      <div class="kpi-grid">
+        <div class="kpi-card bg-blue-light"><div class="kpi-header"><div class="kpi-icon text-blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"></polyline></svg></div><span class="kpi-label">Datang Kendaraan</span></div><div class="kpi-value text-blue" id="kpiKedatanganKendaraan">0</div></div>
+        <div class="kpi-card bg-cyan-light"><div class="kpi-header"><div class="kpi-icon text-cyan"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div><span class="kpi-label">Datang Penumpang</span></div><div class="kpi-value text-cyan" id="kpiKedatanganPenumpang">0</div></div>
+        <div class="kpi-card bg-yellow-light"><div class="kpi-header"><div class="kpi-icon text-yellow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="15 18 9 12 15 6"></polyline></svg></div><span class="kpi-label">Brgkt. Kendaraan</span></div><div class="kpi-value text-yellow" id="kpiKeberangkatanKendaraan">0</div></div>
+        <div class="kpi-card bg-green-light"><div class="kpi-header"><div class="kpi-icon text-green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg></div><span class="kpi-label">Brgkt. Penumpang</span></div><div class="kpi-value text-green" id="kpiKeberangkatanPenumpang">0</div></div>
+      </div>
+      <section class="card chart-card"><h2 class="card-title">Tren Kedatangan vs Keberangkatan Penumpang</h2><div class="chart-container chart-line"><canvas id="chartTrendPenumpang"></canvas></div></section>
+      <section class="card chart-card"><h2 class="card-title">Tren Kedatangan vs Keberangkatan Kendaraan</h2><div class="chart-container chart-line"><canvas id="chartTrendKendaraan"></canvas></div></section>
+      <section class="card chart-card"><h2 class="card-title">Rekap Total Penumpang per Terminal</h2><div class="chart-container chart-bar"><canvas id="chartBarPenumpang"></canvas></div></section>
+      <section class="card chart-card"><h2 class="card-title">Rekap Total Kendaraan per Terminal</h2><div class="chart-container chart-bar"><canvas id="chartBarKendaraan"></canvas></div></section>
+      <div id="rekapBulanWrap" class="card"></div>
+      <section class="card chart-card"><h2 class="card-title">Proporsi Arus Kendaraan</h2><div class="chart-container chart-doughnut"><canvas id="chartProporsiKendaraan"></canvas></div></section>
+      <section class="card chart-card"><h2 class="card-title">Proporsi Arus Penumpang</h2><div class="chart-container chart-doughnut"><canvas id="chartProporsiPenumpang"></canvas></div></section>
+      <section class="card"><h2 class="card-title">Data Harian Terakhir</h2><div class="table-wrap"><table id="tabelRincian"><thead><tr><th>Tanggal</th><th>Terminal</th><th class="num">Datang (K)</th><th class="num">Datang (P)</th><th class="num">Brgkt (K)</th><th class="num">Brgkt (P)</th></tr></thead><tbody></tbody></table></div></section>
+      <footer class="footer"><p>&copy; <span id="tahunFooter"></span> Sistem Informasi Geospasial</p><p>BPTD Kelas I Jawa Barat</p></footer>
+    </div>
+  </div>
+
+  <!-- Bottom Sheet UPPKB (Angkutan Barang) -->
+  <div id="sheetUppkb" class="sheet collapsed">
+    <div id="sheetUppkbHandle" class="sheet-handle-wrap"><div class="sheet-handle"></div></div>
+    <div class="sheet-header">
+      <div class="header-text-wrap"><div class="sheet-eyebrow">UPPKB · ANGKUTAN BARANG</div><h2 class="sheet-title" id="sheetUppkbTitle">-</h2><p class="sheet-subtitle" id="sheetUppkbSubtitle">-</p></div>
+      <button id="btnTutupUppkb" class="btn-back">✕ Tutup</button>
+    </div>
+    <div class="sheet-body" id="sheetUppkbBody"></div>
+  </div>
+
+  <!-- Profile Overlay -->
+  <div id="profileOverlay" class="overlay hidden" style="align-items:center;padding:40px 20px;">
+    <div class="profile-card" style="max-width:520px;width:100%;max-height:90vh;overflow-y:auto;background:#fff;border-radius:32px;padding:28px;box-shadow:0 25px 60px rgba(0,0,0,0.3);animation:popIn 0.3s ease;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;">
+        <div><span id="profileBadge" class="badge" style="margin-bottom:6px;display:inline-block;">TIPE -</span><h2 id="profileTitle" style="margin:0;font-size:22px;font-weight:800;">-</h2><p id="profileKabkota" style="margin:4px 0 0;font-size:13px;color:var(--gray-text);">-</p></div>
+        <button id="btnTutupProfile" class="close-btn" style="flex-shrink:0;">&times;</button>
+      </div>
+      <div id="profileFotoWrap" style="width:100%;height:180px;border-radius:20px;overflow:hidden;background:#f1f5f9;margin-bottom:20px;display:flex;align-items:center;justify-content:center;cursor:pointer;border:2px dashed var(--gray-border);">
+        <img id="profileFoto" src="" alt="Foto" style="width:100%;height:100%;object-fit:cover;display:none;">
+        <span id="profileFotoPlaceholder" style="color:var(--gray-text);font-weight:600;">+ Tambah Foto</span>
+        <input type="file" id="profileFotoInput" style="display:none;" accept="image/*">
+      </div>
+      <div class="profile-fields">
+        <div class="profile-field"><label>Alamat</label><input type="text" id="pfAlamat" class="profile-input" placeholder="Alamat lengkap"></div>
+        <div class="profile-field"><label>Deskripsi</label><textarea id="pfDeskripsi" class="profile-input" rows="2" placeholder="Deskripsi singkat..."></textarea></div>
+        <div class="profile-field"><label>Luas Wilayah</label><input type="text" id="pfLuasWilayah" class="profile-input" placeholder="Contoh: 5.000 m²"></div>
+        <div class="profile-field"><label>Luas Bangunan</label><input type="text" id="pfLuasBangunan" class="profile-input" placeholder="Contoh: 2.500 m²"></div>
+        <div class="profile-field"><label>Kontak / Telepon</label><input type="text" id="pfKontak" class="profile-input" placeholder="Nomor telepon"></div>
+        <div class="profile-field"><label>Jam Operasi</label><input type="text" id="pfJamOperasi" class="profile-input" placeholder="Contoh: 06:00 - 22:00 WIB"></div>
+        <div class="profile-field"><label>Website</label><input type="url" id="pfWebsite" class="profile-input" placeholder="https://..."></div>
+        <div class="profile-field" style="opacity:0.7;"><label>Koordinat</label><input type="text" id="pfKoordinat" class="profile-input" readonly></div>
+      </div>
+      <div id="extraFieldsContainer" style="margin-top:16px;">
+        <label style="font-size:12px;font-weight:700;color:var(--gray-text);display:block;margin-bottom:8px;">FIELD TAMBAHAN</label>
+        <div id="extraFieldsList"></div>
+        <button id="btnTambahField" class="btn-primary" style="padding:10px;font-size:13px;background:#f1f5f9;color:var(--navy);box-shadow:none;margin-top:8px;">+ Tambah Field</button>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:24px;">
+        <button id="btnSimpanProfile" class="btn-primary" style="flex:2;">💾 Simpan</button>
+        <button id="btnTutupProfileBawah" class="btn-primary" style="flex:1;background:#f1f5f9;color:var(--navy);box-shadow:none;">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Potret Angkutan: editor modal (tabel seperti spreadsheet, terhubung ke sheet khusus) -->
+  <div id="editPotretOverlay" class="overlay hidden">
+    <div class="overlay-card" style="max-width:680px;width:100%;max-height:88vh;display:flex;flex-direction:column;">
+      <div class="overlay-header"><h2 class="card-title" id="editPotretTitle" style="margin-bottom:0;">Edit Data</h2><button id="btnTutupEditPotret" class="close-btn">&times;</button></div>
+      <p style="font-size:12px;color:var(--gray-text);margin:0 0 10px;">Ketik langsung seperti spreadsheet. Setiap baris = satu entri (armada / perusahaan / trayek). Data tersimpan ke sheet khusus bidang ini dan bisa juga diedit di Google Sheets.</p>
+      <div class="pe-table-wrap">
+        <table class="pe-table"><thead id="potretEditHead"></thead><tbody id="potretEditBody"></tbody></table>
+      </div>
+      <button id="btnTambahBarisPotret" class="btn-primary" style="margin-top:12px;background:#f1f5f9;color:var(--navy);box-shadow:none;">+ Tambah Baris</button>
+      <div style="display:flex;gap:10px;margin-top:12px;">
+        <button id="btnBatalPotret" class="btn-primary" style="flex:1;background:#f1f5f9;color:var(--navy);box-shadow:none;">Batal</button>
+        <button id="btnSimpanPotret" class="btn-primary" style="flex:1;">💾 Simpan</button>
+      </div>
+    </div>
+  </div>
+
+    <script src="config.js"></script>
+  <script src="api.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

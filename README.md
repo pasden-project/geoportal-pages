@@ -23,14 +23,17 @@ User ──HTTPS──▶ domain.my.id
 ```
 Geo12-pages/
 ├── README.md
-├── config.js          # Config frontend (mode transport, base API, label) — TANPA secret
-├── src/               # → Isi Cloudflare Pages (root "build output")
-│   ├── index.html     # (hasil split dari Index.html, tanpa include())
-│   ├── style.css      # (hasil split dari CSS.html)
-│   ├── script.js      # (hasil split dari JS.html)
-│   └── api.js         # Backend.* adapter — satu-satunya jembatan UI → backend
+├── src/                # → Isi Cloudflare Pages (root "build output")
+│   ├── index.html      # hasil split dari Index.html (tanpa include())
+│   ├── style.css       # hasil split dari CSS.html
+│   ├── script.js       # hasil split dari JS.html + 12 panggilan → Backend.* (Promise)
+│   ├── api.js          # Backend.* adapter — satu-satunya jembatan UI → backend
+│   └── config.js       # config frontend (transport 'gas'/'rest', apiBase) — TANPA secret
 ├── worker/
-│   └── worker.js      # Cloudflare Worker API gateway (route /api/*)
+│   └── worker.js       # Cloudflare Worker API gateway (route /api/*)
+├── scripts/
+│   ├── split-frontend.mjs   # Fase4: ekstrak Geo12 → src/ (aman dijalankan ulang)
+│   └── test-rest.mjs        # uji otomatis REST router Fase1
 └── docs/
     └── migrasi-cloudflare/MIGRATION_PLAN.md   # master migration plan
 ```

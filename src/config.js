@@ -3,12 +3,13 @@
  *  Secret (GAS_EXEC_URL, GAS_SECRET) hanya di env Cloudflare Worker.
  */
 window.APP_CONFIG = {
-  /* Mode transport data (flag transisi — Fase 3):
+  /* Mode transport data (flag transisi — Fase 3/4):
    *   'gas'  → halaman disajikan oleh Google Apps Script → pakai google.script.run
    *   'rest' → halaman di Cloudflare Pages → pakai fetch('/api/...') via Worker
-   * Ganti SATU baris ini untuk berpindah transport; UI tidak berubah.
+   * Folder src/ ini untuk CLOUDFLARE PAGES → default 'rest'.
+   * (Ubah ke 'gas' hanya bila mengetes versi split di dalam Apps Script.)
    */
-  transport: 'gas',
+  transport: 'rest',
 
   /* Base URL endpoint API saat mode 'rest'.
    * 'gas'  dipakai kita bareng route Worker pada domain sama: '/api'
