@@ -29,8 +29,10 @@ Geo12-pages/
 │   ├── script.js       # hasil split dari JS.html + 12 panggilan → Backend.* (Promise)
 │   ├── api.js          # Backend.* adapter — satu-satunya jembatan UI → backend
 │   └── config.js       # config frontend (transport 'gas'/'rest', apiBase) — TANPA secret
-├── worker/
-│   └── worker.js       # Cloudflare Worker API gateway (route /api/*)
+├── functions/          # → Cloudflare Pages Functions (API gateway, jalan utama)
+│   └── api/[[path]].js # menangkap /api/<fn> → forward ke Apps Script (env GAS_*)
+├── worker/             # → OPSIONAL: Worker terpisah utk subdomain api. (lanjutan)
+│   └── worker.js
 ├── scripts/
 │   ├── split-frontend.mjs   # Fase4: ekstrak Geo12 → src/ (aman dijalankan ulang)
 │   └── test-rest.mjs        # uji otomatis REST router Fase1
@@ -52,13 +54,17 @@ main ────────────▶ (production = live Pages)
 - Commit kecil, pesan imperatif + konteks: `feat: tambah adapter api.js`, `fix: CORS header di worker`.
 - Tiap commit yang menuju main = sudah diuji (lihat checklist di bawah).
 
-## Deploy alur
+## Deploy alur (jalur utama: Pages Functions)
 
-1. Code di sini di-commit ke GitHub.
-2. Cloudflare Pages terhubung ke repo, build output = folder `src/`.
-3. Worker di-deploy terpisah (bundle `worker/worker.js`), route `api.<domain>/*` atau `/<domain>/api/*`.
-4. Secret (bukan di repo): `GAS_EXEC_URL`, `GAS_SECRET` → diatur di **Cloudflare Worker** env.
-5. DNS domain.my.id → Cloudflare, CNAME ke Pages.
+1. Code di sini di-commit ke GitHub (git push origin main).
+2. Cloudflare Pages terhubung ke repo → **build output = `src/**`** (statik) + **`functions/`** (API gateway).
+3. **Environment variables** di Cloudflare Pages (Settings → Environment variables):
+   - `GAS_EXEC_URL` = `https://script.google.com/macros/s/<id>/exec`
+   - `GAS_SECRET` = nilai ScriptProperty `REST_SECRET` Apps Script
+4. Deploy → dapat `https://<project>.pages.dev` → frontend memanggil `/api/*` same-origin → Functions → Apps Script.
+5. `src/config.js` ber-`transport:'rest'` (sudah default). Tidak perlu ubah apiBase.
+6. DNS domain.my.id → Cloudflare, CNAME ke project.pages.dev (Fase 6).
+   - (Opsional/lanjutan) `worker/worker.js` dipakai jika ingin API di subdomain `api.` terpisah.
 
 ## Checklist sebelum deploy (migrasi bertahap)
 
