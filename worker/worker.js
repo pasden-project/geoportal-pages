@@ -3,11 +3,15 @@
  * Browser → fetch('/api/<fn>') same-origin → Worker ini →
  *   tambah header CORS + secret server → forward ke Google Apps Script /exec.
  *
- * SECRET DISIMPAN DI ENV LOGIN WORKER, BUKAN DI FRONTEND/REPO:
+ * SECRET DISIMPAN DI env Worker, BUKAN DI FRONTEND/REPO:
  *   - GAS_EXEC_URL : https://script.google.com/macros/s/<id>/exec  (deploy "Anyone")
- *   - GAS_SECRET   : token yang DIVERIFIKASI Apps Script (header x-gs-secret)
+ *   - GAS_SECRET   : token yang DIVERIFIKASI Apps Script (via query ?key=...)
  *
- * Apps Script doGet/doPost membaca e.parameter.path = nama fungsi publik.
+ * CATATAN PENTING: Apps Script doPost TIDAK bisa membaca header HTTP
+ * sembarangan, jadi secret dikirim sebagai query param ?key=... yang
+ * Ditambahkan Worker di sisi server (TIDAK pernah ada di URL browser).
+ *
+ * Apps Script membaca e.parameter.path (GET) / body {fn} (POST) = nama fungsi.
  */
 
 const CORS = {
@@ -52,19 +56,23 @@ export default {
 
     // Nama fungsi = bagian setelah /api/
     const fn = url.pathname.replace(/^\/api\/?/, '') || 'getDashboardData';
+
+    // Secret dikirim sebagai query param (Apps Script tidak membaca header).
+    // DITAMBAHKAN DI SINI (server Worker) — tidak pernah ada di URL browser.
     const gasUrl = env.GAS_EXEC_URL +
       (env.GAS_EXEC_URL.indexOf('?') >= 0 ? '&' : '?') +
-      'path=' + encodeURIComponent(fn);
+      'path=' + encodeURIComponent(fn) +
+      '&key=' + encodeURIComponent(env.GAS_SECRET || '');
 
     const headers = {
       'Content-Type': 'application/json',
-      Accept: 'application/json',
-      // Header rahasia — Apps Script menolak bila tidak cocok.
-      'x-gs-secret': env.GAS_SECRET || ''
+      Accept: 'application/json'
     };
 
     try {
-      const gas = await fetch(gasUrl, { method: 'POST', headers, body: request.body || null });
+      // Baca body sebagai teks dulu lalu teruskan (lebih andal utk Apps Script).
+      const raw = request.body ? await request.text() : '{}';
+      const gas = await fetch(gasUrl, { method: 'POST', headers, body: raw });
       return withCors(gas);
     } catch (e) {
       return json({ ok: false, error: 'gateway: ' + (e && e.message ? e.message : e) }, 502);

@@ -11,7 +11,7 @@ User ──HTTPS──▶ domain.my.id
                  │ fetch('/api/...') same-origin
                  ▼
             Cloudflare Worker (worker/worker.js: CORS + validasi + forward)
-                 │ header x-gs-secret
+                 │ ?path=<fn>&key=<secret>  (secret hanya di sisi Worker)
                  ▼
             Google Apps Script /exec (doGet/doPost router JSON)
                  ▼
