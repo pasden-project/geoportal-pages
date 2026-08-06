@@ -966,6 +966,7 @@ function aktifkanView(viewId) {
     muatDataMentah();
   } else if (viewId === 'route') {
     document.getElementById('routeBuilderOverlay').classList.remove('hidden');
+    ciutkanRouteBuilder(false);
     if (document.getElementById('routeOriginSelect').options.length <= 1) initRouteBuilderSelects(allPoints);
     resetRouteBuilder();
     expandSheet(false);
@@ -1242,12 +1243,15 @@ function toggleViaMode() {
     btn.style.background = '#ef4444';
     document.getElementById('routeStatus').textContent = 'Klik peta untuk menambahkan titik via.';
     document.getElementById('map').style.cursor = 'crosshair';
+    // Ciutkan panel secara otomatis supaya peta bebas & mudah men-tap titik via.
+    ciutkanRouteBuilder(true);
   } else {
     routeBuilder.active = false;
     btn.textContent = '➕ Tambah Via Point';
     btn.style.background = '';
     document.getElementById('routeStatus').textContent = 'Mode tambah via nonaktif.';
     document.getElementById('map').style.cursor = '';
+    ciutkanRouteBuilder(false);
   }
 }
 
@@ -1285,6 +1289,22 @@ function clearViaPoints() {
 
 function updateViaStatus() {
   document.getElementById('viaPointsStatus').textContent = routeBuilder.viaPoints.length + ' titik via ditambahkan' + (routeBuilder.viaPoints.length > 0 ? ' (klik titik untuk hapus)' : '');
+}
+
+// ----- Panel trayek: ciutkan/ekspansi ke pill kecil (agar peta terlihat) -----
+function sembunyikanMiniRoute() {
+  const p = document.getElementById('routeMini');
+  if (p) p.classList.add('hidden');
+}
+function tampilkanMiniRoute() {
+  const p = document.getElementById('routeMini');
+  if (p) p.classList.remove('hidden');
+}
+function ciutkanRouteBuilder(ciut) {
+  const o = document.getElementById('routeBuilderOverlay');
+  if (!o) return;
+  o.classList.toggle('route-minimized', !!ciut);
+  if (ciut) tampilkanMiniRoute(); else sembunyikanMiniRoute();
 }
 
 // ----- ROUTE MANUAL (tanpa OSRM) -----
@@ -1573,9 +1593,13 @@ function setupEventListeners() {
   });
   document.getElementById('btnTutupRouteBuilder').addEventListener('click', function () {
     document.getElementById('routeBuilderOverlay').classList.add('hidden');
+    sembunyikanMiniRoute();
     resetRouteBuilder();
     aktifkanView('home');
   });
+  // Ciutkan/ekspansi panel trayek (agar peta tetap terlihat)
+  document.getElementById('btnMinimizeRoute').addEventListener('click', function () { ciutkanRouteBuilder(true); });
+  document.getElementById('routeMini').addEventListener('click', function () { ciutkanRouteBuilder(false); });
   document.getElementById('btnToggleViaMode').addEventListener('click', toggleViaMode);
   document.getElementById('btnClearVia').addEventListener('click', clearViaPoints);
   document.getElementById('btnRouteNow').addEventListener('click', routeNow);
