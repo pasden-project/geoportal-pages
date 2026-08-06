@@ -12,7 +12,7 @@ window.APP_CONFIG = {
   transport: 'rest',
 
   /* Base URL endpoint API saat mode 'rest'.
-   * 'gas'  dipakai kita bareng route Worker pada domain sama: '/api'
+   * Default '/api' → dipakai Worker pada domain yang sama (same-origin).
    * Bila API ada di subdomain terpisah, ganti: 'https://api.domain.my.id'
    */
   apiBase: '/api',
