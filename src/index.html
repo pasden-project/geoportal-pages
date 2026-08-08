@@ -38,7 +38,14 @@
     </button>
     <button id="btnTheme" class="icon-btn" aria-label="Ubah tema" title="Ubah tema (terang/gelap)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button>
     <button id="btnFilter" class="icon-btn home-btn" aria-label="Filter"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg></button>
+    <button id="btnLegenda" class="icon-btn" aria-label="Legenda" title="Legenda & peta"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="8" y1="3" x2="8" y2="21"></line><line x1="16" y1="3" x2="16" y2="21"></line><line x1="3" y1="8" x2="21" y2="8"></line><line x1="3" y1="16" x2="21" y2="16"></line></svg></button>
   </header>
+  <div id="legendOverlay" class="overlay hidden" style="justify-content:flex-end;padding:0;background:rgba(15,23,42,0.3);">
+    <div class="side-menu side-menu-right">
+      <div class="menu-header"><h2>Legenda & Peta</h2><button id="btnTutupLegenda" class="close-btn">&times;</button></div>
+      <div id="legendSidebarBody" class="legend-sidebar-body"></div>
+    </div>
+  </div>
   <div id="filterChip" class="filter-chip hidden"></div>
   <div id="sideMenuOverlay" class="overlay hidden" style="justify-content:flex-start;padding:0;background:rgba(15,23,42,0.4);">
     <div class="side-menu">

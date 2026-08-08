@@ -21,7 +21,7 @@ let rawDataLoaded = false;
 // State foto profil: URL yang tersimpan di DB + data base64 sementara (jika user memilih file baru).
 let profileFotoUrl = '';
 let profileFotoData = null;
-let legendState = { simpul: { visible: true }, trayek: { visible: true }, uppkb: { visible: true } };
+let legendState = { simpul: { visible: true }, trayek: { visible: true }, uppkb: { visible: true }, choropleth: true };
 let routeColor = '#3b82f6';
 const PALETTE_COLOR_TRAYEK = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#06b6d4'];
 
@@ -164,14 +164,21 @@ function buatLegenda() {
     return { gp, hdr, body };
   }
 
-  const Lc = L.Control.extend({
-    options: { position: 'bottomleft' },
-    onAdd: function () {
-      const d = L.DomUtil.create('div', 'map-legend');
-      const ttl = document.createElement('div');
-      ttl.className = 'legend-title';
-      ttl.textContent = 'Tampilkan';
-      d.appendChild(ttl);
+  function renderSidebarLegenda() {
+    const d = document.getElementById('legendSidebarBody');
+    if (!d) return;
+    d.innerHTML = '';
+    // Kontrol choropleth
+    const ctl = document.createElement('div');
+    ctl.className = 'chp-controls';
+    ctl.innerHTML = '<h3 class="card-title" style="font-size:14px;margin-bottom:8px">🗺️ Peta Bangkitan/Tarikan</h3>' +
+      '<div class="chp-seg"><button id="chpBang" class="active">Bangkitan</button><button id="chpTar">Tarikan</button></div>' +
+      '<div class="chp-scale"><span>0</span><span class="bar"></span><span>max</span></div>';
+    d.appendChild(ctl);
+    const ttl = document.createElement('div');
+    ttl.className = 'legend-title';
+    ttl.textContent = 'Tampilkan';
+    d.appendChild(ttl);
 
       // Grup Simpul Transportasi
       const gSimpul = buatGrup('simpul', 'Simpul Transportasi');
@@ -240,19 +247,17 @@ function buatLegenda() {
       rankNote.textContent = '👑 di pin = 3 peringkat penumpang teratas (Emas · Perak · Perunggu)';
       d.appendChild(rankNote);
 
-      L.DomEvent.disableClickPropagation(d);
-      L.DomEvent.disableScrollPropagation(d);
-      // Toggle drawer legenda (layar sentuh): ketuk untuk membuka/tutup
-      L.DomEvent.on(d, 'click', function (e) {
-        if (e.target && (e.target.tagName === 'INPUT' || e.target.closest('.legend-item') || e.target.closest('.legend-group-title'))) return;
-        d.classList.toggle('is-open');
-      });
-      return d;
+      const bBang = d.querySelector('#chpBang');
+      const bTar = d.querySelector('#chpTar');
+      if (bBang) bBang.addEventListener('click', function () { bBang.classList.add('active'); bTar.classList.remove('active'); setChoroplethMetric('bangkitan'); });
+      if (bTar) bTar.addEventListener('click', function () { bTar.classList.add('active'); bBang.classList.remove('active'); setChoroplethMetric('tarikan'); });
     }
-  });
-  legendControl = new Lc();
-  legendControl.addTo(map);
-}
+    renderSidebarLegenda();
+    function bukaLegenda() { var o = document.getElementById('legendOverlay'); if (o) o.classList.remove('hidden'); }
+    function tutupLegenda() { var o = document.getElementById('legendOverlay'); if (o) o.classList.add('hidden'); }
+    var btnL = document.getElementById('btnLegenda'); if (btnL) btnL.addEventListener('click', bukaLegenda);
+    var btnT = document.getElementById('btnTutupLegenda'); if (btnT) btnT.addEventListener('click', tutupLegenda);
+  }
 
 // ===== ROUTES =====
 function loadRoutes(callback) {
@@ -1699,6 +1704,49 @@ function setupEventListeners() {
 const THEME_KEY = 'geoterminal_theme';
 const SVG_SUN = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>';
 const SVG_MOON = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
+// ===== CHOROPLETH KABUPATEN/KOTA (bangkitan & tarikan) =====
+let choroplethLayer = null, choroplethData = {}, choroplethMetric = 'bangkitan';
+let choroplethMax = { bangkitan: 1, tarikan: 1 };
+
+function loadChoropleth() {
+  Promise.all([
+    fetch('data/Jabar_By_Kab.geojson').then(function (r) { return r.ok ? r.json() : null; }),
+    fetch('data/od-regional.json').then(function (r) { return r.ok ? r.json() : null; })
+  ]).then(function (res) {
+    const geo = res[0], od = res[1];
+    if (!geo || !od) { console.warn('choropleth data tidak tersedia'); return; }
+    choroplethData = {};
+    od.forEach(function (x) { choroplethData[x.kabkot] = x; });
+    choroplethMax.bangkitan = Math.max.apply(null, od.map(function (x) { return x.bangkitan; })) || 1;
+    choroplethMax.tarikan = Math.max.apply(null, od.map(function (x) { return x.tarikan; })) || 1;
+    choroplethLayer = L.geoJSON(geo, { style: choroplethStyle, onEachFeature: choroplethOnEach });
+    if (legendState.choropleth !== false) choroplethLayer.addTo(map);
+    choroplethLayer.bringToBack();
+  }).catch(function (e) { console.error('choropleth load:', e); });
+}
+function choroplethStyle(f) {
+  const nm = (f.properties && f.properties.KABKOT) || '';
+  const d = choroplethData[nm];
+  const v = d ? (Number(d[choroplethMetric]) || 0) : 0;
+  return { fillColor: choroplethColor(v), weight: 1, opacity: 0.9, color: '#ffffff', fillOpacity: 0.72 };
+}
+function choroplethColor(v) {
+  const t = Math.min(1, v / (choroplethMax[choroplethMetric] || 1));
+  const g = Math.round(240 - t * 190), b = Math.round(90 - t * 60);
+  return 'rgb(255,' + g + ',' + b + ')';
+}
+function choroplethOnEach(f, layer) {
+  const nm = (f.properties && f.properties.KABKOT) || '';
+  layer.on('mouseover', function () {
+    const d = choroplethData[nm] || {};
+    layer.setStyle({ fillOpacity: 1, weight: 2 });
+    layer.bindTooltip('<strong>' + nm + '</strong><br>Bangkitan: ' + (Number(d.bangkitan) || 0).toLocaleString('id-ID') + '<br>Tarikan: ' + (Number(d.tarikan) || 0).toLocaleString('id-ID'), { sticky: true }).openTooltip();
+  });
+  layer.on('mouseout', function () { if (choroplethLayer) choroplethLayer.resetStyle(layer); });
+}
+function terapkanChoropleth() { if (!choroplethLayer) return; choroplethLayer.eachLayer(function (l) { l.setStyle(choroplethStyle(l.feature)); }); }
+function setChoroplethMetric(m) { choroplethMetric = (m === 'tarikan') ? 'tarikan' : 'bangkitan'; terapkanChoropleth(); }
+
 function getBasemapUrl() {
   const dark = document.documentElement.getAttribute('data-theme') === 'dark';
   return dark
@@ -2487,6 +2535,7 @@ window.addEventListener('DOMContentLoaded', function () {
   document.getElementById('tahunFooter').textContent = new Date().getFullYear();
   setupEventListeners();
   initMap();
+  loadChoropleth();
   Backend.getAvailableYears().then(function (years) {
       const sel = document.getElementById('filterTahun');
       sel.innerHTML = '';

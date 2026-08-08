@@ -79,6 +79,8 @@
     letter-spacing: 0.5px;
   }
 
+  /* Poligon choropleth kab/kota — cursor interaktif + transisi hover */
+  .leaflet-interactive { cursor: pointer; }
   #map {
     position: fixed;
     inset: 0;
@@ -821,6 +823,17 @@
   .overlay:not(.hidden) .side-menu {
     transform: translateX(0);
   }
+  /* Sidebar legenda KANAN + kontrol choropleth */
+  .side-menu-right { transform: translateX(100%); box-shadow: -4px 0 24px rgba(0, 0, 0, 0.12); }
+  #legendOverlay:not(.hidden) .side-menu-right { transform: translateX(0); }
+  .legend-sidebar-body { padding: 14px 16px; overflow-y: auto; flex: 1; scrollbar-width: none; }
+  .legend-sidebar-body::-webkit-scrollbar { display: none; }
+  .chp-controls { margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--gray-border); }
+  .chp-seg { display: flex; gap: 6px; }
+  .chp-seg button { flex: 1; padding: 7px 8px; border-radius: 8px; border: 1px solid var(--gray-border); background: var(--gray-bg); font-weight: 700; font-size: 12px; color: var(--gray-text); cursor: pointer; }
+  .chp-seg button.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+  .chp-scale { display: flex; align-items: center; gap: 6px; margin-top: 10px; font-size: 10.5px; color: var(--gray-text); }
+  .chp-scale .bar { flex: 1; height: 10px; border-radius: 5px; background: linear-gradient(90deg, rgb(255, 240, 90), rgb(255, 110, 30)); }
   .menu-header {
     padding: 24px 20px;
     display: flex;

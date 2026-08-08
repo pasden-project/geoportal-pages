@@ -93,8 +93,8 @@ const RE = [
    '    .catch(function (err) {\n      hideLoading();\n      tampilkanNotif(false, \'Error: \' + (err && err.message ? err.message : err));\n    });'],
 
   // S12 inisialisasi (DOMContentLoaded)
-  ['  setupEventListeners();\n  initMap();\n  google.script.run\n    .withSuccessHandler(function (years) {',
-   '  setupEventListeners();\n  initMap();\n  Backend.getAvailableYears().then(function (years) {'],
+  ['  setupEventListeners();\n  initMap();\n  loadChoropleth();\n  google.script.run\n    .withSuccessHandler(function (years) {',
+   '  setupEventListeners();\n  initMap();\n  loadChoropleth();\n  Backend.getAvailableYears().then(function (years) {'],
   ['    .withFailureHandler(function (err) {\n      alert(\'Gagal inisialisasi: \' + (err && err.message ? err.message : err));\n      hideLoading();\n    })\n    .getAvailableYears();',
    '    .catch(function (err) {\n      alert(\'Gagal inisialisasi: \' + (err && err.message ? err.message : err));\n      hideLoading();\n    });'],
 ];
