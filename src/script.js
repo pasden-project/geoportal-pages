@@ -1735,7 +1735,7 @@ function choroplethStyle(f) {
   const nm = (f.properties && f.properties.KABKOT) || '';
   const d = choroplethData[nm];
   const v = d ? (Number(d[choroplethMetric]) || 0) : 0;
-  if (v <= 0) return { fillColor: 'transparent', fillOpacity: 0, weight: 1, opacity: 0.7, color: '#94a3b8' };
+  if (v <= 0) return { fillColor: '#94a3b8', fillOpacity: 0.1, weight: 0.5, opacity: 0.35, color: '#cbd5e1' };
   return { fillColor: choroplethColor(v), weight: 1, opacity: 0.9, color: '#ffffff', fillOpacity: 0.72 };
 }
 function choroplethColor(v) {
