@@ -21,7 +21,7 @@ let rawDataLoaded = false;
 // State foto profil: URL yang tersimpan di DB + data base64 sementara (jika user memilih file baru).
 let profileFotoUrl = '';
 let profileFotoData = null;
-let legendState = { simpul: { visible: true }, trayek: { visible: true }, uppkb: { visible: true }, choropleth: true };
+let legendState = { simpul: { visible: true }, trayek: { visible: false }, uppkb: { visible: true }, choropleth: true };
 let routeColor = '#3b82f6';
 const PALETTE_COLOR_TRAYEK = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#06b6d4'];
 
@@ -186,7 +186,7 @@ function buatLegenda() {
       Object.keys(warnaTipe).forEach(t => {
         const r = document.createElement('label');
         r.className = 'legend-item';
-        r.innerHTML = '<input type="checkbox" id="leg-' + t + '" checked data-tipe="' + t + '"><span class="legend-dot" style="background:' + warnaTipe[t] + '"></span><span>' + labelTipe[t] + '</span>';
+        r.innerHTML = '<input type="checkbox" id="leg-' + t + '"' + (t === 'A' ? ' checked' : '') + ' data-tipe="' + t + '"><span class="legend-dot" style="background:' + warnaTipe[t] + '"></span><span>' + labelTipe[t] + '</span>';
         gSimpul.body.appendChild(r);
       });
       gSimpul.body.querySelectorAll('input[data-tipe]').forEach(cb => {
@@ -220,11 +220,13 @@ function buatLegenda() {
 
       // Grup Trayek
       const gTray = buatGrup('trayek', 'Trayek');
+      const gTrayMaster = gTray.hdr.querySelector('#leg-group-trayek');
+      if (gTrayMaster) gTrayMaster.checked = false;
       if (savedRoutesData && savedRoutesData.length > 0) {
         savedRoutesData.forEach(r => {
           const ro = document.createElement('label');
           ro.className = 'legend-item';
-          ro.innerHTML = '<input type="checkbox" id="leg-route-' + r.id + '" checked data-route-id="' + r.id + '"><span class="legend-dot" style="background:' + (r.color || '#3b82f6') + '"></span><span>' + (r.name || 'Trayek') + '</span>';
+          ro.innerHTML = '<input type="checkbox" id="leg-route-' + r.id + '" data-route-id="' + r.id + '"><span class="legend-dot" style="background:' + (r.color || '#3b82f6') + '"></span><span>' + (r.name || 'Trayek') + '</span>';
           gTray.body.appendChild(ro);
         });
         gTray.body.querySelectorAll('input[data-route-id]').forEach(cb => {
