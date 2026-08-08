@@ -173,7 +173,8 @@ function buatLegenda() {
     ctl.className = 'chp-controls';
     ctl.innerHTML = '<h3 class="card-title" style="font-size:14px;margin-bottom:8px">🗺️ Peta Bangkitan/Tarikan</h3>' +
       '<div class="chp-seg"><button id="chpBang" class="active">Bangkitan</button><button id="chpTar">Tarikan</button></div>' +
-      '<div class="chp-scale"><span>0</span><span class="bar"></span><span>max</span></div>';
+      '<div class="chp-scale"><span>0</span><span class="bar"></span><span>max</span></div>' +
+      '<label class="chp-show"><input type="checkbox" id="chpShow" checked> Tampilkan lapisan</label>';
     d.appendChild(ctl);
     const ttl = document.createElement('div');
     ttl.className = 'legend-title';
@@ -251,6 +252,12 @@ function buatLegenda() {
       const bTar = d.querySelector('#chpTar');
       if (bBang) bBang.addEventListener('click', function () { bBang.classList.add('active'); bTar.classList.remove('active'); setChoroplethMetric('bangkitan'); });
       if (bTar) bTar.addEventListener('click', function () { bTar.classList.add('active'); bBang.classList.remove('active'); setChoroplethMetric('tarikan'); });
+      const chpShow = d.querySelector('#chpShow');
+      if (chpShow) chpShow.addEventListener('change', function () {
+        legendState.choropleth = this.checked;
+        if (!choroplethLayer) return;
+        if (this.checked) choroplethLayer.addTo(map); else map.removeLayer(choroplethLayer);
+      });
     }
     renderSidebarLegenda();
     function bukaLegenda() { var o = document.getElementById('legendOverlay'); if (o) o.classList.remove('hidden'); }
