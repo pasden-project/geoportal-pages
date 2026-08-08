@@ -1735,6 +1735,7 @@ function choroplethStyle(f) {
   const nm = (f.properties && f.properties.KABKOT) || '';
   const d = choroplethData[nm];
   const v = d ? (Number(d[choroplethMetric]) || 0) : 0;
+  if (v <= 0) return { fillColor: 'transparent', fillOpacity: 0, weight: 1, opacity: 0.7, color: '#94a3b8' };
   return { fillColor: choroplethColor(v), weight: 1, opacity: 0.9, color: '#ffffff', fillOpacity: 0.72 };
 }
 function choroplethColor(v) {
@@ -1746,7 +1747,8 @@ function choroplethOnEach(f, layer) {
   const nm = (f.properties && f.properties.KABKOT) || '';
   layer.on('mouseover', function () {
     const d = choroplethData[nm] || {};
-    layer.setStyle({ fillOpacity: 1, weight: 2 });
+    const v = Number(d[choroplethMetric]) || 0;
+    layer.setStyle(v > 0 ? { fillOpacity: 1, weight: 2 } : { fillColor: '#cbd5e1', fillOpacity: 0.75, weight: 2 });
     layer.bindTooltip('<strong>' + nm + '</strong><br>Bangkitan: ' + (Number(d.bangkitan) || 0).toLocaleString('id-ID') + '<br>Tarikan: ' + (Number(d.tarikan) || 0).toLocaleString('id-ID'), { sticky: true }).openTooltip();
   });
   layer.on('mouseout', function () { if (choroplethLayer) choroplethLayer.resetStyle(layer); });
