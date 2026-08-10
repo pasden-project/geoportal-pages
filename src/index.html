@@ -82,6 +82,17 @@
           <button type="button" class="csw" data-c="#06b6d4" style="background:#06b6d4" aria-label="Cyan"></button>
         </div>
       </div>
+      <!-- Salin / tempel titik (lanjutkan routing manual dari trayek lain) -->
+      <div style="display:flex;gap:8px;margin-bottom:12px;">
+        <button id="btnSalinViaTip" class="btn-primary" style="flex:1;padding:10px;font-size:13px;background:#64748b;box-shadow:none;">📋 Salin Titik <span id="salinViaCount" style="opacity:.85;"></span></button>
+        <button id="btnPasteViaTip" class="btn-primary" style="flex:1;padding:10px;font-size:13px;background:#0ea5e9;box-shadow:none;">📌 Tempel Titik <span id="pasteViaCount" style="opacity:.85;"></span></button>
+      </div>
+      <!-- Library trayek tersimpan: pilih untuk edit poin / salin titik -->
+      <div id="routeLibSection" style="margin-bottom:12px;">
+        <label class="field-label" style="margin-bottom:6px;">TRAYEK TERSIMPAN <span style="font-weight:500;opacity:.6;text-transform:none;font-size:12px;">(✏ edit poin · 📋 salin titik)</span></label>
+        <div id="routeLibList" style="display:flex;flex-direction:column;gap:6px;max-height:150px;overflow:auto;"></div>
+        <div id="routeLibEmpty" class="hidden" style="font-size:12px;color:var(--gray-text);padding:4px 2px;">Belum ada trayek tersimpan.</div>
+      </div>
       <div style="display:flex;gap:8px;"><button id="btnRouteNow" class="btn-primary" style="flex:2;background:#10b981;box-shadow:0 8px 20px rgba(16,185,129,0.3);">🚌 Rutekan</button><button id="btnSaveRoute" class="btn-primary" style="flex:1;background:#8b5cf6;box-shadow:0 8px 20px rgba(139,92,246,0.3);display:none;">💾 Simpan Trayek</button></div>
       <button id="btnSaveRouteAsCorridor" style="display:none;"></button>
       <div style="margin-top:10px;font-size:12px;color:var(--gray-text);text-align:center;"><span id="routeStatus">Klik peta untuk menambahkan titik via (gerbang tol, simpang, dll.)</span></div>

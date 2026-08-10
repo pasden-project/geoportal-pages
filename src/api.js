@@ -15,7 +15,7 @@
   var mem = {};                                  // "fn|jsonArgs" -> { ts, data }
   var MEM_TTL = 20000;                            // 20 detik
   var MEM_READ = { getAvailableYears: 1, getDashboardData: 1 };
-  var MEM_WRITE = { saveRoute: 1, deleteRoute: 1, saveTerminalDetail: 1, savePotretRows: 1, sinkronisasiProduksi: 1 };
+  var MEM_WRITE = { saveRoute: 1, updateRoute: 1, deleteRoute: 1, saveTerminalDetail: 1, savePotretRows: 1, sinkronisasiProduksi: 1 };
   var delay2 = function (ms) { return new Promise(function (rs) { setTimeout(rs, ms); }); };
 
   // Inti: kirim panggilan fungsi backend (name) → Promise.
@@ -88,6 +88,7 @@
   // --- route / trayek ---
   function getRoutes() { return rpc('getRoutes'); }
   function saveRoute(payload) { return rpc('saveRoute', payload); }
+  function updateRoute(payload) { return rpc('updateRoute', payload); }
   function deleteRoute(id) { return rpc('deleteRoute', id); }
 
   // --- terminal profile ---
@@ -108,6 +109,7 @@
     getAllRawData: getAllRawData,
     getRoutes: getRoutes,
     saveRoute: saveRoute,
+    updateRoute: updateRoute,
     deleteRoute: deleteRoute,
     getTerminalDetail: getTerminalDetail,
     saveTerminalDetail: saveTerminalDetail,

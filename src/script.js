@@ -14,7 +14,10 @@ let routeBuilder = {
   origin: { lat: -6.9450, lng: 107.5938 },
   lastRouteResult: null,
   lastOriginCode: '',
-  lastDestCode: ''
+  lastDestCode: '',
+  // Fitur edit + salin titik: id trayek yang sedang diedit, dan titik yang disalin.
+  editRouteId: null,
+  clipboardPoints: []
 };
 let currentProfileKode = '';
 let rawDataLoaded = false;
@@ -24,6 +27,20 @@ let profileFotoData = null;
 let legendState = { simpul: { visible: true }, trayek: { visible: false }, uppkb: { visible: true }, choropleth: true };
 let routeColor = '#3b82f6';
 const PALETTE_COLOR_TRAYEK = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#06b6d4'];
+
+// Whitelist: hanya 10 trayek teratas (berdasarkan jumlah kendaraan dari data OD) yang ditampilkan
+const TOP_10_TRAYEK = [
+  'BANDUNG - SUKABUMI',
+  'BANDUNG-BEKASI',
+  'TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL GUNTUR MELATI (GARUT)',
+  'TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL INDIHIANG (TASIKMALAYA)',
+  'BANDUNG - CIKARANG',
+  'TERMINAL GUNTUR MELATI (GARUT) - TERMINAL BARANANGSIANG (BOGOR)',
+  'TERMINAL GUNTUR MELATI (GARUT) - TERMINAL INDUK BEKASI (BEKASI)',
+  'KOTA BEKASI - TASIKMALAYA',
+  'TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL CIAKAR (SUMEDANG)',
+  'BOGOR - BANDUNG'
+];
 
 const warnaTipe = { A: '#3b82f6', B: '#10b981', C: '#f59e0b', KA: '#8b5cf6', BANDARA: '#ef4444' };
 const labelTipe = { A: 'Terminal Tipe A', B: 'Terminal Tipe B', C: 'Terminal Tipe C', KA: 'Stasiun KA', BANDARA: 'Bandara' };
@@ -275,12 +292,19 @@ function loadRoutes(callback) {
         if (callback) callback();
         return;
       }
-      savedRoutesData = routes;
+      // Filter: hanya tampilkan 10 trayek teratas
+      const filtered = routes.filter(function (r) {
+        return TOP_10_TRAYEK.some(function (name) {
+          return (r.name || '').toUpperCase() === name.toUpperCase();
+        });
+      });
+      savedRoutesData = filtered;
       routesLayer.clearLayers();
       routePolylines = {};
-      routes.forEach(function (r) {
+      filtered.forEach(function (r) {
         if (r.polyline && r.polyline.length) drawRouteFromData(r);
       });
+      renderRouteLib();
       if (callback) callback();
     })
     .catch(function (err) {
@@ -289,13 +313,25 @@ function loadRoutes(callback) {
     });
 }
 
+// Ketebalan garis proporsional volume penumpang (10 trayek teratas). Rentang 2–10.
+function ketebalanTrayek(rd) {
+  let maxVol = 0;
+  (savedRoutesData || []).forEach(r => { const v = Number(r.volume) || 0; if (v > maxVol) maxVol = v; });
+  const vol = Number(rd.volume) || 0;
+  if (!maxVol || !vol) return 4; // trayek manual / tanpa volume → tebal standar
+  return Math.round((2 + 8 * (vol / maxVol)) * 10) / 10;
+}
+
 function drawRouteFromData(rd) {
   const p = L.polyline(rd.polyline.map(pt => [pt[0], pt[1]]), {
     color: rd.color || '#3b82f6',
-    weight: 5,
+    weight: ketebalanTrayek(rd),
     opacity: 0.9
   }).addTo(routesLayer);
-  const pp = '<div style="font-family:Plus Jakarta Sans,sans-serif;min-width:150px;"><strong>' + (rd.name || 'Trayek') + '</strong><br><button class="btn-hapus-rute-popup" data-id="' + rd.id + '" style="margin-top:8px;background:#ef4444;color:#fff;border:none;padding:6px 12px;border-radius:8px;cursor:pointer;width:100%;">🗑 Hapus</button></div>';
+  const info = (rd.volume || rd.perjalanan || rd.jarak_km)
+    ? '<div class="rute-info">👥 ' + formatSingkat(rd.volume) + ' penumpang · 🚌 ' + formatSingkat(rd.perjalanan) + ' perjalanan · 📏 ' + (Number(rd.jarak_km) || 0).toLocaleString('id-ID') + ' km</div>'
+    : '';
+  const pp = '<div style="font-family:Plus Jakarta Sans,sans-serif;min-width:170px;"><strong>' + (rd.name || 'Trayek') + '</strong>' + info + '<br><button class="btn-hapus-rute-popup" data-id="' + rd.id + '" style="margin-top:8px;background:#ef4444;color:#fff;border:none;padding:6px 12px;border-radius:8px;cursor:pointer;width:100%;">🗑 Hapus</button></div>';
   p.bindPopup(pp);
   p.on('popupopen', function () {
     setTimeout(function () {
@@ -1268,24 +1304,51 @@ function toggleViaMode() {
   // diklik walau panel terbuka. Pengguna bisa ciutkan manual lewat tombol ▾.
 }
 
+// Marker titik via: bisa DISERET (edit poin) dan DIKLIK (hapus poin).
+function buatViaMarker(lat, lng) {
+  const m = L.marker([lat, lng], {
+    draggable: true,
+    icon: L.divIcon({ className: 'via-dot', html: '<div class="via-dot-inner"></div>', iconSize: [14, 14], iconAnchor: [7, 7] })
+  }).addTo(map);
+  m.buatLabel = function (ii) { m.setTooltipContent('Via #' + (ii + 1)); };
+  m.buatLabel(routeBuilder.viaPoints.length);
+  m.on('click', function () {
+    const i = routeBuilder.viaMarkers.indexOf(m);
+    if (i < 0) return;
+    if (!confirm('Hapus titik via #' + (i + 1) + '?')) return;
+    removeViaAt(i);
+  });
+  m.on('drag', function () {
+    const i = routeBuilder.viaMarkers.indexOf(m);
+    if (i < 0) return;
+    routeBuilder.viaPoints[i] = { lat: m.getLatLng().lat, lng: m.getLatLng().lng };
+    redrawRoutePolyline();
+  });
+  m.on('dragend', function () {
+    const i = routeBuilder.viaMarkers.indexOf(m);
+    if (i < 0) return;
+    routeBuilder.viaPoints[i] = { lat: m.getLatLng().lat, lng: m.getLatLng().lng };
+    updateViaStatus();
+  });
+  return m;
+}
+
 function addViaPoint(e) {
   if (!routeBuilder.active || !e.latlng) return;
-  const m = L.circleMarker([e.latlng.lat, e.latlng.lng], { radius: 6, color: '#ff6600', fillColor: '#ff6600', fillOpacity: 0.9 }).addTo(map);
-  const idx = routeBuilder.viaPoints.length + 1;
-  m.bindTooltip('Via #' + idx);
-  m.on('click', function () {
-    if (!confirm('Hapus titik via #' + idx + '?')) return;
-    const i = routeBuilder.viaMarkers.indexOf(m);
-    if (i >= 0) {
-      routeBuilder.viaMarkers.splice(i, 1);
-      routeBuilder.viaPoints.splice(i, 1);
-      map.removeLayer(m);
-      updateViaStatus();
-      routeBuilder.viaMarkers.forEach(function (mm, ii) { mm.setTooltipContent('Via #' + (ii + 1)); });
-    }
-  });
+  const m = buatViaMarker(e.latlng.lat, e.latlng.lng);
   routeBuilder.viaMarkers.push(m);
   routeBuilder.viaPoints.push({ lat: e.latlng.lat, lng: e.latlng.lng });
+  routeBuilder.viaMarkers.forEach(function (mm, ii) { if (mm.buatLabel) mm.buatLabel(ii); });
+  updateViaStatus();
+}
+
+function removeViaAt(i) {
+  if (i < 0 || i >= routeBuilder.viaMarkers.length) return;
+  map.removeLayer(routeBuilder.viaMarkers[i]);
+  routeBuilder.viaMarkers.splice(i, 1);
+  routeBuilder.viaPoints.splice(i, 1);
+  routeBuilder.viaMarkers.forEach(function (mm, ii) { if (mm.buatLabel) mm.buatLabel(ii); });
+  redrawRoutePolyline();
   updateViaStatus();
 }
 
@@ -1301,7 +1364,181 @@ function clearViaPoints() {
 }
 
 function updateViaStatus() {
-  document.getElementById('viaPointsStatus').textContent = routeBuilder.viaPoints.length + ' titik via ditambahkan' + (routeBuilder.viaPoints.length > 0 ? ' (klik titik untuk hapus)' : '');
+  const n = routeBuilder.viaPoints.length;
+  const el = document.getElementById('viaPointsStatus');
+  const hint = routeBuilder.editRouteId ? '· seret untuk pindah · klik untuk hapus' : (n > 0 ? '· seret untuk pindah · klik untuk hapus' : '');
+  el.textContent = n + ' titik via' + (n > 0 ? ' ' + hint : '');
+}
+
+function ambilDestPoint() {
+  const ds = document.getElementById('routeDestSelect');
+  if (ds && ds.selectedIndex >= 0) {
+    const s = ds.options[ds.selectedIndex];
+    if (s && s.value && s.dataset.lat) return { lat: parseFloat(s.dataset.lat), lng: parseFloat(s.dataset.lng) };
+  }
+  return null;
+}
+
+// Bangun ulang polyline dari asal + via + tujuan (TANPA fitBounds, agar tak
+// me-lompat saat menyeret titik).
+function redrawRoutePolyline() {
+  const o = routeBuilder.origin, d = ambilDestPoint();
+  if (!o || !d) return;
+  const latlngs = [[o.lat, o.lng]];
+  routeBuilder.viaPoints.forEach(p => latlngs.push([p.lat, p.lng]));
+  latlngs.push([d.lat, d.lng]);
+  if (routeBuilder.routePolyline) map.removeLayer(routeBuilder.routePolyline);
+  routeBuilder.routePolyline = L.polyline(latlngs, {
+    color: routeColor, weight: 6, opacity: 0.9, lineCap: 'round', lineJoin: 'round'
+  }).addTo(map);
+  routeBuilder.lastRouteResult = { polyline: latlngs, distance: hitungJarakKm(latlngs) * 1000, duration: 0 };
+}
+
+// Ganti seluruh isi titik via (dipakai saat muat trayek utk edit & tempel titik).
+function setViaPoints(points) {
+  clearViaPoints();
+  (points || []).forEach(p => {
+    const m = buatViaMarker(parseFloat(p.lat), parseFloat(p.lng));
+    routeBuilder.viaMarkers.push(m);
+    routeBuilder.viaPoints.push({ lat: parseFloat(p.lat), lng: parseFloat(p.lng) });
+  });
+  routeBuilder.viaMarkers.forEach(function (mm, ii) { if (mm.buatLabel) mm.buatLabel(ii); });
+  updateViaStatus();
+}
+
+// Perkiraan jarak garis lurus antar titik (km).
+function hitungJarakKm(latlngs) {
+  let totalDist = 0;
+  for (let i = 0; i < latlngs.length - 1; i++) {
+    const p1 = latlngs[i], p2 = latlngs[i + 1];
+    const R = 6371;
+    const dLat = (p2[0] - p1[0]) * Math.PI / 180;
+    const dLon = (p2[1] - p1[1]) * Math.PI / 180;
+    const a = Math.sin(dLat / 2) ** 2 +
+              Math.cos(p1[0] * Math.PI / 180) * Math.cos(p2[0] * Math.PI / 180) *
+              Math.sin(dLon / 2) ** 2;
+    totalDist += R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  }
+  return totalDist;
+}
+
+// ===== Library trayek tersimpan (edit poin / salin titik) =====
+function renderRouteLib() {
+  const box = document.getElementById('routeLibList');
+  const empty = document.getElementById('routeLibEmpty');
+  if (!box) return;
+  box.innerHTML = '';
+  if (!savedRoutesData || !savedRoutesData.length) {
+    if (empty) empty.classList.remove('hidden');
+    return;
+  }
+  if (empty) empty.classList.add('hidden');
+  savedRoutesData.forEach(function (r) {
+    const row = document.createElement('div');
+    row.className = 'route-lib-row';
+    const colorDot = document.createElement('span');
+    colorDot.className = 'route-lib-dot';
+    colorDot.style.background = r.color || '#3b82f6';
+    const nameBox = document.createElement('div');
+    nameBox.className = 'route-lib-namebox';
+    const lbl = document.createElement('span');
+    lbl.className = 'route-lib-name';
+    lbl.textContent = r.name || 'Trayek';
+    lbl.title = (r.origin_code || '?') + ' → ' + (r.dest_code || '?') + ' · ' + (r.waypoints ? r.waypoints.length : 0) + ' titik via';
+    nameBox.appendChild(lbl);
+    if (r.volume || r.perjalanan || r.jarak_km) {
+      const sub = document.createElement('span');
+      sub.className = 'route-lib-sub';
+      sub.textContent = '👥 ' + formatSingkat(r.volume) + ' · 🚌 ' + formatSingkat(r.perjalanan) + ' · ' + (Number(r.jarak_km) || 0).toLocaleString('id-ID') + ' km';
+      nameBox.appendChild(sub);
+    }
+    const btns = document.createElement('div');
+    btns.className = 'route-lib-actions';
+    const bEdit = document.createElement('button');
+    bEdit.textContent = '✏️';
+    bEdit.className = 'route-lib-btn';
+    bEdit.title = 'Edit poin trayek ini';
+    bEdit.onclick = function () { muatTrayekKeBuilder(r); };
+    const bCopy = document.createElement('button');
+    bCopy.textContent = '📋';
+    bCopy.className = 'route-lib-btn';
+    bCopy.title = 'Salin titik trayek ini, lalu buat trayek baru dan tempel';
+    bCopy.onclick = function () { salinkanTitikTrayek(r.waypoints); };
+    btns.appendChild(bEdit);
+    btns.appendChild(bCopy);
+    row.appendChild(colorDot);
+    row.appendChild(nameBox);
+    row.appendChild(btns);
+    box.appendChild(row);
+  });
+}
+
+// Muat trayek tersimpan ke builder utk DIEDIT poinnya (asal/tujuan/via ditarik).
+function muatTrayekKeBuilder(r) {
+  const o = document.getElementById('routeBuilderOverlay');
+  if (o) { o.classList.remove('hidden'); o.classList.remove('route-minimized'); sembunyikanMiniRoute(); }
+  const os = document.getElementById('routeOriginSelect');
+  if (r.origin_code && os.querySelector('option[value="' + r.origin_code + '"]')) {
+    os.value = r.origin_code;
+    const s = os.options[os.selectedIndex];
+    routeBuilder.origin = { lat: parseFloat(s.dataset.lat), lng: parseFloat(s.dataset.lng) };
+    routeBuilder.lastOriginCode = r.origin_code;
+  }
+  const ds = document.getElementById('routeDestSelect');
+  if (r.dest_code && ds.querySelector('option[value="' + r.dest_code + '"]')) ds.value = r.dest_code;
+  setViaPoints(r.waypoints || []);
+  redrawRoutePolyline();
+  if (routeBuilder.routePolyline) map.fitBounds(routeBuilder.routePolyline.getBounds(), { padding: [40, 40] });
+  routeBuilder.editRouteId = r.id;
+  routeColor = r.color || '#3b82f6';
+  applyRouteColorUI();
+  document.getElementById('btnSaveRoute').style.display = 'block';
+  document.getElementById('routeStatus').textContent = '✏️ Edit "' + (r.name || 'Trayek') + '": seret titik untuk pindah, klik titik untuk hapus, klik peta (mode via) untuk tambah, lalu 💾 Simpan.';
+}
+
+// Sinkronkan swatch palet yang aktif sesuai routeColor.
+function applyRouteColorUI() {
+  const csws = document.querySelectorAll('.csw');
+  csws.forEach(b => b.classList.toggle('active', b.getAttribute('data-c') === routeColor));
+}
+
+// ===== Salin / tempel titik antar trayek =====
+function updateClipboardCount() {
+  const n = routeBuilder.clipboardPoints.length;
+  const pc = document.getElementById('pasteViaCount');
+  if (pc) pc.textContent = n ? '(' + n + ')' : '';
+  const btn = document.getElementById('btnPasteViaTip');
+  if (btn) btn.style.opacity = n ? '1' : '0.55';
+}
+
+function salinTitikDraft() {
+  const pts = routeBuilder.viaPoints.map(p => ({ lat: p.lat, lng: p.lng }));
+  if (!pts.length) { alert('Belum ada titik via untuk disalin.'); return; }
+  routeBuilder.clipboardPoints = pts;
+  document.getElementById('salinViaCount').textContent = '✅';
+  updateClipboardCount();
+  alert('Titik tersalin (' + pts.length + ' titik) — klik "📌 Tempel Titik" pada trayek baru.');
+}
+
+function salinkanTitikTrayek(points) {
+  const pts = (points || []).map(p => ({ lat: parseFloat(p.lat), lng: parseFloat(p.lng) }));
+  if (!pts.length) { alert('Trayek tidak memiliki titik via.'); return; }
+  routeBuilder.clipboardPoints = pts;
+  document.getElementById('salinViaCount').textContent = '✅ ' + pts.length;
+  updateClipboardCount();
+  alert('Titik trayek disalin (' + pts.length + ' titik). Buka Buat Trayek baru lalu klik "📌 Tempel Titik", dan lanjutkan via point.');
+}
+
+function tempelTitik() {
+  if (!routeBuilder.clipboardPoints.length) { alert('Tidak ada titik tersalin. Salin dulu dari trayek tersimpan (📋) atau rute ini (📋 Salin Titik).'); return; }
+  routeBuilder.viaMarkers.forEach(m => map.removeLayer(m));
+  routeBuilder.viaMarkers = [];
+  routeBuilder.viaPoints = routeBuilder.clipboardPoints.map(p => ({ lat: parseFloat(p.lat), lng: parseFloat(p.lng) }));
+  routeBuilder.viaPoints.forEach(p => { routeBuilder.viaMarkers.push(buatViaMarker(p.lat, p.lng)); });
+  routeBuilder.viaMarkers.forEach(function (mm, ii) { if (mm.buatLabel) mm.buatLabel(ii); });
+  if (routeBuilder.origin && ambilDestPoint()) redrawRoutePolyline();
+  updateViaStatus();
+  document.getElementById('routeStatus').textContent = '✅ ' + routeBuilder.viaPoints.length + ' titik ditempel. Hidupkan mode via lalu klik peta untuk melanjutkan titik berikutnya.';
 }
 
 // ----- Panel trayek: ciutkan/ekspansi ke pill kecil (agar peta terlihat) -----
@@ -1329,43 +1566,18 @@ function routeNow() {
   if (!oo || !oo.value) { alert('Pilih asal!'); return; }
   if (!do_ || !do_.value) { alert('Pilih tujuan!'); return; }
 
-  // Buat polyline dari semua titik: asal → via → tujuan
-  const latlngs = [
-    [parseFloat(oo.dataset.lat), parseFloat(oo.dataset.lng)],
-    ...routeBuilder.viaPoints.map(p => [p.lat, p.lng]),
-    [parseFloat(do_.dataset.lat), parseFloat(do_.dataset.lng)]
-  ];
+  // Set asal dari dropdown, lalu gambar polyline via helper bersama.
+  routeBuilder.origin = { lat: parseFloat(oo.dataset.lat), lng: parseFloat(oo.dataset.lng) };
+  routeBuilder.lastDestCode = do_.value;
+  redrawRoutePolyline();
+  if (!routeBuilder.routePolyline) return;
 
-  // Hapus polyline sebelumnya jika ada
-  if (routeBuilder.routePolyline) map.removeLayer(routeBuilder.routePolyline);
-
-  // Gambar polyline dengan warna terpilih
-  routeBuilder.routePolyline = L.polyline(latlngs, {
-    color: routeColor,
-    weight: 6,
-    opacity: 0.9,
-    lineCap: 'round',
-    lineJoin: 'round'
-  }).addTo(map);
+  const latlngs = routeBuilder.lastRouteResult.polyline;
+  const totalDist = hitungJarakKm(latlngs);
 
   map.fitBounds(routeBuilder.routePolyline.getBounds(), { padding: [40, 40] });
 
-  // Hitung jarak estimasi (garis lurus antar titik)
-  let totalDist = 0;
-  for (let i = 0; i < latlngs.length - 1; i++) {
-    const p1 = latlngs[i];
-    const p2 = latlngs[i + 1];
-    const R = 6371;
-    const dLat = (p2[0] - p1[0]) * Math.PI / 180;
-    const dLon = (p2[1] - p1[1]) * Math.PI / 180;
-    const a = Math.sin(dLat / 2) ** 2 +
-              Math.cos(p1[0] * Math.PI / 180) * Math.cos(p2[0] * Math.PI / 180) *
-              Math.sin(dLon / 2) ** 2;
-    totalDist += R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  }
-
   document.getElementById('routeStatus').textContent = '✅ Rute manual: ' + totalDist.toFixed(1) + ' km (garis lurus)';
-  routeBuilder.lastRouteResult = { polyline: latlngs, distance: totalDist * 1000, duration: 0 };
 
   // Tooltip jarak + jumlah titik pada poliline
   const mid = latlngs[Math.floor(latlngs.length / 2)];
@@ -1379,6 +1591,7 @@ function saveCurrentRoute() {
   if (!routeBuilder.lastRouteResult) { alert('Tidak ada rute.'); return; }
   const name = prompt('Nama trayek:', 'Trayek ' + new Date().toLocaleDateString());
   if (!name) return;
+  const isEdit = !!routeBuilder.editRouteId;
   const payload = {
     name: name,
     origin_code: document.getElementById('routeOriginSelect').value,
@@ -1387,23 +1600,40 @@ function saveCurrentRoute() {
     polyline: routeBuilder.lastRouteResult.polyline,
     color: routeColor
   };
+  if (isEdit) payload.id = routeBuilder.editRouteId;
+
+  const onOk = function (res) {
+    hideLoading();
+    if (!(res && res.ok)) { alert('Gagal simpan.'); return; }
+    if (isEdit) {
+      alert('Trayek "' + name + '" diperbarui.');
+      const idx = savedRoutesData.findIndex(x => x.id === payload.id);
+      const nr = { id: payload.id, name: name, origin_code: payload.origin_code, dest_code: payload.dest_code, waypoints: payload.waypoints, polyline: payload.polyline, color: payload.color };
+      if (idx >= 0) savedRoutesData[idx] = nr;
+    } else {
+      alert('Trayek "' + name + '" disimpan.');
+      const nr = { id: res.id, name: name, origin_code: payload.origin_code, dest_code: payload.dest_code, waypoints: payload.waypoints, polyline: payload.polyline, color: payload.color };
+      savedRoutesData.push(nr);
+    }
+    // Redraw semua trayek + perbarui library panel + legenda.
+    routesLayer.clearLayers(); routePolylines = {};
+    savedRoutesData.forEach(rr => drawRouteFromData(rr));
+    renderRouteLib();
+    buatLegenda();
+    document.getElementById('btnSaveRoute').style.display = 'none';
+    resetRouteBuilder();
+  };
+  const onFail = function (err) {
+    hideLoading();
+    alert('Error: ' + (err && err.message ? err.message : err));
+  };
+
   showLoading();
-  Backend.saveRoute(payload).then(function (res) {
-      hideLoading();
-      if (res && res.ok) {
-        alert('Trayek "' + name + '" disimpan.');
-        const nr = { id: res.id, name: name, origin_code: payload.origin_code, dest_code: payload.dest_code, polyline: payload.polyline, color: payload.color };
-        savedRoutesData.push(nr);
-        drawRouteFromData(nr);
-        buatLegenda();
-        document.getElementById('btnSaveRoute').style.display = 'none';
-        resetRouteBuilder();
-      } else alert('Gagal simpan.');
-    })
-    .catch(function (err) {
-      hideLoading();
-      alert('Error: ' + (err && err.message ? err.message : err));
-    });
+  if (isEdit) {
+    Backend.updateRoute(payload).then(onOk).catch(onFail);
+  } else {
+    Backend.saveRoute(payload).then(onOk).catch(onFail);
+  }
 }
 
 function resetRouteBuilder() {
@@ -1426,6 +1656,10 @@ function resetRouteBuilder() {
   if (routeBuilder.routePolyline) { map.removeLayer(routeBuilder.routePolyline);
     routeBuilder.routePolyline = null; }
   routeBuilder.lastRouteResult = null;
+  routeBuilder.editRouteId = null;
+  updateClipboardCount();
+  const sc = document.getElementById('salinViaCount'); if (sc) sc.textContent = '';
+  const pc = document.getElementById('pasteViaCount'); if (pc) pc.textContent = '';
   document.getElementById('routeStatus').textContent = 'Klik peta untuk menambahkan titik via (gerbang tol, simpang, dll.)';
   document.getElementById('map').style.cursor = '';
 }
@@ -1617,6 +1851,8 @@ function setupEventListeners() {
   document.getElementById('btnClearVia').addEventListener('click', clearViaPoints);
   document.getElementById('btnRouteNow').addEventListener('click', routeNow);
   document.getElementById('btnSaveRoute').addEventListener('click', saveCurrentRoute);
+  document.getElementById('btnSalinViaTip').addEventListener('click', salinTitikDraft);
+  document.getElementById('btnPasteViaTip').addEventListener('click', tempelTitik);
   // Palette warna trayek
   const csws = document.querySelectorAll('.csw');
   csws.forEach(b => {

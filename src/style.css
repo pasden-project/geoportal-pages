@@ -1318,6 +1318,93 @@
     transform: scale(1.12);
   }
 
+  /* ===== Titik via bisa diseret (edit poin) ===== */
+  .via-dot {
+    background: transparent;
+    border: none;
+    cursor: grab;
+  }
+  .via-dot:active { cursor: grabbing; }
+  .via-dot-inner {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #ff6600;
+    border: 2px solid #fff;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+  }
+  [data-theme="dark"] .via-dot-inner { border-color: #16203a; }
+
+  /* ===== Library trayek tersimpan (edit / salin) ===== */
+  .route-lib-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px;
+    background: var(--glass-bg);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 8px;
+  }
+  .route-lib-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex: none;
+  }
+  .route-lib-name {
+    flex: 1;
+    font-size: 13px;
+    color: var(--navy);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .route-lib-actions {
+    display: flex;
+    gap: 4px;
+    flex: none;
+  }
+  .route-lib-btn {
+    min-width: 30px;
+    padding: 4px 7px;
+    font-size: 12px;
+    line-height: 1;
+    border: none;
+    border-radius: 6px;
+    background: rgba(59, 130, 246, 0.14);
+    color: var(--navy);
+    cursor: pointer;
+  }
+  .route-lib-btn:hover { background: rgba(59, 130, 246, 0.26); }
+  .route-lib-namebox {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .route-lib-namebox .route-lib-name {
+    flex: none;
+    font-size: 12.5px;
+    font-weight: 600;
+  }
+  .route-lib-sub {
+    font-size: 11px;
+    color: var(--navy-light);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .rute-info {
+    margin: 6px 0 4px;
+    padding: 5px 8px;
+    font-size: 11.5px;
+    line-height: 1.4;
+    color: var(--navy);
+    background: rgba(148, 163, 184, 0.12);
+    border-radius: 6px;
+  }
+
   /* ==========================================================
      DARK MODE  (aktif saat <html data-theme="dark">)
      ========================================================== */

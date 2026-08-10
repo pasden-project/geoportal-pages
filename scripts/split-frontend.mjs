@@ -62,6 +62,10 @@ const RE = [
   ['    .withFailureHandler(function (err) {\n      hideLoading();\n      alert(\'Error: \' + (err && err.message ? err.message : err));\n    })\n    .saveRoute(payload);',
    '    .catch(function (err) {\n      hideLoading();\n      alert(\'Error: \' + (err && err.message ? err.message : err));\n    });'],
 
+  // S6b saveCurrentRoute (edit: updateRoute / baru: saveRoute, handler variabel)
+  ['  showLoading();\n  if (isEdit) {\n    google.script.run.withSuccessHandler(onOk).withFailureHandler(onFail).updateRoute(payload);\n  } else {\n    google.script.run.withSuccessHandler(onOk).withFailureHandler(onFail).saveRoute(payload);\n  }',
+   '  showLoading();\n  if (isEdit) {\n    Backend.updateRoute(payload).then(onOk).catch(onFail);\n  } else {\n    Backend.saveRoute(payload).then(onOk).catch(onFail);\n  }'],
+
   // S7 muatProfileDariServer
   ['function muatProfileDariServer(p) {\n  showLoading();\n  google.script.run\n    .withSuccessHandler(function (detail) {',
    'function muatProfileDariServer(p) {\n  showLoading();\n  Backend.getTerminalDetail(p.kode_terminal).then(function (detail) {'],
