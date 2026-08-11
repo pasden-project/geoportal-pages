@@ -1288,8 +1288,8 @@
     cursor: pointer;
   }
   .legend-group-body {
-    overflow: hidden;
-    max-height: 320px;
+    overflow-y: auto;
+    max-height: 520px;
     transition: max-height 0.3s ease;
   }
   .legend-group.collapsed .legend-group-body {
