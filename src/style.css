@@ -512,22 +512,6 @@
   .sheet-handle-wrap:hover .sheet-handle {
     background: var(--gray-text);
   }
-  /* Panah centered (Google Maps style) — hilang saat expanded */
-  .sheet-handle-wrap::before {
-    content: "⌃";
-    position: absolute;
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--navy);
-    opacity: 1;
-    transition: opacity 0.25s ease, transform 0.25s ease;
-    pointer-events: none;
-    line-height: 1;
-  }
-  .sheet.expanded .sheet-handle-wrap::before {
-    opacity: 0;
-    transform: translateY(8px);
-  }
 
   .sheet-header {
     display: flex;
