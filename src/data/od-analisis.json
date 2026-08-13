@@ -1,0 +1,486 @@
+{
+  "total": {
+    "perjalanan": 483310,
+    "volume": 4681829,
+    "terminal": 12,
+    "bulan": 7
+  },
+  "perTerminal": [
+    {
+      "terminal": "Terminal Leuwipanjang",
+      "kota": "BANDUNG",
+      "perjalanan": 96128,
+      "volume": 952093,
+      "datang": 509246,
+      "berangkat": 442847,
+      "avgPerTrip": 9.9
+    },
+    {
+      "terminal": "Terminal Guntur Melati",
+      "kota": "KAB. GARUT",
+      "perjalanan": 49134,
+      "volume": 806103,
+      "datang": 518875,
+      "berangkat": 287228,
+      "avgPerTrip": 16.41
+    },
+    {
+      "terminal": "Terminal Indihiang",
+      "kota": "KOTA TASIKMALAYA",
+      "perjalanan": 75319,
+      "volume": 548641,
+      "datang": 10783,
+      "berangkat": 537858,
+      "avgPerTrip": 7.28
+    },
+    {
+      "terminal": "Terminal KH. Ahmad Sanusi",
+      "kota": "KOTA SUKABUMI",
+      "perjalanan": 38228,
+      "volume": 515216,
+      "datang": 271909,
+      "berangkat": 243307,
+      "avgPerTrip": 13.48
+    },
+    {
+      "terminal": "Terminal Banjar",
+      "kota": "KOTA BANJAR",
+      "perjalanan": 46409,
+      "volume": 426676,
+      "datang": 205656,
+      "berangkat": 221020,
+      "avgPerTrip": 9.19
+    },
+    {
+      "terminal": "Terminal Jatijajar",
+      "kota": "DEPOK",
+      "perjalanan": 46509,
+      "volume": 336714,
+      "datang": 119620,
+      "berangkat": 217094,
+      "avgPerTrip": 7.24
+    },
+    {
+      "terminal": "Terminal Baranangsiang",
+      "kota": "BOGOR",
+      "perjalanan": 31806,
+      "volume": 274419,
+      "datang": 125143,
+      "berangkat": 149276,
+      "avgPerTrip": 8.63
+    },
+    {
+      "terminal": "Terminal Ciakar",
+      "kota": "KAB. SUMEDANG",
+      "perjalanan": 24858,
+      "volume": 264373,
+      "datang": 127861,
+      "berangkat": 136512,
+      "avgPerTrip": 10.64
+    },
+    {
+      "terminal": "Terminal Kuningan",
+      "kota": "KAB. KUNINGAN",
+      "perjalanan": 35540,
+      "volume": 211399,
+      "datang": 97548,
+      "berangkat": 113851,
+      "avgPerTrip": 5.95
+    },
+    {
+      "terminal": "Terminal Klari",
+      "kota": "KARAWANG",
+      "perjalanan": 15693,
+      "volume": 145984,
+      "datang": 50682,
+      "berangkat": 95302,
+      "avgPerTrip": 9.3
+    },
+    {
+      "terminal": "Terminal Harjamukti",
+      "kota": "KOTA CIREBON",
+      "perjalanan": 20096,
+      "volume": 122385,
+      "datang": 54520,
+      "berangkat": 67865,
+      "avgPerTrip": 6.09
+    },
+    {
+      "terminal": "Terminal Subang",
+      "kota": "SUBANG",
+      "perjalanan": 3590,
+      "volume": 77826,
+      "datang": 47698,
+      "berangkat": 30128,
+      "avgPerTrip": 21.68
+    }
+  ],
+  "perTrayek": [
+    {
+      "trayek": "BANDUNG - SUKABUMI",
+      "perjalanan": 35961,
+      "volume": 452046,
+      "avgPerTrip": 12.57
+    },
+    {
+      "trayek": "(tanpa trayek)",
+      "perjalanan": 28067,
+      "volume": 249786,
+      "avgPerTrip": 8.9
+    },
+    {
+      "trayek": "BANDUNG-BEKASI",
+      "perjalanan": 21682,
+      "volume": 223071,
+      "avgPerTrip": 10.29
+    },
+    {
+      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL GUNTUR MELATI (GARUT)",
+      "perjalanan": 10995,
+      "volume": 143865,
+      "avgPerTrip": 13.08
+    },
+    {
+      "trayek": "SINGAPARNA - BEKASI",
+      "perjalanan": 6288,
+      "volume": 133306,
+      "avgPerTrip": 21.2
+    },
+    {
+      "trayek": "TERMINAL GUNTUR MELATI (GARUT) - TERMINAL BARANANGSIANG (BOGOR)",
+      "perjalanan": 10395,
+      "volume": 129859,
+      "avgPerTrip": 12.49
+    },
+    {
+      "trayek": "TERMINAL GUNTUR MELATI (GARUT) - TERMINAL INDUK BEKASI (BEKASI)",
+      "perjalanan": 8929,
+      "volume": 128239,
+      "avgPerTrip": 14.36
+    },
+    {
+      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL CIAKAR (SUMEDANG)",
+      "perjalanan": 8204,
+      "volume": 105402,
+      "avgPerTrip": 12.85
+    },
+    {
+      "trayek": "BANDUNG - CIKARANG",
+      "perjalanan": 10426,
+      "volume": 94224,
+      "avgPerTrip": 9.04
+    },
+    {
+      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL INDIHIANG (TASIKMALAYA)",
+      "perjalanan": 10701,
+      "volume": 87384,
+      "avgPerTrip": 8.17
+    },
+    {
+      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL KH. AHMAD SANUSI (SUKABUMI)",
+      "perjalanan": 6080,
+      "volume": 74920,
+      "avgPerTrip": 12.32
+    },
+    {
+      "trayek": "KOTA BEKASI - TASIKMALAYA",
+      "perjalanan": 8713,
+      "volume": 68839,
+      "avgPerTrip": 7.9
+    },
+    {
+      "trayek": "BOGOR - BANDUNG",
+      "perjalanan": 6761,
+      "volume": 66143,
+      "avgPerTrip": 9.78
+    },
+    {
+      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL GUNTUR MELATI (GARUT)",
+      "perjalanan": 3332,
+      "volume": 50264,
+      "avgPerTrip": 15.09
+    },
+    {
+      "trayek": "BANDUNG-KALIDERES",
+      "perjalanan": 5160,
+      "volume": 49750,
+      "avgPerTrip": 9.64
+    },
+    {
+      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL LEUWIPANJANG (BANDUNG)",
+      "perjalanan": 5639,
+      "volume": 49579,
+      "avgPerTrip": 8.79
+    },
+    {
+      "trayek": "TERMINAL SINGAPARNA (TASIKMALAYA) - TERMINAL GUNTUR MELATI (GARUT) - TERMINAL INDUK BEKASI (BEKASI)",
+      "perjalanan": 2465,
+      "volume": 49415,
+      "avgPerTrip": 20.05
+    },
+    {
+      "trayek": "TERMINAL KALIDERES (JAKARTA BARAT) - TERMINAL LEUWIPANJANG (BANDUNG)",
+      "perjalanan": 5099,
+      "volume": 47097,
+      "avgPerTrip": 9.24
+    },
+    {
+      "trayek": "TERMINAL PONDOK CABE (TANGERANG SELATAN) - TERMINAL INDIHIANG (TASIKMALAYA)",
+      "perjalanan": 4376,
+      "volume": 45137,
+      "avgPerTrip": 10.31
+    },
+    {
+      "trayek": "BOGOR - PELABUHAN RATU",
+      "perjalanan": 3503,
+      "volume": 44499,
+      "avgPerTrip": 12.7
+    },
+    {
+      "trayek": "TERMINAL CICAHEUM (BANDUNG) - TERMINAL PURABAYA (SIDOARJO)",
+      "perjalanan": 3710,
+      "volume": 43728,
+      "avgPerTrip": 11.79
+    },
+    {
+      "trayek": "TERMINAL CIAKAR (SUMEDANG) - TERMINAL INDUK BEKASI (BEKASI)",
+      "perjalanan": 3555,
+      "volume": 42344,
+      "avgPerTrip": 11.91
+    },
+    {
+      "trayek": "BDG-CLT",
+      "perjalanan": 4074,
+      "volume": 41147,
+      "avgPerTrip": 10.1
+    },
+    {
+      "trayek": "TERMINAL PONDOK CABE (TANGERANG SELATAN) - TERMINAL GUNTUR MELATI (GARUT)",
+      "perjalanan": 3042,
+      "volume": 40220,
+      "avgPerTrip": 13.22
+    },
+    {
+      "trayek": "TERMINAL LEUWIPANJANG (BANDUNG) - TERMINAL PURABAYA (SIDOARJO)",
+      "perjalanan": 3146,
+      "volume": 40091,
+      "avgPerTrip": 12.74
+    },
+    {
+      "trayek": "BANDUNG-LEBAK BULUS",
+      "perjalanan": 3722,
+      "volume": 37562,
+      "avgPerTrip": 10.09
+    },
+    {
+      "trayek": "BANDUNG - LEUWILIANG",
+      "perjalanan": 3448,
+      "volume": 36920,
+      "avgPerTrip": 10.71
+    },
+    {
+      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL INDIHIANG (TASIKMALAYA)",
+      "perjalanan": 2897,
+      "volume": 31117,
+      "avgPerTrip": 10.74
+    },
+    {
+      "trayek": "BANDUNG-TANJUNGPRIOK",
+      "perjalanan": 3104,
+      "volume": 30518,
+      "avgPerTrip": 9.83
+    },
+    {
+      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL CIKAMPEK (KARAWANG)",
+      "perjalanan": 2143,
+      "volume": 29229,
+      "avgPerTrip": 13.64
+    }
+  ],
+  "regional": [
+    {
+      "kota": "BANDUNG",
+      "bangkitan": 646866,
+      "tarikan": 690309,
+      "total": 1337175
+    },
+    {
+      "kota": "KAB. GARUT",
+      "bangkitan": 307949,
+      "tarikan": 539448,
+      "total": 847397
+    },
+    {
+      "kota": "KOTA SUKABUMI",
+      "bangkitan": 345782,
+      "tarikan": 352550,
+      "total": 698332
+    },
+    {
+      "kota": "KOTA TASIKMALAYA",
+      "bangkitan": 634549,
+      "tarikan": 51709,
+      "total": 686258
+    },
+    {
+      "kota": "KOTA BEKASI",
+      "bangkitan": 272178,
+      "tarikan": 329532,
+      "total": 601710
+    },
+    {
+      "kota": "JAKARTA TIMUR",
+      "bangkitan": 269922,
+      "tarikan": 322196,
+      "total": 592118
+    },
+    {
+      "kota": "BOGOR",
+      "bangkitan": 316647,
+      "tarikan": 233625,
+      "total": 550272
+    },
+    {
+      "kota": "KOTA BANJAR",
+      "bangkitan": 229596,
+      "tarikan": 253483,
+      "total": 483079
+    },
+    {
+      "kota": "DEPOK",
+      "bangkitan": 243918,
+      "tarikan": 153802,
+      "total": 397720
+    },
+    {
+      "kota": "KAB. SUMEDANG",
+      "bangkitan": 140639,
+      "tarikan": 130970,
+      "total": 271609
+    },
+    {
+      "kota": "KAB. KUNINGAN",
+      "bangkitan": 120229,
+      "tarikan": 106475,
+      "total": 226704
+    },
+    {
+      "kota": "JAKARTA BARAT",
+      "bangkitan": 88353,
+      "tarikan": 92072,
+      "total": 180425
+    },
+    {
+      "kota": "KOTA CILEGON",
+      "bangkitan": 68290,
+      "tarikan": 98272,
+      "total": 166562
+    },
+    {
+      "kota": "KARAWANG",
+      "bangkitan": 104235,
+      "tarikan": 53224,
+      "total": 157459
+    },
+    {
+      "kota": "KOTA TANGGERANG SELATAN",
+      "bangkitan": 81944,
+      "tarikan": 73755,
+      "total": 155699
+    },
+    {
+      "kota": "KOTA CIREBON",
+      "bangkitan": 71240,
+      "tarikan": 79372,
+      "total": 150612
+    },
+    {
+      "kota": "KAB. BEKASI",
+      "bangkitan": 60134,
+      "tarikan": 78996,
+      "total": 139130
+    },
+    {
+      "kota": "KAB. BOGOR",
+      "bangkitan": 57146,
+      "tarikan": 48173,
+      "total": 105319
+    },
+    {
+      "kota": "KAB. TASIKMALAYA",
+      "bangkitan": 81185,
+      "tarikan": 19076,
+      "total": 100261
+    },
+    {
+      "kota": "KAB. PANGANDARAN",
+      "bangkitan": 38112,
+      "tarikan": 55171,
+      "total": 93283
+    },
+    {
+      "kota": "KOTA SURABAYA",
+      "bangkitan": 21504,
+      "tarikan": 62667,
+      "total": 84171
+    },
+    {
+      "kota": "SUBANG",
+      "bangkitan": 34051,
+      "tarikan": 47710,
+      "total": 81761
+    },
+    {
+      "kota": "KOTA YOGYAKARTA",
+      "bangkitan": 9119,
+      "tarikan": 69142,
+      "total": 78261
+    },
+    {
+      "kota": "KOTA TANGGERANG",
+      "bangkitan": 40602,
+      "tarikan": 30275,
+      "total": 70877
+    },
+    {
+      "kota": "KAB. BANYUMAS",
+      "bangkitan": 17277,
+      "tarikan": 48755,
+      "total": 66032
+    },
+    {
+      "kota": "JAKARTA UTARA",
+      "bangkitan": 19549,
+      "tarikan": 36423,
+      "total": 55972
+    },
+    {
+      "kota": "KAB. SUKABUMI",
+      "bangkitan": 32723,
+      "tarikan": 22294,
+      "total": 55017
+    },
+    {
+      "kota": "KOTA BANDUNG",
+      "bangkitan": 29732,
+      "tarikan": 22881,
+      "total": 52613
+    },
+    {
+      "kota": "KOTA SERANG",
+      "bangkitan": 47401,
+      "tarikan": 4515,
+      "total": 51916
+    },
+    {
+      "kota": "KOTA MALANG",
+      "bangkitan": 8560,
+      "tarikan": 31057,
+      "total": 39617
+    }
+  ],
+  "korelasi": {
+    "r": 0.079,
+    "avgLoadFactorProxy": 10.48
+  }
+}
