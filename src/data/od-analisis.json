@@ -118,4553 +118,491 @@
   "perTrayek": [
     {
       "trayek": "BANDUNG - SUKABUMI",
-      "perjalanan": 35961,
       "volume": 452046,
+      "perjalanan": 35961,
       "avgPerTrip": 12.570451322265788
     },
     {
-      "trayek": "(tanpa trayek)",
-      "perjalanan": 28067,
-      "volume": 249786,
-      "avgPerTrip": 8.8996330209855
-    },
-    {
       "trayek": "BANDUNG-BEKASI",
-      "perjalanan": 21682,
       "volume": 223071,
+      "perjalanan": 21682,
       "avgPerTrip": 10.288303662023798
     },
     {
       "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL GUNTUR MELATI (GARUT)",
-      "perjalanan": 10995,
       "volume": 143865,
+      "perjalanan": 10995,
       "avgPerTrip": 13.084583901773533
     },
     {
-      "trayek": "SINGAPARNA - BEKASI",
-      "perjalanan": 6288,
-      "volume": 133306,
-      "avgPerTrip": 21.200063613231553
+      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL INDIHIANG (TASIKMALAYA)",
+      "volume": 87384,
+      "perjalanan": 10701,
+      "avgPerTrip": 8.16596579758901
+    },
+    {
+      "trayek": "BANDUNG - CIKARANG",
+      "volume": 94224,
+      "perjalanan": 10426,
+      "avgPerTrip": 9.037406483790523
     },
     {
       "trayek": "TERMINAL GUNTUR MELATI (GARUT) - TERMINAL BARANANGSIANG (BOGOR)",
-      "perjalanan": 10395,
       "volume": 129859,
+      "perjalanan": 10395,
       "avgPerTrip": 12.492448292448293
     },
     {
       "trayek": "TERMINAL GUNTUR MELATI (GARUT) - TERMINAL INDUK BEKASI (BEKASI)",
-      "perjalanan": 8929,
       "volume": 128239,
+      "perjalanan": 8929,
       "avgPerTrip": 14.36207862022623
     },
     {
-      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL CIAKAR (SUMEDANG)",
-      "perjalanan": 8204,
-      "volume": 105402,
-      "avgPerTrip": 12.84763529985373
-    },
-    {
-      "trayek": "BANDUNG - CIKARANG",
-      "perjalanan": 10426,
-      "volume": 94224,
-      "avgPerTrip": 9.037406483790523
-    },
-    {
-      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL INDIHIANG (TASIKMALAYA)",
-      "perjalanan": 10701,
-      "volume": 87384,
-      "avgPerTrip": 8.16596579758901
-    },
-    {
-      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL KH. AHMAD SANUSI (SUKABUMI)",
-      "perjalanan": 6080,
-      "volume": 74920,
-      "avgPerTrip": 12.322368421052632
-    },
-    {
       "trayek": "KOTA BEKASI - TASIKMALAYA",
-      "perjalanan": 8713,
       "volume": 68839,
+      "perjalanan": 8713,
       "avgPerTrip": 7.900723057500287
     },
     {
+      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL CIAKAR (SUMEDANG)",
+      "volume": 105402,
+      "perjalanan": 8204,
+      "avgPerTrip": 12.84763529985373
+    },
+    {
       "trayek": "BOGOR - BANDUNG",
-      "perjalanan": 6761,
       "volume": 66143,
+      "perjalanan": 6761,
       "avgPerTrip": 9.783020263274663
     },
     {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL GUNTUR MELATI (GARUT)",
-      "perjalanan": 3332,
-      "volume": 50264,
-      "avgPerTrip": 15.085234093637455
+      "trayek": "SINGAPARNA - BEKASI",
+      "volume": 133306,
+      "perjalanan": 6288,
+      "avgPerTrip": 21.200063613231553
     },
     {
-      "trayek": "BANDUNG-KALIDERES",
-      "perjalanan": 5160,
-      "volume": 49750,
-      "avgPerTrip": 9.641472868217054
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL LEUWIPANJANG (BANDUNG)",
-      "perjalanan": 5639,
-      "volume": 49579,
-      "avgPerTrip": 8.792161730803334
-    },
-    {
-      "trayek": "TERMINAL SINGAPARNA (TASIKMALAYA) - TERMINAL GUNTUR MELATI (GARUT) - TERMINAL INDUK BEKASI (BEKASI)",
-      "perjalanan": 2465,
-      "volume": 49415,
-      "avgPerTrip": 20.046653144016226
-    },
-    {
-      "trayek": "TERMINAL KALIDERES (JAKARTA BARAT) - TERMINAL LEUWIPANJANG (BANDUNG)",
-      "perjalanan": 5099,
-      "volume": 47097,
-      "avgPerTrip": 9.23651696411061
-    },
-    {
-      "trayek": "TERMINAL PONDOK CABE (TANGERANG SELATAN) - TERMINAL INDIHIANG (TASIKMALAYA)",
-      "perjalanan": 4376,
-      "volume": 45137,
-      "avgPerTrip": 10.314670932358318
-    },
-    {
-      "trayek": "BOGOR - PELABUHAN RATU",
-      "perjalanan": 3503,
-      "volume": 44499,
-      "avgPerTrip": 12.703111618612617
-    },
-    {
-      "trayek": "TERMINAL CICAHEUM (BANDUNG) - TERMINAL PURABAYA (SIDOARJO)",
-      "perjalanan": 3710,
-      "volume": 43728,
-      "avgPerTrip": 11.786522911051213
-    },
-    {
-      "trayek": "TERMINAL CIAKAR (SUMEDANG) - TERMINAL INDUK BEKASI (BEKASI)",
-      "perjalanan": 3555,
-      "volume": 42344,
-      "avgPerTrip": 11.911111111111111
-    },
-    {
-      "trayek": "BDG-CLT",
-      "perjalanan": 4074,
-      "volume": 41147,
-      "avgPerTrip": 10.099901816396661
-    },
-    {
-      "trayek": "TERMINAL PONDOK CABE (TANGERANG SELATAN) - TERMINAL GUNTUR MELATI (GARUT)",
-      "perjalanan": 3042,
-      "volume": 40220,
-      "avgPerTrip": 13.221564760026299
-    },
-    {
-      "trayek": "TERMINAL LEUWIPANJANG (BANDUNG) - TERMINAL PURABAYA (SIDOARJO)",
-      "perjalanan": 3146,
-      "volume": 40091,
-      "avgPerTrip": 12.743483788938335
-    },
-    {
-      "trayek": "BANDUNG-LEBAK BULUS",
-      "perjalanan": 3722,
-      "volume": 37562,
-      "avgPerTrip": 10.09188608275121
-    },
-    {
-      "trayek": "BANDUNG - LEUWILIANG",
-      "perjalanan": 3448,
-      "volume": 36920,
-      "avgPerTrip": 10.707656612529002
-    },
-    {
-      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL INDIHIANG (TASIKMALAYA)",
-      "perjalanan": 2897,
-      "volume": 31117,
-      "avgPerTrip": 10.741111494649637
-    },
-    {
-      "trayek": "BANDUNG-TANJUNGPRIOK",
-      "perjalanan": 3104,
-      "volume": 30518,
-      "avgPerTrip": 9.831829896907216
-    },
-    {
-      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL CIKAMPEK (KARAWANG)",
-      "perjalanan": 2143,
-      "volume": 29229,
-      "avgPerTrip": 13.639290713952404
-    },
-    {
-      "trayek": "TERMINAL KALIDERES (JAKARTA BARAT) - TERMINAL KH. AHMAD SANUSI (SUKABUMI)",
-      "perjalanan": 2297,
-      "volume": 29221,
-      "avgPerTrip": 12.721375707444492
-    },
-    {
-      "trayek": "BANDUNG - CIBINONG",
-      "perjalanan": 2957,
-      "volume": 27970,
-      "avgPerTrip": 9.458911058505242
+      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL KH. AHMAD SANUSI (SUKABUMI)",
+      "volume": 74920,
+      "perjalanan": 6080,
+      "avgPerTrip": 12.322368421052632
     },
     {
       "trayek": "TERMINAL INDUK BEKASI (BEKASI) - TERMINAL KERTAWANGUNAN (KUNINGAN)",
-      "perjalanan": 5735,
       "volume": 27948,
+      "perjalanan": 5735,
       "avgPerTrip": 4.873234524847428
     },
     {
-      "trayek": "TERMINAL PONDOK CABE (TANGERANG SELATAN) - TERMINAL LEUWIPANJANG (BANDUNG)",
-      "perjalanan": 2435,
-      "volume": 26523,
-      "avgPerTrip": 10.892402464065709
+      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL LEUWIPANJANG (BANDUNG)",
+      "volume": 49579,
+      "perjalanan": 5639,
+      "avgPerTrip": 8.792161730803334
     },
     {
-      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL KH. AHMAD SANUSI (SUKABUMI)",
-      "perjalanan": 2120,
-      "volume": 26511,
-      "avgPerTrip": 12.505188679245283
+      "trayek": "BANDUNG-KALIDERES",
+      "volume": 49750,
+      "perjalanan": 5160,
+      "avgPerTrip": 9.641472868217054
+    },
+    {
+      "trayek": "TERMINAL KALIDERES (JAKARTA BARAT) - TERMINAL LEUWIPANJANG (BANDUNG)",
+      "volume": 47097,
+      "perjalanan": 5099,
+      "avgPerTrip": 9.23651696411061
     },
     {
       "trayek": "TERMINAL BEKASI - TERMINAL HARJAMUKTI CIREBON",
-      "perjalanan": 5007,
       "volume": 25944,
+      "perjalanan": 5007,
       "avgPerTrip": 5.181545835829838
     },
     {
-      "trayek": "CADANGAN",
-      "perjalanan": 2914,
-      "volume": 25670,
-      "avgPerTrip": 8.809196980096088
-    },
-    {
-      "trayek": "TERMINAL KALIDERES (JAKARTA BARAT) - TERMINAL KERTAWANGUNAN (KUNINGAN)",
-      "perjalanan": 3940,
-      "volume": 24405,
-      "avgPerTrip": 6.194162436548224
-    },
-    {
-      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL LEUWIPANJANG (BANDUNG)",
-      "perjalanan": 1956,
-      "volume": 24162,
-      "avgPerTrip": 12.35276073619632
-    },
-    {
-      "trayek": "BANDUNG - DEPOK",
-      "perjalanan": 2468,
-      "volume": 23885,
-      "avgPerTrip": 9.677876823338735
-    },
-    {
       "trayek": "TANGERANG SELATAN (PD.CABE)-KUNINGAN",
-      "perjalanan": 4396,
       "volume": 23618,
+      "perjalanan": 4396,
       "avgPerTrip": 5.372611464968153
     },
     {
-      "trayek": "PARIWISATA",
-      "perjalanan": 2833,
-      "volume": 22017,
-      "avgPerTrip": 7.77162019061066
+      "trayek": "TERMINAL PONDOK CABE (TANGERANG SELATAN) - TERMINAL INDIHIANG (TASIKMALAYA)",
+      "volume": 45137,
+      "perjalanan": 4376,
+      "avgPerTrip": 10.314670932358318
     },
     {
-      "trayek": "TASIKMALAYA (INDIHIANG) - CIAMIS (SINDANGSARI) PP VIA TERM. CIAMIS, TERM. BANJAR, TERM. BANJARSARI, TERM. PANGANDARAN, TERM. CIJULANG",
-      "perjalanan": 3191,
-      "volume": 21413,
-      "avgPerTrip": 6.7104356001253525
+      "trayek": "BDG-CLT",
+      "volume": 41147,
+      "perjalanan": 4074,
+      "avgPerTrip": 10.099901816396661
+    },
+    {
+      "trayek": "TERMINAL KALIDERES (JAKARTA BARAT) - TERMINAL KERTAWANGUNAN (KUNINGAN)",
+      "volume": 24405,
+      "perjalanan": 3940,
+      "avgPerTrip": 6.194162436548224
+    },
+    {
+      "trayek": "BANDUNG-LEBAK BULUS",
+      "volume": 37562,
+      "perjalanan": 3722,
+      "avgPerTrip": 10.09188608275121
+    },
+    {
+      "trayek": "TERMINAL CICAHEUM (BANDUNG) - TERMINAL PURABAYA (SIDOARJO)",
+      "volume": 43728,
+      "perjalanan": 3710,
+      "avgPerTrip": 11.786522911051213
     },
     {
       "trayek": "TASIKMALAYA - CIJULANG VIA TERM. CIAMIS, TERM. BANJAR, TERM. BANJARSARI",
-      "perjalanan": 3579,
       "volume": 21199,
+      "perjalanan": 3579,
       "avgPerTrip": 5.923162894663314
     },
     {
-      "trayek": "TERMINAL BARANANGSIANG (BOGOR) - TERMINAL CIKAMPEK (KARAWANG)",
-      "perjalanan": 2912,
-      "volume": 20993,
-      "avgPerTrip": 7.209134615384615
+      "trayek": "TERMINAL CIAKAR (SUMEDANG) - TERMINAL INDUK BEKASI (BEKASI)",
+      "volume": 42344,
+      "perjalanan": 3555,
+      "avgPerTrip": 11.911111111111111
     },
     {
-      "trayek": "Kota Bandung - Kab. Cirebon",
-      "perjalanan": 2251,
-      "volume": 20786,
-      "avgPerTrip": 9.234118169702354
+      "trayek": "BOGOR - PELABUHAN RATU",
+      "volume": 44499,
+      "perjalanan": 3503,
+      "avgPerTrip": 12.703111618612617
     },
     {
-      "trayek": "TERMINAL INDIHIANG (TASIKMALAYA) - TERMINAL BULUPITU (BANYUMAS)",
-      "perjalanan": 2987,
-      "volume": 20163,
-      "avgPerTrip": 6.750251088048209
+      "trayek": "BANDUNG - LEUWILIANG",
+      "volume": 36920,
+      "perjalanan": 3448,
+      "avgPerTrip": 10.707656612529002
+    },
+    {
+      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL GUNTUR MELATI (GARUT)",
+      "volume": 50264,
+      "perjalanan": 3332,
+      "avgPerTrip": 15.085234093637455
     },
     {
       "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL KERTAWANGUNAN (KUNINGAN)",
-      "perjalanan": 3236,
       "volume": 17986,
+      "perjalanan": 3236,
       "avgPerTrip": 5.558096415327565
     },
     {
+      "trayek": "TASIKMALAYA (INDIHIANG) - CIAMIS (SINDANGSARI) PP VIA TERM. CIAMIS, TERM. BANJAR, TERM. BANJARSARI, TERM. PANGANDARAN, TERM. CIJULANG",
+      "volume": 21413,
+      "perjalanan": 3191,
+      "avgPerTrip": 6.7104356001253525
+    },
+    {
+      "trayek": "TERMINAL LEUWIPANJANG (BANDUNG) - TERMINAL PURABAYA (SIDOARJO)",
+      "volume": 40091,
+      "perjalanan": 3146,
+      "avgPerTrip": 12.743483788938335
+    },
+    {
+      "trayek": "BANDUNG-TANJUNGPRIOK",
+      "volume": 30518,
+      "perjalanan": 3104,
+      "avgPerTrip": 9.831829896907216
+    },
+    {
+      "trayek": "TERMINAL PONDOK CABE (TANGERANG SELATAN) - TERMINAL GUNTUR MELATI (GARUT)",
+      "volume": 40220,
+      "perjalanan": 3042,
+      "avgPerTrip": 13.221564760026299
+    },
+    {
+      "trayek": "TERMINAL INDIHIANG (TASIKMALAYA) - TERMINAL BULUPITU (BANYUMAS)",
+      "volume": 20163,
+      "perjalanan": 2987,
+      "avgPerTrip": 6.750251088048209
+    },
+    {
+      "trayek": "BANDUNG - CIBINONG",
+      "volume": 27970,
+      "perjalanan": 2957,
+      "avgPerTrip": 9.458911058505242
+    },
+    {
+      "trayek": "CADANGAN",
+      "volume": 25670,
+      "perjalanan": 2914,
+      "avgPerTrip": 8.809196980096088
+    },
+    {
+      "trayek": "TERMINAL BARANANGSIANG (BOGOR) - TERMINAL CIKAMPEK (KARAWANG)",
+      "volume": 20993,
+      "perjalanan": 2912,
+      "avgPerTrip": 7.209134615384615
+    },
+    {
+      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL INDIHIANG (TASIKMALAYA)",
+      "volume": 31117,
+      "perjalanan": 2897,
+      "avgPerTrip": 10.741111494649637
+    },
+    {
+      "trayek": "PARIWISATA",
+      "volume": 22017,
+      "perjalanan": 2833,
+      "avgPerTrip": 7.77162019061066
+    },
+    {
+      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL KERTAWANGUNAN (KUNINGAN)",
+      "volume": 15945,
+      "perjalanan": 2754,
+      "avgPerTrip": 5.789760348583878
+    },
+    {
+      "trayek": "TASIKMALAYA (INDIHIANG) - CIAMIS (TERM.CIPARANTI) VIA TERM. CIAMIS, TERM. BANJAR, TERM. BANJARSARI, TERM. PANGANDARAN, TERM. CIJULANG",
+      "volume": 16179,
+      "perjalanan": 2542,
+      "avgPerTrip": 6.3646734854445315
+    },
+    {
       "trayek": "INDIHIANG TASIKMALAYA - PULOGEBANG JAKARTA",
-      "perjalanan": 2501,
       "volume": 17894,
+      "perjalanan": 2501,
       "avgPerTrip": 7.1547381047580965
     },
     {
+      "trayek": "BANDUNG - DEPOK",
+      "volume": 23885,
+      "perjalanan": 2468,
+      "avgPerTrip": 9.677876823338735
+    },
+    {
+      "trayek": "TERMINAL SINGAPARNA (TASIKMALAYA) - TERMINAL GUNTUR MELATI (GARUT) - TERMINAL INDUK BEKASI (BEKASI)",
+      "volume": 49415,
+      "perjalanan": 2465,
+      "avgPerTrip": 20.046653144016226
+    },
+    {
+      "trayek": "SIDOARJO (TERMINAL PURABAYA)-KUNINGAN (TERMINAL KERTAWANGUNAN)",
+      "volume": 16548,
+      "perjalanan": 2445,
+      "avgPerTrip": 6.7680981595092025
+    },
+    {
+      "trayek": "TERMINAL PONDOK CABE (TANGERANG SELATAN) - TERMINAL LEUWIPANJANG (BANDUNG)",
+      "volume": 26523,
+      "perjalanan": 2435,
+      "avgPerTrip": 10.892402464065709
+    },
+    {
+      "trayek": "TERMINAL KALIDERES (JAKARTA BARAT) - TERMINAL KH. AHMAD SANUSI (SUKABUMI)",
+      "volume": 29221,
+      "perjalanan": 2297,
+      "avgPerTrip": 12.721375707444492
+    },
+    {
+      "trayek": "Kota Bandung - Kab. Cirebon",
+      "volume": 20786,
+      "perjalanan": 2251,
+      "avgPerTrip": 9.234118169702354
+    },
+    {
+      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL CIKAMPEK (KARAWANG)",
+      "volume": 29229,
+      "perjalanan": 2143,
+      "avgPerTrip": 13.639290713952404
+    },
+    {
+      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL KH. AHMAD SANUSI (SUKABUMI)",
+      "volume": 26511,
+      "perjalanan": 2120,
+      "avgPerTrip": 12.505188679245283
+    },
+    {
+      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL LEUWIPANJANG (BANDUNG)",
+      "volume": 24162,
+      "perjalanan": 1956,
+      "avgPerTrip": 12.35276073619632
+    },
+    {
       "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL CIKAMPEK (KARAWANG)",
-      "perjalanan": 1947,
       "volume": 17845,
+      "perjalanan": 1947,
       "avgPerTrip": 9.165382639958912
     },
     {
       "trayek": "ARIMBI",
-      "perjalanan": 1926,
       "volume": 17713,
+      "perjalanan": 1926,
       "avgPerTrip": 9.196780893042575
     },
     {
-      "trayek": "TERMINAL LEUWIPANJANG (BANDUNG) - TERMINAL ARJOSARI (MALANG)",
-      "perjalanan": 1674,
-      "volume": 17408,
-      "avgPerTrip": 10.399044205495818
-    },
-    {
-      "trayek": "TERMINAL KH. AHMAD SANUSI (SUKABUMI) - TERMINAL GIRI ADIPURA (WONOGIRI)",
-      "perjalanan": 1491,
-      "volume": 16762,
-      "avgPerTrip": 11.242119382964454
-    },
-    {
-      "trayek": "SIDOARJO (TERMINAL PURABAYA)-KUNINGAN (TERMINAL KERTAWANGUNAN)",
-      "perjalanan": 2445,
-      "volume": 16548,
-      "avgPerTrip": 6.7680981595092025
-    },
-    {
       "trayek": "TERMINAL INDIHIANG (TASIKMALAYA) - TERMINAL TIRTONADI (SURAKARTA)",
-      "perjalanan": 1825,
       "volume": 16469,
+      "perjalanan": 1825,
       "avgPerTrip": 9.024109589041096
     },
     {
-      "trayek": "TASIKMALAYA (INDIHIANG) - CIAMIS (TERM.CIPARANTI) VIA TERM. CIAMIS, TERM. BANJAR, TERM. BANJARSARI, TERM. PANGANDARAN, TERM. CIJULANG",
-      "perjalanan": 2542,
-      "volume": 16179,
-      "avgPerTrip": 6.3646734854445315
-    },
-    {
       "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL SUBANG (SUBANG)",
-      "perjalanan": 1700,
       "volume": 16042,
+      "perjalanan": 1700,
       "avgPerTrip": 9.436470588235293
     },
     {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL KERTAWANGUNAN (KUNINGAN)",
-      "perjalanan": 2754,
-      "volume": 15945,
-      "avgPerTrip": 5.789760348583878
-    },
-    {
-      "trayek": "TERMINAL JATIJAJAR (DEPOK) - TERMINAL INDIHIANG (TASIKMALAYA)",
-      "perjalanan": 1231,
-      "volume": 15515,
-      "avgPerTrip": 12.60357432981316
+      "trayek": "TERMINAL LEUWIPANJANG (BANDUNG) - TERMINAL ARJOSARI (MALANG)",
+      "volume": 17408,
+      "perjalanan": 1674,
+      "avgPerTrip": 10.399044205495818
     },
     {
       "trayek": "BANDUNG - CILEUNGSI",
-      "perjalanan": 1649,
       "volume": 15469,
+      "perjalanan": 1649,
       "avgPerTrip": 9.380836870830807
     },
     {
-      "trayek": "TASIKMALAYA - BEKASI KOTA VIA TOL CKP, PWK, TOL PDLNY, ML.BONG",
-      "perjalanan": 1908,
-      "volume": 15386,
-      "avgPerTrip": 8.063941299790356
-    },
-    {
-      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL BULUPITU (BANYUMAS)",
-      "perjalanan": 1344,
-      "volume": 15341,
-      "avgPerTrip": 11.414434523809524
-    },
-    {
-      "trayek": "TERMINAL CICAHEUM (BANDUNG)-TERMINAL PURABAYA (SIDOARJO)",
-      "perjalanan": 1507,
-      "volume": 14801,
-      "avgPerTrip": 9.821499668214997
-    },
-    {
-      "trayek": "TERMINAL JATIJAJAR (DEPOK) - TERMINAL GUNTUR MELATI (GARUT)",
-      "perjalanan": 1354,
-      "volume": 14695,
-      "avgPerTrip": 10.853028064992614
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL BANGGA BANGUN DESA (CILACAP)",
-      "perjalanan": 1166,
-      "volume": 14567,
-      "avgPerTrip": 12.493138936535162
-    },
-    {
-      "trayek": "TERMINAL INDIHIANG (TASIKMALAYA) - TERMINAL MANGKANG (SEMARANG)",
-      "perjalanan": 1825,
-      "volume": 14416,
-      "avgPerTrip": 7.8991780821917805
-    },
-    {
-      "trayek": "TERMINAL JATIJAJAR (DEPOK) - TERMINAL KERTAWANGUNAN (KUNINGAN)",
-      "perjalanan": 1301,
-      "volume": 13843,
-      "avgPerTrip": 10.640276710222906
-    },
-    {
-      "trayek": "TERMINAL CICAHEUM (BANDUNG) - TERMINAL MENDOLO (WONOSOBO)",
-      "perjalanan": 1500,
-      "volume": 13778,
-      "avgPerTrip": 9.185333333333332
-    },
-    {
-      "trayek": "TERMINAL BEKASI - TERMINAL CILEDUG",
-      "perjalanan": 1760,
-      "volume": 12968,
-      "avgPerTrip": 7.368181818181818
-    },
-    {
-      "trayek": "TERMINAL KALIDERES (JAKARTA BARAT) - TERMINAL GUNTUR MELATI (GARUT)",
-      "perjalanan": 499,
-      "volume": 12962,
-      "avgPerTrip": 25.975951903807616
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL BULUPITU (BANYUMAS)",
-      "perjalanan": 1390,
-      "volume": 12763,
-      "avgPerTrip": 9.18201438848921
-    },
-    {
-      "trayek": "BANDUNG - BOGOR",
-      "perjalanan": 1269,
-      "volume": 12705,
-      "avgPerTrip": 10.011820330969266
-    },
-    {
-      "trayek": "TERMINAL CICAHEUM (BANDUNG) - TERMINAL GIWANGAN (YOGYAKARTA)",
-      "perjalanan": 1267,
-      "volume": 12385,
-      "avgPerTrip": 9.775059194948698
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL HARJAMUKTI (CIREBON)",
-      "perjalanan": 2483,
-      "volume": 12211,
-      "avgPerTrip": 4.917841320982682
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL INDUK PEMALANG (PEMALANG)",
-      "perjalanan": 1392,
-      "volume": 12149,
-      "avgPerTrip": 8.727729885057471
-    },
-    {
-      "trayek": "PANGANDARAN - BANDUNG",
-      "perjalanan": 1195,
-      "volume": 11338,
-      "avgPerTrip": 9.48786610878661
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL KH. AHMAD SANUSI (SUKABUMI)",
-      "perjalanan": 616,
-      "volume": 11227,
-      "avgPerTrip": 18.225649350649352
-    },
-    {
-      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL BANGGA BANGUN DESA (CILACAP)",
-      "perjalanan": 852,
-      "volume": 11202,
-      "avgPerTrip": 13.147887323943662
-    },
-    {
-      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL SUBANG (SUBANG)",
-      "perjalanan": 528,
-      "volume": 11058,
-      "avgPerTrip": 20.943181818181817
-    },
-    {
-      "trayek": "TERMINAL GUNTUR MELATI (GARUT) - TERMINAL KALIJAYA CIKARANG (BEKASI)",
-      "perjalanan": 648,
-      "volume": 11024,
-      "avgPerTrip": 17.012345679012345
-    },
-    {
-      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL PANGANDARAN (PANGANDARAN)",
-      "perjalanan": 1304,
-      "volume": 10829,
-      "avgPerTrip": 8.304447852760736
-    },
-    {
-      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL PANGANDARAN (PANGANDARAN)",
-      "perjalanan": 917,
-      "volume": 10798,
-      "avgPerTrip": 11.77535441657579
-    },
-    {
-      "trayek": "TERMINAL CICAHEUM (BANDUNG) - TERMINAL BULUPITU (BANYUMAS)",
-      "perjalanan": 1444,
-      "volume": 10795,
-      "avgPerTrip": 7.475761772853185
-    },
-    {
-      "trayek": "TERMINAL BARANANGSIANG (BOGOR) - TERMINAL ARJOSARI (MALANG)",
-      "perjalanan": 1086,
-      "volume": 10708,
-      "avgPerTrip": 9.860036832412524
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL TEGAL (TEGAL)",
-      "perjalanan": 887,
-      "volume": 10287,
-      "avgPerTrip": 11.597519729425029
-    },
-    {
-      "trayek": "TERMINAL GAMBUT BARAKAT (KABUPATEN BANJAR) - TERMINAL BULUPITU (BANYUMAS)",
-      "perjalanan": 1574,
-      "volume": 10276,
-      "avgPerTrip": 6.52858958068615
-    },
-    {
-      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL CIAKAR (SUMEDANG)",
-      "perjalanan": 872,
-      "volume": 10070,
-      "avgPerTrip": 11.54816513761468
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL BARANANGSIANG (BOGOR)",
-      "perjalanan": 1129,
-      "volume": 10002,
-      "avgPerTrip": 8.859167404782994
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR)",
-      "perjalanan": 862,
-      "volume": 9864,
-      "avgPerTrip": 11.443155452436194
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL PEKALONGAN (PEKALONGAN)",
-      "perjalanan": 1451,
-      "volume": 9843,
-      "avgPerTrip": 6.783597518952447
-    },
-    {
-      "trayek": "---",
-      "perjalanan": 1068,
-      "volume": 9615,
-      "avgPerTrip": 9.002808988764045
-    },
-    {
-      "trayek": "PANGANDARAN - DEPOK JATIJAJAR",
-      "perjalanan": 1221,
-      "volume": 9528,
-      "avgPerTrip": 7.803439803439804
-    },
-    {
-      "trayek": "SINGAPARNA - CIKARANG",
-      "perjalanan": 318,
-      "volume": 9471,
-      "avgPerTrip": 29.78301886792453
-    },
-    {
-      "trayek": "TERMINAL INDIHIANG (TASIKMALAYA) - TERMINAL BANGGA BANGUN DESA (CILACAP)",
-      "perjalanan": 1652,
-      "volume": 9308,
-      "avgPerTrip": 5.634382566585956
-    },
-    {
-      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL KERTAWANGUNAN (KUNINGAN)",
-      "perjalanan": 1107,
-      "volume": 9224,
-      "avgPerTrip": 8.332429990966576
-    },
-    {
-      "trayek": "TASIKMALAYA-TEGAL",
-      "perjalanan": 1500,
-      "volume": 9149,
-      "avgPerTrip": 6.099333333333333
-    },
-    {
-      "trayek": "TERMINAL KALIDERES (JAKARTA BARAT) - TERMINAL BULUPITU (BANYUMAS)",
-      "perjalanan": 1000,
-      "volume": 9044,
-      "avgPerTrip": 9.044
-    },
-    {
-      "trayek": "PANGANDARAN-TEGAL",
-      "perjalanan": 1163,
-      "volume": 8910,
-      "avgPerTrip": 7.661220980223559
-    },
-    {
-      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL BANJAR (BANJAR)",
-      "perjalanan": 876,
-      "volume": 8558,
-      "avgPerTrip": 9.769406392694064
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL JATI (KUDUS)",
-      "perjalanan": 1193,
-      "volume": 8489,
-      "avgPerTrip": 7.115674769488684
-    },
-    {
-      "trayek": "TASIKMALAYA - PANGANDARAN",
-      "perjalanan": 1319,
-      "volume": 8431,
-      "avgPerTrip": 6.3919636087945415
-    },
-    {
-      "trayek": "TERMINAL SIMPANG AUR (BUKIT TINGGI) - TERMINAL LEUWIPANJANG (BANDUNG)",
-      "perjalanan": 923,
-      "volume": 8382,
-      "avgPerTrip": 9.081256771397616
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL PORIS PLAWAD (TANGERANG)",
-      "perjalanan": 741,
-      "volume": 8290,
-      "avgPerTrip": 11.187584345479083
-    },
-    {
-      "trayek": "MERAK - TASIKMALAYA",
-      "perjalanan": 1113,
-      "volume": 8225,
-      "avgPerTrip": 7.389937106918239
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL PACITAN (PACITAN)",
-      "perjalanan": 1085,
-      "volume": 8166,
-      "avgPerTrip": 7.526267281105991
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL ARJOSARI (MALANG)",
-      "perjalanan": 1073,
-      "volume": 8164,
-      "avgPerTrip": 7.608574091332712
-    },
-    {
-      "trayek": "TASIKMALAYA - BOGOR KOTA (BARANANGSIANG) VIA ML.BONG, TOL CILEUNYI, TOL CPLRNG, TOL JGRW PP",
-      "perjalanan": 1119,
-      "volume": 7964,
-      "avgPerTrip": 7.117068811438784
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL TA INDUK BANJARNEGARA (BANJARNEGARA)",
-      "perjalanan": 840,
-      "volume": 7938,
-      "avgPerTrip": 9.45
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL GIWANGAN (YOGYAKARTA)",
-      "perjalanan": 817,
-      "volume": 7743,
-      "avgPerTrip": 9.477356181150551
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL GIWANGAN (YOGYAKARTA)",
-      "perjalanan": 1351,
-      "volume": 7714,
-      "avgPerTrip": 5.709844559585492
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL LEUWIPANJANG (BANDUNG)",
-      "perjalanan": 818,
-      "volume": 7705,
-      "avgPerTrip": 9.419315403422983
-    },
-    {
-      "trayek": "TERMINAL HARJAMUKTI (CIREBON) - TERMINAL ARJOSARI (MALANG)",
-      "perjalanan": 1444,
-      "volume": 7687,
-      "avgPerTrip": 5.323407202216067
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL INDUK BEKASI (BEKASI)",
-      "perjalanan": 684,
-      "volume": 7624,
-      "avgPerTrip": 11.146198830409357
-    },
-    {
-      "trayek": "TERMINAL BARANANGSIANG (BOGOR) - TERMINAL IR. SOEKARNO (KLATEN)",
-      "perjalanan": 1039,
-      "volume": 7594,
-      "avgPerTrip": 7.308950914340712
-    },
-    {
-      "trayek": "TERMINAL BOBOTSARI (PURBALINGGA)-TERMINAL INDIHIANG (TASIKMALAYA)",
-      "perjalanan": 1213,
-      "volume": 7453,
-      "avgPerTrip": 6.144270403957131
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL KERTAWANGUNAN (KUNINGAN)",
-      "perjalanan": 827,
-      "volume": 7429,
-      "avgPerTrip": 8.983071342200725
-    },
-    {
-      "trayek": "TERMINAL ANAK AIR (PADANG) - TERMINAL PULO GEBANG (JAKARTA TIMUR)",
-      "perjalanan": 791,
-      "volume": 7382,
-      "avgPerTrip": 9.332490518331227
-    },
-    {
-      "trayek": "TERMINAL BARANANGSIANG (BOGOR) - TERMINAL SELO AJI (PONOROGO)",
-      "perjalanan": 753,
-      "volume": 7185,
-      "avgPerTrip": 9.541832669322709
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL SELO AJI (PONOROGO)",
-      "perjalanan": 808,
-      "volume": 7081,
-      "avgPerTrip": 8.763613861386139
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL CEPU (BLORA)",
-      "perjalanan": 1127,
-      "volume": 7048,
-      "avgPerTrip": 6.25377107364685
-    },
-    {
-      "trayek": "TASIKMALAYA - CIMAHI",
-      "perjalanan": 829,
-      "volume": 6947,
-      "avgPerTrip": 8.379975874547648
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL HARJAMUKTI (CIREBON)",
-      "perjalanan": 544,
-      "volume": 6835,
-      "avgPerTrip": 12.564338235294118
-    },
-    {
-      "trayek": "TERMINAL KALIDERES (JAKARTA BARAT) - TERMINAL INDIHIANG (TASIKMALAYA)",
-      "perjalanan": 961,
-      "volume": 6816,
-      "avgPerTrip": 7.09261186264308
-    },
-    {
-      "trayek": "TERMINAL ANAK AIR (PADANG) - TERMINAL LEUWIPANJANG (BANDUNG)",
-      "perjalanan": 763,
-      "volume": 6798,
-      "avgPerTrip": 8.90956749672346
-    },
-    {
-      "trayek": "TASIKMALAYA - BANDUNG CICAHEUM VIA MALANGBONG PP",
-      "perjalanan": 695,
-      "volume": 6784,
-      "avgPerTrip": 9.76115107913669
-    },
-    {
-      "trayek": "TERMINAL BARANANGSIANG (BOGOR) - TERMINAL TIRTONADI (SURAKARTA)",
-      "perjalanan": 613,
-      "volume": 6764,
-      "avgPerTrip": 11.03425774877651
-    },
-    {
-      "trayek": "JAKARTA PULO GEBANG-BLITAR",
-      "perjalanan": 691,
-      "volume": 6704,
-      "avgPerTrip": 9.701881331403763
-    },
-    {
-      "trayek": "TERMINAL KH. AHMAD SANUSI (SUKABUMI) - TERMINAL GIWANGAN (YOGYAKARTA)",
-      "perjalanan": 509,
-      "volume": 6680,
-      "avgPerTrip": 13.1237721021611
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL SELO AJI (PONOROGO)",
-      "perjalanan": 909,
-      "volume": 6329,
-      "avgPerTrip": 6.962596259625963
-    },
-    {
-      "trayek": "BANJAR - SUKABUMI",
-      "perjalanan": 689,
-      "volume": 6319,
-      "avgPerTrip": 9.171262699564586
-    },
-    {
-      "trayek": "TERMINAL PONDOK CABE (TANGERANG SELATAN) - TERMINAL GIWANGAN (YOGYAKARTA)",
-      "perjalanan": 648,
-      "volume": 6279,
-      "avgPerTrip": 9.689814814814815
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL CIAKAR (SUMEDANG)",
-      "perjalanan": 561,
-      "volume": 6036,
-      "avgPerTrip": 10.759358288770054
-    },
-    {
-      "trayek": "JAKARTA PULO GEBANG - YOGYAKARTA",
-      "perjalanan": 622,
-      "volume": 6006,
-      "avgPerTrip": 9.655948553054662
-    },
-    {
-      "trayek": "TERMINAL BARANANGSIANG (BOGOR) - TERMINAL MENGWI (BADUNG)",
-      "perjalanan": 640,
-      "volume": 5995,
-      "avgPerTrip": 9.3671875
-    },
-    {
-      "trayek": "TERMINAL AMPLAS (MEDAN) - TERMINAL SRI TANJUNG (BANYUWANGI)",
-      "perjalanan": 678,
-      "volume": 5971,
-      "avgPerTrip": 8.806784660766962
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL DHAKSINARGA (WONOSARI)",
-      "perjalanan": 642,
-      "volume": 5971,
-      "avgPerTrip": 9.300623052959502
-    },
-    {
-      "trayek": "TASIKMALAYA - SUKABUMI",
-      "perjalanan": 619,
-      "volume": 5963,
-      "avgPerTrip": 9.633279483037157
-    },
-    {
-      "trayek": "TERMINAL CIKARANG - TERMINAL WADO",
-      "perjalanan": 1178,
-      "volume": 5956,
-      "avgPerTrip": 5.056027164685909
-    },
-    {
-      "trayek": "TERMINAL KALIDERES (JAKARTA BARAT) - TERMINAL BANGGA BANGUN DESA (CILACAP)",
-      "perjalanan": 465,
-      "volume": 5884,
-      "avgPerTrip": 12.653763440860216
-    },
-    {
-      "trayek": "TASIKMALAYA - DEPOK VIA CIANJUR PUNCAK TOL JAGORAWI CIBINONG",
-      "perjalanan": 555,
-      "volume": 5844,
-      "avgPerTrip": 10.52972972972973
-    },
-    {
-      "trayek": "TERMINAL BARANANGSIANG (BOGOR) - TERMINAL PURWOREJO (PURWOREJO)",
-      "perjalanan": 523,
-      "volume": 5783,
-      "avgPerTrip": 11.05736137667304
-    },
-    {
-      "trayek": "TASIKMALAYA - CILILITAN JAKARTA",
-      "perjalanan": 628,
-      "volume": 5696,
-      "avgPerTrip": 9.070063694267516
-    },
-    {
-      "trayek": "KOTA BEKASI - PANGANDARAN",
-      "perjalanan": 836,
-      "volume": 5598,
-      "avgPerTrip": 6.696172248803828
-    },
-    {
-      "trayek": "TASIKMALAYA - CIKATOMAS - BUNIASIH",
-      "perjalanan": 2337,
-      "volume": 5554,
-      "avgPerTrip": 2.376551133932392
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL MENDOLO (WONOSOBO)",
-      "perjalanan": 567,
-      "volume": 5526,
-      "avgPerTrip": 9.746031746031745
-    },
-    {
-      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL BANJAR (BANJAR)",
-      "perjalanan": 577,
-      "volume": 5470,
-      "avgPerTrip": 9.480069324090122
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL BANJAR (BANJAR)",
-      "perjalanan": 409,
-      "volume": 5390,
-      "avgPerTrip": 13.178484107579463
-    },
-    {
-      "trayek": "TERMINAL BARANANGSIANG (BOGOR) - TERMINAL GIWANGAN (YOGYAKARTA)",
-      "perjalanan": 711,
-      "volume": 5269,
-      "avgPerTrip": 7.410689170182841
-    },
-    {
-      "trayek": "SINGAPARNA-GARUT-SUKABUMI",
-      "perjalanan": 375,
-      "volume": 5265,
-      "avgPerTrip": 14.04
-    },
-    {
-      "trayek": "TERMINAL ANAK AIR (PADANG) - TERMINAL GIWANGAN (YOGYAKARTA)",
-      "perjalanan": 506,
-      "volume": 5251,
-      "avgPerTrip": 10.377470355731225
-    },
-    {
-      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL GUNTUR MELATI (GARUT)",
-      "perjalanan": 407,
-      "volume": 5210,
-      "avgPerTrip": 12.800982800982801
-    },
-    {
-      "trayek": "TERMINAL CICAHEUM (BANDUNG) - TERMINAL BANGGA BANGUN DESA (CILACAP)",
-      "perjalanan": 542,
-      "volume": 5057,
-      "avgPerTrip": 9.330258302583026
-    },
-    {
-      "trayek": "JAKARTA KP. RAMBUTAN-CILACAP",
-      "perjalanan": 453,
-      "volume": 5017,
-      "avgPerTrip": 11.07505518763797
-    },
-    {
-      "trayek": "KOTA BANDUNG (TERMINAL CICAHEUM) - KUNINGAN (TERMINAL KERTAWANGUNAN)",
-      "perjalanan": 738,
-      "volume": 5007,
-      "avgPerTrip": 6.784552845528455
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL PEKALONGAN (PEKALONGAN)",
-      "perjalanan": 290,
-      "volume": 4987,
-      "avgPerTrip": 17.19655172413793
-    },
-    {
-      "trayek": "TERMINAL KALIDERES (JAKARTA BARAT) - TERMINAL BANJAR (BANJAR)",
-      "perjalanan": 451,
-      "volume": 4917,
-      "avgPerTrip": 10.902439024390244
-    },
-    {
-      "trayek": "TASIKMALAYA - CIKARANG BEKASI VIA PURWAKARTA, MALANGBONG, TOL CIKAMPEK, TOL PADALEUNYI",
-      "perjalanan": 746,
-      "volume": 4910,
-      "avgPerTrip": 6.581769436997319
-    },
-    {
-      "trayek": "TASIKMALAYA - CIKATOMAS - TAWANG",
-      "perjalanan": 1992,
-      "volume": 4903,
-      "avgPerTrip": 2.4613453815261046
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL PURWOREJO (PURWOREJO)",
-      "perjalanan": 806,
-      "volume": 4897,
-      "avgPerTrip": 6.075682382133995
-    },
-    {
-      "trayek": "TERMINAL AMPLAS (MEDAN) - TERMINAL PULO GEBANG (JAKARTA TIMUR)",
-      "perjalanan": 572,
-      "volume": 4811,
-      "avgPerTrip": 8.410839160839162
-    },
-    {
-      "trayek": "TERMINAL BARANANGSIANG (BOGOR) - TERMINAL PATRIA (BLITAR)",
-      "perjalanan": 597,
-      "volume": 4702,
-      "avgPerTrip": 7.876046901172529
-    },
-    {
-      "trayek": "TASIKMALAYA - CILEUNGSI BOGOR KAB",
-      "perjalanan": 640,
-      "volume": 4634,
-      "avgPerTrip": 7.240625
-    },
-    {
-      "trayek": "TERMINAL KALIDERES (JAKARTA BARAT) - TERMINAL CIKAMPEK (KARAWANG)",
-      "perjalanan": 201,
-      "volume": 4549,
-      "avgPerTrip": 22.6318407960199
-    },
-    {
-      "trayek": "DEPOK - KUNINGAN",
-      "perjalanan": 483,
-      "volume": 4391,
-      "avgPerTrip": 9.091097308488612
-    },
-    {
-      "trayek": "TERMINAL KERTAWANGUNAN (KUNINGAN) - TERMINAL TAWANGALUN (JEMBER)",
-      "perjalanan": 606,
-      "volume": 4387,
-      "avgPerTrip": 7.239273927392739
-    },
-    {
-      "trayek": "TERMINAL MANDALA LEBAK (LEBAK) - TERMINAL PULO GEBANG (JAKARTA TIMUR)",
-      "perjalanan": 262,
-      "volume": 4369,
-      "avgPerTrip": 16.67557251908397
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL PATRIA (BLITAR)",
-      "perjalanan": 366,
-      "volume": 4347,
-      "avgPerTrip": 11.87704918032787
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL PURWOREJO (PURWOREJO)",
-      "perjalanan": 362,
-      "volume": 4295,
-      "avgPerTrip": 11.8646408839779
-    },
-    {
-      "trayek": "TERMINAL SIMPANG AUR (BUKIT TINGGI) - TERMINAL INDIHIANG (TASIKMALAYA)",
-      "perjalanan": 396,
-      "volume": 4285,
-      "avgPerTrip": 10.820707070707071
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL INDIHIANG (TASIKMALAYA)",
-      "perjalanan": 384,
-      "volume": 4274,
-      "avgPerTrip": 11.130208333333334
-    },
-    {
-      "trayek": "TASIKMALAYA - CIREBON",
-      "perjalanan": 1606,
-      "volume": 4255,
-      "avgPerTrip": 2.649439601494396
-    },
-    {
-      "trayek": "TERMINAL PONDOK CABE (TANGERANG SELATAN) - TERMINAL KH. AHMAD SANUSI (SUKABUMI)",
-      "perjalanan": 318,
-      "volume": 4188,
-      "avgPerTrip": 13.169811320754716
-    },
-    {
-      "trayek": "TASIKMALAYA - SINGAPARNA - TENJOWARINGIN",
-      "perjalanan": 1532,
-      "volume": 4176,
-      "avgPerTrip": 2.7258485639686683
-    },
-    {
-      "trayek": "TERMINAL BARANANGSIANG (BOGOR) - TERMINAL DHAKSINARGA (WONOSARI)",
-      "perjalanan": 602,
-      "volume": 4149,
-      "avgPerTrip": 6.892026578073089
-    },
-    {
-      "trayek": "BDG-SOLO",
-      "perjalanan": 381,
-      "volume": 4149,
-      "avgPerTrip": 10.88976377952756
-    },
-    {
-      "trayek": "TERMINAL ALANG-ALANG LEBAR (PALEMBANG) - TERMINAL KERTAWANGUNAN (KUNINGAN)",
-      "perjalanan": 532,
-      "volume": 4081,
-      "avgPerTrip": 7.671052631578948
-    },
-    {
-      "trayek": "TERMINAL CICAHEUM (BANDUNG) - TERMINAL GIRI ADIPURA (WONOGIRI)",
-      "perjalanan": 316,
-      "volume": 4044,
-      "avgPerTrip": 12.79746835443038
-    },
-    {
-      "trayek": "TERMINAL BATOH (BANDA ACEH) - TERMINAL TIRTONADI (SURAKARTA)",
-      "perjalanan": 576,
-      "volume": 4043,
-      "avgPerTrip": 7.019097222222222
-    },
-    {
-      "trayek": "Leuwipanjang - Ciledug",
-      "perjalanan": 424,
-      "volume": 3995,
-      "avgPerTrip": 9.422169811320755
-    },
-    {
-      "trayek": "TERMINAL JATI PARIAMAN (PARIAMAN) - TERMINAL KALIDERES (JAKARTA BARAT)",
-      "perjalanan": 376,
-      "volume": 3849,
-      "avgPerTrip": 10.236702127659575
-    },
-    {
-      "trayek": "CIREBON - TASIKMALAYA",
-      "perjalanan": 1309,
-      "volume": 3848,
-      "avgPerTrip": 2.9396485867074102
-    },
-    {
-      "trayek": "JAKARTA PULO GEBANG-SURABAYA PURABAYA",
-      "perjalanan": 443,
-      "volume": 3814,
-      "avgPerTrip": 8.609480812641083
-    },
-    {
-      "trayek": "TERMINAL PANGANDARAN (PANGANDARAN) - TERMINAL BANGGA BANGUN DESA (CILACAP)",
-      "perjalanan": 543,
-      "volume": 3779,
-      "avgPerTrip": 6.959484346224678
-    },
-    {
-      "trayek": "TERMINAL KALIDERES (JAKARTA BARAT) - TERMINAL KEBUMEN (KEBUMEN)",
-      "perjalanan": 349,
-      "volume": 3716,
-      "avgPerTrip": 10.64756446991404
-    },
-    {
-      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL SELO AJI (PONOROGO)",
-      "perjalanan": 342,
-      "volume": 3684,
-      "avgPerTrip": 10.771929824561404
-    },
-    {
-      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL ARJOSARI (MALANG)",
-      "perjalanan": 448,
-      "volume": 3635,
-      "avgPerTrip": 8.113839285714286
-    },
-    {
-      "trayek": "TERMINAL BARANANGSIANG (BOGOR) - TERMINAL KERTAWANGUNAN (KUNINGAN)",
-      "perjalanan": 363,
-      "volume": 3603,
-      "avgPerTrip": 9.925619834710744
-    },
-    {
-      "trayek": "TERMINAL BARANANGSIANG (BOGOR) - TERMINAL BULUPITU (BANYUMAS)",
-      "perjalanan": 226,
-      "volume": 3551,
-      "avgPerTrip": 15.712389380530974
-    },
-    {
-      "trayek": "TERMINAL BARANANGSIANG (BOGOR) - TERMINAL JEPARA (JEPARA)",
-      "perjalanan": 379,
-      "volume": 3538,
-      "avgPerTrip": 9.335092348284961
-    },
-    {
-      "trayek": "TERMINAL LABUAN (PANDEGLANG) - TERMINAL LEUWIPANJANG (BANDUNG)",
-      "perjalanan": 372,
-      "volume": 3531,
-      "avgPerTrip": 9.491935483870968
-    },
-    {
-      "trayek": "TASIKMALAYA - CIKAMPEK KARAWANG VIA TERM. WADO, TERM. CIAKAR, TERM. SUBANG, TERM. SADANG, MALANGBONG PP",
-      "perjalanan": 1102,
-      "volume": 3529,
-      "avgPerTrip": 3.202359346642468
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL SRI TANJUNG (BANYUWANGI)",
-      "perjalanan": 451,
-      "volume": 3484,
-      "avgPerTrip": 7.725055432372505
-    },
-    {
-      "trayek": "TERMINAL BARANANGSIANG (BOGOR) - TERMINAL MANGKANG (SEMARANG)",
-      "perjalanan": 391,
-      "volume": 3482,
-      "avgPerTrip": 8.90537084398977
-    },
-    {
-      "trayek": "TIDAK ADA DOKUMEN KPS",
-      "perjalanan": 720,
-      "volume": 3474,
-      "avgPerTrip": 4.825
-    },
-    {
-      "trayek": "TERMINAL CICAHEUM (BANDUNG) - TERMINAL DHAKSINARGA (WONOSARI)",
-      "perjalanan": 222,
-      "volume": 3464,
-      "avgPerTrip": 15.603603603603604
-    },
-    {
-      "trayek": "TERMINAL INDIHIANG (TASIKMALAYA) - TERMINAL GIWANGAN (YOGYAKARTA)",
-      "perjalanan": 360,
-      "volume": 3417,
-      "avgPerTrip": 9.491666666666667
-    },
-    {
-      "trayek": "TERMINAL GIWANGAN (YOGYAKARTA) - TERMINAL PURABAYA (SIDOARJO)",
-      "perjalanan": 381,
-      "volume": 3413,
-      "avgPerTrip": 8.958005249343833
-    },
-    {
-      "trayek": "TERMINAL ANAK AIR (PADANG) - TERMINAL ARJOSARI (MALANG)",
-      "perjalanan": 506,
-      "volume": 3386,
-      "avgPerTrip": 6.691699604743083
-    },
-    {
-      "trayek": "TERMINAL KALIJAYA CIKARANG (CIKARANG) - TERMINAL BANGGA BANGUN DESA (CILACAP)",
-      "perjalanan": 213,
-      "volume": 3368,
-      "avgPerTrip": 15.812206572769954
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL ARYA WIRARAJA (SUMENEP)",
-      "perjalanan": 432,
-      "volume": 3351,
-      "avgPerTrip": 7.756944444444445
-    },
-    {
-      "trayek": "CIREBON - MALANG (ARJOSARI)",
-      "perjalanan": 461,
-      "volume": 3345,
-      "avgPerTrip": 7.2559652928416485
-    },
-    {
-      "trayek": "TERMINAL ALANG-ALANG LEBAR (PALEMBANG) - TERMINAL INDUK BEKASI (BEKASI)",
-      "perjalanan": 436,
-      "volume": 3314,
-      "avgPerTrip": 7.60091743119266
-    },
-    {
-      "trayek": "TERMINAL HARJAMUKTI (CIREBON) - TERMINAL MANGKANG (SEMARANG)",
-      "perjalanan": 650,
-      "volume": 3313,
-      "avgPerTrip": 5.096923076923077
-    },
-    {
-      "trayek": "TASIKMALAYA KARANGNUNGGAL - KOTA BEKASI",
-      "perjalanan": 282,
-      "volume": 3307,
-      "avgPerTrip": 11.72695035460993
-    },
-    {
-      "trayek": "TERMINAL LEUWIPANJANG (BANDUNG) - TERMINAL MENGWI (BADUNG)",
-      "perjalanan": 313,
-      "volume": 3284,
-      "avgPerTrip": 10.492012779552716
-    },
-    {
-      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL SELO AJI (PONOROGO)",
-      "perjalanan": 399,
-      "volume": 3253,
-      "avgPerTrip": 8.152882205513784
-    },
-    {
-      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL PEKALONGAN (PEKALONGAN)",
-      "perjalanan": 242,
-      "volume": 3231,
-      "avgPerTrip": 13.351239669421487
-    },
-    {
-      "trayek": "PADANG-JAKARTA",
-      "perjalanan": 511,
-      "volume": 3228,
-      "avgPerTrip": 6.317025440313111
-    },
-    {
-      "trayek": "JAKARTA KALIDERES-PURWOKERTO",
-      "perjalanan": 428,
-      "volume": 3201,
-      "avgPerTrip": 7.478971962616822
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL PACITAN (PACITAN)",
-      "perjalanan": 430,
-      "volume": 3191,
-      "avgPerTrip": 7.420930232558139
-    },
-    {
-      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL PURWOREJO (PURWOREJO)",
-      "perjalanan": 483,
-      "volume": 3182,
-      "avgPerTrip": 6.587991718426501
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL MENGWI (BADUNG)",
-      "perjalanan": 333,
-      "volume": 3177,
-      "avgPerTrip": 9.54054054054054
-    },
-    {
-      "trayek": "TERMINAL DUMAI (DUMAI) - TERMINAL MANGKANG (SEMARANG)",
-      "perjalanan": 244,
-      "volume": 3154,
-      "avgPerTrip": 12.926229508196721
-    },
-    {
-      "trayek": "TERMINAL RAJABASA (BANDAR LAMPUNG) - TERMINAL INDIHIANG (TASIKMALAYA)",
-      "perjalanan": 379,
-      "volume": 3129,
-      "avgPerTrip": 8.255936675461742
-    },
-    {
-      "trayek": "TERMINAL ALAM BARAJO (JAMBI) - TERMINAL TIRTONADI (SURAKARTA)",
-      "perjalanan": 298,
-      "volume": 3032,
-      "avgPerTrip": 10.174496644295303
-    },
-    {
-      "trayek": "TERMINAL CICAHEUM (BANDUNG) - TERMINAL CEPU (BLORA)",
-      "perjalanan": 211,
-      "volume": 3026,
-      "avgPerTrip": 14.341232227488153
-    },
-    {
-      "trayek": "TASIKMALAYA - CIKALONG",
-      "perjalanan": 1210,
-      "volume": 3014,
-      "avgPerTrip": 2.4909090909090907
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL PANGANDARAN (PANGANDARAN)",
-      "perjalanan": 441,
-      "volume": 2921,
-      "avgPerTrip": 6.62358276643991
-    },
-    {
-      "trayek": "TERMINAL INDUK BEKASI (BEKASI) - TERMINAL BULUPITU (BANYUMAS)",
-      "perjalanan": 314,
-      "volume": 2896,
-      "avgPerTrip": 9.222929936305732
-    },
-    {
-      "trayek": "TERMINAL CICAHEUM (BANDUNG) - TERMINAL JATI (KUDUS)",
-      "perjalanan": 336,
-      "volume": 2881,
-      "avgPerTrip": 8.574404761904763
-    },
-    {
-      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL BOBOT SARI (PURBALINGGA)",
-      "perjalanan": 306,
-      "volume": 2853,
-      "avgPerTrip": 9.323529411764707
-    },
-    {
-      "trayek": "BANJAR - KOTA BEKASI",
-      "perjalanan": 465,
-      "volume": 2817,
-      "avgPerTrip": 6.058064516129032
-    },
-    {
-      "trayek": "TERMINAL INDIHIANG (TASIKMALAYA) - TERMINAL SRI TANJUNG (BANYUWANGI)",
-      "perjalanan": 339,
-      "volume": 2740,
-      "avgPerTrip": 8.08259587020649
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL GIRI ADIPURA (WONOGIRI)",
-      "perjalanan": 266,
-      "volume": 2735,
-      "avgPerTrip": 10.281954887218046
-    },
-    {
-      "trayek": "TERMINAL BARANANGSIANG (BOGOR) - TERMINAL CEPU (BLORA)",
-      "perjalanan": 550,
-      "volume": 2704,
-      "avgPerTrip": 4.916363636363636
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL PANGANDARAN (PANGANDARAN)",
-      "perjalanan": 306,
-      "volume": 2674,
-      "avgPerTrip": 8.738562091503267
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL JEPARA (JEPARA)",
-      "perjalanan": 352,
-      "volume": 2665,
-      "avgPerTrip": 7.5710227272727275
-    },
-    {
-      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL CEPU (BLORA)",
-      "perjalanan": 259,
-      "volume": 2652,
-      "avgPerTrip": 10.23938223938224
-    },
-    {
-      "trayek": "TERMINAL TERPADU PULO GEBANG - TERMINAL TIRTONADI",
-      "perjalanan": 283,
-      "volume": 2635,
-      "avgPerTrip": 9.31095406360424
-    },
-    {
-      "trayek": "TERMINAL BARANANGSIANG (BOGOR) - TERMINAL GIRI ADIPURA (WONOGIRI)",
-      "perjalanan": 275,
-      "volume": 2632,
-      "avgPerTrip": 9.57090909090909
-    },
-    {
-      "trayek": "TERMINAL RAJABASA (BANDAR LAMPUNG) - TERMINAL MENDOLO (WONOSOBO)",
-      "perjalanan": 391,
-      "volume": 2595,
-      "avgPerTrip": 6.6368286445012785
-    },
-    {
-      "trayek": "TERMINAL PURABAYA (SIDOARJO) - TERMINAL MERAK (CILEGON)",
-      "perjalanan": 262,
-      "volume": 2564,
-      "avgPerTrip": 9.786259541984732
-    },
-    {
-      "trayek": "TERMINAL ALAM BARAJO (JAMBI) - TERMINAL PATRIA (BLITAR)",
-      "perjalanan": 280,
-      "volume": 2539,
-      "avgPerTrip": 9.067857142857143
-    },
-    {
-      "trayek": "TERMINAL INDIHIANG (TASIKMALAYA) - TERMINAL JEPARA (JEPARA)",
-      "perjalanan": 299,
-      "volume": 2534,
-      "avgPerTrip": 8.474916387959865
-    },
-    {
-      "trayek": "TERMINAL ALANG-ALANG LEBAR (PALEMBANG) - TERMINAL BANJAR (BANJAR)",
-      "perjalanan": 307,
-      "volume": 2494,
-      "avgPerTrip": 8.123778501628664
-    },
-    {
-      "trayek": "TERMINAL BATOH (BANDA ACEH) - TERMINAL GIWANGAN (YOGYAKARTA)",
-      "perjalanan": 322,
-      "volume": 2444,
-      "avgPerTrip": 7.590062111801243
-    },
-    {
-      "trayek": "TASIKMALAYA - LEUWILIANG BOGOR KAB",
-      "perjalanan": 291,
-      "volume": 2435,
-      "avgPerTrip": 8.367697594501719
-    },
-    {
-      "trayek": "TERMINAL RAJABASA (BANDAR LAMPUNG) - TERMINAL MENGWI (BADUNG)",
-      "perjalanan": 340,
-      "volume": 2422,
-      "avgPerTrip": 7.123529411764705
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL BOBOT SARI (PURBALINGGA)",
-      "perjalanan": 361,
-      "volume": 2407,
-      "avgPerTrip": 6.667590027700831
-    },
-    {
-      "trayek": "DEPOK (JATIJAJAR) - PONOROGO",
-      "perjalanan": 197,
-      "volume": 2394,
-      "avgPerTrip": 12.152284263959391
-    },
-    {
-      "trayek": "TERMINAL HARJAMUKTI (CIREBON) - TERMINAL BANYUANGGA (PROBOLINGGO)",
-      "perjalanan": 352,
-      "volume": 2370,
-      "avgPerTrip": 6.732954545454546
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL MENDOLO (WONOSOBO)",
-      "perjalanan": 236,
-      "volume": 2355,
-      "avgPerTrip": 9.978813559322035
-    },
-    {
-      "trayek": "TERMINAL HARJAMUKTI (CIREBON) - TERMINAL JATI (KUDUS)",
-      "perjalanan": 351,
-      "volume": 2343,
-      "avgPerTrip": 6.6752136752136755
-    },
-    {
-      "trayek": "TERMINAL CICAHEUM (BANDUNG) - TERMINAL BANYUANGGA (PROBOLINGGO)",
-      "perjalanan": 184,
-      "volume": 2338,
-      "avgPerTrip": 12.706521739130435
-    },
-    {
-      "trayek": "BUDIMAN",
-      "perjalanan": 191,
-      "volume": 2306,
-      "avgPerTrip": 12.073298429319372
-    },
-    {
-      "trayek": "TERMINAL BARANANGSIANG (BOGOR) - TERMINAL RAJEKWESI (BOJONEGORO)",
-      "perjalanan": 260,
-      "volume": 2293,
-      "avgPerTrip": 8.819230769230769
-    },
-    {
-      "trayek": "BANDUNG - LABUAN",
-      "perjalanan": 382,
-      "volume": 2279,
-      "avgPerTrip": 5.965968586387435
-    },
-    {
-      "trayek": "TASIKMALAYA - PONDOK CABE TANGERANG SELATAN",
-      "perjalanan": 269,
-      "volume": 2276,
-      "avgPerTrip": 8.46096654275093
-    },
-    {
-      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL CEPU (BLORA)",
-      "perjalanan": 324,
-      "volume": 2270,
-      "avgPerTrip": 7.006172839506172
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL DHAKSINARGA (WONOSARI)",
-      "perjalanan": 255,
-      "volume": 2204,
-      "avgPerTrip": 8.64313725490196
-    },
-    {
-      "trayek": "TERMINAL LABUAN (PANDEGLANG) - TERMINAL KALIDERES (JAKARTA BARAT)",
-      "perjalanan": 165,
-      "volume": 2190,
-      "avgPerTrip": 13.272727272727273
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL BANGGA BANGUN DESA (CILACAP)",
-      "perjalanan": 275,
-      "volume": 2156,
-      "avgPerTrip": 7.84
-    },
-    {
-      "trayek": "TASIKMALAYA - CIMANUK PANGANDARAN",
-      "perjalanan": 323,
-      "volume": 2138,
-      "avgPerTrip": 6.6191950464396285
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL PATRIA (BLITAR)",
-      "perjalanan": 298,
-      "volume": 2138,
-      "avgPerTrip": 7.174496644295302
-    },
-    {
-      "trayek": "TASIKMALAYA - KARANGNUNGGAL - CIPATUJAH - CIHERAS",
-      "perjalanan": 842,
-      "volume": 2135,
-      "avgPerTrip": 2.53562945368171
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL GIRI ADIPURA (WONOGIRI)",
-      "perjalanan": 248,
-      "volume": 2121,
-      "avgPerTrip": 8.55241935483871
-    },
-    {
-      "trayek": "TERMINAL INDUK BEKASI (BEKASI) - TERMINAL BANGGA BANGUN DESA (CILACAP)",
-      "perjalanan": 278,
-      "volume": 2119,
-      "avgPerTrip": 7.622302158273381
-    },
-    {
-      "trayek": "TERMINAL JATI PARIAMAN (PARIAMAN) -TERMINAL INDIHIANG (TASIKMALAYA)",
-      "perjalanan": 256,
-      "volume": 2111,
-      "avgPerTrip": 8.24609375
-    },
-    {
-      "trayek": "TERMINAL ARJOSARI (MALANG) - TERMINAL DARA (BIMA)",
-      "perjalanan": 383,
-      "volume": 2107,
-      "avgPerTrip": 5.5013054830287205
-    },
-    {
-      "trayek": "TERMINAL ALANG-ALANG LEBAR (PALEMBANG) - TERMINAL LEUWIPANJANG (BANDUNG)",
-      "perjalanan": 176,
-      "volume": 2101,
-      "avgPerTrip": 11.9375
-    },
-    {
-      "trayek": "TERMINAL CICAHEUM (BANDUNG) - TERMINAL PATRIA (BLITAR)",
-      "perjalanan": 218,
-      "volume": 2094,
-      "avgPerTrip": 9.605504587155963
-    },
-    {
-      "trayek": "LABUAN-YOGYAKARTA",
-      "perjalanan": 239,
-      "volume": 2007,
-      "avgPerTrip": 8.397489539748953
-    },
-    {
-      "trayek": "BANDUNG-SURABAYA",
-      "perjalanan": 155,
-      "volume": 1994,
-      "avgPerTrip": 12.864516129032259
-    },
-    {
-      "trayek": "TERMINAL JATI PARIAMAN (PARIAMAN) - TERMINAL PULO GEBANG (JAKARTA TIMUR)",
-      "perjalanan": 300,
-      "volume": 1992,
-      "avgPerTrip": 6.64
-    },
-    {
-      "trayek": "TERMINAL KALIDERES (JAKARTA BARAT) - TERMINAL CEPU (BLORA)",
-      "perjalanan": 276,
-      "volume": 1953,
-      "avgPerTrip": 7.076086956521739
-    },
-    {
-      "trayek": "TASIKMALAYA-SERANG",
-      "perjalanan": 207,
-      "volume": 1952,
-      "avgPerTrip": 9.429951690821255
-    },
-    {
-      "trayek": "TERMINAL ALAM BARAJO (JAMBI) - TERMINAL ARJOSARI (MALANG)",
-      "perjalanan": 287,
-      "volume": 1936,
-      "avgPerTrip": 6.7456445993031355
-    },
-    {
-      "trayek": "TERMINAL DUMAI (DUMAI) - TERMINAL SELO AJI (PONOROGO)",
-      "perjalanan": 96,
-      "volume": 1911,
-      "avgPerTrip": 19.90625
-    },
-    {
-      "trayek": "TERMINAL BETAN SUBING (LAMPUNG TENGAH) - TERMINAL GIRI ADIPURA (WONOGIRI)",
-      "perjalanan": 234,
-      "volume": 1908,
-      "avgPerTrip": 8.153846153846153
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL TIRTONADI (SURAKARTA)",
-      "perjalanan": 450,
-      "volume": 1878,
-      "avgPerTrip": 4.173333333333333
-    },
-    {
-      "trayek": "TERMINAL AMPLAS (MEDAN) - TERMINAL SIMPANG AUR (BUKIT TINGGI)",
-      "perjalanan": 192,
-      "volume": 1867,
-      "avgPerTrip": 9.723958333333334
-    },
-    {
-      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL GIWANGAN (YOGYAKARTA)",
-      "perjalanan": 234,
-      "volume": 1866,
-      "avgPerTrip": 7.9743589743589745
-    },
-    {
-      "trayek": "Sukabumi - Banjar",
-      "perjalanan": 200,
-      "volume": 1861,
-      "avgPerTrip": 9.305
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL TAWANGALUN (JEMBER)",
-      "perjalanan": 232,
-      "volume": 1844,
-      "avgPerTrip": 7.948275862068965
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL PULO GEBANG (JAKARTA TIMUR)",
-      "perjalanan": 177,
-      "volume": 1811,
-      "avgPerTrip": 10.231638418079097
-    },
-    {
-      "trayek": "CIAMIS - BEKASI KOTA",
-      "perjalanan": 369,
-      "volume": 1804,
-      "avgPerTrip": 4.888888888888889
-    },
-    {
-      "trayek": "PADANG-SUKABUMI",
-      "perjalanan": 200,
-      "volume": 1802,
-      "avgPerTrip": 9.01
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (PALEMBANG) - TERMINAL GIRI ADIPURA (WONOGIRI)",
-      "perjalanan": 254,
-      "volume": 1797,
-      "avgPerTrip": 7.074803149606299
-    },
-    {
-      "trayek": "TERMINAL PAYUNG SEKAKI (PEKANBARU) - TERMINAL GAYATRI (TULUNGAGUNG)",
-      "perjalanan": 147,
-      "volume": 1787,
-      "avgPerTrip": 12.156462585034014
-    },
-    {
-      "trayek": "PANGANDARAN - CIKARANG BEKASI",
-      "perjalanan": 214,
-      "volume": 1783,
-      "avgPerTrip": 8.33177570093458
-    },
-    {
-      "trayek": "TERMINAL AMPLAS (MEDAN) - TERMINAL BARANANGSIANG (BOGOR)",
-      "perjalanan": 96,
-      "volume": 1772,
-      "avgPerTrip": 18.458333333333332
-    },
-    {
-      "trayek": "TERMINAL ALAM BARAJO (JAMBI) - TERMINAL LEUWIPANJANG (BANDUNG)",
-      "perjalanan": 169,
-      "volume": 1765,
-      "avgPerTrip": 10.44378698224852
-    },
-    {
-      "trayek": "PENYIMPANGAN KP PARIWISATA",
-      "perjalanan": 252,
-      "volume": 1760,
-      "avgPerTrip": 6.984126984126984
-    },
-    {
-      "trayek": "TERMINAL CICAHEUM (BANDUNG) - TERMINAL TIRTONADI (SURAKARTA)",
-      "perjalanan": 188,
-      "volume": 1750,
-      "avgPerTrip": 9.308510638297872
-    },
-    {
-      "trayek": "BANJAR - SOREANG",
-      "perjalanan": 182,
-      "volume": 1737,
-      "avgPerTrip": 9.543956043956044
-    },
-    {
-      "trayek": "TERMINAL RAJABASA (BANDAR LAMPUNG) - TERMINAL TAMANAN (KEDIRI)",
-      "perjalanan": 239,
-      "volume": 1736,
-      "avgPerTrip": 7.2635983263598325
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL ARJOSARI (MALANG)",
-      "perjalanan": 229,
-      "volume": 1734,
-      "avgPerTrip": 7.572052401746725
-    },
-    {
-      "trayek": "TASIKMALAYA - CIJULANG PANGANDARAN",
-      "perjalanan": 500,
-      "volume": 1668,
-      "avgPerTrip": 3.336
-    },
-    {
-      "trayek": "TERMINAL ALANG-ALANG LEBAR (PALEMBANG) - TERMINAL DHAKSINARGA (WONOSARI)",
-      "perjalanan": 230,
-      "volume": 1625,
-      "avgPerTrip": 7.065217391304348
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL SURODAKAN (TRENGGALEK)",
-      "perjalanan": 120,
-      "volume": 1624,
-      "avgPerTrip": 13.533333333333333
-    },
-    {
-      "trayek": "TERMINAL PAYUNG SEKAKI (PEKANBARU) - TERMINAL PURABAYA (SIDOARJO)",
-      "perjalanan": 113,
-      "volume": 1599,
-      "avgPerTrip": 14.150442477876107
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL BANJAR (BANJAR)",
-      "perjalanan": 193,
-      "volume": 1595,
-      "avgPerTrip": 8.264248704663212
-    },
-    {
-      "trayek": "TERMINAL JATI PARIAMAN (PARIAMAN) - TERMINAL GIRI ADIPURA (WONOGIRI)",
-      "perjalanan": 211,
-      "volume": 1583,
-      "avgPerTrip": 7.502369668246446
-    },
-    {
-      "trayek": "TERMINAL RAJABASA (BANDAR LAMPUNG) - TERMINAL INDUK BEKASI (BEKASI)",
-      "perjalanan": 179,
-      "volume": 1573,
-      "avgPerTrip": 8.787709497206704
-    },
-    {
-      "trayek": "TERMINAL ALAM BARAJO (JAMBI) - TERMINAL TAMANAN (KEDIRI)",
-      "perjalanan": 247,
-      "volume": 1548,
-      "avgPerTrip": 6.267206477732794
-    },
-    {
-      "trayek": "BANDUNG CICAHEUM-BATU",
-      "perjalanan": 218,
-      "volume": 1545,
-      "avgPerTrip": 7.087155963302752
-    },
-    {
-      "trayek": "DEPOK (JATIJAJAR) - SURABAYA PURABAYA",
-      "perjalanan": 191,
-      "volume": 1543,
-      "avgPerTrip": 8.078534031413612
-    },
-    {
-      "trayek": "TERMINAL JATIJAJAR (DEPOK)-TERMINAL DHAKSINARGA (WONOSARI)",
-      "perjalanan": 168,
-      "volume": 1540,
-      "avgPerTrip": 9.166666666666666
-    },
-    {
-      "trayek": "TERMINAL SINGAPARNA-TERMINAL GARUT-JATINEGARA-TANJUNG PRIUK",
-      "perjalanan": 77,
-      "volume": 1532,
-      "avgPerTrip": 19.896103896103895
-    },
-    {
-      "trayek": "TERMINAL LEUWIPANJANG (BANDUNG) - TERMINAL PACITAN (PACITAN)",
-      "perjalanan": 165,
-      "volume": 1531,
-      "avgPerTrip": 9.27878787878788
-    },
-    {
-      "trayek": "TERMINAL HARJAMUKTI (CIREBON) - TERMINAL DEMAK (DEMAK)",
-      "perjalanan": 274,
-      "volume": 1519,
-      "avgPerTrip": 5.543795620437956
-    },
-    {
-      "trayek": "BOGOR (TER. BARANANGSIANG) - PONOROGO",
-      "perjalanan": 188,
-      "volume": 1517,
-      "avgPerTrip": 8.069148936170214
-    },
-    {
-      "trayek": "TERMINAL CICAHEUM (BANDUNG) - TERMINAL PACITAN (PACITAN)",
-      "perjalanan": 272,
-      "volume": 1517,
-      "avgPerTrip": 5.577205882352941
-    },
-    {
-      "trayek": "CIAMIS KAWALI - CIKARANG KAB. BEKASI",
-      "perjalanan": 157,
-      "volume": 1517,
-      "avgPerTrip": 9.662420382165605
-    },
-    {
-      "trayek": "YOGYAKARTA - PASAR KEMIS",
-      "perjalanan": 201,
-      "volume": 1509,
-      "avgPerTrip": 7.507462686567164
-    },
-    {
-      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL IR. SOEKARNO (KLATEN)",
-      "perjalanan": 110,
-      "volume": 1488,
-      "avgPerTrip": 13.527272727272727
-    },
-    {
-      "trayek": "TERMINAL LEUWIPANJANG (BANDUNG) - TERMINAL JATI (KUDUS)",
-      "perjalanan": 174,
-      "volume": 1471,
-      "avgPerTrip": 8.454022988505747
-    },
-    {
-      "trayek": "TERMINAL GAYATRI (TULUNGAGUNG) - TERMINAL MENGWI (BADUNG)",
-      "perjalanan": 170,
-      "volume": 1463,
-      "avgPerTrip": 8.605882352941176
-    },
-    {
-      "trayek": "TANGERANG SELATAN (PD.CABE)-WONOSOBO",
-      "perjalanan": 159,
-      "volume": 1462,
-      "avgPerTrip": 9.19496855345912
-    },
-    {
-      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL TIRTONADI (SURAKARTA)",
-      "perjalanan": 227,
-      "volume": 1444,
-      "avgPerTrip": 6.361233480176211
-    },
-    {
-      "trayek": "TERMINAL RAJABASA (BANDAR LAMPUNG) - TERMINAL PATRIA (BLITAR)",
-      "perjalanan": 198,
-      "volume": 1426,
-      "avgPerTrip": 7.202020202020202
-    },
-    {
-      "trayek": "TERMINAL LABUAN (PANDEGLANG) - TERMINAL INDIHIANG (TASIKMALAYA)",
-      "perjalanan": 155,
-      "volume": 1402,
-      "avgPerTrip": 9.04516129032258
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL CEPU (BLORA)",
-      "perjalanan": 199,
-      "volume": 1392,
-      "avgPerTrip": 6.994974874371859
-    },
-    {
-      "trayek": "TERMINAL INDUK BEKASI (BEKASI) - TERMINAL PURWOREJO (PURWOREJO)",
-      "perjalanan": 121,
-      "volume": 1385,
-      "avgPerTrip": 11.446280991735538
-    },
-    {
-      "trayek": "TERMINAL KALIJAYA CIKARANG (CIKARANG) - TERMINAL PEKALONGAN (PEKALONGAN)",
-      "perjalanan": 233,
-      "volume": 1372,
-      "avgPerTrip": 5.888412017167382
-    },
-    {
-      "trayek": "TERMINAL HARJAMUKTI (CIREBON) - TERMINAL ARYA WIRARAJA (SUMENEP)",
-      "perjalanan": 187,
-      "volume": 1368,
-      "avgPerTrip": 7.315508021390374
-    },
-    {
-      "trayek": "TERMINAL BULUPITU (BANYUMAS) - TERMINAL MENGWI (BADUNG)",
-      "perjalanan": 130,
-      "volume": 1315,
-      "avgPerTrip": 10.115384615384615
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL SRI TANJUNG (BANYUWANGI)",
-      "perjalanan": 174,
-      "volume": 1312,
-      "avgPerTrip": 7.540229885057471
-    },
-    {
-      "trayek": "TERMINAL PAYUNG SEKAKI (PEKANBARU) - TERMINAL BULUPITU (BANYUMAS)",
-      "perjalanan": 298,
-      "volume": 1307,
-      "avgPerTrip": 4.385906040268456
-    },
-    {
-      "trayek": "TASIKMALAYA - KARANGNUNGGAL - PAMAYANG",
-      "perjalanan": 455,
-      "volume": 1286,
-      "avgPerTrip": 2.8263736263736265
-    },
-    {
-      "trayek": "BANDUNG-PALEMBANG",
-      "perjalanan": 114,
-      "volume": 1279,
-      "avgPerTrip": 11.219298245614034
-    },
-    {
-      "trayek": "TERMINAL ANAK AIR (PADANG) - TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR)",
-      "perjalanan": 247,
-      "volume": 1271,
-      "avgPerTrip": 5.145748987854251
-    },
-    {
-      "trayek": "BANDUNG - MENGWI",
-      "perjalanan": 100,
-      "volume": 1257,
-      "avgPerTrip": 12.57
-    },
-    {
-      "trayek": "TERMINAL LABUAN (PANDEGLANG) - TERMINAL GUNTUR MELATI (GARUT)",
-      "perjalanan": 101,
-      "volume": 1252,
-      "avgPerTrip": 12.396039603960396
-    },
-    {
-      "trayek": "TERMINAL AMPLAS (MEDAN) - TERMINAL ANAK AIR (PADANG)",
-      "perjalanan": 103,
-      "volume": 1240,
-      "avgPerTrip": 12.03883495145631
-    },
-    {
-      "trayek": "TERMINAL PONDOK CABE (TANGERANG SELATAN) - TERMINAL PATRIA (BLITAR)",
-      "perjalanan": 188,
-      "volume": 1227,
-      "avgPerTrip": 6.526595744680851
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL MANDALIKA (MATARAM)",
-      "perjalanan": 173,
-      "volume": 1211,
-      "avgPerTrip": 7
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL KALIDERES (JAKARTA BARAT)",
-      "perjalanan": 159,
-      "volume": 1196,
-      "avgPerTrip": 7.522012578616352
-    },
-    {
-      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL RAWABANGO (CIANJUR)",
-      "perjalanan": 112,
-      "volume": 1195,
-      "avgPerTrip": 10.669642857142858
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL GUNTUR MELATI (GARUT)",
-      "perjalanan": 89,
-      "volume": 1171,
-      "avgPerTrip": 13.157303370786517
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL BULUPITU (BANYUMAS)",
-      "perjalanan": 87,
-      "volume": 1142,
-      "avgPerTrip": 13.126436781609195
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL TIDAR (MAGELANG)",
-      "perjalanan": 126,
-      "volume": 1132,
-      "avgPerTrip": 8.984126984126984
-    },
-    {
-      "trayek": "MUKO-MUKO-PONOROGO",
-      "perjalanan": 127,
-      "volume": 1130,
-      "avgPerTrip": 8.89763779527559
-    },
-    {
-      "trayek": "TERMINAL BARANANGSIANG (BOGOR) - TERMINAL PACITAN (PACITAN)",
-      "perjalanan": 117,
-      "volume": 1128,
-      "avgPerTrip": 9.64102564102564
-    },
-    {
-      "trayek": "TERMINAL PONDOK CABE (TANGERANG SELATAN) - TERMINAL KERTONEGORO (NGAWI)",
-      "perjalanan": 184,
-      "volume": 1117,
-      "avgPerTrip": 6.070652173913044
-    },
-    {
-      "trayek": "TERMINAL ALANG-ALANG LEBAR (PALEMBANG) - TERMINAL TAMANAN (KEDIRI)",
-      "perjalanan": 83,
-      "volume": 1115,
-      "avgPerTrip": 13.433734939759036
-    },
-    {
-      "trayek": "Leuwipanjang - Banjar",
-      "perjalanan": 126,
-      "volume": 1110,
-      "avgPerTrip": 8.80952380952381
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL IR. SOEKARNO (KLATEN)",
-      "perjalanan": 176,
-      "volume": 1109,
-      "avgPerTrip": 6.301136363636363
-    },
-    {
-      "trayek": "TERMINAL PAYUNG SEKAKI (PEKANBARU) - TERMINAL KALIDERES (JAKARTA BARAT)",
-      "perjalanan": 136,
-      "volume": 1088,
-      "avgPerTrip": 8
-    },
-    {
-      "trayek": "TASIKMALAYA - JAKARTA CILILITAN",
-      "perjalanan": 139,
-      "volume": 1087,
-      "avgPerTrip": 7.820143884892087
-    },
-    {
-      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL JEPARA (JEPARA)",
-      "perjalanan": 182,
-      "volume": 1084,
-      "avgPerTrip": 5.956043956043956
-    },
-    {
-      "trayek": "TERMINAL KALIDERES (JAKARTA BARAT) - TERMINAL TIRTONADI (SURAKARTA)",
-      "perjalanan": 143,
-      "volume": 1078,
-      "avgPerTrip": 7.538461538461538
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL JEPARA (JEPARA)",
-      "perjalanan": 150,
-      "volume": 1076,
-      "avgPerTrip": 7.173333333333333
-    },
-    {
-      "trayek": "TERMINAL DUMAI (DUMAI) - TERMINAL KALIDERES (JAKARTA BARAT)",
-      "perjalanan": 107,
-      "volume": 1073,
-      "avgPerTrip": 10.02803738317757
-    },
-    {
-      "trayek": "TERMINAL ALANG-ALANG LEBAR (PALEMBANG) - TERMINAL MENGWI (BADUNG)",
-      "perjalanan": 86,
-      "volume": 1069,
-      "avgPerTrip": 12.430232558139535
-    },
-    {
-      "trayek": "SEMARANG MANGKANG-BADUNG",
-      "perjalanan": 88,
-      "volume": 1064,
-      "avgPerTrip": 12.090909090909092
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL IR. SOEKARNO (KLATEN)",
-      "perjalanan": 125,
-      "volume": 1062,
-      "avgPerTrip": 8.496
-    },
-    {
-      "trayek": "BANDUNG-PADANG",
-      "perjalanan": 160,
-      "volume": 1057,
-      "avgPerTrip": 6.60625
-    },
-    {
-      "trayek": "TERMINAL BAREH SOLOK (SOLOK) - TERMINAL BARANANGSIANG (BOGOR)",
-      "perjalanan": 112,
-      "volume": 1045,
-      "avgPerTrip": 9.330357142857142
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL RAJEKWESI (BOJONEGORO)",
-      "perjalanan": 132,
-      "volume": 1036,
-      "avgPerTrip": 7.848484848484849
-    },
-    {
-      "trayek": "TERMINAL BANGGA BANGUN DESA (CILACAP) - TERMINAL PURABAYA (SIDOARJO)",
-      "perjalanan": 107,
-      "volume": 1029,
-      "avgPerTrip": 9.616822429906541
-    },
-    {
-      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL TIDAR (MAGELANG)",
-      "perjalanan": 99,
-      "volume": 1018,
-      "avgPerTrip": 10.282828282828282
-    },
-    {
-      "trayek": "TIDAK ADA DOKUMEN",
-      "perjalanan": 71,
-      "volume": 1012,
-      "avgPerTrip": 14.253521126760564
-    },
-    {
-      "trayek": "TERMINAL KALIDERES (JAKARTA BARAT) - TERMINAL ARYA WIRARAJA (SUMENEP)",
-      "perjalanan": 140,
-      "volume": 986,
-      "avgPerTrip": 7.042857142857143
-    },
-    {
-      "trayek": "TERMINAL KALIJAYA CIKARANG (CIKARANG) - TERMINAL MENDOLO (WONOSOBO)",
-      "perjalanan": 208,
-      "volume": 986,
-      "avgPerTrip": 4.740384615384615
-    },
-    {
-      "trayek": "TERMINAL CICAHEUM (BANDUNG) - TERMINAL JEPARA (JEPARA)",
-      "perjalanan": 102,
-      "volume": 982,
-      "avgPerTrip": 9.627450980392156
-    },
-    {
-      "trayek": "TERMINAL DUMAI (DUMAI) - TERMINAL INDIHIANG (TASIKMALAYA)",
-      "perjalanan": 102,
-      "volume": 982,
-      "avgPerTrip": 9.627450980392156
-    },
-    {
-      "trayek": "TERMINAL PAYUNG SEKAKI (PEKANBARU) - TERMINAL PACITAN (PACITAN)",
-      "perjalanan": 78,
-      "volume": 969,
-      "avgPerTrip": 12.423076923076923
-    },
-    {
-      "trayek": "MALANG - SURABAYA",
-      "perjalanan": 76,
-      "volume": 964,
-      "avgPerTrip": 12.68421052631579
-    },
-    {
-      "trayek": "TERMINAL AMPLAS (MEDAN) - TERMINAL ARYA WIRARAJA (SUMENEP)",
-      "perjalanan": 113,
-      "volume": 936,
-      "avgPerTrip": 8.283185840707965
-    },
-    {
-      "trayek": "TERMINAL BARANANGSIANG (BOGOR) - TERMINAL JATI (KUDUS)",
-      "perjalanan": 116,
-      "volume": 926,
-      "avgPerTrip": 7.982758620689655
-    },
-    {
-      "trayek": "TERMINAL PAYUNG SEKAKI (PEKANBARU) - TERMINAL GIWANGAN (YOGYAKARTA)",
-      "perjalanan": 129,
-      "volume": 917,
-      "avgPerTrip": 7.108527131782946
-    },
-    {
-      "trayek": "TASIKMALAYA - LEBAK BULUS JAKARTA",
-      "perjalanan": 93,
-      "volume": 906,
-      "avgPerTrip": 9.741935483870968
-    },
-    {
-      "trayek": "TERMINAL DUMAI (DUMAI) - TERMINAL ARYA WIRARAJA (SUMENEP)",
-      "perjalanan": 107,
-      "volume": 904,
-      "avgPerTrip": 8.448598130841122
-    },
-    {
-      "trayek": "TASIKMALAYA - PAMEUNGPEUK GARUT",
-      "perjalanan": 359,
-      "volume": 900,
-      "avgPerTrip": 2.5069637883008355
-    },
-    {
-      "trayek": "TERMINAL AMPLAS (MEDAN) - TERMINAL TIRTONADI (SURAKARTA)",
-      "perjalanan": 136,
-      "volume": 899,
-      "avgPerTrip": 6.610294117647059
-    },
-    {
-      "trayek": "TERMIANL AMPLAS MEDAN-TERMINAL ANAK AIR PADANG",
-      "perjalanan": 94,
-      "volume": 891,
-      "avgPerTrip": 9.47872340425532
-    },
-    {
-      "trayek": "TERMINAL INDUK BEKASI (BEKASI) - TERMINAL MENDOLO (WONOSOBO)",
-      "perjalanan": 97,
-      "volume": 881,
-      "avgPerTrip": 9.082474226804123
-    },
-    {
-      "trayek": "TERMINAL PAKUPATAN (SERANG) - TERMINAL CEPU (BLORA)",
-      "perjalanan": 79,
-      "volume": 864,
-      "avgPerTrip": 10.936708860759493
-    },
-    {
-      "trayek": "TERMINAL JATIJAJAR (DEPOK) - TERMINAL TEGAL (TEGAL)",
-      "perjalanan": 76,
-      "volume": 844,
-      "avgPerTrip": 11.105263157894736
-    },
-    {
-      "trayek": "TASIKMALAYA - TANJUNG PRIOK JAKARTA",
-      "perjalanan": 112,
-      "volume": 844,
-      "avgPerTrip": 7.535714285714286
-    },
-    {
-      "trayek": "CIAMIS - CIKAMPEK KARAWANG",
-      "perjalanan": 98,
-      "volume": 838,
-      "avgPerTrip": 8.551020408163266
-    },
-    {
-      "trayek": "TERMINAL LEUWIPANJANG (BANDUNG) - TERMINAL DHAKSINARGA (WONOSARI)",
-      "perjalanan": 79,
-      "volume": 835,
-      "avgPerTrip": 10.569620253164556
-    },
-    {
-      "trayek": "TERMINAL CICAHEUM (BANDUNG) - TERMINAL MENGWI (BADUNG)",
-      "perjalanan": 92,
-      "volume": 823,
-      "avgPerTrip": 8.945652173913043
-    },
-    {
-      "trayek": "LABUAN-WONOSARI",
-      "perjalanan": 100,
-      "volume": 814,
-      "avgPerTrip": 8.14
-    },
-    {
-      "trayek": "SURABAYA PURABAYA-BOBOTSARI",
-      "perjalanan": 101,
-      "volume": 810,
-      "avgPerTrip": 8.01980198019802
-    },
-    {
-      "trayek": "TERMINAL KALIDERES (JAKARTA BARAT) - TERMINAL SELO AJI (PONOROGO)",
-      "perjalanan": 113,
-      "volume": 807,
-      "avgPerTrip": 7.1415929203539825
-    },
-    {
-      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL KEBUMEN (KEBUMEN)",
-      "perjalanan": 42,
-      "volume": 798,
-      "avgPerTrip": 19
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL MENGWI (BADUNG)",
-      "perjalanan": 135,
-      "volume": 786,
-      "avgPerTrip": 5.822222222222222
-    },
-    {
-      "trayek": "JAKARTA KP. RAMBUTAN-BOJONEGORO",
-      "perjalanan": 61,
-      "volume": 786,
-      "avgPerTrip": 12.885245901639344
-    },
-    {
-      "trayek": "TERMINAL JATIJAJAR (DEPOK) - TERMINAL BANGGA BANGUN DESA (CILACAP)",
-      "perjalanan": 45,
-      "volume": 782,
-      "avgPerTrip": 17.377777777777776
-    },
-    {
-      "trayek": "TERMINAL RAJABASA (BANDAR LAMPUNG) - TERMINAL SELO AJI (PONOROGO)",
-      "perjalanan": 60,
-      "volume": 776,
-      "avgPerTrip": 12.933333333333334
-    },
-    {
-      "trayek": "BANJAR - MERAK",
-      "perjalanan": 66,
-      "volume": 762,
-      "avgPerTrip": 11.545454545454545
-    },
-    {
-      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL KAMBANG PUTIH (TUBAN)",
-      "perjalanan": 113,
-      "volume": 752,
-      "avgPerTrip": 6.654867256637168
-    },
-    {
-      "trayek": "TERMINAL BARANANGSIANG (BOGOR) - TERMINAL ARYA WIRARAJA (SUMENEP)",
-      "perjalanan": 147,
-      "volume": 748,
-      "avgPerTrip": 5.08843537414966
-    },
-    {
-      "trayek": "TERMINAL GIWANGAN (YOGYAKARTA) - TERMINAL MENGWI (BADUNG)",
-      "perjalanan": 94,
-      "volume": 742,
-      "avgPerTrip": 7.8936170212765955
-    },
-    {
-      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL TEGAL (TEGAL)",
-      "perjalanan": 59,
-      "volume": 741,
-      "avgPerTrip": 12.559322033898304
-    },
-    {
-      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL PURWOREJO (PURWOREJO)",
-      "perjalanan": 62,
-      "volume": 733,
-      "avgPerTrip": 11.82258064516129
-    },
-    {
-      "trayek": "TERMINAL TIDAR (MAGELANG) - TERMINAL MENGWI (BADUNG)",
-      "perjalanan": 79,
-      "volume": 711,
-      "avgPerTrip": 9
-    },
-    {
-      "trayek": "CADANGAN TASIKMALAYA",
-      "perjalanan": 90,
-      "volume": 707,
-      "avgPerTrip": 7.855555555555555
-    },
-    {
-      "trayek": "TERMINAL PAYUNG SEKAKI (PEKANBARU) - TERMINAL DHAKSINARGA (WONOSARI)",
-      "perjalanan": 96,
-      "volume": 683,
-      "avgPerTrip": 7.114583333333333
-    },
-    {
-      "trayek": "BANDUNG-DENPASAR",
-      "perjalanan": 60,
-      "volume": 682,
-      "avgPerTrip": 11.366666666666667
-    },
-    {
-      "trayek": "MEDAN - BANDUNG",
-      "perjalanan": 27,
-      "volume": 680,
-      "avgPerTrip": 25.185185185185187
-    },
-    {
-      "trayek": "CIAMIS KAWALI - BOGOR",
-      "perjalanan": 56,
-      "volume": 680,
-      "avgPerTrip": 12.142857142857142
-    },
-    {
-      "trayek": "TERMINAL KALIJAYA CIKARANG (CIKARANG) - TERMINAL PURWOREJO (PURWOREJO)",
-      "perjalanan": 39,
-      "volume": 672,
-      "avgPerTrip": 17.23076923076923
-    },
-    {
-      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL TIRTONADI (SURAKARTA)",
-      "perjalanan": 56,
-      "volume": 669,
-      "avgPerTrip": 11.946428571428571
-    },
-    {
-      "trayek": "TERMINAL BANYUANGGA (PROBOLINGGO) - TERMINAL MENGWI (BADUNG)",
-      "perjalanan": 48,
-      "volume": 661,
-      "avgPerTrip": 13.770833333333334
-    },
-    {
-      "trayek": "TERMINAL KALIDERES (JAKARTA BARAT) - TERMINAL PACITAN (PACITAN)",
-      "perjalanan": 89,
-      "volume": 659,
-      "avgPerTrip": 7.404494382022472
-    },
-    {
-      "trayek": "TERMINAL AIR SEBAKUL (BENGKULU) - TERMINAL CEPU (BLORA)",
-      "perjalanan": 51,
-      "volume": 657,
-      "avgPerTrip": 12.882352941176471
-    },
-    {
-      "trayek": "SURABAYA - PONOROGO",
-      "perjalanan": 62,
-      "volume": 655,
-      "avgPerTrip": 10.564516129032258
-    },
-    {
-      "trayek": "BANJAR-SERANG",
-      "perjalanan": 57,
-      "volume": 642,
-      "avgPerTrip": 11.263157894736842
-    },
-    {
-      "trayek": "TERMINAL SIMPANG AUR (BUKIT TINGGI) - TERMINAL ALANG-ALANG LEBAR (PALEMBANG)",
-      "perjalanan": 66,
-      "volume": 642,
-      "avgPerTrip": 9.727272727272727
-    },
-    {
-      "trayek": "TERMINAL AMPLAS (MEDAN) - TERMINAL PAYUNG SEKAKI (PEKANBARU)",
-      "perjalanan": 63,
-      "volume": 638,
-      "avgPerTrip": 10.126984126984127
-    },
-    {
-      "trayek": "KAB. BEKASI CIKARANG - TASIKMALAYA INDIHIANG PP. VIA.TOL.CIKAMPEK, TOL.PADALENYI,.",
-      "perjalanan": 158,
-      "volume": 604,
-      "avgPerTrip": 3.8227848101265822
-    },
-    {
-      "trayek": "TERMINAL PANGANDARAN (PANGANDARAN) - TERMINAL GIWANGAN (YOGYAKARTA)",
-      "perjalanan": 59,
-      "volume": 578,
-      "avgPerTrip": 9.796610169491526
-    },
-    {
-      "trayek": "TERMINAL DUMAI (DUMAI) - TERMINAL BAREH SOLOK (SOLOK)",
-      "perjalanan": 88,
-      "volume": 576,
-      "avgPerTrip": 6.545454545454546
-    },
-    {
-      "trayek": "JAKARTA KALIDERES-YOGYAKARTA",
-      "perjalanan": 114,
-      "volume": 566,
-      "avgPerTrip": 4.964912280701754
-    },
-    {
-      "trayek": "PADANG-TERMINAL JATIJAJAR DEPOK",
-      "perjalanan": 64,
-      "volume": 561,
-      "avgPerTrip": 8.765625
-    },
-    {
-      "trayek": "TERMINAL KAMBANG PUTIH (TUBAN) - TERMINAL MERAK (CILEGON)",
-      "perjalanan": 66,
-      "volume": 557,
-      "avgPerTrip": 8.43939393939394
-    },
-    {
-      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL OSOWILANGUN (SURABAYA)",
-      "perjalanan": 82,
-      "volume": 550,
-      "avgPerTrip": 6.7073170731707314
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL PURABAYA (SIDOARJO)",
-      "perjalanan": 86,
-      "volume": 539,
-      "avgPerTrip": 6.267441860465116
-    },
-    {
-      "trayek": "MERAK-MAGELANG",
-      "perjalanan": 51,
-      "volume": 529,
-      "avgPerTrip": 10.372549019607844
-    },
-    {
-      "trayek": "TERMINAL PAYUNG SEKAKI (PEKANBARU) - TERMINAL LEUWIPANJANG (BANDUNG)",
-      "perjalanan": 51,
-      "volume": 529,
-      "avgPerTrip": 10.372549019607844
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL RAJEKWESI (BOJONEGORO)",
-      "perjalanan": 59,
-      "volume": 525,
-      "avgPerTrip": 8.898305084745763
-    },
-    {
-      "trayek": "SMPNG AUR",
-      "perjalanan": 45,
-      "volume": 524,
-      "avgPerTrip": 11.644444444444444
-    },
-    {
-      "trayek": "TERMINAL ARJOSARI (MALANG) - TERMINAL MENGWI (BADUNG)",
-      "perjalanan": 69,
-      "volume": 518,
-      "avgPerTrip": 7.507246376811594
-    },
-    {
-      "trayek": "TERMINAL RAJABASA (BANDAR LAMPUNG) - TERMINAL LEUWIPANJANG (BANDUNG)",
-      "perjalanan": 61,
-      "volume": 518,
-      "avgPerTrip": 8.491803278688524
-    },
-    {
-      "trayek": "TERMINAL ALANG-ALANG LEBAR (PALEMBANG) - TERMINAL ARJOSARI (MALANG)",
-      "perjalanan": 117,
-      "volume": 514,
-      "avgPerTrip": 4.3931623931623935
-    },
-    {
-      "trayek": "TERMINAL TEGAL (TEGAL) - TERMINAL MENGWI (BADUNG)",
-      "perjalanan": 44,
-      "volume": 514,
-      "avgPerTrip": 11.681818181818182
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL SUBANG (SUBANG)",
-      "perjalanan": 42,
-      "volume": 509,
-      "avgPerTrip": 12.119047619047619
-    },
-    {
-      "trayek": "TERMINAL AIR SEBAKUL (BENGKULU) - TERMINAL SELO AJI (PONOROGO)",
-      "perjalanan": 70,
-      "volume": 505,
-      "avgPerTrip": 7.214285714285714
-    },
-    {
-      "trayek": "TASIKMALAYA - CINEAM",
-      "perjalanan": 236,
-      "volume": 504,
-      "avgPerTrip": 2.135593220338983
-    },
-    {
-      "trayek": "TERMINAL ALANG-ALANG LEBAR (PALEMBANG) - TERMINAL ARYA WIRARAJA (SUMENEP)",
-      "perjalanan": 47,
-      "volume": 498,
-      "avgPerTrip": 10.595744680851064
-    },
-    {
-      "trayek": "JAKARTA KP. RAMBUTAN-PURWOREJO",
-      "perjalanan": 39,
-      "volume": 490,
-      "avgPerTrip": 12.564102564102564
-    },
-    {
-      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL PATRIA (BLITAR)",
-      "perjalanan": 72,
-      "volume": 482,
-      "avgPerTrip": 6.694444444444445
-    },
-    {
-      "trayek": "PARIWISATA JAKARTA",
-      "perjalanan": 38,
-      "volume": 478,
-      "avgPerTrip": 12.578947368421053
-    },
-    {
-      "trayek": "TERMINAL ANAK AIR (PADANG) - TERMINAL GIRI ADIPURA (WONOGIRI)",
-      "perjalanan": 81,
-      "volume": 470,
-      "avgPerTrip": 5.802469135802469
-    },
-    {
-      "trayek": "bandung - yogyakarta",
-      "perjalanan": 52,
-      "volume": 460,
-      "avgPerTrip": 8.846153846153847
-    },
-    {
-      "trayek": "TERMINAL PAYUNG SEKAKI (PEKANBARU) - TERMINAL PATRIA (BLITAR)",
-      "perjalanan": 41,
-      "volume": 456,
-      "avgPerTrip": 11.121951219512194
-    },
-    {
-      "trayek": "TERMINAL BARANANGSIANG (BOGOR) - TERMINAL MENDOLO (WONOSOBO)",
-      "perjalanan": 56,
-      "volume": 451,
-      "avgPerTrip": 8.053571428571429
-    },
-    {
-      "trayek": "TERMINAL ALAM BARAJO (JAMBI) - TERMINAL OSOWILANGUN (SURABAYA)",
-      "perjalanan": 46,
-      "volume": 440,
-      "avgPerTrip": 9.565217391304348
-    },
-    {
-      "trayek": "TANGERANG SELATAN (PD.CABE)-YOGYAKARTA",
-      "perjalanan": 43,
-      "volume": 440,
-      "avgPerTrip": 10.232558139534884
-    },
-    {
-      "trayek": "SURABAYA - BLITAR",
-      "perjalanan": 42,
-      "volume": 430,
-      "avgPerTrip": 10.238095238095237
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL ALANG-ALANG LEBAR (PALEMBANG)",
-      "perjalanan": 11,
-      "volume": 424,
-      "avgPerTrip": 38.54545454545455
-    },
-    {
-      "trayek": "CIREBON-MALANG",
-      "perjalanan": 64,
-      "volume": 423,
-      "avgPerTrip": 6.609375
-    },
-    {
-      "trayek": "PULO GEBANG (JAKTIM) - ANAK AIR (PADANG)",
-      "perjalanan": 55,
-      "volume": 423,
-      "avgPerTrip": 7.6909090909090905
-    },
-    {
-      "trayek": "SEMARANG-MENGWI",
-      "perjalanan": 42,
-      "volume": 422,
-      "avgPerTrip": 10.047619047619047
-    },
-    {
-      "trayek": "TERMINAL CICAHEUM (BANDUNG) - TERMINAL TEGAL (TEGAL)",
-      "perjalanan": 50,
-      "volume": 420,
-      "avgPerTrip": 8.4
-    },
-    {
-      "trayek": "TERMINAL KALIDERES (JAKARTA BARAT) - TERMINAL GIWANGAN (YOGYAKARTA)",
-      "perjalanan": 63,
-      "volume": 419,
-      "avgPerTrip": 6.650793650793651
-    },
-    {
-      "trayek": "TERMINAL MANGKANG (SEMARANG) - TERMINAL PURABAYA (SIDOARJO)",
-      "perjalanan": 49,
-      "volume": 408,
-      "avgPerTrip": 8.326530612244898
-    },
-    {
-      "trayek": "CILACAP KARANGPUCUNG - TANJUNG PRIOK JAKARTA",
-      "perjalanan": 106,
-      "volume": 406,
-      "avgPerTrip": 3.830188679245283
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL MANGKANG (SEMARANG)",
-      "perjalanan": 35,
-      "volume": 405,
-      "avgPerTrip": 11.571428571428571
-    },
-    {
-      "trayek": "TANGERANG SELATAN (PD.CABE)-SOLO",
-      "perjalanan": 25,
-      "volume": 399,
-      "avgPerTrip": 15.96
-    },
-    {
-      "trayek": "TERMINAL BARANANGSIANG (BOGOR) - TERMINAL TAWANGALUN (JEMBER)",
-      "perjalanan": 65,
-      "volume": 394,
-      "avgPerTrip": 6.061538461538461
-    },
-    {
-      "trayek": "TERMINAL KALIDERES (JAKARTA BARAT) - TERMINAL MENDOLO (WONOSOBO)",
-      "perjalanan": 58,
-      "volume": 391,
-      "avgPerTrip": 6.741379310344827
-    },
-    {
-      "trayek": "TERMINAL KALIDERES (JAKARTA BARAT) - TERMINAL PEKALONGAN (PEKALONGAN)",
-      "perjalanan": 65,
-      "volume": 390,
-      "avgPerTrip": 6
-    },
-    {
-      "trayek": "TERMINAL KALIDERES (JAKARTA BARAT) - TERMINAL ARJOSARI (MALANG)",
-      "perjalanan": 53,
-      "volume": 379,
-      "avgPerTrip": 7.150943396226415
-    },
-    {
-      "trayek": "TERMINAL ANAK AIR (PADANG) - TERMINAL KALIDERES (JAKARTA)",
-      "perjalanan": 47,
-      "volume": 377,
-      "avgPerTrip": 8.02127659574468
-    },
-    {
-      "trayek": "TERMINAL TAWANGALUN (JEMBER) - TERMINAL MENGWI (BADUNG)",
-      "perjalanan": 35,
-      "volume": 377,
-      "avgPerTrip": 10.771428571428572
-    },
-    {
-      "trayek": "PEKANBARU (TERMINAL PAYUNG SEKAKI)-TULUNGAGUNG (GAYATRI)",
-      "perjalanan": 26,
-      "volume": 376,
-      "avgPerTrip": 14.461538461538462
-    },
-    {
-      "trayek": "TERMINAL ANAK AIR (PADANG) - TERMINAL BARANANGSIANG (BOGOR)",
-      "perjalanan": 54,
-      "volume": 366,
-      "avgPerTrip": 6.777777777777778
-    },
-    {
-      "trayek": "PARIWISATA BALI",
-      "perjalanan": 27,
-      "volume": 362,
-      "avgPerTrip": 13.407407407407407
-    },
-    {
-      "trayek": "TERMINAL ARJOSARI (MALANG) - TERMINAL PAYUNG SEKAKI (PEKANBARU)",
-      "perjalanan": 74,
-      "volume": 359,
-      "avgPerTrip": 4.851351351351352
-    },
-    {
-      "trayek": "TERMINAL BARANANGSIANG (BOGOR) - TERMINAL TIDAR (MAGELANG)",
-      "perjalanan": 104,
-      "volume": 358,
-      "avgPerTrip": 3.4423076923076925
-    },
-    {
-      "trayek": "PONOROGO-MATARAM",
-      "perjalanan": 46,
-      "volume": 357,
-      "avgPerTrip": 7.760869565217392
-    },
-    {
-      "trayek": "TULUNGAGUNG - SURABAYA",
-      "perjalanan": 38,
-      "volume": 356,
-      "avgPerTrip": 9.368421052631579
-    },
-    {
-      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL ARYA WIRARAJA (SUMENEP)",
-      "perjalanan": 68,
-      "volume": 356,
-      "avgPerTrip": 5.235294117647059
-    },
-    {
-      "trayek": "TERMINAL RAJABASA (BANDAR LAMPUNG) - TERMINAL KAMBANG PUTIH (TUBAN)",
-      "perjalanan": 21,
-      "volume": 353,
-      "avgPerTrip": 16.80952380952381
-    },
-    {
-      "trayek": "TERMINAL AMPLAS (MEDAN) - TERMINAL LEUWIPANJANG (BANDUNG)",
-      "perjalanan": 60,
-      "volume": 353,
-      "avgPerTrip": 5.883333333333334
-    },
-    {
-      "trayek": "TERMINAL MANGKANG (SEMARANG) - TERMINAL MENGWI (BADUNG)",
-      "perjalanan": 54,
-      "volume": 353,
-      "avgPerTrip": 6.537037037037037
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL BANGKALAN (BANGKALAN)",
-      "perjalanan": 66,
-      "volume": 338,
-      "avgPerTrip": 5.121212121212121
-    },
-    {
-      "trayek": "JAKARTA PULO GEBANG - SEMARANG MANGKANG",
-      "perjalanan": 71,
-      "volume": 337,
-      "avgPerTrip": 4.746478873239437
-    },
-    {
-      "trayek": "TERMINAL ANAK AIR (PADANG) - TERMINAL DUMAI (DUMAI)",
-      "perjalanan": 45,
-      "volume": 335,
-      "avgPerTrip": 7.444444444444445
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL TIRTONADI (SURAKARTA)",
-      "perjalanan": 32,
-      "volume": 333,
-      "avgPerTrip": 10.40625
-    },
-    {
-      "trayek": "TERMINAL AIR SEBAKUL (BENGKULU) - TERMINAL GIWANGAN (YOGYAKARTA)",
-      "perjalanan": 38,
-      "volume": 332,
-      "avgPerTrip": 8.736842105263158
-    },
-    {
-      "trayek": "SURABAYA - KALIANGET",
-      "perjalanan": 43,
-      "volume": 328,
-      "avgPerTrip": 7.627906976744186
-    },
-    {
-      "trayek": "TERMINAL ALAM BARAJO (JAMBI) - TERMINAL PULO GEBANG (JAKARTA TIMUR)",
-      "perjalanan": 35,
-      "volume": 324,
-      "avgPerTrip": 9.257142857142858
-    },
-    {
-      "trayek": "TERMINAL LEUWIPANJANG (BANDUNG) - TERMINAL SELO AJI (PONOROGO)",
-      "perjalanan": 38,
-      "volume": 312,
-      "avgPerTrip": 8.210526315789474
-    },
-    {
-      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL DHAKSINARGA (WONOSARI)",
-      "perjalanan": 30,
-      "volume": 310,
-      "avgPerTrip": 10.333333333333334
-    },
-    {
-      "trayek": "TERMINAL INDIHIANG (TASIKMALAYA) - TERMINAL JATI (KUDUS)",
-      "perjalanan": 116,
-      "volume": 309,
-      "avgPerTrip": 2.663793103448276
-    },
-    {
-      "trayek": "TERMINAL KALIDERES (JAKARTA BARAT) - TERMINAL RAJEKWESI (BOJONEGORO)",
-      "perjalanan": 38,
-      "volume": 308,
-      "avgPerTrip": 8.105263157894736
-    },
-    {
-      "trayek": "BANDARA SOETTA-PERUM BATUNUNGGAL",
-      "perjalanan": 24,
-      "volume": 307,
-      "avgPerTrip": 12.791666666666666
-    },
-    {
-      "trayek": "TERMINAL GIWANGAN (YOGYAKARTA) - TERMINAL ARJOSARI (MALANG)",
-      "perjalanan": 26,
-      "volume": 303,
-      "avgPerTrip": 11.653846153846153
-    },
-    {
-      "trayek": "TERMINAL BARANANGSIANG (BOGOR) - TERMINAL OSOWILANGUN (SURABAYA)",
-      "perjalanan": 13,
-      "volume": 302,
-      "avgPerTrip": 23.23076923076923
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL MANGKANG (SEMARANG)",
-      "perjalanan": 36,
-      "volume": 293,
-      "avgPerTrip": 8.13888888888889
-    },
-    {
-      "trayek": "DEPOK (JATIJAJAR)-YOGYAKARTA",
-      "perjalanan": 49,
-      "volume": 292,
-      "avgPerTrip": 5.959183673469388
-    },
-    {
-      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL MENDOLO (WONOSOBO)",
-      "perjalanan": 72,
-      "volume": 286,
-      "avgPerTrip": 3.9722222222222223
-    },
-    {
-      "trayek": "TERMINAL ALANG-ALANG LEBAR (PALEMBANG) - TERMINAL SELO AJI (PONOROGO)",
-      "perjalanan": 26,
-      "volume": 284,
-      "avgPerTrip": 10.923076923076923
-    },
-    {
-      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL GIRI ADIPURA (WONOGIRI)",
-      "perjalanan": 32,
-      "volume": 277,
-      "avgPerTrip": 8.65625
-    },
-    {
-      "trayek": "SEMARANG MANGKANG-SIDOARJO (TERMINAL PURABAYA)",
-      "perjalanan": 32,
-      "volume": 273,
-      "avgPerTrip": 8.53125
-    },
-    {
-      "trayek": "TERMINAL ALAM BARAJO (JAMBI) - TERMINAL GIWANGAN (YOGYAKARTA)",
-      "perjalanan": 25,
-      "volume": 268,
-      "avgPerTrip": 10.72
-    },
-    {
-      "trayek": "TERMINAL PAYUNG SEKAKI (PEKANBARU) - TERMINAL TIRTONADI (SURAKARTA)",
-      "perjalanan": 28,
-      "volume": 266,
-      "avgPerTrip": 9.5
-    },
-    {
-      "trayek": "TERMINAL MANDALA LEBAK (LEBAK) - TERMINAL INDUK BEKASI (BEKASI)",
-      "perjalanan": 61,
-      "volume": 263,
-      "avgPerTrip": 4.311475409836065
-    },
-    {
-      "trayek": "BANDUNG-JAMBI",
-      "perjalanan": 32,
-      "volume": 251,
-      "avgPerTrip": 7.84375
-    },
-    {
-      "trayek": "TERMINAL KERTAWANGUNAN (KUNINGAN) - TERMINAL GIWANGAN (YOGYAKARTA)",
-      "perjalanan": 28,
-      "volume": 247,
-      "avgPerTrip": 8.821428571428571
-    },
-    {
-      "trayek": "ALAM BARAJO (JAMBI) - LEUWIPANJANG (BANDUNG)",
-      "perjalanan": 33,
-      "volume": 244,
-      "avgPerTrip": 7.393939393939394
-    },
-    {
-      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL JATI (KUDUS)",
-      "perjalanan": 29,
-      "volume": 241,
-      "avgPerTrip": 8.310344827586206
-    },
-    {
-      "trayek": "TERMINAL SIMPANG AUR (BUKIT TINGGI) - TERMINAL PULO GEBANG (JAKARTA TIMUR)",
-      "perjalanan": 25,
-      "volume": 238,
-      "avgPerTrip": 9.52
-    },
-    {
-      "trayek": "PEKANBARU (TERM BRPS) - TERMINAL PASIR PANGARAIAN (ROKAN HULU)",
-      "perjalanan": 12,
-      "volume": 236,
-      "avgPerTrip": 19.666666666666668
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL RAWABANGO (CIANJUR)",
-      "perjalanan": 38,
-      "volume": 234,
-      "avgPerTrip": 6.157894736842105
-    },
-    {
-      "trayek": "TERMINAL BANGGA BANGUN DESA (CILACAP) - TERMINAL GIWANGAN (YOGYAKARTA)",
-      "perjalanan": 27,
-      "volume": 229,
-      "avgPerTrip": 8.481481481481481
-    },
-    {
-      "trayek": "TERMINAL ARJOSARI (MALANG) - TERMINAL MANDALIKA (MATARAM)",
-      "perjalanan": 29,
-      "volume": 227,
-      "avgPerTrip": 7.827586206896552
-    },
-    {
-      "trayek": "TERMINAL JATI PARIAMAN (PARIAMAN) - TERMINAL AIR SEBAKUL (BENGKULU)",
-      "perjalanan": 37,
-      "volume": 227,
-      "avgPerTrip": 6.135135135135135
-    },
-    {
-      "trayek": "JAKARTA KALIDERES - PEKALONGAN",
-      "perjalanan": 18,
-      "volume": 226,
-      "avgPerTrip": 12.555555555555555
-    },
-    {
-      "trayek": "TERMINAL KALIJAYA CIKARANG (CIKARANG) - TERMINAL BULUPITU (BANYUMAS)",
-      "perjalanan": 20,
-      "volume": 224,
-      "avgPerTrip": 11.2
-    },
-    {
-      "trayek": "TERMINAL PAYUNG SEKAKI (PEKANBARU) - TERMINAL SURODAKAN (TRENGGALEK)",
-      "perjalanan": 19,
-      "volume": 222,
-      "avgPerTrip": 11.68421052631579
-    },
-    {
-      "trayek": "TERMINAL PONDOK CABE (TANGERANG SELATAN) - TERMINAL JATI (KUDUS)",
-      "perjalanan": 58,
-      "volume": 216,
-      "avgPerTrip": 3.7241379310344827
-    },
-    {
-      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) -TERMINAL ARJOSARI (MALANG)",
-      "perjalanan": 29,
-      "volume": 213,
-      "avgPerTrip": 7.344827586206897
-    },
-    {
-      "trayek": "PADANG-DEPOK (JATIJAJAR)",
-      "perjalanan": 20,
-      "volume": 211,
-      "avgPerTrip": 10.55
-    },
-    {
-      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL BULUPITU (BANYUMAS)",
-      "perjalanan": 21,
-      "volume": 207,
-      "avgPerTrip": 9.857142857142858
-    },
-    {
-      "trayek": "TERMINAL SIMPANG AUR (BUKIT TINGGI) - TERMINAL ALAM BARAJO (JAMBI)",
-      "perjalanan": 30,
-      "volume": 207,
-      "avgPerTrip": 6.9
-    },
-    {
-      "trayek": "JAKARTA PULO GEBANG-SUMENEP",
-      "perjalanan": 13,
-      "volume": 207,
-      "avgPerTrip": 15.923076923076923
-    },
-    {
-      "trayek": "TERMINAL RAJABASA (BANDAR LAMPUNG) - TERMINAL KALIDERES (JAKARTA BARAT)",
-      "perjalanan": 20,
-      "volume": 206,
-      "avgPerTrip": 10.3
-    },
-    {
-      "trayek": "ALAM BARAJO (JAMBI) - PULO GEBANG (JAKARTA TIMUR)",
-      "perjalanan": 20,
-      "volume": 205,
-      "avgPerTrip": 10.25
-    },
-    {
-      "trayek": "TERMINAL ALANG-ALANG LEBAR (PALEMBANG) - TERMINAL SRI TANJUNG (BANYUWANGI)",
-      "perjalanan": 36,
-      "volume": 204,
-      "avgPerTrip": 5.666666666666667
-    },
-    {
-      "trayek": "TERMINAL ARJOSARI (MALANG) - TERMINAL RAJABASA (BANDAR LAMPUNG)",
-      "perjalanan": 33,
-      "volume": 203,
-      "avgPerTrip": 6.151515151515151
-    },
-    {
-      "trayek": "TERMINAL PANGANDARAN (PANGANDARAN) - TERMINAL BULUPITU (BANYUMAS)",
-      "perjalanan": 26,
-      "volume": 196,
-      "avgPerTrip": 7.538461538461538
-    },
-    {
-      "trayek": "TERMINAL BARANANGSIANG (BOGOR) - TERMINAL TEGAL (TEGAL)",
-      "perjalanan": 20,
-      "volume": 191,
-      "avgPerTrip": 9.55
-    },
-    {
-      "trayek": "TERMINAL PAYUNG SEKAKI (PEKANBARU) - TERMINAL ARJOSARI (MALANG)",
-      "perjalanan": 22,
-      "volume": 189,
-      "avgPerTrip": 8.590909090909092
-    },
-    {
-      "trayek": "TERMINAL HARJAMUKTI (CIREBON) - TERMINAL GIWANGAN (YOGYAKARTA)",
-      "perjalanan": 51,
-      "volume": 187,
-      "avgPerTrip": 3.6666666666666665
-    },
-    {
-      "trayek": "handoyo",
-      "perjalanan": 32,
-      "volume": 186,
-      "avgPerTrip": 5.8125
-    },
-    {
-      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL GIWANGAN (YOGYAKARTA)",
-      "perjalanan": 24,
-      "volume": 180,
-      "avgPerTrip": 7.5
-    },
-    {
-      "trayek": "Pulogebang-Dara",
-      "perjalanan": 19,
-      "volume": 178,
-      "avgPerTrip": 9.368421052631579
-    },
-    {
-      "trayek": "TERMINAL KALIDERES (JAKARTA BARAT) - TERMINAL RAWABANGO (CIANJUR)",
-      "perjalanan": 14,
-      "volume": 177,
-      "avgPerTrip": 12.642857142857142
-    },
-    {
-      "trayek": "TERMINAL ANAK AIR (PADANG) - TERMINAL KALIDERES (JAKARTA BARAT)",
-      "perjalanan": 26,
-      "volume": 170,
-      "avgPerTrip": 6.538461538461538
-    },
-    {
-      "trayek": "TERMINAL JATI PARIAMAN (PARIAMAN) - TERMINAL AMPLAS (MEDAN)",
-      "perjalanan": 34,
-      "volume": 169,
-      "avgPerTrip": 4.970588235294118
-    },
-    {
-      "trayek": "TERMINAL ALANG-ALANG LEBAR (PALEMBANG) - TERMINAL PANGANDARAN (PANGANDARAN)",
-      "perjalanan": 22,
-      "volume": 166,
-      "avgPerTrip": 7.545454545454546
-    },
-    {
-      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL JATI (KUDUS)",
-      "perjalanan": 14,
-      "volume": 164,
-      "avgPerTrip": 11.714285714285714
-    },
-    {
-      "trayek": "TASIKMALAYA - SUKARAJA - CIBALONG - RANCABAKUNG - SIMPANG - PAMIJAHAN",
-      "perjalanan": 72,
-      "volume": 156,
-      "avgPerTrip": 2.1666666666666665
-    },
-    {
-      "trayek": "TERMINAL SIMPANG PRIUK (LUBUK LINGGAU) - TERMINAL KALIDERES (JAKARTA BARAT)",
-      "perjalanan": 33,
-      "volume": 152,
-      "avgPerTrip": 4.606060606060606
-    },
-    {
-      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL TIDAR (MAGELANG)",
-      "perjalanan": 45,
-      "volume": 149,
-      "avgPerTrip": 3.311111111111111
-    },
-    {
-      "trayek": "PEKANBARU (TERMINAL BANDAR RAYA PAYUNG SEKAKI) - SUKABUMI",
-      "perjalanan": 47,
-      "volume": 148,
-      "avgPerTrip": 3.148936170212766
-    },
-    {
-      "trayek": "TERMINAL GIWANGAN (YOGYAKARTA) - TERMINAL JATI (KUDUS)",
-      "perjalanan": 26,
-      "volume": 148,
-      "avgPerTrip": 5.6923076923076925
-    },
-    {
-      "trayek": "TANGERANG SELATAN (PD.CABE)-MAGELANG",
-      "perjalanan": 30,
-      "volume": 146,
-      "avgPerTrip": 4.866666666666666
-    },
-    {
-      "trayek": "NGAWI - SURABAYA",
-      "perjalanan": 31,
-      "volume": 146,
-      "avgPerTrip": 4.709677419354839
-    },
-    {
-      "trayek": "TERMINAL INDUK BEKASI (BEKASI) - TERMINAL IR. SOEKARNO (KLATEN)",
-      "perjalanan": 28,
-      "volume": 145,
-      "avgPerTrip": 5.178571428571429
-    },
-    {
-      "trayek": "PORONG-BUNDER (LUXURY)",
-      "perjalanan": 26,
-      "volume": 143,
-      "avgPerTrip": 5.5
-    },
-    {
-      "trayek": "Serang - Bandara Soetta",
-      "perjalanan": 12,
-      "volume": 141,
-      "avgPerTrip": 11.75
-    },
-    {
-      "trayek": "TERMINAL RAJABASA (BANDAR LAMPUNG) - TERMINAL DHAKSINARGA (WONOSARI)",
-      "perjalanan": 23,
-      "volume": 140,
-      "avgPerTrip": 6.086956521739131
-    },
-    {
-      "trayek": "TERMINAL KALIDERES (JAKARTA BARAT) - TERMINAL TIDAR (MAGELANG)",
-      "perjalanan": 24,
-      "volume": 139,
-      "avgPerTrip": 5.791666666666667
-    },
-    {
-      "trayek": "TERMINAL PURABAYA - TERMINAL NGAWI",
-      "perjalanan": 26,
-      "volume": 136,
-      "avgPerTrip": 5.230769230769231
-    },
-    {
-      "trayek": "JAKARTA KP. RAMBUTAN-WONOSOBO",
-      "perjalanan": 20,
-      "volume": 132,
-      "avgPerTrip": 6.6
-    },
-    {
-      "trayek": "TERMINAL CIKAMPEK (KARAWANG) - TERMINAL MENDOLO (WONOSOBO)",
-      "perjalanan": 26,
-      "volume": 128,
-      "avgPerTrip": 4.923076923076923
-    },
-    {
-      "trayek": "TERMINAL BATOH (BANDA ACEH) - TERMINAL OSOWILANGUN (SURABAYA)",
-      "perjalanan": 6,
-      "volume": 127,
-      "avgPerTrip": 21.166666666666668
-    },
-    {
-      "trayek": "JAKARTA KP. RAMBUTAN-PEKALONGAN",
-      "perjalanan": 26,
-      "volume": 126,
-      "avgPerTrip": 4.846153846153846
-    },
-    {
-      "trayek": "TERMINAL KALIDERES (JAKARTA BARAT) - TERMINAL PANGANDARAN (PANGANDARAN)",
-      "perjalanan": 12,
-      "volume": 125,
-      "avgPerTrip": 10.416666666666666
-    },
-    {
-      "trayek": "TERMINAL AMPLAS (MEDAN) - TERMINAL GIWANGAN (YOGYAKARTA)",
-      "perjalanan": 6,
-      "volume": 123,
-      "avgPerTrip": 20.5
-    },
-    {
-      "trayek": "TERMINAL BULUPITU (BANYUMAS) - TERMINAL GIWANGAN (YOGYAKARTA)",
-      "perjalanan": 14,
-      "volume": 121,
-      "avgPerTrip": 8.642857142857142
-    },
-    {
-      "trayek": "TERMINAL IR. SOEKARNO (KLATEN) - TERMINAL PURABAYA (SIDOARJO)",
-      "perjalanan": 12,
-      "volume": 119,
-      "avgPerTrip": 9.916666666666666
-    },
-    {
-      "trayek": "TERMINAL BARANANGSIANG (BOGOR) - TERMINAL BOBOT SARI (PURBALINGGA)",
-      "perjalanan": 17,
-      "volume": 117,
-      "avgPerTrip": 6.882352941176471
-    },
-    {
-      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL ARJOSARI (MALANG)",
-      "perjalanan": 20,
-      "volume": 115,
-      "avgPerTrip": 5.75
-    },
-    {
-      "trayek": "TERMINAL DUMAI (DUMAI) - TERMINAL OSOWILANGUN (SURABAYA)",
-      "perjalanan": 7,
-      "volume": 112,
-      "avgPerTrip": 16
-    },
-    {
-      "trayek": "TERMINAL BULUPITU (BANYUMAS) - TERMINAL ARJOSARI (MALANG)",
-      "perjalanan": 7,
-      "volume": 111,
-      "avgPerTrip": 15.857142857142858
-    },
-    {
-      "trayek": "TERMINAL ALANG-ALANG LEBAR (PALEMBANG) - TERMINAL GIRI ADIPURA (WONOGIRI)",
-      "perjalanan": 18,
-      "volume": 110,
-      "avgPerTrip": 6.111111111111111
-    },
-    {
-      "trayek": "TERMINAL PAKUPATAN (SERANG) - TERMINAL INDIHIANG (TASIKMALAYA)",
-      "perjalanan": 8,
-      "volume": 109,
-      "avgPerTrip": 13.625
-    },
-    {
-      "trayek": "TERMINAL ALANG-ALANG LEBAR (PALEMBANG) - TERMINAL KALIDERES (JAKARTA BARAT)",
-      "perjalanan": 30,
-      "volume": 108,
-      "avgPerTrip": 3.6
-    },
-    {
-      "trayek": "TERMINAL ALANG-ALANG LEBAR (PALEMBANG) - TERMINAL BANGKALAN (BANGKALAN)",
-      "perjalanan": 16,
-      "volume": 108,
-      "avgPerTrip": 6.75
-    },
-    {
-      "trayek": "Pulo Gebang - Dara",
-      "perjalanan": 12,
-      "volume": 108,
-      "avgPerTrip": 9
-    },
-    {
-      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL BANGGA BANGUN DESA (CILACAP)",
-      "perjalanan": 10,
-      "volume": 106,
-      "avgPerTrip": 10.6
-    },
-    {
-      "trayek": "TERMINAL JATIJAJAR (DEPOK) - TERMINAL MENDOLO (WONOSOBO)",
-      "perjalanan": 14,
-      "volume": 105,
-      "avgPerTrip": 7.5
-    },
-    {
-      "trayek": "MERAK-JEMBER",
-      "perjalanan": 12,
-      "volume": 104,
-      "avgPerTrip": 8.666666666666666
-    },
-    {
-      "trayek": "TERMINAL BATOH (BANDA ACEH) - TERMINAL LEUWIPANJANG (BANDUNG)",
-      "perjalanan": 8,
-      "volume": 103,
-      "avgPerTrip": 12.875
-    },
-    {
-      "trayek": "TERMINAL TIDAR (MAGELANG) - TERMINAL PURABAYA (SIDOARJO)",
-      "perjalanan": 4,
-      "volume": 103,
-      "avgPerTrip": 25.75
-    },
-    {
-      "trayek": "TERMINAL JATIJAJAR (DEPOK) - TERMINAL PACITAN (PACITAN)",
-      "perjalanan": 7,
-      "volume": 100,
-      "avgPerTrip": 14.285714285714286
-    },
-    {
-      "trayek": "TERMINAL AIR SEBAKUL (BENGKULU) - TERMINAL LEUWIPANJANG (BANDUNG)",
-      "perjalanan": 12,
-      "volume": 99,
-      "avgPerTrip": 8.25
-    },
-    {
-      "trayek": "TERMINAL LABUAN (PANDEGLANG) - TERMINAL CIKAMPEK (KARAWANG)",
-      "perjalanan": 6,
-      "volume": 99,
-      "avgPerTrip": 16.5
-    },
-    {
-      "trayek": "TERMINAL AIR SEBAKUL (BENGKULU) - TERMINAL PURBOYO (MADIUN)",
-      "perjalanan": 4,
-      "volume": 98,
-      "avgPerTrip": 24.5
-    },
-    {
-      "trayek": "JAKARTA KALIDERES-BOBOTSARI",
-      "perjalanan": 18,
-      "volume": 98,
-      "avgPerTrip": 5.444444444444445
-    },
-    {
-      "trayek": "TERMINAL SURODAKAN (TRENGGALEK) - TERMINAL BANYUANGGA (PROBOLINGGO)",
-      "perjalanan": 22,
-      "volume": 96,
-      "avgPerTrip": 4.363636363636363
-    },
-    {
-      "trayek": "TERMINAL BATU KUNING (OKU) - TERMINAL RAJABASA (BANDAR LAMPUNG)",
-      "perjalanan": 13,
-      "volume": 95,
-      "avgPerTrip": 7.3076923076923075
-    },
-    {
-      "trayek": "TERMINAL JATIJAJAR (DEPOK) - TERMINAL PURWOREJO (PURWOREJO)",
-      "perjalanan": 7,
-      "volume": 95,
-      "avgPerTrip": 13.571428571428571
-    },
-    {
-      "trayek": "TERMINAL ALAM BARAJO (JAMBI) - TERMINAL DHAKSINARGA (WONOSARI)",
-      "perjalanan": 10,
-      "volume": 95,
-      "avgPerTrip": 9.5
-    },
-    {
-      "trayek": "HANDOYO",
-      "perjalanan": 33,
-      "volume": 94,
-      "avgPerTrip": 2.8484848484848486
-    },
-    {
-      "trayek": "TERMINAL AIR SEBAKUL (BENGKULU) - TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR)",
-      "perjalanan": 8,
-      "volume": 92,
-      "avgPerTrip": 11.5
-    },
-    {
-      "trayek": "TERMINAL GAYATRI (TULUNGAGUNG) - TERMINAL MANDALIKA (MATARAM)",
-      "perjalanan": 9,
-      "volume": 92,
-      "avgPerTrip": 10.222222222222221
-    },
-    {
-      "trayek": "DEPOK (JATIJAJAR) - WONOSARI",
-      "perjalanan": 19,
-      "volume": 91,
-      "avgPerTrip": 4.7894736842105265
-    },
-    {
-      "trayek": "YOGYAKARTA - BOGOR",
-      "perjalanan": 12,
-      "volume": 90,
-      "avgPerTrip": 7.5
-    },
-    {
-      "trayek": "JAKARTA KP. RAMBUTAN-SIDOARJO (TERMINAL PURBAYA)",
-      "perjalanan": 8,
-      "volume": 90,
-      "avgPerTrip": 11.25
-    },
-    {
-      "trayek": "TERMINAL BATOH (BANDA ACEH) - TERMINAL ALANG-ALANG LEBAR (PALEMBANG)",
-      "perjalanan": 6,
-      "volume": 87,
-      "avgPerTrip": 14.5
-    },
-    {
-      "trayek": "LABUAN-KLATEN",
-      "perjalanan": 6,
-      "volume": 86,
-      "avgPerTrip": 14.333333333333334
-    },
-    {
-      "trayek": "TERMINAL PONDOK CABE (TANGERANG SELATAN) - TERMINAL CEPU (BLORA)",
-      "perjalanan": 4,
-      "volume": 86,
-      "avgPerTrip": 21.5
-    },
-    {
-      "trayek": "TERMINAL BATU KUNING (OKU) - TERMINAL PATRIA (BLITAR)",
-      "perjalanan": 8,
-      "volume": 85,
-      "avgPerTrip": 10.625
-    },
-    {
-      "trayek": "TERMINAL ANAK AIR (PADANG) - TERMINAL ALAM BARAJO (JAMBI)",
-      "perjalanan": 12,
-      "volume": 84,
-      "avgPerTrip": 7
-    },
-    {
-      "trayek": "TERMINAL TEGAL (TEGAL) - TERMINAL TAWANGALUN (JEMBER)",
-      "perjalanan": 12,
-      "volume": 83,
-      "avgPerTrip": 6.916666666666667
-    },
-    {
-      "trayek": "TERMINAL AIR SEBAKUL (BENGKULU) - TERMINAL PACITAN (PACITAN)",
-      "perjalanan": 12,
-      "volume": 82,
-      "avgPerTrip": 6.833333333333333
-    },
-    {
-      "trayek": "TERMINAL MANGKANG (SEMARANG) - TERMINAL DHAKSINARGA (WONOSARI)",
-      "perjalanan": 8,
-      "volume": 82,
-      "avgPerTrip": 10.25
-    },
-    {
-      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL TA INDUK BANJARNEGARA (BANJARNEGARA)",
-      "perjalanan": 8,
-      "volume": 81,
-      "avgPerTrip": 10.125
-    },
-    {
-      "trayek": "TERMINAL JEPARA (JEPARA) - TERMINAL MENGWI (BADUNG)",
-      "perjalanan": 9,
-      "volume": 80,
-      "avgPerTrip": 8.88888888888889
-    },
-    {
-      "trayek": "TERMINAL SELO AJI (PONOROGO) - TERMINAL BANYUANGGA (PROBOLINGGO)",
-      "perjalanan": 8,
-      "volume": 79,
-      "avgPerTrip": 9.875
-    },
-    {
-      "trayek": "TERMINAL TIRTONADI (SURAKARTA) - TERMINAL PURABAYA (SIDOARJO)",
-      "perjalanan": 8,
-      "volume": 78,
-      "avgPerTrip": 9.75
-    },
-    {
-      "trayek": "TRENGGALEK - SURABAYA",
-      "perjalanan": 12,
-      "volume": 77,
-      "avgPerTrip": 6.416666666666667
-    },
-    {
-      "trayek": "SUKABUMI-JEPARA",
-      "perjalanan": 7,
-      "volume": 77,
-      "avgPerTrip": 11
-    },
-    {
-      "trayek": "TERMINAL HARJAMUKTI (CIREBON) - TERMINAL BANGGA BANGUN DESA (CILACAP)",
-      "perjalanan": 17,
-      "volume": 75,
-      "avgPerTrip": 4.411764705882353
-    },
-    {
-      "trayek": "TERMINAL BARANANGSIANG (BOGOR) - TERMINAL BANYUANGGA (PROBOLINGGO)",
-      "perjalanan": 6,
-      "volume": 75,
-      "avgPerTrip": 12.5
-    },
-    {
-      "trayek": "BUKITTINGGI-PARIAMAN",
-      "perjalanan": 19,
-      "volume": 74,
-      "avgPerTrip": 3.8947368421052633
-    },
-    {
-      "trayek": "TERMINAL ANAK AIR (PADANG) - TERMINAL ARYA WIRARAJA (SUMENEP)",
-      "perjalanan": 8,
-      "volume": 74,
-      "avgPerTrip": 9.25
-    },
-    {
-      "trayek": "TERMINAL RAJABASA (BANDAR LAMPUNG) - TERMINAL BARANANGSIANG (BOGOR)",
-      "perjalanan": 8,
-      "volume": 73,
-      "avgPerTrip": 9.125
-    },
-    {
-      "trayek": "BANYUWANGI - SURABAYA",
-      "perjalanan": 8,
-      "volume": 73,
-      "avgPerTrip": 9.125
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL DARA (BIMA)",
-      "perjalanan": 8,
-      "volume": 72,
-      "avgPerTrip": 9
-    },
-    {
-      "trayek": "JAKARTA - BIMA",
-      "perjalanan": 6,
-      "volume": 72,
-      "avgPerTrip": 12
-    },
-    {
-      "trayek": "MANDALIKA-BIMA",
-      "perjalanan": 5,
-      "volume": 72,
-      "avgPerTrip": 14.4
-    },
-    {
-      "trayek": "TERMINAL INDIHIANG (TASIKMALAYA) - TERMINAL PURABAYA (SIDOARJO)",
-      "perjalanan": 6,
-      "volume": 70,
-      "avgPerTrip": 11.666666666666666
-    },
-    {
-      "trayek": "PURWOKERTO-PEMALANG",
-      "perjalanan": 5,
-      "volume": 70,
-      "avgPerTrip": 14
-    },
-    {
-      "trayek": "TERMINAL SUBANG (SUBANG) - TERMINAL PULO GEBANG (JAKARTA TIMUR)",
-      "perjalanan": 3,
-      "volume": 65,
-      "avgPerTrip": 21.666666666666668
-    },
-    {
-      "trayek": "DEPOK (JATIJAJAR)-KARANGANYAR",
-      "perjalanan": 8,
-      "volume": 64,
-      "avgPerTrip": 8
-    },
-    {
-      "trayek": "TERMINAL MANGKANG (SEMARANG) - TERMINAL GIWANGAN (YOGYAKARTA)",
-      "perjalanan": 9,
-      "volume": 64,
-      "avgPerTrip": 7.111111111111111
-    },
-    {
-      "trayek": "Jambi - Bandung",
-      "perjalanan": 4,
-      "volume": 63,
-      "avgPerTrip": 15.75
-    },
-    {
-      "trayek": "TERMINAL AIR SEBAKUL (BENGKULU) - TERMINAL PATRIA (BLITAR)",
-      "perjalanan": 2,
-      "volume": 62,
-      "avgPerTrip": 31
-    },
-    {
-      "trayek": "TERMINAL ALANG-ALANG LEBAR (PALEMBANG) - TERMINAL TIRTONADI (SURAKARTA)",
-      "perjalanan": 6,
-      "volume": 61,
-      "avgPerTrip": 10.166666666666666
-    },
-    {
-      "trayek": "TERMINAL AIR SEBAKUL (BENGKULU) - TERMINAL GIRI ADIPURA (WONOGIRI)",
-      "perjalanan": 19,
-      "volume": 60,
-      "avgPerTrip": 3.1578947368421053
-    },
-    {
-      "trayek": "SURABAYA - TULUNGAGUNG",
-      "perjalanan": 17,
-      "volume": 60,
-      "avgPerTrip": 3.5294117647058822
-    },
-    {
-      "trayek": "TANGERANG SELATAN (PD.CABE)-PURWOREJO",
-      "perjalanan": 10,
-      "volume": 59,
-      "avgPerTrip": 5.9
-    },
-    {
-      "trayek": "MEDAN AMPLAS-TANGERANG",
-      "perjalanan": 3,
-      "volume": 59,
-      "avgPerTrip": 19.666666666666668
-    },
-    {
-      "trayek": "TASIKMALAYA - CIKARANG BEKASI KABUPATEN VIA TOL CIKAMPEK PURWAKARTA",
-      "perjalanan": 10,
-      "volume": 59,
-      "avgPerTrip": 5.9
-    },
-    {
-      "trayek": "TERMINAL JATI PARIAMAN (PARIAMAN) - TERMINAL PATRIA (BLITAR)",
-      "perjalanan": 2,
-      "volume": 58,
-      "avgPerTrip": 29
-    },
-    {
-      "trayek": "TERMINAL ALANG-ALANG LEBAR (PALEMBANG) - TERMINAL BULUPITU (BANYUMAS)",
-      "perjalanan": 14,
-      "volume": 55,
-      "avgPerTrip": 3.9285714285714284
-    },
-    {
-      "trayek": "TERMINAL REGIONAL LAHAT (LAHAT) - TERMINAL INDUK BEKASI (BEKASI)",
-      "perjalanan": 6,
-      "volume": 55,
-      "avgPerTrip": 9.166666666666666
-    },
-    {
-      "trayek": "TERMINAL RAJABASA (BANDAR LAMPUNG) - TERMINAL TIRTONADI (SURAKARTA)",
-      "perjalanan": 6,
-      "volume": 54,
-      "avgPerTrip": 9
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL CIKAMPEK (KARAWANG)",
-      "perjalanan": 5,
-      "volume": 53,
-      "avgPerTrip": 10.6
-    },
-    {
-      "trayek": "TERMINAL MUARA BUNGO (BUNGO) - TERMINAL TIRTONADI (SURAKARTA)",
-      "perjalanan": 9,
-      "volume": 53,
-      "avgPerTrip": 5.888888888888889
-    },
-    {
-      "trayek": "TERMINAL BANGKO (MARANGIN) - TERMINAL TIRTONADI (SURAKARTA)",
-      "perjalanan": 9,
-      "volume": 52,
-      "avgPerTrip": 5.777777777777778
-    },
-    {
-      "trayek": "DEPOK (JATIJAJAR) - CEPU",
-      "perjalanan": 6,
-      "volume": 50,
-      "avgPerTrip": 8.333333333333334
-    },
-    {
-      "trayek": "TANGERANG SELATAN (PD.CABE)-CILACAP",
-      "perjalanan": 2,
-      "volume": 50,
-      "avgPerTrip": 25
-    },
-    {
-      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL PEKALONGAN (PEKALONGAN)",
-      "perjalanan": 4,
-      "volume": 49,
-      "avgPerTrip": 12.25
-    },
-    {
-      "trayek": "TERMINAL SIBOLGA (SIBOLGA) - TERMINAL ALAM BARAJO (JAMBI)",
-      "perjalanan": 2,
-      "volume": 49,
-      "avgPerTrip": 24.5
-    },
-    {
-      "trayek": "TERMINAL DAYA (MAKASSAR) - TERMINAL KASINTUWU (POSO)",
-      "perjalanan": 2,
-      "volume": 48,
-      "avgPerTrip": 24
-    },
-    {
-      "trayek": "TERMINAL LABUAN (PANDEGLANG) - TERMINAL INDUK BEKASI (BEKASI)",
-      "perjalanan": 3,
-      "volume": 48,
-      "avgPerTrip": 16
-    },
-    {
-      "trayek": "AJAP",
-      "perjalanan": 8,
-      "volume": 47,
-      "avgPerTrip": 5.875
-    },
-    {
-      "trayek": "TERMINAL ALAM BARAJO (JAMBI) - TERMINAL KALIDERES (JAKARTA BARAT)",
-      "perjalanan": 14,
-      "volume": 46,
-      "avgPerTrip": 3.2857142857142856
-    },
-    {
-      "trayek": "TERMINAL PAYUNG SEKAKI (PEKANBARU) - TERMINAL SELO AJI (PONOROGO)",
-      "perjalanan": 2,
-      "volume": 46,
-      "avgPerTrip": 23
-    },
-    {
-      "trayek": "CADANGAN GIWANGAN - MAGELANG - TEGAL - CIREBON",
-      "perjalanan": 5,
-      "volume": 46,
-      "avgPerTrip": 9.2
-    },
-    {
-      "trayek": "TERMINAL GIWANGAN (YOGYAKARTA) - TERMINAL ARYA WIRARAJA (SUMENEP)",
-      "perjalanan": 9,
-      "volume": 45,
-      "avgPerTrip": 5
-    },
-    {
-      "trayek": "TERMINAL LEUWIPANJANG (BANDUNG) - TERMINAL MANDALIKA (MATARAM)",
-      "perjalanan": 5,
-      "volume": 45,
-      "avgPerTrip": 9
-    },
-    {
-      "trayek": "MEDAN-JAKARTA",
-      "perjalanan": 2,
-      "volume": 45,
-      "avgPerTrip": 22.5
-    },
-    {
-      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL JEPARA (JEPARA)",
-      "perjalanan": 16,
-      "volume": 44,
-      "avgPerTrip": 2.75
-    },
-    {
-      "trayek": "CADANGAN MERAK - JAKARTA - MAGELANG",
-      "perjalanan": 9,
-      "volume": 44,
-      "avgPerTrip": 4.888888888888889
-    },
-    {
-      "trayek": "PADANG-BUKITTINGGI-MEDAN",
-      "perjalanan": 11,
-      "volume": 43,
-      "avgPerTrip": 3.909090909090909
-    },
-    {
-      "trayek": "TERMINAL AMPLAS (MEDAN) - TERMINAL ARJOSARI (MALANG)",
-      "perjalanan": 5,
-      "volume": 43,
-      "avgPerTrip": 8.6
-    },
-    {
-      "trayek": "TERMINAL ALANG-ALANG LEBAR (PALEMBANG) - TERMINAL BARANANGSIANG (BOGOR)",
-      "perjalanan": 7,
-      "volume": 42,
-      "avgPerTrip": 6
-    },
-    {
-      "trayek": "TERMINAL BANDA ACEH-TERMINAL AMPLAS-SOLO",
-      "perjalanan": 2,
-      "volume": 42,
-      "avgPerTrip": 21
-    },
-    {
-      "trayek": "TERMINAL ARJOSARI (MALANG) - TERMINAL BULUPITU (BANYUMAS)",
-      "perjalanan": 6,
-      "volume": 42,
-      "avgPerTrip": 7
-    },
-    {
-      "trayek": "TASIKMALAYA (INDIHIANG) - TERM. SINGAPARNA - TERM. TARAJU - TERM. BOJONGGAMBIR",
-      "perjalanan": 3,
-      "volume": 41,
-      "avgPerTrip": 13.666666666666666
-    },
-    {
-      "trayek": "TERMINAL CICAHEUM (BANDUNG) - TERMINAL ARJOSARI (MALANG)",
-      "perjalanan": 4,
-      "volume": 41,
-      "avgPerTrip": 10.25
-    },
-    {
-      "trayek": "SOLO - PURWODADI",
-      "perjalanan": 3,
-      "volume": 41,
-      "avgPerTrip": 13.666666666666666
-    },
-    {
-      "trayek": "SURABAYA PURABAYA-BOBOT SARI",
-      "perjalanan": 7,
-      "volume": 40,
-      "avgPerTrip": 5.714285714285714
-    },
-    {
-      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL TAMANAN (KEDIRI)",
-      "perjalanan": 2,
-      "volume": 40,
-      "avgPerTrip": 20
-    },
-    {
-      "trayek": "CILACAP-PURWOKERTO",
-      "perjalanan": 6,
-      "volume": 39,
-      "avgPerTrip": 6.5
-    },
-    {
-      "trayek": "TERMINAL ALAM BARAJO (JAMBI) - TERMINAL PACITAN (PACITAN)",
-      "perjalanan": 10,
-      "volume": 37,
-      "avgPerTrip": 3.7
-    },
-    {
-      "trayek": "TASIKMALAYA INDIHIANG - TERM. SINGAPARNA - SODONG - TAGOG",
-      "perjalanan": 14,
-      "volume": 36,
-      "avgPerTrip": 2.5714285714285716
-    },
-    {
-      "trayek": "TERMINAL JATI PARIAMAN (PARIAMAN) - TERMINAL GIWANGAN (YOGYAKARTA)",
-      "perjalanan": 3,
-      "volume": 36,
-      "avgPerTrip": 12
-    },
-    {
-      "trayek": "TERMINAL AMPLAS-TERMINAL TANJUNG PINGGIR",
-      "perjalanan": 2,
-      "volume": 36,
-      "avgPerTrip": 18
-    },
-    {
-      "trayek": "CILACAP - Magelang - JEPARA",
-      "perjalanan": 3,
-      "volume": 35,
-      "avgPerTrip": 11.666666666666666
-    },
-    {
-      "trayek": "TERMINAL AMPLAS (MEDAN) - TERMINAL OSOWILANGUN (SURABAYA)",
-      "perjalanan": 7,
-      "volume": 34,
-      "avgPerTrip": 4.857142857142857
-    },
-    {
-      "trayek": "Dara (Bima) - Mandalika (Mataram)",
-      "perjalanan": 4,
-      "volume": 34,
-      "avgPerTrip": 8.5
-    },
-    {
-      "trayek": "TERMINAL ALANG-ALANG LEBAR (PALEMBANG) - TERMINAL GIWANGAN (YOGYAKARTA)",
-      "perjalanan": 4,
-      "volume": 33,
-      "avgPerTrip": 8.25
-    },
-    {
-      "trayek": "TERMINAL TEGAL (TEGAL) - TERMINAL GIWANGAN (YOGYAKARTA)",
-      "perjalanan": 11,
-      "volume": 32,
-      "avgPerTrip": 2.909090909090909
-    },
-    {
-      "trayek": "MEDAN-BENGKULU",
-      "perjalanan": 2,
-      "volume": 32,
-      "avgPerTrip": 16
-    },
-    {
-      "trayek": "SUKABUMI-BANYUWANGI",
-      "perjalanan": 3,
-      "volume": 32,
-      "avgPerTrip": 10.666666666666666
-    },
-    {
-      "trayek": "TERMINAL ALAM BARAJO (JAMBI) - TERMINAL DHAKSINARGA (SURAKARTA)",
-      "perjalanan": 4,
-      "volume": 31,
-      "avgPerTrip": 7.75
-    },
-    {
-      "trayek": "PONOROGO - SURABAYA",
-      "perjalanan": 4,
-      "volume": 31,
-      "avgPerTrip": 7.75
-    },
-    {
-      "trayek": "TERMINAL BATU KUNING (OKU) - TERMINAL OSOWILANGUN (SURABAYA)",
-      "perjalanan": 6,
-      "volume": 31,
-      "avgPerTrip": 5.166666666666667
-    },
-    {
-      "trayek": "TASIKMALAYA - CIGUGUR PANGANDARAN",
-      "perjalanan": 9,
-      "volume": 31,
-      "avgPerTrip": 3.4444444444444446
-    },
-    {
-      "trayek": "TANGERANG SELATAN (PD.CABE)-PURWOKERTO",
-      "perjalanan": 3,
-      "volume": 30,
-      "avgPerTrip": 10
-    },
-    {
-      "trayek": "TERMINAL CICAHEUM (BANDUNG) - TERMINAL IR. SOEKARNO (KLATEN)",
-      "perjalanan": 6,
-      "volume": 29,
-      "avgPerTrip": 4.833333333333333
-    },
-    {
-      "trayek": "PEKANBARU - DUMAI",
-      "perjalanan": 5,
-      "volume": 29,
-      "avgPerTrip": 5.8
-    },
-    {
-      "trayek": "TERMINAL ANAK AIR (PADANG) - TERMINAL AMPLAS (MEDAN)",
-      "perjalanan": 4,
-      "volume": 29,
-      "avgPerTrip": 7.25
-    },
-    {
-      "trayek": "TERMINAL BANGGA BANGUN DESA (CILACAP) - TERMINAL TAWANGALUN (JEMBER)",
-      "perjalanan": 5,
-      "volume": 29,
-      "avgPerTrip": 5.8
-    },
-    {
-      "trayek": "TERMINAL AMPLAS (MEDAN) - TERMINAL ALANG-ALANG LEBAR (PALEMBANG)",
-      "perjalanan": 1,
-      "volume": 29,
-      "avgPerTrip": 29
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL INDUK PEMALANG (PEMALANG)",
-      "perjalanan": 2,
-      "volume": 28,
-      "avgPerTrip": 14
-    },
-    {
-      "trayek": "TERMINAL AMPLAS (MEDAN) TERMINAL LEUWIPANJANG (BANDUNG)",
-      "perjalanan": 2,
-      "volume": 28,
-      "avgPerTrip": 14
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL INDUK BANJARNEGARA (BANJARNEGARA)",
-      "perjalanan": 2,
-      "volume": 28,
-      "avgPerTrip": 14
-    },
-    {
-      "trayek": "SURABAYA - SUMENEP",
-      "perjalanan": 5,
-      "volume": 27,
-      "avgPerTrip": 5.4
-    },
-    {
-      "trayek": "BUKITTINGGI-SOLOK",
-      "perjalanan": 3,
-      "volume": 27,
-      "avgPerTrip": 9
-    },
-    {
-      "trayek": "TERMINAL TAMANAN (KEDIRI) - TERMINAL MENGWI (BADUNG)",
-      "perjalanan": 4,
-      "volume": 27,
-      "avgPerTrip": 6.75
-    },
-    {
-      "trayek": "PURWOKERTO-WONOSOBO",
-      "perjalanan": 5,
-      "volume": 26,
-      "avgPerTrip": 5.2
-    },
-    {
-      "trayek": "TERMINAL AMPLAS (MEDAN) - TERMINAL AIR SEBAKUL (BENGKULU)",
-      "perjalanan": 2,
-      "volume": 26,
-      "avgPerTrip": 13
-    },
-    {
-      "trayek": "BOBOTSARI-CIREBON",
-      "perjalanan": 5,
-      "volume": 25,
-      "avgPerTrip": 5
-    },
-    {
-      "trayek": "SURABAYA - MALANG",
-      "perjalanan": 8,
-      "volume": 25,
-      "avgPerTrip": 3.125
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL TIRTONADI (SOLO)",
-      "perjalanan": 6,
-      "volume": 25,
-      "avgPerTrip": 4.166666666666667
-    },
-    {
-      "trayek": "TERMINAL LEUWIPANJANG (BANDUNG)-TERMINAL INDRAMAYU (INDRAMAYU)",
-      "perjalanan": 1,
-      "volume": 25,
-      "avgPerTrip": 25
-    },
-    {
-      "trayek": "TERMINAL AIR SEBAKUL (BENGKULU) - TERMINAL TIRTONADI (SURAKARTA)",
-      "perjalanan": 5,
-      "volume": 24,
-      "avgPerTrip": 4.8
-    },
-    {
-      "trayek": "PAGARALAM-JAKARTA KALIDERES",
-      "perjalanan": 4,
-      "volume": 24,
-      "avgPerTrip": 6
-    },
-    {
-      "trayek": "TERMINAL PURWOREJO (PURWOREJO) - TERMINAL PURABAYA (SIDOARJO)",
-      "perjalanan": 3,
-      "volume": 24,
-      "avgPerTrip": 8
-    },
-    {
-      "trayek": "TERMINAL AMPLAS-JAKARTA",
-      "perjalanan": 2,
-      "volume": 23,
-      "avgPerTrip": 11.5
-    },
-    {
-      "trayek": "TERMINAL LABUAN (PANDEGLANG) - TERMINAL PEKALONGAN (PEKALONGAN)",
-      "perjalanan": 2,
-      "volume": 23,
-      "avgPerTrip": 11.5
-    },
-    {
-      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL RAWABANGO (CIANJUR)",
-      "perjalanan": 2,
-      "volume": 22,
-      "avgPerTrip": 11
-    },
-    {
-      "trayek": "BUKITTINGGI - PALEMBAYAN",
-      "perjalanan": 5,
-      "volume": 22,
-      "avgPerTrip": 4.4
-    },
-    {
-      "trayek": "TERMINAL RAJABASA (BANDAR LAMPUNG) - TERMINAL MANGKANG (SEMARANG)",
-      "perjalanan": 3,
-      "volume": 22,
-      "avgPerTrip": 7.333333333333333
-    },
-    {
-      "trayek": "JEMBER - SURABAYA",
-      "perjalanan": 4,
-      "volume": 21,
-      "avgPerTrip": 5.25
-    },
-    {
-      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL MANGKANG (SEMARANG)",
-      "perjalanan": 1,
-      "volume": 21,
-      "avgPerTrip": 21
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL KALIJAYA CIKARANG (CIKARANG)",
-      "perjalanan": 2,
-      "volume": 20,
-      "avgPerTrip": 10
-    },
-    {
-      "trayek": "TERMINAL AMPLAS (MEDAN) - TERMINAL MANGKANG (SEMARANG)",
-      "perjalanan": 1,
-      "volume": 20,
-      "avgPerTrip": 20
-    },
-    {
-      "trayek": "TERMINAL AMPLAS (MEDAN) - TERMINAL TAWANGALUN (JEMBER)",
-      "perjalanan": 2,
-      "volume": 20,
-      "avgPerTrip": 10
-    },
-    {
-      "trayek": "SOLO-SEMARANG",
-      "perjalanan": 3,
-      "volume": 20,
-      "avgPerTrip": 6.666666666666667
-    },
-    {
-      "trayek": "TERMINAL KALIDERES (JAKARTA BARAT) - TERMINAL ALANG-ALANG LEBAR (PALEMBANG)",
-      "perjalanan": 3,
-      "volume": 20,
-      "avgPerTrip": 6.666666666666667
-    },
-    {
-      "trayek": "TERMINAL LABUAN (PANDEGLANG) - TERMINAL TEGAL (TEGAL)",
-      "perjalanan": 4,
-      "volume": 19,
-      "avgPerTrip": 4.75
-    },
-    {
-      "trayek": "TERMINAL ALAM BARAJO (JAMBI) - TERMINAL SELO AJI (PONOROGO)",
-      "perjalanan": 8,
-      "volume": 19,
-      "avgPerTrip": 2.375
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL JATI (KUDUS)",
-      "perjalanan": 2,
-      "volume": 19,
-      "avgPerTrip": 9.5
-    },
-    {
-      "trayek": "TERMINAL LEUWIPANJANG (BANDUNG) - TERMINAL TIRTONADI (SURAKARTA)",
-      "perjalanan": 3,
-      "volume": 19,
-      "avgPerTrip": 6.333333333333333
-    },
-    {
-      "trayek": "SURABAYA PURABAYA-PURWOKERTO",
-      "perjalanan": 2,
-      "volume": 18,
-      "avgPerTrip": 9
-    },
-    {
-      "trayek": "ANAK AIR (PADANG) - SUKABUMI",
-      "perjalanan": 4,
-      "volume": 18,
-      "avgPerTrip": 4.5
-    },
-    {
-      "trayek": "TEGAL-PURWOKERTO",
-      "perjalanan": 2,
-      "volume": 18,
-      "avgPerTrip": 9
-    },
-    {
-      "trayek": "TASIKMALAYA - SUKARAJA - CIBALANARIK",
-      "perjalanan": 7,
-      "volume": 18,
-      "avgPerTrip": 2.5714285714285716
-    },
-    {
-      "trayek": "TASIKMALAYA - CIBALONG - LEBAKSIUH",
-      "perjalanan": 7,
-      "volume": 17,
-      "avgPerTrip": 2.4285714285714284
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL PURBOYO (MADIUN)",
-      "perjalanan": 6,
-      "volume": 17,
-      "avgPerTrip": 2.8333333333333335
-    },
-    {
-      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL MANGKANG (SEMARANG)",
-      "perjalanan": 2,
-      "volume": 17,
-      "avgPerTrip": 8.5
-    },
-    {
-      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL GIRI ADIPURA (WONOGIRI)",
-      "perjalanan": 4,
-      "volume": 16,
-      "avgPerTrip": 4
-    },
-    {
-      "trayek": "TERMINAL PAYUNG SEKAKI (PEKANBARU) - TERMINAL MANGKANG (SEMARANG)",
-      "perjalanan": 2,
-      "volume": 16,
-      "avgPerTrip": 8
-    },
-    {
-      "trayek": "TERMINAL AMPLAS (MEDAN) - TERMINAL BESTARI (DURI)",
-      "perjalanan": 1,
-      "volume": 15,
-      "avgPerTrip": 15
-    },
-    {
-      "trayek": "Serang - Cibaliung (Labuan)",
-      "perjalanan": 2,
-      "volume": 15,
-      "avgPerTrip": 7.5
-    },
-    {
-      "trayek": "TERMINAL AMPLAS (MEDAN) - TERMINAL GIRI ADIPURA (WONOGIRI)",
-      "perjalanan": 1,
-      "volume": 15,
-      "avgPerTrip": 15
-    },
-    {
-      "trayek": "BATU-MATARAM",
-      "perjalanan": 2,
-      "volume": 15,
-      "avgPerTrip": 7.5
-    },
-    {
-      "trayek": "TERMINAL TIDAR (MAGELANG) - TERMINAL PATRIA (BLITAR)",
-      "perjalanan": 2,
-      "volume": 15,
-      "avgPerTrip": 7.5
-    },
-    {
-      "trayek": "SURABAYA - JEMBER",
-      "perjalanan": 1,
-      "volume": 15,
-      "avgPerTrip": 15
-    },
-    {
-      "trayek": "TERMINAL MANDALA LEBAK (LEBAK) - TERMINAL KALIDERES (JAKARTA BARAT)",
-      "perjalanan": 5,
-      "volume": 14,
-      "avgPerTrip": 2.8
-    },
-    {
-      "trayek": "TERMINAL PAKUPATAN (SERANG) - TERMINAL KERTAWANGUNAN (KUNINGAN)",
-      "perjalanan": 2,
-      "volume": 13,
-      "avgPerTrip": 6.5
-    },
-    {
-      "trayek": "TERMINAL GIWANGAN (YOGYAKARTA) - TERMINAL BANYUANGGA (PROBOLINGGO)",
-      "perjalanan": 2,
-      "volume": 13,
-      "avgPerTrip": 6.5
-    },
-    {
-      "trayek": "TERMINAL GIRI ADIPURA (WONOGIRI) - TERMINAL PURABAYA (SIDOARJO)",
-      "perjalanan": 3,
-      "volume": 13,
-      "avgPerTrip": 4.333333333333333
-    },
-    {
-      "trayek": "MAGETAN-SURABAYA",
-      "perjalanan": 3,
-      "volume": 13,
-      "avgPerTrip": 4.333333333333333
-    },
-    {
-      "trayek": "Serang - Cigemblong",
-      "perjalanan": 3,
-      "volume": 12,
-      "avgPerTrip": 4
-    },
-    {
-      "trayek": "TERMINAL AIR SEBAKUL (BENGKULU) - TERMINAL OSOWILANGUN (SURABAYA)",
-      "perjalanan": 1,
-      "volume": 12,
-      "avgPerTrip": 12
-    },
-    {
-      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL HARJAMUKTI (CIREBON)",
-      "perjalanan": 4,
-      "volume": 11,
-      "avgPerTrip": 2.75
-    },
-    {
-      "trayek": "KALIANGET - MUNCAR",
-      "perjalanan": 2,
-      "volume": 11,
-      "avgPerTrip": 5.5
-    },
-    {
-      "trayek": "SURABAYA - TRENGGALEK",
-      "perjalanan": 3,
-      "volume": 11,
-      "avgPerTrip": 3.6666666666666665
-    },
-    {
-      "trayek": "TERMINAL OSOWILANGUN (SURABAYA) - TERMINAL MENGWI (BADUNG)",
-      "perjalanan": 2,
-      "volume": 10,
-      "avgPerTrip": 5
-    },
-    {
-      "trayek": "Serang - Cikeusik",
-      "perjalanan": 2,
-      "volume": 9,
-      "avgPerTrip": 4.5
-    },
-    {
-      "trayek": "TERMINAL TIRTONADI (SURAKARTA) - TERMINAL ARJOSARI (MALANG)",
-      "perjalanan": 1,
-      "volume": 9,
-      "avgPerTrip": 9
-    },
-    {
-      "trayek": "MAGELANG - MUNTILAN - SECANG",
-      "perjalanan": 3,
-      "volume": 9,
-      "avgPerTrip": 3
-    },
-    {
-      "trayek": "TERMINAL BANGGA BANGUN DESA (CILACAP) - TERMINAL ARJOSARI (MALANG)",
-      "perjalanan": 1,
-      "volume": 9,
-      "avgPerTrip": 9
-    },
-    {
-      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL DARA (BIMA)",
-      "perjalanan": 2,
-      "volume": 8,
-      "avgPerTrip": 4
-    },
-    {
-      "trayek": "KALIANGET - AMBULU",
-      "perjalanan": 1,
-      "volume": 8,
-      "avgPerTrip": 8
-    },
-    {
-      "trayek": "TERMINAL GAYATRI (TULUNGAGUNG) - TERMINAL SRI TANJUNG (BANYUWANGI)",
-      "perjalanan": 2,
-      "volume": 8,
-      "avgPerTrip": 4
-    },
-    {
-      "trayek": "MAGELANG - TEMANGGUNG",
-      "perjalanan": 2,
-      "volume": 8,
-      "avgPerTrip": 4
-    },
-    {
-      "trayek": "Serang - Munjul",
-      "perjalanan": 2,
-      "volume": 7,
-      "avgPerTrip": 3.5
-    },
-    {
-      "trayek": "GIWANGAN (JOGJA) - ALAM BARAJO (JAMBI)",
-      "perjalanan": 1,
-      "volume": 7,
-      "avgPerTrip": 7
-    },
-    {
-      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL TAMANAN (KEDIRI)",
-      "perjalanan": 3,
-      "volume": 7,
-      "avgPerTrip": 2.3333333333333335
-    },
-    {
-      "trayek": "TERMINAL GIWANGAN (YOGYAKARTA) - TERMINAL SRI TANJUNG (BANYUWANGI)",
-      "perjalanan": 1,
-      "volume": 7,
-      "avgPerTrip": 7
-    },
-    {
-      "trayek": "Serang - Malingping (RangkasBitung)",
-      "perjalanan": 2,
-      "volume": 7,
-      "avgPerTrip": 3.5
-    },
-    {
-      "trayek": "BANYUWANGI - KALIANGET",
-      "perjalanan": 1,
-      "volume": 7,
-      "avgPerTrip": 7
-    },
-    {
-      "trayek": "TERMINAL GUNTUR MELATI (GARUT)-TERMINAL CICAHEUM (BANDUNG)",
-      "perjalanan": 1,
-      "volume": 6,
-      "avgPerTrip": 6
-    },
-    {
-      "trayek": "TERMINAL PURABAYA (SIDOARJO) - TERMINAL MENGWI (BADUNG)",
-      "perjalanan": 2,
-      "volume": 6,
-      "avgPerTrip": 3
-    },
-    {
-      "trayek": "TERMINAL AMPLAS (MEDAN) - TERMINAL PATRIA (BLITAR)",
-      "perjalanan": 2,
-      "volume": 6,
-      "avgPerTrip": 3
-    },
-    {
-      "trayek": "MALANG - SUMENEP",
-      "perjalanan": 1,
-      "volume": 6,
-      "avgPerTrip": 6
-    },
-    {
-      "trayek": "TERMINAL AIR SEBAKUL (BENGKULU) - TERMINAL MENDOLO (WONOSOBO)",
-      "perjalanan": 1,
-      "volume": 6,
-      "avgPerTrip": 6
-    },
-    {
-      "trayek": "TERMINAL AMPLAS (MEDAN) - TERMINAL JATI PARIAMAN (PARIAMAN)",
-      "perjalanan": 1,
-      "volume": 5,
-      "avgPerTrip": 5
-    },
-    {
-      "trayek": "JAKARTA KALIDERES-WONOSOBO",
-      "perjalanan": 3,
-      "volume": 5,
-      "avgPerTrip": 1.6666666666666667
-    },
-    {
-      "trayek": "KALIANGET - PURABAYA",
-      "perjalanan": 1,
-      "volume": 5,
-      "avgPerTrip": 5
-    },
-    {
-      "trayek": "TERMINAL INDIHIANG (TASIKMALAYA) - TERMINAL GIRI ADIPURA (WONOGIRI)",
-      "perjalanan": 2,
-      "volume": 5,
-      "avgPerTrip": 2.5
-    },
-    {
-      "trayek": "TERMINAL AMPLAS (MEDAN) - TERMINAL HARJAMUKTI (CIREBON)",
-      "perjalanan": 1,
-      "volume": 5,
-      "avgPerTrip": 5
-    },
-    {
-      "trayek": "TERMINAL JATI PARIAMAN (PARIAMAN) - TERMINAL LEUWIPANJANG (BANDUNG)",
-      "perjalanan": 2,
-      "volume": 5,
-      "avgPerTrip": 2.5
-    },
-    {
-      "trayek": "PENYIMPANGAN PARIWISATA",
-      "perjalanan": 2,
-      "volume": 5,
-      "avgPerTrip": 2.5
-    },
-    {
-      "trayek": "KALIANGET - JEMBER",
-      "perjalanan": 1,
-      "volume": 4,
-      "avgPerTrip": 4
-    },
-    {
-      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL IR. SOEKARNO (KLATEN)",
-      "perjalanan": 2,
-      "volume": 4,
-      "avgPerTrip": 2
-    },
-    {
-      "trayek": "PULO GEBANG - DARA",
-      "perjalanan": 2,
-      "volume": 4,
-      "avgPerTrip": 2
-    },
-    {
-      "trayek": "TERMINAL BULUPITU (BANYUMAS) - TERMINAL TIRTONADI (SURAKARTA)",
-      "perjalanan": 2,
-      "volume": 4,
-      "avgPerTrip": 2
-    },
-    {
-      "trayek": "JEMBER - PONOROGO",
-      "perjalanan": 1,
-      "volume": 4,
-      "avgPerTrip": 4
-    },
-    {
-      "trayek": "TERMINAL PAYUNG SEKAKI (PEKANBARU) - TERMINAL TAMANAN (KEDIRI)",
-      "perjalanan": 1,
-      "volume": 4,
-      "avgPerTrip": 4
-    },
-    {
-      "trayek": "TERMINAL GIWANGAN (YOGYAKARTA) - TERMINAL OSOWILANGUN (SURABAYA)",
-      "perjalanan": 2,
-      "volume": 2,
-      "avgPerTrip": 1
-    },
-    {
-      "trayek": "TERMINAL AIR SEBAKUL (BENGKULU) - TERMINAL ARJOSARI (MALANG)",
-      "perjalanan": 1,
-      "volume": 2,
-      "avgPerTrip": 2
-    },
-    {
-      "trayek": "TERMINAL TIDAR (MAGELANG) - TERMINAL GIWANGAN (YOGYAKARTA)",
-      "perjalanan": 1,
-      "volume": 1,
-      "avgPerTrip": 1
-    },
-    {
-      "trayek": "TERMINAL ARYA WIRARAJA (SUMENEP) - TERMINAL SRI TANJUNG (BANYUWANGI)",
-      "perjalanan": 1,
-      "volume": 1,
-      "avgPerTrip": 1
-    },
-    {
-      "trayek": "MAGETAN - SURABAYA",
-      "perjalanan": 1,
-      "volume": 1,
-      "avgPerTrip": 1
+      "trayek": "TERMINAL KH. AHMAD SANUSI (SUKABUMI) - TERMINAL GIRI ADIPURA (WONOGIRI)",
+      "volume": 16762,
+      "perjalanan": 1491,
+      "avgPerTrip": 11.242119382964454
+    },
+    {
+      "trayek": "TERMINAL JATIJAJAR (DEPOK) - TERMINAL INDIHIANG (TASIKMALAYA)",
+      "volume": 15515,
+      "perjalanan": 1231,
+      "avgPerTrip": 12.60357432981316
     }
   ],
   "regional": [
     {
-      "kota": "Subang",
-      "bangkitan": 34051,
-      "tarikan": 47710,
-      "total": 81761
+      "kota": "KOTA BANDUNG",
+      "bangkitan": 676598,
+      "tarikan": 713190,
+      "total": 1389788
     },
     {
-      "kota": "Indramayu",
+      "kota": "KAB. GARUT",
+      "bangkitan": 307949,
+      "tarikan": 539448,
+      "total": 847397
+    },
+    {
+      "kota": "KOTA SUKABUMI",
+      "bangkitan": 345782,
+      "tarikan": 352550,
+      "total": 698332
+    },
+    {
+      "kota": "KOTA TASIKMALAYA",
+      "bangkitan": 634549,
+      "tarikan": 51709,
+      "total": 686258
+    },
+    {
+      "kota": "KOTA BEKASI",
+      "bangkitan": 272178,
+      "tarikan": 329532,
+      "total": 601710
+    },
+    {
+      "kota": "KOTA BOGOR",
+      "bangkitan": 316647,
+      "tarikan": 233625,
+      "total": 550272
+    },
+    {
+      "kota": "KOTA BANJAR",
+      "bangkitan": 229596,
+      "tarikan": 253483,
+      "total": 483079
+    },
+    {
+      "kota": "KOTA DEPOK",
+      "bangkitan": 243918,
+      "tarikan": 153802,
+      "total": 397720
+    },
+    {
+      "kota": "KAB. SUMEDANG",
+      "bangkitan": 140639,
+      "tarikan": 130970,
+      "total": 271609
+    },
+    {
+      "kota": "KAB. KUNINGAN",
+      "bangkitan": 120229,
+      "tarikan": 106475,
+      "total": 226704
+    },
+    {
+      "kota": "KAB. KARAWANG",
+      "bangkitan": 104836,
+      "tarikan": 62914,
+      "total": 167750
+    },
+    {
+      "kota": "KOTA CIREBON",
+      "bangkitan": 71240,
+      "tarikan": 79372,
+      "total": 150612
+    },
+    {
+      "kota": "KAB. BEKASI",
+      "bangkitan": 60134,
+      "tarikan": 78996,
+      "total": 139130
+    },
+    {
+      "kota": "KAB. BOGOR",
+      "bangkitan": 57146,
+      "tarikan": 48173,
+      "total": 105319
+    },
+    {
+      "kota": "KAB. TASIKMALAYA",
+      "bangkitan": 81185,
+      "tarikan": 19076,
+      "total": 100261
+    },
+    {
+      "kota": "KAB. PANGANDARAN",
+      "bangkitan": 38112,
+      "tarikan": 55171,
+      "total": 93283
+    },
+    {
+      "kota": "KAB. SUKABUMI",
+      "bangkitan": 32723,
+      "tarikan": 22294,
+      "total": 55017
+    },
+    {
+      "kota": "KAB. CIREBON",
+      "bangkitan": 11110,
+      "tarikan": 18457,
+      "total": 29567
+    },
+    {
+      "kota": "KAB. CIAMIS",
+      "bangkitan": 209,
+      "tarikan": 613,
+      "total": 822
+    },
+    {
+      "kota": "KAB. INDRAMAYU",
       "bangkitan": 20,
       "tarikan": 349,
       "total": 369
     },
     {
-      "kota": "Ciamis",
-      "bangkitan": 142,
-      "tarikan": 187,
-      "total": 329
-    },
-    {
-      "kota": "Cianjur",
+      "kota": "KAB. CIANJUR",
       "bangkitan": 2,
       "tarikan": 301,
       "total": 303
     },
     {
-      "kota": "Purwakarta",
+      "kota": "KAB. PURWAKARTA",
       "bangkitan": 12,
       "tarikan": 51,
       "total": 63
-    },
-    {
-      "kota": "Kota Sukabumi",
-      "bangkitan": 17,
-      "tarikan": 6,
-      "total": 23
     }
   ],
   "korelasi": {
