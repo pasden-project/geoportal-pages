@@ -3,6 +3,14 @@
 > Status: DRAFT — belum ada kode yang diubah (sesuai aturan: audit dulu, minta persetujuan untuk perubahan besar).
 > Tanggal: 2026-08-06 · Penulis: Technical Lead (audit terhadap kode saat ini)
 
+> **⚠️ DOKUMEN HISTORIS / ARSIP (dikukuhkan 2026-08-11):**
+> Dokumen ini adalah **rencana migrasi** yang ditulis sebelum implementasi. Sejak saat itu
+> implementasi selesai dengan **jalur berbeda**: gateway production resmi =
+> **Cloudflare Pages Functions** (`functions/api/[[path]].js`), **bukan** Worker.
+> Segala referensi "Cloudflare Worker" di dokumen ini menggambarkan **desain yang
+> dipertimbangkan/legacy** — jangan dijadikan acuan implementasi aktif.
+> Lihat `README.md` untuk arsitektur aktual saat ini.
+
 ---
 
 ## 1. Ringkasan Eksekutif

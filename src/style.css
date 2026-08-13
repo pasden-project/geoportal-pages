@@ -826,7 +826,7 @@
   /* Sidebar legenda KANAN + kontrol choropleth */
   .side-menu-right { transform: translateX(100%); box-shadow: -4px 0 24px rgba(0, 0, 0, 0.12); }
   #legendOverlay:not(.hidden) .side-menu-right { transform: translateX(0); }
-  .legend-sidebar-body { padding: 14px 16px; overflow-y: auto; flex: 1; scrollbar-width: none; }
+  .legend-sidebar-body { padding: 14px 16px; overflow-y: auto; overflow-x: hidden; flex: 1; scrollbar-width: none; }
   .legend-sidebar-body::-webkit-scrollbar { display: none; }
   .chp-controls { margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--gray-border); }
   .chp-seg { display: flex; gap: 6px; }
@@ -1288,12 +1288,62 @@
     cursor: pointer;
   }
   .legend-group-body {
-    overflow: hidden;
-    max-height: 320px;
-    transition: max-height 0.3s ease;
+    overflow: visible; /* tanpa scrollbar internal (horisontal & vertikal); isi grup expand penuh lalu ikut scroll sidebar */
   }
   .legend-group.collapsed .legend-group-body {
     max-height: 0;
+    overflow: hidden;
+  }
+
+  /* ── Toggle on/off oval (gaya sigi.pu.go.id) untuk checklist legenda ──
+     CSS-only di atas <input type="checkbox"> yang sudah ada (TANPA ubah markup/JS).
+     Track = input itu sendiri (appearance:none); knob = ::before yang geser saat :checked.
+     Mencakup: per-item (.legend-item), master grup (.legend-group-title), lapisan choropleth (.chp-show). */
+  .legend-item input[type="checkbox"],
+  .chp-show input[type="checkbox"],
+  .legend-group-title input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    -moz-appearance: none;
+    position: relative;
+    width: 30px;
+    height: 16px;
+    margin: 0;
+    border: none;
+    border-radius: 999px;            /* oval */
+    background: #cbd5e1;             /* OFF */
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.2s ease;
+  }
+  .legend-item input[type="checkbox"]::before,
+  .chp-show input[type="checkbox"]::before,
+  .legend-group-title input[type="checkbox"]::before {
+    content: "";
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+    transition: transform 0.2s ease;
+  }
+  .legend-item input[type="checkbox"]:checked,
+  .chp-show input[type="checkbox"]:checked,
+  .legend-group-title input[type="checkbox"]:checked {
+    background: var(--blue);        /* ON */
+  }
+  .legend-item input[type="checkbox"]:checked::before,
+  .chp-show input[type="checkbox"]:checked::before,
+  .legend-group-title input[type="checkbox"]:checked::before {
+    transform: translateX(14px);
+  }
+  [data-theme="dark"] .legend-item input[type="checkbox"],
+  [data-theme="dark"] .chp-show input[type="checkbox"],
+  [data-theme="dark"] .legend-group-title input[type="checkbox"] {
+    background: #334155;            /* OFF dark, kontras di atas panel gelap */
   }
 
   /* ===== Palette warna trayek ===== */
