@@ -1037,24 +1037,81 @@ function muatDataOD() {
     hideLoading();
     odDataLoaded = true;
     const container = document.getElementById('dataViewContainer');
-    container.innerHTML = '<h2 style="margin:0 0 20px;font-size:22px;font-weight:800;color:var(--navy);">📊 Data Asal-Tujuan (OD) Jawa Barat</h2>' +
+
+    // KPI Summary
+    let html = '<h2 style="margin:0 0 20px;font-size:22px;font-weight:800;color:var(--navy);">📊 Data Asal-Tujuan (OD) Jawa Barat</h2>' +
       '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px;">' +
-        '<div class="kpi-card bg-blue-light"><div class="kpi-header"><div class="kpi-icon text-blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div><span class="kpi-label">Total Perjalanan</span></div><div class="kpi-value text-blue">' + data.total.perjalanan.toLocaleString('id-ID') + '</div></div>' +
+        '<div class="kpi-card bg-blue-light"><div class="kpi-header"><div class="kpi-icon text-blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div><span class="kpi-label">Total Perjalanan</span></div><div class="kpi-value text-blue">' + data.total.perjalanan.toLocaleString('id-ID') + '</div></div>' +
         '<div class="kpi-card bg-green-light"><div class="kpi-header"><div class="kpi-icon text-green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg></div><span class="kpi-label">Total Volume</span></div><div class="kpi-value text-green">' + data.total.volume.toLocaleString('id-ID') + '</div></div>' +
         '<div class="kpi-card bg-yellow-light"><div class="kpi-header"><div class="kpi-icon text-yellow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div><span class="kpi-label">Terminal</span></div><div class="kpi-value text-yellow">' + data.total.terminal + '</div></div>' +
-        '<div class="kpi-card bg-cyan-light"><div class="kpi-header"><div class="kpi-icon text-cyan"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></div><span class="kpi-label">Periode</span></div><div class="kpi-value text-cyan">' + data.total.bulan + ' Bulan</div></div>' +
-      '</div>' +
-      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;">@media(max-width:768px){grid-template-columns:1fr;}</div>' +
-      '<div class="card" style="margin-bottom:24px;"><h3 style="margin:0 0 16px;font-size:16px;font-weight:700;color:var(--navy);">🏢 Top 10 Terminal (Volume Tertinggi)</h3><div class="table-wrap" style="max-height:400px;overflow-y:auto;"><table><thead><tr><th>Terminal</th><th>Kota</th><th>Perjalanan</th><th>Volume</th><th>Avg/Trip</th></tr></thead><tbody>';
-    data.perTerminal.slice(0,10).forEach(function (t) {
-      container.innerHTML += '<tr><td><b>' + t.terminal + '</b></td><td>' + t.kota + '</td><td>' + t.perjalanan.toLocaleString('id-ID') + '</td><td><b>' + t.volume.toLocaleString('id-ID') + '</b></td><td>' + t.avgPerTrip.toFixed(1) + '</td></tr>';
+        '<div class="kpi-card bg-cyan-light"><div class="kpi-header"><div class="kpi-icon text-cyan"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></div><span class="kpi-label">Periode</span></div><div class="kpi-value text-cyan">' + data.total.bulan + ' Bulan (2026)</div></div>' +
+      '</div>';
+
+    // Tabel Terminal (semua 12 terminal)
+    html += '<div class="card" style="margin-bottom:24px;"><h3 style="margin:0 0 16px;font-size:16px;font-weight:700;color:var(--navy);">🏢 Data Per Terminal (' + data.perTerminal.length + ' Terminal)</h3>' +
+      '<div class="table-wrap"><table id="tabelODTerminal"><thead><tr>' +
+      '<th style="min-width:180px;">Terminal</th>' +
+      '<th style="min-width:140px;">Kota/Kabupaten</th>' +
+      '<th class="num">Perjalanan</th>' +
+      '<th class="num">Volume Total</th>' +
+      '<th class="num">Datang</th>' +
+      '<th class="num">Berangkat</th>' +
+      '<th class="num">Avg/Trip</th>' +
+      '</tr></thead><tbody>';
+
+    data.perTerminal.forEach(function (t) {
+      html += '<tr>' +
+        '<td><b>' + t.terminal + '</b></td>' +
+        '<td>' + t.kota + '</td>' +
+        '<td class="num">' + t.perjalanan.toLocaleString('id-ID') + '</td>' +
+        '<td class="num"><b>' + t.volume.toLocaleString('id-ID') + '</b></td>' +
+        '<td class="num">' + t.datang.toLocaleString('id-ID') + '</td>' +
+        '<td class="num">' + t.berangkat.toLocaleString('id-ID') + '</td>' +
+        '<td class="num">' + t.avgPerTrip.toFixed(2) + '</td>' +
+      '</tr>';
     });
-    container.innerHTML += '</tbody></table></div></div>' +
-      '<div class="card"><h3 style="margin:0 0 16px;font-size:16px;font-weight:700;color:var(--navy);">🚌 Top 15 Trayek (Volume Tertinggi)</h3><div class="table-wrap" style="max-height:500px;overflow-y:auto;"><table><thead><tr><th>Trayek</th><th>Perjalanan</th><th>Volume</th><th>Avg/Trip</th></tr></thead><tbody>';
-    data.perTrayek.slice(0,15).forEach(function (tr) {
-      container.innerHTML += '<tr><td><b>' + (tr.trayek === '(tanpa trayek)' ? '<i style="color:var(--gray-text);">Tanpa Trayek</i>' : tr.trayek) + '</b></td><td>' + tr.perjalanan.toLocaleString('id-ID') + '</td><td><b>' + tr.volume.toLocaleString('id-ID') + '</b></td><td>' + tr.avgPerTrip.toFixed(2) + '</td></tr>';
+    html += '</tbody></table></div></div>';
+
+    // Tabel Trayek (semua trayek, bukan hanya top 15)
+    html += '<div class="card" style="margin-bottom:24px;"><h3 style="margin:0 0 16px;font-size:16px;font-weight:700;color:var(--navy);">🚌 Data Per Trayek (' + data.perTrayek.length + ' Trayek)</h3>' +
+      '<div class="table-wrap"><table id="tabelODTrayek"><thead><tr>' +
+      '<th style="min-width:300px;">Nama Trayek</th>' +
+      '<th class="num">Perjalanan</th>' +
+      '<th class="num">Volume Total</th>' +
+      '<th class="num">Avg/Trip</th>' +
+      '</tr></thead><tbody>';
+
+    data.perTrayek.forEach(function (tr) {
+      var trayekName = tr.trayek === '(tanpa trayek)' ? '<i style="color:var(--gray-text);">Tanpa Trayek</i>' : tr.trayek;
+      html += '<tr>' +
+        '<td><b>' + trayekName + '</b></td>' +
+        '<td class="num">' + tr.perjalanan.toLocaleString('id-ID') + '</td>' +
+        '<td class="num"><b>' + tr.volume.toLocaleString('id-ID') + '</b></td>' +
+        '<td class="num">' + tr.avgPerTrip.toFixed(2) + '</td>' +
+      '</tr>';
     });
-    container.innerHTML += '</tbody></table></div></div>';
+    html += '</tbody></table></div></div>';
+
+    // Tabel Regional (bangkitan/tarikan per kota)
+    html += '<div class="card"><h3 style="margin:0 0 16px;font-size:16px;font-weight:700;color:var(--navy);">🗺️ Bangkitan & Tarikan Per Kota/Kabupaten (' + data.regional.length + ' Wilayah)</h3>' +
+      '<div class="table-wrap"><table id="tabelODRegional"><thead><tr>' +
+      '<th style="min-width:180px;">Kota/Kabupaten</th>' +
+      '<th class="num">Bangkitan</th>' +
+      '<th class="num">Tarikan</th>' +
+      '<th class="num">Total</th>' +
+      '</tr></thead><tbody>';
+
+    data.regional.forEach(function (r) {
+      html += '<tr>' +
+        '<td><b>' + r.kota + '</b></td>' +
+        '<td class="num">' + r.bangkitan.toLocaleString('id-ID') + '</td>' +
+        '<td class="num">' + r.tarikan.toLocaleString('id-ID') + '</td>' +
+        '<td class="num"><b>' + r.total.toLocaleString('id-ID') + '</b></td>' +
+      '</tr>';
+    });
+    html += '</tbody></table></div></div>';
+
+    container.innerHTML = html;
   }).catch(function (err) {
     hideLoading();
     alert('Gagal memuat data OD: ' + (err.message || err));
