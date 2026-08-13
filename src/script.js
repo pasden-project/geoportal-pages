@@ -1087,6 +1087,40 @@ function muatDataOD() {
     html += '</tbody></table></div></div>';
 
     container.innerHTML = html;
+
+    // Load OD Matrix Terminal A
+    fetch('data/od-matrix-terminal-a.json').then(function (res) { return res.json(); }).then(function (matrix) {
+      let matrixHtml = '<div class="card" style="margin-top:24px;"><h3 style="margin:0 0 16px;font-size:16px;font-weight:700;color:var(--navy);">📍 Matriks OD ke Terminal Tipe A Jawa Barat (' + matrix.origins.length + ' Origin × ' + matrix.terminals.length + ' Terminal A)</h3>' +
+        '<div class="table-wrap"><table id="tabelODMatrix"><thead><tr>' +
+        '<th style="min-width:200px;position:sticky;left:0;background:var(--card-bg);z-index:2;">Origin</th>' +
+        '<th class="num" style="min-width:80px;">Total</th>';
+
+      // Header terminal destinations
+      matrix.terminals.forEach(function (term) {
+        matrixHtml += '<th class="num" style="min-width:100px;">' + term + '</th>';
+      });
+      matrixHtml += '</tr></thead><tbody>';
+
+      // Data rows
+      matrix.origins.forEach(function (row) {
+        matrixHtml += '<tr>' +
+          '<td style="position:sticky;left:0;background:var(--card-bg);z-index:1;"><b>' + row.origin + '</b></td>' +
+          '<td class="num"><b>' + row.total.toLocaleString('id-ID') + '</b></td>';
+
+        matrix.terminals.forEach(function (term) {
+          var val = row.destinations[term] || 0;
+          var cellClass = val > 0 ? 'num' : 'num' + ' style="color:var(--gray-text);"';
+          matrixHtml += '<td class="' + cellClass + '">' + (val > 0 ? val.toLocaleString('id-ID') : '-') + '</td>';
+        });
+        matrixHtml += '</tr>';
+      });
+
+      matrixHtml += '</tbody></table></div></div>';
+      container.innerHTML += matrixHtml;
+    }).catch(function (err) {
+      console.warn('Gagal memuat OD Matrix:', err);
+    });
+
   }).catch(function (err) {
     hideLoading();
     alert('Gagal memuat data OD: ' + (err.message || err));

@@ -1,0 +1,4573 @@
+{
+  "terminals": [
+    "Leuwipanjang",
+    "Baranangsiang",
+    "Guntur Melati",
+    "Ciakar",
+    "KH. Ahmad Sanusi",
+    "Jatijajar",
+    "Indihiang",
+    "Klari",
+    "Banjar",
+    "Subang",
+    "Harjamukti"
+  ],
+  "origins": [
+    {
+      "origin": "Leuwipanjang",
+      "total": 328021,
+      "destinations": {
+        "Leuwipanjang": 4230,
+        "Baranangsiang": 39534,
+        "Guntur Melati": 7953,
+        "Ciakar": 17794,
+        "KH. Ahmad Sanusi": 229395,
+        "Jatijajar": 12796,
+        "Indihiang": 4258,
+        "Klari": 2084,
+        "Banjar": 8514,
+        "Subang": 0,
+        "Harjamukti": 1463
+      }
+    },
+    {
+      "origin": "KH. Ahmad Sanusi",
+      "total": 253854,
+      "destinations": {
+        "Leuwipanjang": 237301,
+        "Baranangsiang": 234,
+        "Guntur Melati": 6074,
+        "Ciakar": 39,
+        "KH. Ahmad Sanusi": 11,
+        "Jatijajar": 581,
+        "Indihiang": 906,
+        "Klari": 134,
+        "Banjar": 6762,
+        "Subang": 0,
+        "Harjamukti": 1812
+      }
+    },
+    {
+      "origin": "Induk Bekasi",
+      "total": 252511,
+      "destinations": {
+        "Leuwipanjang": 67288,
+        "Baranangsiang": 760,
+        "Guntur Melati": 139302,
+        "Ciakar": 28213,
+        "KH. Ahmad Sanusi": 2332,
+        "Jatijajar": 0,
+        "Indihiang": 252,
+        "Klari": 368,
+        "Banjar": 528,
+        "Subang": 0,
+        "Harjamukti": 13468
+      }
+    },
+    {
+      "origin": "Kampung Rambutan",
+      "total": 221389,
+      "destinations": {
+        "Leuwipanjang": 4377,
+        "Baranangsiang": 915,
+        "Guntur Melati": 80546,
+        "Ciakar": 52553,
+        "KH. Ahmad Sanusi": 37343,
+        "Jatijajar": 0,
+        "Indihiang": 88,
+        "Klari": 4778,
+        "Banjar": 4575,
+        "Subang": 36124,
+        "Harjamukti": 90
+      }
+    },
+    {
+      "origin": "Baranangsiang",
+      "total": 198791,
+      "destinations": {
+        "Leuwipanjang": 45341,
+        "Baranangsiang": 58,
+        "Guntur Melati": 64885,
+        "Ciakar": 5323,
+        "KH. Ahmad Sanusi": 617,
+        "Jatijajar": 62536,
+        "Indihiang": 3426,
+        "Klari": 11750,
+        "Banjar": 219,
+        "Subang": 246,
+        "Harjamukti": 4390
+      }
+    },
+    {
+      "origin": "Indihiang",
+      "total": 188308,
+      "destinations": {
+        "Leuwipanjang": 21224,
+        "Baranangsiang": 11316,
+        "Guntur Melati": 10844,
+        "Ciakar": 6,
+        "KH. Ahmad Sanusi": 5345,
+        "Jatijajar": 14776,
+        "Indihiang": 340,
+        "Klari": 80,
+        "Banjar": 117505,
+        "Subang": 0,
+        "Harjamukti": 6872
+      }
+    },
+    {
+      "origin": "Singaparna",
+      "total": 81151,
+      "destinations": {
+        "Leuwipanjang": 10,
+        "Baranangsiang": 0,
+        "Guntur Melati": 76068,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 1047,
+        "Jatijajar": 0,
+        "Indihiang": 3931,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 95
+      }
+    },
+    {
+      "origin": "Guntur Melati",
+      "total": 78478,
+      "destinations": {
+        "Leuwipanjang": 281,
+        "Baranangsiang": 65906,
+        "Guntur Melati": 2265,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 2078,
+        "Jatijajar": 2436,
+        "Indihiang": 5378,
+        "Klari": 0,
+        "Banjar": 121,
+        "Subang": 0,
+        "Harjamukti": 13
+      }
+    },
+    {
+      "origin": "Kalideres",
+      "total": 72739,
+      "destinations": {
+        "Leuwipanjang": 34306,
+        "Baranangsiang": 27,
+        "Guntur Melati": 14682,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 21126,
+        "Jatijajar": 8,
+        "Indihiang": 26,
+        "Klari": 1572,
+        "Banjar": 705,
+        "Subang": 196,
+        "Harjamukti": 91
+      }
+    },
+    {
+      "origin": "Pondok Cabe",
+      "total": 70935,
+      "destinations": {
+        "Leuwipanjang": 20831,
+        "Baranangsiang": 19,
+        "Guntur Melati": 45031,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 3996,
+        "Jatijajar": 0,
+        "Indihiang": 13,
+        "Klari": 736,
+        "Banjar": 306,
+        "Subang": 0,
+        "Harjamukti": 3
+      }
+    },
+    {
+      "origin": "Merak",
+      "total": 62722,
+      "destinations": {
+        "Leuwipanjang": 21484,
+        "Baranangsiang": 661,
+        "Guntur Melati": 29020,
+        "Ciakar": 1047,
+        "KH. Ahmad Sanusi": 201,
+        "Jatijajar": 0,
+        "Indihiang": 7,
+        "Klari": 4047,
+        "Banjar": 419,
+        "Subang": 493,
+        "Harjamukti": 5343
+      }
+    },
+    {
+      "origin": "Pakupatan",
+      "total": 47317,
+      "destinations": {
+        "Leuwipanjang": 22883,
+        "Baranangsiang": 4589,
+        "Guntur Melati": 7166,
+        "Ciakar": 7210,
+        "KH. Ahmad Sanusi": 3293,
+        "Jatijajar": 0,
+        "Indihiang": 13,
+        "Klari": 563,
+        "Banjar": 297,
+        "Subang": 0,
+        "Harjamukti": 1303
+      }
+    },
+    {
+      "origin": "Banjar",
+      "total": 44145,
+      "destinations": {
+        "Leuwipanjang": 6572,
+        "Baranangsiang": 4130,
+        "Guntur Melati": 428,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 2829,
+        "Jatijajar": 2969,
+        "Indihiang": 25479,
+        "Klari": 0,
+        "Banjar": 1738,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Cikarang",
+      "total": 43009,
+      "destinations": {
+        "Leuwipanjang": 37863,
+        "Baranangsiang": 30,
+        "Guntur Melati": 1202,
+        "Ciakar": 2186,
+        "KH. Ahmad Sanusi": 1457,
+        "Jatijajar": 0,
+        "Indihiang": 15,
+        "Klari": 73,
+        "Banjar": 178,
+        "Subang": 0,
+        "Harjamukti": 5
+      }
+    },
+    {
+      "origin": "Poris Plawad",
+      "total": 39359,
+      "destinations": {
+        "Leuwipanjang": 244,
+        "Baranangsiang": 1154,
+        "Guntur Melati": 15975,
+        "Ciakar": 1938,
+        "KH. Ahmad Sanusi": 16110,
+        "Jatijajar": 0,
+        "Indihiang": 60,
+        "Klari": 2371,
+        "Banjar": 1216,
+        "Subang": 0,
+        "Harjamukti": 291
+      }
+    },
+    {
+      "origin": "Bubulak",
+      "total": 33238,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 10,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 33191,
+        "Indihiang": 0,
+        "Klari": 37,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Palabuhanratu",
+      "total": 32681,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 32681,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Jatijajar",
+      "total": 32674,
+      "destinations": {
+        "Leuwipanjang": 14320,
+        "Baranangsiang": 3038,
+        "Guntur Melati": 8386,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 393,
+        "Indihiang": 3473,
+        "Klari": 606,
+        "Banjar": 2419,
+        "Subang": 0,
+        "Harjamukti": 39
+      }
+    },
+    {
+      "origin": "Cibinong",
+      "total": 32015,
+      "destinations": {
+        "Leuwipanjang": 14233,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 17726,
+        "Indihiang": 0,
+        "Klari": 56,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Pangandaran",
+      "total": 30445,
+      "destinations": {
+        "Leuwipanjang": 1557,
+        "Baranangsiang": 249,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 139,
+        "Jatijajar": 10,
+        "Indihiang": 109,
+        "Klari": 0,
+        "Banjar": 28381,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Klari",
+      "total": 28381,
+      "destinations": {
+        "Leuwipanjang": 723,
+        "Baranangsiang": 16793,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 22,
+        "Jatijajar": 31,
+        "Indihiang": 74,
+        "Klari": 1685,
+        "Banjar": 6,
+        "Subang": 12,
+        "Harjamukti": 9035
+      }
+    },
+    {
+      "origin": "Cicaheum",
+      "total": 26668,
+      "destinations": {
+        "Leuwipanjang": 56,
+        "Baranangsiang": 0,
+        "Guntur Melati": 16,
+        "Ciakar": 6505,
+        "KH. Ahmad Sanusi": 190,
+        "Jatijajar": 0,
+        "Indihiang": 53,
+        "Klari": 81,
+        "Banjar": 19346,
+        "Subang": 0,
+        "Harjamukti": 421
+      }
+    },
+    {
+      "origin": "Cililitan",
+      "total": 22666,
+      "destinations": {
+        "Leuwipanjang": 22507,
+        "Baranangsiang": 0,
+        "Guntur Melati": 159,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Pulogebang",
+      "total": 22530,
+      "destinations": {
+        "Leuwipanjang": 2391,
+        "Baranangsiang": 113,
+        "Guntur Melati": 3102,
+        "Ciakar": 26,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 51,
+        "Indihiang": 23,
+        "Klari": 8956,
+        "Banjar": 525,
+        "Subang": 6637,
+        "Harjamukti": 706
+      }
+    },
+    {
+      "origin": "Tanjung Priok",
+      "total": 18594,
+      "destinations": {
+        "Leuwipanjang": 11934,
+        "Baranangsiang": 438,
+        "Guntur Melati": 2069,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 4068,
+        "Banjar": 85,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Purabaya",
+      "total": 17707,
+      "destinations": {
+        "Leuwipanjang": 6177,
+        "Baranangsiang": 202,
+        "Guntur Melati": 0,
+        "Ciakar": 228,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 5,
+        "Indihiang": 10,
+        "Klari": 0,
+        "Banjar": 5845,
+        "Subang": 0,
+        "Harjamukti": 5240
+      }
+    },
+    {
+      "origin": "Lebak Bulus",
+      "total": 17568,
+      "destinations": {
+        "Leuwipanjang": 17397,
+        "Baranangsiang": 0,
+        "Guntur Melati": 150,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 21,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Bulupitu",
+      "total": 16855,
+      "destinations": {
+        "Leuwipanjang": 296,
+        "Baranangsiang": 627,
+        "Guntur Melati": 1039,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 17,
+        "Jatijajar": 231,
+        "Indihiang": 93,
+        "Klari": 577,
+        "Banjar": 13919,
+        "Subang": 0,
+        "Harjamukti": 56
+      }
+    },
+    {
+      "origin": "Kalijaya Cikarang",
+      "total": 16199,
+      "destinations": {
+        "Leuwipanjang": 347,
+        "Baranangsiang": 0,
+        "Guntur Melati": 11863,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 3594,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 157,
+        "Banjar": 238,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Sidareja",
+      "total": 16101,
+      "destinations": {
+        "Leuwipanjang": 8,
+        "Baranangsiang": 105,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 58,
+        "Klari": 29,
+        "Banjar": 15901,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Leuwiliang",
+      "total": 15584,
+      "destinations": {
+        "Leuwipanjang": 15541,
+        "Baranangsiang": 6,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 26,
+        "Klari": 11,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Kuningan",
+      "total": 13059,
+      "destinations": {
+        "Leuwipanjang": 738,
+        "Baranangsiang": 8480,
+        "Guntur Melati": 204,
+        "Ciakar": 116,
+        "KH. Ahmad Sanusi": 465,
+        "Jatijajar": 1474,
+        "Indihiang": 0,
+        "Klari": 1576,
+        "Banjar": 6,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Ciakar",
+      "total": 11725,
+      "destinations": {
+        "Leuwipanjang": 7574,
+        "Baranangsiang": 81,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 4070
+      }
+    },
+    {
+      "origin": "Ciledug",
+      "total": 11103,
+      "destinations": {
+        "Leuwipanjang": 3410,
+        "Baranangsiang": 0,
+        "Guntur Melati": 67,
+        "Ciakar": 4345,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 3281
+      }
+    },
+    {
+      "origin": "Bangga Bangun Desa",
+      "total": 10140,
+      "destinations": {
+        "Leuwipanjang": 44,
+        "Baranangsiang": 319,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 20,
+        "Klari": 435,
+        "Banjar": 9118,
+        "Subang": 0,
+        "Harjamukti": 204
+      }
+    },
+    {
+      "origin": "Giwangan",
+      "total": 8860,
+      "destinations": {
+        "Leuwipanjang": 2979,
+        "Baranangsiang": 367,
+        "Guntur Melati": 17,
+        "Ciakar": 79,
+        "KH. Ahmad Sanusi": 2126,
+        "Jatijajar": 287,
+        "Indihiang": 2,
+        "Klari": 578,
+        "Banjar": 2137,
+        "Subang": 0,
+        "Harjamukti": 288
+      }
+    },
+    {
+      "origin": "Arjosari",
+      "total": 8560,
+      "destinations": {
+        "Leuwipanjang": 5379,
+        "Baranangsiang": 1057,
+        "Guntur Melati": 0,
+        "Ciakar": 90,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 220,
+        "Indihiang": 0,
+        "Klari": 33,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 1781
+      }
+    },
+    {
+      "origin": "Jagorawi",
+      "total": 8032,
+      "destinations": {
+        "Leuwipanjang": 7996,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 19,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 17,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Mangkang",
+      "total": 7775,
+      "destinations": {
+        "Leuwipanjang": 1584,
+        "Baranangsiang": 848,
+        "Guntur Melati": 0,
+        "Ciakar": 44,
+        "KH. Ahmad Sanusi": 630,
+        "Jatijajar": 0,
+        "Indihiang": 5,
+        "Klari": 8,
+        "Banjar": 206,
+        "Subang": 0,
+        "Harjamukti": 4450
+      }
+    },
+    {
+      "origin": "Cijulang",
+      "total": 7667,
+      "destinations": {
+        "Leuwipanjang": 119,
+        "Baranangsiang": 49,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 11,
+        "Jatijajar": 0,
+        "Indihiang": 621,
+        "Klari": 0,
+        "Banjar": 6867,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Tingkir",
+      "total": 6969,
+      "destinations": {
+        "Leuwipanjang": 1445,
+        "Baranangsiang": 3767,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 1201,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 556
+      }
+    },
+    {
+      "origin": "Alam Barajo",
+      "total": 5016,
+      "destinations": {
+        "Leuwipanjang": 2150,
+        "Baranangsiang": 1390,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 1081,
+        "Jatijajar": 179,
+        "Indihiang": 0,
+        "Klari": 48,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 168
+      }
+    },
+    {
+      "origin": "Muara Bungo",
+      "total": 4980,
+      "destinations": {
+        "Leuwipanjang": 422,
+        "Baranangsiang": 4415,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 101,
+        "Jatijajar": 12,
+        "Indihiang": 0,
+        "Klari": 30,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Mengwi",
+      "total": 4944,
+      "destinations": {
+        "Leuwipanjang": 2798,
+        "Baranangsiang": 708,
+        "Guntur Melati": 0,
+        "Ciakar": 349,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 18,
+        "Banjar": 131,
+        "Subang": 0,
+        "Harjamukti": 940
+      }
+    },
+    {
+      "origin": "Purboyo",
+      "total": 4930,
+      "destinations": {
+        "Leuwipanjang": 1306,
+        "Baranangsiang": 594,
+        "Guntur Melati": 0,
+        "Ciakar": 2,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 54,
+        "Indihiang": 0,
+        "Klari": 2,
+        "Banjar": 151,
+        "Subang": 0,
+        "Harjamukti": 2821
+      }
+    },
+    {
+      "origin": "Tirtonadi",
+      "total": 4786,
+      "destinations": {
+        "Leuwipanjang": 2218,
+        "Baranangsiang": 74,
+        "Guntur Melati": 0,
+        "Ciakar": 280,
+        "KH. Ahmad Sanusi": 314,
+        "Jatijajar": 36,
+        "Indihiang": 47,
+        "Klari": 5,
+        "Banjar": 732,
+        "Subang": 0,
+        "Harjamukti": 1080
+      }
+    },
+    {
+      "origin": "Kertonegoro",
+      "total": 4784,
+      "destinations": {
+        "Leuwipanjang": 1014,
+        "Baranangsiang": 3110,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 15,
+        "Jatijajar": 58,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 66,
+        "Subang": 0,
+        "Harjamukti": 521
+      }
+    },
+    {
+      "origin": "Bus Lebak Bulus",
+      "total": 4581,
+      "destinations": {
+        "Leuwipanjang": 66,
+        "Baranangsiang": 5,
+        "Guntur Melati": 4351,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 14,
+        "Klari": 145,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Tegal",
+      "total": 4558,
+      "destinations": {
+        "Leuwipanjang": 381,
+        "Baranangsiang": 979,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 46,
+        "Indihiang": 11,
+        "Klari": 330,
+        "Banjar": 751,
+        "Subang": 0,
+        "Harjamukti": 2060
+      }
+    },
+    {
+      "origin": "Subang",
+      "total": 4180,
+      "destinations": {
+        "Leuwipanjang": 39,
+        "Baranangsiang": 218,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 2,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 3921,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Harjamukti",
+      "total": 4141,
+      "destinations": {
+        "Leuwipanjang": 285,
+        "Baranangsiang": 558,
+        "Guntur Melati": 10,
+        "Ciakar": 209,
+        "KH. Ahmad Sanusi": 1382,
+        "Jatijajar": 3,
+        "Indihiang": 1618,
+        "Klari": 76,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Ir. Soekarno",
+      "total": 4077,
+      "destinations": {
+        "Leuwipanjang": 608,
+        "Baranangsiang": 503,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 2248,
+        "Jatijajar": 603,
+        "Indihiang": 0,
+        "Klari": 97,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 18
+      }
+    },
+    {
+      "origin": "Alang-Alang Lebar",
+      "total": 3929,
+      "destinations": {
+        "Leuwipanjang": 2077,
+        "Baranangsiang": 1657,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 44,
+        "Indihiang": 0,
+        "Klari": 99,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 52
+      }
+    },
+    {
+      "origin": "Giri Adipura",
+      "total": 3736,
+      "destinations": {
+        "Leuwipanjang": 461,
+        "Baranangsiang": 339,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 2480,
+        "Jatijajar": 70,
+        "Indihiang": 0,
+        "Klari": 131,
+        "Banjar": 105,
+        "Subang": 0,
+        "Harjamukti": 150
+      }
+    },
+    {
+      "origin": "Anak Air",
+      "total": 3680,
+      "destinations": {
+        "Leuwipanjang": 727,
+        "Baranangsiang": 768,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 1301,
+        "Jatijajar": 571,
+        "Indihiang": 0,
+        "Klari": 313,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Tidar",
+      "total": 3516,
+      "destinations": {
+        "Leuwipanjang": 992,
+        "Baranangsiang": 885,
+        "Guntur Melati": 14,
+        "Ciakar": 69,
+        "KH. Ahmad Sanusi": 1383,
+        "Jatijajar": 13,
+        "Indihiang": 16,
+        "Klari": 37,
+        "Banjar": 15,
+        "Subang": 0,
+        "Harjamukti": 92
+      }
+    },
+    {
+      "origin": "Pekalongan",
+      "total": 3471,
+      "destinations": {
+        "Leuwipanjang": 83,
+        "Baranangsiang": 1424,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 271,
+        "Indihiang": 26,
+        "Klari": 595,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 1072
+      }
+    },
+    {
+      "origin": "Mandala Lebak",
+      "total": 2904,
+      "destinations": {
+        "Leuwipanjang": 5,
+        "Baranangsiang": 20,
+        "Guntur Melati": 2879,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Mendolo",
+      "total": 2903,
+      "destinations": {
+        "Leuwipanjang": 1700,
+        "Baranangsiang": 488,
+        "Guntur Melati": 0,
+        "Ciakar": 69,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 67,
+        "Indihiang": 0,
+        "Klari": 373,
+        "Banjar": 195,
+        "Subang": 0,
+        "Harjamukti": 11
+      }
+    },
+    {
+      "origin": "Bawen",
+      "total": 2880,
+      "destinations": {
+        "Leuwipanjang": 191,
+        "Baranangsiang": 1628,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 1012,
+        "Jatijajar": 0,
+        "Indihiang": 4,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 45
+      }
+    },
+    {
+      "origin": "Labuan",
+      "total": 2531,
+      "destinations": {
+        "Leuwipanjang": 1409,
+        "Baranangsiang": 0,
+        "Guntur Melati": 614,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 502,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 6
+      }
+    },
+    {
+      "origin": "Purworejo",
+      "total": 2126,
+      "destinations": {
+        "Leuwipanjang": 680,
+        "Baranangsiang": 316,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 576,
+        "Jatijajar": 8,
+        "Indihiang": 123,
+        "Klari": 253,
+        "Banjar": 156,
+        "Subang": 0,
+        "Harjamukti": 14
+      }
+    },
+    {
+      "origin": "Kebumen",
+      "total": 2104,
+      "destinations": {
+        "Leuwipanjang": 24,
+        "Baranangsiang": 37,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 691,
+        "Jatijajar": 7,
+        "Indihiang": 6,
+        "Klari": 7,
+        "Banjar": 1332,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Jati",
+      "total": 2061,
+      "destinations": {
+        "Leuwipanjang": 292,
+        "Baranangsiang": 766,
+        "Guntur Melati": 0,
+        "Ciakar": 19,
+        "KH. Ahmad Sanusi": 29,
+        "Jatijajar": 6,
+        "Indihiang": 0,
+        "Klari": 23,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 926
+      }
+    },
+    {
+      "origin": "Betung",
+      "total": 2044,
+      "destinations": {
+        "Leuwipanjang": 149,
+        "Baranangsiang": 1317,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 573,
+        "Jatijajar": 5,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Bus Cililitan",
+      "total": 2030,
+      "destinations": {
+        "Leuwipanjang": 10,
+        "Baranangsiang": 0,
+        "Guntur Melati": 2020,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Bandar Raya Payung Sekaki",
+      "total": 1945,
+      "destinations": {
+        "Leuwipanjang": 532,
+        "Baranangsiang": 1212,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 10,
+        "Jatijajar": 12,
+        "Indihiang": 0,
+        "Klari": 119,
+        "Banjar": 45,
+        "Subang": 0,
+        "Harjamukti": 15
+      }
+    },
+    {
+      "origin": "Induk Pemalang",
+      "total": 1871,
+      "destinations": {
+        "Leuwipanjang": 125,
+        "Baranangsiang": 1015,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 62,
+        "Indihiang": 0,
+        "Klari": 153,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 516
+      }
+    },
+    {
+      "origin": "Bareh Solok",
+      "total": 1866,
+      "destinations": {
+        "Leuwipanjang": 108,
+        "Baranangsiang": 1137,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 475,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 130,
+        "Banjar": 16,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Kiliran Jao",
+      "total": 1835,
+      "destinations": {
+        "Leuwipanjang": 35,
+        "Baranangsiang": 1556,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 159,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 85,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Jepara",
+      "total": 1778,
+      "destinations": {
+        "Leuwipanjang": 55,
+        "Baranangsiang": 57,
+        "Guntur Melati": 0,
+        "Ciakar": 1,
+        "KH. Ahmad Sanusi": 1471,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 165,
+        "Banjar": 11,
+        "Subang": 0,
+        "Harjamukti": 18
+      }
+    },
+    {
+      "origin": "Tawangalun",
+      "total": 1085,
+      "destinations": {
+        "Leuwipanjang": 27,
+        "Baranangsiang": 761,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 15,
+        "Subang": 0,
+        "Harjamukti": 282
+      }
+    },
+    {
+      "origin": "Arya Wiraraja",
+      "total": 1008,
+      "destinations": {
+        "Leuwipanjang": 76,
+        "Baranangsiang": 228,
+        "Guntur Melati": 0,
+        "Ciakar": 107,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 21,
+        "Indihiang": 0,
+        "Klari": 15,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 561
+      }
+    },
+    {
+      "origin": "Patria",
+      "total": 983,
+      "destinations": {
+        "Leuwipanjang": 215,
+        "Baranangsiang": 352,
+        "Guntur Melati": 0,
+        "Ciakar": 99,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 77,
+        "Indihiang": 0,
+        "Klari": 6,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 234
+      }
+    },
+    {
+      "origin": "Dhaksinarga",
+      "total": 970,
+      "destinations": {
+        "Leuwipanjang": 242,
+        "Baranangsiang": 322,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 30,
+        "Jatijajar": 248,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 46,
+        "Subang": 0,
+        "Harjamukti": 82
+      }
+    },
+    {
+      "origin": "Demak",
+      "total": 837,
+      "destinations": {
+        "Leuwipanjang": 217,
+        "Baranangsiang": 610,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 10,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Cepu",
+      "total": 833,
+      "destinations": {
+        "Leuwipanjang": 406,
+        "Baranangsiang": 344,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 2,
+        "Indihiang": 0,
+        "Klari": 81,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Amplas",
+      "total": 829,
+      "destinations": {
+        "Leuwipanjang": 179,
+        "Baranangsiang": 319,
+        "Guntur Melati": 14,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 61,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 174,
+        "Banjar": 26,
+        "Subang": 15,
+        "Harjamukti": 41
+      }
+    },
+    {
+      "origin": "Bobotsari",
+      "total": 796,
+      "destinations": {
+        "Leuwipanjang": 104,
+        "Baranangsiang": 477,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 66,
+        "Indihiang": 0,
+        "Klari": 93,
+        "Banjar": 47,
+        "Subang": 0,
+        "Harjamukti": 9
+      }
+    },
+    {
+      "origin": "Selo Aji",
+      "total": 779,
+      "destinations": {
+        "Leuwipanjang": 39,
+        "Baranangsiang": 84,
+        "Guntur Melati": 0,
+        "Ciakar": 96,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 33,
+        "Indihiang": 0,
+        "Klari": 41,
+        "Banjar": 84,
+        "Subang": 0,
+        "Harjamukti": 402
+      }
+    },
+    {
+      "origin": "Kambang Putih",
+      "total": 687,
+      "destinations": {
+        "Leuwipanjang": 86,
+        "Baranangsiang": 8,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 593
+      }
+    },
+    {
+      "origin": "Dumai",
+      "total": 666,
+      "destinations": {
+        "Leuwipanjang": 388,
+        "Baranangsiang": 16,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 199,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 37,
+        "Banjar": 17,
+        "Subang": 0,
+        "Harjamukti": 9
+      }
+    },
+    {
+      "origin": "Parungkuda",
+      "total": 645,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 645,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Tamanan",
+      "total": 564,
+      "destinations": {
+        "Leuwipanjang": 48,
+        "Baranangsiang": 409,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 107
+      }
+    },
+    {
+      "origin": "Osowilangun",
+      "total": 556,
+      "destinations": {
+        "Leuwipanjang": 96,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 88,
+        "Indihiang": 0,
+        "Klari": 2,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 370
+      }
+    },
+    {
+      "origin": "Jati Asih",
+      "total": 544,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 17,
+        "Guntur Melati": 23,
+        "Ciakar": 306,
+        "KH. Ahmad Sanusi": 158,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 20,
+        "Banjar": 20,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Bus Stop Jati Bening",
+      "total": 529,
+      "destinations": {
+        "Leuwipanjang": 122,
+        "Baranangsiang": 121,
+        "Guntur Melati": 163,
+        "Ciakar": 97,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 15,
+        "Subang": 0,
+        "Harjamukti": 11
+      }
+    },
+    {
+      "origin": "Banyuangga",
+      "total": 522,
+      "destinations": {
+        "Leuwipanjang": 13,
+        "Baranangsiang": 4,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 15,
+        "Subang": 0,
+        "Harjamukti": 490
+      }
+    },
+    {
+      "origin": "Jati Pariaman",
+      "total": 522,
+      "destinations": {
+        "Leuwipanjang": 216,
+        "Baranangsiang": 114,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 175,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 17,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Simpang Aur",
+      "total": 499,
+      "destinations": {
+        "Leuwipanjang": 320,
+        "Baranangsiang": 64,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 95,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 16,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 4
+      }
+    },
+    {
+      "origin": "Wangon",
+      "total": 491,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 491,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Cikampek",
+      "total": 453,
+      "destinations": {
+        "Leuwipanjang": 31,
+        "Baranangsiang": 117,
+        "Guntur Melati": 13,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 250,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 42,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Rajabasa",
+      "total": 440,
+      "destinations": {
+        "Leuwipanjang": 6,
+        "Baranangsiang": 164,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 9,
+        "Indihiang": 0,
+        "Klari": 138,
+        "Banjar": 33,
+        "Subang": 0,
+        "Harjamukti": 90
+      }
+    },
+    {
+      "origin": "Pacitan",
+      "total": 435,
+      "destinations": {
+        "Leuwipanjang": 294,
+        "Baranangsiang": 64,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 6,
+        "Indihiang": 0,
+        "Klari": 33,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 38
+      }
+    },
+    {
+      "origin": "Ciawigebang",
+      "total": 428,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 20,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 54,
+        "Jatijajar": 339,
+        "Indihiang": 0,
+        "Klari": 15,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Muara Enim",
+      "total": 398,
+      "destinations": {
+        "Leuwipanjang": 349,
+        "Baranangsiang": 49,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Wado",
+      "total": 397,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 393,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 4,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Cikurubuk",
+      "total": 389,
+      "destinations": {
+        "Leuwipanjang": 5,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 384,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Pandaan",
+      "total": 385,
+      "destinations": {
+        "Leuwipanjang": 230,
+        "Baranangsiang": 2,
+        "Guntur Melati": 0,
+        "Ciakar": 153,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Kreneng",
+      "total": 363,
+      "destinations": {
+        "Leuwipanjang": 143,
+        "Baranangsiang": 133,
+        "Guntur Melati": 0,
+        "Ciakar": 68,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 19,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Ubung",
+      "total": 349,
+      "destinations": {
+        "Leuwipanjang": 141,
+        "Baranangsiang": 75,
+        "Guntur Melati": 0,
+        "Ciakar": 22,
+        "KH. Ahmad Sanusi": 27,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 49,
+        "Banjar": 29,
+        "Subang": 0,
+        "Harjamukti": 6
+      }
+    },
+    {
+      "origin": "Dukuhsalam",
+      "total": 348,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 337,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 11,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Karya Jaya",
+      "total": 340,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 174,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 86,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 80,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Doro",
+      "total": 330,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 231,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 5,
+        "Indihiang": 0,
+        "Klari": 94,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Sri Bulan Sarolangun",
+      "total": 326,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 326,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Baturetno",
+      "total": 325,
+      "destinations": {
+        "Leuwipanjang": 65,
+        "Baranangsiang": 36,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 194,
+        "Jatijajar": 3,
+        "Indihiang": 0,
+        "Klari": 12,
+        "Banjar": 15,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Kalipucang",
+      "total": 314,
+      "destinations": {
+        "Leuwipanjang": 94,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 220,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Batu Nungku",
+      "total": 305,
+      "destinations": {
+        "Leuwipanjang": 140,
+        "Baranangsiang": 165,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Adiwerna",
+      "total": 296,
+      "destinations": {
+        "Leuwipanjang": 27,
+        "Baranangsiang": 249,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 9,
+        "Banjar": 11,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Air Sebakul",
+      "total": 268,
+      "destinations": {
+        "Leuwipanjang": 259,
+        "Baranangsiang": 9,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Batu Kuning",
+      "total": 252,
+      "destinations": {
+        "Leuwipanjang": 241,
+        "Baranangsiang": 11,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Purwodadi",
+      "total": 226,
+      "destinations": {
+        "Leuwipanjang": 193,
+        "Baranangsiang": 10,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 23,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Pameungpeuk",
+      "total": 213,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 213,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Bus Stop Slipi",
+      "total": 208,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 208,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Bus Pulogadung",
+      "total": 204,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 4,
+        "Guntur Melati": 41,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 141,
+        "Banjar": 6,
+        "Subang": 0,
+        "Harjamukti": 12
+      }
+    },
+    {
+      "origin": "Tangerang",
+      "total": 204,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 204,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Balongsari",
+      "total": 199,
+      "destinations": {
+        "Leuwipanjang": 170,
+        "Baranangsiang": 15,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 3,
+        "Indihiang": 0,
+        "Klari": 11,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Rajekwesi",
+      "total": 194,
+      "destinations": {
+        "Leuwipanjang": 38,
+        "Baranangsiang": 96,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 10,
+        "Indihiang": 0,
+        "Klari": 50,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Tipe C Wonosari",
+      "total": 181,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 24,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 6,
+        "Indihiang": 0,
+        "Klari": 38,
+        "Banjar": 113,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Cibeureum",
+      "total": 176,
+      "destinations": {
+        "Leuwipanjang": 4,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 172,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Wonogiri",
+      "total": 169,
+      "destinations": {
+        "Leuwipanjang": 169,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Jl. Raya Solo - Yogyakarta",
+      "total": 166,
+      "destinations": {
+        "Leuwipanjang": 55,
+        "Baranangsiang": 14,
+        "Guntur Melati": 0,
+        "Ciakar": 19,
+        "KH. Ahmad Sanusi": 25,
+        "Jatijajar": 8,
+        "Indihiang": 0,
+        "Klari": 4,
+        "Banjar": 41,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Ciamis",
+      "total": 142,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 11,
+        "Klari": 0,
+        "Banjar": 131,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Bangkalan",
+      "total": 141,
+      "destinations": {
+        "Leuwipanjang": 24,
+        "Baranangsiang": 18,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 25,
+        "Indihiang": 0,
+        "Klari": 14,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 60
+      }
+    },
+    {
+      "origin": "Gayatri",
+      "total": 136,
+      "destinations": {
+        "Leuwipanjang": 39,
+        "Baranangsiang": 9,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 59,
+        "Banjar": 13,
+        "Subang": 0,
+        "Harjamukti": 16
+      }
+    },
+    {
+      "origin": "Wangaya",
+      "total": 133,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 71,
+        "Guntur Melati": 0,
+        "Ciakar": 15,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 47,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Bojong Lopang",
+      "total": 127,
+      "destinations": {
+        "Leuwipanjang": 23,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 104,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Cibingbin",
+      "total": 126,
+      "destinations": {
+        "Leuwipanjang": 5,
+        "Baranangsiang": 11,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 80,
+        "Jatijajar": 30,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Madureso",
+      "total": 118,
+      "destinations": {
+        "Leuwipanjang": 23,
+        "Baranangsiang": 42,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 48,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 5,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Bus Grogol",
+      "total": 107,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 10,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 97,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Kadugede",
+      "total": 105,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 105,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Ajibarang",
+      "total": 94,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 8,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 31,
+        "Indihiang": 0,
+        "Klari": 30,
+        "Banjar": 25,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Halte Pelabuhan Tanjung Perak",
+      "total": 93,
+      "destinations": {
+        "Leuwipanjang": 37,
+        "Baranangsiang": 56,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Sekayu",
+      "total": 93,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 93,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Tegal Sari",
+      "total": 92,
+      "destinations": {
+        "Leuwipanjang": 47,
+        "Baranangsiang": 13,
+        "Guntur Melati": 0,
+        "Ciakar": 12,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 6,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 14,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Batek",
+      "total": 90,
+      "destinations": {
+        "Leuwipanjang": 10,
+        "Baranangsiang": 23,
+        "Guntur Melati": 0,
+        "Ciakar": 22,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 1,
+        "Indihiang": 0,
+        "Klari": 34,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "7 Ulu",
+      "total": 88,
+      "destinations": {
+        "Leuwipanjang": 41,
+        "Baranangsiang": 32,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 15,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Sri Tanjung",
+      "total": 85,
+      "destinations": {
+        "Leuwipanjang": 22,
+        "Baranangsiang": 19,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 15,
+        "Subang": 0,
+        "Harjamukti": 29
+      }
+    },
+    {
+      "origin": "Padang Aro",
+      "total": 73,
+      "destinations": {
+        "Leuwipanjang": 8,
+        "Baranangsiang": 33,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 32,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Banjarsari",
+      "total": 67,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 5,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 62,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Bukit Surungan",
+      "total": 62,
+      "destinations": {
+        "Leuwipanjang": 4,
+        "Baranangsiang": 30,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 28,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Halte Kenjeran Park",
+      "total": 62,
+      "destinations": {
+        "Leuwipanjang": 55,
+        "Baranangsiang": 7,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Bus Stop Cawang",
+      "total": 61,
+      "destinations": {
+        "Leuwipanjang": 44,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 17,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Cilimus",
+      "total": 57,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 57,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Nendagung Pagar Alam",
+      "total": 57,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 57,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Simpang Periuk",
+      "total": 55,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 5,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 45,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 5,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Bangko",
+      "total": 54,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 54,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Payakumbuh",
+      "total": 54,
+      "destinations": {
+        "Leuwipanjang": 54,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Batoh",
+      "total": 53,
+      "destinations": {
+        "Leuwipanjang": 53,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Batay",
+      "total": 52,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 16,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 36,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Pancasila",
+      "total": 51,
+      "destinations": {
+        "Leuwipanjang": 8,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 43,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Purwantoro",
+      "total": 51,
+      "destinations": {
+        "Leuwipanjang": 23,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 28,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Pringsewu",
+      "total": 50,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 50,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Bandara Soekarno Hatta",
+      "total": 49,
+      "destinations": {
+        "Leuwipanjang": 19,
+        "Baranangsiang": 0,
+        "Guntur Melati": 12,
+        "Ciakar": 18,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Ampera",
+      "total": 47,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 42,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 5
+      }
+    },
+    {
+      "origin": "Kongsi",
+      "total": 46,
+      "destinations": {
+        "Leuwipanjang": 16,
+        "Baranangsiang": 23,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 7,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Simpang Nangka",
+      "total": 45,
+      "destinations": {
+        "Leuwipanjang": 45,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Induk",
+      "total": 44,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 44,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Sungai Limau",
+      "total": 44,
+      "destinations": {
+        "Leuwipanjang": 6,
+        "Baranangsiang": 38,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Cidahu",
+      "total": 42,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 42,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Salaman",
+      "total": 42,
+      "destinations": {
+        "Leuwipanjang": 6,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 36,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Surodakan",
+      "total": 41,
+      "destinations": {
+        "Leuwipanjang": 12,
+        "Baranangsiang": 14,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 15,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Brawijaya",
+      "total": 40,
+      "destinations": {
+        "Leuwipanjang": 13,
+        "Baranangsiang": 19,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 8,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Bumiayu",
+      "total": 40,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 5,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 35,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Drs. Prayitno",
+      "total": 39,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 10,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 29,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Pandeglang",
+      "total": 38,
+      "destinations": {
+        "Leuwipanjang": 38,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Bunder",
+      "total": 37,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 31,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 1,
+        "Indihiang": 0,
+        "Klari": 5,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Ambulu",
+      "total": 31,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 31,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Genteng",
+      "total": 31,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 31,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Bantingan",
+      "total": 30,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 30,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Bus Stop Kebon Nanas",
+      "total": 30,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 30,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Banjarnegara",
+      "total": 29,
+      "destinations": {
+        "Leuwipanjang": 5,
+        "Baranangsiang": 24,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Magetan",
+      "total": 29,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 29,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Batu",
+      "total": 28,
+      "destinations": {
+        "Leuwipanjang": 21,
+        "Baranangsiang": 7,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Halte dan Feeder Pulau Kembang",
+      "total": 28,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 12,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 16,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Kalianget",
+      "total": 27,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 11,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 16,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Mandalika",
+      "total": 27,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 21,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 6
+      }
+    },
+    {
+      "origin": "Halte Park And Ride Trans Jogja Ambarketawang Gamping",
+      "total": 26,
+      "destinations": {
+        "Leuwipanjang": 8,
+        "Baranangsiang": 11,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 7,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Secang",
+      "total": 26,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 26,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Kajen",
+      "total": 25,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 25,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Pilangsari",
+      "total": 25,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 3,
+        "Banjar": 22,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Bus Kampung Melayu",
+      "total": 24,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 24,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Kampung Bugis Paleleh",
+      "total": 24,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 24,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Sindang",
+      "total": 24,
+      "destinations": {
+        "Leuwipanjang": 24,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Tipe A Pinang Baris Medan",
+      "total": 23,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 23,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Sidangoli",
+      "total": 22,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 22,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Padang Bulan",
+      "total": 21,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 19,
+        "Indihiang": 0,
+        "Klari": 2,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Pariwisata Baturaden",
+      "total": 21,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 21,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Bus Stop Cempaka Putih",
+      "total": 20,
+      "destinations": {
+        "Leuwipanjang": 20,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Indramayu",
+      "total": 20,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 20,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Cibadak",
+      "total": 19,
+      "destinations": {
+        "Leuwipanjang": 10,
+        "Baranangsiang": 4,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 5,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Karangkobar",
+      "total": 19,
+      "destinations": {
+        "Leuwipanjang": 19,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Stasiun Tawang",
+      "total": 18,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 13,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 5,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Kota Sukabumi",
+      "total": 17,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 5,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 12,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Tipe C Labuan",
+      "total": 17,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 17,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Tirtomoyo",
+      "total": 16,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 16,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Bus Stop Cipularang",
+      "total": 15,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 15,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Dara",
+      "total": 15,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 15
+      }
+    },
+    {
+      "origin": "Bangkinang",
+      "total": 14,
+      "destinations": {
+        "Leuwipanjang": 5,
+        "Baranangsiang": 9,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Gerbangsari",
+      "total": 14,
+      "destinations": {
+        "Leuwipanjang": 14,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Pasar Baru",
+      "total": 14,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 14,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Aweh",
+      "total": 13,
+      "destinations": {
+        "Leuwipanjang": 13,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Bandar Jaya",
+      "total": 13,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 13,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Halte Tunjungan",
+      "total": 13,
+      "destinations": {
+        "Leuwipanjang": 6,
+        "Baranangsiang": 7,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Jombor",
+      "total": 13,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 13,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Kemiling",
+      "total": 13,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 13,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Padayungan",
+      "total": 12,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 12,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Purwakarta",
+      "total": 12,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 8,
+        "Banjar": 4,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Caruban",
+      "total": 11,
+      "destinations": {
+        "Leuwipanjang": 6,
+        "Baranangsiang": 5,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Gaya Baru",
+      "total": 11,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 11,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Kota Kotabumi",
+      "total": 11,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 11,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Rumbai",
+      "total": 11,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 11,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Sako",
+      "total": 11,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 11,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Sri Bulan",
+      "total": 11,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 2,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 9
+      }
+    },
+    {
+      "origin": "Picung",
+      "total": 10,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 10,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Antokan",
+      "total": 9,
+      "destinations": {
+        "Leuwipanjang": 9,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Jakabaring",
+      "total": 9,
+      "destinations": {
+        "Leuwipanjang": 9,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Maospati",
+      "total": 9,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 9,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "BRPS",
+      "total": 8,
+      "destinations": {
+        "Leuwipanjang": 8,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Bus Stop Kebon Jeruk",
+      "total": 8,
+      "destinations": {
+        "Leuwipanjang": 8,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Kepanjen",
+      "total": 8,
+      "destinations": {
+        "Leuwipanjang": 8,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Sijambi",
+      "total": 8,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 8,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Bayah",
+      "total": 7,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 7,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Carita",
+      "total": 7,
+      "destinations": {
+        "Leuwipanjang": 7,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Halte Malioboro",
+      "total": 7,
+      "destinations": {
+        "Leuwipanjang": 7,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Kediri",
+      "total": 7,
+      "destinations": {
+        "Leuwipanjang": 7,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Lemabang",
+      "total": 7,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 7,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Luragung",
+      "total": 7,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 7,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Purbalingga",
+      "total": 7,
+      "destinations": {
+        "Leuwipanjang": 5,
+        "Baranangsiang": 2,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Gunung Tua",
+      "total": 6,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 6,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Koto Nan Ampek",
+      "total": 6,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 6,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Lubuk Harjo",
+      "total": 6,
+      "destinations": {
+        "Leuwipanjang": 6,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Semin",
+      "total": 6,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 6,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Soreang",
+      "total": 6,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 6,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Tangkoko",
+      "total": 6,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 6,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "BAYANGAN PELABUHAN BAKAUHENI",
+      "total": 5,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 5,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Balikpapan Permai",
+      "total": 5,
+      "destinations": {
+        "Leuwipanjang": 5,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Bondowoso",
+      "total": 5,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 5,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Bratang",
+      "total": 5,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 5,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Bus Stop Pasar Rebo",
+      "total": 5,
+      "destinations": {
+        "Leuwipanjang": 5,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Cibareno",
+      "total": 5,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 5,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Gilimanuk",
+      "total": 5,
+      "destinations": {
+        "Leuwipanjang": 5,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Kayuagung",
+      "total": 5,
+      "destinations": {
+        "Leuwipanjang": 5,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Pasar Banto",
+      "total": 5,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 5,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Rinding",
+      "total": 5,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 5,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Slogohimo",
+      "total": 5,
+      "destinations": {
+        "Leuwipanjang": 5,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Tambarana",
+      "total": 5,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 5,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Bus Stop Padalarang",
+      "total": 4,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 2,
+        "Indihiang": 2,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Eromoko",
+      "total": 4,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 4,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Induk Bulukumba",
+      "total": 4,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 4,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Ngadirajo",
+      "total": 4,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 4,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Panjang",
+      "total": 4,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 4,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Simpang Ampek",
+      "total": 4,
+      "destinations": {
+        "Leuwipanjang": 4,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Alahan Panjang",
+      "total": 3,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 3,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Batu Nadua",
+      "total": 3,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 3,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Bukit Lawang",
+      "total": 3,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 3,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Lamongan",
+      "total": 3,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 3,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Paal X",
+      "total": 3,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 3,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Panggul",
+      "total": 3,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 3,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Bangko Bangko",
+      "total": 2,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 2,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Betungan",
+      "total": 2,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 2,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Cianjur",
+      "total": 2,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 2,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Gading Rejo",
+      "total": 2,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 2,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Kutoarjo",
+      "total": 2,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 2,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Padangan",
+      "total": 2,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 2,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Plaju",
+      "total": 2,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 2,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Arjasa",
+      "total": 1,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 0,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 1,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    },
+    {
+      "origin": "Tawangmangu",
+      "total": 1,
+      "destinations": {
+        "Leuwipanjang": 0,
+        "Baranangsiang": 0,
+        "Guntur Melati": 0,
+        "Ciakar": 1,
+        "KH. Ahmad Sanusi": 0,
+        "Jatijajar": 0,
+        "Indihiang": 0,
+        "Klari": 0,
+        "Banjar": 0,
+        "Subang": 0,
+        "Harjamukti": 0
+      }
+    }
+  ]
+}
