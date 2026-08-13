@@ -1830,12 +1830,21 @@ function setupEventListeners() {
       });
     }, 180);
   });
+  // Menu item click handler
   document.querySelectorAll('.menu-item').forEach(item => {
     item.addEventListener('click', function () {
       document.getElementById('sideMenuOverlay').classList.add('hidden');
       const potret = this.getAttribute('data-potret');
       if (potret) { bukaPotret(potret); return; }
       aktifkanView(this.getAttribute('data-view'));
+    });
+  });
+
+  // Menu group accordion toggle
+  document.querySelectorAll('.menu-group-header').forEach(header => {
+    header.addEventListener('click', function () {
+      const group = this.parentElement;
+      group.classList.toggle('collapsed');
     });
   });
   document.getElementById('btnTutupRouteBuilder').addEventListener('click', function () {

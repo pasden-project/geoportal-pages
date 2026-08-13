@@ -873,13 +873,61 @@
     list-style: none;
     padding: 12px 0;
     margin: 0;
+    overflow-y: auto;
+    flex: 1;
   }
-  .menu-item {
+
+  /* Menu group (expandable accordion) */
+  .menu-group {
+    list-style: none;
+  }
+  .menu-group-header {
     display: flex;
     align-items: center;
     gap: 12px;
     padding: 16px 20px;
     font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .menu-group-header:hover {
+    background: var(--gray-bg);
+  }
+  .menu-group-header svg:first-child {
+    flex-shrink: 0;
+  }
+  .menu-group-header span {
+    flex: 1;
+  }
+  .menu-chevron {
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+    color: var(--gray-text);
+  }
+  .menu-group.collapsed .menu-chevron {
+    transform: rotate(-90deg);
+  }
+  .menu-group-body {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 1000px;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .menu-group.collapsed .menu-group-body {
+    max-height: 0;
+  }
+
+  .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px 14px 52px;
+    font-size: 14px;
     font-weight: 600;
     color: var(--gray-text);
     cursor: pointer;
@@ -894,6 +942,13 @@
     background: var(--blue-light);
     color: var(--blue);
     border-left-color: var(--blue);
+  }
+  .menu-item svg {
+    flex-shrink: 0;
+  }
+  .potret-ico {
+    font-size: 18px;
+    flex-shrink: 0;
   }
 
   .search-results {
@@ -1541,12 +1596,22 @@
   [data-theme="dark"] .menu-header {
     border-bottom-color: rgba(148, 163, 184, 0.15);
   }
+  [data-theme="dark"] .menu-group-header {
+    color: #e2e8f0;
+  }
+  [data-theme="dark"] .menu-group-header:hover {
+    background: #16203a;
+  }
+  [data-theme="dark"] .menu-item {
+    color: #94a3b8;
+  }
   [data-theme="dark"] .menu-item:hover,
   [data-theme="dark"] .menu-item:active {
     background: #16203a;
   }
   [data-theme="dark"] .menu-item.active {
     background: rgba(59, 130, 246, 0.16);
+    color: #3b82f6;
   }
   [data-theme="dark"] .search-result-item {
     border-bottom-color: rgba(148, 163, 184, 0.12);
