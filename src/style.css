@@ -459,17 +459,29 @@
     bottom: 0;
     z-index: 30;
     background: var(--gray-bg);
-    border-radius: 32px 32px 0 0;
-    box-shadow: 0 -10px 40px rgba(15, 23, 42, 0.15);
+    border-radius: 24px 24px 0 0;
+    box-shadow: 0 -4px 20px rgba(15, 23, 42, 0.12);
     height: 90vh;
     display: flex;
     flex-direction: column;
-    /* Minimized (Google Maps style): hanya handle + rounded box terlihat (~60px) */
-    transform: translateY(calc(100% - 60px - env(safe-area-inset-bottom)));
-    transition: transform 0.5s var(--ease-spring);
+    /* Google Maps style: hanya pill handle terlihat (~44px total) */
+    transform: translateY(calc(100% - 44px - env(safe-area-inset-bottom)));
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .sheet.expanded {
     transform: translateY(0);
+  }
+  /* Sembunyikan header & body saat collapsed — hanya handle visible */
+  .sheet:not(.expanded) .sheet-header,
+  .sheet:not(.expanded) .sheet-body {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .sheet.expanded .sheet-header,
+  .sheet.expanded .sheet-body {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.25s ease 0.15s; /* delay muncul setelah expand animasi */
   }
 
   /* Bottom Sheet UPPKB — tersembunyi penuh saat tertutup (tidak menumpuk dengan sheet Terminal) */
@@ -482,34 +494,39 @@
   }
 
   .sheet-handle-wrap {
-    padding: 12px 0 8px;
+    padding: 14px 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: grab;
+    cursor: pointer;
     position: relative;
+    flex-shrink: 0;
   }
   .sheet-handle {
-    width: 48px;
-    height: 5px;
-    border-radius: 3px;
-    background: #cbd5e1;
+    width: 40px;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--gray-border);
+    transition: background 0.2s ease;
   }
-  /* Panah ke atas (Google Maps style) — muncul saat collapsed, hilang saat expanded */
-  .sheet-handle-wrap::after {
-    content: "▲";
+  .sheet-handle-wrap:hover .sheet-handle {
+    background: var(--gray-text);
+  }
+  /* Panah centered (Google Maps style) — hilang saat expanded */
+  .sheet-handle-wrap::before {
+    content: "⌃";
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 14px;
-    color: var(--gray-text);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--navy);
     opacity: 1;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.25s ease, transform 0.25s ease;
     pointer-events: none;
+    line-height: 1;
   }
-  .sheet.expanded .sheet-handle-wrap::after {
+  .sheet.expanded .sheet-handle-wrap::before {
     opacity: 0;
+    transform: translateY(8px);
   }
 
   .sheet-header {
