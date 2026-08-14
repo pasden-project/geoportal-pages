@@ -4539,12 +4539,36 @@ function renderPerintisLive(body) {
   // 3. Analytics Charts
   const chartCard = document.createElement('div');
   chartCard.className = 'card potret-chart-card';
-  chartCard.innerHTML = '<h3 class="card-title">📊 Kinerja Load Factor & Penyerapan Keuangan Perintis 2025</h3><div class="potret-chart-wrap" style="height:260px;"><canvas id="perintisChart"></canvas></div>';
+  chartCard.innerHTML = '<h3 class="card-title">📊 Kinerja Load Factor & Penyerapan Keuangan Perintis 2025</h3><div class="potret-chart-wrap" style="height:290px;"><canvas id="perintisChart"></canvas></div>';
   body.appendChild(chartCard);
 
   const labels = ds.routes.map(r => r.name.replace(' - ', '–'));
-  const lfData = ds.routes.map(r => (r.summary_ytd.avg_load_factor * 100).toFixed(1));
+  const lfData = ds.routes.map(r => Number((r.summary_ytd.avg_load_factor * 100).toFixed(1)));
+  const keuData = ds.routes.map(r => Number((((r.realisasi_keuangan_ytd || 0) / (r.target_kontrak || 1)) * 100).toFixed(1)));
   const targetLine = ds.routes.map(() => 30);
+
+  const barValuePlugin = {
+    id: 'barValuePlugin',
+    afterDatasetsDraw(chart) {
+      const ctx = chart.ctx;
+      chart.data.datasets.forEach((dataset, i) => {
+        const meta = chart.getDatasetMeta(i);
+        if (meta.type === 'line') return;
+        meta.data.forEach((bar, index) => {
+          const val = dataset.data[index];
+          if (val !== undefined && val !== null) {
+            ctx.save();
+            ctx.fillStyle = dataset.backgroundColor || '#0f172a';
+            ctx.font = 'bold 11px "Plus Jakarta Sans", sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'bottom';
+            ctx.fillText(val + '%', bar.x, bar.y - 3);
+            ctx.restore();
+          }
+        });
+      });
+    }
+  };
 
   potretCharts.push(new Chart(document.getElementById('perintisChart'), {
     type: 'bar',
@@ -4552,21 +4576,34 @@ function renderPerintisLive(body) {
       labels: labels,
       datasets: [
         { label: 'Avg Load Factor (%)', data: lfData, backgroundColor: '#8b5cf6', borderRadius: 4 },
-        { label: 'Target Minimal (30%)', data: targetLine, type: 'line', borderColor: '#ef4444', borderWidth: 2, borderDash: [4, 4], pointRadius: 0 }
+        { label: 'Penyerapan Keuangan (%)', data: keuData, backgroundColor: '#0ea5e9', borderRadius: 4 },
+        { label: 'Target Minimal Load Factor (30%)', data: targetLine, type: 'line', borderColor: '#ef4444', borderWidth: 2, borderDash: [4, 4], pointRadius: 0 }
       ]
     },
+    plugins: [barValuePlugin],
     options: {
       responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { position: 'bottom' } },
-      scales: { y: { beginAtZero: true, max: 100, ticks: { callback: v => v + '%' } } }
+      layout: { padding: { top: 20 } },
+      plugins: {
+        legend: { position: 'bottom' },
+        tooltip: { callbacks: { label: c => ' ' + c.dataset.label + ': ' + c.raw + '%' } }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          grid: { borderDash: [4, 4], color: '#e2e8f0' },
+          ticks: { callback: v => v + '%' }
+        },
+        x: { grid: { display: false }, ticks: { font: { size: 10 } } }
+      }
     }
   }));
 
-  // 4. Data Table Card
+  // 4. Data Table Card (Hapus Kolom Pagu / Kontrak & Realisasi Keuangan)
   const tblCard = document.createElement('div');
   tblCard.className = 'card potret-table-card';
   let tHtml = '<h3 class="card-title">📋 Matriks Realisasi 6 Lintasan Perintis 2025</h3>';
-  tHtml += '<div class="table-responsive"><table class="data-table"><thead><tr><th>No</th><th>Lintasan Trayek</th><th>Kabupaten</th><th>Armada</th><th>Pagu / Kontrak</th><th>Realisasi Keuangan</th><th>Penumpang YTD</th><th>Avg Load Factor</th></tr></thead><tbody>';
+  tHtml += '<div class="table-responsive"><table class="data-table"><thead><tr><th>No</th><th>Lintasan Trayek</th><th>Kabupaten</th><th>Armada</th><th>Penumpang YTD</th><th>Avg Load Factor</th></tr></thead><tbody>';
 
   ds.routes.forEach(r => {
     const lfPct = (r.summary_ytd.avg_load_factor * 100).toFixed(1);
@@ -4576,8 +4613,6 @@ function renderPerintisLive(body) {
       <td><b>${r.name}</b><br><small style="color:var(--text-muted);">${r.no_kontrak}</small></td>
       <td>${r.kabupaten}</td>
       <td>${r.armada.jumlah} Utama (+${r.armada.cadangan} Cad) · ${r.armada.kapasitas} seat</td>
-      <td>Rp ${formatSingkat(r.target_kontrak)}</td>
-      <td>Rp ${formatSingkat(r.realisasi_keuangan_ytd)}</td>
       <td><b>${formatAngka(r.summary_ytd.total_penumpang)}</b> orang</td>
       <td><span style="display:inline-block;padding:2px 8px;border-radius:12px;background:${badgeColor}22;color:${badgeColor};font-weight:700;font-size:12px;">${lfPct}%</span></td>
     </tr>`;
