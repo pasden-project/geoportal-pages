@@ -2725,6 +2725,1868 @@ function renderBarangMeta(body, meta) {
   }
 }
 
+
+// ============================================================
+// DATASET ANGKUTAN PERINTIS 2025 (Sheet 'JABAR' Source)
+// ============================================================
+const PERINTIS_DATASET_2025 = {
+  "title": "Progres Realisasi Layanan Angkutan Jalan Perintis 2025",
+  "instansi": "BPTD Class I Jawa Barat",
+  "tahun": 2025,
+  "total_trayek": 6,
+  "routes": [
+    {
+      "id": "PERINTIS-001",
+      "no": 1,
+      "name": "Surade - Sagaranten",
+      "kabupaten": "Kab. Sukabumi",
+      "operator": "Perum Damri Cab. Bandung",
+      "pagu": 5479744000.0,
+      "target_kontrak": 1013786489.0,
+      "realisasi_keuangan_ytd": 864491991.0,
+      "no_kontrak": "PL.107/050/BPTD-JABAR/V/2025",
+      "tgl_mulai": "9 Mei 2025",
+      "tgl_selesai": "31 Desember 2025",
+      "ppk": "Hardika Pratama",
+      "pencairan": "Perbulan",
+      "armada": {
+        "jumlah": 2,
+        "cadangan": 1,
+        "kapasitas": 19,
+        "umur": "9 Tahun"
+      },
+      "summary_ytd": {
+        "total_penumpang": 5251,
+        "total_ritase": 888,
+        "avg_load_factor": 0.3558
+      },
+      "geometry": {
+        "origin_name": "Surade",
+        "dest_name": "Sagaranten",
+        "origin_coord": [
+          -7.348,
+          106.586
+        ],
+        "dest_coord": [
+          -7.214,
+          106.885
+        ],
+        "polyline": [
+          [
+            -7.348,
+            106.586
+          ],
+          [
+            -7.31,
+            106.65
+          ],
+          [
+            -7.26,
+            106.77
+          ],
+          [
+            -7.214,
+            106.885
+          ]
+        ]
+      },
+      "monthly": {
+        "Januari": {
+          "keuangan": {
+            "target": 55077575.0,
+            "realisasi": 55077575.0
+          },
+          "ritase": {
+            "target": 20,
+            "realisasi": 20
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.8026
+          },
+          "penumpang": {
+            "target": 380,
+            "realisasi": 305
+          },
+          "keterangan": "Januari menggunakan skema Pengadaan Langsung untuk menghindari kekosongan pelayanan"
+        },
+        "Februari": {
+          "keuangan": {
+            "target": 0.0,
+            "realisasi": 0.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.0
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "keterangan": ""
+        },
+        "Maret": {
+          "keuangan": {
+            "target": 0.0,
+            "realisasi": 0.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.0
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "keterangan": ""
+        },
+        "April": {
+          "keuangan": {
+            "target": 0.0,
+            "realisasi": 0.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.0
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "keterangan": ""
+        },
+        "Mei": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 91608000.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 92
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 524
+          },
+          "keterangan": "0.5549199085"
+        },
+        "Juni": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 87352000.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 120
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 684
+          },
+          "keterangan": "0.5862573099"
+        },
+        "Juli": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 91397000.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 108
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 615
+          },
+          "keterangan": "0.6351526966"
+        },
+        "Agustus": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 94087000.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 108
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 615
+          },
+          "keterangan": "0.4532163743"
+        },
+        "September": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 111242604.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 110
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 627
+          },
+          "keterangan": "0.5789473684"
+        },
+        "Oktober": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 111242604.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 110
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 627
+          },
+          "keterangan": "0.4657097289"
+        },
+        "November": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 111242604.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 110
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 627
+          },
+          "keterangan": "0.4657097289"
+        },
+        "Desember": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 111242604.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 110
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 627
+          },
+          "keterangan": "0.639553429"
+        }
+      }
+    },
+    {
+      "id": "PERINTIS-002",
+      "no": 2,
+      "name": "Sagaranten - Pelabuhan Ratu",
+      "kabupaten": "Kab. Sukabumi",
+      "operator": "Perum DAMRI Cab. Bandung",
+      "pagu": 0.0,
+      "target_kontrak": 754888453.0,
+      "realisasi_keuangan_ytd": 681054587.0,
+      "no_kontrak": "PL.107/052/BPTD-JABAR/V/2025",
+      "tgl_mulai": "9 Mei 2025",
+      "tgl_selesai": "31 Desember 2025",
+      "ppk": "Hardika Pratama",
+      "pencairan": "Perbulan",
+      "armada": {
+        "jumlah": 2,
+        "cadangan": 1,
+        "kapasitas": 19,
+        "umur": "9 Tahun"
+      },
+      "summary_ytd": {
+        "total_penumpang": 2735,
+        "total_ritase": 482,
+        "avg_load_factor": 0.2968
+      },
+      "geometry": {
+        "origin_name": "Sagaranten",
+        "dest_name": "Pelabuhan Ratu",
+        "origin_coord": [
+          -7.214,
+          106.885
+        ],
+        "dest_coord": [
+          -6.985,
+          106.544
+        ],
+        "polyline": [
+          [
+            -7.214,
+            106.885
+          ],
+          [
+            -7.12,
+            106.75
+          ],
+          [
+            -7.02,
+            106.62
+          ],
+          [
+            -6.985,
+            106.544
+          ]
+        ]
+      },
+      "monthly": {
+        "Januari": {
+          "keuangan": {
+            "target": 53056775.0,
+            "realisasi": 53056775.0
+          },
+          "ritase": {
+            "target": 20,
+            "realisasi": 20
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.2711
+          },
+          "penumpang": {
+            "target": 380,
+            "realisasi": 103
+          },
+          "keterangan": ""
+        },
+        "Februari": {
+          "keuangan": {
+            "target": 0.0,
+            "realisasi": 0.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.0
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "keterangan": ""
+        },
+        "Maret": {
+          "keuangan": {
+            "target": 0.0,
+            "realisasi": 0.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.0
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "keterangan": ""
+        },
+        "April": {
+          "keuangan": {
+            "target": 0.0,
+            "realisasi": 0.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.0
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "keterangan": ""
+        },
+        "Mei": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 82177000.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 46
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 262
+          },
+          "keterangan": "0.03051106026"
+        },
+        "Juni": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 65172000.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 60
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 342
+          },
+          "keterangan": "0.0730994152"
+        },
+        "Juli": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 62551000.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 58
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 330
+          },
+          "keterangan": "0.07864488808"
+        },
+        "Agustus": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 62740000.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 58
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 330
+          },
+          "keterangan": "0.09679370841"
+        },
+        "September": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 88839453.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 60
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 342
+          },
+          "keterangan": "0.1666666667"
+        },
+        "Oktober": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 88839453.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 60
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 342
+          },
+          "keterangan": "0.2251461988"
+        },
+        "November": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 88839453.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 60
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 342
+          },
+          "keterangan": "0.2251461988"
+        },
+        "Desember": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 88839453.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 60
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 342
+          },
+          "keterangan": "0.0730994152"
+        }
+      }
+    },
+    {
+      "id": "PERINTIS-003",
+      "no": 3,
+      "name": "Tegal Buleud - Sagaranten",
+      "kabupaten": "Kab. Sukabumi",
+      "operator": "Perum DAMRI Cab. Bandung",
+      "pagu": 0.0,
+      "target_kontrak": 893366270.0,
+      "realisasi_keuangan_ytd": 723443502.0,
+      "no_kontrak": "PL.107/053/BPTD-JABAR/V/2025",
+      "tgl_mulai": "9 Mei 2025",
+      "tgl_selesai": "31 Desember 2025",
+      "ppk": "Hardika Pratama",
+      "pencairan": "Perbulan",
+      "armada": {
+        "jumlah": 2,
+        "cadangan": 1,
+        "kapasitas": 19,
+        "umur": "9 Tahun"
+      },
+      "summary_ytd": {
+        "total_penumpang": 3619,
+        "total_ritase": 645,
+        "avg_load_factor": 0.2891
+      },
+      "geometry": {
+        "origin_name": "Tegal Buleud",
+        "dest_name": "Sagaranten",
+        "origin_coord": [
+          -7.426,
+          106.772
+        ],
+        "dest_coord": [
+          -7.214,
+          106.885
+        ],
+        "polyline": [
+          [
+            -7.426,
+            106.772
+          ],
+          [
+            -7.35,
+            106.81
+          ],
+          [
+            -7.28,
+            106.85
+          ],
+          [
+            -7.214,
+            106.885
+          ]
+        ]
+      },
+      "monthly": {
+        "Januari": {
+          "keuangan": {
+            "target": 66034726.0,
+            "realisasi": 66034726.0
+          },
+          "ritase": {
+            "target": 30,
+            "realisasi": 30
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.2018
+          },
+          "penumpang": {
+            "target": 570,
+            "realisasi": 115
+          },
+          "keterangan": ""
+        },
+        "Februari": {
+          "keuangan": {
+            "target": 0.0,
+            "realisasi": 0.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.0
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "keterangan": ""
+        },
+        "Maret": {
+          "keuangan": {
+            "target": 0.0,
+            "realisasi": 0.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.0
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "keterangan": ""
+        },
+        "April": {
+          "keuangan": {
+            "target": 0.0,
+            "realisasi": 0.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.0
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "keterangan": ""
+        },
+        "Mei": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 73894000.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 69
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 393
+          },
+          "keterangan": "0.8771929825"
+        },
+        "Juni": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 80167000.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 90
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 513
+          },
+          "keterangan": "0.7115009747"
+        },
+        "Juli": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 69543000.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 68
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 1,
+            "realisasi": 387
+          },
+          "keterangan": "1.093911249"
+        },
+        "Agustus": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 67442000.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 68
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 1,
+            "realisasi": 387
+          },
+          "keterangan": "1.124871001"
+        },
+        "September": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 87090694.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 80
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 456
+          },
+          "keterangan": "0.9035087719"
+        },
+        "Oktober": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 93090694.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 80
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 456
+          },
+          "keterangan": "0.8026315789"
+        },
+        "November": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 93090694.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 80
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 456
+          },
+          "keterangan": "0.8026315789"
+        },
+        "Desember": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 93090694.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 80
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 456
+          },
+          "keterangan": "0.8004385965"
+        }
+      }
+    },
+    {
+      "id": "PERINTIS-004",
+      "no": 4,
+      "name": "Leuwiliang - Cikidang",
+      "kabupaten": "Kab. Bogor",
+      "operator": "Perum DAMRI Cab. Bandung",
+      "pagu": 0.0,
+      "target_kontrak": 868789513.0,
+      "realisasi_keuangan_ytd": 705857410.0,
+      "no_kontrak": "PL.107/054/BPTD-JABAR/V/2025",
+      "tgl_mulai": "9 Mei 2025",
+      "tgl_selesai": "31 Desember 2025",
+      "ppk": "Hardika Pratama",
+      "pencairan": "Perbulan",
+      "armada": {
+        "jumlah": 2,
+        "cadangan": 1,
+        "kapasitas": 19,
+        "umur": "9 Tahun"
+      },
+      "summary_ytd": {
+        "total_penumpang": 3593,
+        "total_ritase": 657,
+        "avg_load_factor": 0.2708
+      },
+      "geometry": {
+        "origin_name": "Leuwiliang",
+        "dest_name": "Cikidang",
+        "origin_coord": [
+          -6.568,
+          106.63
+        ],
+        "dest_coord": [
+          -6.858,
+          106.643
+        ],
+        "polyline": [
+          [
+            -6.568,
+            106.63
+          ],
+          [
+            -6.66,
+            106.635
+          ],
+          [
+            -6.76,
+            106.64
+          ],
+          [
+            -6.858,
+            106.643
+          ]
+        ]
+      },
+      "monthly": {
+        "Januari": {
+          "keuangan": {
+            "target": 66946742.0,
+            "realisasi": 66946742.0
+          },
+          "ritase": {
+            "target": 30,
+            "realisasi": 30
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.0368
+          },
+          "penumpang": {
+            "target": 570,
+            "realisasi": 21
+          },
+          "keterangan": ""
+        },
+        "Februari": {
+          "keuangan": {
+            "target": 0.0,
+            "realisasi": 0.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.0
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "keterangan": ""
+        },
+        "Maret": {
+          "keuangan": {
+            "target": 0.0,
+            "realisasi": 0.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.0
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "keterangan": ""
+        },
+        "April": {
+          "keuangan": {
+            "target": 0.0,
+            "realisasi": 0.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.0
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "keterangan": ""
+        },
+        "Mei": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 76326000.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 69
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 2,
+            "realisasi": 393
+          },
+          "keterangan": "2.491736588"
+        },
+        "Juni": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 73025000.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 90
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 513
+          },
+          "keterangan": "0.8479532164"
+        },
+        "Juli": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 70313000.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 74
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 421
+          },
+          "keterangan": "0.8487434803"
+        },
+        "Agustus": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 68154000.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 74
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 421
+          },
+          "keterangan": "0.929350403"
+        },
+        "September": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 80273167.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 80
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 456
+          },
+          "keterangan": "0.8026315789"
+        },
+        "Oktober": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 90273167.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 80
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 456
+          },
+          "keterangan": "0.7960526316"
+        },
+        "November": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 90273167.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 80
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 456
+          },
+          "keterangan": "0.7960526316"
+        },
+        "Desember": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 90273167.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 80
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 456
+          },
+          "keterangan": "0.9539473684"
+        }
+      }
+    },
+    {
+      "id": "PERINTIS-005",
+      "no": 5,
+      "name": "Jasinga - Parung Panjang",
+      "kabupaten": "Kab. Bogor",
+      "operator": "Perum DAMRI Cab. Bandung",
+      "pagu": 0.0,
+      "target_kontrak": 696607315.0,
+      "realisasi_keuangan_ytd": 463004280.0,
+      "no_kontrak": "PL.107/055/BPTD-JABAR/V/2025",
+      "tgl_mulai": "9 Mei 2025",
+      "tgl_selesai": "31 Desember 2025",
+      "ppk": "Hardika Pratama",
+      "pencairan": "Perbulan",
+      "armada": {
+        "jumlah": 2,
+        "cadangan": 1,
+        "kapasitas": 19,
+        "umur": "9 Tahun"
+      },
+      "summary_ytd": {
+        "total_penumpang": 4090,
+        "total_ritase": 662,
+        "avg_load_factor": 0.3618
+      },
+      "geometry": {
+        "origin_name": "Jasinga",
+        "dest_name": "Parung Panjang",
+        "origin_coord": [
+          -6.49,
+          106.452
+        ],
+        "dest_coord": [
+          -6.349,
+          106.567
+        ],
+        "polyline": [
+          [
+            -6.49,
+            106.452
+          ],
+          [
+            -6.44,
+            106.49
+          ],
+          [
+            -6.39,
+            106.53
+          ],
+          [
+            -6.349,
+            106.567
+          ]
+        ]
+      },
+      "monthly": {
+        "Januari": {
+          "keuangan": {
+            "target": 51048728.0,
+            "realisasi": 51048728.0
+          },
+          "ritase": {
+            "target": 30,
+            "realisasi": 30
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.8561
+          },
+          "penumpang": {
+            "target": 570,
+            "realisasi": 488
+          },
+          "keterangan": ""
+        },
+        "Februari": {
+          "keuangan": {
+            "target": 0.0,
+            "realisasi": 0.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.0
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "keterangan": ""
+        },
+        "Maret": {
+          "keuangan": {
+            "target": 0.0,
+            "realisasi": 0.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.0
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "keterangan": ""
+        },
+        "April": {
+          "keuangan": {
+            "target": 0.0,
+            "realisasi": 0.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.0
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "keterangan": ""
+        },
+        "Mei": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 58806000.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 92
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 3,
+            "realisasi": 524
+          },
+          "keterangan": "3.209382151"
+        },
+        "Juni": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 63102000.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 120
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 684
+          },
+          "keterangan": "0.9356725146"
+        },
+        "Juli": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 55907000.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 90
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 1,
+            "realisasi": 513
+          },
+          "keterangan": "1.475633528"
+        },
+        "Agustus": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 54708000.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 90
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 513
+          },
+          "keterangan": "0.61208577"
+        },
+        "September": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 56858138.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 60
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 1,
+            "realisasi": 342
+          },
+          "keterangan": "1.421052632"
+        },
+        "Oktober": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 40858138.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 60
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 1,
+            "realisasi": 342
+          },
+          "keterangan": "1.812865497"
+        },
+        "November": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 40858138.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 60
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 342
+          },
+          "keterangan": "1.812865497"
+        },
+        "Desember": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 40858138.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 60
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 1,
+            "realisasi": 342
+          },
+          "keterangan": "1.871345029"
+        }
+      }
+    },
+    {
+      "id": "PERINTIS-006",
+      "no": 6,
+      "name": "Sadang - Wanakerta",
+      "kabupaten": "Kab. Purwakarta",
+      "operator": "Perum DAMRI Cab. Bandung",
+      "pagu": 0.0,
+      "target_kontrak": 525071234.0,
+      "realisasi_keuangan_ytd": 451409649.0,
+      "no_kontrak": "PL.107/056/BPTD-JABAR/V/2025",
+      "tgl_mulai": "9 Mei 2025",
+      "tgl_selesai": "31 Desember 2025",
+      "ppk": "Hardika Pratama",
+      "pencairan": "Perbulan",
+      "armada": {
+        "jumlah": 2,
+        "cadangan": 1,
+        "kapasitas": 19,
+        "umur": "9 Tahun"
+      },
+      "summary_ytd": {
+        "total_penumpang": 7527,
+        "total_ritase": 1321,
+        "avg_load_factor": 0.3
+      },
+      "geometry": {
+        "origin_name": "Sadang",
+        "dest_name": "Wanakerta",
+        "origin_coord": [
+          -6.516,
+          107.452
+        ],
+        "dest_coord": [
+          -6.425,
+          107.442
+        ],
+        "polyline": [
+          [
+            -6.516,
+            107.452
+          ],
+          [
+            -6.48,
+            107.448
+          ],
+          [
+            -6.45,
+            107.445
+          ],
+          [
+            -6.425,
+            107.442
+          ]
+        ]
+      },
+      "monthly": {
+        "Januari": {
+          "keuangan": {
+            "target": 0.0,
+            "realisasi": 0.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.0
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "keterangan": ""
+        },
+        "Februari": {
+          "keuangan": {
+            "target": 0.0,
+            "realisasi": 0.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.0
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "keterangan": ""
+        },
+        "Maret": {
+          "keuangan": {
+            "target": 0.0,
+            "realisasi": 0.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.0
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "keterangan": ""
+        },
+        "April": {
+          "keuangan": {
+            "target": 0.0,
+            "realisasi": 0.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.0
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 0
+          },
+          "keterangan": ""
+        },
+        "Mei": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 47574000.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 138
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 786
+          },
+          "keterangan": "0.008899059242"
+        },
+        "Juni": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 45281000.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 180
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 1026
+          },
+          "keterangan": "0.01169590643"
+        },
+        "Juli": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 49867000.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 156
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 889
+          },
+          "keterangan": "0.002249212776"
+        },
+        "Agustus": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 53537000.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 156
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 889
+          },
+          "keterangan": "0"
+        },
+        "September": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 63510726.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 172
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 980
+          },
+          "keterangan": "0"
+        },
+        "Oktober": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 64618471.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 175
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 997
+          },
+          "keterangan": "0"
+        },
+        "November": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 63510726.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 172
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 980
+          },
+          "keterangan": "0"
+        },
+        "Desember": {
+          "keuangan": {
+            "target": 1.0,
+            "realisasi": 63510726.0
+          },
+          "ritase": {
+            "target": 0,
+            "realisasi": 172
+          },
+          "load_factor": {
+            "target": 0.3,
+            "realisasi": 0.3
+          },
+          "penumpang": {
+            "target": 0,
+            "realisasi": 980
+          },
+          "keterangan": "0.00203998368"
+        }
+      }
+    }
+  ]
+};
+
+function renderPerintisLive(body) {
+  const ds = PERINTIS_DATASET_2025;
+  if (!ds || !ds.routes) return;
+  
+  let totTargetKontrak = 0;
+  let totRealisasiKeuangan = 0;
+  let totPenumpang = 0;
+  let totArmadaUtama = 0;
+  let totArmadaCadangan = 0;
+  let sumLF = 0;
+
+  ds.routes.forEach(r => {
+    totTargetKontrak += r.target_kontrak || 0;
+    totRealisasiKeuangan += r.realisasi_keuangan_ytd || 0;
+    totPenumpang += r.summary_ytd.total_penumpang || 0;
+    totArmadaUtama += r.armada.jumlah || 2;
+    totArmadaCadangan += r.armada.cadangan || 1;
+    sumLF += r.summary_ytd.avg_load_factor || 0;
+  });
+
+  const avgLF = (sumLF / ds.routes.length * 100).toFixed(1);
+  const pctKeuangan = (totRealisasiKeuangan / (totTargetKontrak || 1) * 100).toFixed(1);
+
+  // 1. KPI Cards
+  const kpis = [
+    { icon: '🛣️', label: 'Trayek Perintis 2025', value: ds.routes.length, suffix: ' (3 Kab)', color: '#8b5cf6' },
+    { icon: '🚌', label: 'Armada Bus DAMRI', value: (totArmadaUtama + totArmadaCadangan), suffix: ` (${totArmadaUtama} Utm + ${totArmadaCadangan} Cad)`, color: '#0ea5e9' },
+    { icon: '👥', label: 'Total Penumpang YTD', value: formatAngka(totPenumpang), suffix: ' orang', color: '#10b981' },
+    { icon: '💸', label: 'Realisasi Keuangan', value: 'Rp ' + formatSingkat(totRealisasiKeuangan), suffix: ` (${pctKeuangan}%)`, color: '#f59e0b' }
+  ];
+  body.appendChild(renderPotretKPI(kpis, '#8b5cf6'));
+
+  // 2. Map View Card
+  const mapCard = document.createElement('div');
+  mapCard.className = 'card potret-map-card';
+  mapCard.innerHTML = '<h3 class="card-title">🗺️ Peta Interaktif Lintasan Trayek Perintis 2025</h3><p style="font-size:12px;color:var(--text-muted);margin:-4px 0 10px 0;">Warna rute berbasis keterisian (Load Factor): <span style="color:#10b981;font-weight:600;">🟢 &gt;50%</span> · <span style="color:#f59e0b;font-weight:600;">🟡 30-50%</span> · <span style="color:#ef4444;font-weight:600;">🔴 &lt;30%</span> (LineString Presisi / KML-KMZ Compatible)</p><div id="potretMapDiv" class="potret-map" style="height:380px;"></div>';
+  body.appendChild(mapCard);
+
+  const div = document.getElementById('potretMapDiv');
+  if (div) {
+    potretMap = L.map(div, { zoomControl: false }).setView([-7.0, 106.8], 9);
+    L.tileLayer(getBasemapUrl(), { maxZoom: 19, subdomains: 'abcd' }).addTo(potretMap);
+    L.control.zoom({ position: 'bottomright' }).addTo(potretMap);
+
+    const bounds = [];
+    ds.routes.forEach(r => {
+      const lf = r.summary_ytd.avg_load_factor * 100;
+      let color = '#ef4444';
+      if (lf >= 50) color = '#10b981';
+      else if (lf >= 30) color = '#f59e0b';
+
+      const poly = r.geometry.polyline;
+      poly.forEach(pt => bounds.push(pt));
+
+      const pl = L.polyline(poly, { color: color, weight: 5, opacity: 0.9 }).addTo(potretMap);
+
+      const popupHtml = `
+        <div style="font-family:'Plus Jakarta Sans',sans-serif;padding:4px;">
+          <h4 style="margin:0 0 6px 0;color:#0f172a;font-size:14px;">🚐 ${r.name}</h4>
+          <div style="font-size:12px;color:#475569;line-height:1.5;">
+            <b>Kabupaten:</b> ${r.kabupaten}<br>
+            <b>Operator:</b> ${r.operator}<br>
+            <b>Armada:</b> ${r.armada.jumlah} Bus Utama (+${r.armada.cadangan} Cadangan), Cap: ${r.armada.kapasitas} Seat<br>
+            <b>Target Kontrak:</b> Rp ${formatSingkat(r.target_kontrak)}<br>
+            <b>Realisasi YTD:</b> Rp ${formatSingkat(r.realisasi_keuangan_ytd)}<br>
+            <b>Penumpang 2025:</b> ${formatAngka(r.summary_ytd.total_penumpang)} orang<br>
+            <b>Avg Load Factor:</b> <span style="font-weight:700;color:${color}">${(r.summary_ytd.avg_load_factor*100).toFixed(1)}%</span> (Target 30%)
+          </div>
+        </div>
+      `;
+      pl.bindPopup(popupHtml);
+
+      L.circleMarker(poly[0], { radius: 6, color: '#fff', weight: 2, fillColor: color, fillOpacity: 1 }).addTo(potretMap)
+        .bindTooltip(r.geometry.origin_name + ' (Asal)', { direction: 'top' });
+      L.circleMarker(poly[poly.length - 1], { radius: 6, color: '#fff', weight: 2, fillColor: color, fillOpacity: 1 }).addTo(potretMap)
+        .bindTooltip(r.geometry.dest_name + ' (Tujuan)', { direction: 'top' });
+    });
+
+    if (bounds.length) potretMap.fitBounds(bounds, { padding: [30, 30] });
+    setTimeout(function() { if (potretMap) potretMap.invalidateSize(); }, 120);
+  }
+
+  // 3. Analytics Charts
+  const chartCard = document.createElement('div');
+  chartCard.className = 'card potret-chart-card';
+  chartCard.innerHTML = '<h3 class="card-title">📊 Kinerja Load Factor & Penyerapan Keuangan Perintis 2025</h3><div class="potret-chart-wrap" style="height:260px;"><canvas id="perintisChart"></canvas></div>';
+  body.appendChild(chartCard);
+
+  const labels = ds.routes.map(r => r.name.replace(' - ', '–'));
+  const lfData = ds.routes.map(r => (r.summary_ytd.avg_load_factor * 100).toFixed(1));
+  const targetLine = ds.routes.map(() => 30);
+
+  potretCharts.push(new Chart(document.getElementById('perintisChart'), {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [
+        { label: 'Avg Load Factor (%)', data: lfData, backgroundColor: '#8b5cf6', borderRadius: 4 },
+        { label: 'Target Minimal (30%)', data: targetLine, type: 'line', borderColor: '#ef4444', borderWidth: 2, borderDash: [4, 4], pointRadius: 0 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom' } },
+      scales: { y: { beginAtZero: true, max: 100, ticks: { callback: v => v + '%' } } }
+    }
+  }));
+
+  // 4. Data Table Card
+  const tblCard = document.createElement('div');
+  tblCard.className = 'card potret-table-card';
+  let tHtml = '<h3 class="card-title">📋 Matriks Realisasi 6 Lintasan Perintis 2025</h3>';
+  tHtml += '<div class="table-responsive"><table class="data-table"><thead><tr><th>No</th><th>Lintasan Trayek</th><th>Kabupaten</th><th>Armada</th><th>Pagu / Kontrak</th><th>Realisasi Keuangan</th><th>Penumpang YTD</th><th>Avg Load Factor</th></tr></thead><tbody>';
+
+  ds.routes.forEach(r => {
+    const lfPct = (r.summary_ytd.avg_load_factor * 100).toFixed(1);
+    const badgeColor = lfPct >= 50 ? '#10b981' : (lfPct >= 30 ? '#f59e0b' : '#ef4444');
+    tHtml += `<tr>
+      <td><b>${r.no}</b></td>
+      <td><b>${r.name}</b><br><small style="color:var(--text-muted);">${r.no_kontrak}</small></td>
+      <td>${r.kabupaten}</td>
+      <td>${r.armada.jumlah} Utama (+${r.armada.cadangan} Cad) · ${r.armada.kapasitas} seat</td>
+      <td>Rp ${formatSingkat(r.target_kontrak)}</td>
+      <td>Rp ${formatSingkat(r.realisasi_keuangan_ytd)}</td>
+      <td><b>${formatAngka(r.summary_ytd.total_penumpang)}</b> orang</td>
+      <td><span style="display:inline-block;padding:2px 8px;border-radius:12px;background:${badgeColor}22;color:${badgeColor};font-weight:700;font-size:12px;">${lfPct}%</span></td>
+    </tr>`;
+  });
+  tHtml += '</tbody></table></div>';
+  tblCard.innerHTML = tHtml;
+  body.appendChild(tblCard);
+}
+
 function renderPotretBody(id) {
   const cfg = potretData[id] || POTRET_DEFAULT[id];
   const body = document.getElementById('potretBody');
@@ -2738,6 +4600,8 @@ function renderPotretBody(id) {
     // Potret Barang: tampilan LIVE dari data sinkronisasi + tabel editable.
     try { renderBarangLive(body); } catch (e) { console.error('Barang live render:', e); }
     try { body.appendChild(renderPotretTabelSheet('barang')); } catch (e) { console.error('Barang table:', e); }
+  } else if (id === 'perintis') {
+    try { renderPerintisLive(body); } catch (e) { console.error('Perintis live render:', e); }
   } else {
     try { body.appendChild(renderPotretKPI(cfg.kpi, cfg.meta.color)); } catch (e) { console.error('Potret KPI:', e); }
     try { if (cfg.insights && cfg.insights.length) body.appendChild(renderPotretInsights(cfg.insights)); } catch (e) { console.error('Potret insight:', e); }
