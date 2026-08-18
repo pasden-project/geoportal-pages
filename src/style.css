@@ -2113,6 +2113,13 @@
       transition-duration: 0.001s !important;
     }
   }
+  /* Toggle legenda (slider oval) tetap beranimasi meski reduced-motion —
+     kontrol kecil esensial; tanpa ini knob terlihat "tak gerak" saat di-klik. */
+  .legend-item input[type="checkbox"]::before,
+  .chp-show input[type="checkbox"]::before,
+  .legend-group-title input[type="checkbox"]::before {
+    transition-duration: 0.2s !important;
+  }
 
   /* =============================================================
      ROUTE BUILDER — dari overlay layar-penuh jadi kartu mengambang

@@ -147,9 +147,9 @@ function buatLegenda() {
     Array.from(rc).forEach(cb => {
       const p = routePolylines[cb.getAttribute('data-route-id')];
       if (!p) return;
-      // Show route if child checkbox is checked (regardless of parent state)
-      // Parent checkbox only controls "select all / deselect all" behavior
-      if (cb.checked) routesLayer.addLayer(p);
+      // Child checkbox memegang state visible per-route. Saat parent OFF,
+      // semua child disembunyikan; saat parent ON, semua child yang ke-check ditampilkan.
+      if (vis && cb.checked) routesLayer.addLayer(p);
       else routesLayer.removeLayer(p);
     });
     const g = document.getElementById('leg-group-trayek');
@@ -160,9 +160,9 @@ function buatLegenda() {
     }
   }
 
-  function buatGrup(key, nama, checked) {
+  function buatGrup(key, nama, checked, collapsed) {
     const gp = document.createElement('div');
-    gp.className = 'legend-group';
+    gp.className = 'legend-group' + (collapsed ? ' collapsed' : '');
     gp.id = 'legGrp-' + key;
     const hdr = document.createElement('div');
     hdr.className = 'legend-group-header';
@@ -211,7 +211,7 @@ function buatLegenda() {
     d.appendChild(ttl);
 
       // Grup Simpul Transportasi
-      const gSimpul = buatGrup('simpul', 'Simpul Transportasi', true);
+      const gSimpul = buatGrup('simpul', 'Simpul Transportasi', true, true);
       Object.keys(warnaTipe).forEach(t => {
         const r = document.createElement('label');
         r.className = 'legend-item';
@@ -229,7 +229,7 @@ function buatLegenda() {
       terapkanGrupSimpul();
 
       // Grup UPPKB (Angkutan Barang)
-      const gUppkb = buatGrup('uppkb', 'UPPKB (Angkutan Barang)', true);
+      const gUppkb = buatGrup('uppkb', 'UPPKB (Angkutan Barang)', true, true);
       const itU = document.createElement('label');
       itU.className = 'legend-item';
       itU.innerHTML = '<input type="checkbox" id="leg-uppkb" checked><span class="legend-dot" style="background:#f59e0b"></span><span>UPPKB</span>';
@@ -248,7 +248,7 @@ function buatLegenda() {
       d.appendChild(sep);
 
       // Grup Trayek
-      const gTray = buatGrup('trayek', 'Trayek', false);
+      const gTray = buatGrup('trayek', 'Trayek', false, true);
       const gTrayMaster = gTray.hdr.querySelector('#leg-group-trayek');
       if (gTrayMaster) {
         // Sync parent state to legendState
@@ -266,6 +266,8 @@ function buatLegenda() {
         });
         L.DomEvent.on(gTray.hdr.querySelector('#leg-group-trayek'), 'change', function () {
           legendState.trayek.visible = this.checked;
+          // Parent ON/OFF mengontrol seluruh child sekaligus (select all / deselect all).
+          gTray.body.querySelectorAll('input[data-route-id]').forEach(cb => { cb.checked = this.checked; });
           terapkanGrupTrayek();
         });
       } else {
