@@ -117,17 +117,13 @@ function terapkanGrupSimpul() {
     const cb = document.getElementById('leg-' + t);
     if (!cb) return;
     const layer = markersByTipe[t];
-    if (!vis || !cb.checked) {
-      // Remove from both cluster and map
-      markersCluster.removeLayers(layer);
-      layer.forEach(m => map.removeLayer(m));
-      return;
-    }
+    // Selalu bersihkan dari kedua sumber dulu sebelum add ke mode yang tepat
+    markersCluster.removeLayers(layer);
+    layer.forEach(m => { try { map.removeLayer(m); } catch(e) {} });
+    if (!vis || !cb.checked) return; // hidden — sudah dibersihkan, selesai
     if (useCluster) {
       markersCluster.addLayers(layer);
-      layer.forEach(m => map.removeLayer(m));
     } else {
-      markersCluster.removeLayers(layer);
       layer.forEach(m => m.addTo(map));
     }
   });
@@ -135,10 +131,12 @@ function terapkanGrupSimpul() {
   const cbs = types.map(t => document.getElementById('leg-' + t)).filter(Boolean);
   const g = document.getElementById('leg-group-simpul');
   if (g) {
+    g.indeterminate = false; // reset dulu sebelum set checked
     g.checked = vis;
     g.indeterminate = vis && cbs.some(cb => cb.checked) && cbs.some(cb => !cb.checked);
   }
 }
+
 
 function buatLegenda() {
   if (legendControl) map.removeControl(legendControl);
@@ -197,12 +195,12 @@ function buatLegenda() {
       '<label class="chp-show"><input type="checkbox" id="chpShow" checked> Tampilkan lapisan</label>';
     d.appendChild(ctl);
 
-    // Toggle Merger Titik Simpul (default OFF)
+    // Toggle Merger Titik Simpul (sync state dari legendState.mergerSimpul)
     const mergerCtl = document.createElement('div');
     mergerCtl.className = 'chp-controls';
     mergerCtl.style.marginBottom = '12px';
     mergerCtl.innerHTML = '<label class="chp-show">' +
-      '<input type="checkbox" id="mergerSimpulToggle">' +
+      '<input type="checkbox" id="mergerSimpulToggle"' + (legendState.mergerSimpul ? ' checked' : '') + '>' +
       '<span>🔗 Merger Titik Simpul (Cluster)</span>' +
       '</label>';
     d.appendChild(mergerCtl);
@@ -302,6 +300,8 @@ function buatLegenda() {
           legendState.mergerSimpul = this.checked;
           // Apply simpul visibility (handles cluster vs direct map based on mergerSimpul)
           terapkanGrupSimpul();
+          // UPPKB harus ikut mode cluster/direct
+          terapkanGrupUppkb();
         });
       }
     }
@@ -426,6 +426,10 @@ function renderMarkers(points, uppkbPoints) {
   allPoints = points;
   markerRefs = {};
   markersCluster.clearLayers();
+  // Bersihkan marker direct-map (mode non-cluster) agar tidak ada sisa render sebelumnya
+  Object.keys(markersByTipe).forEach(t => {
+    (markersByTipe[t] || []).forEach(m => { try { map.removeLayer(m); } catch(e) {} });
+  });
   uppkbMarkers = [];
   Object.keys(warnaTipe).forEach(t => markersByTipe[t] = []);
   const bounds = [];
@@ -499,15 +503,27 @@ function renderUppkbMarkers(list, bounds) {
   });
   terapkanGrupUppkb();
 }
-// Toggle visibilitas marker UPPKB (masuk/keluar dari cluster, seperti marker Terminal).
+// Toggle visibilitas marker UPPKB (masuk/keluar dari cluster atau direct map, mengikuti mode mergerSimpul).
 function terapkanGrupUppkb() {
   const vis = legendState.uppkb.visible;
   const cb = document.getElementById('leg-uppkb');
   const on = vis && (!cb || cb.checked);
-  if (on) markersCluster.addLayers(uppkbMarkers);
-  else markersCluster.removeLayers(uppkbMarkers);
+  // Selalu bersihkan dari kedua sumber dulu
+  markersCluster.removeLayers(uppkbMarkers);
+  uppkbMarkers.forEach(m => { try { map.removeLayer(m); } catch(e) {} });
+  if (on) {
+    if (legendState.mergerSimpul) {
+      markersCluster.addLayers(uppkbMarkers);
+    } else {
+      uppkbMarkers.forEach(m => m.addTo(map));
+    }
+  }
   const g = document.getElementById('leg-group-uppkb');
-  if (g) { g.checked = vis; g.indeterminate = vis && cb && !cb.checked; }
+  if (g) {
+    g.indeterminate = false;
+    g.checked = vis;
+    g.indeterminate = vis && cb && !cb.checked;
+  }
 }
 
 // ===== CHART & UI =====
