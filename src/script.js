@@ -161,16 +161,17 @@ function buatLegenda() {
     }
   }
 
-  function buatGrup(key, nama) {
+  function buatGrup(key, nama, checked) {
     const gp = document.createElement('div');
     gp.className = 'legend-group';
     gp.id = 'legGrp-' + key;
     const hdr = document.createElement('div');
     hdr.className = 'legend-group-header';
     const cbId = 'leg-group-' + key;
+    const isChecked = checked !== false; // default true
     hdr.innerHTML = '<span class="legend-caret"></span>' +
       '<span class="legend-group-name">' + nama + '</span>' +
-      '<label class="legend-group-title" title="Tampilkan/sembunyikan seluruh ' + nama + '"><input type="checkbox" id="' + cbId + '" checked></label>';
+      '<label class="legend-group-title" title="Tampilkan/sembunyikan seluruh ' + nama + '"><input type="checkbox" id="' + cbId + '"' + (isChecked ? ' checked' : '') + '></label>';
     const body = document.createElement('div');
     body.className = 'legend-group-body';
     gp.appendChild(hdr);
@@ -199,9 +200,9 @@ function buatLegenda() {
     const mergerCtl = document.createElement('div');
     mergerCtl.className = 'chp-controls';
     mergerCtl.style.marginBottom = '12px';
-    mergerCtl.innerHTML = '<label class="chp-show" style="display:flex;align-items:center;gap:8px;">' +
-      '<input type="checkbox" id="mergerSimpulToggle" style="width:18px;height:18px;accent-color:#8b5cf6;">' +
-      '<span style="font-size:13px;color:#1e293b;font-weight:500;">🔗 Merger Titik Simpul (Cluster)</span>' +
+    mergerCtl.innerHTML = '<label class="chp-show">' +
+      '<input type="checkbox" id="mergerSimpulToggle">' +
+      '<span>🔗 Merger Titik Simpul (Cluster)</span>' +
       '</label>';
     d.appendChild(mergerCtl);
 
@@ -211,7 +212,7 @@ function buatLegenda() {
     d.appendChild(ttl);
 
       // Grup Simpul Transportasi
-      const gSimpul = buatGrup('simpul', 'Simpul Transportasi');
+      const gSimpul = buatGrup('simpul', 'Simpul Transportasi', true);
       Object.keys(warnaTipe).forEach(t => {
         const r = document.createElement('label');
         r.className = 'legend-item';
@@ -229,7 +230,7 @@ function buatLegenda() {
       terapkanGrupSimpul();
 
       // Grup UPPKB (Angkutan Barang)
-      const gUppkb = buatGrup('uppkb', 'UPPKB (Angkutan Barang)');
+      const gUppkb = buatGrup('uppkb', 'UPPKB (Angkutan Barang)', true);
       const itU = document.createElement('label');
       itU.className = 'legend-item';
       itU.innerHTML = '<input type="checkbox" id="leg-uppkb" checked><span class="legend-dot" style="background:#f59e0b"></span><span>UPPKB</span>';
@@ -248,9 +249,12 @@ function buatLegenda() {
       d.appendChild(sep);
 
       // Grup Trayek
-      const gTray = buatGrup('trayek', 'Trayek');
+      const gTray = buatGrup('trayek', 'Trayek', false);
       const gTrayMaster = gTray.hdr.querySelector('#leg-group-trayek');
-      if (gTrayMaster) gTrayMaster.checked = false; // parent OFF by default
+      if (gTrayMaster) {
+        // Sync parent state to legendState
+        legendState.trayek.visible = false;
+      }
       if (savedRoutesData && savedRoutesData.length > 0) {
         savedRoutesData.forEach(r => {
           const ro = document.createElement('label');
