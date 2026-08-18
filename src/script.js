@@ -109,38 +109,39 @@ function initMap() {
   setTimeout(buatLegenda, 500);
 }
 
+// Global function for applying simpul group visibility (called from renderMarkers & buatLegenda)
+function terapkanGrupSimpul() {
+  const vis = legendState.simpul.visible;
+  const useCluster = legendState.mergerSimpul;
+  Object.keys(warnaTipe).forEach(t => {
+    const cb = document.getElementById('leg-' + t);
+    if (!cb) return;
+    const layer = markersByTipe[t];
+    if (!vis || !cb.checked) {
+      // Remove from both cluster and map
+      markersCluster.removeLayers(layer);
+      layer.forEach(m => map.removeLayer(m));
+      return;
+    }
+    if (useCluster) {
+      markersCluster.addLayers(layer);
+      layer.forEach(m => map.removeLayer(m));
+    } else {
+      markersCluster.removeLayers(layer);
+      layer.forEach(m => m.addTo(map));
+    }
+  });
+  const types = Object.keys(warnaTipe);
+  const cbs = types.map(t => document.getElementById('leg-' + t)).filter(Boolean);
+  const g = document.getElementById('leg-group-simpul');
+  if (g) {
+    g.checked = vis;
+    g.indeterminate = vis && cbs.some(cb => cb.checked) && cbs.some(cb => !cb.checked);
+  }
+}
+
 function buatLegenda() {
   if (legendControl) map.removeControl(legendControl);
-
-  function terapkanGrupSimpul() {
-    const vis = legendState.simpul.visible;
-    const useCluster = legendState.mergerSimpul;
-    Object.keys(warnaTipe).forEach(t => {
-      const cb = document.getElementById('leg-' + t);
-      if (!cb) return;
-      const layer = markersByTipe[t];
-      if (!vis || !cb.checked) {
-        // Remove from both cluster and map
-        markersCluster.removeLayers(layer);
-        layer.forEach(m => map.removeLayer(m));
-        return;
-      }
-      if (useCluster) {
-        markersCluster.addLayers(layer);
-        layer.forEach(m => map.removeLayer(m));
-      } else {
-        markersCluster.removeLayers(layer);
-        layer.forEach(m => m.addTo(map));
-      }
-    });
-    const types = Object.keys(warnaTipe);
-    const cbs = types.map(t => document.getElementById('leg-' + t)).filter(Boolean);
-    const g = document.getElementById('leg-group-simpul');
-    if (g) {
-      g.checked = vis;
-      g.indeterminate = vis && cbs.some(cb => cb.checked) && cbs.some(cb => !cb.checked);
-    }
-  }
 
   function terapkanGrupTrayek() {
     const vis = legendState.trayek.visible;
@@ -299,8 +300,8 @@ function buatLegenda() {
       if (mergerToggle) {
         mergerToggle.addEventListener('change', function () {
           legendState.mergerSimpul = this.checked;
-          // Re-render markers with/without clustering
-          renderMarkers(allPoints, uppkbPoints);
+          // Apply simpul visibility (handles cluster vs direct map based on mergerSimpul)
+          terapkanGrupSimpul();
         });
       }
     }
@@ -463,17 +464,8 @@ function renderMarkers(points, uppkbPoints) {
     markerRefs[p.kode_terminal] = m;
     bounds.push([p.lat, p.lng]);
   });
-  // Tambahkan ke cluster atau langsung ke map sesuai mergerSimpul
-  Object.keys(warnaTipe).forEach(ti => {
-    const cb = document.getElementById('leg-' + ti);
-    const vis = legendState.simpul.visible && (!cb || cb.checked);
-    if (!vis) return;
-    if (legendState.mergerSimpul) {
-      markersCluster.addLayers(markersByTipe[ti]);
-    } else {
-      markersByTipe[ti].forEach(m => m.addTo(map));
-    }
-  });
+  // Apply simpul visibility (handles cluster vs direct map based on mergerSimpul)
+  terapkanGrupSimpul();
   renderUppkbMarkers(uppkbPoints, bounds);
   initRouteBuilderSelects(points);
   if (bounds.length && !selectedKode) {
