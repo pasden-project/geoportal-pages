@@ -24,7 +24,7 @@ let rawDataLoaded = false;
 // State foto profil: URL yang tersimpan di DB + data base64 sementara (jika user memilih file baru).
 let profileFotoUrl = '';
 let profileFotoData = null;
-let legendState = { simpul: { visible: true }, trayek: { visible: false }, uppkb: { visible: true }, choropleth: true };
+let legendState = { simpul: { visible: true }, trayek: { visible: false }, uppkb: { visible: true }, choropleth: true, mergerSimpul: false };
 let routeColor = '#3b82f6';
 const PALETTE_COLOR_TRAYEK = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#06b6d4'];
 
@@ -114,11 +114,24 @@ function buatLegenda() {
 
   function terapkanGrupSimpul() {
     const vis = legendState.simpul.visible;
+    const useCluster = legendState.mergerSimpul;
     Object.keys(warnaTipe).forEach(t => {
       const cb = document.getElementById('leg-' + t);
       if (!cb) return;
-      if (vis && cb.checked) markersCluster.addLayers(markersByTipe[t]);
-      else markersCluster.removeLayers(markersByTipe[t]);
+      const layer = markersByTipe[t];
+      if (!vis || !cb.checked) {
+        // Remove from both cluster and map
+        markersCluster.removeLayers(layer);
+        layer.forEach(m => map.removeLayer(m));
+        return;
+      }
+      if (useCluster) {
+        markersCluster.addLayers(layer);
+        layer.forEach(m => map.removeLayer(m));
+      } else {
+        markersCluster.removeLayers(layer);
+        layer.forEach(m => m.addTo(map));
+      }
     });
     const types = Object.keys(warnaTipe);
     const cbs = types.map(t => document.getElementById('leg-' + t)).filter(Boolean);
@@ -135,14 +148,16 @@ function buatLegenda() {
     Array.from(rc).forEach(cb => {
       const p = routePolylines[cb.getAttribute('data-route-id')];
       if (!p) return;
-      if (vis && cb.checked) routesLayer.addLayer(p);
+      // Show route if child checkbox is checked (regardless of parent state)
+      // Parent checkbox only controls "select all / deselect all" behavior
+      if (cb.checked) routesLayer.addLayer(p);
       else routesLayer.removeLayer(p);
     });
     const g = document.getElementById('leg-group-trayek');
     if (g && rc.length) {
       const arr = Array.from(rc);
       g.checked = vis;
-      g.indeterminate = vis && arr.some(c => c.checked) && arr.some(c => !c.checked);
+      g.indeterminate = arr.some(c => c.checked) && arr.some(c => !c.checked);
     }
   }
 
@@ -179,6 +194,17 @@ function buatLegenda() {
       '<div class="chp-scale"><span>0</span><span class="bar"></span><span>max</span></div>' +
       '<label class="chp-show"><input type="checkbox" id="chpShow" checked> Tampilkan lapisan</label>';
     d.appendChild(ctl);
+
+    // Toggle Merger Titik Simpul (default OFF)
+    const mergerCtl = document.createElement('div');
+    mergerCtl.className = 'chp-controls';
+    mergerCtl.style.marginBottom = '12px';
+    mergerCtl.innerHTML = '<label class="chp-show" style="display:flex;align-items:center;gap:8px;">' +
+      '<input type="checkbox" id="mergerSimpulToggle" style="width:18px;height:18px;accent-color:#8b5cf6;">' +
+      '<span style="font-size:13px;color:#1e293b;font-weight:500;">🔗 Merger Titik Simpul (Cluster)</span>' +
+      '</label>';
+    d.appendChild(mergerCtl);
+
     const ttl = document.createElement('div');
     ttl.className = 'legend-title';
     ttl.textContent = 'Tampilkan';
@@ -224,12 +250,12 @@ function buatLegenda() {
       // Grup Trayek
       const gTray = buatGrup('trayek', 'Trayek');
       const gTrayMaster = gTray.hdr.querySelector('#leg-group-trayek');
-      if (gTrayMaster) gTrayMaster.checked = false;
+      if (gTrayMaster) gTrayMaster.checked = false; // parent OFF by default
       if (savedRoutesData && savedRoutesData.length > 0) {
         savedRoutesData.forEach(r => {
           const ro = document.createElement('label');
           ro.className = 'legend-item';
-          ro.innerHTML = '<input type="checkbox" id="leg-route-' + r.id + '" data-route-id="' + r.id + '"><span class="legend-dot" style="background:' + (r.color || '#3b82f6') + '"></span><span>' + (r.name || 'Trayek') + '</span>';
+          ro.innerHTML = '<input type="checkbox" id="leg-route-' + r.id + '" data-route-id="' + r.id + '" checked><span class="legend-dot" style="background:' + (r.color || '#3b82f6') + '"></span><span>' + (r.name || 'Trayek') + '</span>';
           gTray.body.appendChild(ro);
         });
         gTray.body.querySelectorAll('input[data-route-id]').forEach(cb => {
@@ -263,6 +289,16 @@ function buatLegenda() {
         if (!choroplethLayer) return;
         if (this.checked) choroplethLayer.addTo(map); else map.removeLayer(choroplethLayer);
       });
+
+      // Merger Titik Simpul toggle
+      const mergerToggle = d.querySelector('#mergerSimpulToggle');
+      if (mergerToggle) {
+        mergerToggle.addEventListener('change', function () {
+          legendState.mergerSimpul = this.checked;
+          // Re-render markers with/without clustering
+          renderMarkers(allPoints, uppkbPoints);
+        });
+      }
     }
     renderSidebarLegenda();
     function bukaLegenda() { var o = document.getElementById('legendOverlay'); if (o) o.classList.remove('hidden'); }
@@ -336,6 +372,30 @@ function drawRouteFromData(rd) {
       }
     }, 50);
   });
+
+  // Mini popup on click (like Perintis) - show PO, Volume, Perjalanan, Jarak
+  p.on('click', function (e) {
+    L.DomEvent.stopPropagation(e);
+    if (routeBuilder.active) return;
+    const po = rd.po || '-';
+    const vol = formatSingkat(rd.volume);
+    const perj = formatSingkat(rd.perjalanan);
+    const jarak = (Number(rd.jarak_km) || 0).toLocaleString('id-ID') + ' km';
+    const color = rd.color || '#3b82f6';
+    const popupHtml = '<div style="font-family:Plus Jakarta Sans,sans-serif;min-width:200px;">' +
+      '<strong style="color:' + color + ';">🚌 ' + (rd.name || 'Trayek') + '</strong>' +
+      '<div style="margin-top:8px;font-size:12px;line-height:1.6;">' +
+      '🏢 <b>PO:</b> ' + po + '<br>' +
+      '👥 <b>Volume:</b> ' + vol + ' penumpang<br>' +
+      '🚌 <b>Perjalanan:</b> ' + perj + '<br>' +
+      '📏 <b>Jarak:</b> ' + jarak +
+      '</div></div>';
+    L.popup({ closeButton: true, autoClose: true, className: 'trayek-mini-popup' })
+      .setLatLng(e.latlng)
+      .setContent(popupHtml)
+      .openOn(map);
+  });
+
   routePolylines[rd.id] = p;
 }
 
@@ -399,10 +459,16 @@ function renderMarkers(points, uppkbPoints) {
     markerRefs[p.kode_terminal] = m;
     bounds.push([p.lat, p.lng]);
   });
-  // Tambahkan ke cluster sesuai checkbox + status visibilitas grup
+  // Tambahkan ke cluster atau langsung ke map sesuai mergerSimpul
   Object.keys(warnaTipe).forEach(ti => {
     const cb = document.getElementById('leg-' + ti);
-    if (legendState.simpul.visible && (!cb || cb.checked)) markersCluster.addLayers(markersByTipe[ti]);
+    const vis = legendState.simpul.visible && (!cb || cb.checked);
+    if (!vis) return;
+    if (legendState.mergerSimpul) {
+      markersCluster.addLayers(markersByTipe[ti]);
+    } else {
+      markersByTipe[ti].forEach(m => m.addTo(map));
+    }
   });
   renderUppkbMarkers(uppkbPoints, bounds);
   initRouteBuilderSelects(points);
@@ -4465,7 +4531,7 @@ function renderPerintisLive(body) {
     { icon: '🛣️', label: 'Trayek Perintis 2025', value: ds.routes.length, suffix: ' (3 Kab)', color: '#8b5cf6' },
     { icon: '🚌', label: 'Armada Bus DAMRI', value: (totArmadaUtama + totArmadaCadangan), suffix: ` (${totArmadaUtama} Utm + ${totArmadaCadangan} Cad)`, color: '#0ea5e9' },
     { icon: '👥', label: 'Total Penumpang YTD', value: formatAngka(totPenumpang), suffix: ' orang', color: '#10b981' },
-    { icon: '💸', label: 'Realisasi Keuangan', value: 'Rp ' + formatSingkat(totRealisasiKeuangan), suffix: ` (${pctKeuangan}%)`, color: '#f59e0b' }
+    { icon: '📊', label: 'Avg Load Factor', value: avgLF + '%', suffix: ' (Target 30%)', color: '#f59e0b' }
   ];
   body.appendChild(renderPotretKPI(kpis, '#8b5cf6'));
 
@@ -4500,8 +4566,6 @@ function renderPerintisLive(body) {
             <b>Kabupaten:</b> ${r.kabupaten}<br>
             <b>Operator:</b> ${r.operator}<br>
             <b>Armada:</b> ${r.armada.jumlah} Bus Utama (+${r.armada.cadangan} Cadangan), Cap: ${r.armada.kapasitas} Seat<br>
-            <b>Target Kontrak:</b> Rp ${formatSingkat(r.target_kontrak)}<br>
-            <b>Realisasi YTD:</b> Rp ${formatSingkat(r.realisasi_keuangan_ytd)}<br>
             <b>Penumpang 2025:</b> ${formatAngka(r.summary_ytd.total_penumpang)} orang<br>
             <b>Avg Load Factor:</b> <span style="font-weight:700;color:${color}">${(r.summary_ytd.avg_load_factor*100).toFixed(1)}%</span> (Target 30%)
           </div>
