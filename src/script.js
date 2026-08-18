@@ -28,20 +28,6 @@ let legendState = { simpul: { visible: true }, trayek: { visible: false }, uppkb
 let routeColor = '#3b82f6';
 const PALETTE_COLOR_TRAYEK = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#06b6d4'];
 
-// Whitelist: hanya 10 trayek teratas (berdasarkan jumlah kendaraan dari data OD) yang ditampilkan
-const TOP_10_TRAYEK = [
-  'BANDUNG - SUKABUMI',
-  'BANDUNG-BEKASI',
-  'TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL GUNTUR MELATI (GARUT)',
-  'TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL INDIHIANG (TASIKMALAYA)',
-  'BANDUNG - CIKARANG',
-  'TERMINAL GUNTUR MELATI (GARUT) - TERMINAL BARANANGSIANG (BOGOR)',
-  'TERMINAL GUNTUR MELATI (GARUT) - TERMINAL INDUK BEKASI (BEKASI)',
-  'KOTA BEKASI - TASIKMALAYA',
-  'TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL CIAKAR (SUMEDANG)',
-  'BOGOR - BANDUNG'
-];
-
 const warnaTipe = { A: '#3b82f6', B: '#10b981', C: '#f59e0b', KA: '#8b5cf6', BANDARA: '#ef4444' };
 const labelTipe = { A: 'Terminal Tipe A', B: 'Terminal Tipe B', C: 'Terminal Tipe C', KA: 'Stasiun KA', BANDARA: 'Bandara' };
 const ICON_BUS_SVG = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#fff"><path d="M4 16.5c0 .8.32 1.53.84 2.06V20a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1h8v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1.44c.52-.53.84-1.26.84-2.06V6.5C19.68 3 16.02 2.5 12 2.5S4.32 3 4.32 6.5H4v10zM7.5 17a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm9 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM6 12V7h12v5H6z"/></svg>';
@@ -292,16 +278,13 @@ function loadRoutes(callback) {
         if (callback) callback();
         return;
       }
-      // Filter: hanya tampilkan 10 trayek teratas
-      const filtered = routes.filter(function (r) {
-        return TOP_10_TRAYEK.some(function (name) {
-          return (r.name || '').toUpperCase() === name.toUpperCase();
-        });
-      });
-      savedRoutesData = filtered;
+      // Tampilkan SEMUA route dari sheet (hapus whitelist TOP_10_TRAYEK).
+      // Whitelist sebelumnya membatasi hanya 10 trayek OD teratas,
+      // tapi menyebabkan route custom user tidak muncul di peta setelah reload.
+      savedRoutesData = routes;
       routesLayer.clearLayers();
       routePolylines = {};
-      filtered.forEach(function (r) {
+      routes.forEach(function (r) {
         if (r.polyline && r.polyline.length) drawRouteFromData(r);
       });
       renderRouteLib();
