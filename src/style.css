@@ -2114,7 +2114,12 @@
     }
   }
   /* Toggle legenda (slider oval) tetap beranimasi meski reduced-motion —
-     kontrol kecil esensial; tanpa ini knob terlihat "tak gerak" saat di-klik. */
+     kontrol kecil esensial; tanpa ini knob & track terlihat "tak gerak" saat di-klik.
+     Pengecualian mencakup BOTH: track (background) dan knob (::before transform)
+     agar transisi warna & geseran tetap mulus saat Reduce Motion aktif. */
+  .legend-item input[type="checkbox"],
+  .chp-show input[type="checkbox"],
+  .legend-group-title input[type="checkbox"],
   .legend-item input[type="checkbox"]::before,
   .chp-show input[type="checkbox"]::before,
   .legend-group-title input[type="checkbox"]::before {
