@@ -131,9 +131,16 @@ function terapkanGrupSimpul() {
   const cbs = types.map(t => document.getElementById('leg-' + t)).filter(Boolean);
   const g = document.getElementById('leg-group-simpul');
   if (g) {
-    g.indeterminate = false; // reset dulu sebelum set checked
-    g.checked = vis;
-    g.indeterminate = vis && cbs.some(cb => cb.checked) && cbs.some(cb => !cb.checked);
+    // JANGAN tulis ulang checked/indeterminate bila nilai sudah sama — penulisan
+    // sinkron via JS saat transisi CSS mulai jalan membatalkan animasi geser knob
+    // (terlihat "snap"). Guard ini memperbaiki master checkbox Simpul yang tidak
+    // beranimasi padahal grup lain beranimasi.
+    const newIndeterminate = vis && cbs.some(cb => cb.checked) && cbs.some(cb => !cb.checked);
+    if (g.checked !== vis || g.indeterminate !== newIndeterminate) {
+      g.indeterminate = false; // reset dulu sebelum set checked
+      g.checked = vis;
+      g.indeterminate = newIndeterminate;
+    }
   }
 }
 
