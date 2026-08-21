@@ -24,7 +24,7 @@ let rawDataLoaded = false;
 // State foto profil: URL yang tersimpan di DB + data base64 sementara (jika user memilih file baru).
 let profileFotoUrl = '';
 let profileFotoData = null;
-let legendState = { simpul: { visible: true }, trayek: { visible: false }, uppkb: { visible: true }, perintis: { visible: true }, choropleth: true, mergerSimpul: false };
+let legendState = { simpul: { visible: true }, trayek: { visible: false }, uppkb: { visible: true }, perintis: { visible: false }, choropleth: true, mergerSimpul: false };
 let routeColor = '#3b82f6';
 const PALETTE_COLOR_TRAYEK = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#06b6d4'];
 
@@ -81,7 +81,7 @@ function initMap() {
   markersCluster = L.markerClusterGroup({ maxClusterRadius: 40, spiderfyOnMaxZoom: true, showCoverageOnHover: false, zoomToBoundsOnClick: true });
   map.addLayer(markersCluster);
   routesLayer = L.layerGroup().addTo(map);
-  perintisLayer = L.layerGroup().addTo(map);
+  perintisLayer = L.layerGroup();
   Object.keys(warnaTipe).forEach(t => markersByTipe[t] = []);
   // Tombol lokasi
   const lb = L.control({ position: 'bottomright' });
@@ -290,7 +290,7 @@ function buatLegenda() {
       terapkanGrupTrayek();
 
       // Grup Angkutan Perintis (6 trayek bersubsidi, geometri presisi dari GeoJSON)
-      const gPer = buatGrup('perintis', 'Angkutan Perintis', true, true);
+      const gPer = buatGrup('perintis', 'Angkutan Perintis', false, true);
       const dsPer = PERINTIS_DATASET_2025;
       if (dsPer && dsPer.routes) {
         dsPer.routes.forEach(function (r) {
@@ -454,7 +454,7 @@ function drawPerintisRoutes() {
     let color = '#ef4444';
     if (lf >= 50) color = '#10b981';
     else if (lf >= 30) color = '#f59e0b';
-    const pl = L.polyline(poly, { color: color, weight: 5, opacity: 0.85, dashArray: '6 6' }).addTo(perintisLayer);
+    const pl = L.polyline(poly, { color: color, weight: 5, opacity: 0.85 }).addTo(perintisLayer);
     const popupHtml =
       '<div style="font-family:Plus Jakarta Sans,sans-serif;min-width:200px;">' +
       '<strong style="color:' + color + ';">🚐 ' + (r.name || 'Perintis') + '</strong>' +
