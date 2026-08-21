@@ -222,7 +222,7 @@ function buatLegenda() {
       Object.keys(warnaTipe).forEach(t => {
         const r = document.createElement('label');
         r.className = 'legend-item';
-        r.innerHTML = '<input type="checkbox" id="leg-' + t + '"' + (t === 'A' ? ' checked' : '') + ' data-tipe="' + t + '"><span class="legend-dot" style="background:' + warnaTipe[t] + '"></span><span>' + labelTipe[t] + '</span>';
+        r.innerHTML = '<input type="checkbox" id="leg-' + t + '" checked data-tipe="' + t + '"><span class="legend-dot" style="background:' + warnaTipe[t] + '"></span><span>' + labelTipe[t] + '</span>';
         gSimpul.body.appendChild(r);
       });
       gSimpul.body.querySelectorAll('input[data-tipe]').forEach(cb => {
@@ -230,6 +230,10 @@ function buatLegenda() {
       });
       L.DomEvent.on(gSimpul.hdr.querySelector('#leg-group-simpul'), 'change', function () {
         legendState.simpul.visible = this.checked;
+        // Parent ON/OFF mengontrol seluruh child sekaligus (select all / deselect all),
+        // sama seperti grup Trayek — agar child konsisten setelah toggle dan master
+        // tidak flip ke state indeterminate yang memicu repaint knob (penyebab "snap").
+        gSimpul.body.querySelectorAll('input[data-tipe]').forEach(cb => { cb.checked = this.checked; });
         terapkanGrupSimpul();
       });
       d.appendChild(gSimpul.gp);
