@@ -131,15 +131,13 @@ function terapkanGrupSimpul() {
   const cbs = types.map(t => document.getElementById('leg-' + t)).filter(Boolean);
   const g = document.getElementById('leg-group-simpul');
   if (g) {
-    // JANGAN tulis ulang checked/indeterminate bila nilai sudah sama — penulisan
-    // sinkron via JS saat transisi CSS mulai jalan membatalkan animasi geser knob
-    // (terlihat "snap"). Guard ini memperbaiki master checkbox Simpul yang tidak
-    // beranimasi padahal grup lain beranimasi.
-    const newIndeterminate = vis && cbs.some(cb => cb.checked) && cbs.some(cb => !cb.checked);
-    if (g.checked !== vis || g.indeterminate !== newIndeterminate) {
-      g.indeterminate = false; // reset dulu sebelum set checked
+    // Master = pure visibility (ON/OFF saja). TIDAK pakai state indeterminate:
+    // toggle oval tidak punya visual indeterminate, dan flip indeterminate via JS
+    // membatalkan transisi CSS knob (penyebab "snap"). Guard tulis hanya bila nilai
+    // berubah agar klik master tidak tertimpa → animasi knob tetap jalan.
+    if (g.checked !== vis) {
+      g.indeterminate = false;
       g.checked = vis;
-      g.indeterminate = newIndeterminate;
     }
   }
 }
@@ -222,7 +220,7 @@ function buatLegenda() {
       Object.keys(warnaTipe).forEach(t => {
         const r = document.createElement('label');
         r.className = 'legend-item';
-        r.innerHTML = '<input type="checkbox" id="leg-' + t + '" checked data-tipe="' + t + '"><span class="legend-dot" style="background:' + warnaTipe[t] + '"></span><span>' + labelTipe[t] + '</span>';
+        r.innerHTML = '<input type="checkbox" id="leg-' + t + '"' + (t === 'A' ? ' checked' : '') + ' data-tipe="' + t + '"><span class="legend-dot" style="background:' + warnaTipe[t] + '"></span><span>' + labelTipe[t] + '</span>';
         gSimpul.body.appendChild(r);
       });
       gSimpul.body.querySelectorAll('input[data-tipe]').forEach(cb => {
@@ -230,10 +228,10 @@ function buatLegenda() {
       });
       L.DomEvent.on(gSimpul.hdr.querySelector('#leg-group-simpul'), 'change', function () {
         legendState.simpul.visible = this.checked;
-        // Parent ON/OFF mengontrol seluruh child sekaligus (select all / deselect all),
-        // sama seperti grup Trayek — agar child konsisten setelah toggle dan master
-        // tidak flip ke state indeterminate yang memicu repaint knob (penyebab "snap").
-        gSimpul.body.querySelectorAll('input[data-tipe]').forEach(cb => { cb.checked = this.checked; });
+        // Master = pure visibility: menampilkan/menghilangkan child yang sedang ON
+        // (preserve state child, TIDAK select-all). Toggle oval tidak punya visual
+        // indeterminate → master hanya ON/OFF. Tanpa flip indeterminate → animasi
+        // knob tetap jalan (bukan "snap").
         terapkanGrupSimpul();
       });
       d.appendChild(gSimpul.gp);
