@@ -109,6 +109,24 @@
                         <span id="current-time" class="clock-time">--:-- WIB</span>
                     </div>
 
+                    <div class="year-select-wrap">
+                        <label class="visually-hidden" for="yearSelect">Pilih tahun data</label>
+                        <select id="yearSelect" class="year-select" aria-label="Pilih tahun data">
+                            <option value="">Memuat tahun…</option>
+                        </select>
+                    </div>
+
+                    <div class="api-status" role="status" aria-live="polite">
+                        <span id="apiStatusOk" class="api-status-pill api-status-ok" hidden>
+                            <span class="api-dot" aria-hidden="true"></span>
+                            API Terhubung
+                        </span>
+                        <span id="apiStatusErr" class="api-status-pill api-status-err" hidden>
+                            <span class="api-dot" aria-hidden="true"></span>
+                            API Tidak Tersedia
+                        </span>
+                    </div>
+
                     <div class="bell" aria-hidden="true">
                         <svg class="icon-md icon-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
                         <span class="bell-dot">3</span>
@@ -135,21 +153,29 @@
                         <p class="dash-sub">Monitoring &bull; Analisis &bull; Decision Support</p>
                     </div>
                     <div class="dash-badges">
-                        <span class="badge badge-warn">
-                            <span class="badge-dot badge-dot-amber" aria-hidden="true"></span>
-                            Mode Prototype
+                        <span class="badge badge-live">
+                            <span class="badge-dot badge-dot-green" aria-hidden="true"></span>
+                            Sebagian KPI Live
                         </span>
                         <span class="badge badge-blue">
                             <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            Data demo — belum terhubung API
+                            Komponen lain masih demo
                         </span>
                     </div>
                 </div>
 
-                <!-- Global demo notice -->
+                <!-- Status bar: koneksi + waktu muat + error + retry -->
+                <div class="status-bar" role="status" aria-live="polite">
+                    <span class="status-chip" id="dataTimestamp" hidden>Data dimuat: --:-- WIB</span>
+                    <span class="status-chip" id="kpiYearContext" hidden>Tahun --</span>
+                    <span class="status-error" id="apiErrorText" hidden></span>
+                    <button type="button" id="retryBtn" class="retry-btn" hidden>Coba Lagi</button>
+                </div>
+
+                <!-- Hybrid notice: sebagian live, sebagian demo -->
                 <div class="demo-notice" role="note">
                     <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    <span><strong>PROTOTYPE LOKAL — DATA DEMO.</strong> Seluruh angka, status, dan indikator pada halaman ini adalah contoh tampilan dan belum terhubung API produksi.</span>
+                    <span><strong>SEBAGIAN KPI LIVE.</strong> KPI pergerakan penumpang, pergerakan kendaraan, terminal terpetakan, dan UPPKB terpetakan — beserta insight minimal — ditampilkan dari API produksi. Komponen lain pada halaman ini masih berupa data demo / simulasi dan belum terhubung API.</span>
                 </div>
 
                 <!-- Main Grid -->
@@ -158,72 +184,52 @@
                     <!-- ============ LEFT COLUMN ============ -->
                     <div class="grid-left">
 
-                        <!-- KPI Cards -->
+                        <!-- KPI Cards — LIVE (PHASE 14D) -->
                         <div class="kpi-row">
-                            <div class="kpi-card">
+                            <div class="kpi-card kpi-card-live">
                                 <div class="kpi-head">
                                     <span class="kpi-icon" aria-hidden="true"><svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg></span>
-                                    Penumpang
+                                    <span>Pergerakan Penumpang</span>
+                                    <span class="live-badge" aria-hidden="true">LIVE</span>
                                 </div>
-                                <p class="kpi-value">4,82 Juta</p>
-                                <p class="kpi-trend kpi-up">
-                                    <svg class="icon-xs" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
-                                    8,4% YoY
-                                </p>
-                                <svg class="kpi-spark" viewBox="0 0 120 40" preserveAspectRatio="none" aria-hidden="true">
-                                    <defs>
-                                        <linearGradient id="sparkUp" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="0" stop-color="#22c55e" stop-opacity="0.5"/>
-                                            <stop offset="1" stop-color="#22c55e" stop-opacity="0"/>
-                                        </linearGradient>
-                                    </defs>
-                                    <path class="spark-fill" d="M0,32 L12,28 L24,30 L36,22 L48,20 L60,16 L72,18 L84,12 L96,10 L108,8 L120,4 L120,40 L0,40 Z" fill="url(#sparkUp)"/>
-                                    <polyline class="spark-line" points="0,32 12,28 24,30 36,22 48,20 60,16 72,18 84,12 96,10 108,8 120,4" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"/>
-                                </svg>
-                                <span class="visually-hidden">Grafik tren contoh: produksi penumpang naik (data demo)</span>
+                                <p id="kpiPenumpang" class="kpi-value">Memuat…</p>
+                                <p id="kpiPenumpangTrend" class="kpi-trend kpi-flat">Data produksi tahun berjalan</p>
+                                <p id="kpiPenumpangYear" class="kpi-year">Tahun —</p>
+                                <span class="visually-hidden">KPI pergerakan penumpang — data live dari API</span>
                             </div>
 
-                            <div class="kpi-card">
+                            <div class="kpi-card kpi-card-live">
                                 <div class="kpi-head">
                                     <span class="kpi-icon" aria-hidden="true"><svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg></span>
-                                    Perjalanan
+                                    <span>Pergerakan Kendaraan</span>
+                                    <span class="live-badge" aria-hidden="true">LIVE</span>
                                 </div>
-                                <p class="kpi-value">186.240</p>
-                                <p class="kpi-trend kpi-down">
-                                    <svg class="icon-xs" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
-                                    2,1% YoY
-                                </p>
-                                <svg class="kpi-spark" viewBox="0 0 120 40" preserveAspectRatio="none" aria-hidden="true">
-                                    <defs>
-                                        <linearGradient id="sparkDown" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="0" stop-color="#ef4444" stop-opacity="0.5"/>
-                                            <stop offset="1" stop-color="#ef4444" stop-opacity="0"/>
-                                        </linearGradient>
-                                    </defs>
-                                    <path class="spark-fill" d="M0,6 L12,10 L24,8 L36,16 L48,18 L60,24 L72,22 L84,30 L96,34 L108,28 L120,34 L120,40 L0,40 Z" fill="url(#sparkDown)"/>
-                                    <polyline class="spark-line" points="0,6 12,10 24,8 36,16 48,18 60,24 72,22 84,30 96,34 108,28 120,34" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"/>
-                                </svg>
-                                <span class="visually-hidden">Grafik tren contoh: perjalanan menurun (data demo)</span>
+                                <p id="kpiKendaraan" class="kpi-value">Memuat…</p>
+                                <p id="kpiKendaraanTrend" class="kpi-trend kpi-flat">Data produksi tahun berjalan</p>
+                                <p id="kpiKendaraanYear" class="kpi-year">Tahun —</p>
+                                <span class="visually-hidden">KPI pergerakan kendaraan — data live dari API</span>
                             </div>
 
-                            <div class="kpi-card">
+                            <div class="kpi-card kpi-card-live">
                                 <div class="kpi-head">
                                     <span class="kpi-icon" aria-hidden="true"><svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg></span>
-                                    Terminal
+                                    <span>Terminal Terpetakan</span>
+                                    <span class="live-badge" aria-hidden="true">LIVE</span>
                                 </div>
-                                <p class="kpi-value">130</p>
-                                <p class="kpi-trend kpi-up">▲ 2 dari 2025</p>
-                                <span class="visually-hidden">Jumlah terminal contoh: 130 (data demo)</span>
+                                <p id="kpiTerminal" class="kpi-value">Memuat…</p>
+                                <p id="kpiTerminalYear" class="kpi-year">Tahun —</p>
+                                <span class="visually-hidden">KPI terminal terpetakan — data live dari API</span>
                             </div>
 
-                            <div class="kpi-card">
+                            <div class="kpi-card kpi-card-live">
                                 <div class="kpi-head">
                                     <span class="kpi-icon" aria-hidden="true"><svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path></svg></span>
-                                    UPPKB
+                                    <span>UPPKB Terpetakan</span>
+                                    <span class="live-badge" aria-hidden="true">LIVE</span>
                                 </div>
-                                <p class="kpi-value">6</p>
-                                <p class="kpi-trend kpi-flat">— 0 dari 2025</p>
-                                <span class="visually-hidden">Jumlah UPPKB contoh: 6 (data demo)</span>
+                                <p id="kpiUppkb" class="kpi-value">Memuat…</p>
+                                <p id="kpiUppkbYear" class="kpi-year">Tahun —</p>
+                                <span class="visually-hidden">KPI UPPKB terpetakan — data live dari API</span>
                             </div>
                         </div>
 
@@ -302,23 +308,31 @@
                         <div class="insight-row">
                             <div class="card card-insight">
                                 <h3 class="card-title">Insight Utama</h3>
-                                <p class="card-note">Data contoh — belum terhubung API</p>
+                                <p class="card-note" id="insightDemoNote">Data contoh — belum terhubung API</p>
                                 <div class="insight-grid">
-                                    <div class="insight-cell">
-                                        <span class="insight-icon insight-icon-blue" aria-hidden="true"><svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg></span>
-                                        <p class="insight-text">Produksi angkutan <strong class="text-green">naik 8,4%</strong> YoY</p>
+                                    <div class="insight-cell insight-cell-stack">
+<span class="insight-icon insight-icon-blue" aria-hidden="true"><svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg></span>
+<p class="insight-text"><strong>Puncak Bulanan</strong></p>
+                                        <p id="kpiInsightPuncak" class="insight-value insight-value-loading">Memuat…</p>
+                                        <p id="kpiInsightPuncakSub" class="insight-sub">Berdasarkan data yang tersedia</p>
                                     </div>
-                                    <div class="insight-cell insight-cell-red">
+                                    <div class="insight-cell insight-cell-stack">
                                         <span class="insight-icon insight-icon-red" aria-hidden="true"><svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg></span>
-                                        <p class="insight-text"><strong class="text-red">3 terminal</strong><br>perlu perhatian</p>
+                                        <p class="insight-text"><strong>Tren Dua Bulan Terakhir</strong></p>
+                                        <p id="kpiInsightTren" class="insight-value insight-value-loading">Memuat…</p>
+                                        <p id="kpiInsightTrenSub" class="insight-sub">Berdasarkan data yang tersedia</p>
                                     </div>
-                                    <div class="insight-cell">
-                                        <span class="insight-icon insight-icon-blue" aria-hidden="true"><svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg></span>
-                                        <p class="insight-text"><strong class="text-blue">94%</strong><br>data bulan berjalan lengkap</p>
+                                    <div class="insight-cell insight-cell-stack">
+<span class="insight-icon insight-icon-blue" aria-hidden="true"><svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg></span>
+<p class="insight-text"><strong>Rata-rata per Pergerakan Kendaraan</strong></p>
+                                        <p id="kpiInsightRasio" class="insight-value insight-value-loading">Memuat…</p>
+                                        <p id="kpiInsightRasioSub" class="insight-sub">Rata-rata penumpang per pergerakan kendaraan</p>
                                     </div>
-                                    <div class="insight-cell">
-                                        <span class="insight-icon insight-icon-green" aria-hidden="true"><svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg></span>
-                                        <p class="insight-text">Koridor Bandung–Sukabumi <strong class="text-dark">volume tertinggi</strong></p>
+                                    <div class="insight-cell insight-cell-stack">
+<span class="insight-icon insight-icon-green" aria-hidden="true"><svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg></span>
+<p class="insight-text"><strong>DATA DEMO</strong></p>
+                                        <p class="insight-value insight-value-demo">Koridor Bandung–Sukabumi <strong>volume tertinggi</strong></p>
+                                        <p class="insight-sub">Belum terhubung API</p>
                                     </div>
                                 </div>
                             </div>

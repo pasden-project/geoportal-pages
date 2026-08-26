@@ -1269,6 +1269,224 @@ a {
     outline-offset: 2px;
 }
 
+/* =====================================================================
+   PHASE 14D — LIVE DATA FOUNDATION
+   ===================================================================== */
+
+/* ---------- Year selector ---------- */
+.year-select-wrap {
+    flex: none;
+}
+
+.year-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--text-on-dark);
+    border-radius: 0.6rem;
+    padding: 0.42rem 2rem 0.42rem 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23facc15' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+}
+
+.year-select option {
+    background: #0f1f38;
+    color: var(--text-on-dark);
+}
+
+.year-select:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* ---------- API status pill ---------- */
+.api-status {
+    flex: none;
+}
+
+.api-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 0.3rem 0.7rem;
+}
+
+.api-status-ok {
+    background: rgba(34, 197, 94, 0.15);
+    color: #4ade80;
+    border: 1px solid rgba(34, 197, 94, 0.4);
+}
+
+.api-status-err {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.api-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: currentColor;
+    flex: none;
+}
+
+/* ---------- Status bar (timestamp, konteks tahun, error, retry) ---------- */
+.status-bar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 0.9rem;
+    min-height: 1.4rem;
+}
+
+.status-chip {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: #f1f5f9;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.22rem 0.7rem;
+}
+
+.status-error {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--danger);
+}
+
+.retry-btn {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 1px solid var(--blue-700);
+    background: var(--blue-700);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border-radius: 0.6rem;
+    padding: 0.35rem 0.9rem;
+    cursor: pointer;
+    transition: background 0.15s ease, opacity 0.15s ease;
+}
+
+.retry-btn:hover {
+    background: #1e3a8a;
+    opacity: 0.92;
+}
+
+.retry-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* ---------- Badge live vs demo ---------- */
+.badge-live {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #86efac;
+}
+
+.badge-dot-green { background: var(--success); }
+
+/* ---------- KPI live states ---------- */
+.kpi-card-live {
+    border-left: 3px solid var(--success);
+}
+
+.kpi-value-loading {
+    color: var(--text-soft);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+.kpi-value-error {
+    color: var(--danger);
+    font-weight: 700;
+}
+
+.kpi-value-live {
+    color: var(--text);
+    font-weight: 800;
+}
+
+.kpi-year {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-soft);
+    margin-top: 0.15rem;
+}
+
+.live-badge {
+    margin-left: auto;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #166534;
+    background: #bbf7d0;
+    border-radius: 999px;
+    padding: 0.12rem 0.5rem;
+    text-transform: uppercase;
+}
+
+/* ---------- Insight live states ---------- */
+.insight-cell-stack {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+}
+
+.insight-value {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.3;
+    font-variant-numeric: tabular-nums;
+}
+
+.insight-value-loading {
+    color: var(--text-soft);
+    font-weight: 600;
+}
+
+.insight-value-error {
+    color: var(--danger);
+    font-weight: 700;
+}
+
+.insight-value-demo {
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+.insight-sub {
+    font-size: 0.7rem;
+    color: var(--text-soft);
+    line-height: 1.35;
+}
+
+/* ---------- Utility ---------- */
+.is-hidden {
+    display: none !important;
+}
+
+/* =====================================================================
+   END PHASE 14D
+   ===================================================================== */
+
 /* ---------- Responsive ---------- */
 @media (min-width: 1280px) {
     .kpi-row { grid-template-columns: repeat(4, minmax(0, 1fr)); }
@@ -1310,6 +1528,11 @@ a {
     }
 
     .clock-date { display: none; }
+
+    .year-select-wrap,
+    .api-status {
+        display: none;
+    }
 
     .profile-text,
     .profile > .icon-sm {
