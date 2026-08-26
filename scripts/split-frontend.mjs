@@ -10,9 +10,14 @@
  * Catatan: file asli Geo12 TIDAK diubah. Adapter transport ada di src/api.js.
  */
 import fs from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { dirname, resolve } from 'node:path';
 
-const SRC = 'C:/Users/Pasadena/Documents/GeoTerminal/ProjectDashboard/Geo12';
-const OUT = 'C:/Users/Pasadena/Documents/GeoTerminal/ProjectDashboard/Geo12-pages/src';
+// Cross-platform: resolusi path relatif terhadap lokasi script ini
+// (Geo12-pages/scripts/), bukan current working directory dan bukan absolute path perangkat.
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const SRC = resolve(__dirname, '..', '..', 'Geo12');
+const OUT = resolve(__dirname, '..', 'src');
 
 function read(p) { return fs.readFileSync(p, 'utf8'); }
 function write(p, s) { fs.writeFileSync(p, s); }
