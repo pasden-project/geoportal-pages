@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoPORTAL BPTD Jabar — Command Center Prototype</title>
+    <meta name="description" content="Prototipe lokal Command Center GeoPORTAL BPTD Jabar. Seluruh data adalah data demo, belum terhubung API.">
+    <link rel="stylesheet" href="command-center.css">
+</head>
+<body>
+    <div class="app-shell">
+        <!-- ================= SIDEBAR ================= -->
+        <aside id="appSidebar" class="app-sidebar" aria-label="Navigasi utama">
+            <div class="sidebar-logo">
+                <svg class="logo-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    <path d="M12 2v20"></path>
+                </svg>
+                <div class="logo-text">
+                    <span class="logo-title">GEOPORTAL</span>
+                    <span class="logo-sub">BPTD Jabar</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <button type="button" class="nav-link is-active" aria-current="page">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    <span>Home</span>
+                </button>
+                <button type="button" class="nav-link" aria-disabled="true" title="Belum tersedia pada prototipe">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+                    <span>Transport Map</span>
+                </button>
+                <button type="button" class="nav-link" aria-disabled="true" title="Belum tersedia pada prototipe">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                    <span>Terminal</span>
+                </button>
+                <button type="button" class="nav-link" aria-disabled="true" title="Belum tersedia pada prototipe">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    <span>Trayek</span>
+                </button>
+                <button type="button" class="nav-link" aria-disabled="true" title="Belum tersedia pada prototipe">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                    <span>Angkutan Perintis</span>
+                </button>
+                <button type="button" class="nav-link" aria-disabled="true" title="Belum tersedia pada prototipe">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path></svg>
+                    <span>UPPKB / Barang</span>
+                </button>
+                <button type="button" class="nav-link" aria-disabled="true" title="Belum tersedia pada prototipe">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                    <span>OD Intelligence</span>
+                </button>
+                <button type="button" class="nav-link" aria-disabled="true" title="Belum tersedia pada prototipe">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.107 7.107a4 4 0 11-5.657 5.657 4 4 0 015.657-5.657z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12l7.071 7.071"></path></svg>
+                    <span>Connectivity</span>
+                </button>
+                <button type="button" class="nav-link" aria-disabled="true" title="Belum tersedia pada prototipe">
+                    <span class="nav-label">
+                        <svg class="nav-icon nav-icon-warn" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                        <span>Early Warning</span>
+                    </span>
+                    <span class="nav-badge">3</span>
+                </button>
+                <button type="button" class="nav-link" aria-disabled="true" title="Belum tersedia pada prototipe">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
+                    <span>Program &amp; Kinerja</span>
+                </button>
+                <button type="button" class="nav-link" aria-disabled="true" title="Belum tersedia pada prototipe">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    <span>Laporan</span>
+                </button>
+                <button type="button" class="nav-link" aria-disabled="true" title="Belum tersedia pada prototipe">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    <span>Data Master</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <svg class="logo-mark logo-mark-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path><path d="M12 2v20"></path></svg>
+                <span class="footer-title">BPTD Jawa Barat</span>
+                <span class="footer-sub">Transportasi Darat Lebih Terintegrasi</span>
+            </div>
+        </aside>
+
+        <!-- ================= OVERLAY (mobile) ================= -->
+        <div id="sidebarOverlay" class="sidebar-overlay" hidden></div>
+
+        <!-- ================= MAIN ================= -->
+        <main class="app-main">
+            <header class="app-header">
+                <div class="header-left">
+                    <button type="button" id="sidebarToggle" class="header-menu-btn" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="appSidebar">
+                        <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                    <div class="header-title-block">
+                        <h1 class="header-title">Transport Command Center</h1>
+                        <p class="header-sub">Jawa Barat</p>
+                    </div>
+                </div>
+
+                <div class="header-right">
+                    <div class="header-clock">
+                        <div class="clock-date">
+                            <svg class="icon-sm icon-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            <span id="current-date">Memuat tanggal...</span>
+                        </div>
+                        <span id="current-time" class="clock-time">--:-- WIB</span>
+                    </div>
+
+                    <div class="bell" aria-hidden="true">
+                        <svg class="icon-md icon-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+                        <span class="bell-dot">3</span>
+                    </div>
+
+                    <div class="profile" title="Akun demo — belum aktif">
+                        <div class="profile-avatar" aria-hidden="true">
+                            <svg class="icon-md" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                        </div>
+                        <div class="profile-text">
+                            <p class="profile-name">BPTD Jabar</p>
+                            <p class="profile-role">Pengguna Demo</p>
+                        </div>
+                        <svg class="icon-sm icon-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                </div>
+            </header>
+
+            <div class="app-content">
+                <!-- Dashboard Title & Badges -->
+                <div class="dash-head">
+                    <div>
+                        <h2 class="dash-title">Transport Overview <span class="dash-title-dim">—</span> Jawa Barat</h2>
+                        <p class="dash-sub">Monitoring &bull; Analisis &bull; Decision Support</p>
+                    </div>
+                    <div class="dash-badges">
+                        <span class="badge badge-warn">
+                            <span class="badge-dot badge-dot-amber" aria-hidden="true"></span>
+                            Mode Prototype
+                        </span>
+                        <span class="badge badge-blue">
+                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            Data demo — belum terhubung API
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Global demo notice -->
+                <div class="demo-notice" role="note">
+                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span><strong>PROTOTYPE LOKAL — DATA DEMO.</strong> Seluruh angka, status, dan indikator pada halaman ini adalah contoh tampilan dan belum terhubung API produksi.</span>
+                </div>
+
+                <!-- Main Grid -->
+                <div class="dashboard-grid">
+
+                    <!-- ============ LEFT COLUMN ============ -->
+                    <div class="grid-left">
+
+                        <!-- KPI Cards -->
+                        <div class="kpi-row">
+                            <div class="kpi-card">
+                                <div class="kpi-head">
+                                    <span class="kpi-icon" aria-hidden="true"><svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg></span>
+                                    Penumpang
+                                </div>
+                                <p class="kpi-value">4,82 Juta</p>
+                                <p class="kpi-trend kpi-up">
+                                    <svg class="icon-xs" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+                                    8,4% YoY
+                                </p>
+                                <svg class="kpi-spark" viewBox="0 0 120 40" preserveAspectRatio="none" aria-hidden="true">
+                                    <defs>
+                                        <linearGradient id="sparkUp" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0" stop-color="#22c55e" stop-opacity="0.5"/>
+                                            <stop offset="1" stop-color="#22c55e" stop-opacity="0"/>
+                                        </linearGradient>
+                                    </defs>
+                                    <path class="spark-fill" d="M0,32 L12,28 L24,30 L36,22 L48,20 L60,16 L72,18 L84,12 L96,10 L108,8 L120,4 L120,40 L0,40 Z" fill="url(#sparkUp)"/>
+                                    <polyline class="spark-line" points="0,32 12,28 24,30 36,22 48,20 60,16 72,18 84,12 96,10 108,8 120,4" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"/>
+                                </svg>
+                                <span class="visually-hidden">Grafik tren contoh: produksi penumpang naik (data demo)</span>
+                            </div>
+
+                            <div class="kpi-card">
+                                <div class="kpi-head">
+                                    <span class="kpi-icon" aria-hidden="true"><svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg></span>
+                                    Perjalanan
+                                </div>
+                                <p class="kpi-value">186.240</p>
+                                <p class="kpi-trend kpi-down">
+                                    <svg class="icon-xs" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                                    2,1% YoY
+                                </p>
+                                <svg class="kpi-spark" viewBox="0 0 120 40" preserveAspectRatio="none" aria-hidden="true">
+                                    <defs>
+                                        <linearGradient id="sparkDown" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0" stop-color="#ef4444" stop-opacity="0.5"/>
+                                            <stop offset="1" stop-color="#ef4444" stop-opacity="0"/>
+                                        </linearGradient>
+                                    </defs>
+                                    <path class="spark-fill" d="M0,6 L12,10 L24,8 L36,16 L48,18 L60,24 L72,22 L84,30 L96,34 L108,28 L120,34 L120,40 L0,40 Z" fill="url(#sparkDown)"/>
+                                    <polyline class="spark-line" points="0,6 12,10 24,8 36,16 48,18 60,24 72,22 84,30 96,34 108,28 120,34" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"/>
+                                </svg>
+                                <span class="visually-hidden">Grafik tren contoh: perjalanan menurun (data demo)</span>
+                            </div>
+
+                            <div class="kpi-card">
+                                <div class="kpi-head">
+                                    <span class="kpi-icon" aria-hidden="true"><svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg></span>
+                                    Terminal
+                                </div>
+                                <p class="kpi-value">130</p>
+                                <p class="kpi-trend kpi-up">▲ 2 dari 2025</p>
+                                <span class="visually-hidden">Jumlah terminal contoh: 130 (data demo)</span>
+                            </div>
+
+                            <div class="kpi-card">
+                                <div class="kpi-head">
+                                    <span class="kpi-icon" aria-hidden="true"><svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path></svg></span>
+                                    UPPKB
+                                </div>
+                                <p class="kpi-value">6</p>
+                                <p class="kpi-trend kpi-flat">— 0 dari 2025</p>
+                                <span class="visually-hidden">Jumlah UPPKB contoh: 6 (data demo)</span>
+                            </div>
+                        </div>
+
+                        <!-- Mini-map placeholder -->
+                        <div class="map-panel" role="img" aria-label="Placeholder peta kondisi transportasi Jawa Barat. Peta ini ilustrasi demo, bukan peta resmi, seluruh marker diberi label demo.">
+                            <div class="map-head">
+                                <div class="map-title">
+                                    <h3 class="map-heading">Peta Kondisi Transportasi Jawa Barat</h3>
+                                    <p class="map-sub">Placeholder visual — <strong>Simulasi Status</strong> (marker demo, bukan data resmi)</p>
+                                    <div class="map-legend">
+                                        <span class="legend-chip"><span class="legend-dot legend-dot-green" aria-hidden="true"></span> Normal</span>
+                                        <span class="legend-chip"><span class="legend-dot legend-dot-amber" aria-hidden="true"></span> Perlu Perhatian</span>
+                                        <span class="legend-chip"><span class="legend-dot legend-dot-red" aria-hidden="true"></span> Bermasalah</span>
+                                        <span class="legend-chip"><span class="legend-dot legend-dot-gray" aria-hidden="true"></span> Data Belum Tersedia</span>
+                                    </div>
+                                </div>
+                                <a class="btn-map-open" href="../" aria-label="Buka dashboard peta transportasi utama (route /)">
+                                    <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                                    Buka Transport Map
+                                </a>
+                            </div>
+
+                            <svg class="map-bg" viewBox="0 0 600 320" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                                <rect width="600" height="320" fill="#12233f"/>
+                                <g stroke="#1e3a5f" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.9">
+                                    <path d="M-20,260 C120,240 200,150 340,120 S560,80 640,60"/>
+                                    <path d="M60,-20 C90,80 60,180 160,260 S420,300 640,280"/>
+                                    <path d="M-20,120 C160,140 300,60 440,180 S560,300 640,240"/>
+                                    <path d="M120,320 C140,240 260,200 300,120 S420,-10 460,-20"/>
+                                </g>
+                                <g stroke="#2c4a75" stroke-width="2.5" fill="none" opacity="0.6">
+                                    <path d="M-20,200 C180,180 300,220 640,160"/>
+                                    <path d="M200,-20 C220,80 180,180 300,320"/>
+                                    <path d="M-20,60 C200,80 420,40 640,120"/>
+                                    <path d="M400,-20 C380,100 460,200 420,340"/>
+                                </g>
+                                <g stroke="#facc15" stroke-width="2" fill="none" opacity="0.35" stroke-dasharray="8 10">
+                                    <path d="M150,290 C220,230 300,180 380,150 S520,100 600,90"/>
+                                </g>
+                                <circle cx="180" cy="150" r="46" fill="#22c55e" opacity="0.08"/>
+                                <circle cx="430" cy="110" r="60" fill="#ef4444" opacity="0.08"/>
+                                <circle cx="520" cy="220" r="40" fill="#eab308" opacity="0.08"/>
+                            </svg>
+
+                            <!-- demo markers -->
+                            <span class="map-marker map-marker-red" style="left:66%;top:30%"><span class="marker-dot" aria-hidden="true"></span> demo</span>
+                            <span class="map-marker map-marker-green" style="left:30%;top:46%"><span class="marker-dot" aria-hidden="true"></span> demo</span>
+                            <span class="map-marker map-marker-green" style="left:18%;top:20%"><span class="marker-dot" aria-hidden="true"></span> demo</span>
+                            <span class="map-marker map-marker-green" style="left:44%;top:14%"><span class="marker-dot" aria-hidden="true"></span> demo</span>
+                            <span class="map-marker map-marker-amber" style="left:52%;top:62%"><span class="marker-dot" aria-hidden="true"></span> demo</span>
+                            <span class="map-marker map-marker-green" style="left:78%;top:66%"><span class="marker-dot" aria-hidden="true"></span> demo</span>
+                            <span class="map-marker map-marker-red" style="left:38%;top:76%"><span class="marker-dot" aria-hidden="true"></span> demo</span>
+                            <span class="map-marker map-marker-amber" style="left:84%;top:42%"><span class="marker-dot" aria-hidden="true"></span> demo</span>
+                            <span class="map-marker map-marker-green" style="left:58%;top:20%"><span class="marker-dot" aria-hidden="true"></span> demo</span>
+
+                            <div class="map-compass" aria-hidden="true">
+                                <span class="compass-n">N</span>
+                                <svg class="icon-md" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L4 22L12 17L20 22L12 2Z"></path></svg>
+                            </div>
+
+                            <div class="score-card">
+                                <h4 class="score-title">Skor Demo</h4>
+                                <div class="score-ring" role="img" aria-label="Skor demo 82 dari 100 — metodologi belum ditetapkan">
+                                    <svg viewBox="0 0 36 36" class="score-svg" aria-hidden="true">
+                                        <path class="score-track" stroke-width="4" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                        <path class="score-fill" stroke-width="4" stroke-dasharray="82, 100" stroke-linecap="round" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                    </svg>
+                                    <div class="score-center"><span class="score-num">82</span><span class="score-den">/100</span></div>
+                                </div>
+                                <p class="score-note">Transport Intelligence Score — metodologi belum ditetapkan</p>
+                                <p class="score-area">Bandung Raya (demo)</p>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Insights -->
+                        <div class="insight-row">
+                            <div class="card card-insight">
+                                <h3 class="card-title">Insight Utama</h3>
+                                <p class="card-note">Data contoh — belum terhubung API</p>
+                                <div class="insight-grid">
+                                    <div class="insight-cell">
+                                        <span class="insight-icon insight-icon-blue" aria-hidden="true"><svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg></span>
+                                        <p class="insight-text">Produksi angkutan <strong class="text-green">naik 8,4%</strong> YoY</p>
+                                    </div>
+                                    <div class="insight-cell insight-cell-red">
+                                        <span class="insight-icon insight-icon-red" aria-hidden="true"><svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg></span>
+                                        <p class="insight-text"><strong class="text-red">3 terminal</strong><br>perlu perhatian</p>
+                                    </div>
+                                    <div class="insight-cell">
+                                        <span class="insight-icon insight-icon-blue" aria-hidden="true"><svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg></span>
+                                        <p class="insight-text"><strong class="text-blue">94%</strong><br>data bulan berjalan lengkap</p>
+                                    </div>
+                                    <div class="insight-cell">
+                                        <span class="insight-icon insight-icon-green" aria-hidden="true"><svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg></span>
+                                        <p class="insight-text">Koridor Bandung–Sukabumi <strong class="text-dark">volume tertinggi</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card card-promo">
+                                <div class="promo-bg" aria-hidden="true">
+                                    <svg class="icon-xl" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M12 1.586l-4 4v12.828l4-4V1.586zM3.707 3.293A1 1 0 002 4v10a1 1 0 00.293.707L6 18.414V5.586L3.707 3.293zM17.707 5.293L14 1.586v12.828l2.293 2.293A1 1 0 0018 16V6a1 1 0 00-.293-.707z" clip-rule="evenodd"></path></svg>
+                                </div>
+                                <div class="promo-content">
+                                    <span class="promo-icon" aria-hidden="true"><svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg></span>
+                                    <div>
+                                        <h3 class="promo-title">Transport Map</h3>
+                                        <p class="promo-sub">Jelajahi data transportasi secara interaktif</p>
+                                        <a class="promo-link" href="../">Buka dashboard utama (route /)</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick-access -->
+                        <div class="quick-access">
+                            <button type="button" class="quick-btn" aria-disabled="true" title="Belum tersedia pada prototipe">
+                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                                Terminal
+                            </button>
+                            <button type="button" class="quick-btn" aria-disabled="true" title="Belum tersedia pada prototipe">
+                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                Trayek
+                            </button>
+                            <button type="button" class="quick-btn" aria-disabled="true" title="Belum tersedia pada prototipe">
+                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                                OD
+                            </button>
+                            <button type="button" class="quick-btn" aria-disabled="true" title="Belum tersedia pada prototipe">
+                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                                Perintis
+                            </button>
+                            <button type="button" class="quick-btn" aria-disabled="true" title="Belum tersedia pada prototipe">
+                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                                UPPKB
+                            </button>
+                            <button type="button" class="quick-btn quick-btn-last" aria-disabled="true" title="Belum tersedia pada prototipe">
+                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13.107 7.107a4 4 0 11-5.657 5.657 4 4 0 015.657-5.657z"></path></svg>
+                                Connectivity
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ============ RIGHT COLUMN ============ -->
+                    <div class="grid-right">
+
+                        <!-- Executive Alert -->
+                        <section class="card card-alert" aria-labelledby="alert-title">
+                            <div class="alert-bar" aria-hidden="true"></div>
+                            <div class="alert-head">
+                                <svg class="icon-md text-red" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                                <h3 id="alert-title" class="card-title">Simulasi Alert <span class="card-title-dim">(3)</span></h3>
+                            </div>
+                            <p class="card-note">Isi berikut data contoh — bukan alert produksi</p>
+                            <div class="alert-list">
+                                <button type="button" class="alert-item" aria-disabled="true" title="Belum tersedia pada prototipe">
+                                    <span class="alert-dot alert-dot-red" aria-hidden="true"></span>
+                                    <span class="alert-text">3 terminal mengalami penurunan penumpang &gt;20% (contoh).</span>
+                                    <svg class="icon-sm icon-chev" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                </button>
+                                <button type="button" class="alert-item" aria-disabled="true" title="Belum tersedia pada prototipe">
+                                    <span class="alert-dot alert-dot-amber" aria-hidden="true"></span>
+                                    <span class="alert-text">2 terminal belum memperbarui data Agustus (contoh).</span>
+                                    <svg class="icon-sm icon-chev" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                </button>
+                                <button type="button" class="alert-item" aria-disabled="true" title="Belum tersedia pada prototipe">
+                                    <span class="alert-dot alert-dot-red" aria-hidden="true"></span>
+                                    <span class="alert-text">Produksi salah satu trayek turun 31% (contoh).</span>
+                                    <svg class="icon-sm icon-chev" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                </button>
+                            </div>
+                            <button type="button" class="alert-more" aria-disabled="true">Lihat Semua Alert</button>
+                        </section>
+
+                        <!-- Top Movers -->
+                        <section class="card" aria-labelledby="movers-title">
+                            <div class="movers-head">
+                                <h3 id="movers-title" class="card-title">Top Movers <span class="card-title-dim">— Data contoh</span></h3>
+                            </div>
+                            <div class="movers-tabs" role="tablist" aria-label="Pilih daftar contoh kenaikan atau penurunan">
+                                <button type="button" role="tab" id="tab-kenaikan" aria-selected="true" aria-controls="panel-kenaikan" class="mover-tab mover-tab-active">
+                                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+                                    Kenaikan
+                                </button>
+                                <button type="button" role="tab" id="tab-penurunan" aria-selected="false" aria-controls="panel-penurunan" class="mover-tab">
+                                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                                    Penurunan
+                                </button>
+                            </div>
+
+                            <div id="panel-kenaikan" role="tabpanel" aria-labelledby="tab-kenaikan" class="movers-list">
+                                <div class="mover-row mover-row-up">
+                                    <span class="mover-rank mover-rank-up" aria-hidden="true">1</span>
+                                    <div class="mover-info">
+                                        <p class="mover-name">Terminal Leuwipanjang</p>
+                                        <p class="mover-detail">Produksi penumpang (contoh)</p>
+                                    </div>
+                                    <span class="mover-val mover-val-up">+14,2%</span>
+                                </div>
+                                <div class="mover-row mover-row-up">
+                                    <span class="mover-rank mover-rank-up" aria-hidden="true">2</span>
+                                    <div class="mover-info">
+                                        <p class="mover-name">Terminal Cicaheum</p>
+                                        <p class="mover-detail">Produksi penumpang (contoh)</p>
+                                    </div>
+                                    <span class="mover-val mover-val-up">+11,8%</span>
+                                </div>
+                                <div class="mover-row">
+                                    <span class="mover-rank mover-rank-plain" aria-hidden="true">3</span>
+                                    <div class="mover-info">
+                                        <p class="mover-name">Terminal Bekasi</p>
+                                        <p class="mover-detail">Produksi penumpang (contoh)</p>
+                                    </div>
+                                    <span class="mover-val mover-val-up">+9,6%</span>
+                                </div>
+                            </div>
+
+                            <div id="panel-penurunan" role="tabpanel" aria-labelledby="tab-penurunan" class="movers-list" hidden>
+                                <div class="mover-row mover-row-down">
+                                    <span class="mover-rank mover-rank-down" aria-hidden="true">1</span>
+                                    <div class="mover-info">
+                                        <p class="mover-name">Terminal Sukabumi</p>
+                                        <p class="mover-detail">Produksi penumpang (contoh)</p>
+                                    </div>
+                                    <span class="mover-val mover-val-down">-22,4%</span>
+                                </div>
+                                <div class="mover-row mover-row-down">
+                                    <span class="mover-rank mover-rank-down" aria-hidden="true">2</span>
+                                    <div class="mover-info">
+                                        <p class="mover-name">Terminal Banjar</p>
+                                        <p class="mover-detail">Produksi penumpang (contoh)</p>
+                                    </div>
+                                    <span class="mover-val mover-val-down">-18,1%</span>
+                                </div>
+                                <div class="mover-row">
+                                    <span class="mover-rank mover-rank-plain" aria-hidden="true">3</span>
+                                    <div class="mover-info">
+                                        <p class="mover-name">Terminal Cikampek</p>
+                                        <p class="mover-detail">Produksi penumpang (contoh)</p>
+                                    </div>
+                                    <span class="mover-val mover-val-down">-12,7%</span>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Kinerja Angkutan Perintis -->
+                        <section class="card" aria-labelledby="perintis-title">
+                            <div class="movers-head">
+                                <h3 id="perintis-title" class="card-title">Kinerja Angkutan Perintis</h3>
+                            </div>
+                            <p class="card-note">Data contoh — belum terhubung API</p>
+                            <div class="perintis-body">
+                                <div class="donut" role="img" aria-label="Load factor rata-rata contoh 62 persen">
+                                    <div class="donut-center">
+                                        <span class="donut-num">62%</span>
+                                        <span class="donut-label">Load Factor<br>Rata-rata</span>
+                                    </div>
+                                </div>
+                                <div class="perintis-legend">
+                                    <div class="legend-row"><span class="legend-dot legend-dot-green" aria-hidden="true"></span> Pertahankan <span class="legend-count">(12)</span></div>
+                                    <div class="legend-row"><span class="legend-dot legend-dot-amber" aria-hidden="true"></span> Evaluasi <span class="legend-count">(6)</span></div>
+                                    <div class="legend-row"><span class="legend-dot legend-dot-blue" aria-hidden="true"></span> Potensi Pengemb. <span class="legend-count">(4)</span></div>
+                                    <div class="legend-row"><span class="legend-dot legend-dot-red" aria-hidden="true"></span> Perlu Kajian Lanjut <span class="legend-count">(3)</span></div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Data Quality -->
+                        <section class="card" aria-labelledby="quality-title">
+                            <div class="movers-head">
+                                <h3 id="quality-title" class="card-title">Simulasi Kelengkapan Data</h3>
+                            </div>
+                            <p class="card-note">Angka contoh — bukan metrik resmi</p>
+                            <div class="quality-body">
+                                <div class="quality-ring" role="img" aria-label="Simulasi kelengkapan data 94 persen (contoh)">
+                                    <svg viewBox="0 0 36 36" class="score-svg" aria-hidden="true">
+                                        <path class="score-track" stroke-width="4" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                        <path class="score-fill" stroke-width="4" stroke-dasharray="94, 100" stroke-linecap="round" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                    </svg>
+                                    <span class="quality-num">94%</span>
+                                </div>
+                                <div class="quality-list">
+                                    <div class="quality-item"><svg class="icon-sm text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Terminal: 96%</div>
+                                    <div class="quality-item"><svg class="icon-sm text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Trayek: 93%</div>
+                                    <div class="quality-item"><svg class="icon-sm text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> OD: 92%</div>
+                                    <div class="quality-item"><svg class="icon-sm text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Perintis: 94%</div>
+                                    <div class="quality-item"><svg class="icon-sm text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> UPPKB: 97%</div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <p class="page-foot">Transportasi Darat yang Aman, Nyaman dan Terintegrasi — Prototipe lokal GeoPORTAL BPTD Jabar</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="command-center.js"></script>
+</body>
+</html>
