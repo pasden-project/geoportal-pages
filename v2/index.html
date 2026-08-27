@@ -193,7 +193,7 @@
                                     <span class="live-badge" aria-hidden="true">LIVE</span>
                                 </div>
                                 <p id="kpiPenumpang" class="kpi-value">Memuat…</p>
-                                <p id="kpiPenumpangTrend" class="kpi-trend kpi-flat">Data produksi tahun berjalan</p>
+                                <p id="kpiPenumpangTrend" class="kpi-trend kpi-flat">Data produksi tahun terpilih</p>
                                 <p id="kpiPenumpangYear" class="kpi-year">Tahun —</p>
                                 <span class="visually-hidden">KPI pergerakan penumpang — data live dari API</span>
                             </div>
@@ -205,7 +205,7 @@
                                     <span class="live-badge" aria-hidden="true">LIVE</span>
                                 </div>
                                 <p id="kpiKendaraan" class="kpi-value">Memuat…</p>
-                                <p id="kpiKendaraanTrend" class="kpi-trend kpi-flat">Data produksi tahun berjalan</p>
+                                <p id="kpiKendaraanTrend" class="kpi-trend kpi-flat">Data produksi tahun terpilih</p>
                                 <p id="kpiKendaraanYear" class="kpi-year">Tahun —</p>
                                 <span class="visually-hidden">KPI pergerakan kendaraan — data live dari API</span>
                             </div>
@@ -291,16 +291,12 @@
                             </div>
 
                             <div class="score-card">
-                                <h4 class="score-title">Skor Demo</h4>
-                                <div class="score-ring" role="img" aria-label="Skor demo 82 dari 100 — metodologi belum ditetapkan">
-                                    <svg viewBox="0 0 36 36" class="score-svg" aria-hidden="true">
-                                        <path class="score-track" stroke-width="4" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                                        <path class="score-fill" stroke-width="4" stroke-dasharray="82, 100" stroke-linecap="round" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                                    </svg>
-                                    <div class="score-center"><span class="score-num">82</span><span class="score-den">/100</span></div>
-                                </div>
-                                <p class="score-note">Transport Intelligence Score — metodologi belum ditetapkan</p>
-                                <p class="score-area">Bandung Raya (demo)</p>
+                                <h4 class="score-title">Transport Intelligence Overview</h4>
+                                <p id="tiTren" class="score-line">—</p>
+                                <p id="tiGap" class="score-line score-line-warn" hidden></p>
+                                <p id="tiPuncak" class="score-line">—</p>
+                                <p id="tiRasio" class="score-line">—</p>
+                                <p class="score-note">Skor komposit belum dapat dihitung karena metadata dan benchmark belum ditetapkan.</p>
                             </div>
                         </div>
 
@@ -318,21 +314,17 @@
                                     </div>
                                     <div class="insight-cell insight-cell-stack">
                                         <span class="insight-icon insight-icon-red" aria-hidden="true"><svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg></span>
-                                        <p class="insight-text"><strong>Tren Dua Bulan Terakhir</strong></p>
+                                        <p class="insight-text"><strong>Perubahan Bulanan</strong></p>
                                         <p id="kpiInsightTren" class="insight-value insight-value-loading">Memuat…</p>
+                                        <p id="kpiInsightTrenLabel" class="insight-sub" hidden></p>
+                                        <p id="kpiInsightTrenGap" class="insight-sub insight-sub-warn" hidden></p>
                                         <p id="kpiInsightTrenSub" class="insight-sub">Berdasarkan data yang tersedia</p>
                                     </div>
                                     <div class="insight-cell insight-cell-stack">
 <span class="insight-icon insight-icon-blue" aria-hidden="true"><svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg></span>
-<p class="insight-text"><strong>Rata-rata per Pergerakan Kendaraan</strong></p>
+<p class="insight-text"><strong>Rasio Penumpang terhadap Pergerakan Kendaraan</strong></p>
                                         <p id="kpiInsightRasio" class="insight-value insight-value-loading">Memuat…</p>
-                                        <p id="kpiInsightRasioSub" class="insight-sub">Rata-rata penumpang per pergerakan kendaraan</p>
-                                    </div>
-                                    <div class="insight-cell insight-cell-stack">
-<span class="insight-icon insight-icon-green" aria-hidden="true"><svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg></span>
-<p class="insight-text"><strong>DATA DEMO</strong></p>
-                                        <p class="insight-value insight-value-demo">Koridor Bandung–Sukabumi <strong>volume tertinggi</strong></p>
-                                        <p class="insight-sub">Belum terhubung API</p>
+                                        <p id="kpiInsightRasioSub" class="insight-sub">Agregat terminal, bukan load factor kapasitas kursi</p>
                                     </div>
                                 </div>
                             </div>
@@ -384,40 +376,25 @@
                     <!-- ============ RIGHT COLUMN ============ -->
                     <div class="grid-right">
 
-                        <!-- Executive Alert -->
+                        <!-- Executive Alert — System Alert V1 (deterministic connection state) -->
                         <section class="card card-alert" aria-labelledby="alert-title">
                             <div class="alert-bar" aria-hidden="true"></div>
                             <div class="alert-head">
-                                <svg class="icon-md text-red" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                                <h3 id="alert-title" class="card-title">Simulasi Alert <span class="card-title-dim">(3)</span></h3>
+                                <svg id="alertIcon" class="icon-md icon-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                                <h3 id="alert-title" class="card-title">System Alert <span class="card-title-dim">V1</span></h3>
+                                <span id="alertLiveBadge" class="live-badge" hidden>LIVE</span>
                             </div>
-                            <p class="card-note">Isi berikut data contoh — bukan alert produksi</p>
-                            <div class="alert-list">
-                                <button type="button" class="alert-item" aria-disabled="true" title="Belum tersedia pada prototipe">
-                                    <span class="alert-dot alert-dot-red" aria-hidden="true"></span>
-                                    <span class="alert-text">3 terminal mengalami penurunan penumpang &gt;20% (contoh).</span>
-                                    <svg class="icon-sm icon-chev" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                                </button>
-                                <button type="button" class="alert-item" aria-disabled="true" title="Belum tersedia pada prototipe">
-                                    <span class="alert-dot alert-dot-amber" aria-hidden="true"></span>
-                                    <span class="alert-text">2 terminal belum memperbarui data Agustus (contoh).</span>
-                                    <svg class="icon-sm icon-chev" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                                </button>
-                                <button type="button" class="alert-item" aria-disabled="true" title="Belum tersedia pada prototipe">
-                                    <span class="alert-dot alert-dot-red" aria-hidden="true"></span>
-                                    <span class="alert-text">Produksi salah satu trayek turun 31% (contoh).</span>
-                                    <svg class="icon-sm icon-chev" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                                </button>
-                            </div>
-                            <button type="button" class="alert-more" aria-disabled="true">Lihat Semua Alert</button>
+                            <p id="alertStatus" class="alert-status">Memuat…</p>
+                            <p id="alertDetail" class="alert-detail" hidden></p>
+                            <button type="button" id="alertRetry" class="retry-btn" hidden>Coba Lagi</button>
                         </section>
 
-                        <!-- Top Movers -->
+                        <!-- Top Movers — DEFERRED (PHASE 14F) -->
                         <section class="card" aria-labelledby="movers-title">
                             <div class="movers-head">
-                                <h3 id="movers-title" class="card-title">Top Movers <span class="card-title-dim">— Data contoh</span></h3>
+                                <h3 id="movers-title" class="card-title">Top Movers</h3>
                             </div>
-                            <div class="movers-tabs" role="tablist" aria-label="Pilih daftar contoh kenaikan atau penurunan">
+                            <div class="movers-tabs" role="tablist" aria-label="Pilih daftar kenaikan atau penurunan">
                                 <button type="button" role="tab" id="tab-kenaikan" aria-selected="true" aria-controls="panel-kenaikan" class="mover-tab mover-tab-active">
                                     <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
                                     Kenaikan
@@ -429,56 +406,16 @@
                             </div>
 
                             <div id="panel-kenaikan" role="tabpanel" aria-labelledby="tab-kenaikan" class="movers-list">
-                                <div class="mover-row mover-row-up">
-                                    <span class="mover-rank mover-rank-up" aria-hidden="true">1</span>
-                                    <div class="mover-info">
-                                        <p class="mover-name">Terminal Leuwipanjang</p>
-                                        <p class="mover-detail">Produksi penumpang (contoh)</p>
-                                    </div>
-                                    <span class="mover-val mover-val-up">+14,2%</span>
-                                </div>
-                                <div class="mover-row mover-row-up">
-                                    <span class="mover-rank mover-rank-up" aria-hidden="true">2</span>
-                                    <div class="mover-info">
-                                        <p class="mover-name">Terminal Cicaheum</p>
-                                        <p class="mover-detail">Produksi penumpang (contoh)</p>
-                                    </div>
-                                    <span class="mover-val mover-val-up">+11,8%</span>
-                                </div>
-                                <div class="mover-row">
-                                    <span class="mover-rank mover-rank-plain" aria-hidden="true">3</span>
-                                    <div class="mover-info">
-                                        <p class="mover-name">Terminal Bekasi</p>
-                                        <p class="mover-detail">Produksi penumpang (contoh)</p>
-                                    </div>
-                                    <span class="mover-val mover-val-up">+9,6%</span>
+                                <div class="mover-empty">
+                                    <p class="mover-empty-title">BELUM TERSEDIA</p>
+                                    <p class="mover-empty-detail">Metodologi entitas dan periode pembanding sedang ditetapkan.</p>
                                 </div>
                             </div>
 
                             <div id="panel-penurunan" role="tabpanel" aria-labelledby="tab-penurunan" class="movers-list" hidden>
-                                <div class="mover-row mover-row-down">
-                                    <span class="mover-rank mover-rank-down" aria-hidden="true">1</span>
-                                    <div class="mover-info">
-                                        <p class="mover-name">Terminal Sukabumi</p>
-                                        <p class="mover-detail">Produksi penumpang (contoh)</p>
-                                    </div>
-                                    <span class="mover-val mover-val-down">-22,4%</span>
-                                </div>
-                                <div class="mover-row mover-row-down">
-                                    <span class="mover-rank mover-rank-down" aria-hidden="true">2</span>
-                                    <div class="mover-info">
-                                        <p class="mover-name">Terminal Banjar</p>
-                                        <p class="mover-detail">Produksi penumpang (contoh)</p>
-                                    </div>
-                                    <span class="mover-val mover-val-down">-18,1%</span>
-                                </div>
-                                <div class="mover-row">
-                                    <span class="mover-rank mover-rank-plain" aria-hidden="true">3</span>
-                                    <div class="mover-info">
-                                        <p class="mover-name">Terminal Cikampek</p>
-                                        <p class="mover-detail">Produksi penumpang (contoh)</p>
-                                    </div>
-                                    <span class="mover-val mover-val-down">-12,7%</span>
+                                <div class="mover-empty">
+                                    <p class="mover-empty-title">BELUM TERSEDIA</p>
+                                    <p class="mover-empty-detail">Metodologi entitas dan periode pembanding sedang ditetapkan.</p>
                                 </div>
                             </div>
                         </section>
@@ -505,27 +442,14 @@
                             </div>
                         </section>
 
-                        <!-- Data Quality -->
+                        <!-- Data Quality — DESCRIPTIVE ONLY (PHASE 14F) -->
                         <section class="card" aria-labelledby="quality-title">
                             <div class="movers-head">
-                                <h3 id="quality-title" class="card-title">Simulasi Kelengkapan Data</h3>
+                                <h3 id="quality-title" class="card-title">Kualitas Data</h3>
                             </div>
-                            <p class="card-note">Angka contoh — bukan metrik resmi</p>
-                            <div class="quality-body">
-                                <div class="quality-ring" role="img" aria-label="Simulasi kelengkapan data 94 persen (contoh)">
-                                    <svg viewBox="0 0 36 36" class="score-svg" aria-hidden="true">
-                                        <path class="score-track" stroke-width="4" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                                        <path class="score-fill" stroke-width="4" stroke-dasharray="94, 100" stroke-linecap="round" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                                    </svg>
-                                    <span class="quality-num">94%</span>
-                                </div>
-                                <div class="quality-list">
-                                    <div class="quality-item"><svg class="icon-sm text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Terminal: 96%</div>
-                                    <div class="quality-item"><svg class="icon-sm text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Trayek: 93%</div>
-                                    <div class="quality-item"><svg class="icon-sm text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> OD: 92%</div>
-                                    <div class="quality-item"><svg class="icon-sm text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Perintis: 94%</div>
-                                    <div class="quality-item"><svg class="icon-sm text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> UPPKB: 97%</div>
-                                </div>
+                            <div class="quality-empty">
+                                <p class="quality-empty-title">BELUM DAPAT DIHITUNG</p>
+                                <p class="quality-empty-detail">Metadata kelengkapan, kebaruan, validitas, dan cakupan belum tersedia.</p>
                             </div>
                         </section>
                     </div>
