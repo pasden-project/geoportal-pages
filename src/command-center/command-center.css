@@ -1636,6 +1636,15 @@ a {
 
 @media (max-width: 400px) {
     .kpi-row { grid-template-columns: 1fr; }
+
+    /* TI Overview: keluar dari overlay absolut → normal flow agar tidak
+       menimpa tombol Buka Transport Map / legenda pada layar sempit */
+    .score-card {
+        position: static;
+        width: auto;
+        margin: 0.6rem 0.9rem;
+        border: 1px solid var(--border);
+    }
 }
 
 /* ---------- Reduced motion ---------- */
