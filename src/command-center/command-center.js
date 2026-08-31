@@ -825,7 +825,7 @@
             bar.className = "alert-bar" + (barCls ? " " + barCls : "");
         }
         if (iconEl) {
-            iconEl.className = iconCls;
+            iconEl.setAttribute("class", iconCls);
         }
     }
 
