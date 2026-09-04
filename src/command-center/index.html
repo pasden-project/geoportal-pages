@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GeoPORTAL BPTD Jabar — Command Center Prototype</title>
-    <meta name="description" content="Prototipe lokal Command Center GeoPORTAL BPTD Jabar. Seluruh data adalah data demo, belum terhubung API.">
+    <title>GeoPORTAL BPTD Jabar — Command Center</title>
+    <meta name="description" content="Pusat Komando Transportasi Darat BPTD Kelas I Jawa Barat. Monitoring indikator kinerja utama, tren pergerakan penumpang dan kendaraan terintegrasi.">
     <link rel="stylesheet" href="command-center.css">
 </head>
 <body>
@@ -24,63 +24,31 @@
             </div>
 
             <nav class="sidebar-nav">
-                <button type="button" class="nav-link is-active" aria-current="page">
+                <a href="./" class="nav-link is-active" aria-current="page">
                     <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-                    <span>Home</span>
-                </button>
-                <button type="button" class="nav-link" aria-disabled="true" title="Belum tersedia pada prototipe">
+                    <span>Ringkasan</span>
+                </a>
+                <a href="../" class="nav-link">
                     <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
-                    <span>Transport Map</span>
-                </button>
-                <button type="button" class="nav-link" aria-disabled="true" title="Belum tersedia pada prototipe">
-                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                    <span>Terminal</span>
-                </button>
-                <button type="button" class="nav-link" aria-disabled="true" title="Belum tersedia pada prototipe">
-                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                    <span>Trayek</span>
-                </button>
-                <button type="button" class="nav-link" aria-disabled="true" title="Belum tersedia pada prototipe">
-                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
-                    <span>Angkutan Perintis</span>
-                </button>
-                <button type="button" class="nav-link" aria-disabled="true" title="Belum tersedia pada prototipe">
-                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path></svg>
-                    <span>UPPKB / Barang</span>
-                </button>
-                <button type="button" class="nav-link" aria-disabled="true" title="Belum tersedia pada prototipe">
-                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
-                    <span>OD Intelligence</span>
-                </button>
-                <button type="button" class="nav-link" aria-disabled="true" title="Belum tersedia pada prototipe">
-                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.107 7.107a4 4 0 11-5.657 5.657 4 4 0 015.657-5.657z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12l7.071 7.071"></path></svg>
-                    <span>Connectivity</span>
-                </button>
-                <button type="button" class="nav-link" aria-disabled="true" title="Belum tersedia pada prototipe">
-                    <span class="nav-label">
-                        <svg class="nav-icon nav-icon-warn" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                        <span>Early Warning</span>
-                    </span>
-                    <span class="nav-badge">3</span>
-                </button>
-                <button type="button" class="nav-link" aria-disabled="true" title="Belum tersedia pada prototipe">
-                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
-                    <span>Program &amp; Kinerja</span>
-                </button>
-                <button type="button" class="nav-link" aria-disabled="true" title="Belum tersedia pada prototipe">
-                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                    <span>Laporan</span>
-                </button>
-                <button type="button" class="nav-link" aria-disabled="true" title="Belum tersedia pada prototipe">
-                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                    <span>Data Master</span>
-                </button>
+                    <span>Peta Transportasi</span>
+                </a>
+
+                <div class="sidebar-roadmap" aria-label="Informasi pengembangan modul">
+                    <p class="roadmap-header">Modul dalam pengembangan</p>
+                    <ul class="roadmap-list">
+                        <li>Terminal &amp; Trayek</li>
+                        <li>Angkutan Perintis</li>
+                        <li>UPPKB / Penimbangan</li>
+                        <li>OD Intelligence</li>
+                        <li>Pelaporan &amp; Audit</li>
+                    </ul>
+                </div>
             </nav>
 
             <div class="sidebar-footer">
                 <svg class="logo-mark logo-mark-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path><path d="M12 2v20"></path></svg>
-                <span class="footer-title">BPTD Jawa Barat</span>
-                <span class="footer-sub">Transportasi Darat Lebih Terintegrasi</span>
+                <span class="footer-title">BPTD Kelas I Jawa Barat</span>
+                <span class="footer-sub">Transportasi Darat Terintegrasi</span>
             </div>
         </aside>
 
@@ -96,7 +64,7 @@
                     </button>
                     <div class="header-title-block">
                         <h1 class="header-title">Transport Command Center</h1>
-                        <p class="header-sub">Jawa Barat</p>
+                        <p class="header-sub">BPTD Kelas I Jawa Barat</p>
                     </div>
                 </div>
 
@@ -109,13 +77,6 @@
                         <span id="current-time" class="clock-time">--:-- WIB</span>
                     </div>
 
-                    <div class="year-select-wrap">
-                        <label class="visually-hidden" for="yearSelect">Pilih tahun data</label>
-                        <select id="yearSelect" class="year-select" aria-label="Pilih tahun data">
-                            <option value="">Memuat tahun…</option>
-                        </select>
-                    </div>
-
                     <div class="api-status" role="status" aria-live="polite">
                         <span id="apiStatusOk" class="api-status-pill api-status-ok" hidden>
                             <span class="api-dot" aria-hidden="true"></span>
@@ -126,41 +87,24 @@
                             API Tidak Tersedia
                         </span>
                     </div>
-
-                    <div class="bell" aria-hidden="true">
-                        <svg class="icon-md icon-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
-                        <span class="bell-dot">3</span>
-                    </div>
-
-                    <div class="profile" title="Akun demo — belum aktif">
-                        <div class="profile-avatar" aria-hidden="true">
-                            <svg class="icon-md" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
-                        </div>
-                        <div class="profile-text">
-                            <p class="profile-name">BPTD Jabar</p>
-                            <p class="profile-role">Pengguna Demo</p>
-                        </div>
-                        <svg class="icon-sm icon-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </div>
                 </div>
             </header>
 
             <div class="app-content">
-                <!-- Dashboard Title & Badges -->
+                <!-- Dashboard Title, Controls & Status Bar -->
                 <div class="dash-head">
-                    <div>
-                        <h2 class="dash-title">Transport Overview <span class="dash-title-dim">—</span> Jawa Barat</h2>
-                        <p class="dash-sub">Monitoring &bull; Analisis &bull; Decision Support</p>
+                    <div class="dash-title-wrap">
+                        <h2 class="dash-title">Ringkasan Operasional Transportasi</h2>
+                        <p class="dash-sub">Monitoring data pergerakan angkutan jalan, terminal penumpang, dan UPPKB Jawa Barat</p>
                     </div>
-                    <div class="dash-badges">
-                        <span class="badge badge-live">
-                            <span class="badge-dot badge-dot-green" aria-hidden="true"></span>
-                            Sebagian KPI Live
-                        </span>
-                        <span class="badge badge-blue">
-                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            Komponen lain masih demo
-                        </span>
+
+                    <div class="dash-controls">
+                        <div class="year-control-wrap">
+                            <label for="yearSelect" class="year-control-label">Pilih Tahun:</label>
+                            <select id="yearSelect" class="year-select" aria-label="Pilih tahun data">
+                                <option value="">Memuat tahun…</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
@@ -172,19 +116,13 @@
                     <button type="button" id="retryBtn" class="retry-btn" hidden>Coba Lagi</button>
                 </div>
 
-                <!-- Hybrid notice: sebagian live, sebagian demo -->
-                <div class="demo-notice" role="note">
-                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    <span><strong>SEBAGIAN KPI LIVE.</strong> KPI pergerakan penumpang, pergerakan kendaraan, terminal terpetakan, dan UPPKB terpetakan — beserta insight minimal — ditampilkan dari API produksi. Komponen lain pada halaman ini masih berupa data demo / simulasi dan belum terhubung API.</span>
-                </div>
-
                 <!-- Main Grid -->
                 <div class="dashboard-grid">
 
                     <!-- ============ LEFT COLUMN ============ -->
                     <div class="grid-left">
 
-                        <!-- KPI Cards — LIVE (PHASE 14D) -->
+                        <!-- KPI Cards — LIVE (PHASE 14D/14I) -->
                         <div class="kpi-row">
                             <div class="kpi-card kpi-card-live">
                                 <div class="kpi-head">
@@ -233,155 +171,89 @@
                             </div>
                         </div>
 
-                        <!-- Mini-map placeholder -->
-                        <div class="map-panel" role="img" aria-label="Placeholder peta kondisi transportasi Jawa Barat. Peta ini ilustrasi demo, bukan peta resmi, seluruh marker diberi label demo.">
-                            <div class="map-head">
-                                <div class="map-title">
-                                    <h3 class="map-heading">Peta Kondisi Transportasi Jawa Barat</h3>
-                                    <p class="map-sub">Placeholder visual — <strong>Simulasi Status</strong> (marker demo, bukan data resmi)</p>
-                                    <div class="map-legend">
-                                        <span class="legend-chip"><span class="legend-dot legend-dot-green" aria-hidden="true"></span> Normal</span>
-                                        <span class="legend-chip"><span class="legend-dot legend-dot-amber" aria-hidden="true"></span> Perlu Perhatian</span>
-                                        <span class="legend-chip"><span class="legend-dot legend-dot-red" aria-hidden="true"></span> Bermasalah</span>
-                                        <span class="legend-chip"><span class="legend-dot legend-dot-gray" aria-hidden="true"></span> Data Belum Tersedia</span>
+                        <!-- Panel Grafik Tren Bulanan Live (Menggantikan simulasi peta) -->
+                        <section class="card chart-panel" aria-labelledby="chartHeading">
+                            <div class="chart-header">
+                                <div class="chart-title-block">
+                                    <div class="chart-title-row">
+                                        <h3 id="chartHeading" class="card-title">Tren Aktivitas Bulanan</h3>
+                                        <span class="live-badge" aria-hidden="true">LIVE DATA</span>
                                     </div>
+                                    <p id="chartSub" class="card-sub">Distribusi pergerakan bulanan berdasarkan laporan produksi resmi</p>
                                 </div>
-                                <a class="btn-map-open" href="../" aria-label="Buka dashboard peta transportasi utama (route /)">
-                                    <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
-                                    Buka Transport Map
-                                </a>
+                                <div class="chart-toggle-group" role="group" aria-label="Pilih metrik tren">
+                                    <button type="button" id="btnMetricPenumpang" class="btn-toggle is-active" aria-pressed="true">
+                                        <span class="toggle-dot toggle-dot-blue" aria-hidden="true"></span>
+                                        Penumpang
+                                    </button>
+                                    <button type="button" id="btnMetricKendaraan" class="btn-toggle" aria-pressed="false">
+                                        <span class="toggle-dot toggle-dot-amber" aria-hidden="true"></span>
+                                        Kendaraan
+                                    </button>
+                                </div>
                             </div>
 
-                            <svg class="map-bg" viewBox="0 0 600 320" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-                                <rect width="600" height="320" fill="#12233f"/>
-                                <g stroke="#1e3a5f" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.9">
-                                    <path d="M-20,260 C120,240 200,150 340,120 S560,80 640,60"/>
-                                    <path d="M60,-20 C90,80 60,180 160,260 S420,300 640,280"/>
-                                    <path d="M-20,120 C160,140 300,60 440,180 S560,300 640,240"/>
-                                    <path d="M120,320 C140,240 260,200 300,120 S420,-10 460,-20"/>
-                                </g>
-                                <g stroke="#2c4a75" stroke-width="2.5" fill="none" opacity="0.6">
-                                    <path d="M-20,200 C180,180 300,220 640,160"/>
-                                    <path d="M200,-20 C220,80 180,180 300,320"/>
-                                    <path d="M-20,60 C200,80 420,40 640,120"/>
-                                    <path d="M400,-20 C380,100 460,200 420,340"/>
-                                </g>
-                                <g stroke="#facc15" stroke-width="2" fill="none" opacity="0.35" stroke-dasharray="8 10">
-                                    <path d="M150,290 C220,230 300,180 380,150 S520,100 600,90"/>
-                                </g>
-                                <circle cx="180" cy="150" r="46" fill="#22c55e" opacity="0.08"/>
-                                <circle cx="430" cy="110" r="60" fill="#ef4444" opacity="0.08"/>
-                                <circle cx="520" cy="220" r="40" fill="#eab308" opacity="0.08"/>
-                            </svg>
-
-                            <!-- demo markers -->
-                            <span class="map-marker map-marker-red" style="left:66%;top:30%"><span class="marker-dot" aria-hidden="true"></span> demo</span>
-                            <span class="map-marker map-marker-green" style="left:30%;top:46%"><span class="marker-dot" aria-hidden="true"></span> demo</span>
-                            <span class="map-marker map-marker-green" style="left:18%;top:20%"><span class="marker-dot" aria-hidden="true"></span> demo</span>
-                            <span class="map-marker map-marker-green" style="left:44%;top:14%"><span class="marker-dot" aria-hidden="true"></span> demo</span>
-                            <span class="map-marker map-marker-amber" style="left:52%;top:62%"><span class="marker-dot" aria-hidden="true"></span> demo</span>
-                            <span class="map-marker map-marker-green" style="left:78%;top:66%"><span class="marker-dot" aria-hidden="true"></span> demo</span>
-                            <span class="map-marker map-marker-red" style="left:38%;top:76%"><span class="marker-dot" aria-hidden="true"></span> demo</span>
-                            <span class="map-marker map-marker-amber" style="left:84%;top:42%"><span class="marker-dot" aria-hidden="true"></span> demo</span>
-                            <span class="map-marker map-marker-green" style="left:58%;top:20%"><span class="marker-dot" aria-hidden="true"></span> demo</span>
-
-                            <div class="map-compass" aria-hidden="true">
-                                <span class="compass-n">N</span>
-                                <svg class="icon-md" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L4 22L12 17L20 22L12 2Z"></path></svg>
+                            <div class="chart-container" id="chartContainer">
+                                <!-- Area render SVG interaktif native -->
+                                <div id="chartSvgWrap" class="chart-svg-wrap"></div>
+                                <div id="chartEmptyWrap" class="chart-empty-wrap" hidden>
+                                    <p id="chartEmptyTitle" class="chart-empty-title">Data tren belum tersedia</p>
+                                    <p id="chartEmptySub" class="chart-empty-sub">Tidak ditemukan catatan pergerakan untuk tahun terpilih.</p>
+                                </div>
                             </div>
 
-                            <div class="score-card">
-                                <h4 class="score-title">Transport Intelligence Overview</h4>
-                                <p id="tiTren" class="score-line">—</p>
-                                <p id="tiGap" class="score-line score-line-warn" hidden></p>
-                                <p id="tiPuncak" class="score-line">—</p>
-                                <p id="tiRasio" class="score-line">—</p>
-                                <p class="score-note">Skor komposit belum dapat dihitung karena metadata dan benchmark belum ditetapkan.</p>
+                            <div class="chart-footer">
+                                <div id="chartSummaryText" class="chart-summary-text">Memuat ringkasan tren…</div>
+                                <div id="chartGapNotice" class="chart-gap-notice" hidden>
+                                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                                    <span>Terdapat jeda periode pada data pelaporan bulanan.</span>
+                                </div>
                             </div>
-                        </div>
+                        </section>
 
-                        <!-- Bottom Insights -->
+                        <!-- Bottom Insights Live (3 Analitik yang disetujui) -->
                         <div class="insight-row">
                             <div class="card card-insight">
-                                <h3 class="card-title">Insight Utama</h3>
-                                <p class="card-note" id="insightDemoNote">Data contoh — belum terhubung API</p>
+                                <div class="insight-head">
+                                    <h3 class="card-title">Ringkasan Analitik Produksi</h3>
+                                    <span class="live-badge" aria-hidden="true">LIVE</span>
+                                </div>
                                 <div class="insight-grid">
                                     <div class="insight-cell insight-cell-stack">
-<span class="insight-icon insight-icon-blue" aria-hidden="true"><svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg></span>
-<p class="insight-text"><strong>Puncak Bulanan</strong></p>
+                                        <span class="insight-icon insight-icon-blue" aria-hidden="true"><svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg></span>
+                                        <p class="insight-text"><strong>Puncak Bulanan</strong></p>
                                         <p id="kpiInsightPuncak" class="insight-value insight-value-loading">Memuat…</p>
                                         <p id="kpiInsightPuncakSub" class="insight-sub">Berdasarkan data yang tersedia</p>
                                     </div>
                                     <div class="insight-cell insight-cell-stack">
-                                        <span class="insight-icon insight-icon-red" aria-hidden="true"><svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg></span>
-                                        <p class="insight-text"><strong>Perubahan Bulanan</strong></p>
+                                        <span class="insight-icon insight-icon-red" aria-hidden="true"><svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg></span>
+                                        <p class="insight-text"><strong>Perubahan Bulanan (MoM)</strong></p>
                                         <p id="kpiInsightTren" class="insight-value insight-value-loading">Memuat…</p>
                                         <p id="kpiInsightTrenLabel" class="insight-sub" hidden></p>
                                         <p id="kpiInsightTrenGap" class="insight-sub insight-sub-warn" hidden></p>
                                         <p id="kpiInsightTrenSub" class="insight-sub">Berdasarkan data yang tersedia</p>
                                     </div>
                                     <div class="insight-cell insight-cell-stack">
-<span class="insight-icon insight-icon-blue" aria-hidden="true"><svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg></span>
-<p class="insight-text"><strong>Rasio Penumpang terhadap Pergerakan Kendaraan</strong></p>
+                                        <span class="insight-icon insight-icon-blue" aria-hidden="true"><svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg></span>
+                                        <p class="insight-text"><strong>Rasio Penumpang / Kendaraan</strong></p>
                                         <p id="kpiInsightRasio" class="insight-value insight-value-loading">Memuat…</p>
                                         <p id="kpiInsightRasioSub" class="insight-sub">Agregat terminal, bukan load factor kapasitas kursi</p>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="card card-promo">
-                                <div class="promo-bg" aria-hidden="true">
-                                    <svg class="icon-xl" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M12 1.586l-4 4v12.828l4-4V1.586zM3.707 3.293A1 1 0 002 4v10a1 1 0 00.293.707L6 18.414V5.586L3.707 3.293zM17.707 5.293L14 1.586v12.828l2.293 2.293A1 1 0 0018 16V6a1 1 0 00-.293-.707z" clip-rule="evenodd"></path></svg>
-                                </div>
-                                <div class="promo-content">
-                                    <span class="promo-icon" aria-hidden="true"><svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg></span>
-                                    <div>
-                                        <h3 class="promo-title">Transport Map</h3>
-                                        <p class="promo-sub">Jelajahi data transportasi secara interaktif</p>
-                                        <a class="promo-link" href="../">Buka dashboard utama (route /)</a>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
-                        <!-- Quick-access -->
-                        <div class="quick-access">
-                            <button type="button" class="quick-btn" aria-disabled="true" title="Belum tersedia pada prototipe">
-                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                                Terminal
-                            </button>
-                            <button type="button" class="quick-btn" aria-disabled="true" title="Belum tersedia pada prototipe">
-                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                                Trayek
-                            </button>
-                            <button type="button" class="quick-btn" aria-disabled="true" title="Belum tersedia pada prototipe">
-                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
-                                OD
-                            </button>
-                            <button type="button" class="quick-btn" aria-disabled="true" title="Belum tersedia pada prototipe">
-                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
-                                Perintis
-                            </button>
-                            <button type="button" class="quick-btn" aria-disabled="true" title="Belum tersedia pada prototipe">
-                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                                UPPKB
-                            </button>
-                            <button type="button" class="quick-btn quick-btn-last" aria-disabled="true" title="Belum tersedia pada prototipe">
-                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13.107 7.107a4 4 0 11-5.657 5.657 4 4 0 015.657-5.657z"></path></svg>
-                                Connectivity
-                            </button>
-                        </div>
                     </div>
 
                     <!-- ============ RIGHT COLUMN ============ -->
                     <div class="grid-right">
 
-                        <!-- Executive Alert — System Alert V1 (deterministic connection state) -->
+                        <!-- Status Sistem & Data (sebelumnya System Alert V1) -->
                         <section class="card card-alert" aria-labelledby="alert-title">
                             <div class="alert-bar" aria-hidden="true"></div>
                             <div class="alert-head">
                                 <svg id="alertIcon" class="icon-md icon-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                                <h3 id="alert-title" class="card-title">System Alert <span class="card-title-dim">V1</span></h3>
+                                <h3 id="alert-title" class="card-title">Status Sistem &amp; Data</h3>
                                 <span id="alertLiveBadge" class="live-badge" hidden>LIVE</span>
                             </div>
                             <p id="alertStatus" class="alert-status">Memuat…</p>
@@ -389,73 +261,91 @@
                             <button type="button" id="alertRetry" class="retry-btn" hidden>Coba Lagi</button>
                         </section>
 
-                        <!-- Top Movers — DEFERRED (PHASE 14F) -->
-                        <section class="card" aria-labelledby="movers-title">
-                            <div class="movers-head">
-                                <h3 id="movers-title" class="card-title">Top Movers</h3>
+                        <!-- Kartu Akses Peta Transportasi Jawa Barat (Spasial Nyata) -->
+                        <section class="card card-spatial" aria-labelledby="spatial-title">
+                            <div class="spatial-bg-pattern" aria-hidden="true">
+                                <svg viewBox="0 0 200 120" preserveAspectRatio="none">
+                                    <path d="M0,80 Q50,40 100,60 T200,30" fill="none" stroke="rgba(250,204,21,0.15)" stroke-width="3"></path>
+                                    <path d="M0,100 Q70,70 140,80 T200,60" fill="none" stroke="rgba(47,92,191,0.2)" stroke-width="2"></path>
+                                </svg>
                             </div>
-                            <div class="movers-tabs" role="tablist" aria-label="Pilih daftar kenaikan atau penurunan">
-                                <button type="button" role="tab" id="tab-kenaikan" aria-selected="true" aria-controls="panel-kenaikan" class="mover-tab mover-tab-active">
-                                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
-                                    Kenaikan
-                                </button>
-                                <button type="button" role="tab" id="tab-penurunan" aria-selected="false" aria-controls="panel-penurunan" class="mover-tab">
-                                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
-                                    Penurunan
-                                </button>
-                            </div>
-
-                            <div id="panel-kenaikan" role="tabpanel" aria-labelledby="tab-kenaikan" class="movers-list">
-                                <div class="mover-empty">
-                                    <p class="mover-empty-title">BELUM TERSEDIA</p>
-                                    <p class="mover-empty-detail">Metodologi entitas dan periode pembanding sedang ditetapkan.</p>
+                            <div class="spatial-content">
+                                <div class="spatial-badge">
+                                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    <span>Eksplorasi Geografis</span>
                                 </div>
-                            </div>
+                                <h3 id="spatial-title" class="spatial-title">Peta Transportasi Jawa Barat</h3>
+                                <p class="spatial-desc">Eksplorasi spasial interaktif terminal, jembatan timbang (UPPKB), jaringan trayek AKAP/AKDP, dan angkutan perintis tersedia pada dashboard peta utama.</p>
 
-                            <div id="panel-penurunan" role="tabpanel" aria-labelledby="tab-penurunan" class="movers-list" hidden>
-                                <div class="mover-empty">
-                                    <p class="mover-empty-title">BELUM TERSEDIA</p>
-                                    <p class="mover-empty-detail">Metodologi entitas dan periode pembanding sedang ditetapkan.</p>
-                                </div>
-                            </div>
-                        </section>
-
-                        <!-- Kinerja Angkutan Perintis -->
-                        <section class="card" aria-labelledby="perintis-title">
-                            <div class="movers-head">
-                                <h3 id="perintis-title" class="card-title">Kinerja Angkutan Perintis</h3>
-                            </div>
-                            <p class="card-note">Data contoh — belum terhubung API</p>
-                            <div class="perintis-body">
-                                <div class="donut" role="img" aria-label="Load factor rata-rata contoh 62 persen">
-                                    <div class="donut-center">
-                                        <span class="donut-num">62%</span>
-                                        <span class="donut-label">Load Factor<br>Rata-rata</span>
+                                <div class="spatial-stats">
+                                    <div class="spatial-stat-item">
+                                        <span id="spatialTerminalCount" class="spatial-stat-num">—</span>
+                                        <span class="spatial-stat-lbl">Terminal Tipe A</span>
+                                    </div>
+                                    <div class="spatial-stat-divider" aria-hidden="true"></div>
+                                    <div class="spatial-stat-item">
+                                        <span id="spatialUppkbCount" class="spatial-stat-num">—</span>
+                                        <span class="spatial-stat-lbl">UPPKB Aktif</span>
                                     </div>
                                 </div>
-                                <div class="perintis-legend">
-                                    <div class="legend-row"><span class="legend-dot legend-dot-green" aria-hidden="true"></span> Pertahankan <span class="legend-count">(12)</span></div>
-                                    <div class="legend-row"><span class="legend-dot legend-dot-amber" aria-hidden="true"></span> Evaluasi <span class="legend-count">(6)</span></div>
-                                    <div class="legend-row"><span class="legend-dot legend-dot-blue" aria-hidden="true"></span> Potensi Pengemb. <span class="legend-count">(4)</span></div>
-                                    <div class="legend-row"><span class="legend-dot legend-dot-red" aria-hidden="true"></span> Perlu Kajian Lanjut <span class="legend-count">(3)</span></div>
+
+                                <a href="../" class="btn-spatial-cta" aria-label="Buka Dashboard Peta Transportasi Jawa Barat">
+                                    <span>Buka Peta Transportasi</span>
+                                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                </a>
+                            </div>
+                        </section>
+
+                        <!-- Analitik Lanjutan (Jujur & Non-interaktif, tanpa fake number/demo) -->
+                        <section class="card card-future-analytics" aria-labelledby="future-analytics-title">
+                            <div class="future-head">
+                                <h3 id="future-analytics-title" class="card-title">Analitik Lanjutan</h3>
+                                <span class="future-badge">Dalam Perumusan</span>
+                            </div>
+                            <p class="future-sub">Modul analisis komprehensif berikut sedang dalam tahap penetapan metodologi dan integrasi sumber data:</p>
+
+                            <div class="future-list">
+                                <div class="future-item">
+                                    <div class="future-item-head">
+                                        <span class="future-item-name">Top Movers (Trayek &amp; Terminal)</span>
+                                        <span class="status-pill status-pill-pending">Belum Tersedia</span>
+                                    </div>
+                                    <p class="future-item-desc">Metodologi baseline entitas dan kriteria batas perubahan data sedang dirumuskan.</p>
+                                </div>
+
+                                <div class="future-item">
+                                    <div class="future-item-head">
+                                        <span class="future-item-name">Kinerja Angkutan Perintis</span>
+                                        <span class="status-pill status-pill-pending">Integrasi Tertunda</span>
+                                    </div>
+                                    <p class="future-item-desc">Penyelarasan data operasional 6 koridor perintis Jawa Barat menuju integrasi langsung.</p>
+                                </div>
+
+                                <div class="future-item">
+                                    <div class="future-item-head">
+                                        <span class="future-item-name">Kualitas &amp; Kelengkapan Data</span>
+                                        <span class="status-pill status-pill-pending">Belum Dapat Dihitung</span>
+                                    </div>
+                                    <p class="future-item-desc">Metadata audit kelengkapan dan kebaruan pelaporan terminal belum tersedia di backend.</p>
+                                </div>
+
+                                <div class="future-item">
+                                    <div class="future-item-head">
+                                        <span class="future-item-name">Transport Intelligence Composite Score</span>
+                                        <span class="status-pill status-pill-pending">Belum Ditetapkan</span>
+                                    </div>
+                                    <p class="future-item-desc">Skor indeks komposit operasional menunggu penetapan bobot indikator pimpinan.</p>
                                 </div>
                             </div>
                         </section>
 
-                        <!-- Data Quality — DESCRIPTIVE ONLY (PHASE 14F) -->
-                        <section class="card" aria-labelledby="quality-title">
-                            <div class="movers-head">
-                                <h3 id="quality-title" class="card-title">Kualitas Data</h3>
-                            </div>
-                            <div class="quality-empty">
-                                <p class="quality-empty-title">BELUM DAPAT DIHITUNG</p>
-                                <p class="quality-empty-detail">Metadata kelengkapan, kebaruan, validitas, dan cakupan belum tersedia.</p>
-                            </div>
-                        </section>
                     </div>
                 </div>
 
-                <p class="page-foot">Transportasi Darat yang Aman, Nyaman dan Terintegrasi — Prototipe lokal GeoPORTAL BPTD Jabar</p>
+                <footer class="app-footer">
+                    <p class="footer-legal">GeoPORTAL BPTD Kelas I Jawa Barat &bull; Portal Dashboard Maps Informatif Angkutan Jalan</p>
+                    <p class="footer-meta">Kementerian Perhubungan Republik Indonesia &bull; Balai Pengelola Transportasi Darat Kelas I Jawa Barat</p>
+                </footer>
             </div>
         </main>
     </div>

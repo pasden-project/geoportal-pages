@@ -1,24 +1,11 @@
 /* =====================================================================
-   GeoPORTAL BPTD Jabar — Command Center Prototype
-   PHASE 14D — fondasi data live (read-only) melalui gateway resmi /api/.
-   PHASE 14F — penyesuaian UI sesuai metodologi yang disetujui (14E/14E.1):
-     - perbandingan periode dihitung di frontend dari trend (bukan
-       insights.tren backend), dengan kalender tertutup per Asia/Jakarta;
-     - System Alert V1 (status koneksi deterministik, bukan simulasi);
-     - Top Movers ditunda (BELUM TERSEDIA);
-     - Kualitas Data deskriptif (BELUM DAPAT DIHITUNG);
-     - Transport Intelligence hanya indikator (tanpa skor komposit).
+   GeoPORTAL BPTD Jabar — Command Center V2
+   PHASE 14I — Executive Clean Dashboard Logic
+   Native SVG Live Trend Chart, Zero Dead Control, Full UI Correctness
 
-   Endpoint yang dipanggil (KEDUANYA VERIFIED read-only):
+   Endpoint yang dipanggil (Verified read-only):
      - getAvailableYears
      - getDashboardData
-
-   Transport memakai POST (sesuai gateway Pages Functions), tetapi kedua
-   action tersebut sudah diverifikasi read-only (PHASE 14C audit).
-
-   TIDAK ada wrapper untuk endpoint write. TIDAK ada dependency eksternal.
-   Semua data demo lama tetap diberi label eksplisit (DATA DEMO / SIMULASI /
-   METODOLOGI BELUM DITETAPKAN / BELUM TERHUBUNG API).
    ===================================================================== */
 
 (function () {
@@ -28,20 +15,28 @@
        1. Konstanta & state
        ================================================================= */
     var API_BASE = "/api";
-    var REQUEST_TIMEOUT_MS = 15000; // timeout wajar untuk cold-start GAS
+    var REQUEST_TIMEOUT_MS = 15000;
     var REQUEST_VERB = "POST";
     var REQUEST_HEADERS = { "content-type": "application/json" };
+    var SVG_NS = "http://www.w3.org/2000/svg";
 
-    // Penghitung request; digunakan untuk membatalkan respons basi saat
-    // pengguna cepat mengganti tahun. rpc() mengembalikan null untuk respons
-    // basi, dan caller mengabaikannya.
     var lastRequestId = 0;
-
-    // State tahun aktif
     var selectedYear = null;
+    var currentDashboardData = null;
+    var activeMetric = "penumpang"; // 'penumpang' | 'kendaraan'
+
+    var NAMA_BULAN_ID = [
+        "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+        "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+    ];
+
+    var NAMA_BULAN_PENDEK = [
+        "Jan", "Feb", "Mar", "Apr", "Mei", "Jun",
+        "Jul", "Agu", "Sep", "Okt", "Nov", "Des"
+    ];
 
     /* =================================================================
-       2. Util aman: setText (textContent saja, TANPA innerHTML)
+       2. DOM & String Helpers (Safe DOM, Zero innerHTML)
        ================================================================= */
     function setText(id, text) {
         var el = document.getElementById(id);
@@ -57,17 +52,6 @@
         }
     }
 
-    function setVisible(id, visible) {
-        var el = document.getElementById(id);
-        if (el) {
-            if (visible) {
-                el.classList.remove("is-hidden");
-            } else {
-                el.classList.add("is-hidden");
-            }
-        }
-    }
-
     function setTextClass(id, cls) {
         var el = document.getElementById(id);
         if (el) {
@@ -76,7 +60,7 @@
     }
 
     /* =================================================================
-       3. Format angka Indonesia (id-ID)
+       3. Format Angka Indonesia (id-ID)
        ================================================================= */
     function formatNumber(n) {
         if (n === null || n === undefined || isNaN(n)) {
@@ -122,17 +106,6 @@
         return fmt.format(now);
     }
 
-    /* =================================================================
-       3a. Analisis periode aman (PHASE 14F — metodologi disetujui)
-       ================================================================= */
-
-    // Nama bulan lengkap untuk label (indeks 0 = Januari).
-    var NAMA_BULAN_ID = [
-        "Januari", "Februari", "Maret", "April", "Mei", "Juni",
-        "Juli", "Agustus", "September", "Oktober", "November", "Desember"
-    ];
-
-    // Tahun & bulan kalender saat ini dalam zona Asia/Jakarta.
     function getCurrentPeriodWIB() {
         var parts = new Intl.DateTimeFormat("en-US", {
             timeZone: "Asia/Jakarta",
@@ -156,8 +129,6 @@
         return (isFinite(n) && n > 0) ? n : 0;
     }
 
-    // Bulan dinyatakan memiliki aktivitas jika minimal satu metrik
-    // pergerakan (penumpang/kendaraan) tercatat > 0.
     function monthHasActivity(rec) {
         if (!rec || typeof rec !== "object") {
             return false;
@@ -172,24 +143,24 @@
         return toNumberOrZero(rec.kedatangan_penumpang) + toNumberOrZero(rec.keberangkatan_penumpang);
     }
 
-    // Helper analisis periode: memakai SERI TREN lengkap (12 posisi,
-    // indeks 0 = Januari) yang dikembalikan getDashboardData. Menghitung
-    // perubahan persentase antara DUA bulan kalender-tertutup terakhir yang
-    // memiliki aktivitas. Input tidak pernah dimutasikan (clone dulu).
+    function monthVehicleMovement(rec) {
+        return toNumberOrZero(rec.kedatangan_kendaraan) + toNumberOrZero(rec.keberangkatan_kendaraan);
+    }
+
+    /* =================================================================
+       4. Analisis Periode Aman (MoM)
+       ================================================================= */
     function analyzePeriod(trend, tahun) {
-        // 1) Validasi tahun target.
         if (tahun === null || tahun === undefined || !isFinite(Number(tahun))) {
             return { available: false, reason: "tahun tidak valid" };
         }
         var year = Number(tahun);
         var now = getCurrentPeriodWIB();
 
-        // 2) Tahun yang masih akan datang → tidak tersedia.
         if (year > now.tahun) {
             return { available: false, reason: "tahun masih akan datang" };
         }
 
-        // 3) Clone input (jangan mutasi array respons API).
         var months = [];
         var src = Array.isArray(trend) ? trend : [];
         for (var i = 0; i < 12; i++) {
@@ -203,11 +174,7 @@
             });
         }
 
-        // 4) Untuk tahun berjalan: bulan berjalan & masa depan dikecualikan.
-        //    Untuk tahun lampau: seluruh 12 bulan kalender tertutup.
         var lastAllowedMonth = (year === now.tahun) ? now.bulan - 1 : 12;
-
-        // 5) Kumpulkan bulan tertutup yang punya aktivitas (diurutkan naik).
         var active = [];
         for (var m = 1; m <= lastAllowedMonth; m++) {
             var rec2 = months[m - 1] || {};
@@ -216,7 +183,6 @@
             }
         }
 
-        // 6) Butuh minimal dua bulan untuk membandingkan.
         if (active.length < 2) {
             return {
                 available: false,
@@ -225,7 +191,6 @@
             };
         }
 
-        // 7) Dua bulan terakhir yang punya aktivitas.
         var bulanTerakhir = active[active.length - 1];
         var bulanSebelumnya = active[active.length - 2];
         var recAkhir = months[bulanTerakhir - 1] || {};
@@ -233,7 +198,6 @@
         var nilaiAkhir = monthPassengerMovement(recAkhir);
         var nilaiAwal = monthPassengerMovement(recAwal);
 
-        // 8) Baseline nol / non-finit → persentase tidak tersedia.
         if (nilaiAwal <= 0 || !isFinite(nilaiAkhir) || !isFinite(nilaiAwal)) {
             return {
                 available: false,
@@ -244,8 +208,6 @@
             };
         }
 
-        // 9) Persentase dihitung dari NILAI pergerakan penumpang,
-        //    bukan dari nomor bulan.
         var pct = ((nilaiAkhir - nilaiAwal) / nilaiAwal) * 100;
         var berurutan = (bulanTerakhir - bulanSebelumnya === 1);
 
@@ -264,7 +226,6 @@
         };
     }
 
-    // Label manusiawi untuk hasil analyzePeriod.
     function describePeriod(result) {
         if (!result || !result.available) {
             return {
@@ -275,12 +236,7 @@
         }
         var pctLabel = formatPercent(result.persen);
         var arah = result.persen > 0 ? "Naik" : (result.persen < 0 ? "Turun" : "Stabil");
-        var label;
-        if (result.berurutan) {
-            label = "Perubahan bulanan: " + result.namaSebelumnya + " → " + result.namaTerakhir;
-        } else {
-            label = "Perubahan: " + result.namaSebelumnya + " → " + result.namaTerakhir;
-        }
+        var label = "Perubahan: " + result.namaSebelumnya + " → " + result.namaTerakhir;
         return {
             value: arah + " " + pctLabel,
             label: label,
@@ -291,12 +247,8 @@
     }
 
     /* =================================================================
-       4. Client API read-only (2 endpoint saja)
+       5. Client API Read-Only
        ================================================================= */
-
-    // Caller yang menaikkan lastRequestId (membatalkan request lama),
-    // lalu meneruskan requestId ke rpc(). Hanya requestId paling baru yang
-    // berhak menggambar UI.
     function isCurrent(requestId) {
         return requestId === lastRequestId;
     }
@@ -339,11 +291,9 @@
                     } catch (e) {
                         throw new Error("respons bukan JSON");
                     }
-                    // Hanya panggilan terbaru yang berhak menggambar UI.
                     if (!isCurrent(requestId)) {
-                        return resolve(null); // respons basi → abaikan
+                        return resolve(null);
                     }
-                    // Cek body.ok, jangan hanya HTTP status.
                     if (pack.ok && payload && payload.ok === true) {
                         return resolve(payload.data);
                     }
@@ -352,7 +302,7 @@
                 })
                 .catch(function (err) {
                     if (!isCurrent(requestId)) {
-                        return resolve(null); // respons basi → abaikan
+                        return resolve(null);
                     }
                     if (timedOut) {
                         reject(new Error("timeout"));
@@ -371,7 +321,7 @@
     }
 
     /* =================================================================
-       5. Ambil tahun → isi select → panggil dashboardData
+       6. Inisialisasi Tahun & Data Dashboard
        ================================================================= */
     function initYears() {
         var select = document.getElementById("yearSelect");
@@ -380,9 +330,6 @@
         }
 
         var requestId = ++lastRequestId;
-
-        // State eksplisit: loading — initial retry harus benar-benar
-        // berubah menjadi loading dan error lama langsung hilang.
         setStateLoading();
 
         return rpc("getAvailableYears", [], requestId)
@@ -393,7 +340,6 @@
                 if (!years || !years.length) {
                     throw new Error("empty");
                 }
-                // Isi <option> tanpa innerHTML.
                 select.replaceChildren();
                 years.forEach(function (y) {
                     var opt = document.createElement("option");
@@ -401,7 +347,7 @@
                     opt.textContent = String(y);
                     select.appendChild(opt);
                 });
-                selectedYear = years[0]; // tahun terbaru = default
+                selectedYear = years[0];
                 select.value = String(selectedYear);
                 loadDashboardData();
                 return null;
@@ -415,30 +361,25 @@
             });
     }
 
-    /* =================================================================
-       6. Ambil dashboardData untuk tahun terpilih
-       ================================================================= */
     function loadDashboardData() {
         var year = selectedYear;
-        var requestId = ++lastRequestId; // batalkan request lama yang tertunda
+        var requestId = ++lastRequestId;
 
-        // State eksplisit: loading — bersihkan semua data request sebelumnya,
-        // jangan tampilkan API Terhubung / timestamp baru / data lama.
         setStateLoading();
 
         return rpc("getDashboardData", [{ tahun: year }], requestId)
             .then(function (data) {
                 if (!isCurrent(requestId)) {
-                    return null; // stale — abaikan
+                    return null;
                 }
                 if (!data) {
                     setStateError("Data kosong dari server.");
                     return null;
                 }
                 var empty = isDataEmpty(data);
+                currentDashboardData = data;
                 renderLive(data, year, empty);
                 if (empty) {
-                    // Empty: jangan tampilkan "API Terhubung" atau timestamp baru.
                     setApiNeutral();
                 } else {
                     setApiSuccess();
@@ -447,15 +388,14 @@
             })
             .catch(function (err) {
                 if (!isCurrent(requestId)) {
-                    return null; // stale — abaikan
+                    return null;
                 }
+                currentDashboardData = null;
                 setStateError(friendlyError(err));
                 return null;
             });
     }
 
-    // Deteksi response kosong: summary seluruhnya nol DAN tidak ada bulan
-    // dengan aktivitas pada trend.
     function isDataEmpty(d) {
         var s = (d && d.summary) || {};
         var total =
@@ -476,13 +416,8 @@
     }
 
     /* =================================================================
-       6b. State eksplisit: loading / success / empty / error
+       7. State Management (Loading, Error, Empty, Success)
        ================================================================= */
-
-    // Konteks tahun pada setiap KPI — selalu sinkron dengan selectedYear
-    // saat ini, atau "Tahun —" bila belum tersedia. Dipanggil di state
-    // loading/error agar tidak ada tahun respons sukses sebelumnya yang
-    // tertinggal di komponen live.
     function setYearContextState() {
         var label = (selectedYear !== null && selectedYear !== undefined)
             ? "Tahun " + selectedYear
@@ -493,57 +428,44 @@
         setText("kpiUppkbYear", label);
     }
 
-    // Sub-teks insight dinetralkan agar tidak menyimpan tahun/nilai dari
-    // respons sukses sebelumnya.
     function resetInsightSubs() {
         setText("kpiInsightPuncakSub", "Berdasarkan data yang tersedia");
         setText("kpiInsightRasioSub", "Agregat terminal, bukan load factor kapasitas kursi");
     }
 
-    // Loading — dipanggil saat request BARU mulai. Tidak menampilkan
-    // "API Terhubung", tidak membuat timestamp baru, dan membersihkan
-    // semua jejak data request sebelumnya: KPI, insight, rasio, period
-    // analysis, Transport Intelligence, System Alert, error.
     function setStateLoading() {
         setKpiLoading();
         setInsightLoading();
+        clearTrendChart("Memuat grafik data tren…");
+
+        setText("spatialTerminalCount", "—");
+        setText("spatialUppkbCount", "—");
+
         setText("kpiInsightRasio", "Memuat…");
         setTextClass("kpiInsightRasio", "insight-value insight-value-loading");
         setHidden("kpiInsightTrenLabel", true);
         setHidden("kpiInsightTrenGap", true);
 
-        setText("tiTren", "—");
-        setText("tiPuncak", "—");
-        setText("tiRasio", "—");
-        setHidden("tiGap", true);
-
-        // Bersihkan konteks tahun & sub-teks insight dari respons lama.
         setYearContextState();
         resetInsightSubs();
 
-        // System Alert → Memuat (belum ada keputusan koneksi).
         renderSystemAlertState("loading", "");
-
-        // Status API: semua tersembunyi (termasuk apiErrorText).
         setApiStateLoading();
     }
 
-    // Error — request gagal. Semua KPI/insight live menjadi "—",
-    // System Alert = Koneksi Data Terganggu + pesan ramah + tombol retry.
     function setStateError(msg) {
         setKpiError();
         setInsightError();
+        clearTrendChart("Grafik data tidak dapat dimuat.");
+
+        setText("spatialTerminalCount", "—");
+        setText("spatialUppkbCount", "—");
+
         setText("kpiInsightRasio", "—");
         setTextClass("kpiInsightRasio", "insight-value insight-value-error");
         setHidden("kpiInsightTrenLabel", true);
         setHidden("kpiInsightTrenGap", true);
 
-        setText("tiTren", "—");
-        setText("tiPuncak", "—");
-        setText("tiRasio", "—");
-        setHidden("tiGap", true);
-
-        // Bersihkan konteks tahun & sub-teks insight dari respons lama.
         setYearContextState();
         resetInsightSubs();
 
@@ -551,20 +473,18 @@
         setApiStateError(msg);
     }
 
-    // Empty — response diterima tapi seluruhnya nol.
-    // System Alert = Data Belum Tersedia, tanpa LIVE, tanpa retry.
     function setStateEmpty() {
         setKpiError();
         setInsightError();
+        renderEmptyTrendChart();
+
+        setText("spatialTerminalCount", "0");
+        setText("spatialUppkbCount", "0");
+
         setText("kpiInsightRasio", "—");
         setTextClass("kpiInsightRasio", "insight-value insight-value-error");
         setHidden("kpiInsightTrenLabel", true);
         setHidden("kpiInsightTrenGap", true);
-
-        setText("tiTren", "Perbandingan belum tersedia");
-        setText("tiPuncak", "Puncak belum tersedia");
-        setText("tiRasio", "Rasio belum tersedia");
-        setHidden("tiGap", true);
 
         renderSystemAlertState("empty", "");
         setApiStateEmpty();
@@ -586,9 +506,6 @@
         return err.message;
     }
 
-    /* =================================================================
-       7. State KPI: loading / sukses / error
-       ================================================================= */
     function setKpiLoading() {
         var ids = ["kpiPenumpang", "kpiKendaraan", "kpiTerminal", "kpiUppkb"];
         ids.forEach(function (id) {
@@ -597,7 +514,6 @@
         });
         setText("kpiInsightPuncak", "Memuat…");
         setText("kpiInsightTren", "Memuat…");
-        setHidden("yearLoading", false);
     }
 
     function setKpiError() {
@@ -608,7 +524,6 @@
         });
         setText("kpiInsightPuncak", "—");
         setText("kpiInsightTren", "—");
-        setHidden("yearLoading", true);
     }
 
     function setInsightLoading() {
@@ -622,7 +537,7 @@
     }
 
     /* =================================================================
-       8. Render data live ke KPI + insight minimal
+       8. Render Data Live
        ================================================================= */
     function renderLive(d, year, empty) {
         if (!d || !d.summary) {
@@ -645,43 +560,30 @@
         setText("kpiTerminal", formatNumber(terminalCount));
         setText("kpiUppkb", formatNumber(uppkbCount));
 
-        // Konteks tahun aktif pada setiap KPI
+        setText("spatialTerminalCount", formatNumber(terminalCount));
+        setText("spatialUppkbCount", formatNumber(uppkbCount));
+
         setText("kpiPenumpangYear", "Tahun " + year);
         setText("kpiKendaraanYear", "Tahun " + year);
         setText("kpiTerminalYear", "Tahun " + year);
         setText("kpiUppkbYear", "Tahun " + year);
 
-        // Label netral (bukan YoY). "Tahun terpilih" agar benar untuk
-        // tahun lampau maupun tahun berjalan.
         setText("kpiPenumpangTrend", "Data produksi tahun terpilih");
         setText("kpiKendaraanTrend", "Data produksi tahun terpilih");
-
-        // ---- Insight (PHASE 14F) ----
-        var ins = d.insights || {};
 
         if (empty) {
             setStateEmpty();
             return;
         }
 
+        var ins = d.insights || {};
         renderInsightPuncak(ins.puncakBulan, year);
         renderInsightRasio(s, year);
-
-        // Perbandingan periode dihitung dari TREND (seri bulanan lengkap),
-        // bukan dari insights.tren backend. Tren backend dapat membandingkan
-        // bulan yang masih berjalan; frontend hanya memakai bulan kalender
-        // tertutup (Asia/Jakarta).
         renderInsightTren(d.trend, year);
-
-        // System Alert V1 (status koneksi deterministik)
         renderSystemAlertState("success", "");
 
-        // Transport Intelligence Overview (indikator saja — tanpa skor)
-        renderTransportIntelligence(d.trend, ins, s, year);
-
-        // Sembunyikan status demo-dulu di insight
-        setHidden("insightDemoNote", true);
-        setHidden("yearLoading", true);
+        // Render Native SVG Monthly Trend Chart
+        renderMonthlyTrendChart(d.trend, activeMetric, year);
     }
 
     function renderInsightPuncak(puncak, year) {
@@ -701,8 +603,6 @@
         setText("kpiInsightPuncakSub", formatNumber(puncak.penumpang) + " pergerakan penumpang · berdasarkan data yang tersedia");
     }
 
-    // Perbandingan periode (PHASE 14F): dihitung dari seri trend oleh
-    // analyzePeriod, BUKAN dari insights.tren backend.
     function renderInsightTren(trend, year) {
         var el = document.getElementById("kpiInsightTren");
         if (!el) {
@@ -715,7 +615,6 @@
         setText("kpiInsightTren", label.value);
         setText("kpiInsightTrenSub", label.sub);
 
-        // Label bulan yang dibandingkan — hanya jika tersedia.
         var labelEl = document.getElementById("kpiInsightTrenLabel");
         if (labelEl) {
             if (label.label) {
@@ -736,9 +635,6 @@
         }
     }
 
-    // Rasio penumpang terhadap pergerakan kendaraan, dihitung dari summary
-    // (kedatangan+keberangkatan penumpang) / (kedatangan+keberangkatan kendaraan).
-    // Rasio agregat, bukan load factor kapasitas kursi; tanpa klaim benchmark.
     function renderInsightRasio(s, year) {
         var el = document.getElementById("kpiInsightRasio");
         if (!el) {
@@ -757,14 +653,6 @@
         setText("kpiInsightRasioSub", "Agregat terminal, bukan load factor kapasitas kursi · " + year);
     }
 
-    // System Alert V1 — status koneksi deterministik (PHASE 14F).
-    // State eksplisit: loading / success / empty / error.
-    // - success: "Koneksi Data Aktif" + badge LIVE.
-    // - empty:   "Data Belum Tersedia" (tanpa LIVE, tanpa retry).
-    // - error:   "Koneksi Data Terganggu" + pesan ramah + tombol Coba Lagi.
-    // - loading: "Memuat…" (belum ada keputusan koneksi).
-    // Tidak mengklaim kesehatan seluruh sistem dan tidak memakai ambang
-    // operasional (Normal/Perhatian/Kritis).
     function renderSystemAlertState(state, msg) {
         var statusEl = document.getElementById("alertStatus");
         var detailEl = document.getElementById("alertDetail");
@@ -788,13 +676,14 @@
             iconCls = "icon-md icon-muted";
         } else if (state === "success") {
             statusText = "Koneksi Data Aktif";
-            detailText = "API berhasil menyediakan data untuk tahun " + selectedYear + ".";
+            detailText = "API berhasil menyediakan data resmi untuk tahun " + selectedYear + ".";
             cls = "alert-status alert-status-ok";
             barCls = "alert-bar-ok";
             iconCls = "icon-md text-green";
             showLive = true;
         } else if (state === "empty") {
             statusText = "Data Belum Tersedia";
+            detailText = "Belum ada catatan aktivitas transportasi tercatat untuk tahun " + selectedYear + ".";
             cls = "alert-status alert-status-empty";
             barCls = "";
             iconCls = "icon-md icon-muted";
@@ -829,75 +718,320 @@
         }
     }
 
-    // Transport Intelligence Overview (PHASE 14F) — indikator saja, tanpa
-    // skor komposit. Menampilkan perubahan periode aman, puncak pergerakan
-    // penumpang, dan rasio penumpang terhadap pergerakan kendaraan.
-    function renderTransportIntelligence(trend, ins, s, year) {
-        var trenEl = document.getElementById("tiTren");
-        var puncakEl = document.getElementById("tiPuncak");
-        var rasioEl = document.getElementById("tiRasio");
-        if (!trenEl && !puncakEl && !rasioEl) {
+    /* =================================================================
+       9. Native SVG Monthly Trend Chart (Zero InnerHTML, Pure DOM)
+       ================================================================= */
+    function clearTrendChart(summaryMsg) {
+        var wrap = document.getElementById("chartSvgWrap");
+        if (wrap) {
+            wrap.replaceChildren();
+        }
+        setHidden("chartEmptyWrap", true);
+        setHidden("chartGapNotice", true);
+        setText("chartSummaryText", summaryMsg || "Memuat ringkasan tren…");
+    }
+
+    function renderEmptyTrendChart() {
+        var wrap = document.getElementById("chartSvgWrap");
+        if (wrap) {
+            wrap.replaceChildren();
+        }
+        setHidden("chartEmptyWrap", false);
+        setHidden("chartGapNotice", true);
+        setText("chartSummaryText", "Tidak ada data pergerakan bulanan.");
+    }
+
+    function renderMonthlyTrendChart(trend, metric, year) {
+        var wrap = document.getElementById("chartSvgWrap");
+        var emptyWrap = document.getElementById("chartEmptyWrap");
+        if (!wrap) {
             return;
         }
 
-        var period = analyzePeriod(trend, year);
-        var label = describePeriod(period);
+        wrap.replaceChildren();
 
-        // 1) Perubahan periode aman — menyebut bulan yang dibandingkan
-        //    (mis. "Juni → Juli · Naik 16,7%") dan menandai jeda periode.
-        if (trenEl) {
-            if (period.available) {
-                setText("tiTren", period.namaSebelumnya + " → " + period.namaTerakhir + " · " + label.value);
-            } else {
-                setText("tiTren", "Perbandingan belum tersedia");
-            }
-        }
-        var gapEl = document.getElementById("tiGap");
-        if (gapEl) {
-            if (period.available && !period.berurutan) {
-                setText("tiGap", "Terdapat jeda periode");
-                gapEl.hidden = false;
-            } else {
-                gapEl.hidden = true;
-            }
-        }
+        var src = Array.isArray(trend) ? trend : [];
+        var values = [];
+        var activeMonthsCount = 0;
+        var activeMonthIndices = [];
+        var totalValue = 0;
+        var maxValue = 0;
+        var maxMonthIdx = -1;
 
-        // 2) Puncak pergerakan penumpang tercatat
-        if (puncakEl) {
-            var pk = (ins && ins.puncakBulan) || null;
-            if (pk && pk.bulan && pk.penumpang) {
-                var pkNama = (pk.nama && pk.nama !== "-") ? pk.nama : NAMA_BULAN_ID[pk.bulan - 1] || String(pk.bulan);
-                setText("tiPuncak", pkNama + " " + year + " · " + formatNumber(pk.penumpang) + " pergerakan");
-            } else {
-                setText("tiPuncak", "Puncak belum tersedia");
+        for (var i = 0; i < 12; i++) {
+            var rec = src[i] || {};
+            var val = (metric === "kendaraan") ? monthVehicleMovement(rec) : monthPassengerMovement(rec);
+            values.push(val);
+            if (val > 0) {
+                activeMonthsCount++;
+                activeMonthIndices.push(i);
+                totalValue += val;
+                if (val > maxValue) {
+                    maxValue = val;
+                    maxMonthIdx = i;
+                }
             }
         }
 
-        // 3) Rasio penumpang terhadap pergerakan kendaraan (agregat)
-        if (rasioEl) {
-            var p = (Number(s.kedatangan_penumpang) || 0) + (Number(s.keberangkatan_penumpang) || 0);
-            var k = (Number(s.kedatangan_kendaraan) || 0) + (Number(s.keberangkatan_kendaraan) || 0);
-            if (k > 0 && isFinite(p)) {
-                setText("tiRasio", "Rasio " + formatRatio(p / k) + " penumpang/kendaraan");
-            } else {
-                setText("tiRasio", "Rasio belum tersedia");
+        if (activeMonthsCount === 0) {
+            if (emptyWrap) {
+                emptyWrap.hidden = false;
+            }
+            setText("chartSummaryText", "Data pergerakan " + metric + " belum tercatat untuk tahun " + year + ".");
+            setHidden("chartGapNotice", true);
+            return;
+        }
+
+        if (emptyWrap) {
+            emptyWrap.hidden = true;
+        }
+
+        // Cek adanya jeda periode
+        var hasGap = false;
+        if (activeMonthIndices.length > 1) {
+            for (var k = 0; k < activeMonthIndices.length - 1; k++) {
+                if (activeMonthIndices[k + 1] - activeMonthIndices[k] > 1) {
+                    hasGap = true;
+                    break;
+                }
             }
         }
+        setHidden("chartGapNotice", !hasGap);
+
+        var metricName = (metric === "kendaraan") ? "Kendaraan" : "Penumpang";
+        var summary = "Total " + formatNumber(totalValue) + " pergerakan " + metricName.toLowerCase() + " tercatat pada tahun " + year;
+        if (maxMonthIdx >= 0) {
+            summary += " (puncak: " + NAMA_BULAN_ID[maxMonthIdx] + " dengan " + formatNumber(maxValue) + " pergerakan).";
+        } else {
+            summary += ".";
+        }
+        setText("chartSummaryText", summary);
+
+        // SVG Layout Setup
+        var viewBoxW = 860;
+        var viewBoxH = 260;
+        var padLeft = 70;
+        var padRight = 30;
+        var padTop = 30;
+        var padBottom = 45;
+
+        var chartW = viewBoxW - padLeft - padRight;
+        var chartH = viewBoxH - padTop - padBottom;
+
+        var svg = document.createElementNS(SVG_NS, "svg");
+        svg.setAttribute("viewBox", "0 0 " + viewBoxW + " " + viewBoxH);
+        svg.setAttribute("class", "chart-svg");
+        svg.setAttribute("role", "img");
+        svg.setAttribute("aria-label", "Grafik tren bulanan pergerakan " + metricName + " tahun " + year);
+
+        // Skala Y
+        var yMaxTarget = Math.ceil(maxValue * 1.15) || 10;
+        // Bulatkan yMaxTarget ke angka kelipatan rapi
+        var magnitude = Math.pow(10, Math.floor(Math.log10(yMaxTarget)));
+        var niceMax = Math.ceil(yMaxTarget / magnitude) * magnitude;
+        if (niceMax < yMaxTarget) {
+            niceMax = yMaxTarget;
+        }
+
+        // Y Grid Lines & Labels (4 ticks: 0, 33%, 66%, 100%)
+        var gridTicks = 4;
+        for (var t = 0; t <= gridTicks; t++) {
+            var tickVal = (niceMax / gridTicks) * t;
+            var yPos = padTop + chartH - (t / gridTicks) * chartH;
+
+            var gridLine = document.createElementNS(SVG_NS, "line");
+            gridLine.setAttribute("x1", String(padLeft));
+            gridLine.setAttribute("y1", String(yPos));
+            gridLine.setAttribute("x2", String(padLeft + chartW));
+            gridLine.setAttribute("y2", String(yPos));
+            gridLine.setAttribute("class", "svg-grid-line");
+            svg.appendChild(gridLine);
+
+            var yLabel = document.createElementNS(SVG_NS, "text");
+            yLabel.setAttribute("x", String(padLeft - 10));
+            yLabel.setAttribute("y", String(yPos + 4));
+            yLabel.setAttribute("class", "svg-axis-label");
+            yLabel.setAttribute("text-anchor", "end");
+            yLabel.textContent = formatNumber(tickVal);
+            svg.appendChild(yLabel);
+        }
+
+        // Koordinat titik X dan Y
+        var points = [];
+        for (var m = 0; m < 12; m++) {
+            var xPos = padLeft + (m / 11) * chartW;
+            var valM = values[m];
+            var yPosM = padTop + chartH - (valM / niceMax) * chartH;
+            points.push({
+                x: xPos,
+                y: yPosM,
+                val: valM,
+                monthIdx: m,
+                monthName: NAMA_BULAN_PENDEK[m]
+            });
+
+            // Sumbu X: Label bulan
+            var xLabel = document.createElementNS(SVG_NS, "text");
+            xLabel.setAttribute("x", String(xPos));
+            xLabel.setAttribute("y", String(padTop + chartH + 22));
+            xLabel.setAttribute("class", "svg-axis-label");
+            xLabel.setAttribute("text-anchor", "middle");
+            xLabel.textContent = NAMA_BULAN_PENDEK[m];
+            svg.appendChild(xLabel);
+        }
+
+        // Buat Area Gradient Fill
+        var defs = document.createElementNS(SVG_NS, "defs");
+        var grad = document.createElementNS(SVG_NS, "linearGradient");
+        var gradId = "chartGradient" + metric;
+        grad.setAttribute("id", gradId);
+        grad.setAttribute("x1", "0");
+        grad.setAttribute("y1", "0");
+        grad.setAttribute("x2", "0");
+        grad.setAttribute("y2", "1");
+
+        var stop1 = document.createElementNS(SVG_NS, "stop");
+        stop1.setAttribute("offset", "0%");
+        stop1.setAttribute("stop-color", metric === "kendaraan" ? "#d97706" : "#2563eb");
+        stop1.setAttribute("stop-opacity", "0.35");
+        grad.appendChild(stop1);
+
+        var stop2 = document.createElementNS(SVG_NS, "stop");
+        stop2.setAttribute("offset", "100%");
+        stop2.setAttribute("stop-color", metric === "kendaraan" ? "#d97706" : "#2563eb");
+        stop2.setAttribute("stop-opacity", "0.02");
+        grad.appendChild(stop2);
+        defs.appendChild(grad);
+        svg.appendChild(defs);
+
+        // Gambar Garis Tren & Area
+        // Pisahkan garis jika ada segmen jeda periode (jangan hubungkan jeda seolah berurutan)
+        var strokeColor = metric === "kendaraan" ? "#d97706" : "#2563eb";
+
+        // Segmentasi berdasarkan data aktif
+        var segments = [];
+        var currentSegment = [];
+
+        for (var pIdx = 0; pIdx < points.length; pIdx++) {
+            var pt = points[pIdx];
+            if (pt.val > 0) {
+                if (currentSegment.length > 0) {
+                    var prevPt = currentSegment[currentSegment.length - 1];
+                    if (pt.monthIdx - prevPt.monthIdx > 1) {
+                        // Jeda ditemukan! Tutup segment saat ini dan buat segment baru
+                        segments.push(currentSegment);
+                        currentSegment = [pt];
+                    } else {
+                        currentSegment.push(pt);
+                    }
+                } else {
+                    currentSegment.push(pt);
+                }
+            }
+        }
+        if (currentSegment.length > 0) {
+            segments.push(currentSegment);
+        }
+
+        // Render Segments
+        segments.forEach(function (seg) {
+            if (seg.length > 1) {
+                // Area Path
+                var areaPathData = "M " + seg[0].x + " " + (padTop + chartH);
+                for (var s = 0; s < seg.length; s++) {
+                    areaPathData += " L " + seg[s].x + " " + seg[s].y;
+                }
+                areaPathData += " L " + seg[seg.length - 1].x + " " + (padTop + chartH) + " Z";
+
+                var areaPath = document.createElementNS(SVG_NS, "path");
+                areaPath.setAttribute("d", areaPathData);
+                areaPath.setAttribute("fill", "url(#" + gradId + ")");
+                svg.appendChild(areaPath);
+
+                // Line Path
+                var linePathData = "M " + seg[0].x + " " + seg[0].y;
+                for (var l = 1; l < seg.length; l++) {
+                    linePathData += " L " + seg[l].x + " " + seg[l].y;
+                }
+
+                var linePath = document.createElementNS(SVG_NS, "path");
+                linePath.setAttribute("d", linePathData);
+                linePath.setAttribute("class", "svg-trend-line");
+                linePath.setAttribute("stroke", strokeColor);
+                svg.appendChild(linePath);
+            } else if (seg.length === 1) {
+                // Satu titik terisolir
+                var isoLine = document.createElementNS(SVG_NS, "line");
+                isoLine.setAttribute("x1", String(seg[0].x));
+                isoLine.setAttribute("y1", String(padTop + chartH));
+                isoLine.setAttribute("x2", String(seg[0].x));
+                isoLine.setAttribute("y2", String(seg[0].y));
+                isoLine.setAttribute("stroke", strokeColor);
+                isoLine.setAttribute("stroke-width", "2");
+                isoLine.setAttribute("stroke-dasharray", "3 3");
+                svg.appendChild(isoLine);
+            }
+        });
+
+        // Hubungkan jeda antar segmen dengan garis putus-putus transparan untuk konteks visual
+        if (segments.length > 1) {
+            for (var g = 0; g < segments.length - 1; g++) {
+                var segA = segments[g];
+                var segB = segments[g + 1];
+                var ptA = segA[segA.length - 1];
+                var ptB = segB[0];
+
+                var gapLine = document.createElementNS(SVG_NS, "line");
+                gapLine.setAttribute("x1", String(ptA.x));
+                gapLine.setAttribute("y1", String(ptA.y));
+                gapLine.setAttribute("x2", String(ptB.x));
+                gapLine.setAttribute("y2", String(ptB.y));
+                gapLine.setAttribute("class", "svg-trend-line svg-trend-line-dashed");
+                gapLine.setAttribute("stroke", strokeColor);
+                svg.appendChild(gapLine);
+            }
+        }
+
+        // Titik Data (Nodes) & Nilai
+        points.forEach(function (pt) {
+            if (pt.val > 0) {
+                var circle = document.createElementNS(SVG_NS, "circle");
+                circle.setAttribute("cx", String(pt.x));
+                circle.setAttribute("cy", String(pt.y));
+                circle.setAttribute("r", "4.5");
+                circle.setAttribute("class", "svg-trend-node");
+                circle.setAttribute("fill", "#ffffff");
+                circle.setAttribute("stroke", strokeColor);
+                circle.setAttribute("stroke-width", "2.5");
+
+                var titleEl = document.createElementNS(SVG_NS, "title");
+                titleEl.textContent = pt.monthName + " " + year + ": " + formatNumber(pt.val) + " " + metricName.toLowerCase();
+                circle.appendChild(titleEl);
+                svg.appendChild(circle);
+
+                // Label nilai di atas titik
+                var valText = document.createElementNS(SVG_NS, "text");
+                valText.setAttribute("x", String(pt.x));
+                valText.setAttribute("y", String(pt.y - 8));
+                valText.setAttribute("class", "svg-point-label");
+                valText.textContent = formatNumber(pt.val);
+                svg.appendChild(valText);
+            }
+        });
+
+        wrap.appendChild(svg);
     }
 
     /* =================================================================
-       9. Status API + timestamp + retry (TASK 6)
+       10. Status API, Timestamp & Retry Controls
        ================================================================= */
     function setApiStateLoading() {
-        // Saat request mulai: tidak ada "API Terhubung", tidak ada timestamp
-        // baru, tidak ada error lama.
         setHidden("apiStatusOk", true);
         setHidden("apiStatusErr", true);
         setHidden("apiErrorText", true);
         setHidden("retryBtn", true);
         setHidden("dataTimestamp", true);
         setHidden("kpiYearContext", true);
-        setHidden("yearLoading", false);
     }
 
     function setApiStateError(msg) {
@@ -906,7 +1040,6 @@
         setHidden("retryBtn", false);
         setHidden("dataTimestamp", true);
         setHidden("kpiYearContext", true);
-        setHidden("yearLoading", true);
         if (msg) {
             setText("apiErrorText", msg);
         }
@@ -919,12 +1052,10 @@
         setHidden("retryBtn", true);
         setHidden("dataTimestamp", true);
         setHidden("kpiYearContext", true);
-        setHidden("yearLoading", true);
         setHidden("apiErrorText", true);
     }
 
     function setApiSuccess() {
-        // Sukses: baru tampilkan "API Terhubung" + timestamp baru.
         setHidden("apiStatusOk", false);
         setHidden("apiStatusErr", true);
         setHidden("retryBtn", true);
@@ -933,11 +1064,8 @@
         setText("dataTimestamp", "Data dimuat: " + formatTimeWIB(new Date()) + " WIB");
         setHidden("kpiYearContext", false);
         setText("kpiYearContext", "Tahun " + selectedYear);
-        setHidden("yearLoading", true);
     }
 
-    // Empty tetap berhasil terhubung ke API, tapi TANPA klaim "API Terhubung"
-    // dan tanpa timestamp baru.
     function setApiNeutral() {
         setHidden("apiStatusOk", true);
         setHidden("apiStatusErr", true);
@@ -945,20 +1073,11 @@
         setHidden("apiErrorText", true);
         setHidden("dataTimestamp", true);
         setHidden("kpiYearContext", true);
-        setHidden("yearLoading", true);
     }
 
     /* =================================================================
-       10. Clock WIB (existing behavior)
+       11. Clock WIB
        ================================================================= */
-    var BULAN_ID = [
-        "Januari", "Februari", "Maret", "April", "Mei", "Juni",
-        "Juli", "Agustus", "September", "Oktober", "November", "Desember"
-    ];
-    var HARI_ID = [
-        "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"
-    ];
-
     function updateClock() {
         var now = new Date();
         var fmt = new Intl.DateTimeFormat("id-ID", {
@@ -980,7 +1099,7 @@
     }
 
     /* =================================================================
-       11. Sidebar mobile (existing behavior)
+       12. Sidebar Mobile (Drawer Navigation)
        ================================================================= */
     var sidebar = document.getElementById("appSidebar");
     var overlay = document.getElementById("sidebarOverlay");
@@ -1026,76 +1145,48 @@
     });
 
     /* =================================================================
-       12. Top Movers tabs (existing behavior)
+       13. Toggle Metrik Grafik Tren (Penumpang vs Kendaraan)
        ================================================================= */
-    var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
-    var tabPanels = {};
+    var btnPenumpang = document.getElementById("btnMetricPenumpang");
+    var btnKendaraan = document.getElementById("btnMetricKendaraan");
 
-    tabs.forEach(function (tab) {
-        var panelId = tab.getAttribute("aria-controls");
-        var panel = document.getElementById(panelId);
-        if (panel) {
-            tabPanels[tab.id] = panel;
+    function setMetric(metric) {
+        if (activeMetric === metric) {
+            return;
         }
-        tab.addEventListener("click", function () {
-            activateTab(tab);
-        });
-    });
+        activeMetric = metric;
 
-    function activateTab(selectedTab) {
-        tabs.forEach(function (tab) {
-            var isSelected = tab === selectedTab;
-            tab.setAttribute("aria-selected", isSelected ? "true" : "false");
-            tab.classList.toggle("mover-tab-active", isSelected);
-            if (isSelected) {
-                tab.setAttribute("tabindex", "0");
-            } else {
-                tab.setAttribute("tabindex", "-1");
-            }
-            var panel = tabPanels[tab.id];
-            if (panel) {
-                panel.hidden = !isSelected;
-            }
-        });
+        if (btnPenumpang && btnKendaraan) {
+            var isPenumpang = (metric === "penumpang");
+            btnPenumpang.classList.toggle("is-active", isPenumpang);
+            btnPenumpang.setAttribute("aria-pressed", isPenumpang ? "true" : "false");
+            btnKendaraan.classList.toggle("is-active", !isPenumpang);
+            btnKendaraan.setAttribute("aria-pressed", !isPenumpang ? "true" : "false");
+        }
+
+        if (currentDashboardData && currentDashboardData.trend) {
+            renderMonthlyTrendChart(currentDashboardData.trend, activeMetric, selectedYear);
+        }
     }
 
-    var tablist = document.querySelector('[role="tablist"]');
-    if (tablist) {
-        tablist.addEventListener("keydown", function (e) {
-            if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") {
-                return;
-            }
-            e.preventDefault();
-            var currentIndex = tabs.indexOf(document.activeElement);
-            if (currentIndex === -1) {
-                return;
-            }
-            var nextIndex;
-            if (e.key === "ArrowRight") {
-                nextIndex = (currentIndex + 1) % tabs.length;
-            } else {
-                nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
-            }
-            activateTab(tabs[nextIndex]);
-            tabs[nextIndex].focus();
+    if (btnPenumpang) {
+        btnPenumpang.addEventListener("click", function () {
+            setMetric("penumpang");
+        });
+    }
+    if (btnKendaraan) {
+        btnKendaraan.addEventListener("click", function () {
+            setMetric("kendaraan");
         });
     }
 
     /* =================================================================
-       13. Inisialisasi
+       14. Inisialisasi & Event Listeners
        ================================================================= */
     document.addEventListener("DOMContentLoaded", function () {
-        var selectedTab = document.querySelector('[role="tab"][aria-selected="true"]');
-        if (selectedTab) {
-            activateTab(selectedTab);
-        }
-
         updateClock();
         setInterval(updateClock, 1000);
 
-        // Retry manual — TASK 2 (tombol, bukan loop tanpa batas).
-        // retryBtn (status bar) DAN alertRetry (System Alert) berbagi
-        // mekanisme yang sama.
         function handleRetry() {
             if (selectedYear) {
                 loadDashboardData();
@@ -1103,6 +1194,7 @@
                 initYears();
             }
         }
+
         var retryBtn = document.getElementById("retryBtn");
         if (retryBtn) {
             retryBtn.addEventListener("click", handleRetry);
@@ -1112,7 +1204,6 @@
             alertRetryBtn.addEventListener("click", handleRetry);
         }
 
-        // Perubahan tahun → muat ulang data (TASK 3)
         var select = document.getElementById("yearSelect");
         if (select) {
             select.addEventListener("change", function () {
@@ -1121,7 +1212,6 @@
             });
         }
 
-        // Muat tahun + data awal
         initYears();
     });
 })();
