@@ -434,6 +434,7 @@
     }
 
     function setStateLoading() {
+        currentDashboardData = null;
         setKpiLoading();
         setInsightLoading();
         clearTrendChart("Memuat grafik data tren…");
@@ -454,6 +455,7 @@
     }
 
     function setStateError(msg) {
+        currentDashboardData = null;
         setKpiError();
         setInsightError();
         clearTrendChart("Grafik data tidak dapat dimuat.");
