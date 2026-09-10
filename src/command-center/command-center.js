@@ -954,25 +954,151 @@
     }
 
     /* =================================================================
-       11. Sidebar mobile (existing behavior)
+       11. Sidebar mobile & navigation shell (PHASE 15A)
        ================================================================= */
     var sidebar = document.getElementById("appSidebar");
     var overlay = document.getElementById("sidebarOverlay");
     var toggleBtn = document.getElementById("sidebarToggle");
+    var closeBtn = document.getElementById("sidebarClose");
+    var lastFocusedElementBeforeOpen = null;
+    var focusTimer = null;
 
     function isMobile() {
         return window.matchMedia("(max-width: 767px)").matches;
+    }
+
+    function isInertSupported() {
+        return typeof HTMLElement !== "undefined" &&
+               ("inert" in HTMLElement.prototype || (sidebar && "inert" in sidebar)) &&
+               !(typeof window !== "undefined" && window.__simulateNoInert);
+    }
+
+    // Scoped fallback for environments where inert is unsupported (PHASE 15A)
+    // Temporarily removes closed drawer focusables from tab order, preserving
+    // any existing tabindex to restore safely upon opening or desktop resize.
+    function applySidebarFocusFallback(disable) {
+        if (!sidebar) {
+            return;
+        }
+        var selector = 'a[href], button, input, select, textarea, [tabindex]';
+        var els = sidebar.querySelectorAll(selector);
+        for (var i = 0; i < els.length; i++) {
+            var el = els[i];
+            if (el.disabled || el.getAttribute("aria-disabled") === "true") {
+                continue;
+            }
+            if (disable) {
+                if (!el.hasAttribute("data-saved-tabindex")) {
+                    var prev = el.getAttribute("tabindex");
+                    el.setAttribute("data-saved-tabindex", prev !== null ? prev : "");
+                    el.setAttribute("tabindex", "-1");
+                }
+            } else {
+                if (el.hasAttribute("data-saved-tabindex")) {
+                    var saved = el.getAttribute("data-saved-tabindex");
+                    if (saved === "") {
+                        el.removeAttribute("tabindex");
+                    } else {
+                        el.setAttribute("tabindex", saved);
+                    }
+                    el.removeAttribute("data-saved-tabindex");
+                }
+            }
+        }
+    }
+
+    function updateSidebarInertState() {
+        if (!sidebar) {
+            return;
+        }
+        var mobile = isMobile();
+        var isOpen = sidebar.classList.contains("is-open");
+        var inertSupported = isInertSupported();
+
+        if (mobile) {
+            if (isOpen) {
+                if (inertSupported && "inert" in sidebar) {
+                    sidebar.inert = false;
+                }
+                sidebar.removeAttribute("inert");
+                sidebar.removeAttribute("aria-hidden");
+                applySidebarFocusFallback(false);
+            } else {
+                if (inertSupported && "inert" in sidebar) {
+                    sidebar.inert = true;
+                }
+                sidebar.setAttribute("inert", "");
+                sidebar.setAttribute("aria-hidden", "true");
+                if (!inertSupported) {
+                    applySidebarFocusFallback(true);
+                }
+            }
+        } else {
+            // Desktop: sidebar is permanently accessible
+            if (inertSupported && "inert" in sidebar) {
+                sidebar.inert = false;
+            }
+            sidebar.removeAttribute("inert");
+            sidebar.removeAttribute("aria-hidden");
+            applySidebarFocusFallback(false);
+        }
+    }
+
+    function getFocusableElements(container) {
+        if (!container) {
+            return [];
+        }
+        var selector = 'a[href]:not([tabindex="-1"]), button:not([disabled]):not([tabindex="-1"]), input:not([disabled]):not([tabindex="-1"]), select:not([disabled]):not([tabindex="-1"]), textarea:not([disabled]):not([tabindex="-1"]), [tabindex]:not([tabindex="-1"])';
+        var list = Array.prototype.slice.call(container.querySelectorAll(selector));
+        return list.filter(function (el) {
+            return !el.disabled && el.getAttribute("aria-disabled") !== "true" && el.offsetParent !== null;
+        });
     }
 
     function setSidebarOpen(open) {
         if (!sidebar || !overlay || !toggleBtn) {
             return;
         }
-        sidebar.classList.toggle("is-open", open);
-        overlay.classList.toggle("is-visible", open);
-        overlay.hidden = !open;
-        toggleBtn.setAttribute("aria-expanded", open ? "true" : "false");
-        toggleBtn.setAttribute("aria-label", open ? "Tutup menu navigasi" : "Buka menu navigasi");
+        if (focusTimer) {
+            clearTimeout(focusTimer);
+            focusTimer = null;
+        }
+
+        var willOpen = !!open;
+        if (willOpen) {
+            lastFocusedElementBeforeOpen = (document.activeElement && document.activeElement !== document.body) ? document.activeElement : toggleBtn;
+        }
+
+        sidebar.classList.toggle("is-open", willOpen);
+        overlay.classList.toggle("is-visible", willOpen);
+        overlay.hidden = !willOpen;
+        toggleBtn.setAttribute("aria-expanded", willOpen ? "true" : "false");
+        toggleBtn.setAttribute("aria-label", willOpen ? "Tutup menu navigasi" : "Buka menu navigasi");
+
+        updateSidebarInertState();
+
+        if (willOpen) {
+            // Practical focus containment: move focus into drawer
+            focusTimer = setTimeout(function () {
+                focusTimer = null;
+                // Defensive state-check: abort if drawer closed before timer fired
+                if (!sidebar.classList.contains("is-open") || (isMobile() && sidebar.hasAttribute("inert"))) {
+                    return;
+                }
+                var focusable = getFocusableElements(sidebar);
+                if (focusable.length > 0) {
+                    focusable[0].focus();
+                }
+            }, 50);
+        } else {
+            // Focus restoration: return focus to toggleBtn or last focused element
+            if (lastFocusedElementBeforeOpen && lastFocusedElementBeforeOpen !== document.body && typeof lastFocusedElementBeforeOpen.focus === "function") {
+                lastFocusedElementBeforeOpen.focus();
+            } else if (toggleBtn && typeof toggleBtn.focus === "function") {
+                toggleBtn.focus();
+            }
+            lastFocusedElementBeforeOpen = null;
+        }
     }
 
     if (toggleBtn && sidebar && overlay) {
@@ -985,19 +1111,75 @@
             setSidebarOpen(false);
         });
 
-        document.addEventListener("keydown", function (e) {
-            if (e.key === "Escape" && sidebar.classList.contains("is-open")) {
+        if (closeBtn) {
+            closeBtn.addEventListener("click", function () {
                 setSidebarOpen(false);
-                toggleBtn.focus();
+            });
+        }
+
+        // Close drawer on link click in mobile view
+        sidebar.addEventListener("click", function (e) {
+            var link = e.target.closest("a");
+            if (link && isMobile()) {
+                setSidebarOpen(false);
+            }
+        });
+
+        document.addEventListener("keydown", function (e) {
+            if (!sidebar.classList.contains("is-open") || !isMobile()) {
+                return;
+            }
+
+            if (e.key === "Escape") {
+                e.preventDefault();
+                setSidebarOpen(false);
+                return;
+            }
+
+            if (e.key === "Tab") {
+                var focusable = getFocusableElements(sidebar);
+                if (focusable.length === 0) {
+                    e.preventDefault();
+                    return;
+                }
+                var first = focusable[0];
+                var last = focusable[focusable.length - 1];
+
+                if (e.shiftKey) {
+                    if (document.activeElement === first || !sidebar.contains(document.activeElement)) {
+                        e.preventDefault();
+                        last.focus();
+                    }
+                } else {
+                    if (document.activeElement === last || !sidebar.contains(document.activeElement)) {
+                        e.preventDefault();
+                        first.focus();
+                    }
+                }
             }
         });
     }
 
-    window.addEventListener("resize", function () {
-        if (!isMobile() && sidebar && sidebar.classList.contains("is-open")) {
-            setSidebarOpen(false);
+    function handleViewportChange() {
+        if (!isMobile()) {
+            if (sidebar && sidebar.classList.contains("is-open")) {
+                setSidebarOpen(false);
+            } else {
+                updateSidebarInertState();
+            }
+        } else {
+            updateSidebarInertState();
         }
-    });
+    }
+
+    window.addEventListener("resize", handleViewportChange);
+    var mobileMql = window.matchMedia("(max-width: 767px)");
+    if (mobileMql && mobileMql.addEventListener) {
+        mobileMql.addEventListener("change", handleViewportChange);
+    }
+
+    // Initial lifecycle state
+    updateSidebarInertState();
 
     /* =================================================================
        12. Top Movers tabs (existing behavior)
@@ -1059,6 +1241,8 @@
        13. Inisialisasi
        ================================================================= */
     document.addEventListener("DOMContentLoaded", function () {
+        updateSidebarInertState();
+
         var selectedTab = document.querySelector('[role="tab"][aria-selected="true"]');
         if (selectedTab) {
             activateTab(selectedTab);

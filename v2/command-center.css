@@ -130,6 +130,10 @@ a {
     z-index: 40;
 }
 
+.app-sidebar[inert] {
+    pointer-events: none;
+}
+
 .sidebar-logo {
     display: flex;
     align-items: center;
@@ -184,6 +188,7 @@ a {
     text-align: left;
     font-weight: 500;
     font-size: 0.875rem;
+    text-decoration: none;
     transition: background-color 0.15s ease, color 0.15s ease;
 }
 
@@ -191,6 +196,14 @@ a {
     width: 18px;
     height: 18px;
     flex: none;
+}
+
+.nav-text {
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .nav-link:hover {
@@ -232,6 +245,44 @@ a {
     padding: 0.1rem 0.45rem;
     min-width: 1.4rem;
     text-align: center;
+}
+
+/* Status badges for modular navigation shell (PHASE 15A) */
+.nav-status-badge {
+    margin-left: auto;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    padding: 0.1rem 0.45rem;
+    line-height: 1.2;
+    flex: none;
+}
+
+.nav-status-active {
+    background: rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.nav-status-available {
+    background: rgba(34, 197, 94, 0.16);
+    color: #4ade80;
+    border: 1px solid rgba(34, 197, 94, 0.35);
+}
+
+.nav-status-soon {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-on-dark-muted);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.58rem;
+    font-weight: 600;
+}
+
+/* Mobile drawer close button (hidden on desktop) */
+.sidebar-close-btn {
+    display: none;
 }
 
 .sidebar-footer {
@@ -1601,6 +1652,32 @@ a {
 
     .app-sidebar.is-open {
         transform: translateX(0);
+    }
+
+    .sidebar-close-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 0.5rem;
+        color: var(--text-on-dark);
+        width: 36px;
+        height: 36px;
+        cursor: pointer;
+        padding: 0;
+        flex: none;
+        transition: background-color 0.15s ease;
+    }
+
+    .sidebar-close-btn:hover {
+        background: rgba(255, 255, 255, 0.16);
+    }
+
+    .sidebar-close-btn:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
     }
 
     .sidebar-overlay.is-visible {
