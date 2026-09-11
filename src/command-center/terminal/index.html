@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoPORTAL BPTD Jabar — Modul Terminal</title>
+    <meta name="description" content="Modul Terminal Command Center BPTD Kelas I Jawa Barat. Direktori, indikator operasional, dan profil terminal penumpang.">
+    <link rel="stylesheet" href="../command-center.css">
+    <link rel="stylesheet" href="terminal.css">
+</head>
+<body>
+    <div class="app-shell">
+        <!-- ================= SIDEBAR ================= -->
+        <aside id="appSidebar" class="app-sidebar" aria-label="Navigasi utama">
+            <div class="sidebar-logo">
+                <svg class="logo-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    <path d="M12 2v20"></path>
+                </svg>
+                <div class="logo-text">
+                    <span class="logo-title">GEOPORTAL</span>
+                    <span class="logo-sub">BPTD Jabar</span>
+                </div>
+                <button type="button" id="sidebarClose" class="sidebar-close-btn" aria-label="Tutup menu navigasi">
+                    <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav" aria-label="Navigasi utama modul">
+                <a href="../" class="nav-link" data-nav-status="available" title="Ringkasan — Kembali ke Overview Command Center (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    <span class="nav-text">Ringkasan</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../../" class="nav-link" data-nav-status="available" title="Peta Transportasi — Buka dashboard peta utama (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+                    <span class="nav-text">Peta Transportasi</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="./" class="nav-link is-active" aria-current="page" data-nav-status="active" title="Terminal — Modul Terminal Penumpang (Aktif)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                    <span class="nav-text">Terminal</span>
+                    <span class="nav-status-badge nav-status-active" data-status="ACTIVE">Aktif</span>
+                </a>
+                <button type="button" class="nav-link" aria-disabled="true" disabled data-nav-status="coming-soon" title="Trayek — Belum tersedia pada prototipe (Segera)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    <span class="nav-text">Trayek</span>
+                    <span class="nav-status-badge nav-status-soon" data-status="COMING SOON">Segera</span>
+                </button>
+                <button type="button" class="nav-link" aria-disabled="true" disabled data-nav-status="coming-soon" title="Angkutan Perintis — Belum tersedia pada prototipe (Segera)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                    <span class="nav-text">Angkutan Perintis</span>
+                    <span class="nav-status-badge nav-status-soon" data-status="COMING SOON">Segera</span>
+                </button>
+                <button type="button" class="nav-link" aria-disabled="true" disabled data-nav-status="coming-soon" title="UPPKB / Barang — Belum tersedia pada prototipe (Segera)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path></svg>
+                    <span class="nav-text">UPPKB / Barang</span>
+                    <span class="nav-status-badge nav-status-soon" data-status="COMING SOON">Segera</span>
+                </button>
+                <button type="button" class="nav-link" aria-disabled="true" disabled data-nav-status="coming-soon" title="OD Intelligence — Belum tersedia pada prototipe (Segera)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                    <span class="nav-text">OD Intelligence</span>
+                    <span class="nav-status-badge nav-status-soon" data-status="COMING SOON">Segera</span>
+                </button>
+                <button type="button" class="nav-link" aria-disabled="true" disabled data-nav-status="coming-soon" title="Connectivity — Belum tersedia pada prototipe (Segera)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.107 7.107a4 4 0 11-5.657 5.657 4 4 0 015.657-5.657z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12l7.071 7.071"></path></svg>
+                    <span class="nav-text">Connectivity</span>
+                    <span class="nav-status-badge nav-status-soon" data-status="COMING SOON">Segera</span>
+                </button>
+                <button type="button" class="nav-link" aria-disabled="true" disabled data-nav-status="coming-soon" title="Early Warning — Belum tersedia pada prototipe (Segera)">
+                    <svg class="nav-icon nav-icon-warn" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    <span class="nav-text">Early Warning</span>
+                    <span class="nav-status-badge nav-status-soon" data-status="COMING SOON">Segera</span>
+                </button>
+                <button type="button" class="nav-link" aria-disabled="true" disabled data-nav-status="coming-soon" title="Program &amp; Kinerja — Belum tersedia pada prototipe (Segera)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
+                    <span class="nav-text">Program &amp; Kinerja</span>
+                    <span class="nav-status-badge nav-status-soon" data-status="COMING SOON">Segera</span>
+                </button>
+                <button type="button" class="nav-link" aria-disabled="true" disabled data-nav-status="coming-soon" title="Laporan — Belum tersedia pada prototipe (Segera)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    <span class="nav-text">Laporan</span>
+                    <span class="nav-status-badge nav-status-soon" data-status="COMING SOON">Segera</span>
+                </button>
+                <button type="button" class="nav-link" aria-disabled="true" disabled data-nav-status="coming-soon" title="Data Master — Belum tersedia pada prototipe (Segera)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    <span class="nav-text">Data Master</span>
+                    <span class="nav-status-badge nav-status-soon" data-status="COMING SOON">Segera</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <svg class="logo-mark logo-mark-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path><path d="M12 2v20"></path></svg>
+                <span class="footer-title">BPTD Jawa Barat</span>
+                <span class="footer-sub">Transportasi Darat Lebih Terintegrasi</span>
+            </div>
+        </aside>
+
+        <!-- ================= OVERLAY (mobile) ================= -->
+        <div id="sidebarOverlay" class="sidebar-overlay" hidden></div>
+
+        <!-- ================= MAIN ================= -->
+        <main class="app-main">
+            <header class="app-header">
+                <div class="header-left">
+                    <button type="button" id="sidebarToggle" class="header-menu-btn" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="appSidebar">
+                        <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                    <div class="header-title-block">
+                        <h1 class="header-title">Transport Command Center</h1>
+                        <p class="header-sub">Modul Terminal Penumpang — Jawa Barat</p>
+                    </div>
+                </div>
+
+                <div class="header-right">
+                    <div class="header-clock">
+                        <div class="clock-date">
+                            <svg class="icon-sm icon-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            <span id="current-date">Memuat tanggal...</span>
+                        </div>
+                        <span id="current-time" class="clock-time">--:-- WIB</span>
+                    </div>
+
+                    <div class="year-select-wrap">
+                        <label class="visually-hidden" for="yearSelect">Pilih tahun data</label>
+                        <select id="yearSelect" class="year-select" aria-label="Pilih tahun data">
+                            <option value="">Memuat tahun…</option>
+                        </select>
+                    </div>
+
+                    <div class="api-status" role="status" aria-live="polite">
+                        <span id="apiStatusOk" class="api-status-pill api-status-ok" hidden>
+                            <span class="api-dot" aria-hidden="true"></span>
+                            API Terhubung
+                        </span>
+                        <span id="apiStatusErr" class="api-status-pill api-status-err" hidden>
+                            <span class="api-dot" aria-hidden="true"></span>
+                            API Tidak Tersedia
+                        </span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="app-content">
+                <!-- Module Header & Badges -->
+                <div class="dash-head">
+                    <div>
+                        <h2 class="dash-title">Terminal Penumpang <span class="dash-title-dim">—</span> Jawa Barat</h2>
+                        <p class="dash-sub">Direktori &bull; Indikator Kinerja &bull; Profil Operasional</p>
+                    </div>
+                    <div class="dash-badges">
+                        <span class="badge badge-live">
+                            <span class="badge-dot badge-dot-green" aria-hidden="true"></span>
+                            Data Resmi API
+                        </span>
+                        <span id="selectedYearBadge" class="badge badge-blue">
+                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            <span id="selectedYearBadgeText">Tahun Terpilih</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Status Bar -->
+                <div class="status-bar" role="status" aria-live="polite">
+                    <span class="status-chip" id="dataTimestamp" hidden>Data dimuat: --:-- WIB</span>
+                    <span class="status-chip" id="kpiYearContext" hidden>Tahun --</span>
+                    <span class="status-error" id="apiErrorText" hidden></span>
+                    <button type="button" id="retryBtn" class="retry-btn" hidden>Coba Lagi</button>
+                </div>
+
+                <!-- Data Honesty Notice -->
+                <div class="demo-notice" role="note">
+                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span><strong>INFORMASI CAKUPAN DATA TERMINAL.</strong> Indikator dan direktori menampilkan simpul terminal penumpang Jawa Barat yang telah terverifikasi dengan koordinat geospasial pada API produksi (130 simpul lintas tipe). Catatan operasional pergerakan penumpang dan kendaraan bersumber dari sistem pelaporan berkala dan saat ini terkonsentrasi pada Terminal Tipe A. Angka 0 (nol) menunjukkan belum ada catatan pergerakan untuk tahun terpilih pada kontrak pelaporan saat ini.</span>
+                </div>
+
+                <!-- 4 Factual KPIs -->
+                <div class="kpi-row">
+                    <div class="kpi-card kpi-card-live">
+                        <div class="kpi-head">
+                            <span class="kpi-icon" aria-hidden="true">
+                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                            </span>
+                            <span>Terminal Terpetakan</span>
+                            <span class="live-badge" aria-hidden="true">TERPETAKAN</span>
+                        </div>
+                        <p id="kpiTotalRegistry" class="kpi-value">Memuat…</p>
+                        <p class="kpi-trend kpi-flat">Terpetakan dengan koordinat valid</p>
+                        <p id="kpiRegistryYear" class="kpi-year">Semua Tipe</p>
+                        <span class="visually-hidden">KPI terminal terpetakan dari data API</span>
+                    </div>
+
+                    <div class="kpi-card kpi-card-live">
+                        <div class="kpi-head">
+                            <span class="kpi-icon" aria-hidden="true">
+                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                            </span>
+                            <span>Total Penumpang</span>
+                            <span class="live-badge" aria-hidden="true">LIVE</span>
+                        </div>
+                        <p id="kpiTotalPassenger" class="kpi-value">Memuat…</p>
+                        <p class="kpi-trend kpi-flat">Kedatangan + keberangkatan tahun terpilih</p>
+                        <p id="kpiPassengerYear" class="kpi-year">Tahun —</p>
+                        <span class="visually-hidden">KPI total pergerakan penumpang tahun terpilih</span>
+                    </div>
+
+                    <div class="kpi-card kpi-card-live">
+                        <div class="kpi-head">
+                            <span class="kpi-icon" aria-hidden="true">
+                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            </span>
+                            <span>Total Kendaraan</span>
+                            <span class="live-badge" aria-hidden="true">LIVE</span>
+                        </div>
+                        <p id="kpiTotalVehicle" class="kpi-value">Memuat…</p>
+                        <p class="kpi-trend kpi-flat">Kedatangan + keberangkatan tahun terpilih</p>
+                        <p id="kpiVehicleYear" class="kpi-year">Tahun —</p>
+                        <span class="visually-hidden">KPI total pergerakan kendaraan tahun terpilih</span>
+                    </div>
+
+                    <div class="kpi-card kpi-card-live">
+                        <div class="kpi-head">
+                            <span class="kpi-icon" aria-hidden="true">
+                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            </span>
+                            <span>Terminal Teraktif</span>
+                            <span class="live-badge" aria-hidden="true">LIVE</span>
+                        </div>
+                        <p id="kpiTopTerminal" class="kpi-value">Memuat…</p>
+                        <p id="kpiTopTerminalSub" class="kpi-trend kpi-flat">Volume tertinggi tahun terpilih</p>
+                        <p id="kpiTopTerminalYear" class="kpi-year">Tahun —</p>
+                        <span class="visually-hidden">KPI terminal teraktif berdasarkan volume penumpang</span>
+                    </div>
+                </div>
+
+                <!-- Ranking & Full Map CTA Row -->
+                <div class="ranking-cta-grid">
+                    <!-- Top 5 Ranking -->
+                    <section class="card ranking-card" aria-labelledby="rankingTitle">
+                        <div class="ranking-card-head">
+                            <div>
+                                <h3 id="rankingTitle" class="card-title">Top 5 Terminal Penumpang</h3>
+                                <p class="card-sub">Peringkat pergerakan penumpang tertinggi pada tahun terpilih (faktual)</p>
+                            </div>
+                            <span class="badge badge-blue">Faktual</span>
+                        </div>
+                        <div id="rankingList" class="ranking-list" role="list" aria-label="Daftar lima terminal teraktif">
+                            <p class="ranking-loading">Memuat peringkat terminal…</p>
+                        </div>
+                    </section>
+
+                    <!-- Full Map CTA Card -->
+                    <section class="card map-cta-card" aria-labelledby="mapCtaTitle">
+                        <div class="map-cta-icon-wrap" aria-hidden="true">
+                            <svg class="icon-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+                        </div>
+                        <div class="map-cta-content">
+                            <h3 id="mapCtaTitle" class="map-cta-title">Peta Transportasi Utama</h3>
+                            <p class="map-cta-desc">Jelajahi sebaran geospasial seluruh simpul terminal, trayek AKDP/AKAP, dan koridor transportasi Jawa Barat secara interaktif pada peta utama.</p>
+                            <p class="map-cta-note"><svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> Tautan ini membuka tampilan peta umum Jawa Barat (bukan tautan mendalam terminal terpilih).</p>
+                            <a href="../../" class="btn-map-cta" aria-label="Buka dashboard peta transportasi utama Jawa Barat">
+                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                Buka Dashboard Peta Utama
+                            </a>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Directory Section -->
+                <section class="card directory-card" aria-labelledby="directoryHeading">
+                    <div class="directory-head">
+                        <div>
+                            <h3 id="directoryHeading" class="card-title">Direktori Terminal Penumpang</h3>
+                            <p class="card-sub">Daftar lengkap registri terminal dan ringkasan pergerakan operasional tahun terpilih</p>
+                        </div>
+                        <span id="resultCount" class="result-count" role="status" aria-live="polite">Menghitung terminal…</span>
+                    </div>
+
+                    <!-- Filter Bar -->
+                    <div class="filter-bar" role="search" aria-label="Filter direktori terminal">
+                        <div class="filter-search-wrap">
+                            <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                            <label for="searchInput" class="visually-hidden">Cari terminal berdasarkan kode atau nama</label>
+                            <input type="search" id="searchInput" class="search-input" placeholder="Cari kode atau nama terminal…" autocomplete="off">
+                        </div>
+
+                        <div class="filter-controls">
+                            <div class="select-wrap">
+                                <label for="typeFilter" class="visually-hidden">Filter berdasarkan tipe terminal</label>
+                                <select id="typeFilter" class="filter-select" aria-label="Filter tipe terminal">
+                                    <option value="">Semua Tipe</option>
+                                </select>
+                            </div>
+
+                            <div class="select-wrap">
+                                <label for="locationFilter" class="visually-hidden">Filter berdasarkan kabupaten atau kota</label>
+                                <select id="locationFilter" class="filter-select" aria-label="Filter kabupaten atau kota">
+                                    <option value="">Semua Wilayah</option>
+                                </select>
+                            </div>
+
+                            <button type="button" id="resetFilterBtn" class="btn-reset-filter" aria-label="Reset semua filter pencarian">
+                                <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                                Reset Filter
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Directory Table -->
+                    <div class="table-wrap" tabindex="0" role="region" aria-label="Tabel direktori terminal penumpang">
+                        <table id="terminalTable" class="terminal-table">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="th-code">KODE</th>
+                                    <th scope="col" class="th-name">NAMA TERMINAL</th>
+                                    <th scope="col" class="th-type">TIPE</th>
+                                    <th scope="col" class="th-loc">KABUPATEN / KOTA</th>
+                                    <th scope="col" class="th-num">PENUMPANG</th>
+                                    <th scope="col" class="th-num">KENDARAAN</th>
+                                    <th scope="col" class="th-action">AKSI</th>
+                                </tr>
+                            </thead>
+                            <tbody id="terminalTableBody">
+                                <!-- Baris tabel di-generate via terminal.js -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- State Messages -->
+                    <div id="tableLoadingState" class="table-state-box">
+                        <div class="loading-spinner" aria-hidden="true"></div>
+                        <p>Memuat data direktori terminal…</p>
+                    </div>
+
+                    <div id="tableEmptyState" class="table-state-box" hidden>
+                        <svg class="icon-lg icon-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <p class="state-title">Tidak ada terminal yang sesuai dengan filter</p>
+                        <p class="state-sub">Coba sesuaikan kata kunci pencarian atau ubah pilihan tipe / wilayah.</p>
+                        <button type="button" id="tableResetBtn" class="btn-primary-sm">Reset Filter</button>
+                    </div>
+
+                    <div id="tableErrorState" class="table-state-box table-state-error" hidden>
+                        <svg class="icon-lg text-red" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                        <p class="state-title">Gagal Memuat Data Terminal</p>
+                        <p id="tableErrorMsg" class="state-sub">Terjadi gangguan koneksi data dengan server.</p>
+                        <button type="button" id="tableRetryBtn" class="retry-btn">Coba Lagi</button>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- ================= TERMINAL DETAIL MODAL ================= -->
+    <div id="modalBackdrop" class="modal-backdrop" hidden></div>
+    <div id="terminalModal" class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalSubInfo" hidden>
+        <div class="modal-header">
+            <div class="modal-title-group">
+                <div class="modal-badge-row">
+                    <span id="modalCode" class="badge-code">—</span>
+                    <span id="modalType" class="badge-type">—</span>
+                </div>
+                <h3 id="modalTitle" class="modal-title">Nama Terminal</h3>
+                <p id="modalSubInfo" class="modal-sub">—</p>
+            </div>
+            <button type="button" id="modalCloseBtn" class="modal-close-btn" aria-label="Tutup jendela detail terminal">
+                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <!-- Loading Indicator for On-Demand Detail -->
+            <div id="modalLoading" class="modal-loading-bar" hidden aria-live="polite">
+                <span class="loading-spinner-sm" aria-hidden="true"></span>
+                <span>Memuat profil lengkap terminal…</span>
+            </div>
+
+            <!-- Retry Banner on Per-Detail Failure -->
+            <div id="modalDetailError" class="modal-error-banner" hidden role="alert">
+                <svg class="icon-sm text-red" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <div class="modal-error-text">
+                    <p class="modal-error-title">Sebagian informasi profil gagal dimuat.</p>
+                    <p class="modal-error-sub">Data ringkasan tetap tersedia di bawah.</p>
+                </div>
+                <button type="button" id="modalRetryBtn" class="modal-retry-btn">Muat Ulang</button>
+            </div>
+
+            <!-- Terminal Photo (if available) -->
+            <div id="modalPhotoWrap" class="modal-photo-container" hidden>
+                <img id="modalPhoto" src="" alt="Dokumentasi Terminal" class="modal-photo-img" loading="lazy">
+                <p class="modal-photo-caption">Dokumentasi resmi terminal</p>
+            </div>
+
+            <!-- Production Stats for Selected Year -->
+            <div class="modal-section">
+                <h4 class="modal-section-title">Produksi Operasional Tahun <span id="modalStatYear">—</span></h4>
+                <div class="modal-stats-grid">
+                    <div class="modal-stat-card">
+                        <span class="modal-stat-label">Total Penumpang</span>
+                        <p id="modalStatPassenger" class="modal-stat-val">—</p>
+                        <span id="modalStatPassengerBreakdown" class="modal-stat-sub">Kedatangan: — &bull; Keberangkatan: —</span>
+                    </div>
+                    <div class="modal-stat-card">
+                        <span class="modal-stat-label">Total Kendaraan</span>
+                        <p id="modalStatVehicle" class="modal-stat-val">—</p>
+                        <span id="modalStatVehicleBreakdown" class="modal-stat-sub">Kedatangan: — &bull; Keberangkatan: —</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Monthly Trend Chart -->
+            <div class="modal-section">
+                <div class="modal-section-head">
+                    <h4 class="modal-section-title">Tren Bulanan Pergerakan Penumpang</h4>
+                    <span class="modal-section-badge">Tahun <span id="modalTrendYear">—</span></span>
+                </div>
+                <div id="modalTrendContainer" class="trend-container">
+                    <p class="trend-loading">Memuat grafik bulanan…</p>
+                </div>
+            </div>
+
+            <!-- Physical & Operational Information Grid -->
+            <div class="modal-section">
+                <h4 class="modal-section-title">Informasi Fisik &amp; Operasional</h4>
+                <dl class="modal-info-dl">
+                    <div class="modal-info-row">
+                        <dt class="modal-dt">Alamat Lengkap</dt>
+                        <dd id="modalAlamat" class="modal-dd">Belum tersedia</dd>
+                    </div>
+                    <div class="modal-info-row">
+                        <dt class="modal-dt">Wilayah Administrasi</dt>
+                        <dd id="modalKabKota" class="modal-dd">Belum tersedia</dd>
+                    </div>
+                    <div class="modal-info-row">
+                        <dt class="modal-dt">Status</dt>
+                        <dd id="modalStatus" class="modal-dd">Belum tersedia</dd>
+                    </div>
+                    <div class="modal-info-row">
+                        <dt class="modal-dt">Jam Operasi</dt>
+                        <dd id="modalJam" class="modal-dd">Belum tersedia</dd>
+                    </div>
+                    <div class="modal-info-row">
+                        <dt class="modal-dt">Kontak / Pengelola</dt>
+                        <dd id="modalKontak" class="modal-dd">Belum tersedia</dd>
+                    </div>
+                    <div class="modal-info-row">
+                        <dt class="modal-dt">Luas Wilayah / Lahan</dt>
+                        <dd id="modalLuasWilayah" class="modal-dd">Belum tersedia</dd>
+                    </div>
+                    <div class="modal-info-row">
+                        <dt class="modal-dt">Luas Bangunan</dt>
+                        <dd id="modalLuasBangunan" class="modal-dd">Belum tersedia</dd>
+                    </div>
+                    <div class="modal-info-row">
+                        <dt class="modal-dt">Website / Kanal Resmi</dt>
+                        <dd id="modalWebsite" class="modal-dd">Belum tersedia</dd>
+                    </div>
+                    <div class="modal-info-row modal-info-row-full">
+                        <dt class="modal-dt">Deskripsi / Fasilitas</dt>
+                        <dd id="modalDeskripsi" class="modal-dd">Belum tersedia</dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" id="modalCloseFooterBtn" class="btn-secondary" aria-label="Tutup jendela detail">Tutup</button>
+        </div>
+    </div>
+
+    <script src="terminal.js"></script>
+</body>
+</html>
