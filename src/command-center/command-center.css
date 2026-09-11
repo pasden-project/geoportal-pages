@@ -283,6 +283,8 @@ a {
 /* Mobile drawer close button (hidden on desktop) */
 .sidebar-close-btn {
     display: none;
+    min-width: 44px;
+    min-height: 44px;
 }
 
 .sidebar-footer {
@@ -698,6 +700,8 @@ a {
     font-weight: 700;
     border-radius: 0.55rem;
     padding: 0.55rem 0.95rem;
+    min-width: 44px;
+    min-height: 44px;
     text-decoration: none;
     transition: background-color 0.15s ease;
     white-space: nowrap;
@@ -1855,8 +1859,10 @@ a {
         border: 1px solid rgba(255, 255, 255, 0.12);
         border-radius: 0.5rem;
         color: var(--text-on-dark);
-        width: 36px;
-        height: 36px;
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        min-height: 44px;
         cursor: pointer;
         padding: 0;
         flex: none;
