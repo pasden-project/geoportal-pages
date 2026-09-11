@@ -40,9 +40,29 @@
     // State tahun aktif
     var selectedYear = null;
 
+    // State Peta Mini Simpul Transportasi (PHASE 15B)
+    var miniMap = null;
+    var mapMarkerGroup = null;
+    var JABAR_FALLBACK_BOUNDS = [
+        [-7.82, 106.35],
+        [-5.90, 108.85]
+    ];
+
     /* =================================================================
-       2. Util aman: setText (textContent saja, TANPA innerHTML)
+       2. Util aman: setText & escapeHtml (sanitized DOM & strings)
        ================================================================= */
+    function escapeHtml(str) {
+        if (str === null || str === undefined) {
+            return "";
+        }
+        return String(str)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
     function setText(id, text) {
         var el = document.getElementById(id);
         if (el) {
@@ -515,6 +535,9 @@
 
         // Status API: semua tersembunyi (termasuk apiErrorText).
         setApiStateLoading();
+
+        // Status Peta: Memuat
+        setMapState("loading");
     }
 
     // Error — request gagal. Semua KPI/insight live menjadi "—",
@@ -538,6 +561,9 @@
 
         renderSystemAlertState("error", msg);
         setApiStateError(msg);
+
+        // Status Peta: Error
+        setMapState("error", msg);
     }
 
     // Empty — response diterima tapi seluruhnya nol.
@@ -557,6 +583,9 @@
 
         renderSystemAlertState("empty", "");
         setApiStateEmpty();
+
+        // Status Peta: Empty
+        setMapState("empty");
     }
 
     function friendlyError(err) {
@@ -665,6 +694,9 @@
 
         // Transport Intelligence Overview (indikator saja — tanpa skor)
         renderTransportIntelligence(d.trend, ins, s, year);
+
+        // Peta Mini Simpul Transportasi (PHASE 15B)
+        renderMiniMapData(d, empty);
 
         // Sembunyikan status demo-dulu di insight
         setHidden("insightDemoNote", true);
@@ -873,6 +905,253 @@
     }
 
     /* =================================================================
+       8b. Peta Simpul Transportasi (PHASE 15B)
+       ================================================================= */
+    function createTerminalIcon() {
+        return L.divIcon({
+            className: "cc-div-icon",
+            html: '<div class="cc-map-marker cc-marker-terminal" title="Terminal Tipe A" aria-label="Terminal Tipe A">' +
+                  '<svg class="cc-marker-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>' +
+                  '</div>',
+            iconSize: [24, 24],
+            iconAnchor: [12, 12],
+            popupAnchor: [0, -13]
+        });
+    }
+
+    function createUppkbIcon() {
+        return L.divIcon({
+            className: "cc-div-icon",
+            html: '<div class="cc-map-marker cc-marker-uppkb" title="UPPKB" aria-label="UPPKB">' +
+                  '<svg class="cc-marker-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/></svg>' +
+                  '</div>',
+            iconSize: [24, 24],
+            iconAnchor: [12, 12],
+            popupAnchor: [0, -13]
+        });
+    }
+
+    function createTerminalPopup(p) {
+        var nama = escapeHtml(p.nama_terminal || p.nama || "Terminal");
+        var kota = escapeHtml(p.kabupaten_kota || p.kota || "Jawa Barat");
+        var stats = p.stats || {};
+        var pen = (Number(stats.kedatangan_penumpang) || 0) + (Number(stats.keberangkatan_penumpang) || 0);
+        var knd = (Number(stats.kedatangan_kendaraan) || 0) + (Number(stats.keberangkatan_kendaraan) || 0);
+
+        var html = '<div class="cc-popup">' +
+            '<div class="cc-popup-title">' + nama + '</div>' +
+            '<span class="cc-popup-badge cc-popup-badge-terminal">Terminal Tipe A</span>' +
+            '<div class="cc-popup-detail">' + kota + '</div>';
+        if (pen > 0 || knd > 0) {
+            html += '<div class="cc-popup-metric">Pergerakan: ' + formatNumber(pen) + ' penumpang · ' + formatNumber(knd) + ' kendaraan</div>';
+        }
+        html += '</div>';
+        return html;
+    }
+
+    function createUppkbPopup(u) {
+        var nama = escapeHtml(u.nama || "UPPKB");
+        var kab = escapeHtml(u.kabupaten || "Jawa Barat");
+        var stats = u.stats || {};
+        var diperiksa = Number(stats.diperiksa) || 0;
+
+        var html = '<div class="cc-popup">' +
+            '<div class="cc-popup-title">UPPKB ' + nama + '</div>' +
+            '<span class="cc-popup-badge cc-popup-badge-uppkb">Penimbangan Kendaraan</span>' +
+            '<div class="cc-popup-detail">' + kab + '</div>';
+        if (diperiksa > 0) {
+            html += '<div class="cc-popup-metric">Diperiksa: ' + formatNumber(diperiksa) + ' kendaraan</div>';
+        }
+        html += '</div>';
+        return html;
+    }
+
+    function getVerifiedTerminalPoints(points) {
+        if (!Array.isArray(points)) {
+            return [];
+        }
+        return points.filter(function (p) {
+            if (!p || typeof p !== "object") {
+                return false;
+            }
+            var tipe = String(p.tipe || "").trim().toUpperCase();
+            if (tipe !== "A" && tipe !== "TIPE A") {
+                return false;
+            }
+            var lat = Number(p.lat);
+            var lng = Number(p.lng);
+            // Batas geografis Jawa Barat yang valid (-9 <= lat <= -5, 105 <= lng <= 110)
+            return isFinite(lat) && isFinite(lng) && lat >= -9 && lat <= -5 && lng >= 105 && lng <= 110;
+        });
+    }
+
+    function getVerifiedUppkbPoints(points) {
+        if (!Array.isArray(points)) {
+            return [];
+        }
+        return points.filter(function (u) {
+            if (!u || typeof u !== "object") {
+                return false;
+            }
+            var lat = Number(u.lat);
+            var lng = Number(u.lng);
+            // Batas geografis Jawa Barat yang valid (-9 <= lat <= -5, 105 <= lng <= 110)
+            return isFinite(lat) && isFinite(lng) && lat >= -9 && lat <= -5 && lng >= 105 && lng <= 110;
+        });
+    }
+
+    function initMiniMap() {
+        var el = document.getElementById("miniMap");
+        if (!el) {
+            return;
+        }
+
+        if (typeof L === "undefined") {
+            setMapState("error", "Pustaka peta tidak dapat dimuat.");
+            return;
+        }
+
+        try {
+            miniMap = L.map(el, {
+                attributionControl: false,
+                zoomControl: false,
+                scrollWheelZoom: false,
+                touchZoom: false,
+                doubleClickZoom: false,
+                boxZoom: false,
+                dragging: !isMobile()
+            });
+
+            L.control.zoom({ position: "topleft" }).addTo(miniMap);
+
+            L.control.attribution({
+                position: "bottomleft",
+                prefix: false
+            }).addAttribution('&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OSM</a> &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>').addTo(miniMap);
+
+            L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+                maxZoom: 19,
+                subdomains: "abcd"
+            }).addTo(miniMap);
+
+            mapMarkerGroup = L.layerGroup().addTo(miniMap);
+
+            miniMap.fitBounds(JABAR_FALLBACK_BOUNDS, { padding: [24, 24] });
+
+            setTimeout(function () {
+                if (miniMap) {
+                    miniMap.invalidateSize();
+                }
+            }, 150);
+        } catch (err) {
+            setMapState("error", "Gagal menginisialisasi peta.");
+        }
+    }
+
+    function setMapState(state, message) {
+        var overlay = document.getElementById("mapStateOverlay");
+        var spinner = document.getElementById("mapStateSpinner");
+        var textEl = document.getElementById("mapStateText");
+
+        if (!overlay || !textEl) {
+            return;
+        }
+
+        if (state === "loading") {
+            overlay.hidden = false;
+            if (spinner) {
+                spinner.hidden = false;
+            }
+            textEl.textContent = "Memuat peta simpul transportasi…";
+            setText("mapCountTerminal", "—");
+            setText("mapCountUppkb", "—");
+        } else if (state === "available") {
+            overlay.hidden = true;
+        } else if (state === "empty") {
+            overlay.hidden = false;
+            if (spinner) {
+                spinner.hidden = true;
+            }
+            textEl.textContent = "Data simpul transportasi belum tersedia untuk tahun terpilih.";
+            if (mapMarkerGroup) {
+                mapMarkerGroup.clearLayers();
+            }
+            if (miniMap) {
+                miniMap.fitBounds(JABAR_FALLBACK_BOUNDS, { padding: [24, 24] });
+            }
+            setText("mapCountTerminal", "0");
+            setText("mapCountUppkb", "0");
+        } else if (state === "error") {
+            overlay.hidden = false;
+            if (spinner) {
+                spinner.hidden = true;
+            }
+            textEl.textContent = "Gagal memuat simpul transportasi: " + (message || "Koneksi terganggu.");
+            if (mapMarkerGroup) {
+                mapMarkerGroup.clearLayers();
+            }
+            if (miniMap) {
+                miniMap.fitBounds(JABAR_FALLBACK_BOUNDS, { padding: [24, 24] });
+            }
+            setText("mapCountTerminal", "—");
+            setText("mapCountUppkb", "—");
+        }
+    }
+
+    function renderMiniMapData(data, empty) {
+        if (!miniMap || !mapMarkerGroup) {
+            return;
+        }
+
+        if (empty) {
+            setMapState("empty");
+            return;
+        }
+
+        var terminals = getVerifiedTerminalPoints(data && data.points);
+        var uppkbs = getVerifiedUppkbPoints(data && data.uppkbPoints);
+
+        setText("mapCountTerminal", String(terminals.length));
+        setText("mapCountUppkb", String(uppkbs.length));
+
+        mapMarkerGroup.clearLayers();
+
+        var boundsList = [];
+
+        terminals.forEach(function (p) {
+            var lat = Number(p.lat);
+            var lng = Number(p.lng);
+            var m = L.marker([lat, lng], { icon: createTerminalIcon() });
+            m.bindPopup(createTerminalPopup(p));
+            mapMarkerGroup.addLayer(m);
+            boundsList.push([lat, lng]);
+        });
+
+        uppkbs.forEach(function (u) {
+            var lat = Number(u.lat);
+            var lng = Number(u.lng);
+            var m = L.marker([lat, lng], { icon: createUppkbIcon() });
+            m.bindPopup(createUppkbPopup(u));
+            mapMarkerGroup.addLayer(m);
+            boundsList.push([lat, lng]);
+        });
+
+        if (boundsList.length > 0) {
+            miniMap.fitBounds(L.latLngBounds(boundsList), { padding: [24, 24], maxZoom: 11 });
+        } else {
+            miniMap.fitBounds(JABAR_FALLBACK_BOUNDS, { padding: [24, 24] });
+        }
+
+        setMapState("available");
+
+        setTimeout(function () {
+            if (miniMap) {
+                miniMap.invalidateSize();
+            }
+        }, 100);
+    }
+
+    /* =================================================================
        9. Status API + timestamp + retry (TASK 6)
        ================================================================= */
     function setApiStateLoading() {
@@ -1077,6 +1356,12 @@
 
         updateSidebarInertState();
 
+        if (miniMap) {
+            setTimeout(function () {
+                miniMap.invalidateSize();
+            }, 350);
+        }
+
         if (willOpen) {
             // Practical focus containment: move focus into drawer
             focusTimer = setTimeout(function () {
@@ -1169,6 +1454,19 @@
             }
         } else {
             updateSidebarInertState();
+        }
+
+        if (miniMap) {
+            if (isMobile()) {
+                if (miniMap.dragging && miniMap.dragging.enabled()) {
+                    miniMap.dragging.disable();
+                }
+            } else {
+                if (miniMap.dragging && !miniMap.dragging.enabled()) {
+                    miniMap.dragging.enable();
+                }
+            }
+            miniMap.invalidateSize();
         }
     }
 
@@ -1278,6 +1576,9 @@
                 loadDashboardData();
             });
         }
+
+        // Inisialisasi Peta Mini Simpul Transportasi (PHASE 15B)
+        initMiniMap();
 
         // Muat tahun + data awal
         initYears();

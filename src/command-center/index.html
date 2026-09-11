@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GeoPORTAL BPTD Jabar — Command Center</title>
     <meta name="description" content="Pusat Komando Transportasi Darat BPTD Kelas I Jawa Barat. Monitoring indikator kinerja utama dan intelijen transportasi terpadu.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
     <link rel="stylesheet" href="command-center.css">
 </head>
 <body>
@@ -229,17 +230,15 @@
                             </div>
                         </div>
 
-                        <!-- Mini-map placeholder -->
-                        <div class="map-panel" role="img" aria-label="Placeholder peta kondisi transportasi Jawa Barat. Peta ini ilustrasi demo, bukan peta resmi, seluruh marker diberi label demo.">
+                        <!-- Mini-map: Simpul Transportasi Jawa Barat (PHASE 15B) -->
+                        <section class="map-panel" role="region" aria-labelledby="mapHeading" aria-describedby="mapDesc">
                             <div class="map-head">
                                 <div class="map-title">
-                                    <h3 class="map-heading">Peta Kondisi Transportasi Jawa Barat</h3>
-                                    <p class="map-sub">Placeholder visual — <strong>Simulasi Status</strong> (marker demo, bukan data resmi)</p>
-                                    <div class="map-legend">
-                                        <span class="legend-chip"><span class="legend-dot legend-dot-green" aria-hidden="true"></span> Normal</span>
-                                        <span class="legend-chip"><span class="legend-dot legend-dot-amber" aria-hidden="true"></span> Perlu Perhatian</span>
-                                        <span class="legend-chip"><span class="legend-dot legend-dot-red" aria-hidden="true"></span> Bermasalah</span>
-                                        <span class="legend-chip"><span class="legend-dot legend-dot-gray" aria-hidden="true"></span> Data Belum Tersedia</span>
+                                    <h3 id="mapHeading" class="map-heading">Peta Simpul Transportasi Jawa Barat</h3>
+                                    <p class="map-sub">Sebaran simpul strategis — <strong>Terminal Tipe A &amp; UPPKB</strong> (data resmi API)</p>
+                                    <div class="map-legend" role="list" aria-label="Legenda simpul transportasi">
+                                        <span class="legend-chip" role="listitem"><span class="legend-dot legend-dot-terminal" aria-hidden="true"></span> Terminal Tipe A (<span id="mapCountTerminal">—</span>)</span>
+                                        <span class="legend-chip" role="listitem"><span class="legend-dot legend-dot-uppkb" aria-hidden="true"></span> UPPKB (<span id="mapCountUppkb">—</span>)</span>
                                     </div>
                                 </div>
                                 <a class="btn-map-open" href="../" aria-label="Buka dashboard peta transportasi utama (route /)">
@@ -248,38 +247,17 @@
                                 </a>
                             </div>
 
-                            <svg class="map-bg" viewBox="0 0 600 320" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-                                <rect width="600" height="320" fill="#12233f"/>
-                                <g stroke="#1e3a5f" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.9">
-                                    <path d="M-20,260 C120,240 200,150 340,120 S560,80 640,60"/>
-                                    <path d="M60,-20 C90,80 60,180 160,260 S420,300 640,280"/>
-                                    <path d="M-20,120 C160,140 300,60 440,180 S560,300 640,240"/>
-                                    <path d="M120,320 C140,240 260,200 300,120 S420,-10 460,-20"/>
-                                </g>
-                                <g stroke="#2c4a75" stroke-width="2.5" fill="none" opacity="0.6">
-                                    <path d="M-20,200 C180,180 300,220 640,160"/>
-                                    <path d="M200,-20 C220,80 180,180 300,320"/>
-                                    <path d="M-20,60 C200,80 420,40 640,120"/>
-                                    <path d="M400,-20 C380,100 460,200 420,340"/>
-                                </g>
-                                <g stroke="#facc15" stroke-width="2" fill="none" opacity="0.35" stroke-dasharray="8 10">
-                                    <path d="M150,290 C220,230 300,180 380,150 S520,100 600,90"/>
-                                </g>
-                                <circle cx="180" cy="150" r="46" fill="#22c55e" opacity="0.08"/>
-                                <circle cx="430" cy="110" r="60" fill="#ef4444" opacity="0.08"/>
-                                <circle cx="520" cy="220" r="40" fill="#eab308" opacity="0.08"/>
-                            </svg>
+                            <p id="mapDesc" class="visually-hidden">Peta interaktif ringkas menampilkan sebaran simpul transportasi strategis Jawa Barat, terbatas pada Terminal Tipe A dan UPPKB terverifikasi. Representasi grafis ini bukan pengganti pembaca layar. Data ringkasan metrik dan tautan menuju Peta Transportasi lengkap tersedia melalui tombol aksi dan panel indikator.</p>
 
-                            <!-- demo markers -->
-                            <span class="map-marker map-marker-red" style="left:66%;top:30%"><span class="marker-dot" aria-hidden="true"></span> demo</span>
-                            <span class="map-marker map-marker-green" style="left:30%;top:46%"><span class="marker-dot" aria-hidden="true"></span> demo</span>
-                            <span class="map-marker map-marker-green" style="left:18%;top:20%"><span class="marker-dot" aria-hidden="true"></span> demo</span>
-                            <span class="map-marker map-marker-green" style="left:44%;top:14%"><span class="marker-dot" aria-hidden="true"></span> demo</span>
-                            <span class="map-marker map-marker-amber" style="left:52%;top:62%"><span class="marker-dot" aria-hidden="true"></span> demo</span>
-                            <span class="map-marker map-marker-green" style="left:78%;top:66%"><span class="marker-dot" aria-hidden="true"></span> demo</span>
-                            <span class="map-marker map-marker-red" style="left:38%;top:76%"><span class="marker-dot" aria-hidden="true"></span> demo</span>
-                            <span class="map-marker map-marker-amber" style="left:84%;top:42%"><span class="marker-dot" aria-hidden="true"></span> demo</span>
-                            <span class="map-marker map-marker-green" style="left:58%;top:20%"><span class="marker-dot" aria-hidden="true"></span> demo</span>
+                            <div class="map-stage">
+                                <div id="miniMap" class="mini-map" role="application" aria-label="Peta interaktif simpul transportasi Jawa Barat"></div>
+                                <div id="mapStateOverlay" class="map-state-overlay" hidden aria-live="polite">
+                                    <div class="map-state-content">
+                                        <span id="mapStateSpinner" class="map-state-spinner" aria-hidden="true"></span>
+                                        <p id="mapStateText" class="map-state-text">Memuat peta simpul…</p>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="map-compass" aria-hidden="true">
                                 <span class="compass-n">N</span>
@@ -294,7 +272,7 @@
                                 <p id="tiRasio" class="score-line">—</p>
                                 <p class="score-note">Skor komposit belum dapat dihitung karena metadata dan benchmark belum ditetapkan.</p>
                             </div>
-                        </div>
+                        </section>
 
                         <!-- Bottom Insights -->
                         <div class="insight-row">
@@ -445,6 +423,7 @@
         </main>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
     <script src="command-center.js"></script>
 </body>
 </html>
