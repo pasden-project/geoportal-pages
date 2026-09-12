@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GeoPORTAL BPTD Jabar — Modul Terminal</title>
-    <meta name="description" content="Modul Terminal Command Center BPTD Kelas I Jawa Barat. Direktori, indikator operasional, dan profil terminal penumpang.">
+    <title>GeoPORTAL BPTD Jabar — Modul Trayek</title>
+    <meta name="description" content="Modul Trayek Angkutan Jalan Command Center BPTD Kelas I Jawa Barat. Direktori 10 trayek utama dan metrik agregat.">
     <link rel="stylesheet" href="../command-center.css">
-    <link rel="stylesheet" href="terminal.css">
+    <link rel="stylesheet" href="trayek.css">
 </head>
 <body>
     <div class="app-shell">
@@ -38,15 +38,15 @@
                     <span class="nav-text">Peta Transportasi</span>
                     <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
                 </a>
-                <a href="./" class="nav-link is-active" aria-current="page" data-nav-status="active" title="Terminal — Modul Terminal Penumpang (Aktif)">
+                <a href="../terminal/" class="nav-link" data-nav-status="available" title="Terminal — Modul Terminal Penumpang (Tersedia)">
                     <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
                     <span class="nav-text">Terminal</span>
-                    <span class="nav-status-badge nav-status-active" data-status="ACTIVE">Aktif</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
                 </a>
-                <a href="../trayek/" class="nav-link" data-nav-status="available" title="Trayek — Modul Trayek Angkutan Jalan (Tersedia)">
+                <a href="./" class="nav-link is-active" aria-current="page" data-nav-status="active" title="Trayek — Modul Trayek Angkutan Jalan (Aktif)">
                     <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                     <span class="nav-text">Trayek</span>
-                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                    <span class="nav-status-badge nav-status-active" data-status="ACTIVE">Aktif</span>
                 </a>
                 <button type="button" class="nav-link" aria-disabled="true" disabled data-nav-status="coming-soon" title="Angkutan Perintis — Belum tersedia pada prototipe (Segera)">
                     <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
@@ -109,7 +109,7 @@
                     </button>
                     <div class="header-title-block">
                         <h1 class="header-title">Transport Command Center</h1>
-                        <p class="header-sub">Modul Terminal Penumpang — Jawa Barat</p>
+                        <p class="header-sub">Modul Trayek Angkutan Jalan — Jawa Barat</p>
                     </div>
                 </div>
 
@@ -120,13 +120,6 @@
                             <span id="current-date">Memuat tanggal...</span>
                         </div>
                         <span id="current-time" class="clock-time">--:-- WIB</span>
-                    </div>
-
-                    <div class="year-select-wrap">
-                        <label class="visually-hidden" for="yearSelect">Pilih tahun data</label>
-                        <select id="yearSelect" class="year-select" aria-label="Pilih tahun data">
-                            <option value="">Memuat tahun…</option>
-                        </select>
                     </div>
 
                     <div class="api-status" role="status" aria-live="polite">
@@ -146,17 +139,17 @@
                 <!-- Module Header & Badges -->
                 <div class="dash-head">
                     <div>
-                        <h2 class="dash-title">Terminal Penumpang <span class="dash-title-dim">—</span> Jawa Barat</h2>
-                        <p class="dash-sub">Direktori &bull; Indikator Kinerja &bull; Profil Operasional</p>
+                        <h2 class="dash-title">Trayek Jawa Barat <span class="dash-title-dim">—</span> Direktori 10 Trayek Utama</h2>
+                        <p class="dash-sub">Direktori 10 trayek utama dan metrik agregat</p>
                     </div>
                     <div class="dash-badges">
                         <span class="badge badge-live">
                             <span class="badge-dot badge-dot-green" aria-hidden="true"></span>
                             Data Resmi API
                         </span>
-                        <span id="selectedYearBadge" class="badge badge-blue">
-                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                            <span id="selectedYearBadgeText">Tahun Terpilih</span>
+                        <span class="badge badge-blue">
+                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            <span>10 Trayek Utama</span>
                         </span>
                     </div>
                 </div>
@@ -164,15 +157,15 @@
                 <!-- Status Bar -->
                 <div class="status-bar" role="status" aria-live="polite">
                     <span class="status-chip" id="dataTimestamp" hidden>Data dimuat: --:-- WIB</span>
-                    <span class="status-chip" id="kpiYearContext" hidden>Tahun --</span>
+                    <span class="status-chip" id="scopeContext" hidden>Cakupan: 10 Trayek Utama</span>
                     <span class="status-error" id="apiErrorText" hidden></span>
                     <button type="button" id="retryBtn" class="retry-btn" hidden>Coba Lagi</button>
                 </div>
 
-                <!-- Data Honesty Notice -->
+                <!-- Scope / Data Honesty Notice -->
                 <div class="demo-notice" role="note">
                     <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    <span><strong>INFORMASI CAKUPAN DATA TERMINAL.</strong> Indikator dan direktori menampilkan simpul terminal penumpang Jawa Barat yang telah terverifikasi dengan koordinat geospasial pada API produksi (130 simpul lintas tipe). Catatan operasional pergerakan penumpang dan kendaraan bersumber dari sistem pelaporan berkala dan saat ini terkonsentrasi pada Terminal Tipe A. Angka 0 (nol) menunjukkan belum ada catatan pergerakan untuk tahun terpilih pada kontrak pelaporan saat ini.</span>
+                    <span><strong>INFORMASI CAKUPAN DATA TRAYEK.</strong> Direktori ini menyajikan data 10 trayek utama angkutan jalan antar-kota di Jawa Barat berdasarkan catatan resmi endpoint getRoutes pada sistem produksi. Metrik volume dan perjalanan merupakan data agregat tercatat (bukan frekuensi jadwal harian atau izin operasional aktif). Koordinat dan geometri rute dihitung berdasarkan titik lintasan spasial WGS84.</span>
                 </div>
 
                 <!-- 4 Factual KPIs -->
@@ -180,15 +173,15 @@
                     <div class="kpi-card kpi-card-live">
                         <div class="kpi-head">
                             <span class="kpi-icon" aria-hidden="true">
-                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
                             </span>
-                            <span>Terminal Terpetakan</span>
-                            <span class="live-badge" aria-hidden="true">TERPETAKAN</span>
+                            <span>Trayek Terdata</span>
+                            <span class="live-badge" aria-hidden="true">TERDATA</span>
                         </div>
-                        <p id="kpiTotalRegistry" class="kpi-value">Memuat…</p>
-                        <p class="kpi-trend kpi-flat">Terpetakan dengan koordinat valid</p>
-                        <p id="kpiRegistryYear" class="kpi-year">Semua Tipe</p>
-                        <span class="visually-hidden">KPI terminal terpetakan dari data API</span>
+                        <p id="kpiTotalRoutes" class="kpi-value">Memuat…</p>
+                        <p class="kpi-trend kpi-flat">10 trayek utama terverifikasi</p>
+                        <p class="kpi-year">API getRoutes</p>
+                        <span class="visually-hidden">KPI total trayek terdata dari sistem produksi</span>
                     </div>
 
                     <div class="kpi-card kpi-card-live">
@@ -196,13 +189,13 @@
                             <span class="kpi-icon" aria-hidden="true">
                                 <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                             </span>
-                            <span>Total Penumpang</span>
-                            <span class="live-badge" aria-hidden="true">LIVE</span>
+                            <span>Total Volume Penumpang</span>
+                            <span class="live-badge" aria-hidden="true">AGREGAT</span>
                         </div>
-                        <p id="kpiTotalPassenger" class="kpi-value">Memuat…</p>
-                        <p class="kpi-trend kpi-flat">Kedatangan + keberangkatan tahun terpilih</p>
-                        <p id="kpiPassengerYear" class="kpi-year">Tahun —</p>
-                        <span class="visually-hidden">KPI total pergerakan penumpang tahun terpilih</span>
+                        <p id="kpiTotalVolume" class="kpi-value">Memuat…</p>
+                        <p class="kpi-trend kpi-flat">Akumulasi volume penumpang tercatat</p>
+                        <p class="kpi-year">10 Trayek Utama</p>
+                        <span class="visually-hidden">KPI total volume penumpang tercatat pada seluruh trayek</span>
                     </div>
 
                     <div class="kpi-card kpi-card-live">
@@ -210,13 +203,13 @@
                             <span class="kpi-icon" aria-hidden="true">
                                 <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                             </span>
-                            <span>Total Kendaraan</span>
-                            <span class="live-badge" aria-hidden="true">LIVE</span>
+                            <span>Total Perjalanan</span>
+                            <span class="live-badge" aria-hidden="true">AGREGAT</span>
                         </div>
-                        <p id="kpiTotalVehicle" class="kpi-value">Memuat…</p>
-                        <p class="kpi-trend kpi-flat">Kedatangan + keberangkatan tahun terpilih</p>
-                        <p id="kpiVehicleYear" class="kpi-year">Tahun —</p>
-                        <span class="visually-hidden">KPI total pergerakan kendaraan tahun terpilih</span>
+                        <p id="kpiTotalPerjalanan" class="kpi-value">Memuat…</p>
+                        <p class="kpi-trend kpi-flat">Akumulasi perjalanan (trip) tercatat</p>
+                        <p class="kpi-year">Total Trip</p>
+                        <span class="visually-hidden">KPI total perjalanan tercatat pada seluruh trayek</span>
                     </div>
 
                     <div class="kpi-card kpi-card-live">
@@ -224,13 +217,13 @@
                             <span class="kpi-icon" aria-hidden="true">
                                 <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                             </span>
-                            <span>Terminal Teraktif</span>
-                            <span class="live-badge" aria-hidden="true">LIVE</span>
+                            <span>Trayek Volume Tertinggi</span>
+                            <span class="live-badge" aria-hidden="true">TOP VOL</span>
                         </div>
-                        <p id="kpiTopTerminal" class="kpi-value">Memuat…</p>
-                        <p id="kpiTopTerminalSub" class="kpi-trend kpi-flat">Volume tertinggi tahun terpilih</p>
-                        <p id="kpiTopTerminalYear" class="kpi-year">Tahun —</p>
-                        <span class="visually-hidden">KPI terminal teraktif berdasarkan volume penumpang</span>
+                        <p id="kpiTopRoute" class="kpi-value kpi-value-truncate">Memuat…</p>
+                        <p id="kpiTopRouteSub" class="kpi-trend kpi-flat">Volume penumpang tertinggi</p>
+                        <p id="kpiTopRouteVolume" class="kpi-year">Peringkat 1</p>
+                        <span class="visually-hidden">KPI trayek dengan akumulasi volume penumpang tertinggi</span>
                     </div>
                 </div>
 
@@ -240,13 +233,13 @@
                     <section class="card ranking-card" aria-labelledby="rankingTitle">
                         <div class="ranking-card-head">
                             <div>
-                                <h3 id="rankingTitle" class="card-title">Top 5 Terminal Penumpang</h3>
-                                <p class="card-sub">Peringkat pergerakan penumpang tertinggi pada tahun terpilih (faktual)</p>
+                                <h3 id="rankingTitle" class="card-title">Top 5 Trayek Berdasarkan Volume</h3>
+                                <p class="card-sub">Peringkat lima trayek dengan akumulasi volume penumpang tertinggi (faktual)</p>
                             </div>
                             <span class="badge badge-blue">Faktual</span>
                         </div>
-                        <div id="rankingList" class="ranking-list" role="list" aria-label="Daftar lima terminal teraktif">
-                            <p class="ranking-loading">Memuat peringkat terminal…</p>
+                        <div id="rankingList" class="ranking-list" role="list" aria-label="Daftar lima trayek dengan volume penumpang tertinggi">
+                            <p class="ranking-loading">Memuat peringkat trayek…</p>
                         </div>
                     </section>
 
@@ -257,8 +250,8 @@
                         </div>
                         <div class="map-cta-content">
                             <h3 id="mapCtaTitle" class="map-cta-title">Peta Transportasi Utama</h3>
-                            <p class="map-cta-desc">Jelajahi sebaran geospasial seluruh simpul terminal, trayek AKDP/AKAP, dan koridor transportasi Jawa Barat secara interaktif pada peta utama.</p>
-                            <p class="map-cta-note"><svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> Tautan ini membuka tampilan peta umum Jawa Barat (bukan tautan mendalam terminal terpilih).</p>
+                            <p class="map-cta-desc">Jelajahi visualisasi lintasan geospasial seluruh trayek dan simpul terminal Jawa Barat pada peta utama.</p>
+                            <p class="map-cta-note"><svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> Tautan ini membuka tampilan peta umum Jawa Barat (tanpa fokus otomatis ke trayek tertentu).</p>
                             <a href="../../" class="btn-map-cta" aria-label="Buka dashboard peta transportasi utama Jawa Barat">
                                 <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                                 Buka Dashboard Peta Utama
@@ -271,32 +264,28 @@
                 <section class="card directory-card" aria-labelledby="directoryHeading">
                     <div class="directory-head">
                         <div>
-                            <h3 id="directoryHeading" class="card-title">Direktori Terminal Penumpang</h3>
-                            <p class="card-sub">Daftar lengkap registri terminal dan ringkasan pergerakan operasional tahun terpilih</p>
+                            <h3 id="directoryHeading" class="card-title">Direktori Trayek Angkutan Jalan</h3>
+                            <p class="card-sub">Daftar lengkap 10 trayek utama, kode simpul asal/tujuan, jarak, dan metrik agregat</p>
                         </div>
-                        <span id="resultCount" class="result-count" role="status" aria-live="polite">Menghitung terminal…</span>
+                        <span id="resultCount" class="result-count" role="status" aria-live="polite">Menghitung trayek…</span>
                     </div>
 
                     <!-- Filter Bar -->
-                    <div class="filter-bar" role="search" aria-label="Filter direktori terminal">
+                    <div class="filter-bar" role="search" aria-label="Filter direktori trayek">
                         <div class="filter-search-wrap">
                             <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                            <label for="searchInput" class="visually-hidden">Cari terminal berdasarkan kode atau nama</label>
-                            <input type="search" id="searchInput" class="search-input" placeholder="Cari kode atau nama terminal…" autocomplete="off">
+                            <label for="searchInput" class="visually-hidden">Cari trayek berdasarkan nama, simpul, atau ID</label>
+                            <input type="search" id="searchInput" class="search-input" placeholder="Cari nama trayek, simpul, atau ID…" autocomplete="off">
                         </div>
 
                         <div class="filter-controls">
                             <div class="select-wrap">
-                                <label for="typeFilter" class="visually-hidden">Filter berdasarkan tipe terminal</label>
-                                <select id="typeFilter" class="filter-select" aria-label="Filter tipe terminal">
-                                    <option value="">Semua Tipe</option>
-                                </select>
-                            </div>
-
-                            <div class="select-wrap">
-                                <label for="locationFilter" class="visually-hidden">Filter berdasarkan kabupaten atau kota</label>
-                                <select id="locationFilter" class="filter-select" aria-label="Filter kabupaten atau kota">
-                                    <option value="">Semua Wilayah</option>
+                                <label for="endpointFilter" class="visually-hidden">Filter status simpul asal dan tujuan</label>
+                                <select id="endpointFilter" class="filter-select" aria-label="Filter status simpul">
+                                    <option value="">Semua Status Simpul</option>
+                                    <option value="complete">Simpul Lengkap (Asal &amp; Tujuan)</option>
+                                    <option value="partial">Simpul Sebagian</option>
+                                    <option value="unmapped">Simpul Belum Terpetakan</option>
                                 </select>
                             </div>
 
@@ -308,21 +297,21 @@
                     </div>
 
                     <!-- Directory Table -->
-                    <div class="table-wrap" tabindex="0" role="region" aria-label="Tabel direktori terminal penumpang">
-                        <table id="terminalTable" class="terminal-table">
+                    <div class="table-wrap" tabindex="0" role="region" aria-label="Tabel direktori trayek angkutan jalan">
+                        <table id="trayekTable" class="trayek-table">
                             <thead>
                                 <tr>
-                                    <th scope="col" class="th-code">KODE</th>
-                                    <th scope="col" class="th-name">NAMA TERMINAL</th>
-                                    <th scope="col" class="th-type">TIPE</th>
-                                    <th scope="col" class="th-loc">KABUPATEN / KOTA</th>
-                                    <th scope="col" class="th-num">PENUMPANG</th>
-                                    <th scope="col" class="th-num">KENDARAAN</th>
+                                    <th scope="col" class="th-route-name">NAMA TRAYEK / KORIDOR</th>
+                                    <th scope="col" class="th-origin">SIMPUL ASAL</th>
+                                    <th scope="col" class="th-dest">SIMPUL TUJUAN</th>
+                                    <th scope="col" class="th-num th-dist">JARAK (KM)</th>
+                                    <th scope="col" class="th-num th-trip">PERJALANAN</th>
+                                    <th scope="col" class="th-num th-vol">VOLUME PENUMPANG</th>
                                     <th scope="col" class="th-action">AKSI</th>
                                 </tr>
                             </thead>
-                            <tbody id="terminalTableBody">
-                                <!-- Baris tabel di-generate via terminal.js -->
+                            <tbody id="trayekTableBody">
+                                <!-- Baris tabel di-generate via trayek.js -->
                             </tbody>
                         </table>
                     </div>
@@ -330,19 +319,19 @@
                     <!-- State Messages -->
                     <div id="tableLoadingState" class="table-state-box">
                         <div class="loading-spinner" aria-hidden="true"></div>
-                        <p>Memuat data direktori terminal…</p>
+                        <p>Memuat data direktori trayek…</p>
                     </div>
 
                     <div id="tableEmptyState" class="table-state-box" hidden>
                         <svg class="icon-lg icon-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        <p class="state-title">Tidak ada terminal yang sesuai dengan filter</p>
-                        <p class="state-sub">Coba sesuaikan kata kunci pencarian atau ubah pilihan tipe / wilayah.</p>
+                        <p class="state-title">Tidak ada trayek yang sesuai dengan filter</p>
+                        <p class="state-sub">Coba sesuaikan kata kunci pencarian atau ubah pilihan filter simpul.</p>
                         <button type="button" id="tableResetBtn" class="btn-primary-sm">Reset Filter</button>
                     </div>
 
                     <div id="tableErrorState" class="table-state-box table-state-error" hidden>
                         <svg class="icon-lg text-red" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                        <p class="state-title">Gagal Memuat Data Terminal</p>
+                        <p class="state-title">Gagal Memuat Data Trayek</p>
                         <p id="tableErrorMsg" class="state-sub">Terjadi gangguan koneksi data dengan server.</p>
                         <button type="button" id="tableRetryBtn" class="retry-btn">Coba Lagi</button>
                     </div>
@@ -351,115 +340,117 @@
         </main>
     </div>
 
-    <!-- ================= TERMINAL DETAIL MODAL ================= -->
+    <!-- ================= TRAYEK DETAIL MODAL ================= -->
     <div id="modalBackdrop" class="modal-backdrop" hidden></div>
-    <div id="terminalModal" class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalSubInfo" hidden>
+    <div id="trayekModal" class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalSubInfo" hidden>
         <div class="modal-header">
             <div class="modal-title-group">
                 <div class="modal-badge-row">
-                    <span id="modalCode" class="badge-code">—</span>
-                    <span id="modalType" class="badge-type">—</span>
+                    <span id="modalEndpointBadge" class="badge-endpoint-status">—</span>
+                    <span id="modalDistanceBadge" class="badge-distance">—</span>
+                    <span id="modalColorBadge" hidden><span id="modalColorSwatch"></span><span id="modalColorHex"></span></span>
                 </div>
-                <h3 id="modalTitle" class="modal-title">Nama Terminal</h3>
+                <h3 id="modalTitle" class="modal-title">Nama Trayek</h3>
                 <p id="modalSubInfo" class="modal-sub">—</p>
             </div>
-            <button type="button" id="modalCloseBtn" class="modal-close-btn" aria-label="Tutup jendela detail terminal">
+            <button type="button" id="modalCloseBtn" class="modal-close-btn" aria-label="Tutup jendela detail trayek">
                 <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
         </div>
 
         <div class="modal-body">
-            <!-- Loading Indicator for On-Demand Detail -->
-            <div id="modalLoading" class="modal-loading-bar" hidden aria-live="polite">
-                <span class="loading-spinner-sm" aria-hidden="true"></span>
-                <span>Memuat profil lengkap terminal…</span>
-            </div>
-
-            <!-- Retry Banner on Per-Detail Failure -->
-            <div id="modalDetailError" class="modal-error-banner" hidden role="alert">
-                <svg class="icon-sm text-red" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                <div class="modal-error-text">
-                    <p class="modal-error-title">Sebagian informasi profil gagal dimuat.</p>
-                    <p class="modal-error-sub">Data ringkasan tetap tersedia di bawah.</p>
-                </div>
-                <button type="button" id="modalRetryBtn" class="modal-retry-btn">Muat Ulang</button>
-            </div>
-
-            <!-- Terminal Photo (if available) -->
-            <div id="modalPhotoWrap" class="modal-photo-container" hidden>
-                <img id="modalPhoto" src="" alt="Dokumentasi Terminal" class="modal-photo-img" loading="lazy">
-                <p class="modal-photo-caption">Dokumentasi resmi terminal</p>
-            </div>
-
-            <!-- Production Stats for Selected Year -->
+            <!-- Aggregate Metrics Grid -->
             <div class="modal-section">
-                <h4 class="modal-section-title">Produksi Operasional Tahun <span id="modalStatYear">—</span></h4>
+                <h4 class="modal-section-title">Metrik Agregat Tercatat</h4>
                 <div class="modal-stats-grid">
                     <div class="modal-stat-card">
-                        <span class="modal-stat-label">Total Penumpang</span>
-                        <p id="modalStatPassenger" class="modal-stat-val">—</p>
-                        <span id="modalStatPassengerBreakdown" class="modal-stat-sub">Kedatangan: — &bull; Keberangkatan: —</span>
+                        <span class="modal-stat-label">Total Volume Penumpang</span>
+                        <p id="modalStatVolume" class="modal-stat-val">—</p>
+                        <span class="modal-stat-sub">Akumulasi volume penumpang tercatat</span>
                     </div>
                     <div class="modal-stat-card">
-                        <span class="modal-stat-label">Total Kendaraan</span>
-                        <p id="modalStatVehicle" class="modal-stat-val">—</p>
-                        <span id="modalStatVehicleBreakdown" class="modal-stat-sub">Kedatangan: — &bull; Keberangkatan: —</span>
+                        <span class="modal-stat-label">Total Perjalanan (Trip)</span>
+                        <p id="modalStatPerjalanan" class="modal-stat-val">—</p>
+                        <span class="modal-stat-sub">Akumulasi perjalanan tercatat (bukan jadwal harian)</span>
+                    </div>
+                    <div class="modal-stat-card">
+                        <span class="modal-stat-label">Jarak Lintasan</span>
+                        <p id="modalStatJarak" class="modal-stat-val">—</p>
+                        <span class="modal-stat-sub">Estimasi jarak rute Haversine</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Monthly Trend Chart -->
+            <!-- Route Geometry & Database Record -->
             <div class="modal-section">
-                <div class="modal-section-head">
-                    <h4 class="modal-section-title">Tren Bulanan Pergerakan Penumpang</h4>
-                    <span class="modal-section-badge">Tahun <span id="modalTrendYear">—</span></span>
-                </div>
-                <div id="modalTrendContainer" class="trend-container">
-                    <p class="trend-loading">Memuat grafik bulanan…</p>
+                <h4 class="modal-section-title">Karakteristik Geometri &amp; Metadata Teknis</h4>
+                <div class="modal-geometry-card">
+                    <div class="geometry-stat-row">
+                        <div class="geometry-stat-item">
+                            <span class="geometry-label">ID Rute (Sistem)</span>
+                            <div class="tech-id-wrap">
+                                <span id="modalIdBadge" class="badge-code">—</span>
+                            </div>
+                        </div>
+                        <div class="geometry-stat-item">
+                            <span class="geometry-label">Warna Representasi Rute</span>
+                            <div class="geometry-swatch-val">
+                                <span id="modalSwatchPreview" class="swatch-box" aria-hidden="true"></span>
+                                <span id="modalSwatchCode" class="swatch-hex">—</span>
+                            </div>
+                        </div>
+                        <div class="geometry-stat-item">
+                            <span class="geometry-label">Titik Koordinat Lintasan</span>
+                            <p id="modalVertexCount" class="geometry-val">—</p>
+                            <span class="geometry-sub">Format lintasan spasial WGS84 [lat, lng]</span>
+                        </div>
+                        <div class="geometry-stat-item">
+                            <span class="geometry-label">Titik Singgah (Waypoints)</span>
+                            <p id="modalWaypointsCount" class="geometry-val">—</p>
+                            <span class="geometry-sub">Titik perantara terdaftar</span>
+                        </div>
+                    </div>
+                    <div class="record-timestamp-row">
+                        <span class="geometry-label">Waktu Pencatatan Rekor</span>
+                        <p id="modalCreatedAt" class="record-timestamp-val">—</p>
+                        <span class="record-timestamp-disclaimer">Waktu rekaman basis data getRoutes; bukan tanggal perizinan operasional layanan.</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- Physical & Operational Information Grid -->
+            <!-- Endpoint Simpul Info -->
             <div class="modal-section">
-                <h4 class="modal-section-title">Informasi Fisik &amp; Operasional</h4>
+                <h4 class="modal-section-title">Informasi Simpul Terminal</h4>
                 <dl class="modal-info-dl">
                     <div class="modal-info-row">
-                        <dt class="modal-dt">Alamat Lengkap</dt>
-                        <dd id="modalAlamat" class="modal-dd">Belum tersedia</dd>
+                        <dt class="modal-dt">Kode Simpul Asal</dt>
+                        <dd id="modalOrigin" class="modal-dd">Belum terpetakan pada sheet</dd>
                     </div>
                     <div class="modal-info-row">
-                        <dt class="modal-dt">Wilayah Administrasi</dt>
-                        <dd id="modalKabKota" class="modal-dd">Belum tersedia</dd>
-                    </div>
-                    <div class="modal-info-row">
-                        <dt class="modal-dt">Status</dt>
-                        <dd id="modalStatus" class="modal-dd">Belum tersedia</dd>
-                    </div>
-                    <div class="modal-info-row">
-                        <dt class="modal-dt">Jam Operasi</dt>
-                        <dd id="modalJam" class="modal-dd">Belum tersedia</dd>
-                    </div>
-                    <div class="modal-info-row">
-                        <dt class="modal-dt">Kontak / Pengelola</dt>
-                        <dd id="modalKontak" class="modal-dd">Belum tersedia</dd>
-                    </div>
-                    <div class="modal-info-row">
-                        <dt class="modal-dt">Luas Wilayah / Lahan</dt>
-                        <dd id="modalLuasWilayah" class="modal-dd">Belum tersedia</dd>
-                    </div>
-                    <div class="modal-info-row">
-                        <dt class="modal-dt">Luas Bangunan</dt>
-                        <dd id="modalLuasBangunan" class="modal-dd">Belum tersedia</dd>
-                    </div>
-                    <div class="modal-info-row">
-                        <dt class="modal-dt">Website / Kanal Resmi</dt>
-                        <dd id="modalWebsite" class="modal-dd">Belum tersedia</dd>
+                        <dt class="modal-dt">Kode Simpul Tujuan</dt>
+                        <dd id="modalDest" class="modal-dd">Belum terpetakan pada sheet</dd>
                     </div>
                     <div class="modal-info-row modal-info-row-full">
-                        <dt class="modal-dt">Deskripsi / Fasilitas</dt>
-                        <dd id="modalDeskripsi" class="modal-dd">Belum tersedia</dd>
+                        <dt class="modal-dt">Status Pemetaan Simpul</dt>
+                        <dd id="modalEndpointStatus" class="modal-dd">Simpul asal dan tujuan tercatat pada sheet</dd>
                     </div>
                 </dl>
+            </div>
+
+            <!-- Map Integration CTA Banner -->
+            <div class="modal-section">
+                <div class="modal-map-banner">
+                    <div class="modal-map-banner-head">
+                        <svg class="icon-md text-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+                        <h5 class="modal-map-banner-title">Visualisasi Spasial Lintasan Rute</h5>
+                    </div>
+                    <p class="modal-map-banner-desc">Lintasan spasial rute ini terpetakan secara visual bersama seluruh jaringan koridor Jawa Barat pada peta transportasi utama.</p>
+                    <p class="modal-map-disclaimer"><svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> Tautan ini membuka tampilan peta umum Jawa Barat (tanpa fokus otomatis ke trayek tertentu).</p>
+                    <a href="../../" class="btn-map-cta" aria-label="Buka dashboard peta transportasi utama Jawa Barat">
+                        <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        Buka Dashboard Peta Utama
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -468,6 +459,6 @@
         </div>
     </div>
 
-    <script src="terminal.js"></script>
+    <script src="trayek.js"></script>
 </body>
 </html>
