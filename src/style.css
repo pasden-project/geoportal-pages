@@ -94,6 +94,10 @@
     overflow: hidden;
     margin-bottom: 120px !important;
   }
+  /* Keep temporary OSM attribution visible above the collapsed bottom sheet. */
+  #map .leaflet-control-attribution {
+    margin-bottom: 120px !important;
+  }
   .leaflet-control-zoom a {
     color: var(--navy) !important;
     font-family: 'Plus Jakarta Sans', sans-serif !important;

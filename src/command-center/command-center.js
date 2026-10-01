@@ -31,6 +31,14 @@
     var REQUEST_TIMEOUT_MS = 15000; // timeout wajar untuk cold-start GAS
     var REQUEST_VERB = "POST";
     var REQUEST_HEADERS = { "content-type": "application/json" };
+    // TEMPORARY BASEMAP CANDIDATE. OSM Standard has no SLA; production traffic approval is not implied.
+    var TEMPORARY_BASEMAP_PROVIDER = {
+        url: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+        options: {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors'
+        }
+    };
 
     // Penghitung request; digunakan untuk membatalkan respons basi saat
     // pengguna cepat mengganti tahun. rpc() mengembalikan null untuk respons
@@ -43,6 +51,7 @@
     // State Peta Mini Simpul Transportasi (PHASE 15B)
     var miniMap = null;
     var mapMarkerGroup = null;
+    var jabarBoundaryLayer = null;
     var JABAR_FALLBACK_BOUNDS = [
         [-7.82, 106.35],
         [-5.90, 108.85]
@@ -913,9 +922,9 @@
             html: '<div class="cc-map-marker cc-marker-terminal" title="Terminal Tipe A" aria-label="Terminal Tipe A">' +
                   '<svg class="cc-marker-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>' +
                   '</div>',
-            iconSize: [24, 24],
-            iconAnchor: [12, 12],
-            popupAnchor: [0, -13]
+            iconSize: [26, 26],
+            iconAnchor: [13, 13],
+            popupAnchor: [0, -14]
         });
     }
 
@@ -925,9 +934,9 @@
             html: '<div class="cc-map-marker cc-marker-uppkb" title="UPPKB" aria-label="UPPKB">' +
                   '<svg class="cc-marker-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/></svg>' +
                   '</div>',
-            iconSize: [24, 24],
-            iconAnchor: [12, 12],
-            popupAnchor: [0, -13]
+            iconSize: [26, 26],
+            iconAnchor: [13, 13],
+            popupAnchor: [0, -14]
         });
     }
 
@@ -1027,14 +1036,22 @@
             L.control.attribution({
                 position: "bottomleft",
                 prefix: false
-            }).addAttribution('&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OSM</a> &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>').addTo(miniMap);
-
-            L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
-                maxZoom: 19,
-                subdomains: "abcd"
             }).addTo(miniMap);
 
+            L.tileLayer(TEMPORARY_BASEMAP_PROVIDER.url, TEMPORARY_BASEMAP_PROVIDER.options).addTo(miniMap);
+
+            if (!miniMap.getPane("boundaryPane")) {
+                miniMap.createPane("boundaryPane");
+                var bp = miniMap.getPane("boundaryPane");
+                if (bp) {
+                    bp.style.zIndex = "350";
+                    bp.style.pointerEvents = "none";
+                }
+            }
+
             mapMarkerGroup = L.layerGroup().addTo(miniMap);
+
+            loadJabarBoundary();
 
             miniMap.fitBounds(JABAR_FALLBACK_BOUNDS, { padding: [24, 24] });
 
@@ -1047,6 +1064,53 @@
             setMapState("error", "Gagal menginisialisasi peta.");
         }
     }
+    function loadJabarBoundary() {
+        var primaryUrl = "../data/jabar-kabkota-min.geojson";
+        var fallbackUrl = "data/jabar-kabkota-min.geojson";
+
+        fetch(primaryUrl)
+            .then(function (res) {
+                if (!res.ok) {
+                    return fetch(fallbackUrl).then(function (r2) {
+                        return r2.ok ? r2.json() : null;
+                    });
+                }
+                return res.json();
+            })
+            .then(function (geojson) {
+                if (!geojson || geojson.type !== "FeatureCollection" || !Array.isArray(geojson.features)) {
+                    return;
+                }
+                if (!miniMap) {
+                    return;
+                }
+                if (jabarBoundaryLayer) {
+                    try {
+                        miniMap.removeLayer(jabarBoundaryLayer);
+                    } catch (e) {}
+                }
+                jabarBoundaryLayer = L.geoJSON(geojson, {
+                    pane: "boundaryPane",
+                    style: function () {
+                        return {
+                            pane: "boundaryPane",
+                            color: "#38bdf8",
+                            weight: 1.2,
+                            opacity: 0.7,
+                            fillColor: "#0284c7",
+                            fillOpacity: 0.05,
+                            className: "cc-jabar-boundary-feature"
+                        };
+                    },
+                    interactive: false
+                });
+                jabarBoundaryLayer.addTo(miniMap);
+            })
+            .catch(function () {
+                // Fail-safe: map tetap berfungsi tanpa boundary overlay jika gagal dimuat
+            });
+    }
+
 
     function setMapState(state, message) {
         var overlay = document.getElementById("mapStateOverlay");
@@ -1121,8 +1185,21 @@
         terminals.forEach(function (p) {
             var lat = Number(p.lat);
             var lng = Number(p.lng);
-            var m = L.marker([lat, lng], { icon: createTerminalIcon() });
+            var terminalLabel = p.nama_terminal || p.nama || "Terminal Tipe A";
+            var m = L.marker([lat, lng], {
+                icon: createTerminalIcon(),
+                title: terminalLabel,
+                alt: terminalLabel
+            });
             m.bindPopup(createTerminalPopup(p));
+            m.on("keydown", function (e) {
+                if (e.originalEvent && (e.originalEvent.key === "Enter" || e.originalEvent.key === " ")) {
+                    if (e.originalEvent.key === " ") {
+                        e.originalEvent.preventDefault();
+                    }
+                    m.openPopup();
+                }
+            });
             mapMarkerGroup.addLayer(m);
             boundsList.push([lat, lng]);
         });
@@ -1130,8 +1207,21 @@
         uppkbs.forEach(function (u) {
             var lat = Number(u.lat);
             var lng = Number(u.lng);
-            var m = L.marker([lat, lng], { icon: createUppkbIcon() });
+            var uppkbLabel = u.nama || u.nama_uppkb || "UPPKB";
+            var m = L.marker([lat, lng], {
+                icon: createUppkbIcon(),
+                title: uppkbLabel,
+                alt: uppkbLabel
+            });
             m.bindPopup(createUppkbPopup(u));
+            m.on("keydown", function (e) {
+                if (e.originalEvent && (e.originalEvent.key === "Enter" || e.originalEvent.key === " ")) {
+                    if (e.originalEvent.key === " ") {
+                        e.originalEvent.preventDefault();
+                    }
+                    m.openPopup();
+                }
+            });
             mapMarkerGroup.addLayer(m);
             boundsList.push([lat, lng]);
         });

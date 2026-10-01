@@ -5,7 +5,15 @@ Semua fungsi diperbaiki, routing manual (tanpa OSRM)
 let map, chartTrendPnp, chartTrendKnd, chartBarPnp, chartBarKnd;
 let allPoints = [], markerRefs = {}, selectedKode = null, markersByTipe = {}, markersCluster;
 let routesLayer = null, uppkbMarkers = [], legendControl = null, routePolylines = {}, savedRoutesData = [];
-let basemapLayer = null, perintisLayer = null;
+// TEMPORARY BASEMAP CANDIDATE. OSM Standard has no SLA; production traffic approval is not implied.
+const TEMPORARY_BASEMAP_PROVIDER = {
+  url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+  options: {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors'
+  }
+};
+let perintisLayer = null;
 let routeBuilder = {
   active: false,
   viaMarkers: [],
@@ -77,7 +85,8 @@ function buatIconLokasiSaya() {
 function initMap() {
   map = L.map('map', { zoomControl: false, attributionControl: false, preferCanvas: true }).setView([-6.9, 107.6], 8);
   L.control.zoom({ position: 'bottomright' }).addTo(map);
-  basemapLayer = L.tileLayer(getBasemapUrl(), { maxZoom: 19, subdomains: 'abcd' }).addTo(map);
+  L.control.attribution({ position: 'bottomleft', prefix: false }).addTo(map);
+  L.tileLayer(TEMPORARY_BASEMAP_PROVIDER.url, TEMPORARY_BASEMAP_PROVIDER.options).addTo(map);
   markersCluster = L.markerClusterGroup({ maxClusterRadius: 40, spiderfyOnMaxZoom: true, showCoverageOnHover: false, zoomToBoundsOnClick: true });
   map.addLayer(markersCluster);
   routesLayer = L.layerGroup().addTo(map);
@@ -2235,12 +2244,6 @@ function choroplethOnEach(f, layer) {
 function terapkanChoropleth() { if (!choroplethLayer) return; choroplethLayer.eachLayer(function (l) { l.setStyle(choroplethStyle(l.feature)); }); }
 function setChoroplethMetric(m) { choroplethMetric = (m === 'tarikan') ? 'tarikan' : 'bangkitan'; terapkanChoropleth(); }
 
-function getBasemapUrl() {
-  const dark = document.documentElement.getAttribute('data-theme') === 'dark';
-  return dark
-    ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
-    : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
-}
 function inisialisasiTema() {
   let t = null;
   try { t = localStorage.getItem(THEME_KEY); } catch (e) {}
@@ -2252,7 +2255,6 @@ function terapkanTema(tema) {
   else root.removeAttribute('data-theme');
   const btn = document.getElementById('btnTheme');
   if (btn) btn.innerHTML = (tema === 'dark' ? SVG_SUN : SVG_MOON);
-  if (basemapLayer) basemapLayer.setUrl(getBasemapUrl());
   try { localStorage.setItem(THEME_KEY, tema); } catch (e) {}
 }
 
@@ -2679,7 +2681,7 @@ function initPotretMap(mapSpec) {
   document.getElementById('potretBody').appendChild(sec);
   const div = document.getElementById('potretMapDiv');
   potretMap = L.map(div, { zoomControl: false }).setView([-6.9, 107.6], 8);
-  L.tileLayer(getBasemapUrl(), { maxZoom: 19, subdomains: 'abcd' }).addTo(potretMap);
+  L.tileLayer(TEMPORARY_BASEMAP_PROVIDER.url, TEMPORARY_BASEMAP_PROVIDER.options).addTo(potretMap);
   L.control.zoom({ position: 'bottomright' }).addTo(potretMap);
   const color = mapSpec.color || '#3b82f6';
   const bounds = [];
@@ -2775,7 +2777,7 @@ function renderBarangLive(body) {
   body.appendChild(sec);
   const div = document.getElementById('potretMapDiv');
   potretMap = L.map(div, { zoomControl: false }).setView([-6.9, 107.6], 8);
-  L.tileLayer(getBasemapUrl(), { maxZoom: 19, subdomains: 'abcd' }).addTo(potretMap);
+  L.tileLayer(TEMPORARY_BASEMAP_PROVIDER.url, TEMPORARY_BASEMAP_PROVIDER.options).addTo(potretMap);
   L.control.zoom({ position: 'bottomright' }).addTo(potretMap);
   const bounds = [];
   rows.forEach(function (row) {
@@ -8929,7 +8931,7 @@ function renderPerintisLive(body) {
   const div = document.getElementById('potretMapDiv');
   if (div) {
     potretMap = L.map(div, { zoomControl: false }).setView([-7.0, 106.8], 9);
-    L.tileLayer(getBasemapUrl(), { maxZoom: 19, subdomains: 'abcd' }).addTo(potretMap);
+    L.tileLayer(TEMPORARY_BASEMAP_PROVIDER.url, TEMPORARY_BASEMAP_PROVIDER.options).addTo(potretMap);
     L.control.zoom({ position: 'bottomright' }).addTo(potretMap);
 
     const bounds = [];
