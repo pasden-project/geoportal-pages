@@ -15,7 +15,7 @@
        1. Konstanta & State Aplikasi
        ================================================================= */
     var API_BASE = "/api";
-    var REQUEST_TIMEOUT_MS = 15000;
+    var REQUEST_TIMEOUT_MS = 60000; // 60s agar aman dari cold-start Google Apps Script
     var REQUEST_VERB = "POST";
     var REQUEST_HEADERS = { "content-type": "application/json" };
 
@@ -118,72 +118,93 @@
     }
 
     function rpc(name, args, requestId) {
-        return new Promise(function (resolve, reject) {
-            var controller = null;
-            if (window.AbortController) {
-                controller = new AbortController();
-            }
-            var timedOut = false;
-            var timer = setTimeout(function () {
-                timedOut = true;
-                if (controller) {
-                    controller.abort();
-                } else {
-                    reject(new Error("timeout"));
+        function doAttempt(attempt) {
+            return new Promise(function (resolve, reject) {
+                var controller = null;
+                if (window.AbortController) {
+                    controller = new AbortController();
                 }
-            }, REQUEST_TIMEOUT_MS);
-
-            var opts = {
-                method: REQUEST_VERB,
-                headers: REQUEST_HEADERS,
-                body: JSON.stringify({ fn: name, args: args || [] })
-            };
-            if (controller) {
-                opts.signal = controller.signal;
-            }
-
-            fetch(API_BASE + "/" + name, opts)
-                .then(function (res) {
-                    return res.text().then(function (txt) {
-                        return { ok: res.ok, status: res.status, body: txt };
-                    });
-                })
-                .then(function (pack) {
-                    var payload;
-                    try {
-                        payload = JSON.parse(pack.body);
-                    } catch (e) {
-                        throw new Error("respons bukan JSON");
-                    }
-
-                    if (requestId !== undefined && !isCurrent(requestId)) {
-                        return resolve(null); // respons basi
-                    }
-
-                    if (pack.ok && payload && payload.ok === true) {
-                        return resolve(payload.data);
-                    }
-                    var msg = (payload && payload.error) ? String(payload.error) : "Terjadi kesalahan pada server.";
-                    reject(new Error(msg));
-                })
-                .catch(function (err) {
-                    if (requestId !== undefined && !isCurrent(requestId)) {
-                        return resolve(null); // respons basi
-                    }
-                    if (timedOut) {
-                        reject(new Error("timeout"));
-                    } else if (err && err.name === "AbortError") {
-                        reject(new Error("dibatalkan"));
+                var timedOut = false;
+                var timer = setTimeout(function () {
+                    timedOut = true;
+                    if (controller) {
+                        controller.abort();
                     } else {
-                        reject(new Error("network"));
+                        reject(new Error("timeout"));
                     }
-                })
-                .then(function () {
-                    clearTimeout(timer);
-                }, function () {
-                    clearTimeout(timer);
-                });
-        });
+                }, REQUEST_TIMEOUT_MS);
+
+                var opts = {
+                    method: REQUEST_VERB,
+                    headers: REQUEST_HEADERS,
+                    body: JSON.stringify({ fn: name, args: args || [] })
+                };
+                if (controller) {
+                    opts.signal = controller.signal;
+                }
+
+                fetch(API_BASE + "/" + name, opts)
+                    .then(function (res) {
+                        return res.text().then(function (txt) {
+                            return { ok: res.ok, status: res.status, body: txt };
+                        });
+                    })
+                    .then(function (pack) {
+                        var payload;
+                        try {
+                            payload = JSON.parse(pack.body);
+                        } catch (e) {
+                            // Respons bukan JSON (mis. 502 Bad Gateway / cold-start HTML)
+                            if (attempt < 2 && pack.status >= 500) {
+                                return new Promise(function (r) { setTimeout(r, 1500); })
+                                    .then(function () { return doAttempt(attempt + 1); })
+                                    .then(resolve, reject);
+                            }
+                            throw new Error("respons bukan JSON");
+                        }
+
+                        if (requestId !== undefined && !isCurrent(requestId)) {
+                            return resolve(null); // respons basi
+                        }
+
+                        if (pack.ok && payload && payload.ok === true) {
+                            return resolve(payload.data);
+                        }
+
+                        // Jika gateway mengembalikan soft error 502 / cold-start
+                        if (attempt < 2 && (pack.status === 502 || (payload && payload.ok === false && /cold|upstream|timeout|backend/i.test(String(payload.error))))) {
+                            return new Promise(function (r) { setTimeout(r, 1500); })
+                                .then(function () { return doAttempt(attempt + 1); })
+                                .then(resolve, reject);
+                        }
+
+                        var msg = (payload && payload.error) ? String(payload.error) : "Terjadi kesalahan pada server.";
+                        reject(new Error(msg));
+                    })
+                    .catch(function (err) {
+                        if (requestId !== undefined && !isCurrent(requestId)) {
+                            return resolve(null); // respons basi
+                        }
+                        if (timedOut) {
+                            reject(new Error("timeout"));
+                        } else if (err && err.name === "AbortError") {
+                            reject(new Error("dibatalkan"));
+                        } else if (attempt < 2) {
+                            return new Promise(function (r) { setTimeout(r, 1500); })
+                                .then(function () { return doAttempt(attempt + 1); })
+                                .then(resolve, reject);
+                        } else {
+                            reject(new Error("network"));
+                        }
+                    })
+                    .then(function () {
+                        clearTimeout(timer);
+                    }, function () {
+                        clearTimeout(timer);
+                    });
+            });
+        }
+        return doAttempt(0);
     }
 
     /* =================================================================
