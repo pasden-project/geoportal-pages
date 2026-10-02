@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Modul Early Warning &amp; Pemantauan Anomali Operasional — Transport Command Center BPTD Kelas I Jawa Barat. Deteksi deviasi simpul terminal, kelebihan muatan UPPKB, load factor perintis, dan keselamatan koridor logistik.">
+    <title>Early Warning &amp; Pemantauan Anomali — Transport Command Center | BPTD Jawa Barat</title>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+    <link rel="stylesheet" href="../command-center.css">
+    <link rel="stylesheet" href="early-warning.css">
+</head>
+<body>
+    <div class="app-shell">
+        <!-- ================= SIDEBAR ================= -->
+        <aside id="appSidebar" class="app-sidebar" aria-label="Navigasi utama">
+            <div class="sidebar-header">
+                <a href="../" class="brand-link" title="Kembali ke Beranda Command Center">
+                    <svg class="logo-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <div class="brand-text">
+                        <span class="brand-title">GeoPORTAL</span>
+                        <span class="brand-sub">BPTD KELAS I JABAR</span>
+                    </div>
+                </a>
+                <button type="button" id="sidebarClose" class="sidebar-close-btn" aria-label="Tutup menu navigasi">
+                    <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav" aria-label="Navigasi utama modul">
+                <a href="../" class="nav-link" data-nav-status="available" title="Beranda — Monitoring Eksekutif Transportasi Darat">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    <span class="nav-text">Beranda</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../terminal/" class="nav-link" data-nav-status="available" title="Terminal — Modul Terminal Penumpang (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                    <span class="nav-text">Terminal</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../trayek/" class="nav-link" data-nav-status="available" title="Trayek — Modul Trayek Angkutan Jalan (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    <span class="nav-text">Trayek</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../perintis/" class="nav-link" data-nav-status="available" title="Angkutan Perintis — Modul Layanan Bus Perintis BPTD Jabar (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                    <span class="nav-text">Angkutan Perintis</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../uppkb/" class="nav-link" data-nav-status="available" title="UPPKB / Barang — Modul Fasilitas Penimbangan &amp; Pengawasan Muatan (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path></svg>
+                    <span class="nav-text">UPPKB / Barang</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../od/" class="nav-link" data-nav-status="available" title="OD Intelligence — Modul Analitik Asal-Tujuan &amp; Matriks Pergerakan (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                    <span class="nav-text">OD Intelligence</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../connectivity/" class="nav-link" data-nav-status="available" title="Connectivity — Modul Analitik Konektivitas Multimoda &amp; Hub Antarmoda (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.107 7.107a4 4 0 11-5.657 5.657 4 4 0 015.657-5.657z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12l7.071 7.071"></path></svg>
+                    <span class="nav-text">Connectivity</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="./" class="nav-link is-active" aria-current="page" data-nav-status="active" title="Early Warning — Sistem Kewaspadaan Dini &amp; Anomali Operasional (Aktif)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    <span class="nav-text">Early Warning</span>
+                    <span class="nav-status-badge nav-status-active" data-status="ACTIVE">Aktif</span>
+                </a>
+                <button type="button" class="nav-link" aria-disabled="true" disabled data-nav-status="coming-soon" title="Program &amp; Kinerja — Belum tersedia pada prototipe (Segera)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
+                    <span class="nav-text">Program &amp; Kinerja</span>
+                    <span class="nav-status-badge nav-status-soon" data-status="COMING SOON">Segera</span>
+                </button>
+                <button type="button" class="nav-link" aria-disabled="true" disabled data-nav-status="coming-soon" title="Laporan — Belum tersedia pada prototipe (Segera)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    <span class="nav-text">Laporan</span>
+                    <span class="nav-status-badge nav-status-soon" data-status="COMING SOON">Segera</span>
+                </button>
+                <button type="button" class="nav-link" aria-disabled="true" disabled data-nav-status="coming-soon" title="Data Master — Belum tersedia pada prototipe (Segera)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    <span class="nav-text">Data Master</span>
+                    <span class="nav-status-badge nav-status-soon" data-status="COMING SOON">Segera</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <svg class="logo-mark logo-mark-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path><path d="M12 2v20"></path></svg>
+                <span class="footer-title">BPTD Jawa Barat</span>
+                <span class="footer-sub">Transportasi Darat Lebih Terintegrasi</span>
+            </div>
+        </aside>
+
+        <!-- ================= OVERLAY (mobile) ================= -->
+        <div id="sidebarOverlay" class="sidebar-overlay" hidden></div>
+
+        <!-- ================= MAIN ================= -->
+        <main class="app-main">
+            <header class="app-header">
+                <div class="header-left">
+                    <button type="button" id="sidebarToggle" class="header-menu-btn" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="appSidebar">
+                        <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                    <div class="header-title-block">
+                        <h1 class="header-title">Transport Command Center</h1>
+                        <p class="header-sub">Sistem Kewaspadaan Dini &amp; Pemantauan Anomali Operasional — Jawa Barat</p>
+                    </div>
+                </div>
+
+                <div class="header-right">
+                    <div class="header-clock">
+                        <div class="clock-date">
+                            <svg class="icon-sm icon-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            <span id="current-date">Memuat tanggal...</span>
+                        </div>
+                        <span id="current-time" class="clock-time">--:-- WIB</span>
+                    </div>
+
+                    <div class="api-status" role="status" aria-live="polite">
+                        <span id="apiStatusOk" class="api-status-pill api-status-ok">
+                            <span class="api-dot" aria-hidden="true"></span>
+                            Data Terverifikasi BPTD
+                        </span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="app-content">
+                <!-- Module Header & Badges -->
+                <div class="dash-head">
+                    <div class="dash-head-text">
+                        <h2 class="dash-title">Sistem Kewaspadaan Dini &amp; Pemantauan Anomali Operasional</h2>
+                        <p class="dash-desc">Deteksi dini deviasi operasional simpul terminal, kelebihan muatan logistik UPPKB, okupansi perintis, dan hambatan koridor Jawa Barat</p>
+                    </div>
+                    <div class="dash-head-meta">
+                        <span class="status-pill status-pill-active" title="Sistem Aktif &amp; Terkalibrasi">
+                            <span class="status-dot status-dot-active" aria-hidden="true"></span>
+                            10 AMBANG METODOLOGI
+                        </span>
+                        <span class="status-pill status-pill-warning" title="Total Peringatan Terpantau">
+                            <span class="status-dot status-dot-warning" aria-hidden="true"></span>
+                            18 ANOMALI AKTIF
+                        </span>
+                        <span class="status-pill" title="4 Domain Pengawasan">
+                            <span class="status-dot" style="background:#3b82f6;" aria-hidden="true"></span>
+                            4 SEVERITAS TERPANTAU
+                        </span>
+                    </div>
+                </div>
+
+                <!-- 4 Executive KPI Cards -->
+                <div class="kpi-grid">
+                    <div class="card kpi-card">
+                        <div class="kpi-icon-wrap" style="background:#fee2e2; color:#ef4444;" aria-hidden="true">
+                            <svg class="kpi-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                        </div>
+                        <div class="kpi-content">
+                            <span class="kpi-label">Peringatan Aktif</span>
+                            <div class="kpi-value-row">
+                                <span id="kpiTotalAlerts" class="kpi-value">18 Insiden</span>
+                            </div>
+                            <span class="kpi-sub">Total indikasi anomali operasional terpantau</span>
+                        </div>
+                    </div>
+
+                    <div class="card kpi-card">
+                        <div class="kpi-icon-wrap" style="background:#fef2f2; color:#b91c1c;" aria-hidden="true">
+                            <svg class="kpi-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <div class="kpi-content">
+                            <span class="kpi-label">Status Kritis</span>
+                            <div class="kpi-value-row">
+                                <span id="kpiCriticalCount" class="kpi-value text-red">4 Kritis</span>
+                            </div>
+                            <span class="kpi-sub">Insiden level tinggi butuh mitigasi segera</span>
+                        </div>
+                    </div>
+
+                    <div class="card kpi-card">
+                        <div class="kpi-icon-wrap" style="background:#fef3c7; color:#d97706;" aria-hidden="true">
+                            <svg class="kpi-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <div class="kpi-content">
+                            <span class="kpi-label">Peringatan Waspada</span>
+                            <div class="kpi-value-row">
+                                <span id="kpiWarningCount" class="kpi-value text-amber">8 Waspada</span>
+                            </div>
+                            <span class="kpi-sub">Kondisi deviasi sedang batas pengawasan</span>
+                        </div>
+                    </div>
+
+                    <div class="card kpi-card">
+                        <div class="kpi-icon-wrap" style="background:#e0f2fe; color:#0284c7;" aria-hidden="true">
+                            <svg class="kpi-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                        </div>
+                        <div class="kpi-content">
+                            <span class="kpi-label">Domain Terpantau</span>
+                            <div class="kpi-value-row">
+                                <span id="kpiDomainCount" class="kpi-value text-blue">4 Domain</span>
+                            </div>
+                            <span class="kpi-sub">Terminal, UPPKB, Perintis, Koridor</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Spatial Map Card -->
+                <section class="card early-warning-map-card" aria-labelledby="mapHeading">
+                    <div class="early-warning-map-head">
+                        <div>
+                            <h3 id="mapHeading" class="section-title">Peta Spasial Kewaspadaan Dini &amp; Anomali Operasional Jawa Barat</h3>
+                            <p class="section-sub">Sebaran geografis 18 insiden anomali aktif dengan animasi denyut severitas dan ambang batas metodologi BPTD</p>
+                        </div>
+                        <div class="early-warning-map-actions">
+                            <button type="button" id="btnFocusJabar" class="btn-map-control" title="Pusatkan peta ke wilayah Jawa Barat">
+                                <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                                Fokus Jabar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Severity Filter Chips -->
+                    <div class="severity-filter-bar">
+                        <span class="severity-filter-title">Filter Severitas:</span>
+                        <div class="severity-toggle-group" role="group" aria-label="Filter Severitas Peringatan">
+                            <button type="button" id="filterAll" class="severity-chip is-active" data-severity="ALL">
+                                <span class="chip-dot chip-dot-all" aria-hidden="true"></span>
+                                Semua Severitas (18)
+                            </button>
+                            <button type="button" id="filterCritical" class="severity-chip" data-severity="CRITICAL">
+                                <span class="chip-dot chip-dot-critical" aria-hidden="true"></span>
+                                Kritis (4)
+                            </button>
+                            <button type="button" id="filterWarning" class="severity-chip" data-severity="WARNING">
+                                <span class="chip-dot chip-dot-warning" aria-hidden="true"></span>
+                                Peringatan Waspada (8)
+                            </button>
+                            <button type="button" id="filterAdvisory" class="severity-chip" data-severity="ADVISORY">
+                                <span class="chip-dot chip-dot-advisory" aria-hidden="true"></span>
+                                Atensi Operasional (6)
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Map Canvas Container -->
+                    <div id="earlyWarningMap" class="early-warning-map" role="region" aria-label="Peta Interaktif Anomali Operasional Jawa Barat"></div>
+                </section>
+
+                <!-- Analytics Tabs Card -->
+                <section class="card early-warning-analytics-card" aria-labelledby="analyticsHeading">
+                    <div class="section-header-compact">
+                        <h3 id="analyticsHeading" class="section-title">Analitik &amp; Direktori Sistem Peringatan Dini</h3>
+                        <p class="section-sub">Eksplorasi direktori peringatan aktif, formula ambang batas metodologi deterministik, dan histori tren bulanan</p>
+                    </div>
+
+                    <!-- Tab Buttons -->
+                    <div class="early-warning-tabs" role="tablist" aria-label="Navigasi Tab Analitik Early Warning">
+                        <button type="button" id="btnTabAlertLog" class="tab-btn is-active" role="tab" aria-selected="true" aria-controls="panelAlertLog" tabindex="0">
+                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                            Daftar Peringatan Dini Aktif
+                            <span class="tab-count-badge" id="badgeTabAlertCount">18</span>
+                        </button>
+                        <button type="button" id="btnTabThresholds" class="tab-btn" role="tab" aria-selected="false" aria-controls="panelThresholds" tabindex="-1">
+                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                            Registri Ambang Batas Metodologi
+                            <span class="tab-count-badge">10 Rules</span>
+                        </button>
+                        <button type="button" id="btnTabHistory" class="tab-btn" role="tab" aria-selected="false" aria-controls="panelHistory" tabindex="-1">
+                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
+                            Tren &amp; Riwayat Anomali
+                            <span class="tab-count-badge">12 Bln</span>
+                        </button>
+                    </div>
+
+                    <!-- Panel 1: Daftar Peringatan Dini Aktif -->
+                    <div id="panelAlertLog" class="early-warning-tabpanel" role="tabpanel" aria-labelledby="btnTabAlertLog">
+                        <div class="table-toolbar">
+                            <div class="table-toolbar-left">
+                                <div class="search-input-wrap">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                                    <input type="text" id="searchAlert" class="search-input" placeholder="Cari insiden, fasilitas, wilayah, atau parameter..." aria-label="Cari Peringatan Dini">
+                                </div>
+                                <select id="filterDomain" class="select-filter" aria-label="Filter Domain">
+                                    <option value="ALL">Semua Domain (4)</option>
+                                    <option value="terminal">Terminal Penumpang</option>
+                                    <option value="uppkb">UPPKB &amp; Logistik</option>
+                                    <option value="perintis">Angkutan Perintis</option>
+                                    <option value="koridor">Keselamatan Koridor</option>
+                                </select>
+                                <select id="filterTemporal" class="select-filter" aria-label="Filter Waktu &amp; Pola Temporal">
+                                    <option value="ALL">Semua Waktu &amp; Pola (5 Pola)</option>
+                                    <option value="PEAK_HOURS">Jam Sibuk (Peak Hours)</option>
+                                    <option value="NIGHT_SHIFT">Shift Malam &amp; Dini Hari</option>
+                                    <option value="WEEKEND_MARKET">Akhir Pekan &amp; Hari Pasar</option>
+                                    <option value="WEATHER_SEASONAL">Kondisional Cuaca &amp; Musiman</option>
+                                    <option value="OFFPEAK_CYCLE">Off-Peak &amp; Siklus Pelaporan</option>
+                                </select>
+                                <select id="filterTableSeverity" class="select-filter" aria-label="Filter Severitas Tabel">
+                                    <option value="ALL">Semua Severitas (3 Level)</option>
+                                    <option value="CRITICAL">Kritis Saja</option>
+                                    <option value="WARNING">Peringatan Waspada</option>
+                                    <option value="ADVISORY">Atensi Operasional</option>
+                                </select>
+                            </div>
+                            <span id="alertCount" class="table-count-info">Menampilkan 18 dari 18 insiden</span>
+                        </div>
+
+                        <div class="table-wrap">
+                            <table class="early-warning-table" aria-label="Tabel Peringatan Dini &amp; Anomali Operasional">
+                                <thead>
+                                    <tr>
+                                        <th class="th-center" style="width: 48px;">No</th>
+                                        <th>ID &amp; Judul Insiden</th>
+                                        <th>Domain</th>
+                                        <th>Fasilitas &amp; Wilayah</th>
+                                        <th class="th-center">Severitas</th>
+                                        <th>Parameter &amp; Nilai Aktual</th>
+                                        <th class="th-center">Status</th>
+                                        <th class="th-center" style="width: 90px;">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="alertTableBody">
+                                    <!-- Populated dynamically via early-warning.js -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Panel 2: Registri Ambang Batas Metodologi -->
+                    <div id="panelThresholds" class="early-warning-tabpanel" role="tabpanel" aria-labelledby="btnTabThresholds" hidden>
+                        <div class="table-wrap">
+                            <table class="early-warning-table" aria-label="Tabel Registri Ambang Batas Metodologi">
+                                <thead>
+                                    <tr>
+                                        <th class="th-center" style="width: 72px;">Kode</th>
+                                        <th>Domain</th>
+                                        <th>Indikator Anomali</th>
+                                        <th>Formula Metodologi</th>
+                                        <th>Ambang Waspada</th>
+                                        <th>Ambang Kritis</th>
+                                        <th>Dasar Regulasi</th>
+                                        <th>Prosedur Mitigasi BPTD</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="thresholdTableBody">
+                                    <!-- Populated dynamically via early-warning.js -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Panel 3: Tren & Riwayat Anomali -->
+                    <div id="panelHistory" class="early-warning-tabpanel" role="tabpanel" aria-labelledby="btnTabHistory" hidden>
+                        <div class="table-wrap">
+                            <table class="early-warning-table" aria-label="Tabel Tren &amp; Riwayat Anomali Bulanan">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 140px;">Periode Bulan</th>
+                                        <th class="th-center">Terminal</th>
+                                        <th class="th-center">UPPKB</th>
+                                        <th class="th-center">Perintis</th>
+                                        <th class="th-center">Koridor</th>
+                                        <th class="th-center" style="width: 100px;">Total Insiden</th>
+                                        <th style="min-width: 220px;">Distribusi Beban Anomali</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="historyTableBody">
+                                    <!-- Populated dynamically via early-warning.js -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- ================= DETAIL MODAL DIALOG ================= -->
+    <div id="modalBackdrop" class="modal-backdrop" hidden></div>
+    <div id="alertDetailModal" class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalAlertTitle" aria-describedby="modalAlertSub" hidden>
+        <div class="modal-header">
+            <div class="modal-title-group">
+                <div class="modal-badge-row">
+                    <span id="modalSeverityBadge" class="badge-critical">KRITIS</span>
+                    <span id="modalDomainBadge" class="domain-badge domain-terminal">Terminal Penumpang</span>
+                    <span id="modalTemporalBadge" class="temporal-badge">Jam Sibuk</span>
+                    <span id="modalRuleBadge" class="code-pill">THR-01</span>
+                </div>
+                <h3 id="modalAlertTitle" class="modal-title">Judul Insiden Anomali</h3>
+                <p id="modalAlertSub" class="modal-sub">Lokasi Fasilitas — Wilayah Jawa Barat</p>
+            </div>
+            <button type="button" id="modalCloseBtn" class="modal-close-btn" aria-label="Tutup jendela detail mitigasi">
+                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <!-- Profil Spasial & Parameter Observasi -->
+            <div class="modal-section">
+                <h4 class="modal-section-title">Parameter Observasi &amp; Geospasial</h4>
+                <div class="modal-stats-grid">
+                    <div class="modal-stat-card">
+                        <span class="modal-stat-label">Koordinat WGS84</span>
+                        <p id="modalCoords" class="modal-stat-val text-blue font-mono">—</p>
+                        <span class="modal-stat-sub">Latitude, Longitude</span>
+                    </div>
+                    <div class="modal-stat-card">
+                        <span class="modal-stat-label">Nilai Observasi Aktual</span>
+                        <p id="modalActualVal" class="modal-stat-val text-red">—</p>
+                        <span id="modalThresholdVal" class="modal-stat-sub">Ambang Batas</span>
+                    </div>
+                    <div class="modal-stat-card">
+                        <span class="modal-stat-label">Deviasi Statistik</span>
+                        <p id="modalDeviationVal" class="modal-stat-val text-amber">—</p>
+                        <span id="modalDetectTime" class="modal-stat-sub">Waktu Deteksi</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Dimensi Temporal & Korelasi Sumber Data -->
+            <div class="modal-section">
+                <h4 class="modal-section-title">Dimensi Temporal &amp; Korelasi Sumber Data BPTD</h4>
+                <div class="modal-stats-grid">
+                    <div class="modal-stat-card" style="grid-column: span 2;">
+                        <span class="modal-stat-label">Window Waktu Pemicu Anomali</span>
+                        <p id="modalTriggerWindow" class="modal-stat-val text-amber">—</p>
+                        <span id="modalTemporalPattern" class="modal-stat-sub">Pola Temporal Operasional</span>
+                    </div>
+                    <div class="modal-stat-card">
+                        <span class="modal-stat-label">Korelasi Dataset BPTD</span>
+                        <p id="modalDatasetRef" class="modal-stat-val text-blue font-mono" style="font-size:0.75rem;">—</p>
+                        <span class="modal-stat-sub">Entitas Terhubung</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Dampak Operasional -->
+            <div class="modal-section">
+                <h4 class="modal-section-title">Dampak Operasional Transportasi</h4>
+                <p id="modalImpactBox" class="modal-desc-box">—</p>
+            </div>
+
+            <!-- SOP & Rekomendasi Mitigasi BPTD -->
+            <div class="modal-section">
+                <h4 class="modal-section-title">SOP Tindakan &amp; Rekomendasi Mitigasi BPTD</h4>
+                <p id="modalMitigationBox" class="modal-mitigation-box">—</p>
+            </div>
+
+            <!-- Unit Penanggung Jawab -->
+            <div class="modal-section">
+                <h4 class="modal-section-title">Unit Penanggung Jawab Lapangan (PIC)</h4>
+                <p id="modalPicBox" class="modal-desc-box" style="border-left-color: #64748b; font-weight: 600;">—</p>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" id="modalFocusMapBtn" class="btn btn-primary">Fokus Pada Peta</button>
+            <button type="button" id="modalCloseFooterBtn" class="btn btn-secondary">Tutup</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <script>
+        if (typeof L === 'undefined') {
+            document.write('<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"><\/script>');
+        }
+    </script>
+    <script src="early-warning.js"></script>
+</body>
+</html>

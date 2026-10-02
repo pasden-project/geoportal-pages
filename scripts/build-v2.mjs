@@ -85,6 +85,14 @@ const CONNECTIVITY_FILES = [
     "connectivity.css",
     "connectivity.js",
 ];
+const EARLY_WARNING_SOURCE_DIR = resolve(SOURCE_DIR, "early-warning");
+const EARLY_WARNING_OUT_DIR = resolve(OUT_DIR, "early-warning");
+
+const EARLY_WARNING_FILES = [
+    "index.html",
+    "early-warning.css",
+    "early-warning.js",
+];
 
 function build() {
     mkdirSync(OUT_DIR, { recursive: true });
@@ -251,6 +259,30 @@ function build() {
 
         writeFileSync(outPath, data);
         results.push({ name: `connectivity/${name}`, size: data.length });
+    }
+    // Direktori early-warning dan ketiga filenya wajib ada setelah modul Early Warning dirilis
+    if (!existsSync(EARLY_WARNING_SOURCE_DIR)) {
+        console.error(`ERROR: direktori source early-warning wajib ada dan tidak ditemukan: ${EARLY_WARNING_SOURCE_DIR}`);
+        process.exitCode = 1;
+        return;
+    }
+
+    mkdirSync(EARLY_WARNING_OUT_DIR, { recursive: true });
+    for (const name of EARLY_WARNING_FILES) {
+        const srcPath = resolve(EARLY_WARNING_SOURCE_DIR, name);
+        const outPath = resolve(EARLY_WARNING_OUT_DIR, name);
+
+        let data;
+        try {
+            data = readFileSync(srcPath);
+        } catch (err) {
+            console.error(`ERROR: file source early-warning wajib tidak ditemukan: ${srcPath} (${err.code})`);
+            process.exitCode = 1;
+            return;
+        }
+
+        writeFileSync(outPath, data);
+        results.push({ name: `early-warning/${name}`, size: data.length });
     }
 
     for (const r of results) {
