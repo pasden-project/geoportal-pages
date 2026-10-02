@@ -525,6 +525,39 @@ a {
 
 .badge-dot-amber { background: var(--warning); }
 
+.context-panel {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: var(--text-default);
+    border-radius: var(--radius);
+    padding: 0.75rem 1rem;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+}
+
+.context-panel-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--blue-600);
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.context-panel-text {
+    flex: 1;
+    color: #475569;
+}
+
+.context-panel-text strong {
+    color: #0f172a;
+    font-weight: 600;
+}
+
 .demo-notice {
     display: flex;
     align-items: flex-start;
@@ -1524,6 +1557,153 @@ a {
     line-height: 1.4;
 }
 
+/* ---------- Peringkat Simpul Transportasi (NEXT-06) ---------- */
+.card-sub-muted {
+    font-size: 0.74rem;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+    line-height: 1.35;
+}
+
+.ranking-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+.ranking-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    margin-top: 0.75rem;
+}
+
+.ranking-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 0.55rem 0.65rem;
+    border-radius: 0.5rem;
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+
+.ranking-item:hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+    transform: translateY(-1px);
+}
+
+.ranking-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.ranking-ident {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+}
+
+.ranking-badge {
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    font-weight: 800;
+    flex: none;
+}
+
+.ranking-badge-1 { background: #fef3c7; color: #b45309; }
+.ranking-badge-2 { background: #e2e8f0; color: #475569; }
+.ranking-badge-3 { background: #ffedd5; color: #c2410c; }
+.ranking-badge-other { background: #f1f5f9; color: var(--text-muted); }
+
+.ranking-name {
+    font-size: 0.82rem;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ranking-loc {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-left: 0.2rem;
+}
+
+.ranking-metric {
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    flex: none;
+}
+
+.ranking-val {
+    font-size: 0.83rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    color: var(--text);
+}
+
+.ranking-share {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+}
+
+.ranking-bar-track {
+    width: 100%;
+    height: 5px;
+    background: #e2e8f0;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.ranking-bar-fill {
+    height: 100%;
+    border-radius: 999px;
+    background: var(--blue-500);
+    transition: width 0.35s ease;
+}
+
+.ranking-bar-fill-kendaraan {
+    background: #6366f1;
+}
+
+.ranking-empty {
+    padding: 1.5rem 0.5rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    background: #f8fafc;
+    border-radius: 0.5rem;
+    border: 1px dashed var(--border);
+    margin-top: 0.75rem;
+}
+
+.ranking-loading {
+    padding: 1.5rem 0.5rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-style: italic;
+    background: #f8fafc;
+    border-radius: 0.5rem;
+    margin-top: 0.75rem;
+}
+
 /* ---------- Perintis donut ---------- */
 .perintis-body {
     display: flex;
@@ -1656,6 +1836,266 @@ a {
     color: var(--text-soft);
     margin-top: 0.3rem;
     line-height: 1.4;
+}
+
+/* ---------- Perintis source missing (NEXT-06) ---------- */
+.badge-source-missing {
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+    background: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fde68a;
+    letter-spacing: 0.03em;
+    flex: none;
+}
+
+.perintis-missing-box {
+    background: #fffdf5;
+    border: 1px dashed #fcd34d;
+    border-radius: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+/* ---------- Perintis Verified Card (PHASE PERINTIS INTEGRATION) ---------- */
+.badge-source-verified {
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+    letter-spacing: 0.03em;
+    flex: none;
+}
+
+.perintis-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.perintis-summary-item {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.65rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.perintis-summary-label {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.perintis-summary-val {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+.perintis-summary-sub {
+    font-size: 0.62rem;
+    color: var(--text-muted);
+}
+
+.perintis-corridors-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.perintis-route-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.4rem 0.5rem;
+    background: #ffffff;
+    border: 1px solid var(--border-light, #e2e8f0);
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    transition: background-color 0.15s ease;
+}
+
+.perintis-route-row:hover {
+    background: #f8fafc;
+}
+
+.perintis-route-main {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+}
+
+.perintis-route-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex: none;
+}
+
+.perintis-route-dot-green {
+    background: #10b981;
+}
+
+.perintis-route-dot-amber {
+    background: #f59e0b;
+}
+
+.perintis-route-dot-red {
+    background: #ef4444;
+}
+
+.perintis-route-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.perintis-route-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.perintis-route-sub {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+}
+
+.perintis-route-metric {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    flex: none;
+    margin-left: 0.5rem;
+}
+
+.perintis-route-lf {
+    font-weight: 700;
+    font-size: 0.75rem;
+}
+
+.perintis-route-lf-green {
+    color: #059669;
+}
+
+.perintis-route-lf-amber {
+    color: #d97706;
+}
+
+.perintis-route-lf-red {
+    color: #dc2626;
+}
+
+.perintis-route-pax {
+    font-size: 0.62rem;
+    color: var(--text-muted);
+}
+
+.perintis-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-top: 0.4rem;
+    border-top: 1px solid var(--border-light, #e2e8f0);
+}
+
+.perintis-card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--primary, #0284c7);
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.perintis-card-cta:hover {
+    color: var(--primary-hover, #0369a1);
+    text-decoration: underline;
+}
+
+/* ---------- Data quality metrics grid (NEXT-06) ---------- */
+.quality-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+    margin-top: 0.8rem;
+}
+
+.quality-metric-card {
+    padding: 0.65rem 0.75rem;
+    border-radius: 0.5rem;
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.quality-metric-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.4rem;
+}
+
+.quality-metric-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.quality-metric-pill {
+    font-size: 0.66rem;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: 999px;
+    background: #e2e8f0;
+    color: #475569;
+    font-variant-numeric: tabular-nums;
+}
+
+.quality-metric-pill-ok {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.quality-metric-pill-warn {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+.quality-metric-val {
+    font-size: 1.12rem;
+    font-weight: 800;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+}
+
+.quality-metric-val-sm {
+    font-size: 0.92rem;
+}
+
+.quality-metric-sub {
+    font-size: 0.68rem;
+    color: var(--text-soft);
+    line-height: 1.3;
 }
 
 /* ---------- Footer ---------- */
@@ -1837,6 +2277,228 @@ a {
     margin-top: 0.15rem;
 }
 
+.kpi-metric-wrap {
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+    margin-top: 0.55rem;
+}
+
+.kpi-metric-wrap .kpi-value {
+    margin-top: 0;
+}
+
+.kpi-unit {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.kpi-source {
+    font-size: 0.68rem;
+    color: var(--text-soft);
+    margin-top: 0.4rem;
+    padding-top: 0.4rem;
+    border-top: 1px dashed #e2e8f0;
+    line-height: 1.3;
+}
+
+/* ---------- Overview Monthly Trend Chart (NEXT-05) ---------- */
+.card-trend-overview {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.trend-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.trend-sub {
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    margin-top: 0.2rem;
+}
+
+.trend-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.trend-metric-toggle {
+    display: inline-flex;
+    background: #e2e8f0;
+    border-radius: 0.45rem;
+    padding: 2px;
+    gap: 2px;
+}
+
+.trend-toggle-btn {
+    border: none;
+    background: transparent;
+    padding: 0.25rem 0.65rem;
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    border-radius: 0.35rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-family: inherit;
+}
+
+.trend-toggle-btn:hover {
+    color: var(--text);
+}
+
+.trend-toggle-btn.active {
+    background: #ffffff;
+    color: var(--text);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+    font-weight: 700;
+}
+
+.trend-legend {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.trend-container {
+    padding: 1rem 1rem 0.75rem;
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.trend-bars-wrap {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.45rem;
+    height: 140px;
+    padding-top: 1.75rem;
+    border-bottom: 1px solid #cbd5e1;
+    position: relative;
+}
+
+.trend-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: flex-end;
+    position: relative;
+    cursor: default;
+}
+
+.trend-bar-fill {
+    width: 100%;
+    max-width: 32px;
+    background: var(--blue-500);
+    border-radius: 3px 3px 0 0;
+    min-height: 2px;
+    transition: height 0.3s ease, background-color 0.2s ease;
+}
+
+.trend-col:hover .trend-bar-fill:not(.trend-bar-fill-zero) {
+    background: var(--blue-600);
+}
+
+.trend-bar-fill-zero {
+    background: #cbd5e1;
+    height: 2px !important;
+}
+
+.trend-bar-fill-penumpang {
+    background: var(--blue-500);
+}
+
+.trend-col:hover .trend-bar-fill-penumpang:not(.trend-bar-fill-zero) {
+    background: var(--blue-600);
+}
+
+.trend-bar-fill-kendaraan {
+    background: #6366f1;
+}
+
+.trend-col:hover .trend-bar-fill-kendaraan:not(.trend-bar-fill-zero) {
+    background: #4f46e5;
+}
+
+.trend-bar-fill-rasio {
+    background: #0d9488;
+}
+
+.trend-col:hover .trend-bar-fill-rasio:not(.trend-bar-fill-zero) {
+    background: #0f766e;
+}
+
+.legend-dot-penumpang {
+    background: var(--blue-500);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.legend-dot-kendaraan {
+    background: #6366f1;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.legend-dot-rasio {
+    background: #0d9488;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.trend-bar-val {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 0.25rem;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.trend-months-wrap {
+    display: flex;
+    gap: 0.45rem;
+    margin-top: 0.45rem;
+}
+
+.trend-month-label {
+    flex: 1;
+    text-align: center;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.trend-loading,
+.trend-empty-note {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    text-align: center;
+    padding: 2.5rem 1rem;
+    margin: 0;
+}
+
 .live-badge {
     margin-left: auto;
     font-size: 0.62rem;
@@ -2008,13 +2670,42 @@ a {
         box-shadow: none;
     }
     .quality-list { grid-template-columns: 1fr; }
+    .trend-bars-wrap {
+        gap: 0.25rem;
+        height: 120px;
+        padding-top: 1.25rem;
+    }
+    .trend-bar-val {
+        font-size: 0.58rem;
+    }
+    .trend-months-wrap {
+        gap: 0.25rem;
+    }
+    .trend-month-label {
+        font-size: 0.65rem;
+    }
 }
 
 @media (max-width: 400px) {
     .kpi-row { grid-template-columns: 1fr; }
     .map-stage { height: 240px; }
+    .trend-bar-val {
+        display: none;
+    }
+    .trend-bars-wrap {
+        gap: 0.15rem;
+        height: 110px;
+    }
+    .trend-months-wrap {
+        gap: 0.15rem;
+    }
+    .trend-month-label {
+        font-size: 0.6rem;
+    }
+    .quality-metrics-grid {
+        grid-template-columns: 1fr;
+    }
 }
-
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
     *,

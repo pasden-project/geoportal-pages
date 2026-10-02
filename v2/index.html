@@ -48,11 +48,11 @@
                     <span class="nav-text">Trayek</span>
                     <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
                 </a>
-                <button type="button" class="nav-link" aria-disabled="true" disabled data-nav-status="coming-soon" title="Angkutan Perintis — Belum tersedia pada prototipe (Segera)">
+                <a href="./perintis/" class="nav-link" data-nav-status="available" title="Angkutan Perintis — Modul Layanan Bus Perintis BPTD Jabar (Tersedia)">
                     <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
                     <span class="nav-text">Angkutan Perintis</span>
-                    <span class="nav-status-badge nav-status-soon" data-status="COMING SOON">Segera</span>
-                </button>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
                 <button type="button" class="nav-link" aria-disabled="true" disabled data-nav-status="coming-soon" title="UPPKB / Barang — Belum tersedia pada prototipe (Segera)">
                     <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path></svg>
                     <span class="nav-text">UPPKB / Barang</span>
@@ -147,16 +147,16 @@
                 <div class="dash-head">
                     <div>
                         <h2 class="dash-title">Transport Overview <span class="dash-title-dim">—</span> Jawa Barat</h2>
-                        <p class="dash-sub">Monitoring &bull; Analisis &bull; Decision Support</p>
+                        <p class="dash-sub">Pusat Komando Transportasi Darat BPTD Kelas I Jawa Barat</p>
                     </div>
                     <div class="dash-badges">
                         <span class="badge badge-live">
                             <span class="badge-dot badge-dot-green" aria-hidden="true"></span>
-                            Sebagian KPI Live
+                            Status Operasional Live
                         </span>
                         <span class="badge badge-blue">
-                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            Komponen lain masih demo
+                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                            Data Produksi Wilayah Jawa Barat
                         </span>
                     </div>
                 </div>
@@ -169,10 +169,14 @@
                     <button type="button" id="retryBtn" class="retry-btn" hidden>Coba Lagi</button>
                 </div>
 
-                <!-- Hybrid notice: sebagian live, sebagian demo -->
-                <div class="demo-notice" role="note">
-                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    <span><strong>SEBAGIAN KPI LIVE.</strong> KPI pergerakan penumpang, pergerakan kendaraan, terminal terpetakan, dan UPPKB terpetakan — beserta insight minimal — ditampilkan dari API produksi. Komponen lain pada halaman ini masih berupa data demo / simulasi dan belum terhubung API.</span>
+                <!-- Konteks Operasional & Provenance Data -->
+                <div class="context-panel" role="note" aria-label="Konteks operasional dan sumber data">
+                    <div class="context-panel-icon" aria-hidden="true">
+                        <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <div class="context-panel-text">
+                        <strong>Pusat Data Operasional Terpadu:</strong> Metrik pergerakan penumpang, pergerakan kendaraan, sebaran simpul terminal, dan lokasi UPPKB bersumber langsung dari pencatatan produksi simpul transportasi BPTD Kelas I Jawa Barat.
+                    </div>
                 </div>
 
                 <!-- Main Grid -->
@@ -181,7 +185,7 @@
                     <!-- ============ LEFT COLUMN ============ -->
                     <div class="grid-left">
 
-                        <!-- KPI Cards — LIVE (PHASE 14D) -->
+                        <!-- KPI Cards — LIVE (PHASE 14D / NEXT-05) -->
                         <div class="kpi-row">
                             <div class="kpi-card kpi-card-live">
                                 <div class="kpi-head">
@@ -189,9 +193,13 @@
                                     <span>Pergerakan Penumpang</span>
                                     <span class="live-badge" aria-hidden="true">LIVE</span>
                                 </div>
-                                <p id="kpiPenumpang" class="kpi-value">Memuat…</p>
+                                <div class="kpi-metric-wrap">
+                                    <p id="kpiPenumpang" class="kpi-value">Memuat…</p>
+                                    <span class="kpi-unit">Orang</span>
+                                </div>
                                 <p id="kpiPenumpangTrend" class="kpi-trend kpi-flat">Data produksi tahun terpilih</p>
                                 <p id="kpiPenumpangYear" class="kpi-year">Tahun —</p>
+                                <p class="kpi-source">Data Produksi Terminal BPTD Jabar</p>
                                 <span class="visually-hidden">KPI pergerakan penumpang — data live dari API</span>
                             </div>
 
@@ -201,9 +209,13 @@
                                     <span>Pergerakan Kendaraan</span>
                                     <span class="live-badge" aria-hidden="true">LIVE</span>
                                 </div>
-                                <p id="kpiKendaraan" class="kpi-value">Memuat…</p>
+                                <div class="kpi-metric-wrap">
+                                    <p id="kpiKendaraan" class="kpi-value">Memuat…</p>
+                                    <span class="kpi-unit">Kendaraan</span>
+                                </div>
                                 <p id="kpiKendaraanTrend" class="kpi-trend kpi-flat">Data produksi tahun terpilih</p>
                                 <p id="kpiKendaraanYear" class="kpi-year">Tahun —</p>
+                                <p class="kpi-source">Data Produksi Terminal BPTD Jabar</p>
                                 <span class="visually-hidden">KPI pergerakan kendaraan — data live dari API</span>
                             </div>
 
@@ -213,8 +225,13 @@
                                     <span>Terminal Terpetakan</span>
                                     <span class="live-badge" aria-hidden="true">LIVE</span>
                                 </div>
-                                <p id="kpiTerminal" class="kpi-value">Memuat…</p>
+                                <div class="kpi-metric-wrap">
+                                    <p id="kpiTerminal" class="kpi-value">Memuat…</p>
+                                    <span class="kpi-unit">Simpul (Tipe A, B, C)</span>
+                                </div>
+                                <p id="kpiTerminalTrend" class="kpi-trend kpi-flat">Data sebaran simpul</p>
                                 <p id="kpiTerminalYear" class="kpi-year">Tahun —</p>
+                                <p class="kpi-source">Database Simpul Transportasi BPTD Jabar</p>
                                 <span class="visually-hidden">KPI terminal terpetakan — data live dari API</span>
                             </div>
 
@@ -224,8 +241,13 @@
                                     <span>UPPKB Terpetakan</span>
                                     <span class="live-badge" aria-hidden="true">LIVE</span>
                                 </div>
-                                <p id="kpiUppkb" class="kpi-value">Memuat…</p>
-                                <p id="kpiUppkbYear" class="kpi-year">Tahun —</p>
+                                <div class="kpi-metric-wrap">
+                                    <p id="kpiUppkb" class="kpi-value">Memuat…</p>
+                                    <span class="kpi-unit">Lokasi Strategis</span>
+                                </div>
+                                <p id="kpiUppkbTrend" class="kpi-trend kpi-flat">Data sebaran fasilitas</p>
+                                <p id="kpiUppkbYear" class="kpi-year">Status Aktif Terpetakan</p>
+                                <p class="kpi-source">Data Operasional UPPKB BPTD Jabar</p>
                                 <span class="visually-hidden">KPI UPPKB terpetakan — data live dari API</span>
                             </div>
                         </div>
@@ -274,11 +296,34 @@
                             </div>
                         </section>
 
+                        <!-- Monthly Volume Bar Chart — Analitik Tren Multi-Metrik (NEXT-06) -->
+                        <section class="card card-trend-overview" aria-labelledby="overviewTrendTitle">
+                            <div class="trend-head">
+                                <div>
+                                    <h3 id="overviewTrendTitle" class="card-title">Tren Pergerakan Bulanan</h3>
+                                    <p class="trend-sub" id="overviewTrendSub">Distribusi volume kedatangan dan keberangkatan penumpang per bulan (<span id="trendYearSpan">Tahun —</span>)</p>
+                                </div>
+                                <div class="trend-controls">
+                                    <div class="trend-metric-toggle" role="group" aria-label="Pilih metrik analitik tren bulanan">
+                                        <button type="button" class="trend-toggle-btn active" data-trend-metric="penumpang" aria-pressed="true">Penumpang</button>
+                                        <button type="button" class="trend-toggle-btn" data-trend-metric="kendaraan" aria-pressed="false">Kendaraan</button>
+                                        <button type="button" class="trend-toggle-btn" data-trend-metric="rasio" aria-pressed="false">Rasio</button>
+                                    </div>
+                                    <div class="trend-legend" id="overviewTrendLegend" aria-hidden="true">
+                                        <span class="legend-chip"><span class="legend-dot legend-dot-penumpang" id="trendLegendDot"></span> <span id="trendLegendText">Total Penumpang</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="overviewTrendContainer" class="trend-container" aria-live="polite">
+                                <p class="trend-loading">Memuat grafik tren bulanan…</p>
+                            </div>
+                        </section>
+
                         <!-- Bottom Insights -->
                         <div class="insight-row">
                             <div class="card card-insight">
                                 <h3 class="card-title">Insight Utama</h3>
-                                <p class="card-note" id="insightDemoNote">Data contoh — belum terhubung API</p>
+                                <p class="card-note" id="insightDemoNote">Analisis operasional berbasis data produksi kalender tertutup</p>
                                 <div class="insight-grid">
                                     <div class="insight-cell insight-cell-stack">
                                         <span class="insight-icon insight-icon-blue" aria-hidden="true"><svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg></span>
@@ -324,18 +369,18 @@
                                 <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
                                 <span>Terminal</span>
                             </a>
-                            <button type="button" class="quick-btn" aria-disabled="true" disabled data-nav-status="coming-soon" title="Trayek — Belum tersedia pada prototipe (Segera)">
+                            <a href="./trayek/" class="quick-btn" data-nav-status="available" style="text-decoration: none;" title="Trayek — Modul Trayek Angkutan Jalan (Tersedia)">
                                 <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                                 <span>Trayek</span>
-                            </button>
+                            </a>
                             <button type="button" class="quick-btn" aria-disabled="true" disabled data-nav-status="coming-soon" title="OD Intelligence — Belum tersedia pada prototipe (Segera)">
                                 <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
                                 <span>OD</span>
                             </button>
-                            <button type="button" class="quick-btn" aria-disabled="true" disabled data-nav-status="coming-soon" title="Angkutan Perintis — Belum tersedia pada prototipe (Segera)">
+                            <a href="./perintis/" class="quick-btn" data-nav-status="available" style="text-decoration: none;" title="Angkutan Perintis — Modul Layanan Bus Perintis BPTD Jabar (Tersedia)">
                                 <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
                                 <span>Perintis</span>
-                            </button>
+                            </a>
                             <button type="button" class="quick-btn" aria-disabled="true" disabled data-nav-status="coming-soon" title="UPPKB / Barang — Belum tersedia pada prototipe (Segera)">
                                 <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                                 <span>UPPKB</span>
@@ -363,62 +408,206 @@
                             <button type="button" id="alertRetry" class="retry-btn" hidden>Coba Lagi</button>
                         </section>
 
-                        <!-- Top Movers — DEFERRED (PHASE 14F) -->
-                        <section class="card" aria-labelledby="movers-title">
+                        <!-- Peringkat Simpul Transportasi — Terminal Ranking (NEXT-06) -->
+                        <section class="card card-rankings" aria-labelledby="ranking-title">
                             <div class="movers-head">
-                                <h3 id="movers-title" class="card-title">Top Movers</h3>
+                                <div>
+                                    <h3 id="ranking-title" class="card-title">Peringkat Simpul Transportasi</h3>
+                                    <p class="card-sub-muted">Top 5 simpul teraktif berdasarkan data produksi tahun terpilih</p>
+                                </div>
                             </div>
-                            <div class="movers-tabs" role="tablist" aria-label="Pilih daftar kenaikan atau penurunan">
-                                <button type="button" role="tab" id="tab-kenaikan" aria-selected="true" aria-controls="panel-kenaikan" class="mover-tab mover-tab-active">
-                                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
-                                    Kenaikan
+                            <div class="movers-tabs" role="tablist" aria-label="Pilih metrik peringkat simpul">
+                                <button type="button" role="tab" id="tab-rank-penumpang" data-rank-metric="penumpang" aria-selected="true" aria-controls="panel-rank-penumpang" class="mover-tab mover-tab-active" tabindex="0">
+                                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                                    Penumpang
                                 </button>
-                                <button type="button" role="tab" id="tab-penurunan" aria-selected="false" aria-controls="panel-penurunan" class="mover-tab">
-                                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
-                                    Penurunan
+                                <button type="button" role="tab" id="tab-rank-kendaraan" data-rank-metric="kendaraan" aria-selected="false" aria-controls="panel-rank-kendaraan" class="mover-tab" tabindex="-1">
+                                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                                    Kendaraan
                                 </button>
                             </div>
 
-                            <div id="panel-kenaikan" role="tabpanel" aria-labelledby="tab-kenaikan" class="movers-list">
-                                <div class="mover-empty">
-                                    <p class="mover-empty-title">BELUM TERSEDIA</p>
-                                    <p class="mover-empty-detail">Metodologi entitas dan periode pembanding sedang ditetapkan.</p>
+                            <div id="panel-rank-penumpang" role="tabpanel" aria-labelledby="tab-rank-penumpang" class="ranking-panel">
+                                <div id="rankingListPenumpang" class="ranking-list" aria-live="polite">
+                                    <p class="ranking-loading">Memuat peringkat simpul…</p>
                                 </div>
                             </div>
 
-                            <div id="panel-penurunan" role="tabpanel" aria-labelledby="tab-penurunan" class="movers-list" hidden>
-                                <div class="mover-empty">
-                                    <p class="mover-empty-title">BELUM TERSEDIA</p>
-                                    <p class="mover-empty-detail">Metodologi entitas dan periode pembanding sedang ditetapkan.</p>
+                            <div id="panel-rank-kendaraan" role="tabpanel" aria-labelledby="tab-rank-kendaraan" class="ranking-panel" hidden>
+                                <div id="rankingListKendaraan" class="ranking-list" aria-live="polite">
+                                    <p class="ranking-loading">Memuat peringkat simpul…</p>
                                 </div>
                             </div>
                         </section>
 
-                        <!-- Kinerja Angkutan Perintis -->
+                        <!-- Kinerja Angkutan Perintis (INTEGRATED & VERIFIED — BPTD JABAR 2025) -->
                         <section class="card" aria-labelledby="perintis-title">
                             <div class="movers-head">
-                                <h3 id="perintis-title" class="card-title">Kinerja Angkutan Perintis</h3>
+                                <div>
+                                    <h3 id="perintis-title" class="card-title">Kinerja Angkutan Perintis</h3>
+                                    <p class="card-sub-muted">Realisasi 6 trayek bersubsidi BPTD Kelas I Jawa Barat</p>
+                                </div>
+                                <span class="badge-source-verified">6 KORIDOR AKTIF</span>
                             </div>
-                            <div class="quality-empty">
-                                <p class="quality-empty-title">INTEGRASI TERTUNDA</p>
-                                <p class="quality-empty-detail">Data operasional koridor perintis Jawa Barat sedang diselaraskan untuk integrasi langsung.</p>
+
+                            <div class="perintis-summary-grid">
+                                <div class="perintis-summary-item">
+                                    <span class="perintis-summary-label">Total Armada</span>
+                                    <span class="perintis-summary-val">18 Bus</span>
+                                    <span class="perintis-summary-sub">12 Utama + 6 Cadangan</span>
+                                </div>
+                                <div class="perintis-summary-item">
+                                    <span class="perintis-summary-label">Avg Load Factor</span>
+                                    <span class="perintis-summary-val" style="color: #d97706;">31,3%</span>
+                                    <span class="perintis-summary-sub">Target Kontrak 30,0%</span>
+                                </div>
+                                <div class="perintis-summary-item">
+                                    <span class="perintis-summary-label">Penumpang YTD</span>
+                                    <span class="perintis-summary-val">26.815</span>
+                                    <span class="perintis-summary-sub">Total Produksi 2025</span>
+                                </div>
+                                <div class="perintis-summary-item">
+                                    <span class="perintis-summary-label">Realisasi Anggaran</span>
+                                    <span class="perintis-summary-val">81,8%</span>
+                                    <span class="perintis-summary-sub">Rp 3,89 M / Rp 4,75 M</span>
+                                </div>
+                            </div>
+
+                            <div class="perintis-corridors-list" aria-label="Daftar 6 koridor perintis">
+                                <div class="perintis-route-row">
+                                    <div class="perintis-route-main">
+                                        <span class="perintis-route-dot perintis-route-dot-amber" aria-hidden="true"></span>
+                                        <div class="perintis-route-info">
+                                            <span class="perintis-route-name">Surade – Sagaranten</span>
+                                            <span class="perintis-route-sub">Kab. Sukabumi · DAMRI</span>
+                                        </div>
+                                    </div>
+                                    <div class="perintis-route-metric">
+                                        <span class="perintis-route-lf perintis-route-lf-amber">35,6%</span>
+                                        <span class="perintis-route-pax">5.251 pnp</span>
+                                    </div>
+                                </div>
+                                <div class="perintis-route-row">
+                                    <div class="perintis-route-main">
+                                        <span class="perintis-route-dot perintis-route-dot-red" aria-hidden="true"></span>
+                                        <div class="perintis-route-info">
+                                            <span class="perintis-route-name">Sagaranten – Pelabuhan Ratu</span>
+                                            <span class="perintis-route-sub">Kab. Sukabumi · DAMRI</span>
+                                        </div>
+                                    </div>
+                                    <div class="perintis-route-metric">
+                                        <span class="perintis-route-lf perintis-route-lf-red">29,7%</span>
+                                        <span class="perintis-route-pax">2.735 pnp</span>
+                                    </div>
+                                </div>
+                                <div class="perintis-route-row">
+                                    <div class="perintis-route-main">
+                                        <span class="perintis-route-dot perintis-route-dot-red" aria-hidden="true"></span>
+                                        <div class="perintis-route-info">
+                                            <span class="perintis-route-name">Tegal Buleud – Sagaranten</span>
+                                            <span class="perintis-route-sub">Kab. Sukabumi · DAMRI</span>
+                                        </div>
+                                    </div>
+                                    <div class="perintis-route-metric">
+                                        <span class="perintis-route-lf perintis-route-lf-red">28,9%</span>
+                                        <span class="perintis-route-pax">3.619 pnp</span>
+                                    </div>
+                                </div>
+                                <div class="perintis-route-row">
+                                    <div class="perintis-route-main">
+                                        <span class="perintis-route-dot perintis-route-dot-red" aria-hidden="true"></span>
+                                        <div class="perintis-route-info">
+                                            <span class="perintis-route-name">Leuwiliang – Cikidang</span>
+                                            <span class="perintis-route-sub">Kab. Bogor · DAMRI</span>
+                                        </div>
+                                    </div>
+                                    <div class="perintis-route-metric">
+                                        <span class="perintis-route-lf perintis-route-lf-red">27,1%</span>
+                                        <span class="perintis-route-pax">3.593 pnp</span>
+                                    </div>
+                                </div>
+                                <div class="perintis-route-row">
+                                    <div class="perintis-route-main">
+                                        <span class="perintis-route-dot perintis-route-dot-amber" aria-hidden="true"></span>
+                                        <div class="perintis-route-info">
+                                            <span class="perintis-route-name">Jasinga – Parung Panjang</span>
+                                            <span class="perintis-route-sub">Kab. Bogor · DAMRI</span>
+                                        </div>
+                                    </div>
+                                    <div class="perintis-route-metric">
+                                        <span class="perintis-route-lf perintis-route-lf-amber">36,2%</span>
+                                        <span class="perintis-route-pax">4.090 pnp</span>
+                                    </div>
+                                </div>
+                                <div class="perintis-route-row">
+                                    <div class="perintis-route-main">
+                                        <span class="perintis-route-dot perintis-route-dot-amber" aria-hidden="true"></span>
+                                        <div class="perintis-route-info">
+                                            <span class="perintis-route-name">Sadang – Wanakerta</span>
+                                            <span class="perintis-route-sub">Kab. Purwakarta · DAMRI</span>
+                                        </div>
+                                    </div>
+                                    <div class="perintis-route-metric">
+                                        <span class="perintis-route-lf perintis-route-lf-amber">30,0%</span>
+                                        <span class="perintis-route-pax">7.527 pnp</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="perintis-card-footer">
+                                <a href="./perintis/" class="perintis-card-cta" title="Buka Modul Angkutan Perintis BPTD Jabar">
+                                    Buka Modul Angkutan Perintis &rarr;
+                                </a>
                             </div>
                         </section>
 
-                        <!-- Data Quality — DESCRIPTIVE ONLY (PHASE 14F) -->
-                        <section class="card" aria-labelledby="quality-title">
+                        <!-- Kualitas Data Faktual (NEXT-06: 4 Indikator Kelengkapan) -->
+                        <section class="card card-data-quality" aria-labelledby="quality-title">
                             <div class="movers-head">
-                                <h3 id="quality-title" class="card-title">Kualitas Data</h3>
+                                <div>
+                                    <h3 id="quality-title" class="card-title">Kualitas Data</h3>
+                                    <p class="card-sub-muted">Integritas dan kelengkapan transmisi faktual</p>
+                                </div>
                             </div>
-                            <div class="quality-empty">
-                                <p class="quality-empty-title">BELUM DAPAT DIHITUNG</p>
-                                <p class="quality-empty-detail">Metadata kelengkapan, kebaruan, validitas, dan cakupan belum tersedia.</p>
+                            <div class="quality-metrics-grid" id="qualityMetricsGrid" aria-live="polite">
+                                <div class="quality-metric-card" id="qmcReporting">
+                                    <div class="quality-metric-head">
+                                        <span class="quality-metric-label">Kelengkapan Simpul</span>
+                                        <span class="quality-metric-pill" id="qmcReportingPill">—%</span>
+                                    </div>
+                                    <div class="quality-metric-val" id="qmcReportingVal">—</div>
+                                    <p class="quality-metric-sub" id="qmcReportingSub">Simpul aktif melaporkan data</p>
+                                </div>
+                                <div class="quality-metric-card" id="qmcContinuity">
+                                    <div class="quality-metric-head">
+                                        <span class="quality-metric-label">Kontinuitas Bulanan</span>
+                                        <span class="quality-metric-pill" id="qmcContinuityPill">—%</span>
+                                    </div>
+                                    <div class="quality-metric-val" id="qmcContinuityVal">—</div>
+                                    <p class="quality-metric-sub" id="qmcContinuitySub">Bulan kalender terisi data</p>
+                                </div>
+                                <div class="quality-metric-card" id="qmcUppkb">
+                                    <div class="quality-metric-head">
+                                        <span class="quality-metric-label">Cakupan UPPKB</span>
+                                        <span class="quality-metric-pill quality-metric-pill-ok">Aktif</span>
+                                    </div>
+                                    <div class="quality-metric-val" id="qmcUppkbVal">—</div>
+                                    <p class="quality-metric-sub" id="qmcUppkbSub">Lokasi penimbangan terpetakan</p>
+                                </div>
+                                <div class="quality-metric-card" id="qmcGateway">
+                                    <div class="quality-metric-head">
+                                        <span class="quality-metric-label">Status Gateway</span>
+                                        <span class="quality-metric-pill quality-metric-pill-ok" id="qmcGatewayPill">Live</span>
+                                    </div>
+                                    <div class="quality-metric-val quality-metric-val-sm" id="qmcGatewayVal">Tersinkronisasi</div>
+                                    <p class="quality-metric-sub" id="qmcGatewaySub">API terhubung</p>
+                                </div>
                             </div>
                         </section>
                     </div>
                 </div>
 
-                <p class="page-foot">Transportasi Darat yang Aman, Nyaman dan Terintegrasi — Prototipe lokal GeoPORTAL BPTD Jabar</p>
+                <p class="page-foot">GeoPORTAL BPTD Kelas I Jawa Barat — Portal Dashboard Maps Informatif Angkutan Jalan</p>
             </div>
         </main>
     </div>

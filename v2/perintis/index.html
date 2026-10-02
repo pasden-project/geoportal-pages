@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoPORTAL BPTD Jabar — Modul Angkutan Perintis</title>
+    <meta name="description" content="Modul Layanan Angkutan Jalan Perintis BPTD Kelas I Jawa Barat. Monitoring 6 koridor perintis bersubsidi, armada bus DAMRI, dan kinerja load factor.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+    <link rel="stylesheet" href="../command-center.css">
+    <link rel="stylesheet" href="perintis.css">
+</head>
+<body>
+    <div class="app-shell">
+        <!-- ================= SIDEBAR ================= -->
+        <aside id="appSidebar" class="app-sidebar" aria-label="Navigasi utama">
+            <div class="sidebar-logo">
+                <svg class="logo-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    <path d="M12 2v20"></path>
+                </svg>
+                <div class="logo-text">
+                    <span class="logo-title">GEOPORTAL</span>
+                    <span class="logo-sub">BPTD Jabar</span>
+                </div>
+                <button type="button" id="sidebarClose" class="sidebar-close-btn" aria-label="Tutup menu navigasi">
+                    <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav" aria-label="Navigasi utama modul">
+                <a href="../" class="nav-link" data-nav-status="available" title="Ringkasan — Kembali ke Overview Command Center (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    <span class="nav-text">Ringkasan</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../../" class="nav-link" data-nav-status="available" title="Peta Transportasi — Buka dashboard peta utama (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+                    <span class="nav-text">Peta Transportasi</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../terminal/" class="nav-link" data-nav-status="available" title="Terminal — Modul Terminal Penumpang (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                    <span class="nav-text">Terminal</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../trayek/" class="nav-link" data-nav-status="available" title="Trayek — Modul Trayek Angkutan Jalan (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    <span class="nav-text">Trayek</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="./" class="nav-link is-active" aria-current="page" data-nav-status="active" title="Angkutan Perintis — Modul Layanan Bus Perintis BPTD Jabar (Aktif)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                    <span class="nav-text">Angkutan Perintis</span>
+                    <span class="nav-status-badge nav-status-active" data-status="ACTIVE">Aktif</span>
+                </a>
+                <button type="button" class="nav-link" aria-disabled="true" disabled data-nav-status="coming-soon" title="UPPKB / Barang — Belum tersedia pada prototipe (Segera)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path></svg>
+                    <span class="nav-text">UPPKB / Barang</span>
+                    <span class="nav-status-badge nav-status-soon" data-status="COMING SOON">Segera</span>
+                </button>
+                <button type="button" class="nav-link" aria-disabled="true" disabled data-nav-status="coming-soon" title="OD Intelligence — Belum tersedia pada prototipe (Segera)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                    <span class="nav-text">OD Intelligence</span>
+                    <span class="nav-status-badge nav-status-soon" data-status="COMING SOON">Segera</span>
+                </button>
+                <button type="button" class="nav-link" aria-disabled="true" disabled data-nav-status="coming-soon" title="Connectivity — Belum tersedia pada prototipe (Segera)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.107 7.107a4 4 0 11-5.657 5.657 4 4 0 015.657-5.657z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12l7.071 7.071"></path></svg>
+                    <span class="nav-text">Connectivity</span>
+                    <span class="nav-status-badge nav-status-soon" data-status="COMING SOON">Segera</span>
+                </button>
+                <button type="button" class="nav-link" aria-disabled="true" disabled data-nav-status="coming-soon" title="Early Warning — Belum tersedia pada prototipe (Segera)">
+                    <svg class="nav-icon nav-icon-warn" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    <span class="nav-text">Early Warning</span>
+                    <span class="nav-status-badge nav-status-soon" data-status="COMING SOON">Segera</span>
+                </button>
+                <button type="button" class="nav-link" aria-disabled="true" disabled data-nav-status="coming-soon" title="Program &amp; Kinerja — Belum tersedia pada prototipe (Segera)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
+                    <span class="nav-text">Program &amp; Kinerja</span>
+                    <span class="nav-status-badge nav-status-soon" data-status="COMING SOON">Segera</span>
+                </button>
+                <button type="button" class="nav-link" aria-disabled="true" disabled data-nav-status="coming-soon" title="Laporan — Belum tersedia pada prototipe (Segera)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    <span class="nav-text">Laporan</span>
+                    <span class="nav-status-badge nav-status-soon" data-status="COMING SOON">Segera</span>
+                </button>
+                <button type="button" class="nav-link" aria-disabled="true" disabled data-nav-status="coming-soon" title="Data Master — Belum tersedia pada prototipe (Segera)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    <span class="nav-text">Data Master</span>
+                    <span class="nav-status-badge nav-status-soon" data-status="COMING SOON">Segera</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <svg class="logo-mark logo-mark-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path><path d="M12 2v20"></path></svg>
+                <span class="footer-title">BPTD Jawa Barat</span>
+                <span class="footer-sub">Transportasi Darat Lebih Terintegrasi</span>
+            </div>
+        </aside>
+
+        <!-- ================= OVERLAY (mobile) ================= -->
+        <div id="sidebarOverlay" class="sidebar-overlay" hidden></div>
+
+        <!-- ================= MAIN ================= -->
+        <main class="app-main">
+            <header class="app-header">
+                <div class="header-left">
+                    <button type="button" id="sidebarToggle" class="header-menu-btn" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="appSidebar">
+                        <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                    <div class="header-title-block">
+                        <h1 class="header-title">Transport Command Center</h1>
+                        <p class="header-sub">Modul Angkutan Perintis — Jawa Barat</p>
+                    </div>
+                </div>
+
+                <div class="header-right">
+                    <div class="header-clock">
+                        <div class="clock-date">
+                            <svg class="icon-sm icon-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            <span id="current-date">Memuat tanggal...</span>
+                        </div>
+                        <span id="current-time" class="clock-time">--:-- WIB</span>
+                    </div>
+
+                    <div class="api-status" role="status" aria-live="polite">
+                        <span id="apiStatusOk" class="api-status-pill api-status-ok">
+                            <span class="api-dot" aria-hidden="true"></span>
+                            Data Terverifikasi BPTD
+                        </span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="app-content">
+                <!-- Module Header & Badges -->
+                <div class="dash-head">
+                    <div>
+                        <h2 class="dash-title">Angkutan Perintis Jawa Barat <span class="dash-title-dim">—</span> 6 Koridor Bersubsidi</h2>
+                        <p class="dash-sub">Monitoring kinerja operasional, sebaran rute spasial, armada DAMRI, dan realisasi anggaran BPTD Kelas I Jawa Barat</p>
+                    </div>
+                    <div class="dash-badges">
+                        <span class="badge badge-live">
+                            <span class="badge-dot badge-dot-green" aria-hidden="true"></span>
+                            Tahun Berjalan 2025
+                        </span>
+                        <span class="badge badge-blue">
+                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                            <span>6 Koridor Bersubsidi DAMRI</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Status Bar -->
+                <div class="status-bar" role="status" aria-live="polite">
+                    <span class="status-chip" id="dataTimestamp">Data Kontrak Resmi BPTD Jabar</span>
+                    <span class="status-chip" id="operatorContext">Operator: Perum DAMRI</span>
+                    <span class="status-chip" id="metricContext">Kapasitas Armada: 19 Kursi / Bus</span>
+                </div>
+
+                <!-- Scope / Data Honesty Notice -->
+                <div class="demo-notice" role="note">
+                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span><strong>INFORMASI RESMI LAYANAN ANGKUTAN PERINTIS.</strong> Layanan angkutan jalan perintis bersubsidi diselenggarakan oleh BPTD Kelas I Jawa Barat bekerja sama dengan operator penugasan Perum DAMRI Cabang Bandung. Seluruh data realisasi ritase, penumpang, keuangan, dan load factor mengacu pada kontrak resmi tahun anggaran 2025. Polylines spasial mengikuti jalan darat aktual WGS84.</span>
+                </div>
+
+                <!-- 4 Factual KPIs -->
+                <div class="kpi-row">
+                    <div class="kpi-card kpi-card-live">
+                        <div class="kpi-head">
+                            <span class="kpi-icon" aria-hidden="true">
+                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+                            </span>
+                            <span>Trayek Perintis</span>
+                            <span class="live-badge" aria-hidden="true">AKTIF</span>
+                        </div>
+                        <p id="kpiTotalRoutes" class="kpi-value">6 Trayek</p>
+                        <p class="kpi-trend kpi-flat">Wilayah Sukabumi, Bogor &amp; Purwakarta</p>
+                        <p class="kpi-year">BPTD Jabar 2025</p>
+                        <span class="visually-hidden">KPI total trayek angkutan perintis bersubsidi</span>
+                    </div>
+
+                    <div class="kpi-card kpi-card-live">
+                        <div class="kpi-head">
+                            <span class="kpi-icon" aria-hidden="true">
+                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                            </span>
+                            <span>Total Armada</span>
+                            <span class="live-badge" aria-hidden="true">ARMADA</span>
+                        </div>
+                        <p id="kpiTotalArmada" class="kpi-value">18 Bus</p>
+                        <p class="kpi-trend kpi-flat">12 Unit Utama + 6 Unit Cadangan DAMRI</p>
+                        <p class="kpi-year">19 Kursi / Bus</p>
+                        <span class="visually-hidden">KPI jumlah armada bus perintis</span>
+                    </div>
+
+                    <div class="kpi-card kpi-card-live">
+                        <div class="kpi-head">
+                            <span class="kpi-icon" aria-hidden="true">
+                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                            </span>
+                            <span>Total Penumpang YTD</span>
+                            <span class="live-badge" aria-hidden="true">REALISASI</span>
+                        </div>
+                        <p id="kpiTotalPenumpang" class="kpi-value">26.815</p>
+                        <p class="kpi-trend kpi-flat">Akumulasi pergerakan penumpang terlayani</p>
+                        <p class="kpi-year">Januari – Desember 2025</p>
+                        <span class="visually-hidden">KPI total penumpang terlayani angkutan perintis</span>
+                    </div>
+
+                    <div class="kpi-card kpi-card-live">
+                        <div class="kpi-head">
+                            <span class="kpi-icon" aria-hidden="true">
+                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </span>
+                            <span>Avg Load Factor</span>
+                            <span class="live-badge" aria-hidden="true">30% TARGET</span>
+                        </div>
+                        <p id="kpiAvgLoadFactor" class="kpi-value" style="color: #059669;">31,3%</p>
+                        <p class="kpi-trend kpi-flat">Rata-rata keterisian di atas target kontrak</p>
+                        <p class="kpi-year">Kinerja Positif</p>
+                        <span class="visually-hidden">KPI rata-rata load factor angkutan perintis</span>
+                    </div>
+                </div>
+
+                <!-- ================= MAP SECTION ================= -->
+                <section class="card perintis-map-card" aria-labelledby="mapHeading">
+                    <div class="perintis-map-head">
+                        <div>
+                            <h3 id="mapHeading" class="card-title">Peta Spasial Trayek Angkutan Perintis</h3>
+                            <p class="card-sub">Visualisasi 6 koridor bus perintis bersubsidi di Jawa Barat dengan pewarnaan berbasis kinerja load factor</p>
+                        </div>
+                        <div class="perintis-legend-bar" aria-label="Legenda status load factor">
+                            <span class="legend-badge legend-green"><span class="legend-dot-solid" style="background:#10b981;"></span> ≥ 50% Optimal</span>
+                            <span class="legend-badge legend-amber"><span class="legend-dot-solid" style="background:#f59e0b;"></span> 30%–49,9% Target</span>
+                            <span class="legend-badge legend-red"><span class="legend-dot-solid" style="background:#ef4444;"></span> &lt; 30% Evaluasi</span>
+                        </div>
+                    </div>
+                    <div id="perintisMap" class="perintis-map-container" role="application" aria-label="Peta rute perintis Jawa Barat"></div>
+                </section>
+
+                <!-- ================= CORRIDORS DIRECTORY SECTION ================= -->
+                <section class="card directory-card" aria-labelledby="directoryHeading">
+                    <div class="directory-head">
+                        <div>
+                            <h3 id="directoryHeading" class="card-title">Direktori 6 Koridor Perintis BPTD Jabar</h3>
+                            <p class="card-sub">Daftar trayek perintis bersubsidi, alokasi armada, realisasi penumpang, dan detail kontrak</p>
+                        </div>
+                        <span id="resultCount" class="result-count" role="status" aria-live="polite">Menampilkan 6 trayek</span>
+                    </div>
+
+                    <!-- Filter Bar -->
+                    <div class="perintis-filter-bar">
+                        <div class="search-input-wrap">
+                            <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                            <input type="text" id="searchPerintis" class="search-input" placeholder="Cari nama trayek, kabupaten, simpul asal/tujuan..." aria-label="Cari trayek perintis">
+                        </div>
+
+                        <div class="filter-select-wrap">
+                            <select id="filterKabupaten" class="filter-select" aria-label="Filter berdasarkan Kabupaten">
+                                <option value="">Semua Wilayah Kabupaten</option>
+                                <option value="Kab. Sukabumi">Kab. Sukabumi (3 Trayek)</option>
+                                <option value="Kab. Bogor">Kab. Bogor (2 Trayek)</option>
+                                <option value="Kab. Purwakarta">Kab. Purwakarta (1 Trayek)</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-select-wrap">
+                            <select id="filterStatus" class="filter-select" aria-label="Filter status load factor">
+                                <option value="">Semua Status Kinerja LF</option>
+                                <option value="optimal">Optimal (≥ 50%)</option>
+                                <option value="target">Memenuhi Target (30%–49,9%)</option>
+                                <option value="evaluasi">Perlu Evaluasi (&lt; 30%)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Corridors Cards Grid -->
+                    <div id="perintisGrid" class="perintis-grid" role="list" aria-label="Daftar koridor perintis">
+                        <!-- Populated dynamically by perintis.js -->
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- ================= DETAIL MODAL DIALOG ================= -->
+    <div id="modalBackdrop" class="modal-backdrop" hidden></div>
+    <div id="perintisModal" class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalSubInfo" hidden>
+        <div class="modal-header">
+            <div class="modal-title-group">
+                <div class="modal-badge-row">
+                    <span id="modalIdBadge" class="badge-code">PERINTIS-001</span>
+                    <span id="modalKabupatenBadge" class="badge-endpoint-status">Kab. Sukabumi</span>
+                    <span id="modalLfBadge" class="badge-lf-pill">LF 35,6%</span>
+                </div>
+                <h3 id="modalTitle" class="modal-title">Nama Trayek</h3>
+                <p id="modalSubInfo" class="modal-sub">Operator: Perum DAMRI</p>
+            </div>
+            <button type="button" id="modalCloseBtn" class="modal-close-btn" aria-label="Tutup jendela detail">
+                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <!-- Overview Grid -->
+            <div class="modal-section">
+                <h4 class="modal-section-title">Informasi Kontrak &amp; Realisasi Keuangan</h4>
+                <div class="modal-stats-grid">
+                    <div class="modal-stat-card">
+                        <span class="modal-stat-label">Nomor Kontrak</span>
+                        <p id="modalNoKontrak" class="modal-stat-val modal-stat-mono">—</p>
+                        <span id="modalPpk" class="modal-stat-sub">PPK: —</span>
+                    </div>
+                    <div class="modal-stat-card">
+                        <span class="modal-stat-label">Target Nilai Kontrak</span>
+                        <p id="modalTargetKontrak" class="modal-stat-val">—</p>
+                        <span id="modalPagu" class="modal-stat-sub">Pagu: —</span>
+                    </div>
+                    <div class="modal-stat-card">
+                        <span class="modal-stat-label">Realisasi Keuangan YTD</span>
+                        <p id="modalRealisasiKeuangan" class="modal-stat-val text-green">—</p>
+                        <span id="modalPctKeuangan" class="modal-stat-sub">Persentase: —</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fleet & Operational Characteristics -->
+            <div class="modal-section">
+                <h4 class="modal-section-title">Karakteristik Armada &amp; Operasional</h4>
+                <div class="modal-stats-grid">
+                    <div class="modal-stat-card">
+                        <span class="modal-stat-label">Alokasi Armada</span>
+                        <p id="modalArmada" class="modal-stat-val">—</p>
+                        <span id="modalArmadaUmur" class="modal-stat-sub">Umur Armada: —</span>
+                    </div>
+                    <div class="modal-stat-card">
+                        <span class="modal-stat-label">Total Penumpang YTD</span>
+                        <p id="modalTotalPenumpang" class="modal-stat-val">—</p>
+                        <span class="modal-stat-sub">Akumulasi penumpang terlayani</span>
+                    </div>
+                    <div class="modal-stat-card">
+                        <span class="modal-stat-label">Total Ritase YTD</span>
+                        <p id="modalTotalRitase" class="modal-stat-val">—</p>
+                        <span class="modal-stat-sub">Trip operasional terlaksana</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Monthly Production Table -->
+            <div class="modal-section">
+                <h4 class="modal-section-title">Rincian Realisasi Bulanan (Januari – Desember 2025)</h4>
+                <div class="monthly-table-wrap">
+                    <table class="monthly-table" aria-label="Tabel realisasi bulanan">
+                        <thead>
+                            <tr>
+                                <th>Bulan</th>
+                                <th>Target Ritase</th>
+                                <th>Realisasi Ritase</th>
+                                <th>Target Penumpang</th>
+                                <th>Realisasi Penumpang</th>
+                                <th>Load Factor</th>
+                                <th>Realisasi Keuangan</th>
+                                <th>Keterangan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="modalMonthlyBody">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" id="modalFocusMapBtn" class="btn-primary-sm">
+                <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+                Fokus pada Peta
+            </button>
+            <button type="button" id="modalCloseFooterBtn" class="btn-secondary" aria-label="Tutup jendela detail">Tutup</button>
+        </div>
+    </div>
+
+    <!-- Leaflet JS & Perintis Module JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <script src="perintis.js"></script>
+</body>
+</html>

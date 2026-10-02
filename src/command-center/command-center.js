@@ -48,6 +48,10 @@
     // State tahun aktif
     var selectedYear = null;
 
+    // State Analitik KPI & Tren (NEXT-06)
+    var activeTrendMetric = "penumpang"; // "penumpang" | "kendaraan" | "rasio"
+    var activeRankMetric = "penumpang";  // "penumpang" | "kendaraan"
+    var currentDashboardData = null;      // cache payload aktif getDashboardData
     // State Peta Mini Simpul Transportasi (PHASE 15B)
     var miniMap = null;
     var mapMarkerGroup = null;
@@ -188,6 +192,10 @@
 
     function monthPassengerMovement(rec) {
         return toNumberOrZero(rec.kedatangan_penumpang) + toNumberOrZero(rec.keberangkatan_penumpang);
+    }
+
+    function monthVehicleMovement(rec) {
+        return toNumberOrZero(rec && rec.kedatangan_kendaraan) + toNumberOrZero(rec && rec.keberangkatan_kendaraan);
     }
 
     // Helper analisis periode: memakai SERI TREN lengkap (12 posisi,
@@ -475,6 +483,7 @@
                     return null;
                 }
                 var empty = isDataEmpty(data);
+                currentDashboardData = data;
                 renderLive(data, year, empty);
                 if (empty) {
                     // Empty: jangan tampilkan "API Terhubung" atau timestamp baru.
@@ -529,7 +538,7 @@
         setText("kpiPenumpangYear", label);
         setText("kpiKendaraanYear", label);
         setText("kpiTerminalYear", label);
-        setText("kpiUppkbYear", label);
+        setText("kpiUppkbYear", "Status Aktif Terpetakan");
     }
 
     // Sub-teks insight dinetralkan agar tidak menyimpan tahun/nilai dari
@@ -568,6 +577,11 @@
 
         // Status Peta: Memuat
         setMapState("loading");
+
+        // Bersihkan cache & set state loading untuk peringkat dan kualitas data (NEXT-06)
+        currentDashboardData = null;
+        setTerminalRankingsLoading();
+        setDataQualityLoading();
     }
 
     // Error — request gagal. Semua KPI/insight live menjadi "—",
@@ -594,12 +608,28 @@
 
         // Status Peta: Error
         setMapState("error", msg);
+
+        // Bersihkan cache & set state error untuk peringkat dan kualitas data (NEXT-06)
+        currentDashboardData = null;
+        setTerminalRankingsError(msg);
+        setDataQualityError(msg);
     }
 
     // Empty — response diterima tapi seluruhnya nol.
     // System Alert = Data Belum Tersedia, tanpa LIVE, tanpa retry.
     function setStateEmpty() {
-        setKpiError();
+        var ids = ["kpiPenumpang", "kpiKendaraan", "kpiTerminal", "kpiUppkb"];
+        ids.forEach(function (id) {
+            setTextClass(id, "kpi-value kpi-value-live");
+            setText(id, "0");
+        });
+        setText("kpiPenumpangTrend", "Belum ada data untuk tahun terpilih");
+        setText("kpiKendaraanTrend", "Belum ada data untuk tahun terpilih");
+        setText("kpiPenumpangYear", "Tahun " + selectedYear);
+        setText("kpiKendaraanYear", "Tahun " + selectedYear);
+        setText("kpiTerminalYear", "Tahun " + selectedYear);
+        setText("kpiUppkbYear", "Status Aktif Terpetakan");
+
         setInsightError();
         setText("kpiInsightRasio", "—");
         setTextClass("kpiInsightRasio", "insight-value insight-value-error");
@@ -611,11 +641,18 @@
         setText("tiRasio", "Rasio belum tersedia");
         setHidden("tiGap", true);
 
+        renderOverviewMonthlyTrend([], selectedYear, activeTrendMetric);
+
         renderSystemAlertState("empty", "");
         setApiStateEmpty();
 
         // Status Peta: Empty
         setMapState("empty");
+
+        // Bersihkan cache & set state empty untuk peringkat dan kualitas data (NEXT-06)
+        currentDashboardData = null;
+        renderAllTerminalRankings([], {});
+        renderDataQualityEmpty(selectedYear);
     }
 
     function friendlyError(err) {
@@ -643,8 +680,23 @@
             setTextClass(id, "kpi-value kpi-value-loading");
             setText(id, "Memuat…");
         });
+        setText("kpiPenumpangTrend", "Data produksi tahun terpilih");
+        setText("kpiKendaraanTrend", "Data produksi tahun terpilih");
+        setText("kpiPenumpangYear", "Tahun —");
+        setText("kpiKendaraanYear", "Tahun —");
+        setText("kpiTerminalYear", "Tahun —");
+        setText("kpiUppkbYear", "Status Aktif Terpetakan");
         setText("kpiInsightPuncak", "Memuat…");
         setText("kpiInsightTren", "Memuat…");
+
+        var trendContainer = document.getElementById("overviewTrendContainer");
+        if (trendContainer) {
+            trendContainer.innerHTML = '<p class="trend-loading">Memuat grafik tren bulanan…</p>';
+        }
+        var yearSpan = document.getElementById("trendYearSpan");
+        if (yearSpan) {
+            yearSpan.textContent = "Tahun —";
+        }
     }
 
     function setKpiError() {
@@ -653,8 +705,21 @@
             setTextClass(id, "kpi-value kpi-value-error");
             setText(id, "—");
         });
+        setText("kpiPenumpangYear", "Tahun —");
+        setText("kpiKendaraanYear", "Tahun —");
+        setText("kpiTerminalYear", "Tahun —");
+        setText("kpiUppkbYear", "Status Aktif Terpetakan");
         setText("kpiInsightPuncak", "—");
         setText("kpiInsightTren", "—");
+
+        var trendContainer = document.getElementById("overviewTrendContainer");
+        if (trendContainer) {
+            trendContainer.innerHTML = '<p class="trend-empty-note">Gagal memuat grafik tren bulanan.</p>';
+        }
+        var yearSpan = document.getElementById("trendYearSpan");
+        if (yearSpan) {
+            yearSpan.textContent = "Tahun —";
+        }
     }
 
     function setInsightLoading() {
@@ -695,13 +760,21 @@
         setText("kpiPenumpangYear", "Tahun " + year);
         setText("kpiKendaraanYear", "Tahun " + year);
         setText("kpiTerminalYear", "Tahun " + year);
-        setText("kpiUppkbYear", "Tahun " + year);
+        setText("kpiUppkbYear", "Status Aktif Terpetakan");
 
         // Label netral (bukan YoY). "Tahun terpilih" agar benar untuk
         // tahun lampau maupun tahun berjalan.
         setText("kpiPenumpangTrend", "Data produksi tahun terpilih");
         setText("kpiKendaraanTrend", "Data produksi tahun terpilih");
 
+        // Render Grafik Tren Bulanan (NEXT-06: Analitik Multi-Metrik)
+        renderOverviewMonthlyTrend(d.trend, year, activeTrendMetric);
+
+        // Render Peringkat Simpul Transportasi (NEXT-06)
+        renderAllTerminalRankings(d.points, d.summary);
+
+        // Render Kualitas Data Faktual (NEXT-06)
+        renderDataQualityMetrics(d, year);
         // ---- Insight (PHASE 14F) ----
         var ins = d.insights || {};
 
@@ -730,6 +803,399 @@
 
         // Sembunyikan status demo-dulu di insight
         setHidden("insightDemoNote", true);
+    }
+
+    /* =================================================================
+       8a. Grafik Tren Bulanan Multi-Metrik (NEXT-06)
+       ================================================================= */
+    function renderOverviewMonthlyTrend(trend, year, metric) {
+        var activeM = metric || activeTrendMetric || "penumpang";
+        var container = document.getElementById("overviewTrendContainer");
+        var yearSpan = document.getElementById("trendYearSpan");
+        var titleEl = document.getElementById("overviewTrendTitle");
+        var subEl = document.getElementById("overviewTrendSub");
+        var legendDot = document.getElementById("trendLegendDot");
+        var legendText = document.getElementById("trendLegendText");
+
+        var yearText = year ? ("Tahun " + year) : "Tahun —";
+        if (yearSpan) {
+            yearSpan.textContent = yearText;
+        }
+
+        // Sinkronisasi tombol toggle metrik tren
+        var toggleBtns = document.querySelectorAll(".trend-toggle-btn");
+        if (toggleBtns && toggleBtns.length) {
+            Array.prototype.forEach.call(toggleBtns, function (btn) {
+                var m = btn.getAttribute("data-trend-metric");
+                var isSelected = m === activeM;
+                btn.classList.toggle("active", isSelected);
+                btn.setAttribute("aria-pressed", isSelected ? "true" : "false");
+            });
+        }
+
+        // Teks header & legenda dinamis sesuai metrik aktif
+        if (activeM === "kendaraan") {
+            if (titleEl) titleEl.textContent = "Tren Pergerakan Kendaraan Bulanan";
+            if (subEl) subEl.textContent = "Distribusi volume kedatangan dan keberangkatan armada bus per bulan (" + yearText + ")";
+            if (legendDot) legendDot.className = "legend-dot legend-dot-kendaraan";
+            if (legendText) legendText.textContent = "Total Kendaraan";
+        } else if (activeM === "rasio") {
+            if (titleEl) titleEl.textContent = "Tren Rasio Penumpang per Kendaraan Bulanan";
+            if (subEl) subEl.textContent = "Rasio agregat penumpang terhadap pergerakan bus per bulan (" + yearText + ")";
+            if (legendDot) legendDot.className = "legend-dot legend-dot-rasio";
+            if (legendText) legendText.textContent = "Rasio (Orang/Kendaraan)";
+        } else {
+            if (titleEl) titleEl.textContent = "Tren Pergerakan Penumpang Bulanan";
+            if (subEl) subEl.textContent = "Distribusi volume kedatangan dan keberangkatan penumpang per bulan (" + yearText + ")";
+            if (legendDot) legendDot.className = "legend-dot legend-dot-penumpang";
+            if (legendText) legendText.textContent = "Total Penumpang";
+        }
+
+        if (!container) {
+            return;
+        }
+
+        if (!Array.isArray(trend) || trend.length === 0) {
+            container.innerHTML = '<p class="trend-empty-note">Belum ada data tren bulanan untuk tahun ' + escapeHtml(year || "—") + '.</p>';
+            return;
+        }
+
+        var SHORT_MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Ags", "Sep", "Okt", "Nov", "Des"];
+        var monthlyTotals = [];
+        var maxVal = 0;
+        var hasActivity = false;
+
+        for (var i = 0; i < 12; i++) {
+            var rec = trend[i] || {};
+            var p = monthPassengerMovement(rec);
+            var k = monthVehicleMovement(rec);
+            var val = 0;
+            if (activeM === "kendaraan") {
+                val = k;
+            } else if (activeM === "rasio") {
+                val = (k > 0 && p > 0) ? (p / k) : 0;
+            } else {
+                val = p;
+            }
+
+            var mName = SHORT_MONTH_NAMES[i];
+            var fullName = NAMA_BULAN_ID[i] || mName;
+            if (val > maxVal) {
+                maxVal = val;
+            }
+            if (val > 0) {
+                hasActivity = true;
+            }
+            monthlyTotals.push({
+                idx: i + 1,
+                shortName: mName,
+                fullName: fullName,
+                val: val,
+                penumpang: p,
+                kendaraan: k
+            });
+        }
+
+        if (!hasActivity || maxVal === 0) {
+            var emptyLabel = activeM === "kendaraan" ? "kendaraan" : (activeM === "rasio" ? "rasio" : "penumpang");
+            container.innerHTML = '<p class="trend-empty-note">Belum ada catatan pergerakan ' + emptyLabel + ' untuk tahun ' + escapeHtml(year || "—") + '.</p>';
+            return;
+        }
+
+        var barColorCls = activeM === "kendaraan" ? "trend-bar-fill trend-bar-fill-kendaraan" :
+                          (activeM === "rasio" ? "trend-bar-fill trend-bar-fill-rasio" : "trend-bar-fill trend-bar-fill-penumpang");
+
+        var ariaLabel = "Grafik tren bulanan " + (activeM === "kendaraan" ? "kendaraan" : (activeM === "rasio" ? "rasio" : "penumpang")) + " tahun " + escapeHtml(year || "—");
+        var barsHtml = '<div class="trend-bars-wrap" role="img" aria-label="' + ariaLabel + '">';
+        var labelsHtml = '<div class="trend-months-wrap" aria-hidden="true">';
+
+        monthlyTotals.forEach(function (item) {
+            var pct = maxVal > 0 ? Math.round((item.val / maxVal) * 100) : 0;
+            var barCls = item.val > 0 ? barColorCls : "trend-bar-fill trend-bar-fill-zero";
+            var heightStyle = item.val > 0 ? 'height: ' + Math.max(pct, 5) + '%;' : 'height: 2px;';
+
+            var displayVal = "";
+            var tooltipText = "";
+            if (activeM === "rasio") {
+                displayVal = item.val > 0 ? formatRatio(item.val) : "";
+                tooltipText = escapeHtml(item.fullName) + ' ' + escapeHtml(year || "—") + ': ' + (item.val > 0 ? formatRatio(item.val) + ' orang/kendaraan' : 'Tidak ada pergerakan');
+            } else if (activeM === "kendaraan") {
+                displayVal = item.val > 0 ? formatNumber(item.val) : "";
+                tooltipText = escapeHtml(item.fullName) + ' ' + escapeHtml(year || "—") + ': ' + (item.val > 0 ? formatNumber(item.val) + ' kendaraan' : '0 kendaraan');
+            } else {
+                displayVal = item.val > 0 ? formatNumber(item.val) : "";
+                tooltipText = escapeHtml(item.fullName) + ' ' + escapeHtml(year || "—") + ': ' + (item.val > 0 ? formatNumber(item.val) + ' penumpang' : '0 penumpang');
+            }
+
+            barsHtml += '<div class="trend-col" title="' + tooltipText + '">' +
+                (displayVal ? '<span class="trend-bar-val">' + displayVal + '</span>' : '') +
+                '<div class="' + barCls + '" style="' + heightStyle + '"></div>' +
+            '</div>';
+
+            labelsHtml += '<span class="trend-month-label">' + escapeHtml(item.shortName) + '</span>';
+        });
+
+        barsHtml += '</div>';
+        labelsHtml += '</div>';
+
+        container.innerHTML = barsHtml + labelsHtml;
+    }
+
+    /* =================================================================
+       8a2. Peringkat Simpul Transportasi (NEXT-06)
+       ================================================================= */
+    function getRankedTerminals(points, summary, metric) {
+        if (!Array.isArray(points)) return [];
+        var isVeh = metric === "kendaraan";
+        var totalProv = 0;
+        if (summary) {
+            totalProv = isVeh
+                ? (toNumberOrZero(summary.kedatangan_kendaraan) + toNumberOrZero(summary.keberangkatan_kendaraan))
+                : (toNumberOrZero(summary.kedatangan_penumpang) + toNumberOrZero(summary.keberangkatan_penumpang));
+        }
+
+        var list = [];
+        for (var i = 0; i < points.length; i++) {
+            var p = points[i];
+            if (!p || typeof p !== "object") continue;
+            var stats = p.stats || {};
+            var vol = isVeh
+                ? (toNumberOrZero(stats.kedatangan_kendaraan) + toNumberOrZero(stats.keberangkatan_kendaraan))
+                : (toNumberOrZero(stats.kedatangan_penumpang) + toNumberOrZero(stats.keberangkatan_penumpang));
+            if (vol > 0) {
+                list.push({
+                    kode: String(p.kode_terminal || p.kode || "").trim(),
+                    nama: String(p.nama_terminal || p.nama || "Terminal").trim(),
+                    kota: String(p.kabupaten_kota || p.kota || "Jawa Barat").trim(),
+                    volume: vol
+                });
+            }
+        }
+
+        list.sort(function (a, b) { return b.volume - a.volume; });
+        var top5 = list.slice(0, 5);
+
+        // Jika totalProvinsi bernilai 0 (misal payload summary kosong), gunakan akumulasi simpul aktif
+        if (totalProv <= 0 && list.length > 0) {
+            for (var j = 0; j < list.length; j++) {
+                totalProv += list[j].volume;
+            }
+        }
+
+        var top1Vol = top5.length > 0 ? top5[0].volume : 0;
+        return top5.map(function (item, idx) {
+            var share = totalProv > 0 ? (item.volume / totalProv) * 100 : 0;
+            var barPct = top1Vol > 0 ? Math.round((item.volume / top1Vol) * 100) : 0;
+            return {
+                rank: idx + 1,
+                kode: item.kode,
+                nama: item.nama,
+                kota: item.kota,
+                volume: item.volume,
+                share: share,
+                barPct: Math.max(barPct, 4)
+            };
+        });
+    }
+
+    function renderTerminalRankings(points, summary, metric) {
+        var targetMetric = metric || activeRankMetric || "penumpang";
+        var containerId = targetMetric === "kendaraan" ? "rankingListKendaraan" : "rankingListPenumpang";
+        var container = document.getElementById(containerId);
+        if (!container) return;
+
+        var ranked = getRankedTerminals(points, summary, targetMetric);
+        if (ranked.length === 0) {
+            var emptyMsg = selectedYear
+                ? "Belum ada catatan aktivitas pergerakan simpul untuk tahun " + escapeHtml(selectedYear) + "."
+                : "Belum ada catatan aktivitas pergerakan simpul.";
+            container.innerHTML = '<div class="ranking-empty"><p>' + emptyMsg + '</p></div>';
+            return;
+        }
+
+        var isVeh = targetMetric === "kendaraan";
+        var unit = isVeh ? "kendaraan" : "penumpang";
+        var barCls = isVeh ? "ranking-bar-fill ranking-bar-fill-kendaraan" : "ranking-bar-fill";
+
+        var html = '';
+        for (var i = 0; i < ranked.length; i++) {
+            var r = ranked[i];
+            var badgeCls = r.rank === 1 ? "ranking-badge-1" :
+                           r.rank === 2 ? "ranking-badge-2" :
+                           r.rank === 3 ? "ranking-badge-3" : "ranking-badge-other";
+            var linkHref = r.kode ? ("./terminal/?kode=" + encodeURIComponent(r.kode)) : "./terminal/";
+
+            html += '<a href="' + linkHref + '" class="ranking-item" title="Buka profil ' + escapeHtml(r.nama) + ' (' + formatNumber(r.volume) + ' ' + unit + ')">' +
+                '<div class="ranking-header-row">' +
+                    '<div class="ranking-ident">' +
+                        '<span class="ranking-badge ' + badgeCls + '">' + r.rank + '</span>' +
+                        '<span class="ranking-name">' + escapeHtml(r.nama) + '</span>' +
+                        '<span class="ranking-loc">(' + escapeHtml(r.kota) + ')</span>' +
+                    '</div>' +
+                    '<div class="ranking-metric">' +
+                        '<span class="ranking-val">' + formatNumber(r.volume) + '</span>' +
+                        '<span class="ranking-share">(' + formatPercent(r.share) + ')</span>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="ranking-bar-track" aria-hidden="true">' +
+                    '<div class="' + barCls + '" style="width: ' + r.barPct + '%;"></div>' +
+                '</div>' +
+            '</a>';
+        }
+
+        container.innerHTML = html;
+    }
+
+    function renderAllTerminalRankings(points, summary) {
+        renderTerminalRankings(points, summary, "penumpang");
+        renderTerminalRankings(points, summary, "kendaraan");
+    }
+
+    function setTerminalRankingsLoading() {
+        var elPen = document.getElementById("rankingListPenumpang");
+        var elKnd = document.getElementById("rankingListKendaraan");
+        if (elPen) elPen.innerHTML = '<p class="ranking-loading">Memuat peringkat simpul…</p>';
+        if (elKnd) elKnd.innerHTML = '<p class="ranking-loading">Memuat peringkat simpul…</p>';
+    }
+
+    function setTerminalRankingsError(msg) {
+        var elPen = document.getElementById("rankingListPenumpang");
+        var elKnd = document.getElementById("rankingListKendaraan");
+        var errHtml = '<div class="ranking-empty"><p>Gagal memuat data peringkat simpul.</p></div>';
+        if (elPen) elPen.innerHTML = errHtml;
+        if (elKnd) elKnd.innerHTML = errHtml;
+    }
+
+    /* =================================================================
+       8a3. Kualitas Data Faktual (NEXT-06)
+       ================================================================= */
+    function renderDataQualityMetrics(d, year) {
+        if (!d) return;
+
+        // 1. Kelengkapan Simpul (Reporting Completeness)
+        var allPoints = Array.isArray(d.points) ? d.points : [];
+        var totalSimpul = allPoints.length || 130;
+        var activeSimpul = 0;
+        allPoints.forEach(function (p) {
+            if (!p || typeof p !== "object") return;
+            var s = p.stats || {};
+            var vol = (toNumberOrZero(s.kedatangan_penumpang) +
+                       toNumberOrZero(s.keberangkatan_penumpang) +
+                       toNumberOrZero(s.kedatangan_kendaraan) +
+                       toNumberOrZero(s.keberangkatan_kendaraan));
+            if (vol > 0) {
+                activeSimpul++;
+            }
+        });
+
+        var reportingPct = totalSimpul > 0 ? (activeSimpul / totalSimpul) * 100 : 0;
+        setText("qmcReportingPill", formatPercent(reportingPct));
+        setText("qmcReportingVal", activeSimpul + " / " + totalSimpul);
+        setText("qmcReportingSub", activeSimpul + " dari " + totalSimpul + " simpul aktif berproduksi");
+
+        var repPill = document.getElementById("qmcReportingPill");
+        if (repPill) {
+            repPill.className = reportingPct > 0 ? "quality-metric-pill quality-metric-pill-ok" : "quality-metric-pill quality-metric-pill-warn";
+        }
+
+        // 2. Kontinuitas Bulanan (Time Series Continuity)
+        var trend = Array.isArray(d.trend) ? d.trend : [];
+        var activeMonths = 0;
+        for (var i = 0; i < 12; i++) {
+            if (monthHasActivity(trend[i])) {
+                activeMonths++;
+            }
+        }
+
+        var continuityPct = (activeMonths / 12) * 100;
+        setText("qmcContinuityPill", formatPercent(continuityPct));
+        setText("qmcContinuityVal", activeMonths + " / 12 Bulan");
+        setText("qmcContinuitySub", activeMonths === 12
+            ? "Kontinuitas data lengkap (100%)"
+            : (activeMonths + " dari 12 bulan kalender terisi"));
+
+        var contPill = document.getElementById("qmcContinuityPill");
+        if (contPill) {
+            contPill.className = continuityPct === 100 ? "quality-metric-pill quality-metric-pill-ok" : "quality-metric-pill quality-metric-pill-warn";
+        }
+
+        // 3. Cakupan UPPKB (Facility Coverage)
+        var uppkbs = getVerifiedUppkbPoints(d.uppkbPoints);
+        var uppkbCount = uppkbs.length || (Array.isArray(d.uppkbPoints) ? d.uppkbPoints.length : 0);
+        setText("qmcUppkbVal", uppkbCount + " Lokasi");
+        setText("qmcUppkbSub", uppkbCount + " fasilitas penimbangan aktif terpetakan");
+
+        // 4. Status Transmisi Gateway API
+        setText("qmcGatewayVal", "Tersinkronisasi");
+        setText("qmcGatewaySub", "Transmisi gateway API terhubung");
+        var gwPill = document.getElementById("qmcGatewayPill");
+        if (gwPill) {
+            gwPill.className = "quality-metric-pill quality-metric-pill-ok";
+            gwPill.textContent = "Live";
+        }
+    }
+
+    function setDataQualityLoading() {
+        setText("qmcReportingPill", "—%");
+        setText("qmcReportingVal", "Memuat…");
+        setText("qmcReportingSub", "Memeriksa kelengkapan simpul…");
+
+        setText("qmcContinuityPill", "—%");
+        setText("qmcContinuityVal", "Memuat…");
+        setText("qmcContinuitySub", "Memeriksa kontinuitas bulanan…");
+
+        setText("qmcUppkbVal", "Memuat…");
+        setText("qmcUppkbSub", "Memeriksa data fasilitas…");
+
+        setText("qmcGatewayVal", "Memeriksa…");
+        setText("qmcGatewaySub", "Koneksi gateway API…");
+        var gwPill = document.getElementById("qmcGatewayPill");
+        if (gwPill) {
+            gwPill.className = "quality-metric-pill";
+            gwPill.textContent = "…";
+        }
+    }
+
+    function setDataQualityError(msg) {
+        setText("qmcReportingPill", "—%");
+        setText("qmcReportingVal", "—");
+        setText("qmcReportingSub", "Data pelaporan tidak tersedia");
+
+        setText("qmcContinuityPill", "—%");
+        setText("qmcContinuityVal", "—");
+        setText("qmcContinuitySub", "Data kontinuitas tidak tersedia");
+
+        setText("qmcUppkbVal", "—");
+        setText("qmcUppkbSub", "Data fasilitas tidak tersedia");
+
+        setText("qmcGatewayVal", "Gagal Terhubung");
+        setText("qmcGatewaySub", "Permintaan API tidak berhasil");
+        var gwPill = document.getElementById("qmcGatewayPill");
+        if (gwPill) {
+            gwPill.className = "quality-metric-pill quality-metric-pill-warn";
+            gwPill.textContent = "Offline";
+        }
+    }
+
+    function renderDataQualityEmpty(year) {
+        setText("qmcReportingPill", "0,0%");
+        setText("qmcReportingVal", "0 / 130");
+        setText("qmcReportingSub", "Belum ada simpul aktif pada tahun " + escapeHtml(year || "—"));
+
+        setText("qmcContinuityPill", "0,0%");
+        setText("qmcContinuityVal", "0 / 12 Bulan");
+        setText("qmcContinuitySub", "Belum ada rekaman bulanan");
+
+        setText("qmcUppkbVal", "6 Lokasi");
+        setText("qmcUppkbSub", "6 fasilitas penimbangan terpetakan");
+
+        setText("qmcGatewayVal", "Data Kosong");
+        setText("qmcGatewaySub", "Respons valid tanpa data produksi");
+        var gwPill = document.getElementById("qmcGatewayPill");
+        if (gwPill) {
+            gwPill.className = "quality-metric-pill";
+            gwPill.textContent = "Empty";
+        }
     }
 
     function renderInsightPuncak(puncak, year) {
@@ -1622,24 +2088,39 @@
                 panel.hidden = !isSelected;
             }
         });
+
+        // NEXT-06: Jika tab peringkat simpul aktif, perbarui activeRankMetric & render
+        var rankMetric = selectedTab.getAttribute("data-rank-metric");
+        if (rankMetric) {
+            activeRankMetric = rankMetric;
+            if (currentDashboardData) {
+                renderTerminalRankings(currentDashboardData.points, currentDashboardData.summary, rankMetric);
+            }
+        }
     }
 
     var tablist = document.querySelector('[role="tablist"]');
     if (tablist) {
         tablist.addEventListener("keydown", function (e) {
-            if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") {
-                return;
-            }
-            e.preventDefault();
             var currentIndex = tabs.indexOf(document.activeElement);
             if (currentIndex === -1) {
                 return;
             }
             var nextIndex;
-            if (e.key === "ArrowRight") {
+            if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+                e.preventDefault();
                 nextIndex = (currentIndex + 1) % tabs.length;
-            } else {
+            } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+                e.preventDefault();
                 nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+            } else if (e.key === "Home") {
+                e.preventDefault();
+                nextIndex = 0;
+            } else if (e.key === "End") {
+                e.preventDefault();
+                nextIndex = tabs.length - 1;
+            } else {
+                return;
             }
             activateTab(tabs[nextIndex]);
             tabs[nextIndex].focus();
@@ -1687,6 +2168,22 @@
                 loadDashboardData();
             });
         }
+
+        // Inisialisasi segmented toggle analitik tren bulanan (NEXT-06)
+        var trendBtns = Array.prototype.slice.call(document.querySelectorAll(".trend-toggle-btn"));
+        trendBtns.forEach(function (btn) {
+            btn.addEventListener("click", function () {
+                var m = btn.getAttribute("data-trend-metric");
+                if (!m) return;
+                activeTrendMetric = m;
+                trendBtns.forEach(function (b) {
+                    var isCurrent = b === btn;
+                    b.classList.toggle("active", isCurrent);
+                    b.setAttribute("aria-pressed", isCurrent ? "true" : "false");
+                });
+                renderOverviewMonthlyTrend((currentDashboardData && currentDashboardData.trend) || [], selectedYear, activeTrendMetric);
+            });
+        });
 
         // Inisialisasi Peta Mini Simpul Transportasi (PHASE 15B)
         initMiniMap();

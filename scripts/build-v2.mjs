@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 /* =====================================================================
-   GeoPORTAL BPTD Jabar — Command Center V2 build script (PHASE 14A, 15C, 15D)
-   ----------------------------------------------------------------
    Source : <repo>/v2/            (index.html, command-center.css, command-center.js)
             <repo>/v2/terminal/   (index.html, terminal.css, terminal.js)
             <repo>/v2/trayek/     (index.html, trayek.css, trayek.js)
+            <repo>/v2/perintis/   (index.html, perintis.css, perintis.js)
    Output : <repo>/src/command-center/
             <repo>/src/command-center/terminal/
             <repo>/src/command-center/trayek/
+            <repo>/src/command-center/perintis/
    ----------------------------------------------------------------
    Node built-in only (fs, path, url). Tidak tergantung CWD.
    Idempotent: menyalin file wajib, membuat folder output bila belum ada,
@@ -46,6 +46,14 @@ const TRAYEK_FILES = [
     "index.html",
     "trayek.css",
     "trayek.js",
+];
+const PERINTIS_SOURCE_DIR = resolve(SOURCE_DIR, "perintis");
+const PERINTIS_OUT_DIR = resolve(OUT_DIR, "perintis");
+
+const PERINTIS_FILES = [
+    "index.html",
+    "perintis.css",
+    "perintis.js",
 ];
 
 function build() {
@@ -117,6 +125,30 @@ function build() {
 
         writeFileSync(outPath, data);
         results.push({ name: `trayek/${name}`, size: data.length });
+    }
+    // Direktori perintis dan ketiga filenya wajib ada setelah modul perintis dirilis
+    if (!existsSync(PERINTIS_SOURCE_DIR)) {
+        console.error(`ERROR: direktori source perintis wajib ada dan tidak ditemukan: ${PERINTIS_SOURCE_DIR}`);
+        process.exitCode = 1;
+        return;
+    }
+
+    mkdirSync(PERINTIS_OUT_DIR, { recursive: true });
+    for (const name of PERINTIS_FILES) {
+        const srcPath = resolve(PERINTIS_SOURCE_DIR, name);
+        const outPath = resolve(PERINTIS_OUT_DIR, name);
+
+        let data;
+        try {
+            data = readFileSync(srcPath);
+        } catch (err) {
+            console.error(`ERROR: file source perintis wajib tidak ditemukan: ${srcPath} (${err.code})`);
+            process.exitCode = 1;
+            return;
+        }
+
+        writeFileSync(outPath, data);
+        results.push({ name: `perintis/${name}`, size: data.length });
     }
 
     for (const r of results) {
