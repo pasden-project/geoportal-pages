@@ -6,12 +6,14 @@
             <repo>/v2/perintis/   (index.html, perintis.css, perintis.js)
             <repo>/v2/uppkb/      (index.html, uppkb.css, uppkb.js)
             <repo>/v2/od/         (index.html, od.css, od.js)
+            <repo>/v2/connectivity/ (index.html, connectivity.css, connectivity.js)
    Output : <repo>/src/command-center/
             <repo>/src/command-center/terminal/
             <repo>/src/command-center/trayek/
             <repo>/src/command-center/perintis/
             <repo>/src/command-center/uppkb/
             <repo>/src/command-center/od/
+            <repo>/src/command-center/connectivity/
    ----------------------------------------------------------------
    Node built-in only (fs, path, url). Tidak tergantung CWD.
    Idempotent: menyalin file wajib, membuat folder output bila belum ada,
@@ -74,6 +76,14 @@ const OD_FILES = [
     "index.html",
     "od.css",
     "od.js",
+];
+const CONNECTIVITY_SOURCE_DIR = resolve(SOURCE_DIR, "connectivity");
+const CONNECTIVITY_OUT_DIR = resolve(OUT_DIR, "connectivity");
+
+const CONNECTIVITY_FILES = [
+    "index.html",
+    "connectivity.css",
+    "connectivity.js",
 ];
 
 function build() {
@@ -217,6 +227,30 @@ function build() {
 
         writeFileSync(outPath, data);
         results.push({ name: `od/${name}`, size: data.length });
+    }
+    // Direktori connectivity dan ketiga filenya wajib ada setelah modul Connectivity dirilis
+    if (!existsSync(CONNECTIVITY_SOURCE_DIR)) {
+        console.error(`ERROR: direktori source connectivity wajib ada dan tidak ditemukan: ${CONNECTIVITY_SOURCE_DIR}`);
+        process.exitCode = 1;
+        return;
+    }
+
+    mkdirSync(CONNECTIVITY_OUT_DIR, { recursive: true });
+    for (const name of CONNECTIVITY_FILES) {
+        const srcPath = resolve(CONNECTIVITY_SOURCE_DIR, name);
+        const outPath = resolve(CONNECTIVITY_OUT_DIR, name);
+
+        let data;
+        try {
+            data = readFileSync(srcPath);
+        } catch (err) {
+            console.error(`ERROR: file source connectivity wajib tidak ditemukan: ${srcPath} (${err.code})`);
+            process.exitCode = 1;
+            return;
+        }
+
+        writeFileSync(outPath, data);
+        results.push({ name: `connectivity/${name}`, size: data.length });
     }
 
     for (const r of results) {

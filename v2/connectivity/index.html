@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Modul Analitik Konektivitas Multimoda — Transport Command Center BPTD Kelas I Jawa Barat. Integrasi antarmoda simpul terminal, stasiun KA/Whoosh, bandara udara, pelabuhan laut, dan fasilitas pengawasan UPPKB.">
+    <title>Konektivitas Multimoda — Transport Command Center | BPTD Jawa Barat</title>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+    <link rel="stylesheet" href="../command-center.css">
+    <link rel="stylesheet" href="connectivity.css">
+</head>
+<body>
+    <div class="app-shell">
+        <!-- ================= SIDEBAR ================= -->
+        <aside id="appSidebar" class="app-sidebar" aria-label="Navigasi utama">
+            <div class="sidebar-header">
+                <a href="../" class="brand-link" title="Kembali ke Beranda Command Center">
+                    <svg class="logo-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <div class="brand-text">
+                        <span class="brand-title">GeoPORTAL</span>
+                        <span class="brand-sub">BPTD KELAS I JABAR</span>
+                    </div>
+                </a>
+                <button type="button" id="sidebarClose" class="sidebar-close-btn" aria-label="Tutup menu navigasi">
+                    <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav" aria-label="Navigasi utama modul">
+                <a href="../" class="nav-link" data-nav-status="available" title="Beranda — Monitoring Eksekutif Transportasi Darat">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    <span class="nav-text">Beranda</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../terminal/" class="nav-link" data-nav-status="available" title="Terminal — Modul Terminal Penumpang (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                    <span class="nav-text">Terminal</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../trayek/" class="nav-link" data-nav-status="available" title="Trayek — Modul Trayek Angkutan Jalan (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    <span class="nav-text">Trayek</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../perintis/" class="nav-link" data-nav-status="available" title="Angkutan Perintis — Modul Layanan Bus Perintis BPTD Jabar (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                    <span class="nav-text">Angkutan Perintis</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../uppkb/" class="nav-link" data-nav-status="available" title="UPPKB / Barang — Modul Fasilitas Penimbangan &amp; Pengawasan Muatan (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path></svg>
+                    <span class="nav-text">UPPKB / Barang</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../od/" class="nav-link" data-nav-status="available" title="OD Intelligence — Modul Analitik Asal-Tujuan &amp; Matriks Pergerakan (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                    <span class="nav-text">OD Intelligence</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="./" class="nav-link is-active" aria-current="page" data-nav-status="active" title="Connectivity — Modul Analitik Konektivitas Multimoda &amp; Hub Antarmoda (Aktif)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.107 7.107a4 4 0 11-5.657 5.657 4 4 0 015.657-5.657z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12l7.071 7.071"></path></svg>
+                    <span class="nav-text">Connectivity</span>
+                    <span class="nav-status-badge nav-status-active" data-status="ACTIVE">Aktif</span>
+                </a>
+                <button type="button" class="nav-link" aria-disabled="true" disabled data-nav-status="coming-soon" title="Early Warning — Belum tersedia pada prototipe (Segera)">
+                    <svg class="nav-icon nav-icon-warn" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    <span class="nav-text">Early Warning</span>
+                    <span class="nav-status-badge nav-status-soon" data-status="COMING SOON">Segera</span>
+                </button>
+                <button type="button" class="nav-link" aria-disabled="true" disabled data-nav-status="coming-soon" title="Program &amp; Kinerja — Belum tersedia pada prototipe (Segera)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
+                    <span class="nav-text">Program &amp; Kinerja</span>
+                    <span class="nav-status-badge nav-status-soon" data-status="COMING SOON">Segera</span>
+                </button>
+                <button type="button" class="nav-link" aria-disabled="true" disabled data-nav-status="coming-soon" title="Laporan — Belum tersedia pada prototipe (Segera)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    <span class="nav-text">Laporan</span>
+                    <span class="nav-status-badge nav-status-soon" data-status="COMING SOON">Segera</span>
+                </button>
+                <button type="button" class="nav-link" aria-disabled="true" disabled data-nav-status="coming-soon" title="Data Master — Belum tersedia pada prototipe (Segera)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    <span class="nav-text">Data Master</span>
+                    <span class="nav-status-badge nav-status-soon" data-status="COMING SOON">Segera</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <svg class="logo-mark logo-mark-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path><path d="M12 2v20"></path></svg>
+                <span class="footer-title">BPTD Jawa Barat</span>
+                <span class="footer-sub">Transportasi Darat Lebih Terintegrasi</span>
+            </div>
+        </aside>
+
+        <!-- ================= OVERLAY (mobile) ================= -->
+        <div id="sidebarOverlay" class="sidebar-overlay" hidden></div>
+
+        <!-- ================= MAIN ================= -->
+        <main class="app-main">
+            <header class="app-header">
+                <div class="header-left">
+                    <button type="button" id="sidebarToggle" class="header-menu-btn" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="appSidebar">
+                        <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                    <div class="header-title-block">
+                        <h1 class="header-title">Transport Command Center</h1>
+                        <p class="header-sub">Modul Konektivitas Multimoda — Jawa Barat</p>
+                    </div>
+                </div>
+
+                <div class="header-right">
+                    <div class="header-clock">
+                        <div class="clock-date">
+                            <svg class="icon-sm icon-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            <span id="current-date">Memuat tanggal...</span>
+                        </div>
+                        <span id="current-time" class="clock-time">--:-- WIB</span>
+                    </div>
+
+                    <div class="api-status" role="status" aria-live="polite">
+                        <span id="apiStatusOk" class="api-status-pill api-status-ok">
+                            <span class="api-dot" aria-hidden="true"></span>
+                            Data Terverifikasi BPTD
+                        </span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="app-content">
+                <!-- Module Header & Badges -->
+                <div class="dash-head">
+                    <div>
+                        <h2 class="dash-title">Analitik Konektivitas Antarmoda &amp; Jaringan Simpul Transportasi <span class="dash-title-dim">—</span> Jawa Barat</h2>
+                        <p class="dash-sub">Integrasi multimoda jalan raya, rel kereta api, bandara udara, pelabuhan laut, dan fasilitas pengawasan Jawa Barat</p>
+                    </div>
+                    <div class="dash-badges">
+                        <span class="badge badge-live">
+                            <span class="badge-dot badge-dot-green" aria-hidden="true"></span>
+                            Tahun Berjalan 2026
+                        </span>
+                        <span class="badge badge-amber">
+                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.107 7.107a4 4 0 11-5.657 5.657 4 4 0 015.657-5.657z"></path></svg>
+                            <span>47 Simpul Multimoda Terpetakan</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Status Bar -->
+                <div class="status-bar" role="status" aria-live="polite">
+                    <span class="status-chip" id="dataTimestamp">Data Observasi Resmi BPTD Jabar</span>
+                    <span class="status-chip" id="instansiContext">Cakupan: 47 Simpul &amp; 27 Kab/Kota</span>
+                    <span class="status-chip" id="metricContext">Metodologi: Buffer Intermodal (1 &amp; 5 km) &amp; Multimodal Index</span>
+                </div>
+
+                <!-- Scope / Data Honesty Notice -->
+                <div class="demo-notice" role="note">
+                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span><strong>INFORMASI RESMI KONEKTIVITAS MULTIMODA &amp; SIMPUL ANTARMODA JAWA BARAT.</strong> Integrasi simpul transportasi lintas moda di Jawa Barat mencakup 12 Terminal Tipe A, 10 Terminal Tipe B regional, 6 UPPKB fasilitas penimbangan, 15 Stasiun Kereta Api &amp; KCIC Whoosh, 2 Bandara Internasional, dan 2 Pelabuhan Laut Utama. Dilengkapi 14 koridor transfer antarmoda utama dan kalkulasi Indeks Aksesibilitas Multimoda 27 Kabupaten/Kota. Seluruh koordinat simpul terstandarisasi geospasial WGS84.</span>
+                </div>
+
+                <!-- 4 Factual KPIs -->
+                <div class="kpi-row">
+                    <div class="kpi-card kpi-card-live">
+                        <div class="kpi-head">
+                            <span class="kpi-icon kpi-icon-blue" aria-hidden="true">
+                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                            </span>
+                            <span>Total Simpul Multimoda</span>
+                            <span class="live-badge" aria-hidden="true">SIMPUL</span>
+                        </div>
+                        <p id="kpiTotalNodes" class="kpi-value text-blue">47 Simpul</p>
+                        <p class="kpi-trend kpi-flat">Tersebar di 6 kategori moda</p>
+                        <p class="kpi-year">Infrastruktur Terintegrasi</p>
+                        <span class="visually-hidden">KPI total simpul transportasi terpetakan</span>
+                    </div>
+
+                    <div class="kpi-card kpi-card-live">
+                        <div class="kpi-head">
+                            <span class="kpi-icon kpi-icon-amber" aria-hidden="true">
+                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            </span>
+                            <span>Koridor Transfer Antarmoda</span>
+                            <span class="live-badge" aria-hidden="true">KORIDOR</span>
+                        </div>
+                        <p id="kpiTotalCorridors" class="kpi-value text-amber">14 Koridor</p>
+                        <p class="kpi-trend kpi-flat">Jalur integrasi first/last mile</p>
+                        <p class="kpi-year">Rute Penghubung Hub</p>
+                        <span class="visually-hidden">KPI total koridor integrasi antarmoda</span>
+                    </div>
+
+                    <div class="kpi-card kpi-card-live">
+                        <div class="kpi-head">
+                            <span class="kpi-icon kpi-icon-green" aria-hidden="true">
+                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.107 7.107a4 4 0 11-5.657 5.657 4 4 0 015.657-5.657z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12l7.071 7.071"></path></svg>
+                            </span>
+                            <span>Rata-rata Jarak Transfer</span>
+                            <span class="live-badge" aria-hidden="true">RADIUS</span>
+                        </div>
+                        <p id="kpiAvgDistance" class="kpi-value text-green">3,8 km</p>
+                        <p class="kpi-trend kpi-flat">Jarak rata-rata jalan ke rel/udara</p>
+                        <p class="kpi-year">Jarak Antarsimpul</p>
+                        <span class="visually-hidden">KPI rata-rata jarak transfer antarmoda</span>
+                    </div>
+
+                    <div class="kpi-card kpi-card-live">
+                        <div class="kpi-head">
+                            <span class="kpi-icon kpi-icon-purple" aria-hidden="true">
+                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+                            </span>
+                            <span>Cakupan Wilayah</span>
+                            <span class="live-badge" aria-hidden="true">REGIONAL</span>
+                        </div>
+                        <p id="kpiTotalRegions" class="kpi-value text-purple">27 Wilayah</p>
+                        <p class="kpi-trend kpi-flat">Seluruh Kabupaten &amp; Kota</p>
+                        <p class="kpi-year">Provinsi Jawa Barat</p>
+                        <span class="visually-hidden">KPI cakupan wilayah kabupaten dan kota</span>
+                    </div>
+                </div>
+
+                <!-- ================= MAP SECTION ================= -->
+                <section class="card connectivity-map-card" aria-labelledby="mapHeading">
+                    <div class="connectivity-map-head">
+                        <div>
+                            <h3 id="mapHeading" class="card-title">Peta Jaringan Simpul Multimoda &amp; Koridor Transfer Antarmoda</h3>
+                            <p class="card-sub">Visualisasi spasial 47 simpul transportasi, buffer radius intermodal 1 &amp; 5 km, serta jalur penghubung antarmoda Jawa Barat</p>
+                        </div>
+                        <div class="connectivity-map-actions">
+                            <button type="button" id="btnResetMapView" class="btn-map-control" aria-label="Reset tampilan peta ke Jawa Barat">
+                                <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+                                <span>Fokus Jabar</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Filter Moda Bar -->
+                    <div class="mode-filter-bar" role="toolbar" aria-label="Filter visibilitas moda transportasi">
+                        <span class="mode-filter-title">Filter Moda:</span>
+                        <div class="mode-toggle-group">
+                            <label class="mode-toggle-chip is-checked" data-category="terminal_a">
+                                <input type="checkbox" class="mode-checkbox" value="terminal_a" checked>
+                                <span class="mode-color-dot" style="background:#3b82f6;"></span>
+                                <span>Terminal Tipe A (12)</span>
+                            </label>
+                            <label class="mode-toggle-chip is-checked" data-category="terminal_b">
+                                <input type="checkbox" class="mode-checkbox" value="terminal_b" checked>
+                                <span class="mode-color-dot" style="background:#10b981;"></span>
+                                <span>Terminal Tipe B (10)</span>
+                            </label>
+                            <label class="mode-toggle-chip is-checked" data-category="uppkb">
+                                <input type="checkbox" class="mode-checkbox" value="uppkb" checked>
+                                <span class="mode-color-dot" style="background:#f59e0b;"></span>
+                                <span>UPPKB (6)</span>
+                            </label>
+                            <label class="mode-toggle-chip is-checked" data-category="stasiun_ka">
+                                <input type="checkbox" class="mode-checkbox" value="stasiun_ka" checked>
+                                <span class="mode-color-dot" style="background:#8b5cf6;"></span>
+                                <span>Stasiun KA &amp; Whoosh (15)</span>
+                            </label>
+                            <label class="mode-toggle-chip is-checked" data-category="bandara">
+                                <input type="checkbox" class="mode-checkbox" value="bandara" checked>
+                                <span class="mode-color-dot" style="background:#ef4444;"></span>
+                                <span>Bandara Udara (2)</span>
+                            </label>
+                            <label class="mode-toggle-chip is-checked" data-category="pelabuhan">
+                                <input type="checkbox" class="mode-checkbox" value="pelabuhan" checked>
+                                <span class="mode-color-dot" style="background:#06b6d4;"></span>
+                                <span>Pelabuhan Laut (2)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="connectivityMap" class="connectivity-map-container" role="application" aria-label="Peta Interaktif Konektivitas Multimoda Jawa Barat"></div>
+                </section>
+
+                <!-- ================= INTERACTIVE TAB CONTROLLER SECTION ================= -->
+                <section class="card connectivity-analytics-card" aria-labelledby="analyticsHeading">
+                    <div class="analytics-header-row">
+                        <div>
+                            <h3 id="analyticsHeading" class="card-title">Analitik &amp; Direktori Multidimensi Konektivitas</h3>
+                            <p class="card-sub">Eksplorasi inventaris 47 simpul, 14 koridor integrasi antarmoda, dan peringkat indeks konektivitas 27 wilayah</p>
+                        </div>
+
+                        <!-- Tablist Switcher -->
+                        <div class="connectivity-tablist" role="tablist" aria-label="Pilihan tampilan data analitik konektivitas">
+                            <button type="button" role="tab" id="btnTabDirectory" class="connectivity-tab-btn is-active" aria-selected="true" aria-controls="panelDirectory" tabindex="0">
+                                <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                                <span>Direktori 47 Simpul Multimoda</span>
+                            </button>
+                            <button type="button" role="tab" id="btnTabCorridors" class="connectivity-tab-btn" aria-selected="false" aria-controls="panelCorridors" tabindex="-1">
+                                <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                <span>Koridor Transfer Antarmoda</span>
+                            </button>
+                            <button type="button" role="tab" id="btnTabRegional" class="connectivity-tab-btn" aria-selected="false" aria-controls="panelRegional" tabindex="-1">
+                                <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+                                <span>Indeks Konektivitas Wilayah</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ================= PANEL 1: DIREKTORI 47 SIMPUL ================= -->
+                    <div id="panelDirectory" class="connectivity-tabpanel" role="tabpanel" aria-labelledby="btnTabDirectory">
+                        <div class="panel-toolbar">
+                            <div class="search-input-wrap">
+                                <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                                <input type="text" id="searchNode" class="search-input" placeholder="Cari nama simpul, kota, atau moda (cth. Padalarang, Patimban, Kertajati)..." aria-label="Cari simpul transportasi">
+                            </div>
+                            <div class="filter-select-wrap">
+                                <label for="filterCategory" class="visually-hidden">Filter Kategori Moda</label>
+                                <select id="filterCategory" class="filter-select" aria-label="Filter kategori moda">
+                                    <option value="ALL">Semua Kategori Moda (47)</option>
+                                    <option value="terminal_a">Terminal Tipe A (12)</option>
+                                    <option value="terminal_b">Terminal Tipe B (10)</option>
+                                    <option value="uppkb">UPPKB Penimbangan (6)</option>
+                                    <option value="stasiun_ka">Stasiun KA &amp; Whoosh (15)</option>
+                                    <option value="bandara">Bandara Udara (2)</option>
+                                    <option value="pelabuhan">Pelabuhan Laut (2)</option>
+                                </select>
+                            </div>
+                            <span id="nodeCount" class="result-count" role="status" aria-live="polite">Memuat simpul...</span>
+                        </div>
+
+                        <div class="table-wrap">
+                            <table id="nodeTable" class="connectivity-data-table" aria-label="Tabel Direktori Simpul Multimoda Jawa Barat">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="th-center" style="width: 50px;">No</th>
+                                        <th scope="col" style="min-width: 180px;">Nama Simpul</th>
+                                        <th scope="col" style="min-width: 140px;">Kategori Moda</th>
+                                        <th scope="col" style="min-width: 150px;">Kabupaten / Kota</th>
+                                        <th scope="col" style="min-width: 180px;">Hub Terdekat</th>
+                                        <th scope="col" class="th-center" style="width: 120px;">Aksesibilitas</th>
+                                        <th scope="col" class="th-center" style="width: 90px;">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="nodeTableBody">
+                                    <!-- Dynamic rows from connectivity.js -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- ================= PANEL 2: KORIDOR TRANSFER ANTARMODA ================= -->
+                    <div id="panelCorridors" class="connectivity-tabpanel" role="tabpanel" aria-labelledby="btnTabCorridors" hidden>
+                        <div class="panel-toolbar">
+                            <div class="search-input-wrap">
+                                <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                                <input type="text" id="searchCorridor" class="search-input" placeholder="Cari nama koridor atau moda pengumpan (cth. Padalarang, Whoosh, Feeder)..." aria-label="Cari koridor transfer">
+                            </div>
+                            <span id="corridorCount" class="result-count" role="status" aria-live="polite">Memuat data koridor...</span>
+                        </div>
+
+                        <div class="table-wrap">
+                            <table id="corridorTable" class="connectivity-data-table" aria-label="Tabel Koridor Transfer Antarmoda">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="th-center" style="width: 50px;">No</th>
+                                        <th scope="col" style="min-width: 180px;">Nama Koridor</th>
+                                        <th scope="col" style="min-width: 220px;">Simpul Asal &rarr; Simpul Tujuan</th>
+                                        <th scope="col" class="th-right" style="width: 100px;">Jarak (km)</th>
+                                        <th scope="col" style="min-width: 180px;">Moda Pengumpan / Integrasi</th>
+                                        <th scope="col" class="th-center" style="width: 110px;">Waktu Tempuh</th>
+                                        <th scope="col" class="th-center" style="width: 120px;">Kemudahan</th>
+                                        <th scope="col" class="th-center" style="width: 80px;">Fokus</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="corridorTableBody">
+                                    <!-- Dynamic rows from connectivity.js -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- ================= PANEL 3: INDEKS KONEKTIVITAS WILAYAH ================= -->
+                    <div id="panelRegional" class="connectivity-tabpanel" role="tabpanel" aria-labelledby="btnTabRegional" hidden>
+                        <div class="panel-toolbar">
+                            <div class="search-input-wrap">
+                                <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                                <input type="text" id="searchRegional" class="search-input" placeholder="Cari nama kabupaten atau kota..." aria-label="Cari kabupaten atau kota">
+                            </div>
+                            <span id="regionalCount" class="result-count" role="status" aria-live="polite">Memuat data wilayah...</span>
+                        </div>
+
+                        <div class="table-wrap">
+                            <table id="regionalTable" class="connectivity-data-table" aria-label="Tabel Indeks Konektivitas Multimoda 27 Kabupaten/Kota">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="th-center" style="width: 60px;">Peringkat</th>
+                                        <th scope="col" style="min-width: 180px;">Kabupaten / Kota</th>
+                                        <th scope="col" class="th-center" style="width: 100px;">Simpul</th>
+                                        <th scope="col" class="th-center" style="width: 110px;">Ragam Moda</th>
+                                        <th scope="col" class="th-right" style="width: 120px;">Rata-rata Jarak</th>
+                                        <th scope="col" style="min-width: 220px;">Indeks Aksesibilitas Multimoda</th>
+                                        <th scope="col" class="th-center" style="width: 120px;">Kategori</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="regionalTableBody">
+                                    <!-- Dynamic rows from connectivity.js -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- ================= DETAIL MODAL DIALOG ================= -->
+    <div id="modalBackdrop" class="modal-backdrop" hidden></div>
+    <div id="connectivityDetailModal" class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalSubInfo" hidden>
+        <div class="modal-header">
+            <div class="modal-title-group">
+                <div class="modal-badge-row">
+                    <span id="modalCategoryBadge" class="badge-code">SIMPUL MULTIMODA</span>
+                    <span id="modalLocationBadge" class="badge-endpoint-status">Jawa Barat</span>
+                    <span id="modalScoreBadge" class="badge-score-pill">Skor 0</span>
+                </div>
+                <h3 id="modalTitle" class="modal-title">Rincian Simpul Transportasi</h3>
+                <p id="modalSubInfo" class="modal-sub">Informasi integrasi antarmoda, jarak transfer, dan profil spasial</p>
+            </div>
+            <button type="button" id="modalCloseBtn" class="modal-close-btn" aria-label="Tutup jendela detail">
+                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <!-- Section Info Spasial -->
+            <div class="modal-section">
+                <h4 class="modal-section-title">Profil Fasilitas &amp; Lokasi Geospasial</h4>
+                <div class="modal-stats-grid">
+                    <div class="modal-stat-card">
+                        <span class="modal-stat-label">Koordinat WGS84</span>
+                        <p id="modalCoords" class="modal-stat-val text-blue font-mono">—</p>
+                        <span class="modal-stat-sub">Latitude, Longitude</span>
+                    </div>
+                    <div class="modal-stat-card">
+                        <span class="modal-stat-label">Hub Antarmoda Terdekat</span>
+                        <p id="modalHubInfo" class="modal-stat-val text-amber">—</p>
+                        <span id="modalHubDist" class="modal-stat-sub">Jarak transfer</span>
+                    </div>
+                    <div class="modal-stat-card">
+                        <span class="modal-stat-label">Status Fasilitas</span>
+                        <p id="modalStatus" class="modal-stat-val text-green">—</p>
+                        <span class="modal-stat-sub">Operasional BPTD / Stakeholder</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section Deskripsi & Alamat -->
+            <div class="modal-section">
+                <h4 class="modal-section-title">Deskripsi &amp; Alamat</h4>
+                <p id="modalAddress" class="modal-desc-text" style="font-weight: 500; margin-bottom: 8px;"></p>
+                <p id="modalDescription" class="modal-desc-text text-muted"></p>
+            </div>
+
+            <!-- Section Moda Terintegrasi -->
+            <div class="modal-section">
+                <h4 class="modal-section-title">Moda Transportasi Terintegrasi</h4>
+                <div id="modalModesList" class="modal-modes-list">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" id="modalFocusMapBtn" class="btn btn-primary">Fokus Pada Peta</button>
+            <button type="button" id="modalCloseFooterBtn" class="btn btn-secondary">Tutup</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <script>
+        if (typeof L === 'undefined') {
+            document.write('<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"><\/script>');
+        }
+    </script>
+    <script src="connectivity.js"></script>
+</body>
+</html>
