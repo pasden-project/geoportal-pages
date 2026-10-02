@@ -26,3 +26,6 @@ npm-debug.log*
 # Jangan commit salinan besar sementara (backup hasil split di luar src/)
 tmp/
 *.bak
+
+# Local agent metadata
+.claude/

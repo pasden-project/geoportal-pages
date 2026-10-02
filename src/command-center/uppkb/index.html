@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GeoPORTAL BPTD Jabar — Modul Angkutan Perintis</title>
-    <meta name="description" content="Modul Layanan Angkutan Jalan Perintis BPTD Kelas I Jawa Barat. Monitoring 6 koridor perintis bersubsidi, armada bus DAMRI, dan kinerja load factor.">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+    <title>GeoPORTAL BPTD Jabar — Modul UPPKB &amp; Angkutan Barang</title>
+    <meta name="description" content="Modul Pengawasan Angkutan Barang &amp; Fasilitas Penimbangan UPPKB BPTD Kelas I Jawa Barat. Monitoring 6 fasilitas penimbangan kendaraan bermotor, penindakan kelebihan dimensi &amp; muatan (ODOL), dan tingkat kepatuhan tonase.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" onerror="this.onerror=null;this.href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';">
     <link rel="stylesheet" href="../command-center.css">
-    <link rel="stylesheet" href="perintis.css">
+    <link rel="stylesheet" href="uppkb.css">
 </head>
 <body>
     <div class="app-shell">
@@ -49,15 +49,15 @@
                     <span class="nav-text">Trayek</span>
                     <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
                 </a>
-                <a href="./" class="nav-link is-active" aria-current="page" data-nav-status="active" title="Angkutan Perintis — Modul Layanan Bus Perintis BPTD Jabar (Aktif)">
+                <a href="../perintis/" class="nav-link" data-nav-status="available" title="Angkutan Perintis — Modul Layanan Bus Perintis BPTD Jabar (Tersedia)">
                     <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
                     <span class="nav-text">Angkutan Perintis</span>
-                    <span class="nav-status-badge nav-status-active" data-status="ACTIVE">Aktif</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
                 </a>
-                <a href="../uppkb/" class="nav-link" data-nav-status="available" title="UPPKB / Barang — Modul Fasilitas Penimbangan &amp; Pengawasan Muatan (Tersedia)">
+                <a href="./" class="nav-link is-active" aria-current="page" data-nav-status="active" title="UPPKB / Barang — Modul Fasilitas Penimbangan &amp; Pengawasan Muatan (Aktif)">
                     <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path></svg>
                     <span class="nav-text">UPPKB / Barang</span>
-                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                    <span class="nav-status-badge nav-status-active" data-status="ACTIVE">Aktif</span>
                 </a>
                 <button type="button" class="nav-link" aria-disabled="true" disabled data-nav-status="coming-soon" title="OD Intelligence — Belum tersedia pada prototipe (Segera)">
                     <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
@@ -110,7 +110,7 @@
                     </button>
                     <div class="header-title-block">
                         <h1 class="header-title">Transport Command Center</h1>
-                        <p class="header-sub">Modul Angkutan Perintis — Jawa Barat</p>
+                        <p class="header-sub">Modul UPPKB &amp; Angkutan Barang — Jawa Barat</p>
                     </div>
                 </div>
 
@@ -136,148 +136,149 @@
                 <!-- Module Header & Badges -->
                 <div class="dash-head">
                     <div>
-                        <h2 class="dash-title">Angkutan Perintis Jawa Barat <span class="dash-title-dim">—</span> 6 Koridor Bersubsidi</h2>
-                        <p class="dash-sub">Monitoring kinerja operasional, sebaran rute spasial, armada DAMRI, dan realisasi anggaran BPTD Kelas I Jawa Barat</p>
+                        <h2 class="dash-title">UPPKB &amp; Pengawasan Angkutan Barang <span class="dash-title-dim">—</span> 6 Fasilitas Aktif</h2>
+                        <p class="dash-sub">Monitoring operasional penimbangan kendaraan bermotor, penindakan muatan berlebih (ODOL), dan tingkat kepatuhan tonase BPTD Kelas I Jawa Barat</p>
                     </div>
                     <div class="dash-badges">
                         <span class="badge badge-live">
                             <span class="badge-dot badge-dot-green" aria-hidden="true"></span>
                             Tahun Berjalan 2025
                         </span>
-                        <span class="badge badge-blue">
-                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
-                            <span>6 Koridor Bersubsidi DAMRI</span>
+                        <span class="badge badge-amber">
+                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                            <span>6 Fasilitas Penimbangan Aktif</span>
                         </span>
                     </div>
                 </div>
 
                 <!-- Status Bar -->
                 <div class="status-bar" role="status" aria-live="polite">
-                    <span class="status-chip" id="dataTimestamp">Data Kontrak Resmi BPTD Jabar</span>
-                    <span class="status-chip" id="operatorContext">Operator: Perum DAMRI</span>
-                    <span class="status-chip" id="metricContext">Kapasitas Armada: 19 Kursi / Bus</span>
+                    <span class="status-chip" id="dataTimestamp">Data Operasional Resmi BPTD Jabar</span>
+                    <span class="status-chip" id="instansiContext">Instansi: BPTD Kelas I Jawa Barat</span>
+                    <span class="status-chip" id="metricContext">Standar Operasional: JBI &amp; Tata Muat</span>
                 </div>
 
                 <!-- Scope / Data Honesty Notice -->
                 <div class="demo-notice" role="note">
                     <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    <span><strong>INFORMASI RESMI LAYANAN ANGKUTAN PERINTIS.</strong> Layanan angkutan jalan perintis bersubsidi diselenggarakan oleh BPTD Kelas I Jawa Barat bekerja sama dengan operator penugasan Perum DAMRI Cabang Bandung. Seluruh data realisasi ritase, penumpang, keuangan, dan load factor mengacu pada kontrak resmi tahun anggaran 2025. Polylines spasial mengikuti jalan darat aktual WGS84.</span>
+                    <span><strong>INFORMASI RESMI FASILITAS PENIMBANGAN UPPKB.</strong> Unit Pelaksana Penimbangan Kendaraan Bermotor (UPPKB) di Jawa Barat berada di bawah pembinaan BPTD Kelas I Jawa Barat. Seluruh data kendaraan diperiksa, penindakan pelanggaran (tilang UPPKB, tilang kepolisian, transfer muatan, dan peringatan), serta tingkat kepatuhan tonase bersumber dari rekapitulasi operasional resmi simpul JT001 s.d. JT006. Koordinat fasilitas penimbangan terverifikasi WGS84.</span>
                 </div>
 
                 <!-- 4 Factual KPIs -->
                 <div class="kpi-row">
                     <div class="kpi-card kpi-card-live">
                         <div class="kpi-head">
-                            <span class="kpi-icon" aria-hidden="true">
-                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+                            <span class="kpi-icon kpi-icon-amber" aria-hidden="true">
+                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
                             </span>
-                            <span>Trayek Perintis</span>
+                            <span>Fasilitas Penimbangan</span>
                             <span class="live-badge" aria-hidden="true">AKTIF</span>
                         </div>
-                        <p id="kpiTotalRoutes" class="kpi-value">6 Trayek</p>
-                        <p class="kpi-trend kpi-flat">Wilayah Sukabumi, Bogor &amp; Purwakarta</p>
-                        <p class="kpi-year">BPTD Jabar 2025</p>
-                        <span class="visually-hidden">KPI total trayek angkutan perintis bersubsidi</span>
+                        <p id="kpiTotalStations" class="kpi-value">6 UPPKB</p>
+                        <p class="kpi-trend kpi-flat">Karawang, Indramayu, Tasik, dkk</p>
+                        <p class="kpi-year">JT001 – JT006</p>
+                        <span class="visually-hidden">KPI total fasilitas penimbangan UPPKB aktif</span>
                     </div>
 
                     <div class="kpi-card kpi-card-live">
                         <div class="kpi-head">
                             <span class="kpi-icon" aria-hidden="true">
-                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path></svg>
                             </span>
-                            <span>Total Armada</span>
-                            <span class="live-badge" aria-hidden="true">ARMADA</span>
+                            <span>Kendaraan Diperiksa</span>
+                            <span class="live-badge" aria-hidden="true">VOLUME</span>
                         </div>
-                        <p id="kpiTotalArmada" class="kpi-value">18 Bus</p>
-                        <p class="kpi-trend kpi-flat">12 Unit Utama + 6 Unit Cadangan DAMRI</p>
-                        <p class="kpi-year">19 Kursi / Bus</p>
-                        <span class="visually-hidden">KPI jumlah armada bus perintis</span>
+                        <p id="kpiTotalDiperiksa" class="kpi-value">194.392</p>
+                        <p class="kpi-trend kpi-flat">Akumulasi kendaraan barang tertimbang</p>
+                        <p class="kpi-year">Realisasi YTD 2025</p>
+                        <span class="visually-hidden">KPI total kendaraan barang diperiksa di UPPKB</span>
                     </div>
 
                     <div class="kpi-card kpi-card-live">
                         <div class="kpi-head">
-                            <span class="kpi-icon" aria-hidden="true">
-                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                            <span class="kpi-icon kpi-icon-red" aria-hidden="true">
+                                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
                             </span>
-                            <span>Total Penumpang YTD</span>
-                            <span class="live-badge" aria-hidden="true">REALISASI</span>
+                            <span>Total Penindakan</span>
+                            <span class="live-badge" aria-hidden="true">PENINDAKAN</span>
                         </div>
-                        <p id="kpiTotalPenumpang" class="kpi-value">26.815</p>
-                        <p class="kpi-trend kpi-flat">Akumulasi pergerakan penumpang terlayani</p>
-                        <p class="kpi-year">Januari – Desember 2025</p>
-                        <span class="visually-hidden">KPI total penumpang terlayani angkutan perintis</span>
+                        <p id="kpiTotalPenindakan" class="kpi-value text-red">15.898</p>
+                        <p class="kpi-trend kpi-flat">Tilang, transfer muatan &amp; peringatan</p>
+                        <p class="kpi-year">Pelanggaran Muatan &amp; Dimensi</p>
+                        <span class="visually-hidden">KPI total penindakan pelanggaran muatan</span>
                     </div>
 
                     <div class="kpi-card kpi-card-live">
                         <div class="kpi-head">
-                            <span class="kpi-icon" aria-hidden="true">
+                            <span class="kpi-icon kpi-icon-green" aria-hidden="true">
                                 <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                             </span>
-                            <span>Avg Load Factor</span>
-                            <span class="live-badge" aria-hidden="true">30% TARGET</span>
+                            <span>Tingkat Kepatuhan</span>
+                            <span class="live-badge" aria-hidden="true">KEPATUHAN</span>
                         </div>
-                        <p id="kpiAvgLoadFactor" class="kpi-value" style="color: #059669;">31,3%</p>
-                        <p class="kpi-trend kpi-flat">Rata-rata keterisian di atas target kontrak</p>
+                        <p id="kpiAvgKepatuhan" class="kpi-value text-green">91,8%</p>
+                        <p class="kpi-trend kpi-flat">Pemenuhan tonase &amp; tata muat legal</p>
                         <p class="kpi-year">Kinerja Positif</p>
-                        <span class="visually-hidden">KPI rata-rata load factor angkutan perintis</span>
+                        <span class="visually-hidden">KPI rata-rata kepatuhan kendaraan angkutan barang</span>
                     </div>
                 </div>
 
                 <!-- ================= MAP SECTION ================= -->
-                <section class="card perintis-map-card" aria-labelledby="mapHeading">
-                    <div class="perintis-map-head">
+                <section class="card uppkb-map-card" aria-labelledby="mapHeading">
+                    <div class="uppkb-map-head">
                         <div>
-                            <h3 id="mapHeading" class="card-title">Peta Spasial Trayek Angkutan Perintis</h3>
-                            <p class="card-sub">Visualisasi 6 koridor bus perintis bersubsidi di Jawa Barat dengan pewarnaan berbasis kinerja load factor</p>
+                            <h3 id="mapHeading" class="card-title">Peta Sebaran &amp; Wilayah Pengawasan UPPKB Jawa Barat</h3>
+                            <p class="card-sub">Visualisasi 6 lokasi Unit Pelaksana Penimbangan Kendaraan Bermotor (JT001–JT006) beserta radius jangkauan pengawasan</p>
                         </div>
-                        <div class="perintis-legend-bar" aria-label="Legenda status load factor">
-                            <span class="legend-badge legend-green"><span class="legend-dot-solid" style="background:#10b981;"></span> ≥ 50% Optimal</span>
-                            <span class="legend-badge legend-amber"><span class="legend-dot-solid" style="background:#f59e0b;"></span> 30%–49,9% Target</span>
-                            <span class="legend-badge legend-red"><span class="legend-dot-solid" style="background:#ef4444;"></span> &lt; 30% Evaluasi</span>
+                        <div class="uppkb-legend-bar" aria-label="Legenda koridor UPPKB">
+                            <span class="legend-badge legend-amber"><span class="legend-dot-solid" style="background:#f59e0b;"></span> Pantura</span>
+                            <span class="legend-badge legend-blue"><span class="legend-dot-solid" style="background:#3b82f6;"></span> Tengah / Priangan</span>
+                            <span class="legend-badge legend-green"><span class="legend-dot-solid" style="background:#10b981;"></span> Selatan</span>
+                            <span class="legend-badge legend-purple"><span class="legend-dot-solid" style="background:#8b5cf6;"></span> Jabodetabek</span>
                         </div>
                     </div>
-                    <div id="perintisMap" class="perintis-map-container" role="application" aria-label="Peta rute perintis Jawa Barat"></div>
+                    <div id="uppkbMap" class="uppkb-map-container" role="application" aria-label="Peta lokasi UPPKB Jawa Barat"></div>
                 </section>
 
-                <!-- ================= CORRIDORS DIRECTORY SECTION ================= -->
+                <!-- ================= DIRECTORY SECTION ================= -->
                 <section class="card directory-card" aria-labelledby="directoryHeading">
                     <div class="directory-head">
                         <div>
-                            <h3 id="directoryHeading" class="card-title">Direktori 6 Koridor Perintis BPTD Jabar</h3>
-                            <p class="card-sub">Daftar trayek perintis bersubsidi, alokasi armada, realisasi penumpang, dan detail kontrak</p>
+                            <h3 id="directoryHeading" class="card-title">Direktori 6 Fasilitas UPPKB BPTD Jabar</h3>
+                            <p class="card-sub">Daftar fasilitas penimbangan, volume pemeriksaan muatan, rincian penindakan, dan tingkat kepatuhan</p>
                         </div>
-                        <span id="resultCount" class="result-count" role="status" aria-live="polite">Menampilkan 6 trayek</span>
+                        <span id="resultCount" class="result-count" role="status" aria-live="polite">Menampilkan 6 fasilitas UPPKB</span>
                     </div>
 
                     <!-- Filter Bar -->
-                    <div class="perintis-filter-bar">
+                    <div class="uppkb-filter-bar">
                         <div class="search-input-wrap">
                             <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                            <input type="text" id="searchPerintis" class="search-input" placeholder="Cari nama trayek, kabupaten, simpul asal/tujuan..." aria-label="Cari trayek perintis">
+                            <input type="text" id="searchUppkb" class="search-input" placeholder="Cari nama UPPKB, kabupaten, kode simpul..." aria-label="Cari fasilitas UPPKB">
                         </div>
 
                         <div class="filter-select-wrap">
-                            <select id="filterKabupaten" class="filter-select" aria-label="Filter berdasarkan Kabupaten">
-                                <option value="">Semua Wilayah Kabupaten</option>
-                                <option value="Kab. Sukabumi">Kab. Sukabumi (3 Trayek)</option>
-                                <option value="Kab. Bogor">Kab. Bogor (2 Trayek)</option>
-                                <option value="Kab. Purwakarta">Kab. Purwakarta (1 Trayek)</option>
+                            <select id="filterWilayah" class="filter-select" aria-label="Filter berdasarkan Wilayah Koridor">
+                                <option value="">Semua Wilayah Koridor</option>
+                                <option value="Pantura">Pantura (Balonggandu, Losarang)</option>
+                                <option value="Tengah / Priangan">Tengah / Priangan (Tomo, Cibaragalan)</option>
+                                <option value="Selatan">Selatan (Gentong)</option>
+                                <option value="Jabodetabek / Bogor">Jabodetabek / Bogor (Kemang)</option>
                             </select>
                         </div>
 
                         <div class="filter-select-wrap">
-                            <select id="filterStatus" class="filter-select" aria-label="Filter status load factor">
-                                <option value="">Semua Status Kinerja LF</option>
-                                <option value="optimal">Optimal (≥ 50%)</option>
-                                <option value="target">Memenuhi Target (30%–49,9%)</option>
-                                <option value="evaluasi">Perlu Evaluasi (&lt; 30%)</option>
+                            <select id="filterIntensitas" class="filter-select" aria-label="Filter intensitas pemeriksaan">
+                                <option value="">Semua Intensitas Volume</option>
+                                <option value="Tinggi">Volume Tinggi (&gt;35.000 Kendaraan)</option>
+                                <option value="Sedang">Volume Sedang (&le;35.000 Kendaraan)</option>
                             </select>
                         </div>
                     </div>
 
-                    <!-- Corridors Cards Grid -->
-                    <div id="perintisGrid" class="perintis-grid" role="list" aria-label="Daftar koridor perintis">
-                        <!-- Populated dynamically by perintis.js -->
+                    <!-- UPPKB Cards Grid -->
+                    <div id="uppkbGrid" class="uppkb-grid" role="list" aria-label="Daftar kartu fasilitas UPPKB">
+                        <!-- Populated dynamically by uppkb.js -->
                     </div>
                 </section>
             </div>
@@ -286,16 +287,16 @@
 
     <!-- ================= DETAIL MODAL DIALOG ================= -->
     <div id="modalBackdrop" class="modal-backdrop" hidden></div>
-    <div id="perintisModal" class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalSubInfo" hidden>
+    <div id="uppkbModal" class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalSubInfo" hidden>
         <div class="modal-header">
             <div class="modal-title-group">
                 <div class="modal-badge-row">
-                    <span id="modalIdBadge" class="badge-code">PERINTIS-001</span>
-                    <span id="modalKabupatenBadge" class="badge-endpoint-status">Kab. Sukabumi</span>
-                    <span id="modalLfBadge" class="badge-lf-pill">LF 35,6%</span>
+                    <span id="modalIdBadge" class="badge-code">JT001</span>
+                    <span id="modalKabupatenBadge" class="badge-endpoint-status">Kabupaten Karawang</span>
+                    <span id="modalKepatuhanBadge" class="badge-lf-pill">Kepatuhan 85,1%</span>
                 </div>
-                <h3 id="modalTitle" class="modal-title">Nama Trayek</h3>
-                <p id="modalSubInfo" class="modal-sub">Operator: Perum DAMRI</p>
+                <h3 id="modalTitle" class="modal-title">Nama Fasilitas UPPKB</h3>
+                <p id="modalSubInfo" class="modal-sub">Wilayah Koridor</p>
             </div>
             <button type="button" id="modalCloseBtn" class="modal-close-btn" aria-label="Tutup jendela detail">
                 <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
@@ -305,63 +306,76 @@
         <div class="modal-body">
             <!-- Overview Grid -->
             <div class="modal-section">
-                <h4 class="modal-section-title">Informasi Kontrak &amp; Realisasi Keuangan</h4>
+                <h4 class="modal-section-title">Kinerja Pemeriksaan &amp; Tingkat Kepatuhan</h4>
                 <div class="modal-stats-grid">
                     <div class="modal-stat-card">
-                        <span class="modal-stat-label">Nomor Kontrak</span>
-                        <p id="modalNoKontrak" class="modal-stat-val modal-stat-mono">—</p>
-                        <span id="modalPpk" class="modal-stat-sub">PPK: —</span>
+                        <span class="modal-stat-label">Kendaraan Diperiksa 2025</span>
+                        <p id="modalDiperiksa" class="modal-stat-val">—</p>
+                        <span id="modalDiperiksa2024" class="modal-stat-sub">2024: —</span>
                     </div>
                     <div class="modal-stat-card">
-                        <span class="modal-stat-label">Target Nilai Kontrak</span>
-                        <p id="modalTargetKontrak" class="modal-stat-val">—</p>
-                        <span id="modalPagu" class="modal-stat-sub">Pagu: —</span>
+                        <span class="modal-stat-label">Total Pelanggaran 2025</span>
+                        <p id="modalPelanggaran" class="modal-stat-val text-red">—</p>
+                        <span id="modalPelanggaran2024" class="modal-stat-sub">2024: —</span>
                     </div>
                     <div class="modal-stat-card">
-                        <span class="modal-stat-label">Realisasi Keuangan YTD</span>
-                        <p id="modalRealisasiKeuangan" class="modal-stat-val text-green">—</p>
-                        <span id="modalPctKeuangan" class="modal-stat-sub">Persentase: —</span>
+                        <span class="modal-stat-label">Tingkat Kepatuhan Tonase</span>
+                        <p id="modalKepatuhanVal" class="modal-stat-val text-green">—</p>
+                        <span class="modal-stat-sub">Standar JBI &amp; Tata Muat</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Fleet & Operational Characteristics -->
+            <!-- Enforcement Breakdown -->
             <div class="modal-section">
-                <h4 class="modal-section-title">Karakteristik Armada &amp; Operasional</h4>
-                <div class="modal-stats-grid">
-                    <div class="modal-stat-card">
-                        <span class="modal-stat-label">Alokasi Armada</span>
-                        <p id="modalArmada" class="modal-stat-val">—</p>
-                        <span id="modalArmadaUmur" class="modal-stat-sub">Umur Armada: —</span>
+                <h4 class="modal-section-title">Rincian Komposisi Penindakan (Tahun 2025)</h4>
+                <div class="enforcement-grid">
+                    <div class="enforce-box">
+                        <span class="enforce-label">Tilang UPPKB</span>
+                        <span id="modalTilangUppkb" class="enforce-val">—</span>
+                        <span class="enforce-sub">Penyidik PNS Perhubungan</span>
                     </div>
-                    <div class="modal-stat-card">
-                        <span class="modal-stat-label">Total Penumpang YTD</span>
-                        <p id="modalTotalPenumpang" class="modal-stat-val">—</p>
-                        <span class="modal-stat-sub">Akumulasi penumpang terlayani</span>
+                    <div class="enforce-box">
+                        <span class="enforce-label">Tilang Kepolisian</span>
+                        <span id="modalTilangPolisi" class="enforce-val">—</span>
+                        <span class="enforce-sub">Gakkum Polri Terpadu</span>
                     </div>
-                    <div class="modal-stat-card">
-                        <span class="modal-stat-label">Total Ritase YTD</span>
-                        <p id="modalTotalRitase" class="modal-stat-val">—</p>
-                        <span class="modal-stat-sub">Trip operasional terlaksana</span>
+                    <div class="enforce-box">
+                        <span class="enforce-label">Transfer Muatan</span>
+                        <span id="modalTransferMuatan" class="enforce-val text-amber">—</span>
+                        <span class="enforce-sub">Kelebihan muatan kritis &gt;5%</span>
                     </div>
+                    <div class="enforce-box">
+                        <span class="enforce-label">Peringatan Tertulis</span>
+                        <span id="modalPeringatan" class="enforce-val text-blue">—</span>
+                        <span class="enforce-sub">Pelanggaran administratif ringan</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Facility Characteristics -->
+            <div class="modal-section">
+                <h4 class="modal-section-title">Karakteristik &amp; Lokasi Fasilitas</h4>
+                <div class="modal-desc-box">
+                    <p id="modalDeskripsi" class="modal-desc-text">—</p>
+                    <p id="modalAlamat" class="modal-address-text"><strong>Alamat:</strong> —</p>
                 </div>
             </div>
 
             <!-- Monthly Production Table -->
             <div class="modal-section">
-                <h4 class="modal-section-title">Rincian Realisasi Bulanan (Januari – Desember 2025)</h4>
+                <h4 class="modal-section-title">Rincian Operasional Bulanan (Januari – Desember 2025)</h4>
                 <div class="monthly-table-wrap">
-                    <table class="monthly-table" aria-label="Tabel realisasi bulanan">
+                    <table class="monthly-table" aria-label="Tabel operasional bulanan UPPKB">
                         <thead>
                             <tr>
                                 <th>Bulan</th>
-                                <th>Target Ritase</th>
-                                <th>Realisasi Ritase</th>
-                                <th>Target Penumpang</th>
-                                <th>Realisasi Penumpang</th>
-                                <th>Load Factor</th>
-                                <th>Realisasi Keuangan</th>
-                                <th>Keterangan</th>
+                                <th>Diperiksa</th>
+                                <th>Pelanggaran</th>
+                                <th>Tilang</th>
+                                <th>Transfer Muatan</th>
+                                <th>Peringatan</th>
+                                <th>Tingkat Kepatuhan</th>
                             </tr>
                         </thead>
                         <tbody id="modalMonthlyBody">
@@ -381,8 +395,13 @@
         </div>
     </div>
 
-    <!-- Leaflet JS & Perintis Module JS -->
+    <!-- Leaflet JS & UPPKB Module JS with Fallback -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-    <script src="perintis.js"></script>
+    <script>
+        if (typeof L === 'undefined') {
+            document.write('<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"><\/script>');
+        }
+    </script>
+    <script src="uppkb.js"></script>
 </body>
 </html>

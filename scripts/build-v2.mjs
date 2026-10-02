@@ -4,10 +4,12 @@
             <repo>/v2/terminal/   (index.html, terminal.css, terminal.js)
             <repo>/v2/trayek/     (index.html, trayek.css, trayek.js)
             <repo>/v2/perintis/   (index.html, perintis.css, perintis.js)
+            <repo>/v2/uppkb/      (index.html, uppkb.css, uppkb.js)
    Output : <repo>/src/command-center/
             <repo>/src/command-center/terminal/
             <repo>/src/command-center/trayek/
             <repo>/src/command-center/perintis/
+            <repo>/src/command-center/uppkb/
    ----------------------------------------------------------------
    Node built-in only (fs, path, url). Tidak tergantung CWD.
    Idempotent: menyalin file wajib, membuat folder output bila belum ada,
@@ -54,6 +56,14 @@ const PERINTIS_FILES = [
     "index.html",
     "perintis.css",
     "perintis.js",
+];
+const UPPKB_SOURCE_DIR = resolve(SOURCE_DIR, "uppkb");
+const UPPKB_OUT_DIR = resolve(OUT_DIR, "uppkb");
+
+const UPPKB_FILES = [
+    "index.html",
+    "uppkb.css",
+    "uppkb.js",
 ];
 
 function build() {
@@ -149,6 +159,30 @@ function build() {
 
         writeFileSync(outPath, data);
         results.push({ name: `perintis/${name}`, size: data.length });
+    }
+    // Direktori uppkb dan ketiga filenya wajib ada setelah modul uppkb dirilis
+    if (!existsSync(UPPKB_SOURCE_DIR)) {
+        console.error(`ERROR: direktori source uppkb wajib ada dan tidak ditemukan: ${UPPKB_SOURCE_DIR}`);
+        process.exitCode = 1;
+        return;
+    }
+
+    mkdirSync(UPPKB_OUT_DIR, { recursive: true });
+    for (const name of UPPKB_FILES) {
+        const srcPath = resolve(UPPKB_SOURCE_DIR, name);
+        const outPath = resolve(UPPKB_OUT_DIR, name);
+
+        let data;
+        try {
+            data = readFileSync(srcPath);
+        } catch (err) {
+            console.error(`ERROR: file source uppkb wajib tidak ditemukan: ${srcPath} (${err.code})`);
+            process.exitCode = 1;
+            return;
+        }
+
+        writeFileSync(outPath, data);
+        results.push({ name: `uppkb/${name}`, size: data.length });
     }
 
     for (const r of results) {
