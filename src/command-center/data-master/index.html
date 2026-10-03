@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Modul Data Master &amp; Katalog Referensi Transportasi Darat Jawa Barat — Transport Command Center BPTD Kelas I Jawa Barat. Direktori terpadu simpul terminal penumpang, jembatan timbang UPPKB, koridor trayek jalan, simpul multimoda, wilayah administratif, dan kamus data standar Ditjen Hubdat.">
+    <title>Katalog Referensi &amp; Direktori Data Master Transportasi — Transport Command Center | BPTD Jawa Barat</title>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+    <link rel="stylesheet" href="../command-center.css">
+    <link rel="stylesheet" href="data-master.css">
+</head>
+<body>
+    <div class="app-shell">
+        <!-- ================= SIDEBAR ================= -->
+        <aside id="appSidebar" class="app-sidebar" aria-label="Navigasi utama">
+            <div class="sidebar-header">
+                <a href="../" class="brand-link" title="Kembali ke Beranda Command Center">
+                    <svg class="logo-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <div class="brand-text">
+                        <span class="brand-title">GeoPORTAL</span>
+                        <span class="brand-sub">BPTD KELAS I JABAR</span>
+                    </div>
+                </a>
+                <button type="button" id="sidebarClose" class="sidebar-close-btn" aria-label="Tutup menu navigasi">
+                    <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav" aria-label="Navigasi utama modul">
+                <a href="../" class="nav-link" data-nav-status="available" title="Beranda — Monitoring Eksekutif Transportasi Darat">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    <span class="nav-text">Beranda</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../terminal/" class="nav-link" data-nav-status="available" title="Terminal — Modul Terminal Penumpang (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                    <span class="nav-text">Terminal</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../trayek/" class="nav-link" data-nav-status="available" title="Trayek — Modul Trayek Angkutan Jalan (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    <span class="nav-text">Trayek</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../perintis/" class="nav-link" data-nav-status="available" title="Angkutan Perintis — Modul Layanan Bus Perintis BPTD Jabar (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                    <span class="nav-text">Angkutan Perintis</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../uppkb/" class="nav-link" data-nav-status="available" title="UPPKB / Barang — Modul Fasilitas Penimbangan &amp; Pengawasan Muatan (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path></svg>
+                    <span class="nav-text">UPPKB / Barang</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../od/" class="nav-link" data-nav-status="available" title="OD Intelligence — Modul Analitik Asal-Tujuan &amp; Matriks Pergerakan (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                    <span class="nav-text">OD Intelligence</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../connectivity/" class="nav-link" data-nav-status="available" title="Connectivity — Modul Analitik Konektivitas Multimoda &amp; Hub Antarmoda (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.107 7.107a4 4 0 11-5.657 5.657 4 4 0 015.657-5.657z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12l7.071 7.071"></path></svg>
+                    <span class="nav-text">Connectivity</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../early-warning/" class="nav-link" data-nav-status="available" title="Early Warning — Sistem Kewaspadaan Dini &amp; Anomali Operasional (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    <span class="nav-text">Early Warning</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../program/" class="nav-link" data-nav-status="demo" title="Program &amp; Kinerja — Sistem Monitoring Program Strategis &amp; Akuntabilitas KPI (Demo Data)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
+                    <span class="nav-text">Program &amp; Kinerja</span>
+                    <span class="nav-status-badge nav-status-demo" data-status="DEMO">Demo</span>
+                </a>
+                <a href="../laporan/" class="nav-link" data-nav-status="available" title="Laporan — Modul Laporan &amp; Repositori Dokumen Eksekutif (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    <span class="nav-text">Laporan</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="./" class="nav-link is-active" aria-current="page" data-nav-status="active" title="Data Master — Modul Katalog Referensi &amp; Direktori Master Transportasi (Aktif)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    <span class="nav-text">Data Master</span>
+                    <span class="nav-status-badge nav-status-active" data-status="ACTIVE">Aktif</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <svg class="logo-mark logo-mark-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path><path d="M12 2v20"></path></svg>
+                <span class="footer-title">BPTD Jawa Barat</span>
+                <span class="footer-sub">Transportasi Darat Lebih Terintegrasi</span>
+            </div>
+        </aside>
+
+        <!-- ================= OVERLAY (mobile) ================= -->
+        <div id="sidebarOverlay" class="sidebar-overlay" hidden></div>
+
+        <!-- ================= MAIN ================= -->
+        <main class="app-main">
+            <header class="app-header">
+                <div class="header-left">
+                    <button type="button" id="sidebarToggle" class="header-menu-btn" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="appSidebar">
+                        <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                    <div class="header-title-block">
+                        <h1 class="header-title">Transport Command Center</h1>
+                        <p class="header-sub">Katalog Referensi &amp; Direktori Data Master Transportasi — Jawa Barat</p>
+                    </div>
+                </div>
+
+                <div class="header-right">
+                    <div class="header-clock">
+                        <div class="clock-date">
+                            <svg class="icon-sm icon-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            <span id="current-date">Memuat tanggal...</span>
+                        </div>
+                        <span id="current-time" class="clock-time">--:-- WIB</span>
+                    </div>
+
+                    <div class="api-status" role="status" aria-live="polite">
+                        <span id="apiStatusOk" class="api-status-pill api-status-ok" title="Mode Operasional Direktori Master">
+                            <span class="api-dot" aria-hidden="true"></span>
+                            Mode Referensi Read-Only BPTD
+                        </span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="app-content">
+                <!-- Module Header & Badges -->
+                <div class="dash-head">
+                    <div class="dash-head-text">
+                        <h2 class="dash-title">Katalog Referensi &amp; Direktori Data Master Transportasi</h2>
+                        <p class="dash-desc">Direktori terpadu simpul transportasi, fasilitas jembatan timbang UPPKB, koridor trayek jalan, simpul multimoda, wilayah administratif, dan kamus data standar Ditjen Hubdat BPTD Kelas I Jawa Barat</p>
+                    </div>
+                    <div class="dash-head-meta">
+                        <span class="status-pill status-pill-active" title="Status Aksesibilitas Sistem">
+                            <span class="status-dot status-dot-active" aria-hidden="true"></span>
+                            Strict Read-Only
+                        </span>
+                        <span class="status-pill status-pill-active" title="Standar Nomenklatur">
+                            <span class="status-dot status-dot-active" aria-hidden="true"></span>
+                            Standar Ditjen Hubdat 2026
+                        </span>
+                        <span class="status-pill status-pill-active" title="Integritas Data Master">
+                            <span class="status-dot status-dot-active" aria-hidden="true"></span>
+                            100% Terverifikasi BPTD
+                        </span>
+                    </div>
+                </div>
+
+                <!-- 4 KPI Summary Cards -->
+                <div class="kpi-grid">
+                    <div class="kpi-card" id="kpiCardTotal">
+                        <div class="kpi-icon-wrap kpi-blue">
+                            <svg class="kpi-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                            </svg>
+                        </div>
+                        <div class="kpi-content">
+                            <div class="kpi-label">Total Entitas Master</div>
+                            <div class="kpi-value-row">
+                                <span id="kpiTotalItems" class="kpi-value">108</span>
+                                <span class="kpi-unit">Entitas</span>
+                            </div>
+                            <div class="kpi-sub">96 Simpul &amp; Koridor + 12 Kamus Data</div>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card" id="kpiCardCategories">
+                        <div class="kpi-icon-wrap kpi-green">
+                            <svg class="kpi-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+                            </svg>
+                        </div>
+                        <div class="kpi-content">
+                            <div class="kpi-label">Cakupan Kategori</div>
+                            <div class="kpi-value-row">
+                                <span id="kpiTotalCategories" class="kpi-value">6</span>
+                                <span class="kpi-unit">Kategori</span>
+                            </div>
+                            <div class="kpi-sub">Domain Referensi Terintegrasi</div>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card" id="kpiCardStandard">
+                        <div class="kpi-icon-wrap kpi-purple">
+                            <svg class="kpi-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                            </svg>
+                        </div>
+                        <div class="kpi-content">
+                            <div class="kpi-label">Standarisasi Data</div>
+                            <div class="kpi-value-row">
+                                <span id="kpiStandardization" class="kpi-value">100%</span>
+                                <span class="kpi-unit">Valid</span>
+                            </div>
+                            <div class="kpi-sub">Nomenklatur &amp; Kode Resmi Hubdat</div>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card" id="kpiCardSecurity">
+                        <div class="kpi-icon-wrap kpi-amber">
+                            <svg class="kpi-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                            </svg>
+                        </div>
+                        <div class="kpi-content">
+                            <div class="kpi-label">Mode Keamanan</div>
+                            <div class="kpi-value-row">
+                                <span id="kpiSecurityMode" class="kpi-value">Read-Only</span>
+                            </div>
+                            <div class="kpi-sub">Proteksi Mutasi Master Terpusat</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filter Bar Toolbar Interaktif -->
+                <div class="filter-toolbar">
+                    <div class="filter-group">
+                        <label for="filterCategory" class="filter-label">Kategori Master:</label>
+                        <select id="filterCategory" class="filter-select" aria-label="Filter Berdasarkan Kategori Data Master">
+                            <option value="ALL">Semua Kategori (108)</option>
+                            <option value="TERMINAL">Terminal Penumpang (22)</option>
+                            <option value="UPPKB">UPPKB / Jembatan Timbang (6)</option>
+                            <option value="TRAYEK">Trayek &amp; Koridor Jalan (22)</option>
+                            <option value="MULTIMODA">Simpul Multimoda (19)</option>
+                            <option value="WILAYAH">Wilayah Administratif (27)</option>
+                            <option value="KAMUS_DATA">Kamus Data &amp; Metrik (12)</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="filterStatus" class="filter-label">Status Operasional:</label>
+                        <select id="filterStatus" class="filter-select" aria-label="Filter Berdasarkan Status Operasional">
+                            <option value="ALL">Semua Status</option>
+                            <option value="Aktif">Aktif Penuh</option>
+                            <option value="Siaga">Siaga / Terbatas</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group search-group">
+                        <label for="filterSearch" class="sr-only">Cari Data Master</label>
+                        <div class="search-input-wrap">
+                            <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                            <input type="text" id="filterSearch" class="search-input" placeholder="Cari nama, kode registrasi, kab/kota, istilah..." aria-label="Pencarian live data master">
+                        </div>
+                    </div>
+
+                    <div class="filter-actions">
+                        <button type="button" id="btnResetFilter" class="btn btn-secondary" title="Reset seluruh filter pencarian">
+                            <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                            Reset
+                        </button>
+                        <button type="button" id="btnExportCsv" class="btn btn-export" title="Ekspor data aktif ke format CSV Microsoft Excel (UTF-8 BOM)">
+                            <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                            Ekspor CSV
+                        </button>
+                        <button type="button" id="btnExportJson" class="btn btn-export" title="Ekspor data aktif ke format JSON Terstruktur">
+                            <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            Ekspor JSON
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Kontrol Tab Navigasi Analitik Data Master -->
+                <div class="tabs-header" role="tablist" aria-label="Navigasi Tampilan Data Master">
+                    <button type="button" id="btnTabMap" class="tab-btn is-active" role="tab" aria-selected="true" aria-controls="panelTabMap">
+                        <svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+                        Peta Geospasial Master
+                    </button>
+                    <button type="button" id="btnTabDirectory" class="tab-btn" role="tab" aria-selected="false" aria-controls="panelTabDirectory">
+                        <svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
+                        Direktori &amp; Katalog Master
+                    </button>
+                    <button type="button" id="btnTabDictionary" class="tab-btn" role="tab" aria-selected="false" aria-controls="panelTabDictionary">
+                        <svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                        Kamus Data &amp; Metrik Hubdat
+                    </button>
+                </div>
+
+                <!-- ================= TAB 1: PETA GEOSPASIAL ================= -->
+                <div id="panelTabMap" class="tab-panel is-active" role="tabpanel" aria-labelledby="btnTabMap">
+                    <div class="map-controls-bar">
+                        <div class="map-layer-toggles">
+                            <span class="layer-toggle-title">Layer Tampilan:</span>
+                            <label class="layer-checkbox-label">
+                                <input type="checkbox" id="layerToggleTerminal" checked>
+                                <span class="layer-badge badge-terminal">Terminal (22)</span>
+                            </label>
+                            <label class="layer-checkbox-label">
+                                <input type="checkbox" id="layerToggleUppkb" checked>
+                                <span class="layer-badge badge-uppkb">UPPKB (6)</span>
+                            </label>
+                            <label class="layer-checkbox-label">
+                                <input type="checkbox" id="layerToggleTrayek" checked>
+                                <span class="layer-badge badge-trayek">Koridor Trayek (22)</span>
+                            </label>
+                            <label class="layer-checkbox-label">
+                                <input type="checkbox" id="layerToggleMultimoda" checked>
+                                <span class="layer-badge badge-multimoda">Simpul Multimoda (19)</span>
+                            </label>
+                            <label class="layer-checkbox-label">
+                                <input type="checkbox" id="layerToggleWilayah" checked>
+                                <span class="layer-badge badge-wilayah">Wilayah Kab/Kota (27)</span>
+                            </label>
+                        </div>
+                        <div class="map-actions">
+                            <button type="button" id="btnResetMapView" class="btn btn-sm btn-secondary" title="Kembalikan fokus peta ke seluruh Jawa Barat">
+                                Fokus Jawa Barat
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="masterMap" class="master-map-container" aria-label="Peta Geospasial Data Master Transportasi Jawa Barat"></div>
+                    <div class="map-footnote">
+                        <span>Koordinat bereferensi Datum WGS84 &bull; Menampilkan 96 simpul &amp; koridor spasial terdaftar BPTD Kelas I Jawa Barat</span>
+                    </div>
+                </div>
+
+                <!-- ================= TAB 2: TABEL DIREKTORI & KATALOG ================= -->
+                <div id="panelTabDirectory" class="tab-panel" role="tabpanel" aria-labelledby="btnTabDirectory" hidden>
+                    <div class="table-meta-bar">
+                        <div id="directoryCount" class="directory-count-text">Menampilkan 108 entitas terdaftar</div>
+                        <div class="table-legend-pills">
+                            <span class="legend-pill pill-terminal">Terminal</span>
+                            <span class="legend-pill pill-uppkb">UPPKB</span>
+                            <span class="legend-pill pill-trayek">Trayek</span>
+                            <span class="legend-pill pill-multimoda">Multimoda</span>
+                            <span class="legend-pill pill-wilayah">Wilayah</span>
+                            <span class="legend-pill pill-kamus">Kamus Data</span>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table id="masterTable" class="master-table">
+                            <thead>
+                                <tr>
+                                    <th scope="col" style="width: 50px;">No</th>
+                                    <th scope="col" style="width: 130px;">Kode Registri</th>
+                                    <th scope="col">Nama Entitas Master</th>
+                                    <th scope="col" style="width: 160px;">Kategori / Tipe</th>
+                                    <th scope="col">Lokasi Wilayah</th>
+                                    <th scope="col">Spesifikasi Teknis / Kapasitas</th>
+                                    <th scope="col" style="width: 100px;">Status</th>
+                                    <th scope="col" style="width: 110px; text-align: center;">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="masterTableBody">
+                                <!-- Populated dynamically by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="tableEmptyState" class="empty-state" hidden>
+                        <svg class="empty-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <h3 class="empty-title">Tidak Ada Entitas yang Cocok</h3>
+                        <p class="empty-desc">Tidak ditemukan entitas data master yang sesuai dengan kriteria filter atau pencarian Anda.</p>
+                        <button type="button" id="btnEmptyReset" class="btn btn-secondary">Reset Pencarian</button>
+                    </div>
+                </div>
+
+                <!-- ================= TAB 3: KAMUS DATA & METRIK ================= -->
+                <div id="panelTabDictionary" class="tab-panel" role="tabpanel" aria-labelledby="btnTabDictionary" hidden>
+                    <div class="dict-intro-card">
+                        <div class="dict-intro-text">
+                            <h3 class="dict-intro-title">Registri Kamus Data &amp; Nomenklatur Standar Hubdat</h3>
+                            <p class="dict-intro-desc">Kamus istilah teknis, formula kalkulasi matematis, dasar regulasi, dan definisi operasional baku perhubungan darat yang menjadi landasan algoritma analitik Command Center V2.</p>
+                        </div>
+                        <div class="dict-intro-badge">
+                            12 Metrik Standar
+                        </div>
+                    </div>
+
+                    <div id="dictionaryGrid" class="dict-grid">
+                        <!-- Populated dynamically by JS -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ================= MODAL DETAIL ENTITAS WAI-ARIA ================= -->
+    <div id="masterDetailModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalMasterTitle" aria-describedby="modalMasterSub" hidden>
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <div class="modal-header-info">
+                    <div class="modal-header-badges">
+                        <span id="modalMasterCategoryBadge" class="modal-badge-cat">KATEGORI</span>
+                        <span id="modalMasterStatusBadge" class="modal-badge-status">Status</span>
+                    </div>
+                    <h3 id="modalMasterTitle" class="modal-title">Nama Entitas Master</h3>
+                    <p id="modalMasterSub" class="modal-sub">Kode Registrasi &bull; Lokasi Wilayah</p>
+                </div>
+                <button type="button" id="modalMasterCloseBtn" class="modal-close-btn" aria-label="Tutup jendela rincian">
+                    <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <!-- Info Grid -->
+                <div class="modal-info-grid">
+                    <div class="modal-info-item">
+                        <span class="info-label">Kode Registri</span>
+                        <span id="modalDetailKode" class="info-value">--</span>
+                    </div>
+                    <div class="modal-info-item">
+                        <span class="info-label">Kategori / Tipe</span>
+                        <span id="modalDetailTipe" class="info-value">--</span>
+                    </div>
+                    <div class="modal-info-item">
+                        <span class="info-label">Wilayah Administratif</span>
+                        <span id="modalDetailWilayah" class="info-value">--</span>
+                    </div>
+                    <div class="modal-info-item">
+                        <span class="info-label">Otoritas Pengelola</span>
+                        <span id="modalDetailOtoritas" class="info-value">--</span>
+                    </div>
+                </div>
+
+                <!-- Spesifikasi Teknis Box -->
+                <div class="modal-section">
+                    <h4 class="modal-section-title">Spesifikasi Teknis &amp; Kapasitas Operasional</h4>
+                    <div id="modalDetailSpesifikasi" class="spec-highlight-box">
+                        --
+                    </div>
+                </div>
+
+                <!-- Koordinat Geospasial & Alamat -->
+                <div class="modal-section">
+                    <h4 class="modal-section-title">Koordinat Geospasial &amp; Lokasi</h4>
+                    <div class="coords-box">
+                        <span class="coords-label">Datum Geodesi:</span>
+                        <span id="modalDetailCoords" class="coords-value">WGS84 [Lat: --, Lng: --]</span>
+                    </div>
+                    <p id="modalDetailAlamat" class="modal-address-text"></p>
+                </div>
+
+                <!-- Deskripsi Operasional -->
+                <div class="modal-section">
+                    <h4 class="modal-section-title">Deskripsi &amp; Informasi Pelayanan</h4>
+                    <p id="modalDetailDeskripsi" class="modal-desc-text"></p>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" id="modalFocusMapBtn" class="btn btn-primary">
+                    <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    Fokus Pada Peta
+                </button>
+                <button type="button" id="modalCloseFooterBtn" class="btn btn-secondary">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <script>
+        if (typeof L === 'undefined') {
+            document.write('<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"><\/script>');
+        }
+    </script>
+    <script src="data-master.js"></script>
+</body>
+</html>
