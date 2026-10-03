@@ -9,6 +9,7 @@
             <repo>/v2/connectivity/ (index.html, connectivity.css, connectivity.js)
             <repo>/v2/early-warning/ (index.html, early-warning.css, early-warning.js)
             <repo>/v2/program/    (index.html, program.css, program.js)
+            <repo>/v2/laporan/    (index.html, laporan.css, laporan.js)
    Output : <repo>/src/command-center/
             <repo>/src/command-center/terminal/
             <repo>/src/command-center/trayek/
@@ -18,6 +19,7 @@
             <repo>/src/command-center/connectivity/
             <repo>/src/command-center/early-warning/
             <repo>/src/command-center/program/
+            <repo>/src/command-center/laporan/
    ----------------------------------------------------------------
    Node built-in only (fs, path, url). Tidak tergantung CWD.
    Idempotent: menyalin file wajib, membuat folder output bila belum ada,
@@ -104,6 +106,14 @@ const PROGRAM_FILES = [
     "index.html",
     "program.css",
     "program.js",
+];
+const LAPORAN_SOURCE_DIR = resolve(SOURCE_DIR, "laporan");
+const LAPORAN_OUT_DIR = resolve(OUT_DIR, "laporan");
+
+const LAPORAN_FILES = [
+    "index.html",
+    "laporan.css",
+    "laporan.js",
 ];
 
 function build() {
@@ -319,6 +329,30 @@ function build() {
 
         writeFileSync(outPath, data);
         results.push({ name: `program/${name}`, size: data.length });
+    }
+    // Direktori laporan dan ketiga filenya wajib ada setelah modul Laporan dirilis
+    if (!existsSync(LAPORAN_SOURCE_DIR)) {
+        console.error(`ERROR: direktori source laporan wajib ada dan tidak ditemukan: ${LAPORAN_SOURCE_DIR}`);
+        process.exitCode = 1;
+        return;
+    }
+
+    mkdirSync(LAPORAN_OUT_DIR, { recursive: true });
+    for (const name of LAPORAN_FILES) {
+        const srcPath = resolve(LAPORAN_SOURCE_DIR, name);
+        const outPath = resolve(LAPORAN_OUT_DIR, name);
+
+        let data;
+        try {
+            data = readFileSync(srcPath);
+        } catch (err) {
+            console.error(`ERROR: file source laporan wajib tidak ditemukan: ${srcPath} (${err.code})`);
+            process.exitCode = 1;
+            return;
+        }
+
+        writeFileSync(outPath, data);
+        results.push({ name: `laporan/${name}`, size: data.length });
     }
 
     for (const r of results) {

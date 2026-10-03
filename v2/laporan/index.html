@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Modul Laporan &amp; Repositori Dokumen Eksekutif Jawa Barat — Transport Command Center BPTD Kelas I Jawa Barat. Penerbitan 8 laporan resmi, rekapitulasi berkala, pratinjau lembar kerja formal, dan ekspor data operasional.">
+    <title>Laporan &amp; Repositori Dokumen Eksekutif — Transport Command Center | BPTD Jawa Barat</title>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="stylesheet" href="../command-center.css">
+    <link rel="stylesheet" href="laporan.css">
+</head>
+<body>
+    <div class="app-shell">
+        <!-- ================= SIDEBAR ================= -->
+        <aside id="appSidebar" class="app-sidebar" aria-label="Navigasi utama">
+            <div class="sidebar-header">
+                <a href="../" class="brand-link" title="Kembali ke Beranda Command Center">
+                    <svg class="logo-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <div class="brand-text">
+                        <span class="brand-title">GeoPORTAL</span>
+                        <span class="brand-sub">BPTD KELAS I JABAR</span>
+                    </div>
+                </a>
+                <button type="button" id="sidebarClose" class="sidebar-close-btn" aria-label="Tutup menu navigasi">
+                    <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav" aria-label="Navigasi utama modul">
+                <a href="../" class="nav-link" data-nav-status="available" title="Beranda — Monitoring Eksekutif Transportasi Darat">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    <span class="nav-text">Beranda</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../terminal/" class="nav-link" data-nav-status="available" title="Terminal — Modul Terminal Penumpang (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                    <span class="nav-text">Terminal</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../trayek/" class="nav-link" data-nav-status="available" title="Trayek — Modul Trayek Angkutan Jalan (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    <span class="nav-text">Trayek</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../perintis/" class="nav-link" data-nav-status="available" title="Angkutan Perintis — Modul Layanan Bus Perintis BPTD Jabar (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                    <span class="nav-text">Angkutan Perintis</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../uppkb/" class="nav-link" data-nav-status="available" title="UPPKB / Barang — Modul Fasilitas Penimbangan &amp; Pengawasan Muatan (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path></svg>
+                    <span class="nav-text">UPPKB / Barang</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../od/" class="nav-link" data-nav-status="available" title="OD Intelligence — Modul Analitik Asal-Tujuan &amp; Matriks Pergerakan (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                    <span class="nav-text">OD Intelligence</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../connectivity/" class="nav-link" data-nav-status="available" title="Connectivity — Modul Analitik Konektivitas Multimoda &amp; Hub Antarmoda (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.107 7.107a4 4 0 11-5.657 5.657 4 4 0 015.657-5.657z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12l7.071 7.071"></path></svg>
+                    <span class="nav-text">Connectivity</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../early-warning/" class="nav-link" data-nav-status="available" title="Early Warning — Sistem Kewaspadaan Dini &amp; Anomali Operasional (Tersedia)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    <span class="nav-text">Early Warning</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../program/" class="nav-link" data-nav-status="demo" title="Program &amp; Kinerja — Sistem Monitoring Program Strategis &amp; Akuntabilitas KPI (Demo Data)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
+                    <span class="nav-text">Program &amp; Kinerja</span>
+                    <span class="nav-status-badge nav-status-demo" data-status="DEMO">Demo</span>
+                </a>
+                <a href="./" class="nav-link is-active" aria-current="page" data-nav-status="active" title="Laporan — Modul Laporan &amp; Repositori Dokumen Eksekutif (Aktif)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    <span class="nav-text">Laporan</span>
+                    <span class="nav-status-badge nav-status-active" data-status="ACTIVE">Aktif</span>
+                </a>
+                <button type="button" class="nav-link" aria-disabled="true" disabled data-nav-status="coming-soon" title="Data Master — Belum tersedia pada prototipe (Segera)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    <span class="nav-text">Data Master</span>
+                    <span class="nav-status-badge nav-status-soon" data-status="COMING SOON">Segera</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <svg class="logo-mark logo-mark-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path><path d="M12 2v20"></path></svg>
+                <span class="footer-title">BPTD Jawa Barat</span>
+                <span class="footer-sub">Transportasi Darat Lebih Terintegrasi</span>
+            </div>
+        </aside>
+
+        <!-- ================= OVERLAY (mobile) ================= -->
+        <div id="sidebarOverlay" class="sidebar-overlay" hidden></div>
+
+        <!-- ================= MAIN ================= -->
+        <main class="app-main">
+            <header class="app-header">
+                <div class="header-left">
+                    <button type="button" id="sidebarToggle" class="header-menu-btn" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="appSidebar">
+                        <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                    <div class="header-title-block">
+                        <h1 class="header-title">Transport Command Center</h1>
+                        <p class="header-sub">Sistem Manajemen Laporan &amp; Dokumen Eksekutif — Jawa Barat</p>
+                    </div>
+                </div>
+
+                <div class="header-right">
+                    <div class="header-clock">
+                        <div class="clock-date">
+                            <svg class="icon-sm icon-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            <span id="current-date">Memuat tanggal...</span>
+                        </div>
+                        <span id="current-time" class="clock-time">--:-- WIB</span>
+                    </div>
+
+                    <div class="api-status" role="status" aria-live="polite">
+                        <span id="apiStatusOk" class="api-status-pill api-status-ok">
+                            <span class="api-dot" aria-hidden="true"></span>
+                            Data Terverifikasi BPTD
+                        </span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="app-content">
+                <!-- Module Header & Badges -->
+                <div class="dash-head">
+                    <div class="dash-head-text">
+                        <h2 class="dash-title">Sistem Manajemen Laporan &amp; Repositori Dokumen Eksekutif</h2>
+                        <p class="dash-desc">Penerbitan laporan resmi, rekapitulasi berkala, pratinjau lembar kerja formal Kop Surat Kemenhub, dan ekspor data operasional BPTD Kelas I Jawa Barat</p>
+                    </div>
+                    <div class="dash-head-meta">
+                        <span class="status-pill status-pill-active" title="Tahun Anggaran Berjalan">
+                            <span class="status-dot status-dot-active" aria-hidden="true"></span>
+                            TA 2025 / 2026
+                        </span>
+                        <span class="status-pill status-pill-active" title="Total Katalog Laporan Resmi">
+                            <span class="status-dot status-dot-active" aria-hidden="true"></span>
+                            8 LAPORAN RESMI
+                        </span>
+                        <span class="status-pill status-pill-active" title="Cakupan Sektor Terintegrasi">
+                            <span class="status-dot status-dot-active" aria-hidden="true"></span>
+                            6 SEKTOR TERINTEGRASI
+                        </span>
+                        <span class="status-pill" title="Status Keabsahan Dokumen">
+                            <span class="status-dot" style="background:#10b981;" aria-hidden="true"></span>
+                            STATUS: 100% TERVERIFIKASI
+                        </span>
+                    </div>
+                </div>
+
+                <!-- 4 Executive KPI Cards -->
+                <div class="kpi-grid">
+                    <div class="card kpi-card">
+                        <div class="kpi-icon-wrap" style="background:#e0f2fe; color:#0284c7;" aria-hidden="true">
+                            <svg class="kpi-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        </div>
+                        <div class="kpi-content">
+                            <span class="kpi-label">Katalog Laporan Resmi</span>
+                            <div class="kpi-value-row">
+                                <span id="kpiTotalReports" class="kpi-value">8 Dokumen</span>
+                            </div>
+                            <span id="kpiTotalReportsSub" class="kpi-sub">Katalog laporan resmi BPTD siap terbit</span>
+                        </div>
+                    </div>
+
+                    <div class="card kpi-card">
+                        <div class="kpi-icon-wrap" style="background:#dcfce7; color:#16a34a;" aria-hidden="true">
+                            <svg class="kpi-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                        </div>
+                        <div class="kpi-content">
+                            <span class="kpi-label">Cakupan Sektor</span>
+                            <div class="kpi-value-row">
+                                <span id="kpiTotalSectors" class="kpi-value text-green">6 Sektor</span>
+                            </div>
+                            <span id="kpiTotalSectorsSub" class="kpi-sub">Terminal, UPPKB, Perintis, OD, Moda, Program</span>
+                        </div>
+                    </div>
+
+                    <div class="card kpi-card">
+                        <div class="kpi-icon-wrap" style="background:#fef3c7; color:#d97706;" aria-hidden="true">
+                            <svg class="kpi-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        </div>
+                        <div class="kpi-content">
+                            <span class="kpi-label">Keabsahan &amp; Legalitas</span>
+                            <div class="kpi-value-row">
+                                <span id="kpiLegalStatus" class="kpi-value text-amber">100% Sah</span>
+                            </div>
+                            <span id="kpiLegalStatusSub" class="kpi-sub">Standar tata naskah dinas Kemenhub</span>
+                        </div>
+                    </div>
+
+                    <div class="card kpi-card">
+                        <div class="kpi-icon-wrap" style="background:#f3e8ff; color:#9333ea;" aria-hidden="true">
+                            <svg class="kpi-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        </div>
+                        <div class="kpi-content">
+                            <span class="kpi-label">Ketersediaan Format</span>
+                            <div class="kpi-value-row">
+                                <span id="kpiExportFormats" class="kpi-value" style="color:#9333ea;">4 Format</span>
+                            </div>
+                            <span id="kpiExportFormatsSub" class="kpi-sub">Pratinjau, Cetak PDF, CSV Excel, JSON</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Toolbar & Filter Panel -->
+                <div class="card report-toolbar-card">
+                    <div class="report-toolbar">
+                        <div class="filter-group">
+                            <label for="selectYear" class="filter-label">Tahun Anggaran</label>
+                            <select id="selectYear" class="form-select">
+                                <option value="2026" selected>TA 2026 (Aktif)</option>
+                                <option value="2025">TA 2025</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="selectPeriod" class="filter-label">Periode Pelaporan</label>
+                            <select id="selectPeriod" class="form-select">
+                                <option value="ALL" selected>Tahunan Penuh (Konsolidasi)</option>
+                                <option value="SEM1">Semester I (Jan - Jun)</option>
+                                <option value="SEM2">Semester II (Jul - Des)</option>
+                                <option value="Q1">Triwulan I (Q1)</option>
+                                <option value="Q2">Triwulan II (Q2)</option>
+                                <option value="Q3">Triwulan III (Q3)</option>
+                                <option value="Q4">Triwulan IV (Q4)</option>
+                                <option value="MTH">Bulan Berjalan</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="selectCategory" class="filter-label">Kategori Sektor</label>
+                            <select id="selectCategory" class="form-select">
+                                <option value="ALL" selected>Semua Sektor (8 Laporan)</option>
+                                <option value="EKSEKUTIF">Eksekutif &amp; Pimpinan</option>
+                                <option value="TERMINAL">Terminal Penumpang</option>
+                                <option value="UPPKB">UPPKB / Logistik Barang</option>
+                                <option value="PERINTIS">Angkutan Perintis</option>
+                                <option value="OD_INTELLIGENCE">OD Intelligence</option>
+                                <option value="KONEKTIVITAS">Konektivitas Multimoda</option>
+                                <option value="EARLY_WARNING">Early Warning &amp; Anomali</option>
+                                <option value="PROGRAM_KINERJA">Program &amp; Kinerja</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group filter-search-wrap">
+                            <label for="searchReport" class="filter-label">Cari Laporan</label>
+                            <div class="search-input-box">
+                                <svg class="icon-sm search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                                <input type="text" id="searchReport" class="form-input" placeholder="Cari judul, kode, atau unit...">
+                            </div>
+                        </div>
+
+                        <div class="filter-group filter-actions-wrap">
+                            <label class="filter-label">&nbsp;</label>
+                            <button type="button" id="btnResetFilter" class="btn btn-secondary btn-icon-text">
+                                <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                                <span>Reset Filter</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabbed Document Views -->
+                <section class="card report-analytics-card" aria-labelledby="analyticsHeading">
+                    <div class="report-tabs-header">
+                        <div class="report-tabs-title-group">
+                            <h3 id="analyticsHeading" class="report-tabs-title">Repositori &amp; Lembar Kerja Laporan Resmi</h3>
+                            <p class="report-tabs-sub">Pilih katalog dokumen, pratinjau lembar kerja formal Kop Surat BPTD Jabar, atau tinjau jadwal siklus pelaporan</p>
+                        </div>
+
+                        <div class="report-tablist" role="tablist" aria-label="Tampilan Tab Laporan">
+                            <button type="button" id="btnTabCatalog" class="report-tab-btn is-active" role="tab" aria-selected="true" aria-controls="panelCatalog">
+                                <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
+                                <span>Katalog 8 Laporan</span>
+                            </button>
+                            <button type="button" id="btnTabPreview" class="report-tab-btn" role="tab" aria-selected="false" aria-controls="panelPreview">
+                                <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                <span>Lembar Kerja Pratinjau (Kop Surat)</span>
+                            </button>
+                            <button type="button" id="btnTabSchedule" class="report-tab-btn" role="tab" aria-selected="false" aria-controls="panelSchedule">
+                                <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                <span>Siklus &amp; Kalender Pelaporan</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Panel 1: Katalog 8 Laporan -->
+                    <div id="panelCatalog" class="report-tabpanel" role="tabpanel" aria-labelledby="btnTabCatalog">
+                        <div class="panel-meta-bar">
+                            <span id="catalogCountInfo" class="catalog-count-info">Menampilkan 8 dari 8 Laporan Resmi</span>
+                            <span class="catalog-tip">Format unduhan mendukung Excel UTF-8 BOM, JSON, dan Cetak PDF Standar</span>
+                        </div>
+                        <div id="reportCatalogGrid" class="report-catalog-grid">
+                            <!-- Populated dynamically via laporan.js -->
+                        </div>
+                    </div>
+
+                    <!-- Panel 2: Lembar Kerja Pratinjau Formal (Live Preview) -->
+                    <div id="panelPreview" class="report-tabpanel" role="tabpanel" aria-labelledby="btnTabPreview" hidden>
+                        <div class="preview-control-bar">
+                            <div class="preview-select-wrap">
+                                <label for="previewReportSelect" class="preview-select-label">Pilih Laporan untuk Ditampilkan:</label>
+                                <select id="previewReportSelect" class="form-select preview-doc-select">
+                                    <!-- Options populated dynamically -->
+                                </select>
+                            </div>
+                            <div class="preview-actions">
+                                <button type="button" id="btnPrintFromPreview" class="btn btn-primary btn-icon-text">
+                                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                                    <span>Cetak Dokumen Resmi (PDF)</span>
+                                </button>
+                                <button type="button" id="btnCsvFromPreview" class="btn btn-secondary btn-icon-text">
+                                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                    <span>Ekspor CSV (Excel)</span>
+                                </button>
+                                <button type="button" id="btnJsonFromPreview" class="btn btn-secondary btn-icon-text">
+                                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                                    <span>Ekspor JSON</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Live Sheet Container -->
+                        <div id="liveOfficialDocSheet" class="official-doc-sheet">
+                            <!-- Populated dynamically via laporan.js -->
+                        </div>
+                    </div>
+
+                    <!-- Panel 3: Siklus & Kalender Pelaporan Berkala -->
+                    <div id="panelSchedule" class="report-tabpanel" role="tabpanel" aria-labelledby="btnTabSchedule" hidden>
+                        <div class="table-wrap">
+                            <table class="report-table" aria-label="Tabel Siklus dan Kalender Pelaporan Berkala Ditjen Hubdat">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" style="width: 100px;">Siklus</th>
+                                        <th scope="col">Agenda Pelaporan Resmi</th>
+                                        <th scope="col">Dasar Regulasi</th>
+                                        <th scope="col">Unit Pelaksana (PIC)</th>
+                                        <th scope="col" style="width: 180px;">Batas Waktu</th>
+                                        <th scope="col" style="width: 180px;">Bentuk Format Output</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="scheduleTableBody">
+                                    <!-- Populated dynamically via laporan.js -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- ================= DETAIL MODAL DIALOG ================= -->
+    <div id="modalBackdrop" class="modal-backdrop" hidden></div>
+    <div id="reportDetailModal" class="modal-dialog report-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalReportTitle" aria-describedby="modalReportSub" hidden>
+        <div class="modal-header">
+            <div class="modal-title-group">
+                <div class="modal-badge-row">
+                    <span id="modalCategoryBadge" class="category-badge">Kategori Sektor</span>
+                    <span id="modalCodeBadge" class="code-pill">RPT-01</span>
+                    <span id="modalFrequencyBadge" class="badge-status-on-track">Bulanan</span>
+                </div>
+                <h3 id="modalReportTitle" class="modal-title">Judul Laporan Resmi BPTD</h3>
+                <p id="modalReportSub" class="modal-sub">Unit Kerja Pengampu — BPTD Kelas I Jawa Barat</p>
+            </div>
+            <button type="button" id="modalCloseBtn" class="modal-close-btn" aria-label="Tutup jendela rincian laporan">
+                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <!-- Ringkasan Eksekutif & Telaah -->
+            <div class="modal-section">
+                <h4 class="modal-section-title">Ringkasan Eksekutif &amp; Telaah Pimpinan</h4>
+                <p id="modalSummaryBox" class="modal-desc-box">—</p>
+            </div>
+
+            <!-- Sorotan Metrik -->
+            <div class="modal-section">
+                <h4 class="modal-section-title">Sorotan Metrik Kinerja Terverifikasi</h4>
+                <div id="modalMetricsGrid" class="modal-stats-grid">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+
+            <!-- Tabel Data Rincian Baris -->
+            <div class="modal-section">
+                <h4 class="modal-section-title">Pratinjau Data Tabular Dokumen</h4>
+                <div class="table-wrap modal-table-wrap">
+                    <table id="modalDataTable" class="report-table" aria-label="Tabel Pratinjau Data Dokumen">
+                        <thead id="modalTableHead">
+                            <!-- Populated dynamically -->
+                        </thead>
+                        <tbody id="modalTableBody">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <div class="modal-footer-left">
+                <button type="button" id="modalPrintBtn" class="btn btn-primary btn-icon-text">
+                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                    <span>Cetak Dokumen Resmi</span>
+                </button>
+                <button type="button" id="modalExportCsvBtn" class="btn btn-secondary btn-icon-text">
+                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    <span>Unduh CSV</span>
+                </button>
+                <button type="button" id="modalExportJsonBtn" class="btn btn-secondary btn-icon-text">
+                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                    <span>Unduh JSON</span>
+                </button>
+            </div>
+            <button type="button" id="modalCloseFooterBtn" class="btn btn-secondary">Tutup</button>
+        </div>
+    </div>
+
+    <!-- ================= DEDICATED PRINT CONTAINER (HIDDEN ON SCREEN, VISIBLE ON PRINT) ================= -->
+    <div id="printableReportSheet" class="printable-report-sheet" aria-hidden="true">
+        <!-- Rendered dynamically right before window.print() -->
+    </div>
+
+    <!-- Scripts -->
+    <script src="laporan.js"></script>
+</body>
+</html>
