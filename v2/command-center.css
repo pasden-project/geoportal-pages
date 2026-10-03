@@ -272,6 +272,12 @@ a {
     border: 1px solid rgba(34, 197, 94, 0.35);
 }
 
+.nav-status-demo {
+    background: rgba(245, 158, 11, 0.22);
+    color: #fbbf24;
+    border: 1px solid rgba(245, 158, 11, 0.45);
+}
+
 .nav-status-soon {
     background: rgba(255, 255, 255, 0.05);
     color: var(--text-on-dark-muted);

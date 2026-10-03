@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Modul Early Warning &amp; Pemantauan Anomali Operasional — Transport Command Center BPTD Kelas I Jawa Barat. Deteksi deviasi simpul terminal, kelebihan muatan UPPKB, load factor perintis, dan keselamatan koridor logistik.">
-    <title>Early Warning &amp; Pemantauan Anomali — Transport Command Center | BPTD Jawa Barat</title>
+    <meta name="description" content="Modul Monitoring Program &amp; Kinerja Transportasi Jawa Barat — Transport Command Center BPTD Kelas I Jawa Barat. Pengawasan capaian output fisik, serapan pagu anggaran, dan akuntabilitas KPI 6 program strategis.">
+    <title>Monitoring Program &amp; Kinerja — Transport Command Center | BPTD Jawa Barat</title>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
     <link rel="stylesheet" href="../command-center.css">
-    <link rel="stylesheet" href="early-warning.css">
+    <link rel="stylesheet" href="program.css">
 </head>
 <body>
     <div class="app-shell">
@@ -65,12 +65,12 @@
                     <span class="nav-text">Connectivity</span>
                     <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
                 </a>
-                <a href="./" class="nav-link is-active" aria-current="page" data-nav-status="active" title="Early Warning — Sistem Kewaspadaan Dini &amp; Anomali Operasional (Aktif)">
+                <a href="../early-warning/" class="nav-link" data-nav-status="available" title="Early Warning — Sistem Kewaspadaan Dini &amp; Anomali Operasional (Tersedia)">
                     <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
                     <span class="nav-text">Early Warning</span>
-                    <span class="nav-status-badge nav-status-active" data-status="ACTIVE">Aktif</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
                 </a>
-                <a href="../program/" class="nav-link" data-nav-status="demo" title="Program &amp; Kinerja — Sistem Monitoring Program Strategis &amp; Akuntabilitas KPI (Demo Data)">
+                <a href="./" class="nav-link is-active" aria-current="page" data-nav-status="demo" title="Program &amp; Kinerja — Sistem Monitoring Program Strategis &amp; Akuntabilitas KPI (Demo Data)">
                     <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
                     <span class="nav-text">Program &amp; Kinerja</span>
                     <span class="nav-status-badge nav-status-demo" data-status="DEMO">Demo</span>
@@ -106,7 +106,7 @@
                     </button>
                     <div class="header-title-block">
                         <h1 class="header-title">Transport Command Center</h1>
-                        <p class="header-sub">Sistem Kewaspadaan Dini &amp; Pemantauan Anomali Operasional — Jawa Barat</p>
+                        <p class="header-sub">Sistem Monitoring Program &amp; Kinerja Transportasi — Jawa Barat</p>
                     </div>
                 </div>
 
@@ -132,21 +132,25 @@
                 <!-- Module Header & Badges -->
                 <div class="dash-head">
                     <div class="dash-head-text">
-                        <h2 class="dash-title">Sistem Kewaspadaan Dini &amp; Pemantauan Anomali Operasional</h2>
-                        <p class="dash-desc">Deteksi dini deviasi operasional simpul terminal, kelebihan muatan logistik UPPKB, okupansi perintis, dan hambatan koridor Jawa Barat</p>
+                        <h2 class="dash-title">Sistem Monitoring Program &amp; Kinerja Transportasi</h2>
+                        <p class="dash-desc">Pengawasan capaian output fisik, serapan anggaran, dan akuntabilitas KPI 6 program strategis BPTD Kelas I Jawa Barat</p>
                     </div>
                     <div class="dash-head-meta">
-                        <span class="status-pill status-pill-active" title="Sistem Aktif &amp; Terkalibrasi">
+                        <span class="status-pill status-pill-active" title="Tahun Anggaran Berjalan">
                             <span class="status-dot status-dot-active" aria-hidden="true"></span>
-                            10 AMBANG METODOLOGI
+                            TA 2025 / 2026
                         </span>
-                        <span class="status-pill status-pill-warning" title="Total Peringatan Terpantau">
-                            <span class="status-dot status-dot-warning" aria-hidden="true"></span>
-                            18 ANOMALI AKTIF
+                        <span class="status-pill status-pill-active" title="Realisasi Serapan Anggaran">
+                            <span class="status-dot status-dot-active" aria-hidden="true"></span>
+                            91,4% SERAPAN ANGGARAN
                         </span>
-                        <span class="status-pill" title="4 Domain Pengawasan">
-                            <span class="status-dot" style="background:#3b82f6;" aria-hidden="true"></span>
-                            4 SEVERITAS TERPANTAU
+                        <span class="status-pill status-pill-active" title="Progres Fisik Rata-rata">
+                            <span class="status-dot status-dot-active" aria-hidden="true"></span>
+                            93,6% OUTPUT FISIK
+                        </span>
+                        <span class="status-pill" title="Status Agregat Program">
+                            <span class="status-dot" style="background:#10b981;" aria-hidden="true"></span>
+                            STATUS: ON TRACK
                         </span>
                     </div>
                 </div>
@@ -154,66 +158,66 @@
                 <!-- 4 Executive KPI Cards -->
                 <div class="kpi-grid">
                     <div class="card kpi-card">
-                        <div class="kpi-icon-wrap" style="background:#fee2e2; color:#ef4444;" aria-hidden="true">
-                            <svg class="kpi-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                        <div class="kpi-icon-wrap" style="background:#e0f2fe; color:#0284c7;" aria-hidden="true">
+                            <svg class="kpi-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         </div>
                         <div class="kpi-content">
-                            <span class="kpi-label">Peringatan Aktif</span>
+                            <span class="kpi-label">Pagu Anggaran Program</span>
                             <div class="kpi-value-row">
-                                <span id="kpiTotalAlerts" class="kpi-value">18 Insiden</span>
+                                <span id="kpiTotalPagu" class="kpi-value">Rp 33,3 M</span>
                             </div>
-                            <span class="kpi-sub">Total indikasi anomali operasional terpantau</span>
+                            <span id="kpiTotalPaguSub" class="kpi-sub">Total alokasi 6 program strategis BPTD</span>
                         </div>
                     </div>
 
                     <div class="card kpi-card">
-                        <div class="kpi-icon-wrap" style="background:#fef2f2; color:#b91c1c;" aria-hidden="true">
-                            <svg class="kpi-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        <div class="kpi-icon-wrap" style="background:#dcfce7; color:#16a34a;" aria-hidden="true">
+                            <svg class="kpi-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         </div>
                         <div class="kpi-content">
-                            <span class="kpi-label">Status Kritis</span>
+                            <span class="kpi-label">Realisasi Keuangan</span>
                             <div class="kpi-value-row">
-                                <span id="kpiCriticalCount" class="kpi-value text-red">4 Kritis</span>
+                                <span id="kpiRealisasiKeuangan" class="kpi-value text-green">91,4%</span>
                             </div>
-                            <span class="kpi-sub">Insiden level tinggi butuh mitigasi segera</span>
+                            <span id="kpiRealisasiKeuanganSub" class="kpi-sub">Rp 30,44 M terserap akuntabel</span>
                         </div>
                     </div>
 
                     <div class="card kpi-card">
                         <div class="kpi-icon-wrap" style="background:#fef3c7; color:#d97706;" aria-hidden="true">
-                            <svg class="kpi-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <svg class="kpi-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                         </div>
                         <div class="kpi-content">
-                            <span class="kpi-label">Peringatan Waspada</span>
+                            <span class="kpi-label">Progres Fisik Agregat</span>
                             <div class="kpi-value-row">
-                                <span id="kpiWarningCount" class="kpi-value text-amber">8 Waspada</span>
+                                <span id="kpiProgresFisik" class="kpi-value text-amber">93,6%</span>
                             </div>
-                            <span class="kpi-sub">Kondisi deviasi sedang batas pengawasan</span>
+                            <span id="kpiProgresFisikSub" class="kpi-sub">Realisasi volume output fisik program</span>
                         </div>
                     </div>
 
                     <div class="card kpi-card">
-                        <div class="kpi-icon-wrap" style="background:#e0f2fe; color:#0284c7;" aria-hidden="true">
-                            <svg class="kpi-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                        <div class="kpi-icon-wrap" style="background:#ede9fe; color:#7c3aed;" aria-hidden="true">
+                            <svg class="kpi-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
                         </div>
                         <div class="kpi-content">
-                            <span class="kpi-label">Domain Terpantau</span>
+                            <span class="kpi-label">Status Program</span>
                             <div class="kpi-value-row">
-                                <span id="kpiDomainCount" class="kpi-value text-blue">4 Domain</span>
+                                <span id="kpiTotalPrograms" class="kpi-value text-purple">6 Program</span>
                             </div>
-                            <span class="kpi-sub">Terminal, UPPKB, Perintis, Koridor</span>
+                            <span id="kpiTotalProgramsSub" class="kpi-sub">100% On Track / Sesuai Rencana</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Interactive Spatial Map Card -->
-                <section class="card early-warning-map-card" aria-labelledby="mapHeading">
-                    <div class="early-warning-map-head">
+                <!-- Spatial Distribution Map Card -->
+                <section class="card program-map-card" aria-labelledby="mapHeading">
+                    <div class="program-map-head">
                         <div>
-                            <h3 id="mapHeading" class="section-title">Peta Spasial Kewaspadaan Dini &amp; Anomali Operasional Jawa Barat</h3>
-                            <p class="section-sub">Sebaran geografis 18 insiden anomali aktif dengan animasi denyut severitas dan ambang batas metodologi BPTD</p>
+                            <h3 id="mapHeading" class="section-title">Peta Sebaran Program Strategis BPTD Jawa Barat</h3>
+                            <p class="section-sub">Sebaran geografis 6 program strategis perhubungan darat dengan capaian progres fisik dan lokus kegiatan</p>
                         </div>
-                        <div class="early-warning-map-actions">
+                        <div class="program-map-actions">
                             <button type="button" id="btnFocusJabar" class="btn-map-control" title="Pusatkan peta ke wilayah Jawa Barat">
                                 <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
                                 Fokus Jabar
@@ -221,153 +225,146 @@
                         </div>
                     </div>
 
-                    <!-- Severity Filter Chips -->
-                    <div class="severity-filter-bar">
-                        <span class="severity-filter-title">Filter Severitas:</span>
-                        <div class="severity-toggle-group" role="group" aria-label="Filter Severitas Peringatan">
-                            <button type="button" id="filterAll" class="severity-chip is-active" data-severity="ALL">
+                    <!-- Bidang Filter Chips -->
+                    <div class="bidang-filter-bar">
+                        <span class="bidang-filter-title">Filter Bidang:</span>
+                        <div class="bidang-toggle-group" role="group" aria-label="Filter Bidang Program">
+                            <button type="button" id="filterAllBidang" class="bidang-chip is-active" data-bidang="ALL">
                                 <span class="chip-dot chip-dot-all" aria-hidden="true"></span>
-                                Semua Severitas (18)
+                                Semua Bidang (6)
                             </button>
-                            <button type="button" id="filterCritical" class="severity-chip" data-severity="CRITICAL">
-                                <span class="chip-dot chip-dot-critical" aria-hidden="true"></span>
-                                Kritis (4)
+                            <button type="button" id="filterAngkutan" class="bidang-chip" data-bidang="ANGKUTAN">
+                                <span class="chip-dot chip-dot-angkutan" aria-hidden="true"></span>
+                                Angkutan Jalan (2)
                             </button>
-                            <button type="button" id="filterWarning" class="severity-chip" data-severity="WARNING">
-                                <span class="chip-dot chip-dot-warning" aria-hidden="true"></span>
-                                Peringatan Waspada (8)
+                            <button type="button" id="filterLalin" class="bidang-chip" data-bidang="LALIN">
+                                <span class="chip-dot chip-dot-lalin" aria-hidden="true"></span>
+                                Lalu Lintas Jalan (2)
                             </button>
-                            <button type="button" id="filterAdvisory" class="severity-chip" data-severity="ADVISORY">
-                                <span class="chip-dot chip-dot-advisory" aria-hidden="true"></span>
-                                Atensi Operasional (6)
+                            <button type="button" id="filterSarpras" class="bidang-chip" data-bidang="SARPRAS">
+                                <span class="chip-dot chip-dot-sarpras" aria-hidden="true"></span>
+                                Sarana &amp; Prasarana (2)
                             </button>
                         </div>
                     </div>
 
                     <!-- Map Canvas Container -->
-                    <div id="earlyWarningMap" class="early-warning-map" role="region" aria-label="Peta Interaktif Anomali Operasional Jawa Barat"></div>
+                    <div id="programMap" class="program-map" role="region" aria-label="Peta Interaktif Program Strategis Jawa Barat"></div>
                 </section>
 
                 <!-- Analytics Tabs Card -->
-                <section class="card early-warning-analytics-card" aria-labelledby="analyticsHeading">
+                <section class="card program-analytics-card" aria-labelledby="analyticsHeading">
                     <div class="section-header-compact">
-                        <h3 id="analyticsHeading" class="section-title">Analitik &amp; Direktori Sistem Peringatan Dini</h3>
-                        <p class="section-sub">Eksplorasi direktori peringatan aktif, formula ambang batas metodologi deterministik, dan histori tren bulanan</p>
+                        <h3 id="analyticsHeading" class="section-title">Analitik &amp; Direktori Program Kerja BPTD Jabar</h3>
+                        <p class="section-sub">Eksplorasi direktori 6 program strategis, capaian registri KPI akuntabilitas, dan tren realisasi triwulanan</p>
                     </div>
 
                     <!-- Tab Buttons -->
-                    <div class="early-warning-tabs" role="tablist" aria-label="Navigasi Tab Analitik Early Warning">
-                        <button type="button" id="btnTabAlertLog" class="tab-btn is-active" role="tab" aria-selected="true" aria-controls="panelAlertLog" tabindex="0">
-                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                            Daftar Peringatan Dini Aktif
-                            <span class="tab-count-badge" id="badgeTabAlertCount">18</span>
+                    <div class="program-tabs" role="tablist" aria-label="Navigasi Tab Analitik Program">
+                        <button type="button" id="btnTabPrograms" class="tab-btn is-active" role="tab" aria-selected="true" aria-controls="panelPrograms" tabindex="0">
+                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+                            Direktori 6 Program Strategis &amp; Realisasi
+                            <span class="tab-count-badge" id="badgeTabProgramCount">6 Program</span>
                         </button>
-                        <button type="button" id="btnTabThresholds" class="tab-btn" role="tab" aria-selected="false" aria-controls="panelThresholds" tabindex="-1">
-                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
-                            Registri Ambang Batas Metodologi
-                            <span class="tab-count-badge">10 Rules</span>
+                        <button type="button" id="btnTabKpi" class="tab-btn" role="tab" aria-selected="false" aria-controls="panelKpi" tabindex="-1">
+                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                            Registri KPI &amp; Capaian Kinerja
+                            <span class="tab-count-badge">6 KPI</span>
                         </button>
-                        <button type="button" id="btnTabHistory" class="tab-btn" role="tab" aria-selected="false" aria-controls="panelHistory" tabindex="-1">
-                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
-                            Tren &amp; Riwayat Anomali
-                            <span class="tab-count-badge">12 Bln</span>
+                        <button type="button" id="btnTabQuarterly" class="tab-btn" role="tab" aria-selected="false" aria-controls="panelQuarterly" tabindex="-1">
+                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            Realisasi Triwulanan (Q1–Q4)
+                            <span class="tab-count-badge">4 Triwulan</span>
                         </button>
                     </div>
 
-                    <!-- Panel 1: Daftar Peringatan Dini Aktif -->
-                    <div id="panelAlertLog" class="early-warning-tabpanel" role="tabpanel" aria-labelledby="btnTabAlertLog">
+                    <!-- Panel 1: Direktori 6 Program Strategis -->
+                    <div id="panelPrograms" class="program-tabpanel" role="tabpanel" aria-labelledby="btnTabPrograms">
                         <div class="table-toolbar">
                             <div class="table-toolbar-left">
                                 <div class="search-input-wrap">
                                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                                    <input type="text" id="searchAlert" class="search-input" placeholder="Cari insiden, fasilitas, wilayah, atau parameter..." aria-label="Cari Peringatan Dini">
+                                    <input type="text" id="searchProgram" class="search-input" placeholder="Cari program, bidang, indikator, atau lokasi fokus..." aria-label="Cari Program Kerja">
                                 </div>
-                                <select id="filterDomain" class="select-filter" aria-label="Filter Domain">
-                                    <option value="ALL">Semua Domain (4)</option>
-                                    <option value="terminal">Terminal Penumpang</option>
-                                    <option value="uppkb">UPPKB &amp; Logistik</option>
-                                    <option value="perintis">Angkutan Perintis</option>
-                                    <option value="koridor">Keselamatan Koridor</option>
+                                <select id="filterSelectBidang" class="select-filter" aria-label="Filter Bidang Program">
+                                    <option value="ALL">Semua Bidang (3 Bidang)</option>
+                                    <option value="ANGKUTAN">Angkutan Jalan</option>
+                                    <option value="LALIN">Lalu Lintas Jalan</option>
+                                    <option value="SARPRAS">Sarana &amp; Prasarana</option>
                                 </select>
-                                <select id="filterTemporal" class="select-filter" aria-label="Filter Waktu &amp; Pola Temporal">
-                                    <option value="ALL">Semua Waktu &amp; Pola (5 Pola)</option>
-                                    <option value="PEAK_HOURS">Jam Sibuk (Peak Hours)</option>
-                                    <option value="NIGHT_SHIFT">Shift Malam &amp; Dini Hari</option>
-                                    <option value="WEEKEND_MARKET">Akhir Pekan &amp; Hari Pasar</option>
-                                    <option value="WEATHER_SEASONAL">Kondisional Cuaca &amp; Musiman</option>
-                                    <option value="OFFPEAK_CYCLE">Off-Peak &amp; Siklus Pelaporan</option>
-                                </select>
-                                <select id="filterTableSeverity" class="select-filter" aria-label="Filter Severitas Tabel">
-                                    <option value="ALL">Semua Severitas (3 Level)</option>
-                                    <option value="CRITICAL">Kritis Saja</option>
-                                    <option value="WARNING">Peringatan Waspada</option>
-                                    <option value="ADVISORY">Atensi Operasional</option>
+                                <select id="filterSelectStatus" class="select-filter" aria-label="Filter Status Pelaksanaan">
+                                    <option value="ALL">Semua Status (On Track)</option>
+                                    <option value="On Track">On Track Saja</option>
                                 </select>
                             </div>
-                            <span id="alertCount" class="table-count-info">Menampilkan 18 dari 18 insiden</span>
+                            <span id="programCount" class="table-count-info">Menampilkan 6 dari 6 program</span>
                         </div>
 
                         <div class="table-wrap">
-                            <table class="early-warning-table" aria-label="Tabel Peringatan Dini &amp; Anomali Operasional">
+                            <table class="program-table" aria-label="Tabel Direktori Program Strategis BPTD Jawa Barat">
                                 <thead>
                                     <tr>
-                                        <th class="th-center" style="width: 48px;">No</th>
-                                        <th>ID &amp; Judul Insiden</th>
-                                        <th>Domain</th>
-                                        <th>Fasilitas &amp; Wilayah</th>
-                                        <th class="th-center">Severitas</th>
-                                        <th>Parameter &amp; Nilai Aktual</th>
-                                        <th class="th-center">Status</th>
+                                        <th class="th-center" style="width: 44px;">No</th>
+                                        <th style="min-width: 220px;">ID &amp; Nama Program</th>
+                                        <th style="width: 140px;">Bidang Unit</th>
+                                        <th style="width: 130px;">Pagu Anggaran</th>
+                                        <th style="width: 130px;">Realisasi Keuangan</th>
+                                        <th style="min-width: 200px;">Target &amp; Output Fisik</th>
+                                        <th style="min-width: 150px;">Progres Fisik</th>
+                                        <th class="th-center" style="width: 90px;">Status</th>
                                         <th class="th-center" style="width: 90px;">Aksi</th>
                                     </tr>
                                 </thead>
-                                <tbody id="alertTableBody">
-                                    <!-- Populated dynamically via early-warning.js -->
+                                <tbody id="programTableBody">
+                                    <!-- Populated dynamically via program.js -->
                                 </tbody>
                             </table>
                         </div>
                     </div>
 
-                    <!-- Panel 2: Registri Ambang Batas Metodologi -->
-                    <div id="panelThresholds" class="early-warning-tabpanel" role="tabpanel" aria-labelledby="btnTabThresholds" hidden>
+                    <!-- Panel 2: Registri KPI & Capaian Kinerja -->
+                    <div id="panelKpi" class="program-tabpanel" role="tabpanel" aria-labelledby="btnTabKpi" hidden>
                         <div class="table-wrap">
-                            <table class="early-warning-table" aria-label="Tabel Registri Ambang Batas Metodologi">
+                            <table class="program-table" aria-label="Tabel Registri KPI &amp; Capaian Kinerja">
                                 <thead>
                                     <tr>
-                                        <th class="th-center" style="width: 72px;">Kode</th>
-                                        <th>Domain</th>
-                                        <th>Indikator Anomali</th>
-                                        <th>Formula Metodologi</th>
-                                        <th>Ambang Waspada</th>
-                                        <th>Ambang Kritis</th>
-                                        <th>Dasar Regulasi</th>
-                                        <th>Prosedur Mitigasi BPTD</th>
+                                        <th class="th-center" style="width: 70px;">Kode</th>
+                                        <th style="min-width: 220px;">Indikator Kinerja Utama (KPI)</th>
+                                        <th style="width: 130px;">Bidang</th>
+                                        <th style="min-width: 200px;">Formula &amp; Definisi Operasional</th>
+                                        <th class="th-center" style="width: 100px;">Target</th>
+                                        <th class="th-center" style="width: 130px;">Realisasi</th>
+                                        <th class="th-center" style="width: 90px;">Deviasi</th>
+                                        <th class="th-center" style="width: 100px;">Status</th>
+                                        <th style="min-width: 220px;">Dasar Regulasi &amp; Akuntabilitas</th>
                                     </tr>
                                 </thead>
-                                <tbody id="thresholdTableBody">
-                                    <!-- Populated dynamically via early-warning.js -->
+                                <tbody id="kpiTableBody">
+                                    <!-- Populated dynamically via program.js -->
                                 </tbody>
                             </table>
                         </div>
                     </div>
 
-                    <!-- Panel 3: Tren & Riwayat Anomali -->
-                    <div id="panelHistory" class="early-warning-tabpanel" role="tabpanel" aria-labelledby="btnTabHistory" hidden>
+                    <!-- Panel 3: Realisasi Triwulanan (Q1–Q4) -->
+                    <div id="panelQuarterly" class="program-tabpanel" role="tabpanel" aria-labelledby="btnTabQuarterly" hidden>
                         <div class="table-wrap">
-                            <table class="early-warning-table" aria-label="Tabel Tren &amp; Riwayat Anomali Bulanan">
+                            <table class="program-table" aria-label="Tabel Realisasi Triwulanan Q1–Q4">
                                 <thead>
                                     <tr>
-                                        <th style="width: 140px;">Periode Bulan</th>
-                                        <th class="th-center">Terminal</th>
-                                        <th class="th-center">UPPKB</th>
-                                        <th class="th-center">Perintis</th>
-                                        <th class="th-center">Koridor</th>
-                                        <th class="th-center" style="width: 100px;">Total Insiden</th>
-                                        <th style="min-width: 220px;">Distribusi Beban Anomali</th>
+                                        <th class="th-center" style="width: 70px;">Triwulan</th>
+                                        <th style="width: 140px;">Periode Pelaksanaan</th>
+                                        <th class="th-center" style="width: 110px;">Target Keuangan</th>
+                                        <th style="min-width: 170px;">Realisasi Keuangan</th>
+                                        <th class="th-center" style="width: 100px;">Target Fisik</th>
+                                        <th class="th-center" style="width: 110px;">Realisasi Fisik</th>
+                                        <th style="min-width: 150px;">Progres Track</th>
+                                        <th class="th-center" style="width: 90px;">Status</th>
+                                        <th style="min-width: 250px;">Catatan Pelaksanaan &amp; Output Lapangan</th>
                                     </tr>
                                 </thead>
-                                <tbody id="historyTableBody">
-                                    <!-- Populated dynamically via early-warning.js -->
+                                <tbody id="quarterlyTableBody">
+                                    <!-- Populated dynamically via program.js -->
                                 </tbody>
                             </table>
                         </div>
@@ -379,79 +376,80 @@
 
     <!-- ================= DETAIL MODAL DIALOG ================= -->
     <div id="modalBackdrop" class="modal-backdrop" hidden></div>
-    <div id="alertDetailModal" class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalAlertTitle" aria-describedby="modalAlertSub" hidden>
+    <div id="programDetailModal" class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalProgramTitle" aria-describedby="modalProgramSub" hidden>
         <div class="modal-header">
             <div class="modal-title-group">
                 <div class="modal-badge-row">
-                    <span id="modalSeverityBadge" class="badge-critical">KRITIS</span>
-                    <span id="modalDomainBadge" class="domain-badge domain-terminal">Terminal Penumpang</span>
-                    <span id="modalTemporalBadge" class="temporal-badge">Jam Sibuk</span>
-                    <span id="modalRuleBadge" class="code-pill">THR-01</span>
+                    <span id="modalBidangBadge" class="bidang-badge bidang-angkutan">Angkutan Jalan</span>
+                    <span id="modalCodeBadge" class="code-pill">PRG-01</span>
+                    <span id="modalStatusBadge" class="badge-status-on-track">ON TRACK</span>
                 </div>
-                <h3 id="modalAlertTitle" class="modal-title">Judul Insiden Anomali</h3>
-                <p id="modalAlertSub" class="modal-sub">Lokasi Fasilitas — Wilayah Jawa Barat</p>
+                <h3 id="modalProgramTitle" class="modal-title">Nama Program Strategis</h3>
+                <p id="modalProgramSub" class="modal-sub">Lokasi Fokus — Wilayah Jawa Barat</p>
             </div>
-            <button type="button" id="modalCloseBtn" class="modal-close-btn" aria-label="Tutup jendela detail mitigasi">
+            <button type="button" id="modalCloseBtn" class="modal-close-btn" aria-label="Tutup jendela rincian program">
                 <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
         </div>
 
         <div class="modal-body">
-            <!-- Profil Spasial & Parameter Observasi -->
+            <!-- Deskripsi Program -->
             <div class="modal-section">
-                <h4 class="modal-section-title">Parameter Observasi &amp; Geospasial</h4>
+                <h4 class="modal-section-title">Deskripsi &amp; Sasaran Program</h4>
+                <p id="modalDescBox" class="modal-desc-box">—</p>
+            </div>
+
+            <!-- Ringkasan Finansial & Output Fisik -->
+            <div class="modal-section">
+                <h4 class="modal-section-title">Realisasi Anggaran &amp; Output Fisik</h4>
                 <div class="modal-stats-grid">
                     <div class="modal-stat-card">
-                        <span class="modal-stat-label">Koordinat WGS84</span>
-                        <p id="modalCoords" class="modal-stat-val text-blue font-mono">—</p>
-                        <span class="modal-stat-sub">Latitude, Longitude</span>
+                        <span class="modal-stat-label">Pagu Anggaran</span>
+                        <p id="modalPaguVal" class="modal-stat-val text-blue font-mono">—</p>
+                        <span class="modal-stat-sub">DIPA TA Berjalan</span>
                     </div>
                     <div class="modal-stat-card">
-                        <span class="modal-stat-label">Nilai Observasi Aktual</span>
-                        <p id="modalActualVal" class="modal-stat-val text-red">—</p>
-                        <span id="modalThresholdVal" class="modal-stat-sub">Ambang Batas</span>
+                        <span class="modal-stat-label">Realisasi Keuangan</span>
+                        <p id="modalRealisasiKeuanganVal" class="modal-stat-val text-green font-mono">—</p>
+                        <span id="modalPersenKeuanganVal" class="modal-stat-sub">0% Terserap</span>
                     </div>
                     <div class="modal-stat-card">
-                        <span class="modal-stat-label">Deviasi Statistik</span>
-                        <p id="modalDeviationVal" class="modal-stat-val text-amber">—</p>
-                        <span id="modalDetectTime" class="modal-stat-sub">Waktu Deteksi</span>
+                        <span class="modal-stat-label">Progres Fisik</span>
+                        <p id="modalProgresFisikVal" class="modal-stat-val text-amber font-mono">—</p>
+                        <span id="modalRealisasiFisikSub" class="modal-stat-sub">Target Volume</span>
                     </div>
                 </div>
             </div>
-            <!-- Dimensi Temporal & Korelasi Sumber Data -->
+
+            <!-- KPI Utama & Capaian -->
             <div class="modal-section">
-                <h4 class="modal-section-title">Dimensi Temporal &amp; Korelasi Sumber Data BPTD</h4>
+                <h4 class="modal-section-title">Indikator Kinerja Utama (KPI) &amp; Akuntabilitas</h4>
                 <div class="modal-stats-grid">
                     <div class="modal-stat-card" style="grid-column: span 2;">
-                        <span class="modal-stat-label">Window Waktu Pemicu Anomali</span>
-                        <p id="modalTriggerWindow" class="modal-stat-val text-amber">—</p>
-                        <span id="modalTemporalPattern" class="modal-stat-sub">Pola Temporal Operasional</span>
+                        <span class="modal-stat-label">Indikator KPI Terkait</span>
+                        <p id="modalKpiTitle" class="modal-stat-val text-blue" style="font-size:0.875rem; font-weight:600;">—</p>
+                        <span class="modal-stat-sub">Formula Pengukuran Kinerja Hubdat</span>
                     </div>
                     <div class="modal-stat-card">
-                        <span class="modal-stat-label">Korelasi Dataset BPTD</span>
-                        <p id="modalDatasetRef" class="modal-stat-val text-blue font-mono" style="font-size:0.75rem;">—</p>
-                        <span class="modal-stat-sub">Entitas Terhubung</span>
+                        <span class="modal-stat-label">Status &amp; Capaian</span>
+                        <p id="modalKpiStatusVal" class="modal-stat-val text-green">—</p>
+                        <span id="modalKpiActualVal" class="modal-stat-sub">Realisasi vs Target</span>
                     </div>
                 </div>
             </div>
 
-
-            <!-- Dampak Operasional -->
+            <!-- Breakdown Sub-Kegiatan -->
             <div class="modal-section">
-                <h4 class="modal-section-title">Dampak Operasional Transportasi</h4>
-                <p id="modalImpactBox" class="modal-desc-box">—</p>
+                <h4 class="modal-section-title">Rincian Paket &amp; Sub-Kegiatan Operasional</h4>
+                <div id="modalSubKegiatanList" class="modal-subkegiatan-list">
+                    <!-- Populated dynamically via program.js -->
+                </div>
             </div>
 
-            <!-- SOP & Rekomendasi Mitigasi BPTD -->
+            <!-- Catatan Evaluasi & Dampak Lapangan -->
             <div class="modal-section">
-                <h4 class="modal-section-title">SOP Tindakan &amp; Rekomendasi Mitigasi BPTD</h4>
-                <p id="modalMitigationBox" class="modal-mitigation-box">—</p>
-            </div>
-
-            <!-- Unit Penanggung Jawab -->
-            <div class="modal-section">
-                <h4 class="modal-section-title">Unit Penanggung Jawab Lapangan (PIC)</h4>
-                <p id="modalPicBox" class="modal-desc-box" style="border-left-color: #64748b; font-weight: 600;">—</p>
+                <h4 class="modal-section-title">Evaluasi Pelaksanaan &amp; Dampak Layanan</h4>
+                <p id="modalEvaluationBox" class="modal-evaluation-box">—</p>
             </div>
         </div>
 
@@ -468,6 +466,6 @@
             document.write('<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"><\/script>');
         }
     </script>
-    <script src="early-warning.js"></script>
+    <script src="program.js"></script>
 </body>
 </html>

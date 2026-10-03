@@ -7,6 +7,8 @@
             <repo>/v2/uppkb/      (index.html, uppkb.css, uppkb.js)
             <repo>/v2/od/         (index.html, od.css, od.js)
             <repo>/v2/connectivity/ (index.html, connectivity.css, connectivity.js)
+            <repo>/v2/early-warning/ (index.html, early-warning.css, early-warning.js)
+            <repo>/v2/program/    (index.html, program.css, program.js)
    Output : <repo>/src/command-center/
             <repo>/src/command-center/terminal/
             <repo>/src/command-center/trayek/
@@ -14,6 +16,8 @@
             <repo>/src/command-center/uppkb/
             <repo>/src/command-center/od/
             <repo>/src/command-center/connectivity/
+            <repo>/src/command-center/early-warning/
+            <repo>/src/command-center/program/
    ----------------------------------------------------------------
    Node built-in only (fs, path, url). Tidak tergantung CWD.
    Idempotent: menyalin file wajib, membuat folder output bila belum ada,
@@ -92,6 +96,14 @@ const EARLY_WARNING_FILES = [
     "index.html",
     "early-warning.css",
     "early-warning.js",
+];
+const PROGRAM_SOURCE_DIR = resolve(SOURCE_DIR, "program");
+const PROGRAM_OUT_DIR = resolve(OUT_DIR, "program");
+
+const PROGRAM_FILES = [
+    "index.html",
+    "program.css",
+    "program.js",
 ];
 
 function build() {
@@ -283,6 +295,30 @@ function build() {
 
         writeFileSync(outPath, data);
         results.push({ name: `early-warning/${name}`, size: data.length });
+    }
+    // Direktori program dan ketiga filenya wajib ada setelah modul Program & Kinerja dirilis
+    if (!existsSync(PROGRAM_SOURCE_DIR)) {
+        console.error(`ERROR: direktori source program wajib ada dan tidak ditemukan: ${PROGRAM_SOURCE_DIR}`);
+        process.exitCode = 1;
+        return;
+    }
+
+    mkdirSync(PROGRAM_OUT_DIR, { recursive: true });
+    for (const name of PROGRAM_FILES) {
+        const srcPath = resolve(PROGRAM_SOURCE_DIR, name);
+        const outPath = resolve(PROGRAM_OUT_DIR, name);
+
+        let data;
+        try {
+            data = readFileSync(srcPath);
+        } catch (err) {
+            console.error(`ERROR: file source program wajib tidak ditemukan: ${srcPath} (${err.code})`);
+            process.exitCode = 1;
+            return;
+        }
+
+        writeFileSync(outPath, data);
+        results.push({ name: `program/${name}`, size: data.length });
     }
 
     for (const r of results) {
