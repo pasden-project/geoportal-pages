@@ -332,8 +332,8 @@ async function runHttpSmoke() {
   }
 
   const rootCheck = await probe('/command-center/data-master/');
-  if (rootCheck.error) {
-    console.log(`  [INFO] Local preview server on port ${PREVIEW_PORT} not running (${rootCheck.error}).`);
+  if (rootCheck.error || !rootCheck.status) {
+    console.log(`  [INFO] Local preview server on port ${PREVIEW_PORT} not running (${rootCheck.error || 'not responding'}).`);
     console.log(`  [INFO] Skipping live HTTP smoke. Static and parity tests pass.`);
   } else {
     assert('Test 7.1: HTTP 200 for /command-center/data-master/', rootCheck.status === 200, `status=${rootCheck.status}`);

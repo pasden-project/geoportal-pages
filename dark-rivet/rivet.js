@@ -316,18 +316,18 @@
 
   // Baseline 12 Terminal Tipe A Resmi
   var defaultTerminals = [
-    { nama_terminal: "LEUWIPANJANG", kabupaten_kota: "Kota Bandung", tipe: "A", lat: -6.9472, lng: 107.5947, stats: { keberangkatan_penumpang: 715420, kedatangan_penumpang: 852514 } },
-    { nama_terminal: "BARANANGSIANG", kabupaten_kota: "Kota Bogor", tipe: "A", lat: -6.6022, lng: 106.8086, stats: { keberangkatan_penumpang: 284100, kedatangan_penumpang: 245200 } },
-    { nama_terminal: "GUNTUR MELATI", kabupaten_kota: "Kab. Garut", tipe: "A", lat: -7.1995, lng: 107.8988, stats: { keberangkatan_penumpang: 783627, kedatangan_penumpang: 1029987 } },
-    { nama_terminal: "CIAKAR", kabupaten_kota: "Kab. Sumedang", tipe: "A", lat: -6.8491, lng: 107.9304, stats: { keberangkatan_penumpang: 182300, kedatangan_penumpang: 154100 } },
-    { nama_terminal: "KH AHMAD SANUSI", kabupaten_kota: "Kota Sukabumi", tipe: "A", lat: -6.9388, lng: 106.9211, stats: { keberangkatan_penumpang: 312092, kedatangan_penumpang: 358638 } },
-    { nama_terminal: "JATIJAJAR", kabupaten_kota: "Kota Depok", tipe: "A", lat: -6.4267, lng: 106.8587, stats: { keberangkatan_penumpang: 172234, kedatangan_penumpang: 89054 } },
-    { nama_terminal: "INDIHIANG", kabupaten_kota: "Kota Tasikmalaya", tipe: "A", lat: -7.3006, lng: 108.1939, stats: { keberangkatan_penumpang: 664931, kedatangan_penumpang: 13920 } },
-    { nama_terminal: "KLARI", kabupaten_kota: "Kab. Karawang", tipe: "A", lat: -6.3402, lng: 107.3541, stats: { keberangkatan_penumpang: 142100, kedatangan_penumpang: 118400 } },
-    { nama_terminal: "BANJAR", kabupaten_kota: "Kota Banjar", tipe: "A", lat: -7.3732, lng: 108.5442, stats: { keberangkatan_penumpang: 266107, kedatangan_penumpang: 253305 } },
-    { nama_terminal: "SUBANG", kabupaten_kota: "Kab. Subang", tipe: "A", lat: -6.5641, lng: 107.7633, stats: { keberangkatan_penumpang: 124300, kedatangan_penumpang: 98400 } },
-    { nama_terminal: "HARJAMUKTI", kabupaten_kota: "Kota Cirebon", tipe: "A", lat: -6.7497, lng: 108.5524, stats: { keberangkatan_penumpang: 215400, kedatangan_penumpang: 187200 } },
-    { nama_terminal: "KERTAWANGUNAN", kabupaten_kota: "Kab. Kuningan", tipe: "A", lat: -6.9822, lng: 108.5133, stats: { keberangkatan_penumpang: 134200, kedatangan_penumpang: 112100 } }
+    { nama_terminal: "LEUWIPANJANG", kabupaten_kota: "Kota Bandung", tipe: "A", lat: -6.9472, lng: 107.5947, stats: { keberangkatan_penumpang: 715420, kedatangan_penumpang: 852514, keberangkatan_kendaraan: 71410, kedatangan_kendaraan: 71410 } },
+    { nama_terminal: "BARANANGSIANG", kabupaten_kota: "Kota Bogor", tipe: "A", lat: -6.6022, lng: 106.8086, stats: { keberangkatan_penumpang: 284100, kedatangan_penumpang: 245200, keberangkatan_kendaraan: 51200, kedatangan_kendaraan: 47210 } },
+    { nama_terminal: "GUNTUR MELATI", kabupaten_kota: "Kab. Garut", tipe: "A", lat: -7.1995, lng: 107.8988, stats: { keberangkatan_penumpang: 783627, kedatangan_penumpang: 1029987, keberangkatan_kendaraan: 41120, kedatangan_kendaraan: 43200 } },
+    { nama_terminal: "CIAKAR", kabupaten_kota: "Kab. Sumedang", tipe: "A", lat: -6.8491, lng: 107.9304, stats: { keberangkatan_penumpang: 182300, kedatangan_penumpang: 154100, keberangkatan_kendaraan: 21050, kedatangan_kendaraan: 21100 } },
+    { nama_terminal: "KH AHMAD SANUSI", kabupaten_kota: "Kota Sukabumi", tipe: "A", lat: -6.9388, lng: 106.9211, stats: { keberangkatan_penumpang: 312092, kedatangan_penumpang: 358638, keberangkatan_kendaraan: 26110, kedatangan_kendaraan: 28100 } },
+    { nama_terminal: "JATIJAJAR", kabupaten_kota: "Kota Depok", tipe: "A", lat: -6.4267, lng: 106.8587, stats: { keberangkatan_penumpang: 172234, kedatangan_penumpang: 89054, keberangkatan_kendaraan: 13200, kedatangan_kendaraan: 11900 } },
+    { nama_terminal: "INDIHIANG", kabupaten_kota: "Kota Tasikmalaya", tipe: "A", lat: -7.3006, lng: 108.1939, stats: { keberangkatan_penumpang: 664931, kedatangan_penumpang: 13920, keberangkatan_kendaraan: 9100, kedatangan_kendaraan: 9100 } },
+    { nama_terminal: "KLARI", kabupaten_kota: "Kab. Karawang", tipe: "A", lat: -6.3402, lng: 107.3541, stats: { keberangkatan_penumpang: 142100, kedatangan_penumpang: 118400, keberangkatan_kendaraan: 4250, kedatangan_kendaraan: 4250 } },
+    { nama_terminal: "BANJAR", kabupaten_kota: "Kota Banjar", tipe: "A", lat: -7.3732, lng: 108.5442, stats: { keberangkatan_penumpang: 266107, kedatangan_penumpang: 253305, keberangkatan_kendaraan: 3200, kedatangan_kendaraan: 3200 } },
+    { nama_terminal: "SUBANG", kabupaten_kota: "Kab. Subang", tipe: "A", lat: -6.5641, lng: 107.7633, stats: { keberangkatan_penumpang: 124300, kedatangan_penumpang: 98400, keberangkatan_kendaraan: 1250, kedatangan_kendaraan: 1250 } },
+    { nama_terminal: "HARJAMUKTI", kabupaten_kota: "Kota Cirebon", tipe: "A", lat: -6.7497, lng: 108.5524, stats: { keberangkatan_penumpang: 215400, kedatangan_penumpang: 187200, keberangkatan_kendaraan: 600, kedatangan_kendaraan: 600 } },
+    { nama_terminal: "KERTAWANGUNAN", kabupaten_kota: "Kab. Kuningan", tipe: "A", lat: -6.9822, lng: 108.5133, stats: { keberangkatan_penumpang: 134200, kedatangan_penumpang: 112100, keberangkatan_kendaraan: 450, kedatangan_kendaraan: 450 } }
   ];
   // Baseline 6 Fasilitas UPPKB Resmi
   var defaultUppkb = [
@@ -1229,8 +1229,8 @@
         '</svg>';
 
       var icon = L.divIcon({
-        className: 'rivet-marker rivet-marker--terminal',
-        html: terminalSvg,
+        className: 'rivet-marker-host',
+        html: '<div class="rivet-marker rivet-marker--terminal">' + terminalSvg + '</div>',
         iconSize: [24, 24],
         iconAnchor: [12, 12]
       });
@@ -1264,8 +1264,8 @@
         '</svg>';
 
       var icon = L.divIcon({
-        className: 'rivet-marker rivet-marker--uppkb',
-        html: barangSvg,
+        className: 'rivet-marker-host',
+        html: '<div class="rivet-marker rivet-marker--uppkb">' + barangSvg + '</div>',
         iconSize: [24, 24],
         iconAnchor: [12, 12]
       });
@@ -1278,48 +1278,335 @@
     fitMapToJabar();
   }
 
-  // --- 7. Peringkat Simpul Dinamis (#cats) ---
-  function renderRanking(points) {
-    var catsEl = document.getElementById('cats');
-    if (!catsEl) return;
+  // --- 7. Peringkat Simpul Dinamis & Quad Cards Logic ---
+  var currentTerminalMetric = 'penumpang';
+  var currentTrayekCategory = 'semua';
 
-    var pts = (points && points.length)
-      ? points.filter(function (p) {
+  var routesTopData = {
+    semua: [
+      { rute: 'Bandung \u2013 Sukabumi', tipe: 'AKDP', pnp: 452046, trips: 35961 },
+      { rute: 'Bandung \u2013 Bekasi', tipe: 'AKDP', pnp: 223071, trips: 21682 },
+      { rute: 'Kp. Rambutan (Jakarta) \u2013 Guntur Melati (Garut)', tipe: 'AKAP', pnp: 143865, trips: 10995 }
+    ],
+    akap: [
+      { rute: 'Kp. Rambutan (Jakarta) \u2013 Guntur Melati (Garut)', tipe: 'AKAP', pnp: 143865, trips: 10995 },
+      { rute: 'Kp. Rambutan (Jakarta) \u2013 Ciakar (Sumedang)', tipe: 'AKAP', pnp: 105402, trips: 8204 },
+      { rute: 'Kp. Rambutan (Jakarta) \u2013 Indihiang (Tasikmalaya)', tipe: 'AKAP', pnp: 87384, trips: 10701 }
+    ],
+    akdp: [
+      { rute: 'Bandung \u2013 Sukabumi', tipe: 'AKDP', pnp: 452046, trips: 35961 },
+      { rute: 'Bandung \u2013 Bekasi', tipe: 'AKDP', pnp: 223071, trips: 21682 },
+      { rute: 'Guntur Melati (Garut) \u2013 Baranangsiang (Bogor)', tipe: 'AKDP', pnp: 129859, trips: 10395 }
+    ]
+  };
+
+  var odBangkitanData = [
+    { nama: 'Kota Bandung', pnp: 676598, note: 'Top Outflow Jabar' },
+    { nama: 'Kota Tasikmalaya', pnp: 634549 },
+    { nama: 'Kota Sukabumi', pnp: 345782 },
+    { nama: 'Kab. Garut', pnp: 307949 },
+    { nama: 'Kota Bekasi', pnp: 272178 }
+  ];
+
+  var odTarikanData = [
+    { nama: 'Kota Bandung', pnp: 713190, note: 'Top Inflow Jabar' },
+    { nama: 'Kab. Garut', pnp: 539448 },
+    { nama: 'Kota Sukabumi', pnp: 352550 },
+    { nama: 'Kota Bekasi', pnp: 329532 },
+    { nama: 'Kab. Sumedang', pnp: 184566 }
+  ];
+
+  function renderTerminalRanking(metric) {
+    if (metric) currentTerminalMetric = metric;
+    var listEl = document.getElementById('terminalRankList');
+    if (!listEl) return;
+
+    var pts = (dashboardData && dashboardData.points && dashboardData.points.length)
+      ? dashboardData.points.filter(function (p) {
           var t = String(p.tipe || '').trim().toUpperCase();
           return t === 'A' || t === 'TIPE A';
         })
       : defaultTerminals;
     if (!pts || !pts.length) pts = defaultTerminals;
+
+    var isPnp = (currentTerminalMetric === 'penumpang');
     var list = pts.map(function (p) {
-      var total = (p.stats ? ((p.stats.keberangkatan_penumpang || 0) + (p.stats.kedatangan_penumpang || 0)) : 0);
+      var total = 0;
+      if (p.stats) {
+        if (isPnp) {
+          total = (p.stats.keberangkatan_penumpang || 0) + (p.stats.kedatangan_penumpang || 0);
+        } else {
+          total = (p.stats.keberangkatan_kendaraan || 0) + (p.stats.kedatangan_kendaraan || 0);
+        }
+      }
       var rawName = p.nama_terminal || p.name || 'Terminal';
-      var name = rawName.charAt(0).toUpperCase() + rawName.slice(1).toLowerCase();
-      return { name: name, total: total };
+      var name = rawName.toLowerCase().split(/\s+/).map(function (w) {
+        if (w === 'kh') return 'KH';
+        return w.charAt(0).toUpperCase() + w.slice(1);
+      }).join(' ');
+      var kota = p.kabupaten_kota || p.kota || '';
+      return { name: name, kota: kota, total: total };
     }).sort(function (a, b) { return b.total - a.total; });
 
     var grandTotal = list.reduce(function (sum, item) { return sum + item.total; }, 0) || 1;
-    var colors = ['var(--n-lime)', 'var(--n-cyan)', 'var(--n-amber)', 'var(--n-violet)', 'var(--faint)'];
+    var top5 = list.slice(0, 5);
+    var maxVal = (top5[0] && top5[0].total) ? top5[0].total : 1;
 
-    catsEl.innerHTML = '';
-    var top4 = list.slice(0, 4);
-    var top4Sum = 0;
+    var barGradients = [
+      'linear-gradient(90deg, var(--n-lime), #84cc16)',
+      'linear-gradient(90deg, var(--n-cyan), #06b6d4)',
+      'linear-gradient(90deg, var(--n-amber), #eab308)',
+      'var(--n-cyan)',
+      'var(--dim)'
+    ];
 
-    top4.forEach(function (item, idx) {
-      top4Sum += item.total;
-      var pct = Math.round((item.total / grandTotal) * 100);
+    listEl.innerHTML = '';
+    top5.forEach(function (item, idx) {
+      var sharePct = ((item.total / grandTotal) * 100).toFixed(1).replace('.', ',') + '%';
+      var barWidth = Math.max(8, Math.round((item.total / maxVal) * 100)) + '%';
+      var valStr = item.total.toLocaleString('id-ID') + (isPnp ? ' pnp' : ' knd');
+      var badgeClass = 'rank-item__badge' + (idx < 3 ? ' rank-item__badge--' + (idx + 1) : '');
+
       var li = document.createElement('li');
-      li.className = 'rank-item-anim';
-      li.style.cssText = 'display: flex; align-items: center; justify-content: space-between; font-size: 11.5px; animation-delay: ' + (150 + idx * 60) + 'ms;';
-      li.innerHTML = '<span style="color: #FFFFFF;">' + (idx + 1) + '. ' + item.name + '</span><b style="color: ' + colors[idx] + ';">' + pct + '%</b>';
-      catsEl.appendChild(li);
+      li.className = 'rank-item rank-item-anim';
+      li.style.animationDelay = (120 + idx * 50) + 'ms';
+      li.innerHTML =
+        '<div class="rank-item__row">' +
+          '<div class="rank-item__left">' +
+            '<span class="' + badgeClass + '">' + (idx + 1) + '</span>' +
+            '<div style="min-width:0; overflow:hidden;">' +
+              '<p class="rank-item__name">' + item.name + '</p>' +
+              (item.kota ? '<p class="rank-item__sub">' + item.kota + '</p>' : '') +
+            '</div>' +
+          '</div>' +
+          '<div class="rank-item__right">' +
+            '<span class="rank-item__val">' + valStr + '</span>' +
+            '<span class="rank-item__share">(' + sharePct + ')</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="rank-item__bar">' +
+          '<div class="rank-item__fill" style="width: ' + barWidth + '; background: ' + barGradients[idx] + ';"></div>' +
+        '</div>';
+      listEl.appendChild(li);
     });
 
-    var remainingPct = Math.max(0, 100 - Math.round((top4Sum / grandTotal) * 100));
-    var liOther = document.createElement('li');
-    liOther.className = 'rank-item-anim';
-    liOther.style.cssText = 'display: flex; align-items: center; justify-content: space-between; font-size: 11.5px; animation-delay: ' + (150 + 4 * 60) + 'ms;';
-    liOther.innerHTML = '<span style="color: var(--dim);">5. Lainnya</span><b style="color: ' + colors[4] + ';">' + remainingPct + '%</b>';
-    catsEl.appendChild(liOther);
+    var footerEl = document.getElementById('terminalRankFooter');
+    if (footerEl) {
+      footerEl.textContent = 'Total ' + grandTotal.toLocaleString('id-ID') + (isPnp ? ' pnp terpetakan' : ' knd terpetakan');
+    }
+  }
+
+  function renderTrayekRanking(category) {
+    if (category) currentTrayekCategory = category;
+    var listEl = document.getElementById('trayekRankList');
+    if (!listEl) return;
+
+    var items = routesTopData[currentTrayekCategory] || routesTopData.semua;
+    var maxPnp = (items[0] && items[0].pnp) ? items[0].pnp : 1;
+
+    var barGradients = [
+      'linear-gradient(90deg, var(--n-lime), #84cc16)',
+      'linear-gradient(90deg, var(--n-cyan), #06b6d4)',
+      'linear-gradient(90deg, var(--n-amber), #eab308)'
+    ];
+
+    listEl.innerHTML = '';
+    items.forEach(function (item, idx) {
+      var barWidth = Math.max(10, Math.round((item.pnp / maxPnp) * 100)) + '%';
+      var badgeClass = 'rank-item__badge rank-item__badge--' + (idx + 1);
+      var catClass = item.tipe === 'AKAP' ? 'trayek-cat-pill--akap' : 'trayek-cat-pill--akdp';
+
+      var li = document.createElement('li');
+      li.className = 'rank-item rank-item-anim';
+      li.style.animationDelay = (120 + idx * 50) + 'ms';
+      li.innerHTML =
+        '<div class="rank-item__row">' +
+          '<div class="rank-item__left">' +
+            '<span class="' + badgeClass + '">' + (idx + 1) + '</span>' +
+            '<div style="min-width:0; overflow:hidden;">' +
+              '<p class="rank-item__name" title="' + item.rute + '">' + item.rute + '</p>' +
+              '<div style="display:flex; align-items:center; gap:5px; margin-top:1px;">' +
+                '<span class="trayek-cat-pill ' + catClass + '">' + item.tipe + '</span>' +
+                '<span class="rank-item__sub">' + item.trips.toLocaleString('id-ID') + ' Trip</span>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="rank-item__right">' +
+            '<span class="rank-item__val" style="color:var(--n-lime);">' + item.pnp.toLocaleString('id-ID') + '</span>' +
+            '<span class="rank-item__sub">pnp</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="rank-item__bar">' +
+          '<div class="rank-item__fill" style="width: ' + barWidth + '; background: ' + barGradients[idx] + ';"></div>' +
+        '</div>';
+      listEl.appendChild(li);
+    });
+  }
+
+  function renderBangkitanTarikan() {
+    var bList = document.getElementById('odBangkitanList');
+    var tList = document.getElementById('odTarikanList');
+    if (!bList || !tList) return;
+
+    var maxB = odBangkitanData[0].pnp;
+    var maxT = odTarikanData[0].pnp;
+
+    bList.innerHTML = '';
+    odBangkitanData.forEach(function (item, idx) {
+      var barWidth = Math.max(10, Math.round((item.pnp / maxB) * 100)) + '%';
+      var badgeClass = 'rank-item__badge' + (idx < 3 ? ' rank-item__badge--' + (idx + 1) : '');
+
+      var li = document.createElement('li');
+      li.className = 'rank-item rank-item-anim';
+      li.style.animationDelay = (100 + idx * 40) + 'ms';
+      li.innerHTML =
+        '<div class="rank-item__row">' +
+          '<div class="rank-item__left">' +
+            '<span class="' + badgeClass + '">' + (idx + 1) + '</span>' +
+            '<div style="min-width:0; overflow:hidden;">' +
+              '<p class="rank-item__name">' + item.nama + '</p>' +
+              (item.note ? '<p class="rank-item__sub">' + item.note + '</p>' : '') +
+            '</div>' +
+          '</div>' +
+          '<div class="rank-item__right">' +
+            '<span class="rank-item__val" style="color:var(--n-cyan);">' + item.pnp.toLocaleString('id-ID') + '</span>' +
+            '<span class="rank-item__sub">pnp</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="rank-item__bar">' +
+          '<div class="rank-item__fill" style="width: ' + barWidth + '; background: linear-gradient(90deg, var(--n-cyan), #0284c7);"></div>' +
+        '</div>';
+      bList.appendChild(li);
+    });
+
+    tList.innerHTML = '';
+    odTarikanData.forEach(function (item, idx) {
+      var barWidth = Math.max(10, Math.round((item.pnp / maxT) * 100)) + '%';
+      var badgeClass = 'rank-item__badge' + (idx < 3 ? ' rank-item__badge--' + (idx + 1) : '');
+
+      var li = document.createElement('li');
+      li.className = 'rank-item rank-item-anim';
+      li.style.animationDelay = (100 + idx * 40) + 'ms';
+      li.innerHTML =
+        '<div class="rank-item__row">' +
+          '<div class="rank-item__left">' +
+            '<span class="' + badgeClass + '">' + (idx + 1) + '</span>' +
+            '<div style="min-width:0; overflow:hidden;">' +
+              '<p class="rank-item__name">' + item.nama + '</p>' +
+              (item.note ? '<p class="rank-item__sub">' + item.note + '</p>' : '') +
+            '</div>' +
+          '</div>' +
+          '<div class="rank-item__right">' +
+            '<span class="rank-item__val" style="color:var(--n-lime);">' + item.pnp.toLocaleString('id-ID') + '</span>' +
+            '<span class="rank-item__sub">pnp</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="rank-item__bar">' +
+          '<div class="rank-item__fill" style="width: ' + barWidth + '; background: linear-gradient(90deg, var(--n-lime), #65a30d);"></div>' +
+        '</div>';
+      tList.appendChild(li);
+    });
+  }
+
+  function renderHealthScoreGauge(score) {
+    var s = (typeof score === 'number') ? score : 88.2;
+    var arcEl = document.getElementById('healthGaugeArc');
+    var valEl = document.getElementById('healthGaugeVal');
+    var scoreEl = document.getElementById('healthBigScore');
+
+    if (scoreEl) {
+      scoreEl.innerHTML = s.toFixed(1).replace('.', ',') + '<span>/100</span>';
+    }
+    if (valEl) {
+      animateValue(valEl, 0, Math.round(s), 900, '%');
+    }
+    if (arcEl) {
+      var offset = Math.round(251.36 * (1 - s / 100));
+      arcEl.style.strokeDashoffset = offset;
+    }
+  }
+
+  function initQuadCards() {
+    var tTabs = document.querySelectorAll('#terminalRankTabs .rank-tab-btn');
+    tTabs.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var metric = this.getAttribute('data-metric');
+        if (metric === currentTerminalMetric) return;
+        tTabs.forEach(function (b) {
+          b.classList.remove('is-active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        this.classList.add('is-active');
+        this.setAttribute('aria-selected', 'true');
+        renderTerminalRanking(metric);
+      });
+    });
+
+    var yTabs = document.querySelectorAll('#trayekRankTabs .rank-tab-btn');
+    yTabs.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var cat = this.getAttribute('data-cat');
+        if (cat === currentTrayekCategory) return;
+        yTabs.forEach(function (b) {
+          b.classList.remove('is-active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        this.classList.add('is-active');
+        this.setAttribute('aria-selected', 'true');
+        renderTrayekRanking(cat);
+      });
+    });
+
+    renderTerminalRanking(currentTerminalMetric);
+    renderTrayekRanking(currentTrayekCategory);
+    renderBangkitanTarikan();
+    renderHealthScoreGauge(88.2);
+  }
+
+  // Backward compatibility wrapper
+  function renderRanking(points) {
+    var catsEl = document.getElementById('cats');
+    if (catsEl) {
+      var pts = (points && points.length)
+        ? points.filter(function (p) {
+            var t = String(p.tipe || '').trim().toUpperCase();
+            return t === 'A' || t === 'TIPE A';
+          })
+        : defaultTerminals;
+      if (!pts || !pts.length) pts = defaultTerminals;
+      var list = pts.map(function (p) {
+        var total = (p.stats ? ((p.stats.keberangkatan_penumpang || 0) + (p.stats.kedatangan_penumpang || 0)) : 0);
+        var rawName = p.nama_terminal || p.name || 'Terminal';
+        var name = rawName.charAt(0).toUpperCase() + rawName.slice(1).toLowerCase();
+        return { name: name, total: total };
+      }).sort(function (a, b) { return b.total - a.total; });
+
+      var grandTotal = list.reduce(function (sum, item) { return sum + item.total; }, 0) || 1;
+      var colors = ['var(--n-lime)', 'var(--n-cyan)', 'var(--n-amber)', 'var(--n-violet)', 'var(--faint)'];
+
+      catsEl.innerHTML = '';
+      var top4 = list.slice(0, 4);
+      var top4Sum = 0;
+
+      top4.forEach(function (item, idx) {
+        top4Sum += item.total;
+        var pct = Math.round((item.total / grandTotal) * 100);
+        var li = document.createElement('li');
+        li.className = 'rank-item-anim';
+        li.style.cssText = 'display: flex; align-items: center; justify-content: space-between; font-size: 11.5px; animation-delay: ' + (150 + idx * 60) + 'ms;';
+        li.innerHTML = '<span style="color: #FFFFFF;">' + (idx + 1) + '. ' + item.name + '</span><b style="color: ' + colors[idx] + ';">' + pct + '%</b>';
+        catsEl.appendChild(li);
+      });
+
+      var remainingPct = Math.max(0, 100 - Math.round((top4Sum / grandTotal) * 100));
+      var liOther = document.createElement('li');
+      liOther.className = 'rank-item-anim';
+      liOther.style.cssText = 'display: flex; align-items: center; justify-content: space-between; font-size: 11.5px; animation-delay: ' + (150 + 4 * 60) + 'ms;';
+      liOther.innerHTML = '<span style="color: var(--dim);">5. Lainnya</span><b style="color: ' + colors[4] + ';">' + remainingPct + '%</b>';
+      catsEl.appendChild(liOther);
+    }
+
+    renderTerminalRanking(currentTerminalMetric);
   }
 
   // --- 8. Log Aktivitas Simpul Terkini Dinamis (#txList) ---
@@ -1475,6 +1762,7 @@
       if (dashboardData.points) {
         renderMapPoints(dashboardData.points, dashboardData.uppkbPoints);
         renderRanking(dashboardData.points);
+        renderTerminalRanking(currentTerminalMetric);
         renderActivityFeed(dashboardData.points, dashboardData.uppkbPoints);
       }
       return;
@@ -1496,6 +1784,7 @@
         if (pack.data.points) {
           renderMapPoints(pack.data.points, pack.data.uppkbPoints);
           renderRanking(pack.data.points);
+          renderTerminalRanking(currentTerminalMetric);
           renderActivityFeed(pack.data.points, pack.data.uppkbPoints);
         }
       }
@@ -1685,7 +1974,7 @@
     initChartControls();
     initEvents();
     initSpaRouting();
-
+    initQuadCards();
     // Baseline render langsung tanpa flicker / tanpa menunggu cold-start API
     updateModeUI('akap', 'primary');
     renderRanking(defaultTerminals);

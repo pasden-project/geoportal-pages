@@ -75,6 +75,17 @@ html, body {
 }
 
 /* Custom DivIcon Markers for Dark Rivet */
+/* Host container Leaflet - jangan pernah sentuh transform */
+.rivet-marker-host {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+}
+
+.rivet-marker-host:hover {
+  z-index: 1000 !important;
+}
+
 .rivet-marker {
   width: 24px !important;
   height: 24px !important;
@@ -84,6 +95,7 @@ html, body {
   justify-content: center !important;
   border: 2px solid #FFFFFF !important;
   cursor: pointer !important;
+  transform-origin: center center !important;
   transition: transform 0.2s ease, filter 0.2s ease !important;
 }
 
@@ -93,9 +105,8 @@ html, body {
 }
 
 .rivet-marker:hover {
-  transform: scale(1.15) !important;
-  filter: brightness(1.3) drop-shadow(0 0 10px #FFFFFF) !important;
-  z-index: 1000 !important;
+  transform: scale(1.22) !important;
+  filter: brightness(1.25) drop-shadow(0 0 10px #FFFFFF) !important;
 }
 
 .rivet-marker--terminal {
@@ -939,10 +950,19 @@ html, body {
 
 @keyframes gaugeArcDraw {
   0% {
-    stroke-dashoffset: 251;
+    stroke-dashoffset: 251.36;
   }
   100% {
-    stroke-dashoffset: 55;
+    stroke-dashoffset: 30;
+  }
+}
+
+@keyframes healthArcAnim {
+  0% {
+    stroke-dashoffset: 251.36;
+  }
+  100% {
+    stroke-dashoffset: 30;
   }
 }
 
@@ -1223,8 +1243,10 @@ html, body {
   animation-delay: 0.25s;
 }
 
-.gauge__arc {
-  animation: gaugeArcDraw 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+.gauge__arc,
+.health-gauge__arc {
+  stroke-dasharray: 251.36 !important;
+  animation: healthArcAnim 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
   animation-delay: 0.32s;
 }
 
@@ -1254,14 +1276,719 @@ html, body {
   filter: drop-shadow(0 0 4px currentColor);
 }
 
+/* =====================================================================
+   7 KARTU MODUL SIDEBAR UTAMA (DARK RIVET MODULE CARDS)
+   ===================================================================== */
+
+/* Grid Kolom Kiri: 5 Modul Operasional & Jaringan */
+.module-grid--left {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  width: 100%;
+}
+
+@media (max-width: 760px) {
+  .module-grid--left {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Stack Kolom Kanan: 2 Modul Pengawasan & Program */
+.module-stack--right {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+/* Kartu Modul Standar */
+.card-module {
+  background: linear-gradient(180deg, var(--card-top), var(--card) 45%);
+  border: 1px solid var(--hair);
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  position: relative;
+  min-width: 0;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, box-shadow 0.22s ease;
+}
+
+.card-module:hover {
+  transform: translateY(-2px);
+  border-color: var(--hair-2);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+}
+
+/* Kartu Modul Lebar (OD Intelligence) membentang penuh 2-kolom */
+.card-module--wide {
+  grid-column: 1 / -1;
+}
+
+/* Header Kartu */
+.card-module__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.card-module__title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+
+.card-module__icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  background: var(--well);
+  border: 1px solid var(--hair);
+  color: var(--n-lime);
+}
+
+.card-module__icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.card-module__icon--cyan {
+  color: var(--n-cyan);
+  background: rgba(62, 242, 255, 0.1);
+  border-color: rgba(62, 242, 255, 0.25);
+}
+
+.card-module__icon--lime {
+  color: var(--n-lime);
+  background: rgba(212, 255, 63, 0.1);
+  border-color: rgba(212, 255, 63, 0.25);
+}
+
+.card-module__icon--amber {
+  color: var(--n-amber);
+  background: rgba(255, 190, 77, 0.1);
+  border-color: rgba(255, 190, 77, 0.25);
+}
+
+.card-module__icon--pink {
+  color: var(--n-pink);
+  background: rgba(255, 92, 138, 0.12);
+  border-color: rgba(255, 92, 138, 0.3);
+}
+
+.card-module__title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: -0.01em;
+}
+
+/* Badge Kategori/Status */
+.card-module__badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 999px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  letter-spacing: 0.02em;
+}
+
+.card-module__badge--cyan {
+  background: rgba(62, 242, 255, 0.12);
+  color: var(--n-cyan);
+  border: 1px solid rgba(62, 242, 255, 0.25);
+}
+
+.card-module__badge--lime {
+  background: rgba(212, 255, 63, 0.12);
+  color: var(--n-lime);
+  border: 1px solid rgba(212, 255, 63, 0.25);
+}
+
+.card-module__badge--amber {
+  background: rgba(255, 190, 77, 0.12);
+  color: var(--n-amber);
+  border: 1px solid rgba(255, 190, 77, 0.25);
+}
+
+.card-module__badge--pink {
+  background: rgba(255, 92, 138, 0.15);
+  color: var(--n-pink);
+  border: 1px solid rgba(255, 92, 138, 0.3);
+}
+
+/* Metrik Utama */
+.card-module__metric {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.card-module__value {
+  font-family: 'Manrope', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.15;
+}
+
+.card-module__label {
+  font-size: 11px;
+  color: var(--dim);
+  font-weight: 500;
+}
+
+/* Rincian Data Faktual */
+.card-module__details {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--hair);
+  border-radius: 9px;
+  padding: 8px 10px;
+  font-size: 11px;
+}
+
+.card-module__detail-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.card-module__detail-key {
+  color: var(--dim);
+  font-size: 10.5px;
+  white-space: nowrap;
+}
+
+.card-module__detail-val {
+  color: #FFFFFF;
+  font-weight: 600;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-module__detail-val--accent {
+  color: var(--n-lime);
+}
+
+.card-module__detail-val--cyan {
+  color: var(--n-cyan);
+}
+
+.card-module__detail-val--amber {
+  color: var(--n-amber);
+}
+
+.card-module__detail-val--pink {
+  color: var(--n-pink);
+}
+
+/* Rincian Grid untuk Kartu Lebar (OD Matrix) */
+.card-module__details--grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+@media (max-width: 680px) {
+  .card-module__details--grid {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
+
+.card-module__grid-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Status Breakdown Pills (Early Warning) */
+.card-module__pills {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.card-module__pill {
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.card-module__pill--crit {
+  background: rgba(255, 92, 138, 0.15);
+  color: var(--n-pink);
+  border: 1px solid rgba(255, 92, 138, 0.3);
+}
+
+.card-module__pill--warn {
+  background: rgba(255, 190, 77, 0.15);
+  color: var(--n-amber);
+  border: 1px solid rgba(255, 190, 77, 0.3);
+}
+
+.card-module__pill--attn {
+  background: rgba(62, 242, 255, 0.12);
+  color: var(--n-cyan);
+  border: 1px solid rgba(62, 242, 255, 0.25);
+}
+
+/* Footer / Action Link */
+.card-module__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 6px;
+  border-top: 1px solid var(--hair);
+}
+
+.card-module__link {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--n-lime);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: gap 0.2s ease, color 0.2s ease;
+}
+
+.card-module__link:hover {
+  color: #FFFFFF;
+  gap: 8px;
+}
+
+.card-module__link svg {
+  width: 12px;
+  height: 12px;
+}
+
+.card-module__status-text {
+  font-size: 10px;
+  color: var(--faint);
+}
+
+/* Staggered Animations */
+.module-grid--left > .card-module:nth-child(1) { animation: rivetCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.10s; }
+.module-grid--left > .card-module:nth-child(2) { animation: rivetCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.15s; }
+.module-grid--left > .card-module:nth-child(3) { animation: rivetCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.20s; }
+.module-grid--left > .card-module:nth-child(4) { animation: rivetCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.25s; }
+.module-grid--left > .card-module:nth-child(5) { animation: rivetCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.30s; }
+.module-stack--right > .card-module:nth-child(1) { animation: rivetCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.18s; }
+.module-stack--right > .card-module:nth-child(2) { animation: rivetCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.26s; }
+
+
+/* =====================================================================
+   Rankings & Quad Cards Component Styles
+   ---------------------------------------------------------------------
+   Card 1 (Terminal Rank), Card 2 (Trayek Top 3), Card 3 (OD Split 2-Col),
+   dan Card 4 (Health Score Gauge & Breakdown).
+   ===================================================================== */
+
+.rank-tabs {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: var(--well);
+  border: 1px solid var(--hair);
+  border-radius: 999px;
+  padding: 2px;
+}
+
+.rank-tab-btn {
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--dim);
+  background: transparent;
+  border: none;
+  border-radius: 999px;
+  padding: 3px 9px;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+  line-height: 1.2;
+}
+
+.rank-tab-btn:hover {
+  color: #FFFFFF;
+}
+
+.rank-tab-btn.is-active {
+  background: var(--card-top);
+  color: var(--n-lime);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+}
+
+.rank-tabs--cyan .rank-tab-btn.is-active {
+  color: var(--n-cyan);
+}
+
+.rank-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-top: 10px;
+  list-style: none;
+  padding: 0;
+}
+
+.rank-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 2px 0;
+}
+
+.rank-item__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 11.5px;
+}
+
+.rank-item__left {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.rank-item__badge {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  background: var(--well);
+  border: 1px solid var(--hair-2);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--dim);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.rank-item__badge--1 {
+  background: rgba(212, 255, 63, 0.15);
+  color: var(--n-lime);
+  border-color: rgba(212, 255, 63, 0.35);
+}
+
+.rank-item__badge--2 {
+  background: rgba(62, 242, 255, 0.12);
+  color: var(--n-cyan);
+  border-color: rgba(62, 242, 255, 0.3);
+}
+
+.rank-item__badge--3 {
+  background: rgba(255, 190, 77, 0.12);
+  color: var(--n-amber);
+  border-color: rgba(255, 190, 77, 0.3);
+}
+
+.rank-item__name {
+  font-weight: 600;
+  color: #FFFFFF;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 11.5px;
+}
+
+.rank-item__sub {
+  font-size: 10px;
+  color: var(--faint);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rank-item__right {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.rank-item__val {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 11.5px;
+  color: #FFFFFF;
+  font-variant-numeric: tabular-nums;
+}
+
+.rank-item__share {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--n-cyan);
+  font-variant-numeric: tabular-nums;
+}
+
+.rank-item__bar {
+  width: 100%;
+  height: 4px;
+  background: var(--well);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.rank-item__fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+/* Trayek category pill badge */
+.trayek-cat-pill {
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 4px;
+  line-height: 1.3;
+}
+
+.trayek-cat-pill--akap {
+  background: rgba(62, 242, 255, 0.12);
+  color: var(--n-cyan);
+  border: 1px solid rgba(62, 242, 255, 0.25);
+}
+
+.trayek-cat-pill--akdp {
+  background: rgba(212, 255, 63, 0.12);
+  color: var(--n-lime);
+  border: 1px solid rgba(212, 255, 63, 0.25);
+}
+
+/* Card 3: 5 Bangkitan & Tarikan OD Split 2-Column Grid */
+.od-split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .od-split-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+.od-split-col {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  background: rgba(13, 14, 18, 0.45);
+  border: 1px solid var(--hair);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.od-split-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--hair);
+  margin-bottom: 2px;
+}
+
+.od-split-title {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.od-split-subtitle {
+  font-size: 10px;
+  color: var(--faint);
+}
+
+/* Card 4: Health Score Anatomy */
+.card-health {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-health__score-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.card-health__big-score {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 1;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.card-health__big-score span {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--dim);
+}
+
+.card-health__gauge-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 6px auto 2px;
+}
+
+.card-health__gauge-svg {
+  width: 170px;
+  height: 100px;
+  display: block;
+  overflow: visible;
+}
+
+.health-gauge__track {
+  stroke: #232634;
+  transition: stroke 0.3s ease;
+}
+
+.health-gauge__guide {
+  stroke: rgba(255, 255, 255, 0.08);
+}
+
+.health-gauge__scale {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px;
+  font-weight: 600;
+  fill: var(--faint, #63687b);
+  letter-spacing: 0.02em;
+}
+
+.card-health__gauge-center {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  pointer-events: none;
+}
+
+.card-health__gauge-val {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 1;
+  color: #FFFFFF;
+  letter-spacing: -0.01em;
+}
+
+.card-health__gauge-label {
+  font-size: 9.5px;
+  color: var(--dim);
+  margin-top: 3px;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.card-health__desc {
+  font-size: 10px;
+  color: var(--dim);
+  line-height: 1.45;
+  padding-top: 8px;
+  border-top: 1px solid var(--hair);
+}
+
+/* Health Score Breakdown Progress Bars */
+.health-breakdowns {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.health-breakdown-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.health-breakdown-bar {
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.health-breakdown-bar__fill {
+  height: 100%;
+  border-radius: 999px;
+  animation: rivetMeterFill 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.35s;
+}
+
+.health-breakdown-bar__fill--spm {
+  background: linear-gradient(90deg, var(--n-cyan, #3ef2ff), var(--n-lime, #d4ff3f));
+}
+
+.health-breakdown-bar__fill--wim {
+  background: linear-gradient(90deg, #0284c7, var(--n-cyan, #3ef2ff));
+}
+
+.health-breakdown-bar__fill--dipa {
+  background: linear-gradient(90deg, #65a30d, var(--n-lime, #d4ff3f));
+}
+
 @media (prefers-reduced-motion: reduce) {
   .board__left > .card--balance,
   .board__left > .row--2 > .card,
   .board__left > .row--3 > .card,
+  .module-grid--left > .card-module,
+  .module-stack--right > .card-module,
   .board__right > .card,
   .col__pos .bar,
   .meter__fill,
   .gauge__arc,
+  .health-gauge__arc,
+  .health-breakdown-bar__fill,
   .goals__fill,
   .rank-item-anim,
   .tx-item-anim,

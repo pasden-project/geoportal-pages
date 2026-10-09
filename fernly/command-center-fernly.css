@@ -1,0 +1,1150 @@
+/* =====================================================================
+   GeoPORTAL BPTD Jabar — Command Center V2
+   VARIAN DARK RIVET UI/UX (BLACK & NEON LUXURY MINIMALIST)
+   ---------------------------------------------------------------------
+   Diadaptasi dari sistem desain RIVET Finance Dashboard:
+   - Palet Black & Neon: Deep Obsidian (#050507), Matte Card (#111218),
+     Neon Lime (#D4FF3F), Neon Cyan (#3EF2FF), Neon Amber (#FFBE4D)
+   - Hairline borders 1px solid rgba(255, 255, 255, 0.08)
+   - Kartu elevated dengan subtle inner lighting & ambient colored glow
+   - Sidebar terintegrasi dengan active card pill & glowing neon indicator
+   - Tipografi crisp white & muted slate berdaya baca tinggi
+   - 100% Obsidian Cohesion (Zero jarring white panels)
+   ===================================================================== */
+
+/* ---------- 1. Design Tokens (Dark Rivet) ---------- */
+:root {
+  color-scheme: dark;
+
+  /* Surfaces & Backgrounds */
+  --bg: #050507;
+  --canvas: #050507;
+  --frame: #08090C;
+  --side: #0A0B10;
+  --card: #111218;
+  --card-top: #15161E;
+  --surface: #111218;
+  --surface-solid: #15161E;
+  --surface-soft: #1A1B24;
+  --surface-blue: #121A28;
+  --well: #1A1B24;
+  --well-2: #22232E;
+
+  /* Hairline Borders */
+  --hair: rgba(255, 255, 255, 0.07);
+  --hair-2: rgba(255, 255, 255, 0.14);
+  --border: rgba(255, 255, 255, 0.07);
+  --border-strong: rgba(255, 255, 255, 0.12);
+  --border-subtle: rgba(255, 255, 255, 0.04);
+  --divider: rgba(255, 255, 255, 0.06);
+
+  /* Typography */
+  --ink: #F4F5F9;
+  --dim: #AAB0C2;
+  --faint: #7D8296;
+  --text: #F4F5F9;
+  --text-strong: #FFFFFF;
+  --text-muted: #AAB0C2;
+  --text-soft: #7D8296;
+  --text-on-dark: #FFFFFF;
+  --text-on-dark-muted: #AAB0C2;
+
+  /* Dark Rivet Signature Neons */
+  --accent: #D4FF3F;       /* Neon Lime */
+  --accent-2: #3EF2FF;     /* Neon Cyan */
+  --n-lime: #D4FF3F;
+  --n-cyan: #3EF2FF;
+  --n-violet: #A98BFF;
+  --n-amber: #FFBE4D;
+  --n-pink: #FF5C8A;
+  --n-mint: #4DFFC3;
+
+  /* Status Semantics */
+  --success: #D4FF3F;
+  --success-soft: rgba(212, 255, 63, 0.12);
+  --info: #3EF2FF;
+  --info-soft: rgba(62, 242, 255, 0.12);
+  --warning: #FFBE4D;
+  --warning-soft: rgba(255, 190, 77, 0.12);
+  --danger: #FF5C8A;
+  --danger-soft: rgba(255, 92, 138, 0.12);
+  --offline: #7D8296;
+
+  /* Geometry & Shadows */
+  --radius: 14px;
+  --r-card: 14px;
+  --r-panel: 16px;
+  --r-shell: 20px;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --shadow-lift: 0 12px 32px rgba(0, 0, 0, 0.7), 0 0 20px rgba(212, 255, 63, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.09);
+  --shadow-raised: 0 8px 24px rgba(0, 0, 0, 0.6);
+
+  /* Easing */
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+  --spring-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---------- 2. Base Canvas & Atmosphere ---------- */
+body {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif !important;
+  font-size: 13.5px !important;
+  line-height: 1.45 !important;
+  background-image: 
+    radial-gradient(1000px 600px at 20% -10%, rgba(62, 242, 255, 0.03), transparent 60%),
+    radial-gradient(800px 500px at 80% 20%, rgba(212, 255, 63, 0.025), transparent 50%) !important;
+  background-attachment: fixed !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+/* ---------- 3. Dark Rivet Sidebar ---------- */
+.app-sidebar {
+  width: 236px !important;
+  background: var(--side) !important;
+  border-right: 1px solid var(--hair) !important;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.6) !important;
+}
+
+.sidebar-logo {
+  padding: 0.95rem 1.1rem !important;
+  gap: 0.65rem !important;
+  border-bottom: 1px solid var(--hair) !important;
+}
+
+.logo-mark {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 9px !important;
+  background: var(--n-lime) !important;
+  color: #050507 !important;
+  font-weight: 900 !important;
+  box-shadow: 0 0 16px rgba(212, 255, 63, 0.35) !important;
+  border: none !important;
+  padding: 5px !important;
+}
+
+.logo-title {
+  color: #FFFFFF !important;
+  font-size: 0.85rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.06em !important;
+}
+
+.logo-sub {
+  color: var(--dim) !important;
+  font-size: 0.66rem !important;
+  font-weight: 500 !important;
+}
+
+.sidebar-nav {
+  padding: 0.6rem 0.5rem !important;
+}
+
+.nav-group-title {
+  color: var(--faint) !important;
+  font-size: 0.62rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  margin: 0.7rem 0.4rem 0.3rem !important;
+}
+
+/* Nav Item Dark Rivet */
+.nav-link {
+  color: var(--dim) !important;
+  border-radius: 9px !important;
+  padding: 0.46rem 0.65rem !important;
+  margin: 2px 0 !important;
+  gap: 0.55rem !important;
+  font-size: 0.8rem !important;
+  font-weight: 500 !important;
+  transition: all 0.18s var(--ease-out-expo) !important;
+  position: relative !important;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.04) !important;
+  color: #FFFFFF !important;
+  transform: translateX(2px) !important;
+}
+
+.nav-link.is-active {
+  background: var(--card-top) !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  border: 1px solid var(--hair-2) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+.nav-link.is-active::before {
+  content: "" !important;
+  position: absolute !important;
+  left: -1px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 3.5px !important;
+  height: 16px !important;
+  background: var(--n-lime) !important;
+  border-radius: 999px !important;
+  box-shadow: 0 0 10px var(--n-lime) !important;
+}
+
+.nav-link .nav-icon {
+  width: 22px !important;
+  height: 22px !important;
+  border-radius: 6px !important;
+  color: var(--dim) !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  display: grid !important;
+  place-items: center !important;
+  transition: color 0.18s ease !important;
+}
+
+.nav-link:hover .nav-icon {
+  color: #FFFFFF !important;
+}
+
+.nav-link.is-active .nav-icon {
+  color: var(--n-lime) !important;
+  background: rgba(212, 255, 63, 0.08) !important;
+}
+
+.nav-link.is-active .nav-text {
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+}
+
+.nav-text {
+  font-size: 0.8rem !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+}
+
+.nav-status-available {
+  display: none !important;
+}
+
+.nav-status-active {
+  background: rgba(212, 255, 63, 0.12) !important;
+  color: var(--n-lime) !important;
+  border: 1px solid rgba(212, 255, 63, 0.25) !important;
+  font-size: 0.55rem !important;
+  font-weight: 700 !important;
+  padding: 1px 5px !important;
+  border-radius: 999px !important;
+}
+
+.nav-status-demo {
+  background: rgba(255, 190, 77, 0.15) !important;
+  color: var(--n-amber) !important;
+  border: 1px solid rgba(255, 190, 77, 0.3) !important;
+  font-size: 0.55rem !important;
+  font-weight: 700 !important;
+  padding: 1px 5px !important;
+  border-radius: 999px !important;
+}
+
+.sidebar-footer {
+  padding: 0.75rem 1rem !important;
+  background: #08090C !important;
+  border-top: 1px solid var(--hair) !important;
+}
+
+.footer-title {
+  font-size: 0.74rem !important;
+  font-weight: 700 !important;
+  color: #FFFFFF !important;
+}
+
+.footer-sub {
+  font-size: 0.65rem !important;
+  color: var(--dim) !important;
+}
+
+/* ---------- 4. Dark Rivet Header ---------- */
+.app-header {
+  height: 48px !important;
+  background: rgba(8, 9, 12, 0.88) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border-bottom: 1px solid var(--hair) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+  padding: 0 1.25rem !important;
+}
+
+.header-title {
+  font-size: 0.88rem !important;
+  font-weight: 700 !important;
+  color: #FFFFFF !important;
+}
+
+.header-sub {
+  font-size: 0.72rem !important;
+  color: var(--dim) !important;
+}
+
+.clock-date, .clock-time {
+  font-size: 0.74rem !important;
+  color: var(--dim) !important;
+}
+
+.clock-time {
+  font-weight: 700 !important;
+  color: #FFFFFF !important;
+}
+
+/* ---------- 5. Content Head & Title ---------- */
+.app-content {
+  padding: 1rem 1.25rem 2.2rem !important;
+}
+
+.dash-head {
+  margin-bottom: 0.75rem !important;
+}
+
+.dash-title {
+  font-size: 1.12rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.015em !important;
+  color: #FFFFFF !important;
+}
+
+.dash-sub {
+  font-size: 0.74rem !important;
+  color: var(--dim) !important;
+  margin-top: 0.1rem !important;
+}
+
+.badge {
+  font-size: 0.7rem !important;
+  padding: 2.5px 8.5px !important;
+  border-radius: 999px !important;
+  font-weight: 600 !important;
+}
+
+.badge-blue {
+  background: rgba(62, 242, 255, 0.1) !important;
+  color: var(--n-cyan) !important;
+  border: 1px solid rgba(62, 242, 255, 0.25) !important;
+}
+
+.badge-warn {
+  background: rgba(255, 190, 77, 0.1) !important;
+  color: var(--n-amber) !important;
+  border: 1px solid rgba(255, 190, 77, 0.25) !important;
+}
+
+/* Context Panel Dark Rivet */
+.context-panel {
+  padding: 0.55rem 0.85rem !important;
+  background: var(--card) !important;
+  border: 1px solid var(--hair) !important;
+  border-left: 3px solid var(--n-lime) !important;
+  border-radius: 9px !important;
+  margin-bottom: 0.95rem !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+.context-panel-icon svg {
+  width: 15px !important;
+  height: 15px !important;
+  color: var(--n-lime) !important;
+}
+
+.context-panel-text {
+  font-size: 0.73rem !important;
+  color: var(--dim) !important;
+  line-height: 1.4 !important;
+}
+
+/* ---------- 6. Dark Rivet Elevated KPI Cards ---------- */
+.kpi-row {
+  gap: 0.75rem !important;
+  margin-bottom: 0.95rem !important;
+}
+
+.kpi-card {
+  padding: 0.85rem 0.95rem 0.75rem !important;
+  background: var(--card) !important;
+  border: 1px solid var(--hair) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow-card) !important;
+}
+
+.kpi-head {
+  gap: 0.45rem !important;
+  margin-bottom: 0.45rem !important;
+  padding-bottom: 0.45rem !important;
+  border-bottom: 1px solid var(--hair) !important;
+}
+
+.kpi-label {
+  font-size: 0.69rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  color: var(--dim) !important;
+}
+
+.kpi-icon {
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 7px !important;
+  display: grid !important;
+  place-items: center !important;
+}
+
+.kpi-icon-blue {
+  background: rgba(62, 242, 255, 0.1) !important;
+  color: var(--n-cyan) !important;
+  border: 1px solid rgba(62, 242, 255, 0.25) !important;
+  box-shadow: 0 0 10px rgba(62, 242, 255, 0.15) !important;
+}
+
+.kpi-icon-navy {
+  background: rgba(212, 255, 63, 0.1) !important;
+  color: var(--n-lime) !important;
+  border: 1px solid rgba(212, 255, 63, 0.25) !important;
+  box-shadow: 0 0 10px rgba(212, 255, 63, 0.15) !important;
+}
+
+.kpi-icon-amber {
+  background: rgba(255, 190, 77, 0.1) !important;
+  color: var(--n-amber) !important;
+  border: 1px solid rgba(255, 190, 77, 0.25) !important;
+  box-shadow: 0 0 10px rgba(255, 190, 77, 0.15) !important;
+}
+
+.kpi-icon-violet {
+  background: rgba(169, 139, 255, 0.1) !important;
+  color: var(--n-violet) !important;
+  border: 1px solid rgba(169, 139, 255, 0.25) !important;
+  box-shadow: 0 0 10px rgba(169, 139, 255, 0.15) !important;
+}
+
+.kpi-value {
+  font-size: 1.34rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.015em !important;
+  color: #FFFFFF !important;
+  line-height: 1.2 !important;
+  font-feature-settings: "tnum" !important;
+}
+
+.kpi-sub {
+  font-size: 0.68rem !important;
+  color: var(--faint) !important;
+  margin-top: 0.15rem !important;
+}
+
+.kpi-spark {
+  height: 28px !important;
+  margin-top: 0.25rem !important;
+}
+
+.spark-line {
+  stroke: var(--n-cyan) !important;
+}
+
+.spark-fill {
+  fill: url(#sparkGrad) !important;
+  opacity: 0.3 !important;
+}
+
+/* ---------- 7. Kartu Konten, Map & Panels ---------- */
+.card,
+.map-panel {
+  background: var(--card) !important;
+  border: 1px solid var(--hair) !important;
+
+/* ---------- 13. Deep Dark Rivet Sub-Panels & Internal Wells ---------- */
+.trend-container,
+#overviewTrendContainer,
+.ranking-panel,
+.ranking-list,
+.ranking-loading,
+.ranking-empty,
+.ranking-item,
+.perintis-summary-item,
+.perintis-corridors-list,
+.perintis-route-row,
+.insight-cell,
+.quality-metric-card,
+.card-rankings,
+.card-trend-overview,
+.card-perintis-overview,
+.card-data-quality,
+.card-insight {
+  background: var(--card) !important;
+  border-color: var(--hair) !important;
+  color: var(--ink) !important;
+}
+
+.ranking-loading,
+.trend-loading,
+.trend-empty-note {
+  background: transparent !important;
+  color: var(--faint) !important;
+}
+
+.ranking-item {
+  background: var(--well) !important;
+  border: 1px solid var(--hair) !important;
+}
+
+.ranking-item:hover {
+  background: var(--card-top) !important;
+  border-color: rgba(212, 255, 63, 0.25) !important;
+}
+
+.trend-container {
+  background: var(--frame) !important;
+  border: 1px solid var(--hair) !important;
+}
+
+.perintis-summary-item {
+  background: var(--well) !important;
+  border: 1px solid var(--hair) !important;
+}
+
+.perintis-corridors-list {
+  background: var(--frame) !important;
+  border: 1px solid var(--hair) !important;
+}
+
+.perintis-route-row {
+  background: transparent !important;
+  border-bottom: 1px solid var(--hair) !important;
+}
+
+.insight-cell {
+  background: var(--card-top) !important;
+  border: 1px solid var(--hair) !important;
+}
+
+.quality-metric-card {
+  background: var(--well) !important;
+  border: 1px solid var(--hair) !important;
+}
+
+/* ---------- 14. Submodul & Universal Directory Tables (Dark Rivet) ---------- */
+.filter-bar,
+.filter-search-wrap,
+.table-wrap,
+.terminal-table,
+.data-table,
+table {
+  background: var(--card) !important;
+  border-color: var(--hair) !important;
+  color: var(--ink) !important;
+}
+
+input,
+select,
+.search-input,
+.filter-select,
+.btn-reset-filter {
+  background: var(--well) !important;
+  color: #FFFFFF !important;
+  border: 1px solid var(--hair) !important;
+  border-radius: 7px !important;
+}
+
+input:focus,
+select:focus,
+.search-input:focus,
+.filter-select:focus {
+  border-color: var(--n-lime) !important;
+  box-shadow: 0 0 10px rgba(212, 255, 63, 0.2) !important;
+  outline: none !important;
+}
+
+table th,
+.terminal-table th {
+  background: var(--card-top) !important;
+  color: var(--dim) !important;
+  border-bottom: 1px solid var(--hair) !important;
+  font-weight: 700 !important;
+}
+
+table td,
+.terminal-table td {
+  background: transparent !important;
+  color: var(--ink) !important;
+  border-bottom: 1px solid var(--hair) !important;
+}
+
+table tbody tr:hover td,
+.terminal-table tbody tr:hover td,
+.terminal-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.035) !important;
+}
+
+.btn-table-detail {
+  background: rgba(212, 255, 63, 0.08) !important;
+  color: var(--n-lime) !important;
+  border: 1px solid rgba(212, 255, 63, 0.25) !important;
+  border-radius: 6px !important;
+}
+
+.btn-table-detail:hover {
+  background: rgba(212, 255, 63, 0.16) !important;
+  box-shadow: 0 0 10px rgba(212, 255, 63, 0.25) !important;
+}
+
+.table-state-box {
+  background: var(--frame) !important;
+  border: 1px solid var(--hair) !important;
+  color: var(--dim) !important;
+}
+
+.table-state-box .state-title {
+  color: #FFFFFF !important;
+}
+
+.table-state-box .state-sub {
+  color: var(--faint) !important;
+}
+
+.scope-notice,
+.notice-banner,
+.info-banner {
+  background: var(--card) !important;
+  border: 1px solid var(--hair) !important;
+  border-left: 3px solid var(--n-amber) !important;
+  color: var(--dim) !important;
+}
+
+/* Modal Dialogs */
+.modal,
+.detail-modal,
+.modal-box,
+.modal-content,
+.modal-card {
+  background: var(--card) !important;
+  border: 1px solid var(--hair-2) !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85) !important;
+  color: var(--ink) !important;
+}
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow-card) !important;
+  padding: 0.85rem 1rem !important;
+}
+
+.card-title,
+.map-heading {
+  font-size: 0.88rem !important;
+  font-weight: 700 !important;
+  color: #FFFFFF !important;
+}
+
+.card-note,
+.map-sub {
+  font-size: 0.7rem !important;
+  color: var(--dim) !important;
+  margin-top: 0.1rem !important;
+}
+
+.btn-map-open {
+  padding: 0.3rem 0.65rem !important;
+  font-size: 0.72rem !important;
+  border-radius: 6px !important;
+  background: rgba(212, 255, 63, 0.08) !important;
+  color: var(--n-lime) !important;
+  border: 1px solid rgba(212, 255, 63, 0.3) !important;
+}
+
+.btn-map-open:hover {
+  background: rgba(212, 255, 63, 0.15) !important;
+  box-shadow: 0 0 12px rgba(212, 255, 63, 0.25) !important;
+}
+
+.map-stage {
+  height: 280px !important;
+  border-radius: 9px !important;
+  border: 1px solid var(--hair) !important;
+  overflow: hidden !important;
+}
+
+.mini-map {
+  background: #08090C !important;
+}
+
+.leaflet-container {
+  background: #08090C !important;
+}
+
+.leaflet-bar {
+  border: 1px solid var(--hair-2) !important;
+  background: var(--card-top) !important;
+}
+
+.leaflet-bar a {
+  background: var(--card-top) !important;
+  color: var(--ink) !important;
+  border-bottom: 1px solid var(--hair) !important;
+}
+
+.leaflet-control-attribution {
+  background: rgba(10, 11, 16, 0.85) !important;
+  color: var(--faint) !important;
+}
+
+.cc-marker-terminal {
+  background: var(--n-cyan) !important;
+  color: #050507 !important;
+  box-shadow: 0 0 12px var(--n-cyan) !important;
+  border: 2px solid #FFFFFF !important;
+}
+
+.cc-marker-uppkb {
+  background: var(--n-amber) !important;
+  color: #050507 !important;
+  box-shadow: 0 0 12px var(--n-amber) !important;
+  border: 2px solid #FFFFFF !important;
+}
+
+/* ---------- 8. Dark Rivet Controls & Segmented Buttons ---------- */
+.year-selector {
+  background: var(--well) !important;
+  border: 1px solid var(--hair) !important;
+  padding: 2.5px !important;
+  border-radius: 7px !important;
+}
+
+.year-btn {
+  padding: 2.5px 8.5px !important;
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  border-radius: 5px !important;
+  color: var(--dim) !important;
+}
+
+.year-btn.is-active {
+  background: var(--card-top) !important;
+  color: var(--n-lime) !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4) !important;
+  border: 1px solid rgba(212, 255, 63, 0.25) !important;
+}
+
+.trend-metric-toggle {
+  background: var(--well) !important;
+  border: 1px solid var(--hair) !important;
+  padding: 2.5px !important;
+  border-radius: 7px !important;
+}
+
+.trend-toggle-btn {
+  padding: 2.5px 7.5px !important;
+  font-size: 0.7rem !important;
+  font-weight: 600 !important;
+  border-radius: 5px !important;
+  color: var(--dim) !important;
+}
+
+.trend-toggle-btn.is-active {
+  background: var(--card-top) !important;
+  color: var(--n-lime) !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4) !important;
+  border: 1px solid rgba(212, 255, 63, 0.25) !important;
+}
+
+/* Trend container dark */
+.trend-container {
+  background: var(--frame) !important;
+  border: 1px solid var(--hair) !important;
+  border-radius: 9px !important;
+  padding: 0.75rem !important;
+}
+
+.trend-loading {
+  color: var(--faint) !important;
+}
+
+.trend-bar-fill {
+  background: linear-gradient(180deg, var(--n-lime) 0%, rgba(212, 255, 63, 0.4) 100%) !important;
+  border-radius: 4px 4px 0 0 !important;
+}
+
+.trend-month-label {
+  color: var(--dim) !important;
+}
+
+/* ---------- 9. Peringkat Simpul & Movers Tabs Dark Rivet ---------- */
+.movers-tabs {
+  background: var(--well) !important;
+  border: 1px solid var(--hair) !important;
+  border-radius: 8px !important;
+  padding: 2.5px !important;
+}
+
+.mover-tab {
+  color: var(--dim) !important;
+  border-radius: 6px !important;
+  padding: 0.35rem 0.6rem !important;
+  font-size: 0.74rem !important;
+  font-weight: 600 !important;
+}
+
+.mover-tab-active {
+  background: var(--card-top) !important;
+  color: var(--n-lime) !important;
+  border: 1px solid rgba(212, 255, 63, 0.25) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4) !important;
+}
+
+.ranking-panel {
+  background: var(--card) !important;
+}
+
+.ranking-loading {
+  color: var(--faint) !important;
+}
+
+.ranking-list {
+  gap: 0.35rem !important;
+}
+
+.ranking-item {
+  padding: 0.25rem 0.4rem !important;
+  border-radius: 6px !important;
+  background: transparent !important;
+}
+
+.ranking-item:hover {
+  background: rgba(255, 255, 255, 0.03) !important;
+  transform: translateX(3px) !important;
+}
+
+.ranking-badge {
+  width: 19px !important;
+  height: 19px !important;
+  font-size: 0.65rem !important;
+  font-weight: 700 !important;
+  border-radius: 999px !important;
+}
+
+.ranking-badge-1 {
+  background: rgba(212, 255, 63, 0.15) !important;
+  color: var(--n-lime) !important;
+  border: 1px solid rgba(212, 255, 63, 0.35) !important;
+}
+
+.ranking-badge-2 {
+  background: rgba(62, 242, 255, 0.15) !important;
+  color: var(--n-cyan) !important;
+  border: 1px solid rgba(62, 242, 255, 0.35) !important;
+}
+
+.ranking-badge-3 {
+  background: rgba(255, 190, 77, 0.15) !important;
+  color: var(--n-amber) !important;
+  border: 1px solid rgba(255, 190, 77, 0.35) !important;
+}
+
+.ranking-badge-other {
+  background: var(--well) !important;
+  color: var(--faint) !important;
+  border: 1px solid var(--hair) !important;
+}
+
+.ranking-name {
+  font-size: 0.77rem !important;
+  font-weight: 600 !important;
+  color: #FFFFFF !important;
+}
+
+.ranking-loc {
+  font-size: 0.66rem !important;
+  color: var(--faint) !important;
+}
+
+.ranking-val {
+  font-size: 0.79rem !important;
+  font-weight: 700 !important;
+  color: var(--n-lime) !important;
+}
+
+.ranking-bar-track {
+  background: var(--well) !important;
+  height: 4.5px !important;
+  border-radius: 999px !important;
+}
+
+.ranking-bar-fill {
+  background: linear-gradient(90deg, var(--n-cyan) 0%, var(--n-lime) 100%) !important;
+  border-radius: 999px !important;
+}
+
+/* ---------- 10. Kinerja Angkutan Perintis Dark Rivet ---------- */
+.card-perintis-overview {
+  background: var(--card) !important;
+}
+
+.badge-source-verified {
+  background: rgba(212, 255, 63, 0.12) !important;
+  color: var(--n-lime) !important;
+  border: 1px solid rgba(212, 255, 63, 0.3) !important;
+  font-size: 0.62rem !important;
+  font-weight: 700 !important;
+  padding: 2px 7px !important;
+  border-radius: 999px !important;
+}
+
+.perintis-summary-grid {
+  gap: 0.6rem !important;
+}
+
+.perintis-summary-item {
+  background: var(--card-top) !important;
+  border: 1px solid var(--hair) !important;
+  border-radius: 9px !important;
+  padding: 0.6rem 0.75rem !important;
+}
+
+.perintis-summary-label {
+  font-size: 0.68rem !important;
+  color: var(--dim) !important;
+  font-weight: 600 !important;
+}
+
+.perintis-summary-val {
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  color: #FFFFFF !important;
+}
+
+.perintis-summary-sub {
+  font-size: 0.64rem !important;
+  color: var(--faint) !important;
+}
+
+.perintis-corridors-list {
+  background: var(--frame) !important;
+  border: 1px solid var(--hair) !important;
+  border-radius: 9px !important;
+}
+
+.perintis-route-row {
+  border-bottom: 1px solid var(--hair) !important;
+  padding: 0.5rem 0.65rem !important;
+}
+
+.perintis-route-name {
+  color: #FFFFFF !important;
+  font-size: 0.76rem !important;
+  font-weight: 600 !important;
+}
+
+.perintis-route-sub {
+  color: var(--faint) !important;
+  font-size: 0.66rem !important;
+}
+
+.perintis-route-pax {
+  color: var(--dim) !important;
+  font-size: 0.72rem !important;
+}
+
+.perintis-card-cta {
+  color: var(--n-lime) !important;
+  font-size: 0.74rem !important;
+  font-weight: 600 !important;
+}
+
+/* ---------- 11. Insights & Data Quality Dark Rivet ---------- */
+.card-insight {
+  background: var(--card) !important;
+}
+
+.insight-cell {
+  background: var(--card-top) !important;
+  border: 1px solid var(--hair) !important;
+  border-radius: 9px !important;
+  padding: 0.7rem 0.8rem !important;
+}
+
+.insight-text {
+  color: #FFFFFF !important;
+  font-size: 0.76rem !important;
+}
+
+.insight-value {
+  color: var(--n-lime) !important;
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+}
+
+.insight-sub {
+  color: var(--faint) !important;
+  font-size: 0.66rem !important;
+}
+
+.card-promo {
+  background: linear-gradient(145deg, #15161E 0%, #0A0B10 100%) !important;
+  border: 1px solid var(--hair) !important;
+}
+
+.promo-title {
+  color: #FFFFFF !important;
+  font-size: 0.95rem !important;
+}
+
+.promo-sub {
+  color: var(--dim) !important;
+  font-size: 0.72rem !important;
+}
+
+.promo-link {
+  color: var(--n-lime) !important;
+  font-size: 0.74rem !important;
+  font-weight: 600 !important;
+}
+
+.promo-icon {
+  background: rgba(212, 255, 63, 0.1) !important;
+  color: var(--n-lime) !important;
+}
+
+/* Data Quality Indicators */
+.card-data-quality {
+  background: var(--card) !important;
+}
+
+.quality-metric-card {
+  background: var(--card-top) !important;
+  border: 1px solid var(--hair) !important;
+  border-radius: 9px !important;
+  padding: 0.65rem 0.75rem !important;
+}
+
+.quality-metric-label {
+  color: var(--dim) !important;
+  font-size: 0.7rem !important;
+  font-weight: 600 !important;
+}
+
+.quality-metric-pill {
+  background: rgba(212, 255, 63, 0.1) !important;
+  color: var(--n-lime) !important;
+  border: 1px solid rgba(212, 255, 63, 0.25) !important;
+}
+
+.quality-metric-val {
+  color: #FFFFFF !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+}
+
+.quality-metric-sub {
+  color: var(--faint) !important;
+  font-size: 0.65rem !important;
+}
+
+/* Quick Access */
+.quick-access {
+  gap: 8px !important;
+}
+
+.quick-btn {
+  background: var(--card) !important;
+  border: 1px solid var(--hair) !important;
+  padding: 0.65rem 0.5rem !important;
+  border-radius: 9px !important;
+}
+
+.quick-btn:hover {
+  border-color: rgba(212, 255, 63, 0.25) !important;
+  transform: translateY(-2.5px) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 14px rgba(212, 255, 63, 0.05) !important;
+}
+
+.quick-btn-icon {
+  width: 26px !important;
+  height: 26px !important;
+  border-radius: 6px !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+}
+
+.quick-btn-icon svg {
+  width: 14px !important;
+  height: 14px !important;
+  color: var(--n-lime) !important;
+}
+
+.quick-btn-label {
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  color: #FFFFFF !important;
+  margin-top: 0.25rem !important;
+}
+
+/* Alerts */
+.card-alert {
+  border-top: 3px solid var(--n-lime) !important;
+}
+
+.alert-item {
+  border-bottom: 1px solid var(--hair) !important;
+}
+
+.alert-text {
+  color: var(--dim) !important;
+}
+
+.alert-status-ok {
+  color: var(--n-lime) !important;
+}
+
+.alert-more {
+  background: var(--well) !important;
+  border: 1px solid var(--hair) !important;
+  color: var(--dim) !important;
+}
+
+/* ---------- 12. Animasi & Hover Physics ---------- */
+@keyframes rivetCascade {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.kpi-row .kpi-card:nth-child(1) { animation: rivetCascade 0.5s var(--spring-ease) 0.06s both; }
+.kpi-row .kpi-card:nth-child(2) { animation: rivetCascade 0.5s var(--spring-ease) 0.12s both; }
+.kpi-row .kpi-card:nth-child(3) { animation: rivetCascade 0.5s var(--spring-ease) 0.18s both; }
+.kpi-row .kpi-card:nth-child(4) { animation: rivetCascade 0.5s var(--spring-ease) 0.24s both; }
+.map-panel { animation: rivetCascade 0.55s var(--spring-ease) 0.26s both; }
+.primary-rail .card { animation: rivetCascade 0.55s var(--spring-ease) 0.30s both; }
+.dashboard-secondary-grid .card { animation: rivetCascade 0.55s var(--spring-ease) 0.34s both; }
+.dashboard-tertiary-grid .card { animation: rivetCascade 0.55s var(--spring-ease) 0.38s both; }
+
+.kpi-card,
+.card,
+.map-panel,
+.quick-btn {
+  transition: transform 0.22s var(--ease-out-expo),
+              box-shadow 0.22s var(--ease-out-expo),
+              border-color 0.2s ease !important;
+}
+
+.kpi-card:hover,
+.card:hover {
+  transform: translateY(-2.5px) !important;
+  box-shadow: var(--shadow-lift) !important;
+  border-color: rgba(212, 255, 63, 0.22) !important;
+}
+
+.btn:active,
+.quick-btn:active,
+.year-btn:active,
+.trend-toggle-btn:active,
+.mover-tab:active {
+  transform: scale(0.96) !important;
+}

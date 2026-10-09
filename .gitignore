@@ -29,3 +29,8 @@ tmp/
 
 # Local agent metadata
 .claude/
+
+# Temporary QA screenshots & test captures
+*.png
+!dark-rivet/favicon.png
+dark-rivet-shots/

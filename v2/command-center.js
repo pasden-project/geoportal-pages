@@ -1029,8 +1029,10 @@
                 '<div class="ranking-header-row">' +
                     '<div class="ranking-ident">' +
                         '<span class="ranking-badge ' + badgeCls + '">' + r.rank + '</span>' +
-                        '<span class="ranking-name">' + escapeHtml(r.nama) + '</span>' +
-                        '<span class="ranking-loc">(' + escapeHtml(r.kota) + ')</span>' +
+                        '<div class="ranking-ident-text">' +
+                            '<span class="ranking-name">' + escapeHtml(r.nama) + '</span>' +
+                            '<span class="ranking-loc">' + escapeHtml(r.kota) + '</span>' +
+                        '</div>' +
                     '</div>' +
                     '<div class="ranking-metric">' +
                         '<span class="ranking-val">' + formatNumber(r.volume) + '</span>' +
@@ -1820,7 +1822,7 @@
     var focusTimer = null;
 
     function isMobile() {
-        return window.matchMedia("(max-width: 767px)").matches;
+        return window.matchMedia("(max-width: 1023px)").matches;
     }
 
     function isInertSupported() {

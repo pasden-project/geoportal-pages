@@ -2856,10 +2856,10 @@
             scrollWheelZoom: false
         });
 
-        // Basemap CartoDB Dark Matter
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        // Basemap OpenStreetMap Resmi (Watermark-Free Dark Obsidian)
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
-            subdomains: 'abcd'
+            attribution: '&copy; OpenStreetMap contributors'
         }).addTo(state.map);
 
         // Buat layer groups

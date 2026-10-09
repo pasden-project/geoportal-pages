@@ -291,113 +291,205 @@
               </div>
             </article>
 
-            <!-- Row 2: Operation Meter & Transport Insights -->
-            <div class="row row--2">
-              <article class="card" data-card>
-                <header class="card__head">
-                  <div>
-                    <h2 class="card__title" style="font-size: 14px;">Tingkat Kelengkapan Data</h2>
-                    <p class="card__sub" style="font-size: 11.5px;">Transmisi Faktual Simpul</p>
-                  </div>
-                  <span class="badge" style="background: rgba(212, 255, 63, 0.15); color: var(--n-lime); font-size: 10px; font-weight: 700; padding: 2px 7px;">82% Terverifikasi</span>
-                </header>
-                <div class="meter" style="--p:.82; margin-top: 10px;">
-                  <div class="meter__track" style="height: 6px; background: var(--well); border-radius: 999px;">
-                    <div class="meter__fill" style="width: 82%; background: linear-gradient(90deg, var(--n-cyan), var(--n-lime)); height: 100%; border-radius: 999px;"></div>
-                  </div>
-                  <div class="meter__ends" style="display: flex; justify-content: space-between; font-size: 11px; color: var(--dim); margin-top: 6px;">
-                    <span>108 Entitas Terdata</span>
-                    <span class="meter__max">130 Target Master</span>
-                  </div>
-                </div>
-                <p style="font-size: 11.5px; color: var(--faint); margin-top: 8px;">Kepatuhan pelaporan terminal penumpang tipe A & fasilitas penimbangan muatan.</p>
-              </article>
+            <!-- ============================== 5 MODUL OPERASIONAL & JARINGAN ============================== -->
+            <div class="module-grid module-grid--left">
 
-              <article class="card card--tips" data-card>
-                <div class="tips__text">
-                  <h2 class="card__title" style="font-size: 14px; color: #FFFFFF;">Puncak Arus Transportasi</h2>
-                  <p class="card__sub card__sub--wrap" style="font-size: 11.5px; color: var(--dim);">Puncak mobilitas tertinggi terjadi pada simpul Leuwipanjang dan Baranangsiang pada koridor utama.</p>
-                  <a class="link" href="/command-center/terminal/" style="color: var(--n-lime); font-size: 11.5px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; margin-top: 8px;">
-                    Lihat profil terminal <svg class="ico" style="width: 12px; height: 12px;"><use href="#i-chev-r"/></svg>
+              <!-- Card 1: Peringkat Simpul Terminal Penumpang & Kendaraan -->
+              <article class="card-module" id="cardTerminalRank" data-card>
+                <div>
+                  <header class="card-module__head">
+                    <div class="card-module__title-wrap">
+                      <span class="card-module__icon card-module__icon--cyan" aria-hidden="true">
+                        <svg class="ico"><use href="#i-wallet"/></svg>
+                      </span>
+                      <h2 class="card-module__title">Peringkat Terminal</h2>
+                    </div>
+                    <div class="rank-tabs rank-tabs--cyan" id="terminalRankTabs" role="tablist" aria-label="Metrik Terminal">
+                      <button type="button" class="rank-tab-btn is-active" data-metric="penumpang" role="tab" aria-selected="true">Penumpang</button>
+                      <button type="button" class="rank-tab-btn" data-metric="kendaraan" role="tab" aria-selected="false">Kendaraan</button>
+                    </div>
+                  </header>
+
+                  <ul class="rank-list" id="terminalRankList" aria-live="polite">
+                    <!-- Dynamic rendering via renderTerminalRanking() -->
+                  </ul>
+                </div>
+
+                <footer class="card-module__foot">
+                  <span class="card-module__status-text" id="terminalRankFooter">12 Simpul Tipe A BPTD Jabar</span>
+                  <a class="card-module__link" href="/command-center/terminal/">
+                    Lihat Semua Simpul <svg class="ico"><use href="#i-chev-r"/></svg>
                   </a>
+                </footer>
+              </article>
+
+              <!-- Card 2: Top Trayek Terpadat (Semua, AKAP, AKDP) -->
+              <article class="card-module" id="cardTrayekRank" data-card>
+                <div>
+                  <header class="card-module__head">
+                    <div class="card-module__title-wrap">
+                      <span class="card-module__icon card-module__icon--lime" aria-hidden="true">
+                        <svg class="ico"><use href="#i-activity"/></svg>
+                      </span>
+                      <h2 class="card-module__title">Top Trayek Terpadat</h2>
+                    </div>
+                    <div class="rank-tabs" id="trayekRankTabs" role="tablist" aria-label="Kategori Trayek">
+                      <button type="button" class="rank-tab-btn is-active" data-cat="semua" role="tab" aria-selected="true">Semua</button>
+                      <button type="button" class="rank-tab-btn" data-cat="akap" role="tab" aria-selected="false">AKAP</button>
+                      <button type="button" class="rank-tab-btn" data-cat="akdp" role="tab" aria-selected="false">AKDP</button>
+                    </div>
+                  </header>
+
+                  <ul class="rank-list" id="trayekRankList" aria-live="polite">
+                    <!-- Dynamic rendering via renderTrayekRanking() -->
+                  </ul>
                 </div>
-              </article>
-            </div>
 
-            <!-- Row 3: Peringkat Simpul, Indeks Kesehatan Pelayanan & Koridor Perintis -->
-            <div class="row row--3">
-              <!-- Peringkat Simpul -->
-              <article class="card" data-card>
-                <header class="card__head">
-                  <div>
-                    <h2 class="card__title" style="font-size: 13.5px;">Peringkat Simpul</h2>
-                    <p class="card__sub" style="font-size: 11px;">Top Volume Penumpang</p>
-                  </div>
-                </header>
-                <ul class="cats" id="cats" style="margin-top: 10px; display: flex; flex-direction: column; gap: 6px;">
-                  <li style="display: flex; align-items: center; justify-content: space-between; font-size: 11.5px;"><span style="color: #FFFFFF;">1. Leuwipanjang</span><b style="color: var(--n-lime);">34%</b></li>
-                  <li style="display: flex; align-items: center; justify-content: space-between; font-size: 11.5px;"><span style="color: #FFFFFF;">2. Baranangsiang</span><b style="color: var(--n-cyan);">24%</b></li>
-                  <li style="display: flex; align-items: center; justify-content: space-between; font-size: 11.5px;"><span style="color: #FFFFFF;">3. Guntur Melati</span><b style="color: var(--n-amber);">16%</b></li>
-                  <li style="display: flex; align-items: center; justify-content: space-between; font-size: 11.5px;"><span style="color: #FFFFFF;">4. Ciakar Sumedang</span><b style="color: var(--n-violet);">14%</b></li>
-                  <li style="display: flex; align-items: center; justify-content: space-between; font-size: 11.5px;"><span style="color: var(--dim);">5. Lainnya</span><b style="color: var(--faint);">12%</b></li>
-                </ul>
+                <footer class="card-module__foot">
+                  <span class="card-module__status-text">Dataset OD / Koridor Jalan</span>
+                  <a class="card-module__link" href="/command-center/trayek/">
+                    Buka Modul Trayek <svg class="ico"><use href="#i-chev-r"/></svg>
+                  </a>
+                </footer>
               </article>
 
-              <!-- Health Score / Indeks Pelayanan Arc Gauge -->
-              <article class="card" data-card>
-                <header class="card__head">
-                  <div>
-                    <h2 class="card__title" style="font-size: 13.5px;">Indeks SPM Angkutan</h2>
-                    <p class="card__sub" style="font-size: 11px;">Kepatuhan Standar Pelayanan</p>
-                  </div>
-                </header>
-                <div class="gauge" id="gauge" style="--v:78; display: flex; flex-direction: column; align-items: center; margin-top: 6px;">
-                  <svg viewBox="0 0 200 120" style="width: 140px; height: 80px;" aria-hidden="true">
-                    <defs>
-                      <linearGradient id="gauge-grad" x1="0" y1="0" x2="1" y2="0">
-                        <stop offset="0" stop-color="var(--n-cyan)"/>
-                        <stop offset="1" stop-color="var(--n-lime)"/>
-                      </linearGradient>
-                    </defs>
-                    <path class="gauge__track" d="M20 110 A80 80 0 0 1 180 110" fill="none" stroke="var(--well)" stroke-width="12" stroke-linecap="round"/>
-                    <path class="gauge__arc" d="M20 110 A80 80 0 0 1 180 110" fill="none" stroke="url(#gauge-grad)" stroke-width="12" stroke-linecap="round" stroke-dasharray="251" stroke-dashoffset="55"/>
-                  </svg>
-                  <div class="gauge__label" style="text-align: center; margin-top: -10px;">
-                    <p class="num num--md" id="gaugeNum" style="font-size: 18px; font-weight: 800; color: #FFFFFF;">78%</p>
-                    <p class="card__sub" style="font-size: 10px; color: var(--dim);">Tercapai Baik</p>
+              <!-- Card 3: Modul OD Intelligence (Wide 2-Column Span - Baris 2) -->
+              <!-- 5 Bangkitan & Tarikan Terbesar (Matriks OD Jawa Barat) -->
+              <article class="card-module card-module--wide" id="cardOdRank" data-card>
+                <div>
+                  <header class="card-module__head">
+                    <div class="card-module__title-wrap">
+                      <span class="card-module__icon card-module__icon--cyan" aria-hidden="true">
+                        <svg class="ico"><use href="#i-flow"/></svg>
+                      </span>
+                      <h2 class="card-module__title">5 Bangkitan &amp; Tarikan Terbesar (Matriks OD Jawa Barat)</h2>
+                    </div>
+                    <span class="card-module__badge card-module__badge--cyan">27 Kab/Kota Terpetakan</span>
+                  </header>
+
+                  <div class="od-split-grid" id="odSplitGrid">
+                    <!-- Kolom 1: 5 Bangkitan Terbesar (Origin / Arus Keluar) -->
+                    <div class="od-split-col">
+                      <div class="od-split-head">
+                        <span class="od-split-title">
+                          <svg class="ico" style="width:12px; height:12px; color:var(--n-cyan);"><use href="#i-arrow-ur"/></svg>
+                          Bangkitan Terbesar (Origin)
+                        </span>
+                        <span class="od-split-subtitle">Arus Keluar</span>
+                      </div>
+                      <ul class="rank-list" id="odBangkitanList" style="margin-top:4px;" aria-label="5 Bangkitan Terbesar">
+                        <!-- Render via renderBangkitanTarikan() -->
+                      </ul>
+                    </div>
+
+                    <!-- Kolom 2: 5 Tarikan Terbesar (Destination / Arus Masuk) -->
+                    <div class="od-split-col">
+                      <div class="od-split-head">
+                        <span class="od-split-title">
+                          <svg class="ico" style="width:12px; height:12px; color:var(--n-lime); transform: rotate(90deg);"><use href="#i-arrow-ur"/></svg>
+                          Tarikan Terbesar (Destination)
+                        </span>
+                        <span class="od-split-subtitle">Arus Masuk</span>
+                      </div>
+                      <ul class="rank-list" id="odTarikanList" style="margin-top:4px;" aria-label="5 Tarikan Terbesar">
+                        <!-- Render via renderBangkitanTarikan() -->
+                      </ul>
+                    </div>
                   </div>
                 </div>
+
+                <footer class="card-module__foot" style="margin-top: 12px;">
+                  <span class="card-module__status-text">Analisis Spasial &amp; Pola Mobilitas BPTD Jabar</span>
+                  <a class="card-module__link" href="/command-center/od/">
+                    Eksplorasi Matriks OD Lengkap <svg class="ico"><use href="#i-chev-r"/></svg>
+                  </a>
+                </footer>
               </article>
 
-              <!-- Program Strategis & Target -->
-              <article class="card" data-card>
-                <header class="card__head">
-                  <div>
-                    <h2 class="card__title" style="font-size: 13.5px;">Program Strategis</h2>
-                    <p class="card__sub" style="font-size: 11px;">Realisasi PSO 2026</p>
+              <!-- Card 4: Modul Angkutan Perintis PSO (Baris 3, Kolom 1) -->
+              <article class="card-module" data-card>
+                <div>
+                  <header class="card-module__head">
+                    <div class="card-module__title-wrap">
+                      <span class="card-module__icon card-module__icon--lime" aria-hidden="true">
+                        <svg class="ico"><use href="#i-target"/></svg>
+                      </span>
+                      <h2 class="card-module__title">Angkutan Perintis PSO</h2>
+                    </div>
+                    <span class="card-module__badge card-module__badge--lime">6 Trayek PSO</span>
+                  </header>
+
+                  <div class="card-module__metric">
+                    <p class="card-module__value">26.815</p>
+                    <p class="card-module__label">Penumpang (Tahun 2025)</p>
                   </div>
-                </header>
-                <ul class="goals" style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
-                  <li style="font-size: 11px;">
-                    <div style="display: flex; justify-content: space-between; color: #FFFFFF; margin-bottom: 3px;">
-                      <span>Trayek Perintis PSO</span>
-                      <b style="color: var(--n-lime);">6/6 Trayek</b>
+
+                  <div class="card-module__details" style="margin-top: 10px;">
+                    <div class="card-module__detail-row">
+                      <span class="card-module__detail-key">Realisasi Operasi</span>
+                      <span class="card-module__detail-val card-module__detail-val--accent">4.655 Trip Bus DAMRI</span>
                     </div>
-                    <div style="height: 4px; background: var(--well); border-radius: 999px;">
-                      <div class="goals__fill" style="width: 100%; height: 100%; background: var(--n-lime); border-radius: 999px;"></div>
+                    <div class="card-module__detail-row">
+                      <span class="card-module__detail-key">Armada Aktif</span>
+                      <span class="card-module__detail-val">18 Unit Bus</span>
                     </div>
-                  </li>
-                  <li style="font-size: 11px;">
-                    <div style="display: flex; justify-content: space-between; color: #FFFFFF; margin-bottom: 3px;">
-                      <span>Ramp Check Keselamatan</span>
-                      <b style="color: var(--n-cyan);">85% Armada</b>
+                    <div class="card-module__detail-row">
+                      <span class="card-module__detail-key">Rerata Load Factor</span>
+                      <span class="card-module__detail-val card-module__detail-val--cyan">31,3%</span>
                     </div>
-                    <div style="height: 4px; background: var(--well); border-radius: 999px;">
-                      <div class="goals__fill" style="width: 85%; height: 100%; background: var(--n-cyan); border-radius: 999px;"></div>
-                    </div>
-                  </li>
-                </ul>
+                  </div>
+                </div>
+
+                <footer class="card-module__foot">
+                  <span class="card-module__status-text">Konektivitas Daerah</span>
+                  <a class="card-module__link" href="/command-center/perintis/">
+                    Buka Modul <svg class="ico"><use href="#i-chev-r"/></svg>
+                  </a>
+                </footer>
               </article>
+
+              <!-- Card 5: Modul UPPKB / Angkutan Barang (Baris 3, Kolom 2) -->
+              <article class="card-module" data-card>
+                <div>
+                  <header class="card-module__head">
+                    <div class="card-module__title-wrap">
+                      <span class="card-module__icon card-module__icon--amber" aria-hidden="true">
+                        <svg class="ico"><use href="#i-shield"/></svg>
+                      </span>
+                      <h2 class="card-module__title">UPPKB / Angkutan Barang</h2>
+                    </div>
+                    <span class="card-module__badge card-module__badge--amber">6 Fasilitas WIM</span>
+                  </header>
+
+                  <div class="card-module__metric">
+                    <p class="card-module__value">194.392</p>
+                    <p class="card-module__label">Truk Tertimbang (YTD)</p>
+                  </div>
+
+                  <div class="card-module__details" style="margin-top: 10px;">
+                    <div class="card-module__detail-row">
+                      <span class="card-module__detail-key">Tingkat Kepatuhan</span>
+                      <span class="card-module__detail-val card-module__detail-val--amber">91,8% Taat Tonase</span>
+                    </div>
+                    <div class="card-module__detail-row">
+                      <span class="card-module__detail-key">Penindakan</span>
+                      <span class="card-module__detail-val card-module__detail-val--pink">15.898 Kasus ODOL</span>
+                    </div>
+                    <div class="card-module__detail-row">
+                      <span class="card-module__detail-key">Fasilitas Utama</span>
+                      <span class="card-module__detail-val">Balonggandu &amp; Losarang</span>
+                    </div>
+                  </div>
+                </div>
+
+                <footer class="card-module__foot">
+                  <span class="card-module__status-text">Jalur Logistik Pantura/Selatan</span>
+                  <a class="card-module__link" href="/command-center/uppkb/">
+                    Buka Modul <svg class="ico"><use href="#i-chev-r"/></svg>
+                  </a>
+                </footer>
+              </article>
+
             </div>
           </div>
 
@@ -429,77 +521,147 @@
               </div>
             </article>
 
-            <!-- Quick Action Transport Modules -->
-            <article class="card" data-card>
-              <header class="card__head">
+            <!-- ============================== 2 MODUL PENGAWASAN & PROGRAM ============================== -->
+            <div class="module-stack module-stack--right">
+
+              <!-- Card 6: Early Warning & Pemantauan Anomali -->
+              <article class="card-module" data-card>
                 <div>
-                  <h2 class="card__title" style="font-size: 13.5px;">Akses Modul Cepat</h2>
-                  <p class="card__sub" style="font-size: 11px;">Direktori Transportasi</p>
+                  <header class="card-module__head">
+                    <div class="card-module__title-wrap">
+                      <span class="card-module__icon card-module__icon--pink" aria-hidden="true">
+                        <svg class="ico"><use href="#i-bolt"/></svg>
+                      </span>
+                      <h2 class="card-module__title">Early Warning System</h2>
+                    </div>
+                    <span class="card-module__badge card-module__badge--pink">Live Monitoring</span>
+                  </header>
+
+                  <div class="card-module__metric">
+                    <p class="card-module__value">18</p>
+                    <p class="card-module__label">Insiden Terpantau Real-Time</p>
+                  </div>
+
+                  <div class="card-module__details" style="margin-top: 10px;">
+                    <div class="card-module__detail-row" style="margin-bottom: 2px;">
+                      <span class="card-module__detail-key">Distribusi Status</span>
+                      <div class="card-module__pills">
+                        <span class="card-module__pill card-module__pill--crit">4 Kritis</span>
+                        <span class="card-module__pill card-module__pill--warn">8 Waspada</span>
+                        <span class="card-module__pill card-module__pill--attn">6 Atensi</span>
+                      </div>
+                    </div>
+                    <div class="card-module__detail-row">
+                      <span class="card-module__detail-key">Algoritma</span>
+                      <span class="card-module__detail-val">10 Formula Deteksi (THR-01 s.d. THR-10)</span>
+                    </div>
+                  </div>
                 </div>
-              </header>
 
-              <ul class="actions" style="margin-top: 8px;">
-                <li><a class="action" href="/command-center/terminal/" style="text-decoration: none;"><span class="action__ico"><svg class="ico"><use href="#i-wallet"/></svg></span><span>Terminal</span></a></li>
-                <li><a class="action" href="/command-center/uppkb/" style="text-decoration: none;"><span class="action__ico"><svg class="ico"><use href="#i-shield"/></svg></span><span>UPPKB</span></a></li>
-                <li><a class="action" href="/command-center/trayek/" style="text-decoration: none;"><span class="action__ico"><svg class="ico"><use href="#i-activity"/></svg></span><span>Trayek</span></a></li>
-                <li><a class="action" href="/command-center/perintis/" style="text-decoration: none;"><span class="action__ico"><svg class="ico"><use href="#i-target"/></svg></span><span>Perintis</span></a></li>
-                <li><a class="action" href="/command-center/data-master/" style="text-decoration: none;"><span class="action__ico"><svg class="ico"><use href="#i-bars"/></svg></span><span>Master</span></a></li>
-              </ul>
-            </article>
+                <footer class="card-module__foot">
+                  <span class="card-module__status-text">Deteksi Anomali Operasional</span>
+                  <a class="card-module__link" href="/command-center/early-warning/">
+                    Buka Modul <svg class="ico"><use href="#i-chev-r"/></svg>
+                  </a>
+                </footer>
+              </article>
 
-            <!-- Live Transit Activity Feed -->
-            <article class="card card--activity" data-card>
-              <header class="card__head">
-                <div>
-                  <h2 class="card__title" style="font-size: 13.5px;">Aktivitas Simpul Terkini</h2>
-                  <p class="card__sub" style="font-size: 11px;">Pencatatan Produksi Resmi</p>
+              <!-- Card 7: Indeks Skor Dashboard Keseluruhan (Health Score) -->
+              <article class="card-module" id="cardHealthScore" data-card>
+                <div class="card-health">
+                  <header class="card-module__head" style="align-items: flex-start;">
+                    <div class="card-module__title-wrap">
+                      <span class="card-module__icon card-module__icon--lime" aria-hidden="true">
+                        <svg class="ico"><use href="#i-target"/></svg>
+                      </span>
+                      <div>
+                        <h2 class="card-module__title">Health Score</h2>
+                        <p class="card-module__label" style="margin: 0; font-size: 11px;">Kondisi Kinerja Simpul &amp; Layanan</p>
+                      </div>
+                    </div>
+                    <span class="card-module__badge card-module__badge--lime" style="font-size: 10.5px;">YTD 2026</span>
+                  </header>
+
+                  <div class="card-health__score-row">
+                    <div>
+                      <p class="card-health__big-score" id="healthBigScore">88,2<span>/100</span></p>
+                      <p class="delta delta--up" style="margin-top: 4px; font-size: 11px;">
+                        <svg class="ico" style="width:11px; height:11px;"><use href="#i-arrow-ur"/></svg>
+                        <b>+5.4%</b> vs target SPM
+                      </p>
+                    </div>
+
+                    <!-- Semi-Circle Arc Gauge Visual matching Image #2 -->
+                    <div class="card-health__gauge-wrap" aria-hidden="true">
+                      <svg class="card-health__gauge-svg" viewBox="0 0 200 120" fill="none">
+                        <defs>
+                          <linearGradient id="gaugeNeonGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="var(--n-cyan, #3ef2ff)"/>
+                            <stop offset="100%" stop-color="var(--n-lime, #d4ff3f)"/>
+                          </linearGradient>
+                          <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+                            <feDropShadow dx="0" dy="0" stdDeviation="3.5" flood-color="rgba(212, 255, 63, 0.45)"/>
+                          </filter>
+                        </defs>
+                        <!-- Secondary Outer Guide Arc -->
+                        <path class="health-gauge__guide" d="M 11,95 A 89,89 0 0,1 189,95" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1" stroke-dasharray="2 3" fill="none"/>
+                        <!-- Track Background (High Contrast Obsidian) -->
+                        <path class="health-gauge__track" d="M 20,95 A 80,80 0 0,1 180,95" stroke="#232634" stroke-width="14" stroke-linecap="round"/>
+                        <!-- Animated Neon Arc (88% fill -> dashoffset ~30, single continuous unbroken bar) -->
+                        <path id="healthGaugeArc" class="health-gauge__arc" d="M 20,95 A 80,80 0 0,1 180,95" stroke="url(#gaugeNeonGrad)" stroke-width="14" stroke-linecap="round" stroke-dasharray="251.36" stroke-dashoffset="30" filter="url(#neonGlow)"/>
+                        <text class="health-gauge__scale" x="18" y="114" text-anchor="middle">0%</text>
+                        <text class="health-gauge__scale" x="182" y="114" text-anchor="middle">100%</text>
+                      </svg>
+                      <div class="card-health__gauge-center">
+                        <p class="card-health__gauge-val" id="healthGaugeVal">88%</p>
+                        <p class="card-health__gauge-label">Indeks Terpadu</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card-module__details health-breakdowns" style="margin-top: 6px;">
+                    <div class="health-breakdown-item">
+                      <div class="card-module__detail-row">
+                        <span class="card-module__detail-key">SPM Terminal</span>
+                        <span class="card-module__detail-val card-module__detail-val--accent">87,4% (Sangat Baik)</span>
+                      </div>
+                      <div class="health-breakdown-bar">
+                        <div class="health-breakdown-bar__fill health-breakdown-bar__fill--spm" style="width: 87.4%;"></div>
+                      </div>
+                    </div>
+                    <div class="health-breakdown-item">
+                      <div class="card-module__detail-row">
+                        <span class="card-module__detail-key">Kepatuhan WIM</span>
+                        <span class="card-module__detail-val card-module__detail-val--cyan">91,8% (Taat Tonase)</span>
+                      </div>
+                      <div class="health-breakdown-bar">
+                        <div class="health-breakdown-bar__fill health-breakdown-bar__fill--wim" style="width: 91.8%;"></div>
+                      </div>
+                    </div>
+                    <div class="health-breakdown-item">
+                      <div class="card-module__detail-row">
+                        <span class="card-module__detail-key">Ketercapaian DIPA</span>
+                        <span class="card-module__detail-val card-module__detail-val--accent">91,4% (On Track)</span>
+                      </div>
+                      <div class="health-breakdown-bar">
+                        <div class="health-breakdown-bar__fill health-breakdown-bar__fill--dipa" style="width: 91.4%;"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="card-health__desc">
+                    Berdasarkan agregasi operasional 12 terminal tipe A, 6 fasilitas UPPKB, dan 6 program DIPA BPTD Jawa Barat.
+                  </p>
                 </div>
-                <span class="badge" style="background: rgba(212, 255, 63, 0.12); color: var(--n-lime); font-size: 10px; font-weight: 700; padding: 2px 6px;">Live</span>
-              </header>
 
-              <ul class="tx" id="txList">
-                <li class="tx__row">
-                  <span class="avatar avatar--sq" style="background: rgba(62, 242, 255, 0.15); color: var(--n-cyan); font-weight: 800; font-size: 11px;">LP</span>
-                  <span class="tx__body">
-                    <span class="tx__name" style="font-size: 12px; color: #FFFFFF;">Terminal Leuwipanjang</span>
-                    <span class="tx__date" style="font-size: 11px; color: var(--dim);">Kota Bandung · Tipe A</span>
-                  </span>
-                  <span class="tx__amt"><b class="up" style="color: var(--n-lime); font-size: 12px;">+ 24.810 pnp</b><small style="color: var(--dim);">Keberangkatan</small></span>
-                </li>
-                <li class="tx__row">
-                  <span class="avatar avatar--sq" style="background: rgba(62, 242, 255, 0.15); color: var(--n-cyan); font-weight: 800; font-size: 11px;">BS</span>
-                  <span class="tx__body">
-                    <span class="tx__name" style="font-size: 12px; color: #FFFFFF;">Terminal Baranangsiang</span>
-                    <span class="tx__date" style="font-size: 11px; color: var(--dim);">Kota Bogor · Tipe A</span>
-                  </span>
-                  <span class="tx__amt"><b class="up" style="color: var(--n-lime); font-size: 12px;">+ 18.250 pnp</b><small style="color: var(--dim);">Keberangkatan</small></span>
-                </li>
-                <li class="tx__row">
-                  <span class="avatar avatar--sq" style="background: rgba(255, 190, 77, 0.15); color: var(--n-amber); font-weight: 800; font-size: 11px;">BG</span>
-                  <span class="tx__body">
-                    <span class="tx__name" style="font-size: 12px; color: #FFFFFF;">UPPKB Balonggandu</span>
-                    <span class="tx__date" style="font-size: 11px; color: var(--dim);">Kab. Karawang · Jalur Pantura</span>
-                  </span>
-                  <span class="tx__amt"><b style="color: var(--n-amber); font-size: 12px;">1.420 truk</b><small style="color: var(--dim);">Penimbangan WIM</small></span>
-                </li>
-                <li class="tx__row">
-                  <span class="avatar avatar--sq" style="background: rgba(255, 190, 77, 0.15); color: var(--n-amber); font-weight: 800; font-size: 11px;">LS</span>
-                  <span class="tx__body">
-                    <span class="tx__name" style="font-size: 12px; color: #FFFFFF;">UPPKB Losarang</span>
-                    <span class="tx__date" style="font-size: 11px; color: var(--dim);">Kab. Indramayu · Pantura</span>
-                  </span>
-                  <span class="tx__amt"><b style="color: var(--n-amber); font-size: 12px;">980 truk</b><small style="color: var(--dim);">Penimbangan WIM</small></span>
-                </li>
-                <li class="tx__row">
-                  <span class="avatar avatar--sq" style="background: rgba(169, 139, 255, 0.15); color: var(--n-violet); font-weight: 800; font-size: 11px;">GM</span>
-                  <span class="tx__body">
-                    <span class="tx__name" style="font-size: 12px; color: #FFFFFF;">Terminal Guntur Melati</span>
-                    <span class="tx__date" style="font-size: 11px; color: var(--dim);">Kab. Garut · Tipe A</span>
-                  </span>
-                  <span class="tx__amt"><b class="up" style="color: var(--n-lime); font-size: 12px;">+ 12.140 pnp</b><small style="color: var(--dim);">Keberangkatan</small></span>
-                </li>
-              </ul>
-            </article>
+                <footer class="card-module__foot" style="margin-top: 10px;">
+                  <span class="card-module__status-text">Akuntabilitas Kinerja Hubdat</span>
+                  <a class="card-module__link" href="/command-center/program/">
+                    Lihat Evaluasi Kinerja <svg class="ico"><use href="#i-chev-r"/></svg>
+                  </a>
+                </footer>
+              </article>
+
+            </div>
 
           </div>
         </div>
