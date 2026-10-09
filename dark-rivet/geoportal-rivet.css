@@ -1,0 +1,1273 @@
+/* =====================================================================
+   GeoPORTAL BPTD Jabar — Dark Rivet Adapter & Map Styles
+   ---------------------------------------------------------------------
+   Komponen pendukung Leaflet & integrasi GeoPORTAL pada Dark Rivet.
+   ===================================================================== */
+
+html, body {
+  background: #050507 !important;
+  color: #f4f5f9 !important;
+}
+
+/* Leaflet Container in Dark Rivet Obsidian */
+.rivet-map-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rivet-map-wrap {
+  width: 100%;
+  height: 270px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--hair);
+  background: #08090C;
+}
+
+#rivetMap {
+  width: 100%;
+  height: 100%;
+  background: #08090C;
+}
+
+.leaflet-container {
+  background: #08090C !important;
+  font-family: inherit !important;
+}
+
+.leaflet-bar {
+  border: 1px solid var(--hair-2) !important;
+  border-radius: 8px !important;
+  overflow: hidden;
+  background: var(--card-top) !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6) !important;
+}
+
+.leaflet-bar a {
+  background: var(--card-top) !important;
+  color: var(--ink) !important;
+  border-bottom: 1px solid var(--hair) !important;
+  width: 28px !important;
+  height: 28px !important;
+  line-height: 28px !important;
+}
+
+.leaflet-bar a:hover {
+  background: var(--well) !important;
+  color: var(--n-lime) !important;
+}
+
+/* Leaflet Tile Layer - Clean Dark Obsidian Invert Filter (100% Watermark-Free) */
+.leaflet-tile-pane {
+  filter: brightness(0.55) invert(1) contrast(2.6) hue-rotate(205deg) saturate(0.25) brightness(0.72) !important;
+}
+.leaflet-control-attribution {
+  background: rgba(8, 9, 12, 0.85) !important;
+  color: var(--faint) !important;
+  font-size: 10px !important;
+  backdrop-filter: blur(8px);
+}
+
+.leaflet-control-attribution a {
+  color: var(--dim) !important;
+}
+
+/* Custom DivIcon Markers for Dark Rivet */
+.rivet-marker {
+  width: 24px !important;
+  height: 24px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: 2px solid #FFFFFF !important;
+  cursor: pointer !important;
+  transition: transform 0.2s ease, filter 0.2s ease !important;
+}
+
+.rivet-marker svg {
+  display: block !important;
+  pointer-events: none !important;
+}
+
+.rivet-marker:hover {
+  transform: scale(1.15) !important;
+  filter: brightness(1.3) drop-shadow(0 0 10px #FFFFFF) !important;
+  z-index: 1000 !important;
+}
+
+.rivet-marker--terminal {
+  background: var(--n-cyan) !important;
+  color: #050507 !important;
+  box-shadow: 0 0 10px var(--n-cyan), 0 2px 6px rgba(0, 0, 0, 0.7) !important;
+}
+
+.rivet-marker--uppkb {
+  background: var(--n-amber) !important;
+  color: #050507 !important;
+  box-shadow: 0 0 10px var(--n-amber), 0 2px 6px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Leaflet Popup in Dark Rivet */
+.leaflet-popup-content-wrapper {
+  background: var(--card-top) !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--hair-2) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.8) !important;
+  backdrop-filter: blur(12px);
+}
+
+.leaflet-popup-tip {
+  background: var(--card-top) !important;
+  border: 1px solid var(--hair-2) !important;
+}
+
+.leaflet-popup-content {
+  margin: 10px 14px !important;
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+}
+
+.popup-title {
+  font-weight: 700;
+  color: #FFFFFF;
+  font-size: 13px;
+  margin-bottom: 2px;
+}
+
+.popup-sub {
+  color: var(--dim);
+  font-size: 11px;
+}
+
+.popup-badge {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 999px;
+  font-size: 9.5px;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+.popup-badge--terminal {
+  background: rgba(62, 242, 255, 0.15);
+  color: var(--n-cyan);
+  border: 1px solid rgba(62, 242, 255, 0.3);
+}
+
+.popup-badge--uppkb {
+  background: rgba(255, 190, 77, 0.15);
+  color: var(--n-amber);
+  border: 1px solid rgba(255, 190, 77, 0.3);
+}
+
+/* Card Balance Desktop 2-Column Grid Lock (min-width: 960px) */
+@media (min-width: 960px) {
+  .card--balance {
+    grid-template-columns: minmax(0, 1fr) 184px !important;
+    gap: 20px !important;
+    display: grid !important;
+    align-items: start !important;
+  }
+
+  .card--balance .balance {
+    min-width: 0 !important;
+  }
+
+  .card--balance .stats {
+    width: 184px !important;
+    flex: none !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+}
+
+/* Card Balance Mobile/Tablet (max-width: 959px) */
+@media (max-width: 959px) {
+  .card--balance {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+    display: grid !important;
+  }
+
+  .card--balance .stats {
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)) !important;
+    gap: 14px !important;
+    border-top: 1px solid var(--hair) !important;
+    padding-top: 16px !important;
+  }
+}
+/* Segmented Control Button in Dark Rivet */
+.seg__btn {
+  width: auto !important;
+  padding: 2px 10px !important;
+  height: 26px !important;
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.seg__btn.is-active {
+  background: var(--card-top) !important;
+  color: var(--n-lime) !important;
+  box-shadow: 0 0 10px rgba(212, 255, 63, 0.25), inset 0 0 0 1px rgba(212, 255, 63, 0.4) !important;
+}
+
+/* Multi-Modal Transport Selection Bar in Hero Balance Card */
+.transport-mode-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 4px 0 10px;
+  margin-top: 4px;
+  margin-bottom: 2px;
+}
+
+.transport-mode-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.mode-btn {
+  background: var(--well);
+  border: 1px solid var(--hair);
+  color: var(--dim);
+  padding: 4px 11px;
+  border-radius: 7px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  outline: none;
+  user-select: none;
+}
+
+.mode-btn:hover {
+  color: #FFFFFF;
+  border-color: var(--hair-2);
+  background: var(--card-top);
+}
+
+.mode-btn.is-active {
+  background: var(--card-top);
+  color: var(--n-lime);
+  border-color: rgba(212, 255, 63, 0.4);
+  box-shadow: 0 0 10px rgba(212, 255, 63, 0.25), inset 0 0 0 1px rgba(212, 255, 63, 0.3);
+  font-weight: 700;
+}
+
+.mode-btn:focus-visible {
+  outline: 2px solid var(--n-lime);
+  outline-offset: 1px;
+}
+
+.mode-badge {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 4px;
+  margin-left: 6px;
+  letter-spacing: 0.02em;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--faint);
+  border: 1px solid var(--hair);
+  line-height: 1.2;
+  transition: all 0.2s ease;
+}
+
+.mode-btn.is-active .mode-badge {
+  background: rgba(212, 255, 63, 0.15);
+  color: var(--n-lime);
+  border-color: rgba(212, 255, 63, 0.35);
+}
+
+.mode-badge--ytd {
+  color: #3ef2ff !important;
+  background: rgba(62, 242, 255, 0.12) !important;
+  border-color: rgba(62, 242, 255, 0.28) !important;
+}
+
+.mode-btn.is-active .mode-badge--ytd {
+  color: #d4ff3f !important;
+  background: rgba(212, 255, 63, 0.2) !important;
+  border-color: rgba(212, 255, 63, 0.45) !important;
+}
+/* Map Action Buttons */
+.map-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.map-legend {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  color: var(--dim);
+}
+
+.map-legend-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.map-legend-dot--cyan {
+  background: var(--n-cyan);
+  box-shadow: 0 0 6px var(--n-cyan);
+}
+
+.map-legend-dot--amber {
+  background: var(--n-amber);
+  box-shadow: 0 0 6px var(--n-amber);
+}
+
+/* ---------- Sidebar Groups & Compact Tree Layout ---------- */
+.nav__section-label {
+  padding: 10px 10px 4px !important;
+  font-size: 9.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: var(--faint) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 4px !important;
+}
+
+.nav__section-label span:first-child {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.nav__section-label .badge {
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  font-size: 8.5px !important;
+  padding: 1px 5px !important;
+  line-height: 1.2 !important;
+}
+
+.nav__sep {
+  border: none;
+  border-top: 1px solid var(--hair);
+  margin: 8px 10px;
+}
+
+.nav__item {
+  height: 33px !important;
+  padding: 0 10px !important;
+  gap: 8.5px !important;
+  font-size: 12px !important;
+  border-radius: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  color: var(--dim) !important;
+  text-decoration: none !important;
+  transition: all 0.18s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.nav__item:hover {
+  background: rgba(255, 255, 255, 0.04) !important;
+  color: #FFFFFF !important;
+  transform: translateX(2px) !important;
+}
+
+.nav__item.is-active {
+  background: var(--card-top) !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  border: 1px solid var(--hair-2) !important;
+}
+
+.nav__item.is-active svg {
+  color: var(--n-lime) !important;
+}
+
+.nav__item .ico {
+  width: 15px !important;
+  height: 15px !important;
+  flex: none !important;
+}
+
+/* Authentic Dark Rivet Accordion / Expandable Submenu */
+.nav__item--toggle {
+  width: 100% !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  font-family: inherit !important;
+  text-align: left !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 0 10px !important;
+  height: 33px !important;
+  border-radius: 8px !important;
+  position: relative !important;
+}
+
+.nav__item--toggle:hover {
+  background: rgba(255, 255, 255, 0.04) !important;
+  color: #FFFFFF !important;
+}
+
+.nav__item--toggle .ico--chev {
+  width: 14px !important;
+  height: 14px !important;
+  margin-left: auto !important;
+  flex: none !important;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  color: var(--faint) !important;
+}
+
+.nav__group:not(.is-open) .ico--chev {
+  transform: rotate(-90deg) !important;
+}
+
+.nav__group.is-open .ico--chev {
+  transform: rotate(0deg) !important;
+  color: var(--dim) !important;
+}
+
+.nav__sub {
+  display: grid !important;
+  transition: grid-template-rows 0.35s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  grid-template-rows: 1fr !important;
+}
+
+.nav__group:not(.is-open) .nav__sub {
+  grid-template-rows: 0fr !important;
+}
+
+.nav__sub > ul {
+  overflow: hidden !important;
+  padding: 2px 0 4px 18px !important;
+  margin: 0 !important;
+  list-style: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1px !important;
+}
+
+.nav__subitem {
+  height: 29px !important;
+  padding-left: 15px !important;
+  padding-right: 6px !important;
+  font-size: 11.5px !important;
+  color: var(--dim) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  text-decoration: none !important;
+  position: relative !important;
+  transition: all 0.18s ease !important;
+  border-radius: 0 6px 6px 0 !important;
+}
+
+.nav__subitem:before {
+  content: "" !important;
+  background: var(--hair-2) !important;
+  width: 1.5px !important;
+  position: absolute !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  transition: all 0.2s ease !important;
+}
+
+.nav__subitem:hover {
+  color: #FFFFFF !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+}
+
+.nav__subitem:hover:before {
+  background: var(--n-lime) !important;
+  box-shadow: 0 0 8px rgba(212, 255, 63, 0.6) !important;
+}
+
+.nav__subitem.is-active {
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+}
+
+.nav__subitem.is-active:before {
+  background: var(--n-lime) !important;
+  box-shadow: 0 0 8px rgba(212, 255, 63, 0.8) !important;
+}
+
+.nav__subitem .badge {
+  margin-left: auto !important;
+}
+
+/* Range Selector in Topbar */
+.year-pills {
+  display: inline-flex;
+  align-items: center;
+  background: var(--well);
+  border: 1px solid var(--hair);
+  border-radius: 8px;
+  padding: 2px;
+}
+
+.year-pill-btn {
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--dim);
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.year-pill-btn:hover {
+  color: #FFFFFF;
+}
+
+.year-pill-btn.is-active {
+  background: var(--card-top);
+  color: var(--n-lime);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(212, 255, 63, 0.25);
+}
+
+/* Status Pill in Header */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: var(--well);
+  border: 1px solid var(--hair);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--dim);
+}
+
+.status-dot-pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--n-lime);
+  box-shadow: 0 0 8px var(--n-lime);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(212, 255, 63, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(212, 255, 63, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(212, 255, 63, 0); }
+}
+
+/* Interactive Dark Rivet Modal Dialog */
+.rivet-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 5, 7, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 99999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.rivet-modal-overlay.is-open {
+  display: flex;
+}
+
+.rivet-modal {
+  background: var(--card);
+  border: 1px solid var(--hair-2);
+  border-radius: 16px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.9);
+  width: 100%;
+  max-width: 580px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 24px;
+  position: relative;
+  animation: modalEnter 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes modalEnter {
+  0% { opacity: 0; transform: scale(0.95) translateY(12px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.rivet-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--hair);
+  background: var(--well);
+  color: var(--dim);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.rivet-modal-close:hover {
+  color: #FFFFFF;
+  border-color: var(--n-lime);
+}
+
+/* ---------- Mobile Drawer, Backdrop & Close Button ---------- */
+.side-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 5, 7, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.side-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.side__close {
+  display: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid var(--hair);
+  background: var(--well);
+  color: var(--dim);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.side__close:hover {
+  color: #FFFFFF;
+  border-color: var(--n-lime);
+}
+
+@media (max-width: 1024px) {
+  .side {
+    position: fixed !important;
+    left: -270px !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    z-index: 999 !important;
+    width: 260px !important;
+    background: #090a0d !important;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8) !important;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    transform: translateX(0);
+  }
+  .side.is-open {
+    transform: translateX(270px) !important;
+  }
+  .side__close {
+    display: flex !important;
+  }
+}
+
+/* =====================================================================
+   Hero Balance Chart Controls (Period Select & View Toggle)
+   ===================================================================== */
+.chart-period-select-wrap {
+  background: #141720;
+  border: 1px solid var(--hair);
+  border-radius: 8px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.chart-period-select-wrap:hover,
+.chart-period-select-wrap:focus-within {
+  border-color: rgba(255, 255, 255, 0.25);
+  background: #181b26;
+}
+
+.chart-period-select {
+  background: transparent;
+  color: #f4f5f9;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 26px 4px 10px;
+  border: none;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.chart-period-select option {
+  background: #111218;
+  color: #f4f5f9;
+}
+
+.ico--chev-select {
+  position: absolute;
+  right: 8px;
+  width: 12px;
+  height: 12px;
+  pointer-events: none;
+  stroke: var(--dim);
+  stroke-width: 2;
+  fill: none;
+}
+
+.chart-view-toggle {
+  background: #141720;
+  border: 1px solid var(--hair);
+  border-radius: 8px;
+  display: inline-flex;
+  padding: 2px;
+  gap: 2px;
+}
+
+.view-btn {
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: var(--dim);
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.15s ease;
+}
+
+.view-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.view-btn.is-active {
+  background: #222533;
+  color: var(--n-lime, #d4ff3f);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.view-btn .ico {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+}
+
+/* Smooth Line View Mode in #chart */
+.chart--line .col .bar {
+  opacity: 0.12;
+  filter: grayscale(0.6);
+  transition: opacity 0.25s ease;
+}
+.chart--line .col:hover .bar,
+.chart--line .col.is-on .bar {
+  opacity: 0.35;
+}
+.chart__line-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  overflow: visible;
+}
+
+/* =====================================================================
+   Single Persistent Sidebar Shell — Submodule Frame Styling
+   ===================================================================== */
+.submodule-frame {
+  width: 100%;
+  height: calc(100vh - 64px);
+  border: none;
+  background: #050507;
+}
+
+/* =====================================================================
+   Authentic White Mini Floating Tooltip & Bar Highlight (Image #1)
+   ===================================================================== */
+.tip {
+  position: absolute !important;
+  z-index: 50 !important;
+  background: #ffffff !important;
+  color: #090a0d !important;
+  border-radius: 10px !important;
+  padding: 10px 14px !important;
+  min-width: 165px !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7), 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+  transform: translate(0, 0);
+}
+
+.tip.is-open {
+  opacity: 1 !important;
+}
+
+.tip__day {
+  color: #64748b !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  margin-bottom: 6px !important;
+}
+
+.tip__rows {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 3px !important;
+}
+
+.tip__rows li {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 11.5px !important;
+  color: #1e293b !important;
+  font-weight: 500 !important;
+}
+
+.tip__rows li b {
+  margin-left: auto !important;
+  font-weight: 700 !important;
+  color: #090a0d !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+.tip .dot--savings {
+  background: #00bcd4 !important;
+  width: 7px !important;
+  height: 7px !important;
+  border-radius: 50% !important;
+  display: inline-block !important;
+}
+
+.tip .dot--income {
+  background: #84cc16 !important;
+  width: 7px !important;
+  height: 7px !important;
+  border-radius: 50% !important;
+  display: inline-block !important;
+}
+
+.col.is-on:before {
+  opacity: 1 !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* =====================================================================
+   RIVET ENTRANCE MOTION — Fluid, Staggered, Organic Loading Experience
+   ---------------------------------------------------------------------
+   Reproduksi otentik motion RIVET dari video demo:
+   - Staggered card entrance (fade-up dengan power curve)
+   - Staggered bar chart rising wave (Jan - Des)
+   - Staggered gauge & meter fill
+   - Fluid number count-up transitions
+   ===================================================================== */
+
+@keyframes rivetCardEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rivetBarWave {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@keyframes rivetMeterFill {
+  0% {
+    width: 0% !important;
+  }
+}
+
+@keyframes gaugeArcDraw {
+  0% {
+    stroke-dashoffset: 251;
+  }
+  100% {
+    stroke-dashoffset: 55;
+  }
+}
+
+@keyframes rivetItemSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes rivetMarkerPop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  65% {
+    transform: scale(1.18);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Staggered card entrances for authentic fluid flow */
+.board__left > .card--balance {
+  animation: rivetCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.05s;
+}
+
+.board__left > .row--2 > .card:nth-child(1) {
+  animation: rivetCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.12s;
+}
+
+.board__left > .row--2 > .card:nth-child(2) {
+  animation: rivetCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.18s;
+}
+
+.board__left > .row--3 > .card:nth-child(1) {
+  animation: rivetCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.22s;
+}
+
+.board__left > .row--3 > .card:nth-child(2) {
+  animation: rivetCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.28s;
+}
+
+.board__left > .row--3 > .card:nth-child(3) {
+  animation: rivetCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.34s;
+}
+
+.board__right > .card:nth-child(1) {
+  animation: rivetCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.10s;
+}
+
+.board__right > .card:nth-child(2) {
+  animation: rivetCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.24s;
+}
+
+/* Authentic Full-Range 0-Baseline Bar Chart */
+.col__pos {
+  bottom: 0 !important;
+  height: 100% !important;
+}
+
+.col__pos .bar {
+  flex-shrink: 0 !important;
+  transform-origin: 50% 100% !important;
+  animation: rivetBarWave 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Mode 1: Stacked mode (AKAP) */
+.col__pos--stacked {
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  gap: 2px !important;
+}
+
+/* Mode 2: Grouped side-by-side mode (Pariwisata disandingkan) */
+.col__pos--grouped {
+  flex-direction: row !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  gap: 3px !important;
+}
+
+.col__pos--grouped .bar--side {
+  width: calc(50% - 2px) !important;
+  flex: 0 0 calc(50% - 2px) !important;
+}
+
+/* Mode 3: Single bar mode (Perintis, BRT, AJAP, Barang di pisah) */
+.col__pos--single {
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+}
+
+.col__pos--single .bar {
+  width: 100% !important;
+}
+
+/* Dual Category Bar Charts Layout (Tampilan Di Bagi 2: Kiri Penumpang, Kanan Ritase) */
+.dual-charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.dual-panel {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 12px;
+  padding: 12px 12px 10px 12px;
+  box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.45);
+  position: relative;
+  transition: border-color 0.25s ease;
+}
+
+.dual-panel:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.dual-panel__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--hair);
+}
+
+.dual-panel__title {
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  letter-spacing: 0.01em;
+}
+
+.dual-panel__unit {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--faint);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 2px 7px;
+  border-radius: 4px;
+  border: 1px solid var(--hair);
+}
+
+.dual-panel__body {
+  display: grid;
+  grid-template-rows: 175px auto;
+  grid-template-columns: 32px minmax(0, 1fr);
+  column-gap: 12px;
+  row-gap: 10px;
+}
+
+.dual-panel__body .dual-axis {
+  color: var(--faint);
+  text-align: right;
+  font-size: 9.5px;
+  position: relative;
+  padding-right: 4px;
+}
+
+.dual-panel__body .dual-axis span {
+  position: absolute;
+  right: 4px;
+  transform: translateY(-50%);
+}
+
+.dual-panel__body .dual-axis span:first-child { top: 0; }
+.dual-panel__body .dual-axis span:nth-child(2) { top: 25%; }
+.dual-panel__body .dual-axis span:nth-child(3) { top: 50%; }
+.dual-panel__body .dual-axis span:nth-child(4) { top: 75%; }
+.dual-panel__body .dual-axis span:nth-child(5) { top: calc(100% - 2px); }
+
+.dual-panel__body .dual-plot {
+  height: 175px;
+  position: relative;
+}
+
+.dual-panel__body .chart__grid i {
+  background: var(--hair);
+  height: 1px;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.dual-panel__body .chart__grid i:first-child { top: 0; }
+.dual-panel__body .chart__grid i:nth-child(2) { top: 25%; }
+.dual-panel__body .chart__grid i:nth-child(3) { top: 50%; }
+.dual-panel__body .chart__grid i:nth-child(4) { top: 75%; }
+.dual-panel__body .chart__grid i:nth-child(5) { background: var(--hair-2); top: 100%; }
+
+.dual-panel__body .dual-cols {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: space-around;
+  gap: 4px;
+}
+
+.dual-panel__body .col {
+  text-align: center;
+  flex: 1 1 0;
+  position: relative;
+  cursor: pointer;
+}
+
+.dual-panel__body .col__pos {
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  bottom: 0 !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+}
+
+.dual-panel__body .col__pos .bar {
+  width: 100% !important;
+  flex-shrink: 0 !important;
+  border-radius: 4px;
+  transform-origin: 50% 100% !important;
+  animation: rivetBarWave 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.dual-panel--left .bar {
+  background: var(--n-lime) !important;
+  box-shadow: 0 0 10px rgba(212, 255, 63, 0.35) !important;
+}
+
+.dual-panel--right .bar {
+  background: var(--n-cyan) repeating-linear-gradient(135deg, transparent 0 4px, #00000047 4px 6px) !important;
+  box-shadow: 0 0 10px rgba(62, 242, 255, 0.35) !important;
+}
+
+.dual-panel__body .dual-labels {
+  color: var(--faint);
+  grid-column: 2;
+  margin-top: 2px;
+  font-size: 9.5px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.dual-panel__body .dual-labels span {
+  flex: 1 1 0;
+  text-align: center;
+}
+
+/* Grid Baseline Alignment (0 at bottom) */
+.chart__grid i:nth-child(4) {
+  background: var(--hair) !important;
+}
+
+.chart__grid i:nth-child(5) {
+  background: var(--hair-2) !important;
+}
+/* Meter & Gauge Animations */
+.meter__fill {
+  animation: rivetMeterFill 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.25s;
+}
+
+.gauge__arc {
+  animation: gaugeArcDraw 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.32s;
+}
+
+.goals__fill {
+  animation: rivetMeterFill 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.goals li:nth-child(1) .goals__fill {
+  animation-delay: 0.36s;
+}
+
+.goals li:nth-child(2) .goals__fill {
+  animation-delay: 0.42s;
+}
+
+/* Staggered Lists */
+.rank-item-anim {
+  animation: rivetItemSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.tx-item-anim {
+  animation: rivetItemSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Leaflet marker glow */
+.rivet-marker {
+  filter: drop-shadow(0 0 4px currentColor);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .board__left > .card--balance,
+  .board__left > .row--2 > .card,
+  .board__left > .row--3 > .card,
+  .board__right > .card,
+  .col__pos .bar,
+  .meter__fill,
+  .gauge__arc,
+  .goals__fill,
+  .rank-item-anim,
+  .tx-item-anim,
+  .rivet-marker {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
