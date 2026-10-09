@@ -1,0 +1,502 @@
+{
+  "total": {
+    "perjalanan": 483310,
+    "volume": 4681829,
+    "terminal": 12,
+    "bulan": 7
+  },
+  "perTrayek": [
+    {
+      "trayek": "BANDUNG - SUKABUMI",
+      "volume": 452046,
+      "perjalanan": 35961,
+      "avgPerTrip": 12.570451322265788
+    },
+    {
+      "trayek": "BANDUNG-BEKASI",
+      "volume": 223071,
+      "perjalanan": 21682,
+      "avgPerTrip": 10.288303662023798
+    },
+    {
+      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL GUNTUR MELATI (GARUT)",
+      "volume": 143865,
+      "perjalanan": 10995,
+      "avgPerTrip": 13.084583901773533
+    },
+    {
+      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL INDIHIANG (TASIKMALAYA)",
+      "volume": 87384,
+      "perjalanan": 10701,
+      "avgPerTrip": 8.16596579758901
+    },
+    {
+      "trayek": "BANDUNG - CIKARANG",
+      "volume": 94224,
+      "perjalanan": 10426,
+      "avgPerTrip": 9.037406483790523
+    },
+    {
+      "trayek": "TERMINAL GUNTUR MELATI (GARUT) - TERMINAL BARANANGSIANG (BOGOR)",
+      "volume": 129859,
+      "perjalanan": 10395,
+      "avgPerTrip": 12.492448292448293
+    },
+    {
+      "trayek": "TERMINAL GUNTUR MELATI (GARUT) - TERMINAL INDUK BEKASI (BEKASI)",
+      "volume": 128239,
+      "perjalanan": 8929,
+      "avgPerTrip": 14.36207862022623
+    },
+    {
+      "trayek": "KOTA BEKASI - TASIKMALAYA",
+      "volume": 68839,
+      "perjalanan": 8713,
+      "avgPerTrip": 7.900723057500287
+    },
+    {
+      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL CIAKAR (SUMEDANG)",
+      "volume": 105402,
+      "perjalanan": 8204,
+      "avgPerTrip": 12.84763529985373
+    },
+    {
+      "trayek": "BOGOR - BANDUNG",
+      "volume": 66143,
+      "perjalanan": 6761,
+      "avgPerTrip": 9.783020263274663
+    },
+    {
+      "trayek": "SINGAPARNA - BEKASI",
+      "volume": 133306,
+      "perjalanan": 6288,
+      "avgPerTrip": 21.200063613231553
+    },
+    {
+      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL KH. AHMAD SANUSI (SUKABUMI)",
+      "volume": 74920,
+      "perjalanan": 6080,
+      "avgPerTrip": 12.322368421052632
+    },
+    {
+      "trayek": "TERMINAL INDUK BEKASI (BEKASI) - TERMINAL KERTAWANGUNAN (KUNINGAN)",
+      "volume": 27948,
+      "perjalanan": 5735,
+      "avgPerTrip": 4.873234524847428
+    },
+    {
+      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL LEUWIPANJANG (BANDUNG)",
+      "volume": 49579,
+      "perjalanan": 5639,
+      "avgPerTrip": 8.792161730803334
+    },
+    {
+      "trayek": "BANDUNG-KALIDERES",
+      "volume": 49750,
+      "perjalanan": 5160,
+      "avgPerTrip": 9.641472868217054
+    },
+    {
+      "trayek": "TERMINAL KALIDERES (JAKARTA BARAT) - TERMINAL LEUWIPANJANG (BANDUNG)",
+      "volume": 47097,
+      "perjalanan": 5099,
+      "avgPerTrip": 9.23651696411061
+    },
+    {
+      "trayek": "TERMINAL BEKASI - TERMINAL HARJAMUKTI CIREBON",
+      "volume": 25944,
+      "perjalanan": 5007,
+      "avgPerTrip": 5.181545835829838
+    },
+    {
+      "trayek": "TANGERANG SELATAN (PD.CABE)-KUNINGAN",
+      "volume": 23618,
+      "perjalanan": 4396,
+      "avgPerTrip": 5.372611464968153
+    },
+    {
+      "trayek": "TERMINAL PONDOK CABE (TANGERANG SELATAN) - TERMINAL INDIHIANG (TASIKMALAYA)",
+      "volume": 45137,
+      "perjalanan": 4376,
+      "avgPerTrip": 10.314670932358318
+    },
+    {
+      "trayek": "BDG-CLT",
+      "volume": 41147,
+      "perjalanan": 4074,
+      "avgPerTrip": 10.099901816396661
+    },
+    {
+      "trayek": "TERMINAL KALIDERES (JAKARTA BARAT) - TERMINAL KERTAWANGUNAN (KUNINGAN)",
+      "volume": 24405,
+      "perjalanan": 3940,
+      "avgPerTrip": 6.194162436548224
+    },
+    {
+      "trayek": "BANDUNG-LEBAK BULUS",
+      "volume": 37562,
+      "perjalanan": 3722,
+      "avgPerTrip": 10.09188608275121
+    },
+    {
+      "trayek": "TERMINAL CICAHEUM (BANDUNG) - TERMINAL PURABAYA (SIDOARJO)",
+      "volume": 43728,
+      "perjalanan": 3710,
+      "avgPerTrip": 11.786522911051213
+    },
+    {
+      "trayek": "TASIKMALAYA - CIJULANG VIA TERM. CIAMIS, TERM. BANJAR, TERM. BANJARSARI",
+      "volume": 21199,
+      "perjalanan": 3579,
+      "avgPerTrip": 5.923162894663314
+    },
+    {
+      "trayek": "TERMINAL CIAKAR (SUMEDANG) - TERMINAL INDUK BEKASI (BEKASI)",
+      "volume": 42344,
+      "perjalanan": 3555,
+      "avgPerTrip": 11.911111111111111
+    },
+    {
+      "trayek": "BOGOR - PELABUHAN RATU",
+      "volume": 44499,
+      "perjalanan": 3503,
+      "avgPerTrip": 12.703111618612617
+    },
+    {
+      "trayek": "BANDUNG - LEUWILIANG",
+      "volume": 36920,
+      "perjalanan": 3448,
+      "avgPerTrip": 10.707656612529002
+    },
+    {
+      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL GUNTUR MELATI (GARUT)",
+      "volume": 50264,
+      "perjalanan": 3332,
+      "avgPerTrip": 15.085234093637455
+    },
+    {
+      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL KERTAWANGUNAN (KUNINGAN)",
+      "volume": 17986,
+      "perjalanan": 3236,
+      "avgPerTrip": 5.558096415327565
+    },
+    {
+      "trayek": "TASIKMALAYA (INDIHIANG) - CIAMIS (SINDANGSARI) PP VIA TERM. CIAMIS, TERM. BANJAR, TERM. BANJARSARI, TERM. PANGANDARAN, TERM. CIJULANG",
+      "volume": 21413,
+      "perjalanan": 3191,
+      "avgPerTrip": 6.7104356001253525
+    },
+    {
+      "trayek": "TERMINAL LEUWIPANJANG (BANDUNG) - TERMINAL PURABAYA (SIDOARJO)",
+      "volume": 40091,
+      "perjalanan": 3146,
+      "avgPerTrip": 12.743483788938335
+    },
+    {
+      "trayek": "BANDUNG-TANJUNGPRIOK",
+      "volume": 30518,
+      "perjalanan": 3104,
+      "avgPerTrip": 9.831829896907216
+    },
+    {
+      "trayek": "TERMINAL PONDOK CABE (TANGERANG SELATAN) - TERMINAL GUNTUR MELATI (GARUT)",
+      "volume": 40220,
+      "perjalanan": 3042,
+      "avgPerTrip": 13.221564760026299
+    },
+    {
+      "trayek": "TERMINAL INDIHIANG (TASIKMALAYA) - TERMINAL BULUPITU (BANYUMAS)",
+      "volume": 20163,
+      "perjalanan": 2987,
+      "avgPerTrip": 6.750251088048209
+    },
+    {
+      "trayek": "BANDUNG - CIBINONG",
+      "volume": 27970,
+      "perjalanan": 2957,
+      "avgPerTrip": 9.458911058505242
+    },
+    {
+      "trayek": "CADANGAN",
+      "volume": 25670,
+      "perjalanan": 2914,
+      "avgPerTrip": 8.809196980096088
+    },
+    {
+      "trayek": "TERMINAL BARANANGSIANG (BOGOR) - TERMINAL CIKAMPEK (KARAWANG)",
+      "volume": 20993,
+      "perjalanan": 2912,
+      "avgPerTrip": 7.209134615384615
+    },
+    {
+      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL INDIHIANG (TASIKMALAYA)",
+      "volume": 31117,
+      "perjalanan": 2897,
+      "avgPerTrip": 10.741111494649637
+    },
+    {
+      "trayek": "PARIWISATA",
+      "volume": 22017,
+      "perjalanan": 2833,
+      "avgPerTrip": 7.77162019061066
+    },
+    {
+      "trayek": "TERMINAL MERAK (CILEGON) - TERMINAL KERTAWANGUNAN (KUNINGAN)",
+      "volume": 15945,
+      "perjalanan": 2754,
+      "avgPerTrip": 5.789760348583878
+    },
+    {
+      "trayek": "TASIKMALAYA (INDIHIANG) - CIAMIS (TERM.CIPARANTI) VIA TERM. CIAMIS, TERM. BANJAR, TERM. BANJARSARI, TERM. PANGANDARAN, TERM. CIJULANG",
+      "volume": 16179,
+      "perjalanan": 2542,
+      "avgPerTrip": 6.3646734854445315
+    },
+    {
+      "trayek": "INDIHIANG TASIKMALAYA - PULOGEBANG JAKARTA",
+      "volume": 17894,
+      "perjalanan": 2501,
+      "avgPerTrip": 7.1547381047580965
+    },
+    {
+      "trayek": "BANDUNG - DEPOK",
+      "volume": 23885,
+      "perjalanan": 2468,
+      "avgPerTrip": 9.677876823338735
+    },
+    {
+      "trayek": "TERMINAL SINGAPARNA (TASIKMALAYA) - TERMINAL GUNTUR MELATI (GARUT) - TERMINAL INDUK BEKASI (BEKASI)",
+      "volume": 49415,
+      "perjalanan": 2465,
+      "avgPerTrip": 20.046653144016226
+    },
+    {
+      "trayek": "SIDOARJO (TERMINAL PURABAYA)-KUNINGAN (TERMINAL KERTAWANGUNAN)",
+      "volume": 16548,
+      "perjalanan": 2445,
+      "avgPerTrip": 6.7680981595092025
+    },
+    {
+      "trayek": "TERMINAL PONDOK CABE (TANGERANG SELATAN) - TERMINAL LEUWIPANJANG (BANDUNG)",
+      "volume": 26523,
+      "perjalanan": 2435,
+      "avgPerTrip": 10.892402464065709
+    },
+    {
+      "trayek": "TERMINAL KALIDERES (JAKARTA BARAT) - TERMINAL KH. AHMAD SANUSI (SUKABUMI)",
+      "volume": 29221,
+      "perjalanan": 2297,
+      "avgPerTrip": 12.721375707444492
+    },
+    {
+      "trayek": "Kota Bandung - Kab. Cirebon",
+      "volume": 20786,
+      "perjalanan": 2251,
+      "avgPerTrip": 9.234118169702354
+    },
+    {
+      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL CIKAMPEK (KARAWANG)",
+      "volume": 29229,
+      "perjalanan": 2143,
+      "avgPerTrip": 13.639290713952404
+    },
+    {
+      "trayek": "TERMINAL PORIS PLAWAD (TANGERANG) - TERMINAL KH. AHMAD SANUSI (SUKABUMI)",
+      "volume": 26511,
+      "perjalanan": 2120,
+      "avgPerTrip": 12.505188679245283
+    },
+    {
+      "trayek": "TERMINAL KAMPUNG RAMBUTAN (JAKARTA TIMUR) - TERMINAL LEUWIPANJANG (BANDUNG)",
+      "volume": 24162,
+      "perjalanan": 1956,
+      "avgPerTrip": 12.35276073619632
+    },
+    {
+      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL CIKAMPEK (KARAWANG)",
+      "volume": 17845,
+      "perjalanan": 1947,
+      "avgPerTrip": 9.165382639958912
+    },
+    {
+      "trayek": "ARIMBI",
+      "volume": 17713,
+      "perjalanan": 1926,
+      "avgPerTrip": 9.196780893042575
+    },
+    {
+      "trayek": "TERMINAL INDIHIANG (TASIKMALAYA) - TERMINAL TIRTONADI (SURAKARTA)",
+      "volume": 16469,
+      "perjalanan": 1825,
+      "avgPerTrip": 9.024109589041096
+    },
+    {
+      "trayek": "TERMINAL PULO GEBANG (JAKARTA TIMUR) - TERMINAL SUBANG (SUBANG)",
+      "volume": 16042,
+      "perjalanan": 1700,
+      "avgPerTrip": 9.436470588235293
+    },
+    {
+      "trayek": "TERMINAL LEUWIPANJANG (BANDUNG) - TERMINAL ARJOSARI (MALANG)",
+      "volume": 17408,
+      "perjalanan": 1674,
+      "avgPerTrip": 10.399044205495818
+    },
+    {
+      "trayek": "BANDUNG - CILEUNGSI",
+      "volume": 15469,
+      "perjalanan": 1649,
+      "avgPerTrip": 9.380836870830807
+    },
+    {
+      "trayek": "TERMINAL KH. AHMAD SANUSI (SUKABUMI) - TERMINAL GIRI ADIPURA (WONOGIRI)",
+      "volume": 16762,
+      "perjalanan": 1491,
+      "avgPerTrip": 11.242119382964454
+    },
+    {
+      "trayek": "TERMINAL JATIJAJAR (DEPOK) - TERMINAL INDIHIANG (TASIKMALAYA)",
+      "volume": 15515,
+      "perjalanan": 1231,
+      "avgPerTrip": 12.60357432981316
+    }
+  ],
+  "regional": [
+    {
+      "kota": "KOTA BANDUNG",
+      "bangkitan": 676598,
+      "tarikan": 713190,
+      "total": 1389788
+    },
+    {
+      "kota": "KAB. GARUT",
+      "bangkitan": 307949,
+      "tarikan": 539448,
+      "total": 847397
+    },
+    {
+      "kota": "KOTA SUKABUMI",
+      "bangkitan": 345782,
+      "tarikan": 352550,
+      "total": 698332
+    },
+    {
+      "kota": "KOTA TASIKMALAYA",
+      "bangkitan": 634549,
+      "tarikan": 51709,
+      "total": 686258
+    },
+    {
+      "kota": "KOTA BEKASI",
+      "bangkitan": 272178,
+      "tarikan": 329532,
+      "total": 601710
+    },
+    {
+      "kota": "KOTA BOGOR",
+      "bangkitan": 316647,
+      "tarikan": 233625,
+      "total": 550272
+    },
+    {
+      "kota": "KOTA BANJAR",
+      "bangkitan": 229596,
+      "tarikan": 253483,
+      "total": 483079
+    },
+    {
+      "kota": "KOTA DEPOK",
+      "bangkitan": 243918,
+      "tarikan": 153802,
+      "total": 397720
+    },
+    {
+      "kota": "KAB. SUMEDANG",
+      "bangkitan": 140639,
+      "tarikan": 130970,
+      "total": 271609
+    },
+    {
+      "kota": "KAB. KUNINGAN",
+      "bangkitan": 120229,
+      "tarikan": 106475,
+      "total": 226704
+    },
+    {
+      "kota": "KAB. KARAWANG",
+      "bangkitan": 104836,
+      "tarikan": 62914,
+      "total": 167750
+    },
+    {
+      "kota": "KOTA CIREBON",
+      "bangkitan": 71240,
+      "tarikan": 79372,
+      "total": 150612
+    },
+    {
+      "kota": "KAB. BEKASI",
+      "bangkitan": 60134,
+      "tarikan": 78996,
+      "total": 139130
+    },
+    {
+      "kota": "KAB. BOGOR",
+      "bangkitan": 57146,
+      "tarikan": 48173,
+      "total": 105319
+    },
+    {
+      "kota": "KAB. TASIKMALAYA",
+      "bangkitan": 81185,
+      "tarikan": 19076,
+      "total": 100261
+    },
+    {
+      "kota": "KAB. PANGANDARAN",
+      "bangkitan": 38112,
+      "tarikan": 55171,
+      "total": 93283
+    },
+    {
+      "kota": "KAB. SUKABUMI",
+      "bangkitan": 32723,
+      "tarikan": 22294,
+      "total": 55017
+    },
+    {
+      "kota": "KAB. CIREBON",
+      "bangkitan": 11110,
+      "tarikan": 18457,
+      "total": 29567
+    },
+    {
+      "kota": "KAB. CIAMIS",
+      "bangkitan": 209,
+      "tarikan": 613,
+      "total": 822
+    },
+    {
+      "kota": "KAB. INDRAMAYU",
+      "bangkitan": 20,
+      "tarikan": 349,
+      "total": 369
+    },
+    {
+      "kota": "KAB. CIANJUR",
+      "bangkitan": 2,
+      "tarikan": 301,
+      "total": 303
+    },
+    {
+      "kota": "KAB. PURWAKARTA",
+      "bangkitan": 12,
+      "tarikan": 51,
+      "total": 63
+    }
+  ],
+  "korelasi": {
+    "r": 0.079,
+    "avgLoadFactorProxy": 10.48
+  }
+}

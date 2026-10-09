@@ -17,7 +17,7 @@ import { dirname, resolve } from 'node:path';
 // (Geo12-pages/scripts/), bukan current working directory dan bukan absolute path perangkat.
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const SRC = resolve(__dirname, '..', '..', 'Geo12');
-const OUT = resolve(__dirname, '..', 'src');
+const OUT = resolve(__dirname, '..', 'src', 'maps');
 
 function read(p) { return fs.readFileSync(p, 'utf8'); }
 function write(p, s) { fs.writeFileSync(p, s); }
@@ -109,9 +109,50 @@ const RE = [
 ];
 
 // ---- 1) style.css ----
-write(OUT + '/style.css', between(SRC + '/CSS.html', '<style>', '</style>').trimStart() + '\n');
+let css = between(SRC + '/CSS.html', '<style>', '</style>').trimStart() + '\n';
+css = css.replace("font-family: 'Plus Jakarta Sans', sans-serif;", "font-family: 'Poppins', 'Plus Jakarta Sans', sans-serif;");
+css = css.replace('font-family: "Plus Jakarta Sans", sans-serif;', "font-family: 'Poppins', 'Plus Jakarta Sans', sans-serif;");
+css = css.replace('.side-menu {\n    background: #fff;\n    width: 280px;\n    height: 100%;', '.side-menu {\n    background: #fff;\n    width: 280px;\n    height: 100%;\n    font-family: \'Poppins\', \'Plus Jakarta Sans\', sans-serif;');
+if (!css.includes('.nav-cc-btn')) {
+  css += `
+  /* ===== Tombol Shortcut "Command Center" (topbar) ===== */
+  .nav-cc-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--navy);
+    color: #fff;
+    text-decoration: none;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 0 14px;
+    height: 42px;
+    border-radius: 999px;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.25);
+    cursor: pointer;
+    flex-shrink: 0;
+    white-space: nowrap;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .nav-cc-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.35);
+    color: #fff;
+  }
+  [data-theme="dark"] .nav-cc-btn {
+    background: rgba(30, 41, 59, 0.95);
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    color: #f8fafc;
+  }
+  @media (max-width: 520px) {
+    .nav-cc-btn span { display: none; }
+    .nav-cc-btn { padding: 0 12px; }
+  }
+`;
+}
+write(OUT + '/style.css', css);
 console.log('style.css  :', fs.statSync(OUT + '/style.css').size, 'bytes');
-
 // ---- 2) script.js (ekstrak + ganti 12 panggilan) ----
 let js = between(SRC + '/JS.html', '<script>', '</script>').trimStart() + '\n';
 let belumKetemu = 0;
@@ -126,6 +167,35 @@ console.log('script.js  :', fs.statSync(OUT + '/script.js').size, 'bytes | pola 
 let idx = read(SRC + '/Index.html');
 idx = idx.replace("<?!= include('CSS'); ?>", '  <link rel="stylesheet" href="style.css">');
 idx = idx.replace("<?!= include('JS'); ?>", '  <script src="config.js"></script>\n  <script src="api.js"></script>\n  <script src="script.js"></script>');
+if (!idx.includes('brand-shortcut')) {
+  const brandLogo = `    <a href="/" class="brand-shortcut" title="Kembali ke Command Center" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;">
+      <span class="brand__mark" style="display:inline-flex;align-items:center;gap:4px;padding:3px 6px;background:rgba(255,255,255,0.92);border-radius:6px;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
+        <img src="/assets/logo-kemenhub.svg" alt="Logo Kemenhub" style="height:22px;width:auto;" />
+        <img src="/assets/logo-hubdat.png" alt="Logo Ditjen Hubdat" style="height:22px;width:auto;" />
+      </span>
+    </a>\n`;
+  idx = idx.replace('<div class="title-block">', brandLogo + '    <div class="title-block">');
+}
+if (!idx.includes('btnCommandCenter')) {
+  const ccBtn = `    <a href="/" id="btnCommandCenter" class="nav-cc-btn" aria-label="Command Center" title="Buka Command Center">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+        <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+        <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+        <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+      </svg>
+      <span>Command Center</span>
+    </a>\n`;
+  idx = idx.replace('<span id="lastUpdateValue"', ccBtn + '    <span id="lastUpdateValue"');
+}
+if (!idx.includes('Command Center</span></a>')) {
+  const sideCc = `        <!-- Command Center Shortcut -->
+        <li class="menu-item" onclick="window.location.href='/'" style="cursor:pointer;border-bottom:1px solid rgba(148,163,184,0.18);padding-bottom:10px;margin-bottom:8px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect></svg>
+          <a href="/" style="text-decoration:none;color:inherit;font-weight:700;"><span>Command Center</span></a>
+        </li>\n`;
+  idx = idx.replace('<ul class="menu-list">', '<ul class="menu-list">\n' + sideCc);
+}
 write(OUT + '/index.html', idx);
 console.log('index.html :', fs.statSync(OUT + '/index.html').size, 'bytes');
 console.log('Selesai. Verifikasi lanjut: node --check script.js + grep.');

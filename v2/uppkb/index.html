@@ -14,7 +14,8 @@
         <!-- ================= SIDEBAR ================= -->
         <aside id="appSidebar" class="app-sidebar" aria-label="Navigasi utama">
             <div class="sidebar-logo">
-                <span class="brand__mark" aria-hidden="true">
+                <a href="/" class="brand-link" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;" title="Kembali ke Dashboard Utama">
+                    <span class="brand__mark" aria-hidden="true">
                     <img src="/assets/logo-kemenhub.svg" alt="Logo Kemenhub" class="brand__logo-img brand__logo-img--kemenhub" />
                     <img src="/assets/logo-hubdat.png" alt="Logo Ditjen Hubdat" class="brand__logo-img brand__logo-img--hubdat" />
                 </span>
@@ -22,19 +23,20 @@
                     <span class="logo-title brand__title">GeoPORTAL</span>
                     <span class="logo-sub brand__instansi">BPTD Jabar</span>
                     <span class="brand__tag">Angkutan</span>
-                </div>
+                    </div>
+                </a>
                 <button type="button" id="sidebarClose" class="sidebar-close-btn" aria-label="Tutup menu navigasi">
                     <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
             </div>
 
             <nav class="sidebar-nav" aria-label="Navigasi utama modul">
-                <a href="../" class="nav-link" data-nav-status="available" title="Ringkasan — Kembali ke Overview Command Center (Tersedia)">
+                <a href="/" class="nav-link" data-nav-status="available" title="Ringkasan">
                     <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
                     <span class="nav-text">Ringkasan</span>
                     <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
                 </a>
-                <a href="../../" class="nav-link" data-nav-status="available" title="Peta Transportasi — Buka dashboard peta utama (Tersedia)">
+                <a href="/maps/" class="nav-link" data-nav-status="available" title="Peta Transportasi">
                     <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
                     <span class="nav-text">Peta Transportasi</span>
                     <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>

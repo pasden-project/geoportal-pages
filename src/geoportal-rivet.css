@@ -1,0 +1,3246 @@
+/* =====================================================================
+   GeoPORTAL BPTD Jabar — Dark Rivet Adapter & Map Styles
+   ---------------------------------------------------------------------
+   Komponen pendukung Leaflet & integrasi GeoPORTAL pada Dark Rivet.
+   Harmonisasi Tipografi: Poppins (Brand/Display/Headings/UI controls),
+   Plus Jakarta Sans (Body text/Tabular data), JetBrains Mono (Technical codes).
+   ===================================================================== */
+
+:root,
+[data-theme="light"],
+html.theme-light,
+body.theme-light {
+  --font-sans: 'Poppins', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+  --font-display: 'Poppins', system-ui, sans-serif !important;
+  --font-body: 'Poppins', 'Plus Jakarta Sans', system-ui, sans-serif !important;
+  --font-data: 'Plus Jakarta Sans', 'Poppins', sans-serif !important;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace !important;
+}
+
+html, body, input, button, select, textarea {
+  font-family: var(--font-body) !important;
+}
+
+/* Brand & Header Identity */
+.brand {
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  display: flex;
+}
+
+.brand__mark {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 5px !important;
+  padding: 3px 6px !important;
+  border-radius: 8px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
+  width: auto !important;
+  height: 32px !important;
+  flex-shrink: 0 !important;
+}
+
+.brand__logo-img {
+  height: 24px !important;
+  width: 24px !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+
+.brand__name, .brand__title, .brand__mark, .brand__instansi, .brand__tag {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+.brand__name {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  line-height: 1.15 !important;
+}
+
+.brand__title {
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  color: #FFFFFF !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.01em !important;
+}
+
+.brand__instansi {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  margin-top: 1px !important;
+  color: var(--n-amber, #ffbe4d) !important;
+}
+
+.brand__tag {
+  font-size: 8.5px !important;
+  font-weight: 700 !important;
+  border-radius: 3px !important;
+  padding: 1px 5px !important;
+  width: fit-content !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  margin-top: 3px !important;
+  color: var(--n-cyan, #3ef2ff) !important;
+  background: rgba(62, 242, 255, 0.12) !important;
+  border: 1px solid rgba(62, 242, 255, 0.28) !important;
+}
+
+.frame.is-collapsed .brand__mark {
+  padding: 2px 4px !important;
+  gap: 3px !important;
+  height: 28px !important;
+}
+
+.frame.is-collapsed .brand__logo-img {
+  height: 20px !important;
+  width: 20px !important;
+}
+/* Navigasi Sidebar & Controls */
+.nav__item, .nav__subitem, .nav__sec, .nav__group > button, .side-theme-btn {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+/* Judul Card, Section, Panel & Modal */
+.card__title, .section-title, .panel-title, .card-module__title, .card-health__title,
+.rivet-modal h3, .rivet-modal-header h3, .rivet-modal-title {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+/* Tombol Aksi, Tabs & Controls */
+.btn, .btn--primary, .btn--neon, .btn--ghost, .seg__btn, .year-pill-btn, .view-btn, .rank-tab-btn {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+/* Hero Numbers & Metrik Numerik dengan Tabular Numbers */
+.hero-pax-num, #heroPax, .num, .num--xl, .num--lg, .num--sm {
+  font-family: 'Poppins', 'Plus Jakarta Sans', sans-serif !important;
+  font-variant-numeric: tabular-nums !important;
+  font-feature-settings: "tnum" 1 !important;
+}
+
+html, body {
+  background: var(--bg) !important;
+  color: var(--ink) !important;
+}
+
+/* Leaflet Container in Dark Rivet Obsidian */
+.rivet-map-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rivet-map-wrap {
+  width: 100%;
+  height: 270px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--hair);
+  background: #08090C;
+}
+
+#rivetMap {
+  width: 100%;
+  height: 100%;
+  background: #08090C;
+}
+
+.leaflet-container {
+  background: #08090C !important;
+  font-family: inherit !important;
+}
+
+.leaflet-bar {
+  border: 1px solid var(--hair-2) !important;
+  border-radius: 8px !important;
+  overflow: hidden;
+  background: var(--card-top) !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6) !important;
+}
+
+.leaflet-bar a {
+  background: var(--card-top) !important;
+  color: var(--ink) !important;
+  border-bottom: 1px solid var(--hair) !important;
+  width: 28px !important;
+  height: 28px !important;
+  line-height: 28px !important;
+}
+
+.leaflet-bar a:hover {
+  background: var(--well) !important;
+  color: var(--n-lime) !important;
+}
+
+/* Leaflet Tile Layer - Clean Dark Obsidian Invert Filter (100% Watermark-Free) */
+.leaflet-tile-pane {
+  filter: brightness(0.55) invert(1) contrast(2.6) hue-rotate(205deg) saturate(0.25) brightness(0.72) !important;
+}
+.leaflet-control-attribution {
+  background: rgba(8, 9, 12, 0.85) !important;
+  color: var(--faint) !important;
+  font-size: 10px !important;
+  backdrop-filter: blur(8px);
+}
+
+.leaflet-control-attribution a {
+  color: var(--dim) !important;
+}
+
+/* Custom DivIcon Markers for Dark Rivet */
+/* Host container Leaflet - jangan pernah sentuh transform */
+.rivet-marker-host {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+}
+
+.rivet-marker-host:hover {
+  z-index: 1000 !important;
+}
+
+.rivet-marker {
+  width: 24px !important;
+  height: 24px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: 2px solid #FFFFFF !important;
+  cursor: pointer !important;
+  transform-origin: center center !important;
+  transition: transform 0.2s ease, filter 0.2s ease !important;
+}
+
+.rivet-marker svg {
+  display: block !important;
+  pointer-events: none !important;
+}
+
+.rivet-marker:hover {
+  transform: scale(1.22) !important;
+  filter: brightness(1.25) drop-shadow(0 0 10px #FFFFFF) !important;
+}
+
+.rivet-marker--terminal {
+  background: var(--n-cyan) !important;
+  color: #050507 !important;
+  box-shadow: 0 0 10px var(--n-cyan), 0 2px 6px rgba(0, 0, 0, 0.7) !important;
+}
+
+.rivet-marker--uppkb {
+  background: var(--n-amber) !important;
+  color: #050507 !important;
+  box-shadow: 0 0 10px var(--n-amber), 0 2px 6px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Leaflet Popup in Dark Rivet */
+.leaflet-popup-content-wrapper {
+  background: var(--card-top) !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--hair-2) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.8) !important;
+  backdrop-filter: blur(12px);
+}
+
+.leaflet-popup-tip {
+  background: var(--card-top) !important;
+  border: 1px solid var(--hair-2) !important;
+}
+
+.leaflet-popup-content {
+  margin: 10px 14px !important;
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+}
+
+.popup-title {
+  font-weight: 700;
+  color: #FFFFFF;
+  font-size: 13px;
+  margin-bottom: 2px;
+}
+
+.popup-sub {
+  color: var(--dim);
+  font-size: 11px;
+}
+
+.popup-badge {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 999px;
+  font-size: 9.5px;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+.popup-badge--terminal {
+  background: rgba(62, 242, 255, 0.15);
+  color: var(--n-cyan);
+  border: 1px solid rgba(62, 242, 255, 0.3);
+}
+
+.popup-badge--uppkb {
+  background: rgba(255, 190, 77, 0.15);
+  color: var(--n-amber);
+  border: 1px solid rgba(255, 190, 77, 0.3);
+}
+
+/* Card Balance Desktop 2-Column Grid Lock (min-width: 960px) */
+@media (min-width: 960px) {
+  .card--balance {
+    grid-template-columns: minmax(0, 1fr) 184px !important;
+    gap: 20px !important;
+    display: grid !important;
+    align-items: start !important;
+  }
+
+  .card--balance .balance {
+    min-width: 0 !important;
+  }
+
+  .card--balance .stats {
+    width: 184px !important;
+    flex: none !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+}
+
+/* Card Balance Mobile/Tablet (max-width: 959px) */
+@media (max-width: 959px) {
+  .card--balance {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+    display: grid !important;
+  }
+
+  .card--balance .stats {
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)) !important;
+    gap: 14px !important;
+    border-top: 1px solid var(--hair) !important;
+    padding-top: 16px !important;
+  }
+}
+/* Segmented Control Button in Dark Rivet */
+.seg__btn {
+  width: auto !important;
+  padding: 2px 10px !important;
+  height: 26px !important;
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.seg__btn.is-active {
+  background: var(--card-top) !important;
+  color: var(--n-lime) !important;
+  box-shadow: 0 0 10px rgba(212, 255, 63, 0.25), inset 0 0 0 1px rgba(212, 255, 63, 0.4) !important;
+}
+
+/* Multi-Modal Transport Selection Bar in Hero Balance Card */
+.transport-mode-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 4px 0 10px;
+  margin-top: 4px;
+  margin-bottom: 2px;
+}
+
+.transport-mode-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.mode-btn {
+  background: var(--well);
+  border: 1px solid var(--hair);
+  color: var(--dim);
+  padding: 4px 11px;
+  border-radius: 7px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  outline: none;
+  user-select: none;
+}
+
+.mode-btn:hover {
+  color: #FFFFFF;
+  border-color: var(--hair-2);
+  background: var(--card-top);
+}
+
+.mode-btn.is-active {
+  background: var(--card-top);
+  color: var(--n-lime);
+  border-color: rgba(212, 255, 63, 0.4);
+  box-shadow: 0 0 10px rgba(212, 255, 63, 0.25), inset 0 0 0 1px rgba(212, 255, 63, 0.3);
+  font-weight: 700;
+}
+
+.mode-btn:focus-visible {
+  outline: 2px solid var(--n-lime);
+  outline-offset: 1px;
+}
+
+.mode-badge {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 4px;
+  margin-left: 6px;
+  letter-spacing: 0.02em;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--faint);
+  border: 1px solid var(--hair);
+  line-height: 1.2;
+  transition: all 0.2s ease;
+}
+
+.mode-btn.is-active .mode-badge {
+  background: rgba(212, 255, 63, 0.15);
+  color: var(--n-lime);
+  border-color: rgba(212, 255, 63, 0.35);
+}
+
+.mode-badge--ytd {
+  color: #3ef2ff !important;
+  background: rgba(62, 242, 255, 0.12) !important;
+  border-color: rgba(62, 242, 255, 0.28) !important;
+}
+
+.mode-btn.is-active .mode-badge--ytd {
+  color: #d4ff3f !important;
+  background: rgba(212, 255, 63, 0.2) !important;
+  border-color: rgba(212, 255, 63, 0.45) !important;
+}
+/* Map Action Buttons */
+.map-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.map-legend {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  color: var(--dim);
+}
+
+.map-legend-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.map-legend-dot--cyan {
+  background: var(--n-cyan);
+  box-shadow: 0 0 6px var(--n-cyan);
+}
+
+.map-legend-dot--amber {
+  background: var(--n-amber);
+  box-shadow: 0 0 6px var(--n-amber);
+}
+
+/* ---------- Sidebar Groups & Compact Tree Layout ---------- */
+.nav__section-label {
+  padding: 10px 10px 4px !important;
+  font-size: 9.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: var(--faint) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 4px !important;
+}
+
+.nav__section-label span:first-child {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.nav__section-label .badge {
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  font-size: 8.5px !important;
+  padding: 1px 5px !important;
+  line-height: 1.2 !important;
+}
+
+.nav__sep {
+  border: none;
+  border-top: 1px solid var(--hair);
+  margin: 8px 10px;
+}
+
+.nav__item {
+  height: 33px !important;
+  padding: 0 10px !important;
+  gap: 8.5px !important;
+  font-size: 12px !important;
+  border-radius: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  color: var(--dim) !important;
+  text-decoration: none !important;
+  transition: all 0.18s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.nav__item:hover {
+  background: rgba(255, 255, 255, 0.04) !important;
+  color: #FFFFFF !important;
+  transform: translateX(2px) !important;
+}
+
+.nav__item.is-active {
+  background: var(--card-top) !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  border: 1px solid var(--hair-2) !important;
+}
+
+.nav__item.is-active svg {
+  color: var(--n-lime) !important;
+}
+
+.nav__item .ico {
+  width: 15px !important;
+  height: 15px !important;
+  flex: none !important;
+}
+
+/* Authentic Dark Rivet Accordion / Expandable Submenu */
+.nav__item--toggle {
+  width: 100% !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  font-family: inherit !important;
+  text-align: left !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 0 10px !important;
+  height: 33px !important;
+  border-radius: 8px !important;
+  position: relative !important;
+}
+
+.nav__item--toggle:hover {
+  background: rgba(255, 255, 255, 0.04) !important;
+  color: #FFFFFF !important;
+}
+
+.nav__item--toggle .ico--chev {
+  width: 14px !important;
+  height: 14px !important;
+  margin-left: auto !important;
+  flex: none !important;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  color: var(--faint) !important;
+}
+
+.nav__group:not(.is-open) .ico--chev {
+  transform: rotate(-90deg) !important;
+}
+
+.nav__group.is-open .ico--chev {
+  transform: rotate(0deg) !important;
+  color: var(--dim) !important;
+}
+
+.nav__sub {
+  display: grid !important;
+  transition: grid-template-rows 0.35s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  grid-template-rows: 1fr !important;
+}
+
+.nav__group:not(.is-open) .nav__sub {
+  grid-template-rows: 0fr !important;
+}
+
+.nav__sub > ul {
+  overflow: hidden !important;
+  margin: 3px 6px 8px 16px !important;
+  padding: 3px 0 3px 8px !important;
+  list-style: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+  border-left: 1.5px solid rgba(255, 255, 255, 0.12) !important;
+  position: relative !important;
+}
+
+.nav__subitem {
+  height: 33px !important;
+  padding: 0 10px 0 16px !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: var(--dim) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  text-decoration: none !important;
+  position: relative !important;
+  transition: all 0.18s ease !important;
+  border-radius: 7px !important;
+  border: 1px solid transparent !important;
+}
+
+.nav__subitem:before {
+  content: "" !important;
+  background: rgba(255, 255, 255, 0.25) !important;
+  width: 4px !important;
+  height: 4px !important;
+  border-radius: 50% !important;
+  position: absolute !important;
+  left: 6px !important;
+  transition: all 0.2s ease !important;
+}
+
+.nav__subitem:hover {
+  color: #FFFFFF !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  transform: translateX(2px) !important;
+}
+
+.nav__subitem:hover:before {
+  background: var(--n-lime) !important;
+  box-shadow: 0 0 8px rgba(212, 255, 63, 0.7) !important;
+  transform: scale(1.25) !important;
+}
+
+.nav__subitem.is-active {
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  background: rgba(212, 255, 63, 0.14) !important;
+  border: 1px solid rgba(212, 255, 63, 0.35) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
+}
+
+.nav__subitem.is-active:before {
+  width: 3px !important;
+  height: 15px !important;
+  border-radius: 999px !important;
+  background: var(--n-lime) !important;
+  box-shadow: 0 0 10px rgba(212, 255, 63, 0.9) !important;
+  position: absolute !important;
+  left: 5px !important;
+}
+.nav__subitem .badge {
+  margin-left: auto !important;
+  font-size: 9.5px !important;
+  font-weight: 700 !important;
+  padding: 1px 6px !important;
+  border-radius: 999px !important;
+}
+
+/* Range Selector in Topbar */
+.year-pills {
+  display: inline-flex;
+  align-items: center;
+  background: var(--well);
+  border: 1px solid var(--hair);
+  border-radius: 8px;
+  padding: 2px;
+}
+
+.year-pill-btn {
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--dim);
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.year-pill-btn:hover {
+  color: #FFFFFF;
+}
+
+.year-pill-btn.is-active {
+  background: var(--card-top);
+  color: var(--n-lime);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(212, 255, 63, 0.25);
+}
+
+/* Status Pill in Header */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: var(--well);
+  border: 1px solid var(--hair);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--dim);
+}
+
+.status-dot-pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--n-lime);
+  box-shadow: 0 0 8px var(--n-lime);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(212, 255, 63, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(212, 255, 63, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(212, 255, 63, 0); }
+}
+
+/* Interactive Dark Rivet Modal Dialog */
+.rivet-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 5, 7, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 99999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.rivet-modal-overlay.is-open {
+  display: flex;
+}
+
+.rivet-modal {
+  background: var(--card);
+  border: 1px solid var(--hair-2);
+  border-radius: 16px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.9);
+  width: 100%;
+  max-width: 580px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 24px;
+  position: relative;
+  animation: modalEnter 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes modalEnter {
+  0% { opacity: 0; transform: scale(0.95) translateY(12px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.rivet-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--hair);
+  background: var(--well);
+  color: var(--dim);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.rivet-modal-close:hover {
+  color: #FFFFFF;
+  border-color: var(--n-lime);
+}
+
+/* ---------- Mobile Drawer, Backdrop & Close Button ---------- */
+.side-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 5, 7, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.side-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.side__close {
+  display: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid var(--hair);
+  background: var(--well);
+  color: var(--dim);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.side__close:hover {
+  color: #FFFFFF;
+  border-color: var(--n-lime);
+}
+
+@media (max-width: 1024px) {
+  .side {
+    position: fixed !important;
+    left: -270px !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    z-index: 999 !important;
+    width: 260px !important;
+    background: #090a0d !important;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8) !important;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    transform: translateX(0);
+  }
+  .side.is-open {
+    transform: translateX(270px) !important;
+  }
+  .side__close {
+    display: flex !important;
+  }
+}
+
+/* =====================================================================
+   Hero Balance Chart Controls (Period Select & View Toggle)
+   ===================================================================== */
+.chart-period-select-wrap {
+  background: #141720;
+  border: 1px solid var(--hair);
+  border-radius: 8px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.chart-period-select-wrap:hover,
+.chart-period-select-wrap:focus-within {
+  border-color: rgba(255, 255, 255, 0.25);
+  background: #181b26;
+}
+
+.chart-period-select {
+  background: transparent;
+  color: #f4f5f9;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 26px 4px 10px;
+  border: none;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.chart-period-select option {
+  background: #111218;
+  color: #f4f5f9;
+}
+
+.ico--chev-select {
+  position: absolute;
+  right: 8px;
+  width: 12px;
+  height: 12px;
+  pointer-events: none;
+  stroke: var(--dim);
+  stroke-width: 2;
+  fill: none;
+}
+
+.chart-view-toggle {
+  background: #141720;
+  border: 1px solid var(--hair);
+  border-radius: 8px;
+  display: inline-flex;
+  padding: 2px;
+  gap: 2px;
+}
+
+.view-btn {
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: var(--dim);
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.15s ease;
+}
+
+.view-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.view-btn.is-active {
+  background: #222533;
+  color: var(--n-lime, #d4ff3f);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.view-btn .ico {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+}
+
+/* Smooth Line View Mode in #chart */
+.chart--line .col .bar {
+  opacity: 0.12;
+  filter: grayscale(0.6);
+  transition: opacity 0.25s ease;
+}
+.chart--line .col:hover .bar,
+.chart--line .col.is-on .bar {
+  opacity: 0.35;
+}
+.chart__line-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  overflow: visible;
+}
+
+/* =====================================================================
+   Single Persistent Sidebar Shell — Submodule Frame Styling
+   ===================================================================== */
+.submodule-frame {
+  width: 100%;
+  height: calc(100vh - 64px);
+  border: none;
+  background: #050507;
+}
+
+/* =====================================================================
+   Authentic White Mini Floating Tooltip & Bar Highlight (Image #1)
+   ===================================================================== */
+.tip {
+  position: absolute !important;
+  z-index: 50 !important;
+  background: #ffffff !important;
+  color: #090a0d !important;
+  border-radius: 10px !important;
+  padding: 10px 14px !important;
+  min-width: 165px !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7), 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+  transform: translate(0, 0);
+}
+
+.tip.is-open {
+  opacity: 1 !important;
+}
+
+.tip__day {
+  color: #64748b !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  margin-bottom: 6px !important;
+}
+
+.tip__rows {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 3px !important;
+}
+
+.tip__rows li {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 11.5px !important;
+  color: #1e293b !important;
+  font-weight: 500 !important;
+}
+
+.tip__rows li b {
+  margin-left: auto !important;
+  font-weight: 700 !important;
+  color: #090a0d !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+.tip .dot--savings {
+  background: #00bcd4 !important;
+  width: 7px !important;
+  height: 7px !important;
+  border-radius: 50% !important;
+  display: inline-block !important;
+}
+
+.tip .dot--income {
+  background: #84cc16 !important;
+  width: 7px !important;
+  height: 7px !important;
+  border-radius: 50% !important;
+  display: inline-block !important;
+}
+
+.col.is-on:before {
+  opacity: 1 !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* =====================================================================
+   RIVET ENTRANCE MOTION — Fluid, Staggered, Organic Loading Experience
+   ---------------------------------------------------------------------
+   Reproduksi otentik motion RIVET dari video demo:
+   - Staggered card entrance (fade-up dengan power curve)
+   - Staggered bar chart rising wave (Jan - Des)
+   - Staggered gauge & meter fill
+   - Fluid number count-up transitions
+   ===================================================================== */
+
+@keyframes rivetCardEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rivetBarWave {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@keyframes rivetMeterFill {
+  0% {
+    width: 0% !important;
+  }
+}
+
+@keyframes gaugeArcDraw {
+  0% {
+    stroke-dashoffset: 251.36;
+  }
+  100% {
+    stroke-dashoffset: 30;
+  }
+}
+
+@keyframes healthArcAnim {
+  0% {
+    stroke-dashoffset: 251.36;
+  }
+  100% {
+    stroke-dashoffset: 30;
+  }
+}
+
+@keyframes rivetItemSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes rivetMarkerPop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  65% {
+    transform: scale(1.18);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Staggered card entrances for authentic fluid flow */
+.board__left > .card--balance {
+  animation: rivetCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.05s;
+}
+
+.board__left > .row--2 > .card:nth-child(1) {
+  animation: rivetCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.12s;
+}
+
+.board__left > .row--2 > .card:nth-child(2) {
+  animation: rivetCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.18s;
+}
+
+.board__left > .row--3 > .card:nth-child(1) {
+  animation: rivetCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.22s;
+}
+
+.board__left > .row--3 > .card:nth-child(2) {
+  animation: rivetCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.28s;
+}
+
+.board__left > .row--3 > .card:nth-child(3) {
+  animation: rivetCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.34s;
+}
+
+.board__right > .card:nth-child(1) {
+  animation: rivetCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.10s;
+}
+
+.board__right > .card:nth-child(2) {
+  animation: rivetCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.24s;
+}
+
+/* Authentic Full-Range 0-Baseline Bar Chart */
+.col__pos {
+  bottom: 0 !important;
+  height: 100% !important;
+}
+
+.col__pos .bar {
+  flex-shrink: 0 !important;
+  transform-origin: 50% 100% !important;
+  animation: rivetBarWave 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Mode 1: Stacked mode (AKAP) */
+.col__pos--stacked {
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  gap: 2px !important;
+}
+
+/* Mode 2: Grouped side-by-side mode (Pariwisata disandingkan) */
+.col__pos--grouped {
+  flex-direction: row !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  gap: 3px !important;
+}
+
+.col__pos--grouped .bar--side {
+  width: calc(50% - 2px) !important;
+  flex: 0 0 calc(50% - 2px) !important;
+}
+
+/* Mode 3: Single bar mode (Perintis, BRT, AJAP, Barang di pisah) */
+.col__pos--single {
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+}
+
+.col__pos--single .bar {
+  width: 100% !important;
+}
+
+/* Dual Category Bar Charts Layout (Tampilan Di Bagi 2: Kiri Penumpang, Kanan Ritase) */
+.dual-charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.dual-panel {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 12px;
+  padding: 12px 12px 10px 12px;
+  box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.45);
+  position: relative;
+  transition: border-color 0.25s ease;
+}
+
+.dual-panel:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.dual-panel__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--hair);
+}
+
+.dual-panel__title {
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  letter-spacing: 0.01em;
+}
+
+.dual-panel__unit {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--faint);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 2px 7px;
+  border-radius: 4px;
+  border: 1px solid var(--hair);
+}
+
+.dual-panel__body {
+  display: grid;
+  grid-template-rows: 175px auto;
+  grid-template-columns: 32px minmax(0, 1fr);
+  column-gap: 12px;
+  row-gap: 10px;
+}
+
+.dual-panel__body .dual-axis {
+  color: var(--faint);
+  text-align: right;
+  font-size: 9.5px;
+  position: relative;
+  padding-right: 4px;
+}
+
+.dual-panel__body .dual-axis span {
+  position: absolute;
+  right: 4px;
+  transform: translateY(-50%);
+}
+
+.dual-panel__body .dual-axis span:first-child { top: 0; }
+.dual-panel__body .dual-axis span:nth-child(2) { top: 25%; }
+.dual-panel__body .dual-axis span:nth-child(3) { top: 50%; }
+.dual-panel__body .dual-axis span:nth-child(4) { top: 75%; }
+.dual-panel__body .dual-axis span:nth-child(5) { top: calc(100% - 2px); }
+
+.dual-panel__body .dual-plot {
+  height: 175px;
+  position: relative;
+}
+
+.dual-panel__body .chart__grid i {
+  background: var(--hair);
+  height: 1px;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.dual-panel__body .chart__grid i:first-child { top: 0; }
+.dual-panel__body .chart__grid i:nth-child(2) { top: 25%; }
+.dual-panel__body .chart__grid i:nth-child(3) { top: 50%; }
+.dual-panel__body .chart__grid i:nth-child(4) { top: 75%; }
+.dual-panel__body .chart__grid i:nth-child(5) { background: var(--hair-2); top: 100%; }
+
+.dual-panel__body .dual-cols {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: space-around;
+  gap: 4px;
+}
+
+.dual-panel__body .col {
+  text-align: center;
+  flex: 1 1 0;
+  position: relative;
+  cursor: pointer;
+}
+
+.dual-panel__body .col__pos {
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  bottom: 0 !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+}
+
+.dual-panel__body .col__pos .bar {
+  width: 100% !important;
+  flex-shrink: 0 !important;
+  border-radius: 4px;
+  transform-origin: 50% 100% !important;
+  animation: rivetBarWave 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.dual-panel--left .bar {
+  background: var(--n-lime) !important;
+  box-shadow: 0 0 10px rgba(212, 255, 63, 0.35) !important;
+}
+
+.dual-panel--right .bar {
+  background: var(--n-cyan) repeating-linear-gradient(135deg, transparent 0 4px, #00000047 4px 6px) !important;
+  box-shadow: 0 0 10px rgba(62, 242, 255, 0.35) !important;
+}
+
+.dual-panel__body .dual-labels {
+  color: var(--faint);
+  grid-column: 2;
+  margin-top: 2px;
+  font-size: 9.5px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.dual-panel__body .dual-labels span {
+  flex: 1 1 0;
+  text-align: center;
+}
+
+/* Grid Baseline Alignment (0 at bottom) */
+.chart__grid i:nth-child(4) {
+  background: var(--hair) !important;
+}
+
+.chart__grid i:nth-child(5) {
+  background: var(--hair-2) !important;
+}
+/* Meter & Gauge Animations */
+.meter__fill {
+  animation: rivetMeterFill 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.25s;
+}
+
+.gauge__arc,
+.health-gauge__arc {
+  stroke-dasharray: 251.36 !important;
+  animation: healthArcAnim 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.32s;
+}
+
+.goals__fill {
+  animation: rivetMeterFill 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.goals li:nth-child(1) .goals__fill {
+  animation-delay: 0.36s;
+}
+
+.goals li:nth-child(2) .goals__fill {
+  animation-delay: 0.42s;
+}
+
+/* Staggered Lists */
+.rank-item-anim {
+  animation: rivetItemSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.tx-item-anim {
+  animation: rivetItemSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Leaflet marker glow */
+.rivet-marker {
+  filter: drop-shadow(0 0 4px currentColor);
+}
+
+/* =====================================================================
+   7 KARTU MODUL SIDEBAR UTAMA (DARK RIVET MODULE CARDS)
+   ===================================================================== */
+
+/* Grid Kolom Kiri: 5 Modul Operasional & Jaringan */
+.module-grid--left {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  width: 100%;
+}
+
+@media (max-width: 760px) {
+  .module-grid--left {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Stack Kolom Kanan: 2 Modul Pengawasan & Program */
+.module-stack--right {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+/* Kartu Modul Standar */
+.card-module {
+  background: linear-gradient(180deg, var(--card-top), var(--card) 45%);
+  border: 1px solid var(--hair);
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  position: relative;
+  min-width: 0;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, box-shadow 0.22s ease;
+}
+
+.card-module:hover {
+  transform: translateY(-2px);
+  border-color: var(--hair-2);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+}
+
+/* Kartu Modul Lebar (OD Intelligence) membentang penuh 2-kolom */
+.card-module--wide {
+  grid-column: 1 / -1;
+}
+
+/* Header Kartu */
+.card-module__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.card-module__title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+
+.card-module__icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  background: var(--well);
+  border: 1px solid var(--hair);
+  color: var(--n-lime);
+}
+
+.card-module__icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.card-module__icon--cyan {
+  color: var(--n-cyan);
+  background: rgba(62, 242, 255, 0.1);
+  border-color: rgba(62, 242, 255, 0.25);
+}
+
+.card-module__icon--lime {
+  color: var(--n-lime);
+  background: rgba(212, 255, 63, 0.1);
+  border-color: rgba(212, 255, 63, 0.25);
+}
+
+.card-module__icon--amber {
+  color: var(--n-amber);
+  background: rgba(255, 190, 77, 0.1);
+  border-color: rgba(255, 190, 77, 0.25);
+}
+
+.card-module__icon--pink {
+  color: var(--n-pink);
+  background: rgba(255, 92, 138, 0.12);
+  border-color: rgba(255, 92, 138, 0.3);
+}
+
+.card-module__title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: -0.01em;
+}
+
+/* Badge Kategori/Status */
+.card-module__badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 999px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  letter-spacing: 0.02em;
+}
+
+.card-module__badge--cyan {
+  background: rgba(62, 242, 255, 0.12);
+  color: var(--n-cyan);
+  border: 1px solid rgba(62, 242, 255, 0.25);
+}
+
+.card-module__badge--lime {
+  background: rgba(212, 255, 63, 0.12);
+  color: var(--n-lime);
+  border: 1px solid rgba(212, 255, 63, 0.25);
+}
+
+.card-module__badge--amber {
+  background: rgba(255, 190, 77, 0.12);
+  color: var(--n-amber);
+  border: 1px solid rgba(255, 190, 77, 0.25);
+}
+
+.card-module__badge--pink {
+  background: rgba(255, 92, 138, 0.15);
+  color: var(--n-pink);
+  border: 1px solid rgba(255, 92, 138, 0.3);
+}
+
+/* Metrik Utama */
+.card-module__metric {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.card-module__value {
+  font-family: 'Poppins', 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums !important;
+  line-height: 1.15;
+}
+
+.card-module__label {
+  font-size: 11px;
+  color: var(--dim);
+  font-weight: 500;
+}
+
+/* Rincian Data Faktual */
+.card-module__details {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--hair);
+  border-radius: 9px;
+  padding: 8px 10px;
+  font-size: 11px;
+}
+
+.card-module__detail-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.card-module__detail-key {
+  color: var(--dim);
+  font-size: 10.5px;
+  white-space: nowrap;
+}
+
+.card-module__detail-val {
+  color: var(--ink);
+  font-weight: 600;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-module__detail-val--accent {
+  color: var(--n-lime);
+}
+
+.card-module__detail-val--cyan {
+  color: var(--n-cyan);
+}
+
+.card-module__detail-val--amber {
+  color: var(--n-amber);
+}
+
+.card-module__detail-val--pink {
+  color: var(--n-pink);
+}
+
+/* Rincian Grid untuk Kartu Lebar (OD Matrix) */
+.card-module__details--grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+@media (max-width: 680px) {
+  .card-module__details--grid {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
+
+.card-module__grid-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Status Breakdown Pills (Early Warning) */
+.card-module__pills {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.card-module__pill {
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.card-module__pill--crit {
+  background: rgba(255, 92, 138, 0.15);
+  color: var(--n-pink);
+  border: 1px solid rgba(255, 92, 138, 0.3);
+}
+
+.card-module__pill--warn {
+  background: rgba(255, 190, 77, 0.15);
+  color: var(--n-amber);
+  border: 1px solid rgba(255, 190, 77, 0.3);
+}
+
+.card-module__pill--attn {
+  background: rgba(62, 242, 255, 0.12);
+  color: var(--n-cyan);
+  border: 1px solid rgba(62, 242, 255, 0.25);
+}
+
+/* Footer / Action Link */
+.card-module__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 6px;
+  border-top: 1px solid var(--hair);
+}
+
+.card-module__link {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--n-lime);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: gap 0.2s ease, color 0.2s ease;
+}
+
+.card-module__link:hover {
+  color: #FFFFFF;
+  gap: 8px;
+}
+
+.card-module__link svg {
+  width: 12px;
+  height: 12px;
+}
+
+.card-module__status-text {
+  font-size: 10px;
+  color: var(--faint);
+}
+
+/* Staggered Animations */
+.module-grid--left > .card-module:nth-child(1) { animation: rivetCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.10s; }
+.module-grid--left > .card-module:nth-child(2) { animation: rivetCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.15s; }
+.module-grid--left > .card-module:nth-child(3) { animation: rivetCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.20s; }
+.module-grid--left > .card-module:nth-child(4) { animation: rivetCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.25s; }
+.module-grid--left > .card-module:nth-child(5) { animation: rivetCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.30s; }
+.module-stack--right > .card-module:nth-child(1) { animation: rivetCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.18s; }
+.module-stack--right > .card-module:nth-child(2) { animation: rivetCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.26s; }
+
+
+/* =====================================================================
+   Rankings & Quad Cards Component Styles
+   ---------------------------------------------------------------------
+   Card 1 (Terminal Rank), Card 2 (Trayek Top 3), Card 3 (OD Split 2-Col),
+   dan Card 4 (Health Score Gauge & Breakdown).
+   ===================================================================== */
+
+.rank-tabs {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: var(--well);
+  border: 1px solid var(--hair);
+  border-radius: 999px;
+  padding: 2px;
+}
+
+.rank-tab-btn {
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--dim);
+  background: transparent;
+  border: none;
+  border-radius: 999px;
+  padding: 3px 9px;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+  line-height: 1.2;
+}
+
+.rank-tab-btn:hover {
+  color: #FFFFFF;
+}
+
+.rank-tab-btn.is-active {
+  background: var(--card-top);
+  color: var(--n-lime);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+}
+
+.rank-tabs--cyan .rank-tab-btn.is-active {
+  color: var(--n-cyan);
+}
+
+.rank-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-top: 10px;
+  list-style: none;
+  padding: 0;
+}
+
+.rank-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 2px 0;
+}
+
+.rank-item__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 11.5px;
+}
+
+.rank-item__left {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.rank-item__badge {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  background: var(--well);
+  border: 1px solid var(--hair-2);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--dim);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.rank-item__badge--1 {
+  background: rgba(212, 255, 63, 0.15);
+  color: var(--n-lime);
+  border-color: rgba(212, 255, 63, 0.35);
+}
+
+.rank-item__badge--2 {
+  background: rgba(62, 242, 255, 0.12);
+  color: var(--n-cyan);
+  border-color: rgba(62, 242, 255, 0.3);
+}
+
+.rank-item__badge--3 {
+  background: rgba(255, 190, 77, 0.12);
+  color: var(--n-amber);
+  border-color: rgba(255, 190, 77, 0.3);
+}
+
+.rank-item__name {
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 11.5px;
+}
+
+.rank-item__sub {
+  font-size: 10px;
+  color: var(--faint);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rank-item__right {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.rank-item__val {
+  font-family: 'Poppins', 'Plus Jakarta Sans', sans-serif !important;
+  font-weight: 700;
+  font-size: 11.5px;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums !important;
+}
+
+.rank-item__share {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--n-cyan);
+  font-variant-numeric: tabular-nums;
+}
+
+.rank-item__bar {
+  width: 100%;
+  height: 4px;
+  background: var(--well);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.rank-item__fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+/* Trayek category pill badge */
+.trayek-cat-pill {
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 4px;
+  line-height: 1.3;
+}
+
+.trayek-cat-pill--akap {
+  background: rgba(62, 242, 255, 0.12);
+  color: var(--n-cyan);
+  border: 1px solid rgba(62, 242, 255, 0.25);
+}
+
+.trayek-cat-pill--akdp {
+  background: rgba(212, 255, 63, 0.12);
+  color: var(--n-lime);
+  border: 1px solid rgba(212, 255, 63, 0.25);
+}
+
+/* Card 3: 5 Bangkitan & Tarikan OD Split 2-Column Grid */
+.od-split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .od-split-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+.od-split-col {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  background: rgba(13, 14, 18, 0.45);
+  border: 1px solid var(--hair);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.od-split-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--hair);
+  margin-bottom: 2px;
+}
+
+.od-split-title {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.od-split-subtitle {
+  font-size: 10px;
+  color: var(--faint);
+}
+
+/* Card 4: Health Score Anatomy */
+.card-health {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-health__score-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.card-health__big-score {
+  font-family: 'Poppins', 'Plus Jakarta Sans', sans-serif !important;
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 1;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums !important;
+}
+
+.card-health__big-score span {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--dim);
+}
+
+.card-health__gauge-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 6px auto 2px;
+}
+
+.card-health__gauge-svg {
+  width: 170px;
+  height: 100px;
+  display: block;
+  overflow: visible;
+}
+
+.health-gauge__track {
+  stroke: #232634;
+  transition: stroke 0.3s ease;
+}
+
+.health-gauge__guide {
+  stroke: rgba(255, 255, 255, 0.08);
+}
+
+.health-gauge__scale {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px;
+  font-weight: 600;
+  fill: var(--faint, #63687b);
+  letter-spacing: 0.02em;
+}
+
+.card-health__gauge-center {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  pointer-events: none;
+}
+
+.card-health__gauge-val {
+  font-family: 'Poppins', 'Plus Jakarta Sans', sans-serif !important;
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums !important;
+}
+
+.card-health__gauge-label {
+  font-size: 9.5px;
+  color: var(--dim);
+  margin-top: 3px;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.card-health__desc {
+  font-size: 10px;
+  color: var(--dim);
+  line-height: 1.45;
+  padding-top: 8px;
+  border-top: 1px solid var(--hair);
+}
+
+/* Health Score Breakdown Progress Bars */
+.health-breakdowns {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.health-breakdown-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.health-breakdown-bar {
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.health-breakdown-bar__fill {
+  height: 100%;
+  border-radius: 999px;
+  animation: rivetMeterFill 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.35s;
+}
+
+.health-breakdown-bar__fill--spm {
+  background: linear-gradient(90deg, var(--n-cyan, #3ef2ff), var(--n-lime, #d4ff3f));
+}
+
+.health-breakdown-bar__fill--wim {
+  background: linear-gradient(90deg, #0284c7, var(--n-cyan, #3ef2ff));
+}
+
+.health-breakdown-bar__fill--dipa {
+  background: linear-gradient(90deg, #65a30d, var(--n-lime, #d4ff3f));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .board__left > .card--balance,
+  .board__left > .row--2 > .card,
+  .board__left > .row--3 > .card,
+  .module-grid--left > .card-module,
+  .module-stack--right > .card-module,
+  .board__right > .card,
+  .col__pos .bar,
+  .meter__fill,
+  .gauge__arc,
+  .health-gauge__arc,
+  .health-breakdown-bar__fill,
+  .goals__fill,
+  .rank-item-anim,
+  .tx-item-anim,
+  .rivet-marker {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* =====================================================================
+   THEME SWITCHER CONTROLS & LIGHT MODE ENGINE (KEMENHUB NAVY & BONE WHITE)
+   ===================================================================== */
+
+/* Hero Metric Pax Number Neutral Styling */
+.hero-pax-num {
+  color: var(--ink);
+}
+
+/* Topbar Theme Toggle Button */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--well, #1a1b24);
+  border: 1px solid var(--hair-2, rgba(255, 255, 255, 0.16));
+  border-radius: 999px;
+  padding: 3px 10px 3px 4px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--ink, #f4f5f9);
+  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  user-select: none;
+}
+
+.theme-toggle:hover {
+  background: var(--well-2, #22232e);
+  border-color: var(--hair-2, rgba(255, 255, 255, 0.25));
+}
+
+.theme-toggle__track {
+  width: 38px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  position: relative;
+  transition: background 0.3s ease;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  box-sizing: border-box;
+}
+
+.theme-toggle__thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  color: #050507;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, color 0.3s ease;
+  transform: translateX(0);
+}
+
+.theme-toggle__thumb .ico {
+  width: 11px;
+  height: 11px;
+  display: block;
+}
+
+.ico--theme-dark {
+  display: block;
+}
+
+.ico--theme-light {
+  display: none;
+}
+
+.theme-toggle__label {
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Mobile Drawer Theme Button in Sidebar Foot */
+.side-theme-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--hair-2, rgba(255, 255, 255, 0.16));
+  border-radius: 8px;
+  color: var(--ink, #f4f5f9);
+  font-family: inherit;
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.side-theme-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.side-theme-btn__icon {
+  font-size: 13px;
+}
+
+/* =====================================================================
+   LIGHT MODE TOKENS — KEMENHUB NAVY SIDEBAR & BONE WHITE CANVAS
+   ===================================================================== */
+
+[data-theme="light"],
+html.theme-light,
+body.theme-light {
+  /* Core Light Canvas Palette — Off-White Anti-Silau */
+  --bg: #E6ECF2;
+  --frame: #EEF2F6;
+  --side: #071C3D;
+  --card: #F8FAFC;
+  --card-top: #F1F5F9;
+  --well: #E6EBF2;
+  --well-2: #DCE3ED;
+  --hair: rgba(15, 23, 42, 0.08);
+  --hair-2: rgba(15, 23, 42, 0.14);
+  --ink: #1E293B;
+  --dim: #475569;
+  --faint: #64748B;
+  --accent: #0284c7;
+  --accent-2: #0369a1;
+  --accent-3: rgba(2, 132, 199, 0.12);
+  --n-lime: #16a34a;
+  --n-cyan: #0284c7;
+  --n-amber: #b45309;
+  --n-pink: #be123c;
+  --ok: #16a34a;
+  --bad: #e11d48;
+  --slate: #E2E8F0;
+  --slate-2: #CBD5E1;
+  --glow: 0 0 20px rgba(7, 28, 61, 0.08);
+  color-scheme: light;
+}
+
+/* 1. Kemenhub Deep Navy Sidebar in Light Mode */
+[data-theme="light"] .side,
+.theme-light .side {
+  background: radial-gradient(220px 260px at 80% 0%, rgba(43, 127, 255, 0.22), transparent 75%),
+              linear-gradient(180deg, #071C3D 0%, #0A2F73 45%, #071C3D 100%) !important;
+  border-right: 1px solid rgba(139, 190, 255, 0.22) !important;
+  box-shadow: 0 20px 48px -8px rgba(7, 28, 61, 0.38) !important;
+}
+
+/* Sidebar Nav Pill Animation Guard — Navy / Cyan Fill Without White Bleed */
+[data-theme="light"] .side .nav__pill,
+.theme-light .side .nav__pill,
+[data-theme="light"] .nav__pill,
+.theme-light .nav__pill {
+  background: rgba(43, 127, 255, 0.22) !important;
+  box-shadow: inset 0 0 0 1px rgba(139, 190, 255, 0.35) !important;
+}
+
+[data-theme="light"] .side .nav__pill:before,
+.theme-light .side .nav__pill:before,
+[data-theme="light"] .nav__pill:before,
+.theme-light .nav__pill:before {
+  background: #E5A823 !important;
+  box-shadow: 0 0 10px rgba(229, 168, 35, 0.6) !important;
+}
+
+[data-theme="light"] .brand__mark,
+.theme-light .brand__mark {
+  background: #E5A823 !important;
+  color: #071C3D !important;
+  border: 1px solid rgba(229, 168, 35, 0.6) !important;
+  box-shadow: 0 0 16px rgba(229, 168, 35, 0.45) !important;
+}
+
+[data-theme="light"] .side .brand__title,
+.theme-light .side .brand__title,
+[data-theme="light"] .side .brand__name,
+.theme-light .side .brand__name {
+  color: #FFFFFF !important;
+}
+
+[data-theme="light"] .side .brand__instansi,
+.theme-light .side .brand__instansi,
+[data-theme="light"] .side .brand__name small,
+.theme-light .side .brand__name small {
+  color: #E5A823 !important;
+}
+
+[data-theme="light"] .side .brand__tag,
+.theme-light .side .brand__tag {
+  color: #93C5FD !important;
+  background: rgba(147, 197, 253, 0.2) !important;
+  border: 1px solid rgba(147, 197, 253, 0.35) !important;
+}
+
+[data-theme="light"] .side .brand__subtitle,
+.theme-light .side .brand__subtitle {
+  color: #93C5FD !important;
+}
+
+[data-theme="light"] .side .nav__sec,
+.theme-light .side .nav__sec {
+  color: #93C5FD !important;
+}
+
+[data-theme="light"] .side .nav__item,
+.theme-light .side .nav__item {
+  color: #CBD5E1 !important;
+}
+
+[data-theme="light"] .side .nav__item:hover,
+.theme-light .side .nav__item:hover {
+  color: #FFFFFF !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+[data-theme="light"] .side .nav__item.is-active,
+.theme-light .side .nav__item.is-active {
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  background: rgba(43, 127, 255, 0.28) !important;
+  border-color: rgba(139, 190, 255, 0.45) !important;
+}
+
+[data-theme="light"] .side .nav__item.is-active .ico,
+.theme-light .side .nav__item.is-active .ico,
+[data-theme="light"] .side .nav__item.is-active svg,
+.theme-light .side .nav__item.is-active svg {
+  color: #E5A823 !important;
+  stroke: #E5A823 !important;
+}
+
+/* Accordion Group Toggle & Chevrons */
+[data-theme="light"] .side .nav__item--toggle,
+.theme-light .side .nav__item--toggle {
+  color: #E2E8F0 !important;
+}
+
+[data-theme="light"] .side .nav__item--toggle:hover,
+.theme-light .side .nav__item--toggle:hover {
+  color: #FFFFFF !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+[data-theme="light"] .side .nav__item--toggle .ico--chev,
+.theme-light .side .nav__item--toggle .ico--chev {
+  color: #93C5FD !important;
+}
+
+[data-theme="light"] .side .nav__sub,
+.theme-light .side .nav__sub {
+  background: transparent !important;
+  border: none !important;
+}
+
+[data-theme="light"] .side .nav__sub > ul,
+.theme-light .side .nav__sub > ul {
+  border-left: 1.5px solid rgba(139, 190, 255, 0.28) !important;
+  margin: 3px 6px 8px 16px !important;
+  padding: 3px 0 3px 8px !important;
+}
+
+[data-theme="light"] .side .nav__subitem,
+.theme-light .side .nav__subitem {
+  height: 33px !important;
+  padding: 0 10px 0 16px !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: #CBD5E1 !important;
+  border-radius: 7px !important;
+  border: 1px solid transparent !important;
+}
+
+[data-theme="light"] .side .nav__subitem:before,
+.theme-light .side .nav__subitem:before {
+  background: rgba(147, 197, 253, 0.35) !important;
+  width: 4px !important;
+  height: 4px !important;
+  border-radius: 50% !important;
+  position: absolute !important;
+  left: 6px !important;
+  transition: all 0.2s ease !important;
+}
+
+[data-theme="light"] .side .nav__subitem:hover,
+.theme-light .side .nav__subitem:hover {
+  color: #FFFFFF !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  transform: translateX(2px) !important;
+}
+
+[data-theme="light"] .side .nav__subitem:hover:before,
+.theme-light .side .nav__subitem:hover:before {
+  background: #38BDF8 !important;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.8) !important;
+  transform: scale(1.25) !important;
+}
+
+[data-theme="light"] .side .nav__subitem.is-active,
+.theme-light .side .nav__subitem.is-active {
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  background: linear-gradient(90deg, rgba(229, 168, 35, 0.22) 0%, rgba(10, 47, 115, 0.45) 100%) !important;
+  border: 1px solid rgba(229, 168, 35, 0.45) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25), inset 0 0 12px rgba(229, 168, 35, 0.12) !important;
+}
+
+[data-theme="light"] .side .nav__subitem.is-active:before,
+.theme-light .side .nav__subitem.is-active:before {
+  width: 3px !important;
+  height: 15px !important;
+  border-radius: 999px !important;
+  background: #E5A823 !important;
+  box-shadow: 0 0 10px rgba(229, 168, 35, 0.9) !important;
+  position: absolute !important;
+  left: 5px !important;
+}
+
+/* Badges Contrast Tuning in Sidebar */
+[data-theme="light"] .side .badge,
+.theme-light .side .badge {
+  background: rgba(147, 197, 253, 0.2) !important;
+  color: #93C5FD !important;
+  border: 1px solid rgba(147, 197, 253, 0.3) !important;
+}
+
+[data-theme="light"] .side .badge--amber,
+.theme-light .side .badge--amber {
+  background: rgba(229, 168, 35, 0.2) !important;
+  color: #E5A823 !important;
+  border: 1px solid rgba(229, 168, 35, 0.35) !important;
+}
+
+[data-theme="light"] .side .badge--orange,
+.theme-light .side .badge--orange {
+  background: rgba(251, 146, 60, 0.2) !important;
+  color: #FB923C !important;
+  border: 1px solid rgba(251, 146, 60, 0.35) !important;
+}
+
+[data-theme="light"] .side .badge--bad,
+.theme-light .side .badge--bad,
+[data-theme="light"] .side .badge--pink,
+.theme-light .side .badge--pink {
+  background: rgba(244, 63, 94, 0.25) !important;
+  color: #FB7185 !important;
+  border: 1px solid rgba(244, 63, 94, 0.4) !important;
+}
+
+[data-theme="light"] .side__foot,
+.theme-light .side__foot {
+  border-top: 1px solid rgba(139, 190, 255, 0.18) !important;
+}
+
+[data-theme="light"] .side__foot span,
+.theme-light .side__foot span {
+  color: #94A3B8 !important;
+}
+
+[data-theme="light"] .side__foot .status-dot,
+.theme-light .side__foot .status-dot {
+  background: #38BDF8 !important;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.6) !important;
+}
+
+[data-theme="light"] .side-theme-btn,
+.theme-light .side-theme-btn,
+[data-theme="light"] #sideThemeToggle,
+.theme-light #sideThemeToggle {
+  background: linear-gradient(135deg, rgba(229, 168, 35, 0.16) 0%, rgba(10, 47, 115, 0.45) 100%) !important;
+  border: 1px solid rgba(229, 168, 35, 0.35) !important;
+  color: #FFFFFF !important;
+}
+
+[data-theme="light"] .side-theme-btn:hover,
+.theme-light .side-theme-btn:hover,
+[data-theme="light"] #sideThemeToggle:hover,
+.theme-light #sideThemeToggle:hover {
+  background: linear-gradient(135deg, rgba(229, 168, 35, 0.28) 0%, rgba(10, 47, 115, 0.6) 100%) !important;
+  border-color: rgba(229, 168, 35, 0.5) !important;
+}
+/* 2. Bone White Canvas & Frame */
+[data-theme="light"] .frame,
+.theme-light .frame {
+  background: radial-gradient(70% 45% at 8% 0%, rgba(7, 28, 61, 0.03), transparent 60%),
+              radial-gradient(60% 50% at 100% 100%, rgba(3, 105, 161, 0.04), transparent 55%),
+              var(--frame) !important;
+}
+
+/* 3. Topbar in Light Mode */
+[data-theme="light"] .topbar,
+.theme-light .topbar {
+  background: rgba(238, 242, 246, 0.92) !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+[data-theme="light"] .topbar .status-pill,
+.theme-light .topbar .status-pill {
+  background: #F8FAFC !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  color: #1E293B !important;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05) !important;
+}
+
+[data-theme="light"] .year-pills,
+.theme-light .year-pills {
+  background: #E2E8F0 !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .year-pill-btn,
+.theme-light .year-pill-btn {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .year-pill-btn.is-active,
+.theme-light .year-pill-btn.is-active {
+  background: #F8FAFC !important;
+  color: #0F172A !important;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.1) !important;
+}
+
+[data-theme="light"] .user,
+.theme-light .user {
+  background: #F8FAFC !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .user .avatar,
+.theme-light .user .avatar {
+  background: #0A2F73 !important;
+  color: #FFFFFF !important;
+}
+
+[data-theme="light"] .user__name,
+.theme-light .user__name {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .user__mail,
+.theme-light .user__mail {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .btn--ghost,
+.theme-light .btn--ghost {
+  color: #1E293B !important;
+  background: #F8FAFC !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .btn--ghost:hover,
+.theme-light .btn--ghost:hover {
+  background: #EEF2F6 !important;
+  border-color: #0A2F73 !important;
+}
+
+/* 4. Switcher Thumb & State in Light Mode */
+[data-theme="light"] .theme-toggle,
+.theme-light .theme-toggle {
+  background: #F8FAFC !important;
+  border-color: rgba(15, 23, 42, 0.14) !important;
+  color: #0F172A !important;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.06) !important;
+}
+
+[data-theme="light"] .theme-toggle:hover,
+.theme-light .theme-toggle:hover {
+  background: #EEF2F6 !important;
+  border-color: rgba(15, 23, 42, 0.22) !important;
+}
+[data-theme="light"] .theme-toggle__track,
+.theme-light .theme-toggle__track {
+  background: #0A2F73 !important;
+}
+
+[data-theme="light"] .theme-toggle__thumb,
+.theme-light .theme-toggle__thumb {
+  transform: translateX(16px) !important;
+  background: #E5A823 !important;
+  color: #071C3D !important;
+}
+
+[data-theme="light"] .ico--theme-dark,
+.theme-light .ico--theme-dark {
+  display: none !important;
+}
+
+[data-theme="light"] .ico--theme-light,
+.theme-light .ico--theme-light {
+  display: block !important;
+}
+
+/* 5. Clean Cards in Light Mode */
+[data-theme="light"] .card,
+.theme-light .card {
+  background: #F8FAFC !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.03) !important;
+}
+
+[data-theme="light"] .card:hover:after,
+.theme-light .card:hover:after {
+  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.14) !important;
+}
+
+[data-theme="light"] .card__sub,
+.theme-light .card__sub {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .hero-pax-num,
+.theme-light .hero-pax-num,
+[data-theme="light"] #heroPax,
+.theme-light #heroPax {
+  color: #0A2F73 !important;
+}
+
+/* 6. Leaflet Map in Light Mode */
+[data-theme="light"] .leaflet-tile-pane,
+.theme-light .leaflet-tile-pane {
+  filter: contrast(1.05) saturate(0.85) brightness(0.98) !important;
+}
+
+[data-theme="light"] .rivet-map-wrap,
+.theme-light .rivet-map-wrap,
+[data-theme="light"] #rivetMap,
+.theme-light #rivetMap,
+[data-theme="light"] .leaflet-container,
+.theme-light .leaflet-container {
+  background: #E2E8F0 !important;
+}
+
+[data-theme="light"] .leaflet-control-attribution,
+.theme-light .leaflet-control-attribution {
+  background: rgba(255, 255, 255, 0.88) !important;
+  color: #64748B !important;
+}
+
+[data-theme="light"] .leaflet-bar,
+.theme-light .leaflet-bar {
+  background: #FFFFFF !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .leaflet-bar a,
+.theme-light .leaflet-bar a {
+  background: #FFFFFF !important;
+  color: #0F172A !important;
+  border-bottom-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .leaflet-bar a:hover,
+.theme-light .leaflet-bar a:hover {
+  background: #F1F5F9 !important;
+  color: #0A2F73 !important;
+}
+
+[data-theme="light"] .leaflet-popup-content-wrapper,
+.theme-light .leaflet-popup-content-wrapper {
+  background: #FFFFFF !important;
+  color: #0F172A !important;
+  border: 1px solid rgba(15, 23, 42, 0.1) !important;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12) !important;
+}
+
+[data-theme="light"] .leaflet-popup-tip,
+.theme-light .leaflet-popup-tip {
+  background: #FFFFFF !important;
+}
+
+[data-theme="light"] .rivet-popup-title,
+.theme-light .rivet-popup-title {
+  color: #071C3D !important;
+}
+
+[data-theme="light"] .rivet-popup-stats,
+.theme-light .rivet-popup-stats {
+  background: #F8FAFC !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .rivet-popup-stat-label,
+.theme-light .rivet-popup-stat-label {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .rivet-popup-stat-val,
+.theme-light .rivet-popup-stat-val {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .rivet-map-legend,
+.theme-light .rivet-map-legend {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border: 1px solid rgba(15, 23, 42, 0.1) !important;
+  color: #0F172A !important;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08) !important;
+}
+
+/* 7. Controls, Inputs, and Segmented Pickers */
+[data-theme="light"] .seg,
+.theme-light .seg {
+  background: #EEF2F6 !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .seg__btn,
+.theme-light .seg__btn {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .seg__btn.is-active,
+.theme-light .seg__btn.is-active {
+  background: #F8FAFC !important;
+  color: #0F172A !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .chart-period-select-wrap,
+.theme-light .chart-period-select-wrap,
+[data-theme="light"] .chart-view-toggle,
+.theme-light .chart-view-toggle {
+  background: #EEF2F6 !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .chart-period-select-wrap:hover,
+.theme-light .chart-period-select-wrap:hover,
+[data-theme="light"] .chart-period-select-wrap:focus-within,
+.theme-light .chart-period-select-wrap:focus-within {
+  background: #E2E8F0 !important;
+  border-color: rgba(10, 47, 115, 0.3) !important;
+}
+
+[data-theme="light"] .chart-period-select,
+.theme-light .chart-period-select {
+  background: transparent !important;
+  color: #0F172A !important;
+  border: none !important;
+}
+
+[data-theme="light"] .chart-period-select option,
+.theme-light .chart-period-select option {
+  background: #FFFFFF !important;
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .view-btn,
+.theme-light .view-btn {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .view-btn:hover,
+.theme-light .view-btn:hover {
+  color: #0F172A !important;
+  background: rgba(15, 23, 42, 0.06) !important;
+}
+
+[data-theme="light"] .view-btn.is-active,
+.theme-light .view-btn.is-active {
+  background: #F8FAFC !important;
+  color: #0A2F73 !important;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08) !important;
+}
+
+/* Transport Mode Bar Badges */
+[data-theme="light"] .mode-badge,
+.theme-light .mode-badge {
+  background: #E2E8F0 !important;
+  color: #475569 !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .mode-badge--ytd,
+.theme-light .mode-badge--ytd {
+  background: rgba(2, 132, 199, 0.12) !important;
+  color: #0284c7 !important;
+  border-color: rgba(2, 132, 199, 0.25) !important;
+}
+
+[data-theme="light"] .mode-btn.is-active .mode-badge,
+.theme-light .mode-btn.is-active .mode-badge {
+  background: rgba(229, 168, 35, 0.2) !important;
+  color: #E5A823 !important;
+  border-color: rgba(229, 168, 35, 0.4) !important;
+}
+
+[data-theme="light"] .mode-btn.is-active .mode-badge--ytd,
+.theme-light .mode-btn.is-active .mode-badge--ytd {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: #FFFFFF !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+}
+
+/* Stat Delta & Trends */
+[data-theme="light"] .delta--up b,
+.theme-light .delta--up b,
+[data-theme="light"] .delta--up .ico,
+.theme-light .delta--up .ico {
+  color: #16a34a !important;
+}
+
+[data-theme="light"] .delta--down b,
+.theme-light .delta--down b,
+[data-theme="light"] .delta--down .ico,
+.theme-light .delta--down .ico {
+  color: #e11d48 !important;
+}
+
+[data-theme="light"] #statDelta1,
+.theme-light #statDelta1,
+[data-theme="light"] #statDelta2,
+.theme-light #statDelta2,
+[data-theme="light"] #statDelta3,
+.theme-light #statDelta3 {
+  color: #475569 !important;
+}
+
+[data-theme="light"] #statDelta1 b,
+.theme-light #statDelta1 b {
+  color: #16a34a !important;
+}
+
+[data-theme="light"] #statDelta2,
+.theme-light #statDelta2 {
+  color: #0284c7 !important;
+}
+
+[data-theme="light"] #statDelta3,
+.theme-light #statDelta3 {
+  color: #b45309 !important;
+}
+
+/* Module Links, Details, and Badges */
+[data-theme="light"] .card-module__link,
+.theme-light .card-module__link,
+[data-theme="light"] .card-module__link:visited,
+.theme-light .card-module__link:visited {
+  color: #0A2F73 !important;
+  font-weight: 700 !important;
+}
+
+[data-theme="light"] .card-module__link:hover,
+.theme-light .card-module__link:hover {
+  color: #071C3D !important;
+}
+
+[data-theme="light"] .card-module__detail-val--accent,
+.theme-light .card-module__detail-val--accent {
+  color: #0A2F73 !important;
+  font-weight: 700 !important;
+}
+
+[data-theme="light"] .card-module__detail-val--cyan,
+.theme-light .card-module__detail-val--cyan {
+  color: #0284c7 !important;
+  font-weight: 700 !important;
+}
+
+[data-theme="light"] .card-module__detail-val--amber,
+.theme-light .card-module__detail-val--amber {
+  color: #b45309 !important;
+  font-weight: 700 !important;
+}
+
+[data-theme="light"] .card-module__detail-val--pink,
+.theme-light .card-module__detail-val--pink {
+  color: #be123c !important;
+  font-weight: 700 !important;
+}
+
+[data-theme="light"] .card-module__badge--lime,
+.theme-light .card-module__badge--lime {
+  background: rgba(22, 163, 74, 0.1) !important;
+  color: #15803d !important;
+  border-color: rgba(22, 163, 74, 0.25) !important;
+}
+
+[data-theme="light"] .card-module__badge--cyan,
+.theme-light .card-module__badge--cyan {
+  background: rgba(2, 132, 199, 0.1) !important;
+  color: #0284c7 !important;
+  border-color: rgba(2, 132, 199, 0.25) !important;
+}
+
+[data-theme="light"] .card-module__icon--lime,
+.theme-light .card-module__icon--lime {
+  background: rgba(22, 163, 74, 0.1) !important;
+  color: #15803d !important;
+  border-color: rgba(22, 163, 74, 0.25) !important;
+}
+
+[data-theme="light"] .card-module__icon--cyan,
+.theme-light .card-module__icon--cyan {
+  background: rgba(2, 132, 199, 0.1) !important;
+  color: #0284c7 !important;
+  border-color: rgba(2, 132, 199, 0.25) !important;
+}
+
+/* Rank Items & Trayek Category Pills */
+[data-theme="light"] .rank-item__val,
+.theme-light .rank-item__val {
+  color: #0F172A !important;
+  font-weight: 700 !important;
+}
+
+[data-theme="light"] .rank-item__share,
+.theme-light .rank-item__share {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .rank-item__badge--1,
+.theme-light .rank-item__badge--1 {
+  background: rgba(229, 168, 35, 0.18) !important;
+  color: #b45309 !important;
+  border-color: rgba(229, 168, 35, 0.4) !important;
+}
+
+[data-theme="light"] .rank-item__badge--2,
+.theme-light .rank-item__badge--2 {
+  background: rgba(2, 132, 199, 0.15) !important;
+  color: #0284c7 !important;
+  border-color: rgba(2, 132, 199, 0.35) !important;
+}
+
+[data-theme="light"] .rank-item__badge--3,
+.theme-light .rank-item__badge--3 {
+  background: rgba(100, 116, 139, 0.15) !important;
+  color: #475569 !important;
+  border-color: rgba(100, 116, 139, 0.3) !important;
+}
+
+[data-theme="light"] .rank-item__fill,
+.theme-light .rank-item__fill {
+  background: linear-gradient(90deg, #0A2F73, #0284c7) !important;
+}
+
+[data-theme="light"] .trayek-cat-pill--akap,
+.theme-light .trayek-cat-pill--akap {
+  background: rgba(10, 47, 115, 0.1) !important;
+  color: #0A2F73 !important;
+  border-color: rgba(10, 47, 115, 0.25) !important;
+}
+
+[data-theme="light"] .trayek-cat-pill--akdp,
+.theme-light .trayek-cat-pill--akdp {
+  background: rgba(2, 132, 199, 0.1) !important;
+  color: #0284c7 !important;
+  border-color: rgba(2, 132, 199, 0.25) !important;
+}
+
+/* Dual Panel Bar Chart */
+[data-theme="light"] .dual-panel,
+.theme-light .dual-panel {
+  background: #F8FAFC !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .dual-panel:hover,
+.theme-light .dual-panel:hover {
+  border-color: rgba(15, 23, 42, 0.15) !important;
+}
+
+[data-theme="light"] .bar--income,
+.theme-light .bar--income {
+  background: #0A2F73 !important;
+  box-shadow: 0 2px 6px rgba(10, 47, 115, 0.2) !important;
+}
+
+[data-theme="light"] .bar--savings,
+.theme-light .bar--savings {
+  background: #0284c7 !important;
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.2) !important;
+}
+
+[data-theme="light"] .dual-panel--left .bar,
+.theme-light .dual-panel--left .bar {
+  background: #0A2F73 !important;
+  box-shadow: 0 2px 6px rgba(10, 47, 115, 0.2) !important;
+}
+
+[data-theme="light"] .dual-panel--right .bar,
+.theme-light .dual-panel--right .bar {
+  background: #0284c7 repeating-linear-gradient(135deg, transparent 0 4px, rgba(10, 47, 115, 0.15) 4px 6px) !important;
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.2) !important;
+}
+
+/* Health Gauge & Activity Feed */
+[data-theme="light"] .health-gauge__arc,
+.theme-light .health-gauge__arc {
+  stroke: #0A2F73 !important;
+  filter: none !important;
+}
+
+[data-theme="light"] .health-gauge__score,
+.theme-light .health-gauge__score {
+  fill: #0F172A !important;
+}
+
+[data-theme="light"] .health-gauge__scale,
+.theme-light .health-gauge__scale {
+  fill: #64748B !important;
+}
+
+[data-theme="light"] .health-breakdown-bar__fill,
+.theme-light .health-breakdown-bar__fill {
+  background: linear-gradient(90deg, #0A2F73, #0284c7) !important;
+}
+
+[data-theme="light"] .tx__amt b.up,
+.theme-light .tx__amt b.up {
+  color: #16a34a !important;
+}
+
+[data-theme="light"] .tx__amt b,
+.theme-light .tx__amt b {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .tx__row .avatar--sq,
+.theme-light .tx__row .avatar--sq {
+  background: rgba(10, 47, 115, 0.1) !important;
+  color: #0A2F73 !important;
+  border-radius: 6px !important;
+}
+
+[data-theme="light"] .tx__row:nth-child(n+4) .avatar--sq,
+.theme-light .tx__row:nth-child(n+4) .avatar--sq {
+  background: rgba(217, 119, 6, 0.1) !important;
+  color: #b45309 !important;
+}
+
+/* 8. Quad Cards and Operational Modules */
+[data-theme="light"] .card-chart-stat-item,
+.theme-light .card-chart-stat-item {
+  background: #EEF2F6 !important;
+  border: 1px solid rgba(15, 23, 42, 0.07) !important;
+}
+
+[data-theme="light"] .card-module__details,
+.theme-light .card-module__details {
+  background: #EEF2F6 !important;
+  border-color: rgba(15, 23, 42, 0.07) !important;
+}
+
+[data-theme="light"] .od-split-col,
+.theme-light .od-split-col {
+  background: #EEF2F6 !important;
+  border: 1px solid rgba(15, 23, 42, 0.07) !important;
+}
+
+[data-theme="light"] .od-split-head,
+.theme-light .od-split-head {
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .rank-tab-btn,
+.theme-light .rank-tab-btn {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .rank-tab-btn.is-active,
+.theme-light .rank-tab-btn.is-active {
+  color: #071C3D !important;
+  border-color: #071C3D !important;
+}
+
+[data-theme="light"] .rank-item__bar,
+.theme-light .rank-item__bar {
+  background: #E2E8F0 !important;
+}
+
+[data-theme="light"] .health-breakdown-bar,
+.theme-light .health-breakdown-bar {
+  background: #E2E8F0 !important;
+}
+
+[data-theme="light"] .health-gauge__track,
+.theme-light .health-gauge__track {
+  stroke: #E2E8F0 !important;
+}
+
+[data-theme="light"] .health-gauge__guide,
+.theme-light .health-gauge__guide {
+  stroke: rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .tx__row,
+.theme-light .tx__row {
+  border-bottom-color: rgba(15, 23, 42, 0.06) !important;
+}
+
+[data-theme="light"] .tx__row:hover,
+.theme-light .tx__row:hover {
+  background: rgba(15, 23, 42, 0.02) !important;
+}
+
+[data-theme="light"] .mode-btn,
+.theme-light .mode-btn {
+  background: #F8FAFC !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  color: #1E293B !important;
+}
+
+[data-theme="light"] .mode-btn:hover,
+.theme-light .mode-btn:hover {
+  color: #0F172A !important;
+  background: #EEF2F6 !important;
+}
+
+[data-theme="light"] .mode-btn.is-active,
+.theme-light .mode-btn.is-active {
+  background: #0A2F73 !important;
+  color: #FFFFFF !important;
+  border-color: #071C3D !important;
+}
+
+[data-theme="light"] .rivet-modal,
+.theme-light .rivet-modal {
+  background: #F8FAFC !important;
+  border: 1px solid rgba(15, 23, 42, 0.1) !important;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.2) !important;
+  color: #1E293B !important;
+}
+
+[data-theme="light"] .rivet-modal-header,
+.theme-light .rivet-modal-header {
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .rivet-modal h3,
+.theme-light .rivet-modal h3,
+[data-theme="light"] .rivet-modal-header h3,
+.theme-light .rivet-modal-header h3,
+[data-theme="light"] .rivet-modal [style*="color: #FFFFFF"],
+.theme-light .rivet-modal [style*="color: #FFFFFF"],
+[data-theme="light"] .rivet-modal [style*="color:#FFFFFF"],
+.theme-light .rivet-modal [style*="color:#FFFFFF"],
+[data-theme="light"] .rivet-modal [style*="color: rgb(255, 255, 255)"],
+.theme-light .rivet-modal [style*="color: rgb(255, 255, 255)"] {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .rivet-modal ul li,
+.theme-light .rivet-modal ul li,
+[data-theme="light"] .rivet-modal [style*="background: var(--card-top)"],
+.theme-light .rivet-modal [style*="background: var(--card-top)"] {
+  background: #EEF2F6 !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  color: #1E293B !important;
+}
+
+[data-theme="light"] .rivet-modal div[style*="background: var(--well)"],
+.theme-light .rivet-modal div[style*="background: var(--well)"] {
+  background: #EEF2F6 !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  color: #1E293B !important;
+}
+
+[data-theme="light"] .rivet-modal-close,
+.theme-light .rivet-modal-close {
+  color: #64748B !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+}
+
+[data-theme="light"] .rivet-modal-close:hover,
+.theme-light .rivet-modal-close:hover {
+  color: #0F172A !important;
+  border-color: #0A2F73 !important;
+}
+
+[data-theme="light"] .rivet-modal .btn--neon,
+.theme-light .rivet-modal .btn--neon {
+  background: #0A2F73 !important;
+  color: #FFFFFF !important;
+  border: 1px solid #071C3D !important;
+  box-shadow: 0 2px 6px rgba(10, 47, 115, 0.25) !important;
+}
+
+[data-theme="light"] .rivet-modal .btn--neon:hover,
+.theme-light .rivet-modal .btn--neon:hover {
+  background: #071C3D !important;
+  color: #FFFFFF !important;
+}
+
+[data-theme="light"] .rivet-modal [style*="color: var(--n-lime)"],
+.theme-light .rivet-modal [style*="color: var(--n-lime)"] {
+  color: #16a34a !important;
+}
+
+[data-theme="light"] .rivet-modal [style*="color: var(--n-cyan)"],
+.theme-light .rivet-modal [style*="color: var(--n-cyan)"] {
+  color: #0284c7 !important;
+}
+
+[data-theme="light"] .rivet-modal [style*="color: var(--n-amber)"],
+.theme-light .rivet-modal [style*="color: var(--n-amber)"] {
+  color: #b45309 !important;
+}

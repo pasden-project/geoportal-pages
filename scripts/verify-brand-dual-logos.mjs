@@ -172,7 +172,7 @@ async function runVerification() {
 
     // Screenshot Dark Mode Brand Area
     const shotDark = await cdp.send('Page.captureScreenshot', { format: 'png' });
-    const shotDarkPath = path.resolve('Geo12-pages/shot-brand-dual-logos-dark.png');
+    const shotDarkPath = fs.existsSync(path.resolve('Geo12-pages')) ? path.resolve('Geo12-pages/shot-brand-dual-logos-dark.png') : path.resolve('shot-brand-dual-logos-dark.png');
     fs.writeFileSync(shotDarkPath, Buffer.from(shotDark.data, 'base64'));
     assert('A.13 Screenshot Dark Mode Dual Logos tersimpan', fs.existsSync(shotDarkPath), shotDarkPath);
 
@@ -221,7 +221,7 @@ async function runVerification() {
 
     // Screenshot Light Mode Brand Area
     const shotLight = await cdp.send('Page.captureScreenshot', { format: 'png' });
-    const shotLightPath = path.resolve('Geo12-pages/shot-brand-dual-logos-light.png');
+    const shotLightPath = fs.existsSync(path.resolve('Geo12-pages')) ? path.resolve('Geo12-pages/shot-brand-dual-logos-light.png') : path.resolve('shot-brand-dual-logos-light.png');
     fs.writeFileSync(shotLightPath, Buffer.from(shotLight.data, 'base64'));
     assert('B.6 Screenshot Light Mode Dual Logos tersimpan', fs.existsSync(shotLightPath), shotLightPath);
 

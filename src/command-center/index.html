@@ -13,7 +13,8 @@
         <!-- ================= SIDEBAR ================= -->
         <aside id="appSidebar" class="app-sidebar" aria-label="Navigasi utama">
             <div class="sidebar-logo">
-                <span class="brand__mark" aria-hidden="true">
+                <a href="/" class="brand-link" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;" title="Kembali ke Dashboard Utama">
+                    <span class="brand__mark" aria-hidden="true">
                     <img src="/assets/logo-kemenhub.svg" alt="Logo Kemenhub" class="brand__logo-img brand__logo-img--kemenhub" />
                     <img src="/assets/logo-hubdat.png" alt="Logo Ditjen Hubdat" class="brand__logo-img brand__logo-img--hubdat" />
                 </span>
@@ -21,7 +22,8 @@
                     <span class="logo-title brand__title">GeoPORTAL</span>
                     <span class="logo-sub brand__instansi">BPTD Jabar</span>
                     <span class="brand__tag">Angkutan</span>
-                </div>
+                    </div>
+                </a>
                 <button type="button" id="sidebarClose" class="sidebar-close-btn" aria-label="Tutup menu navigasi">
                     <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
@@ -33,7 +35,7 @@
                     <span class="nav-text">Ringkasan</span>
                     <span class="nav-status-badge nav-status-active" data-status="ACTIVE">Aktif</span>
                 </a>
-                <a href="../" class="nav-link" data-nav-status="available" title="Peta Transportasi — Buka dashboard peta utama (Tersedia)">
+                <a href="/maps/" class="nav-link" data-nav-status="available" title="Peta Transportasi — Buka dashboard peta utama (Tersedia)">
                     <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
                     <span class="nav-text">Peta Transportasi</span>
                     <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
@@ -262,7 +264,7 @@
                                         <span class="legend-chip" role="listitem"><span class="legend-dot legend-dot-uppkb" aria-hidden="true"></span> UPPKB (<span id="mapCountUppkb">—</span>)</span>
                                     </div>
                                 </div>
-                                <a class="btn-map-open" href="../" aria-label="Buka dashboard peta transportasi utama (route /)">
+                                <a class="btn-map-open" href="/maps/" aria-label="Buka dashboard peta transportasi utama (route /maps/)">
                                     <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
                                     Buka Transport Map
                                 </a>
@@ -531,7 +533,7 @@
                                     <div>
                                         <h3 class="promo-title">Transport Map</h3>
                                         <p class="promo-sub">Jelajahi data transportasi secara interaktif</p>
-                                        <a class="promo-link" href="../">Buka dashboard utama (route /)</a>
+                                        <a class="promo-link" href="/maps/">Buka peta transportasi (/maps/)</a>
                                     </div>
                                 </div>
                             </div>
@@ -625,7 +627,7 @@
                                 <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                                 <span>Data Master</span>
                             </a>
-                            <a href="../" class="quick-btn quick-btn-last" data-nav-status="available" style="text-decoration: none;" title="Peta Transportasi — Buka dashboard peta utama (Tersedia)">
+                            <a href="/maps/" class="quick-btn quick-btn-last" data-nav-status="available" style="text-decoration: none;" title="Peta Transportasi — Buka dashboard peta utama (Tersedia)">
                                 <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
                                 <span>Transport Map</span>
                             </a>

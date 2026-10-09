@@ -128,18 +128,29 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // 2. Layani Peta GeoPORTAL penuh di /peta dan /peta/
-  if (pathname === "/peta") {
-    res.writeHead(302, { "Location": "/peta/" });
+  // 2. Redirect root URL lama Command Center ke root / (301)
+  if (pathname === "/command-center" || pathname === "/command-center/") {
+    res.writeHead(301, { "Location": "/" });
     return res.end();
   }
 
-  if (pathname === "/peta/") {
-    const petaPath = path.join(SRC_DIR, "index.html");
-    fs.readFile(petaPath, "utf-8", (err, html) => {
+  // 3. Normalisasi URL peta /maps -> /maps/ (301) dan backward compatibility /peta & /peta/ -> /maps/ (301)
+  if (pathname === "/maps") {
+    res.writeHead(301, { "Location": "/maps/" });
+    return res.end();
+  }
+  if (pathname === "/peta" || pathname === "/peta/") {
+    res.writeHead(301, { "Location": "/maps/" });
+    return res.end();
+  }
+
+  // 4. Layani Peta GIS di /maps/
+  if (pathname === "/maps/") {
+    const mapsHtmlPath = path.join(SRC_DIR, "maps", "index.html");
+    fs.readFile(mapsHtmlPath, "utf-8", (err, html) => {
       if (err) {
         res.writeHead(500, { "content-type": "text/plain" });
-        return res.end("Error loading Peta GeoPORTAL");
+        return res.end("Error loading Peta GIS: " + err.message);
       }
       const darkRivetLinks = `
   <script>(function(){try{var t=localStorage.getItem('geoportal-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');document.documentElement.classList.add('theme-light');}else{document.documentElement.setAttribute('data-theme','dark');document.documentElement.classList.remove('theme-light');}}catch(_){}})();</script>
@@ -162,13 +173,13 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // 3. Layani Root atau /command-center/ dengan Dark Rivet index.html
-  if (pathname === "/" || pathname === "/command-center" || pathname === "/command-center/") {
-    const indexPath = path.join(RIVET_DIR, "index.html");
+  // 5. Layani Root / dengan Command Center (src/index.html)
+  if (pathname === "/") {
+    const indexPath = path.join(SRC_DIR, "index.html");
     fs.readFile(indexPath, (err, data) => {
       if (err) {
         res.writeHead(500, { "content-type": "text/plain" });
-        return res.end("Error loading Dark Rivet");
+        return res.end("Error loading Command Center: " + err.message);
       }
       res.writeHead(200, { "content-type": "text/html; charset=utf-8", "cache-control": "no-cache" });
       res.end(data);
@@ -176,16 +187,30 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // 4. Normalisasi pathname untuk pencarian file
-  let reqRelPath = pathname;
-  if (reqRelPath.startsWith("/peta/")) {
-    reqRelPath = reqRelPath.slice("/peta".length);
+  // 6. Layani aset statik di bawah /maps/
+  if (pathname.startsWith("/maps/")) {
+    const relMapsPath = pathname.slice("/maps/".length);
+    const safeMapsPath = path.normalize(relMapsPath).replace(/^(\.\.[/\\])+/, "");
+    const fullMapsPath = path.join(SRC_DIR, "maps", safeMapsPath);
+    try {
+      if (fs.existsSync(fullMapsPath) && fs.statSync(fullMapsPath).isFile()) {
+        const ext = path.extname(fullMapsPath).toLowerCase();
+        res.writeHead(200, {
+          "content-type": MIME[ext] || "application/octet-stream",
+          "cache-control": "no-cache"
+        });
+        return fs.createReadStream(fullMapsPath).pipe(res);
+      }
+    } catch (_) {}
   }
+
+  // 7. Normalisasi pathname untuk pencarian file umum
+  let reqRelPath = pathname;
   const safeSuffix = path.normalize(reqRelPath).replace(/^(\.\.[/\\])+/, "");
   const rivetPath = path.join(RIVET_DIR, safeSuffix);
 
-  // Cek file di direktori dark-rivet terlebih dahulu (kecuali aset /peta/)
-  if (!pathname.startsWith("/peta/")) {
+  // Cek file di direktori dark-rivet terlebih dahulu
+  if (!pathname.startsWith("/maps/")) {
     try {
       if (fs.existsSync(rivetPath) && fs.statSync(rivetPath).isFile()) {
         const ext = path.extname(rivetPath).toLowerCase();
@@ -218,7 +243,7 @@ const server = http.createServer((req, res) => {
         if (ext3 === ".html") {
           // Akses langsung tanpa ?embed=1 disajikan dalam Persistent Sidebar Shell
           if (pathname.includes("/command-center/") && parsedUrl.searchParams.get("embed") !== "1") {
-            const shellPath = path.join(RIVET_DIR, "index.html");
+            const shellPath = path.join(SRC_DIR, "index.html");
             fs.readFile(shellPath, (errShell, dataShell) => {
               if (errShell) {
                 res.writeHead(500, { "content-type": "text/plain" });
@@ -283,7 +308,7 @@ server.listen(PORT, "127.0.0.1", () => {
   console.log(`============================================================`);
   console.log(`GeoPORTAL BPTD Jabar — Dark Rivet Server Ready`);
   console.log(`============================================================`);
-  console.log(`Dark Rivet 100% (Port 8082) : http://localhost:${PORT}/command-center/`);
+  console.log(`Command Center (Port 8082)  : http://localhost:${PORT}/`);
+  console.log(`Peta GIS (Port 8082)        : http://localhost:${PORT}/maps/`);
   console.log(`API Proxy Target            : https://${API_TARGET_HOST}/api/`);
-  console.log(`============================================================`);
 });

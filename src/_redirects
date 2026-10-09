@@ -1,0 +1,10 @@
+# GeoPORTAL BPTD Jabar — Cloudflare Pages Redirects
+# -----------------------------------------------------------------
+# 1. Redirect root URL lama Command Center ke root utama (/)
+/command-center    /       301
+/command-center/   /       301
+
+# 2. Normalisasi kanonikal URL peta & backward compatibility /peta
+/maps              /maps/  301
+/peta              /maps/  301
+/peta/             /maps/  301

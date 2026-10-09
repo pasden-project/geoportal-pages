@@ -219,7 +219,7 @@ async function runVerification() {
 
     // Save Light Mode full screenshot
     const shotLight = await cdp.send('Page.captureScreenshot', { format: 'png' });
-    const shotLightPath = path.resolve('Geo12-pages/shot-light-mode-overview.png');
+    const shotLightPath = fs.existsSync(path.resolve('Geo12-pages')) ? path.resolve('Geo12-pages/shot-light-mode-overview.png') : path.resolve('shot-light-mode-overview.png');
     fs.writeFileSync(shotLightPath, Buffer.from(shotLight.data, 'base64'));
     assert('Phase 2.13: Light mode overview screenshot saved', fs.existsSync(shotLightPath), `saved: ${shotLightPath}`);
 
@@ -275,7 +275,7 @@ async function runVerification() {
     assert('Phase 4.7: Meta theme-color restored to #050507', darkRestoredState?.metaTheme === '#050507', darkRestoredState?.metaTheme);
 
     const shotDarkRestored = await cdp.send('Page.captureScreenshot', { format: 'png' });
-    const shotDarkPath = path.resolve('Geo12-pages/shot-dark-mode-restored.png');
+    const shotDarkPath = fs.existsSync(path.resolve('Geo12-pages')) ? path.resolve('Geo12-pages/shot-dark-mode-restored.png') : path.resolve('shot-dark-mode-restored.png');
     fs.writeFileSync(shotDarkPath, Buffer.from(shotDarkRestored.data, 'base64'));
     assert('Phase 4.8: Dark mode restored screenshot saved', fs.existsSync(shotDarkPath), `saved: ${shotDarkPath}`);
 

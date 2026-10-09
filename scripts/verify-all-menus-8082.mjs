@@ -62,7 +62,7 @@ class CDPClient {
 
 const MENUS = [
   { id: 'overview', name: 'Menu 1: Dashboard Overview', url: 'http://localhost:8082/' },
-  { id: 'peta', name: 'Menu 2: Peta GeoPORTAL', url: 'http://localhost:8082/peta/' },
+  { id: 'peta', name: 'Menu 2: Peta GeoPORTAL', url: 'http://localhost:8082/maps/' },
   { id: 'terminal', name: 'Menu 3: Terminal Penumpang', url: 'http://localhost:8082/command-center/terminal/' },
   { id: 'trayek', name: 'Menu 4: Trayek Angkutan Jalan', url: 'http://localhost:8082/command-center/trayek/' },
   { id: 'perintis', name: 'Menu 5: Angkutan Perintis PSO', url: 'http://localhost:8082/command-center/perintis/' },
@@ -110,7 +110,7 @@ async function runAudit() {
     }
   }
 
-  const shotsDir = path.resolve('Geo12-pages', 'dark-rivet-shots');
+  const shotsDir = fs.existsSync(path.resolve('Geo12-pages')) ? path.resolve('Geo12-pages', 'dark-rivet-shots') : path.resolve('dark-rivet-shots');
   if (!fs.existsSync(shotsDir)) fs.mkdirSync(shotsDir, { recursive: true });
 
   try {

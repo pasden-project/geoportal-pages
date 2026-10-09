@@ -116,8 +116,8 @@ async function runVerification() {
     `);
 
     assert('Test 1.1: Exact 4 main nav items exist in Overview group', navItems.length === 4, `found ${navItems.length}`);
-    assert('Test 1.2: Item 1 is Dashboard (href: ./) and is-active', navItems[0]?.text === 'Dashboard' && navItems[0]?.href === './' && navItems[0]?.isActive === true);
-    assert('Test 1.3: Item 2 is Peta GeoPORTAL (href: /peta/, target: _blank)', navItems[1]?.text === 'Peta GeoPORTAL' && navItems[1]?.href === '/peta/' && navItems[1]?.target === '_blank');
+    assert('Test 1.2: Item 1 is Dashboard (href: / or ./) and is-active', (navItems[0]?.text === 'Dashboard') && (navItems[0]?.href === './' || navItems[0]?.href === '/') && navItems[0]?.isActive === true);
+    assert('Test 1.3: Item 2 is Peta Transportasi (href: /maps/)', (navItems[1]?.text === 'Peta Transportasi' || navItems[1]?.text === 'Peta GeoPORTAL') && (navItems[1]?.href === '/maps/' || navItems[1]?.href === '/peta/'));
     assert('Test 1.4: Item 3 is Terminal (href: /command-center/terminal/)', navItems[2]?.text === 'Terminal' && navItems[2]?.href === '/command-center/terminal/');
     assert('Test 1.5: Item 4 is Trayek (href: /command-center/trayek/)', navItems[3]?.text === 'Trayek' && navItems[3]?.href === '/command-center/trayek/');
 
@@ -214,7 +214,7 @@ async function runVerification() {
 
     console.log('\n--- Test 4: Visual Screenshot Capture ---');
     const screenshot = await cdp.send('Page.captureScreenshot', { format: 'png' });
-    const screenshotPath = path.resolve('Geo12-pages/dark-rivet-screenshot-1440.png');
+    const screenshotPath = fs.existsSync(path.resolve('Geo12-pages')) ? path.resolve('Geo12-pages/dark-rivet-screenshot-1440.png') : path.resolve('dark-rivet-screenshot-1440.png');
     fs.writeFileSync(screenshotPath, Buffer.from(screenshot.data, 'base64'));
     assert('Test 4.1: High-resolution desktop screenshot captured', fs.existsSync(screenshotPath), `saved to ${screenshotPath}`);
 

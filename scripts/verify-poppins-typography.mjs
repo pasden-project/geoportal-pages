@@ -192,8 +192,9 @@ async function runTypographyVerification() {
     assert('1.8 Zero AI Slop Fonts (Inter / Manrope) di Dashboard Overview', overviewFonts?.audit?.slopFontsCount === 0, `Slop count: ${overviewFonts?.audit?.slopFontsCount}`);
 
     const shotOverview = await cdp.send('Page.captureScreenshot', { format: 'png' });
-    fs.writeFileSync('Geo12-pages/shot-typography-overview.png', Buffer.from(shotOverview.data, 'base64'));
-    assert('1.9 Screenshot Typography Overview tersimpan', fs.existsSync('Geo12-pages/shot-typography-overview.png'));
+    const shotOverviewPath = fs.existsSync(path.resolve('Geo12-pages')) ? path.resolve('Geo12-pages/shot-typography-overview.png') : path.resolve('shot-typography-overview.png');
+    fs.writeFileSync(shotOverviewPath, Buffer.from(shotOverview.data, 'base64'));
+    assert('1.9 Screenshot Typography Overview tersimpan', fs.existsSync(shotOverviewPath));
 
     // 2. Menu 2: Peta GeoPORTAL
     console.log('\n--- [2/12] Audit Tipografi: Peta Interaktif GeoPORTAL (/peta/) ---');
@@ -304,8 +305,9 @@ async function runTypographyVerification() {
 
       if (menuIdx === 3) {
         const shotSub = await cdp.send('Page.captureScreenshot', { format: 'png' });
-        fs.writeFileSync('Geo12-pages/shot-typography-submodule.png', Buffer.from(shotSub.data, 'base64'));
-        assert('3.6 Screenshot Typography Submodule tersimpan', fs.existsSync('Geo12-pages/shot-typography-submodule.png'));
+        const shotSubPath = fs.existsSync(path.resolve('Geo12-pages')) ? path.resolve('Geo12-pages/shot-typography-submodule.png') : path.resolve('shot-typography-submodule.png');
+        fs.writeFileSync(shotSubPath, Buffer.from(shotSub.data, 'base64'));
+        assert('3.6 Screenshot Typography Submodule tersimpan', fs.existsSync(shotSubPath));
       }
 
       menuIdx++;

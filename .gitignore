@@ -33,6 +33,7 @@ tmp/
 # Temporary QA screenshots & test captures
 *.png
 !dark-rivet/favicon.png
+!src/favicon.png
 !**/assets/logo-hubdat.png
 !**/assets/*.png
 dark-rivet-shots/
