@@ -126,11 +126,11 @@ async function runTest() {
 
     await client.send('Page.enable');
     await client.send('DOM.enable');
+    await client.send('Page.navigate', { url: 'http://localhost:8082/' });
 
-    // Tunggu peta Leaflet dan marker selesai dirender
+    // Tunggu peta Leaflet, API fetch, dan marker selesai dirender serta stabil
     console.log('[1/4] Menunggu inisialisasi peta dan marker...');
-    await new Promise(r => setTimeout(r, 2500));
-
+    await new Promise(r => setTimeout(r, 4000));
     // 1. Verifikasi Marker Counts & Hierarchy
     const markerHierarchy = await client.eval(`
       (() => {

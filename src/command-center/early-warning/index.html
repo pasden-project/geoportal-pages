@@ -14,14 +14,16 @@
     <div class="app-shell">
         <!-- ================= SIDEBAR ================= -->
         <aside id="appSidebar" class="app-sidebar" aria-label="Navigasi utama">
-            <div class="sidebar-header">
-                <a href="../" class="brand-link" title="Kembali ke Beranda Command Center">
-                    <svg class="logo-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <div class="brand-text">
-                        <span class="brand-title">GeoPORTAL</span>
-                        <span class="brand-sub">BPTD KELAS I JABAR</span>
+            <div class="sidebar-header sidebar-logo">
+                <a href="../" class="brand-link" title="Kembali ke Beranda Command Center" style="display: flex; align-items: center; gap: 8px; text-decoration: none;">
+                    <span class="brand__mark" aria-hidden="true">
+                        <img src="/assets/logo-kemenhub.svg" alt="Logo Kemenhub" class="brand__logo-img brand__logo-img--kemenhub" />
+                        <img src="/assets/logo-hubdat.png" alt="Logo Ditjen Hubdat" class="brand__logo-img brand__logo-img--hubdat" />
+                    </span>
+                    <div class="brand-text logo-text">
+                        <span class="brand-title logo-title brand__title">GeoPORTAL</span>
+                        <span class="brand-sub logo-sub brand__instansi">BPTD Jabar</span>
+                        <span class="brand__tag">Angkutan</span>
                     </div>
                 </a>
                 <button type="button" id="sidebarClose" class="sidebar-close-btn" aria-label="Tutup menu navigasi">

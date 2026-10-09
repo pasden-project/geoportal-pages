@@ -36,7 +36,7 @@
     height: 100%;
     width: 100%;
     overflow: hidden;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Poppins', 'Plus Jakarta Sans', sans-serif;
     color: var(--navy);
     background: #e2e8f0;
   }
@@ -100,7 +100,7 @@
   }
   .leaflet-control-zoom a {
     color: var(--navy) !important;
-    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-family: 'Poppins', 'Plus Jakarta Sans', sans-serif !important;
   }
 
   .leaflet-tooltip.custom-mini-tooltip {
@@ -110,7 +110,7 @@
     border-radius: 10px !important;
     padding: 6px 12px !important;
     box-shadow: 0 4px 14px rgba(15, 23, 42, 0.25) !important;
-    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-family: 'Poppins', 'Plus Jakarta Sans', sans-serif !important;
     /* Cegah teks alamat panjang menembus popup (mis. Terminal Leuwipanjang) */
     max-width: 280px !important;
     white-space: normal;
@@ -843,14 +843,15 @@
     display: flex;
     flex-direction: column;
     box-shadow: 4px 0 24px rgba(0, 0, 0, 0.1);
+    font-family: 'Poppins', 'Plus Jakarta Sans', sans-serif;
   }
   .overlay:not(.hidden) .side-menu {
     transform: translateX(0);
   }
   /* Sidebar legenda KANAN + kontrol choropleth */
-  .side-menu-right { transform: translateX(100%); box-shadow: -4px 0 24px rgba(0, 0, 0, 0.12); }
+  .side-menu-right { transform: translateX(100%); box-shadow: -4px 0 24px rgba(0, 0, 0, 0.12); font-family: 'Poppins', 'Plus Jakarta Sans', sans-serif; }
   #legendOverlay:not(.hidden) .side-menu-right { transform: translateX(0); }
-  .legend-sidebar-body { padding: 14px 16px; overflow-y: auto; overflow-x: hidden; flex: 1; scrollbar-width: none; }
+  .legend-sidebar-body { padding: 14px 16px; overflow-y: auto; overflow-x: hidden; flex: 1; scrollbar-width: none; font-family: 'Poppins', 'Plus Jakarta Sans', sans-serif; }
   .legend-sidebar-body::-webkit-scrollbar { display: none; }
   .chp-controls { margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--gray-border); }
   .chp-seg { display: flex; gap: 6px; }
@@ -872,6 +873,7 @@
     font-size: 18px;
     font-weight: 800;
     color: var(--navy);
+    font-family: 'Poppins', sans-serif;
   }
   .menu-list {
     list-style: none;
@@ -1003,7 +1005,7 @@
     padding: 14px 16px;
     box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
     border: 1px solid rgba(226, 232, 240, 0.8);
-    font-family: "Plus Jakarta Sans", sans-serif;
+    font-family: 'Poppins', 'Plus Jakarta Sans', sans-serif;
     min-width: 190px;
     margin-bottom: 140px !important;
     max-height: calc(100vh - 180px);
@@ -1179,7 +1181,7 @@
   }
 
   .profile-card {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Poppins', 'Plus Jakarta Sans', sans-serif;
   }
   .profile-card input,
   .profile-card textarea {
@@ -1784,7 +1786,7 @@
     color: #fff;
     padding: 12px 18px;
     border-radius: 14px;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Poppins', 'Plus Jakarta Sans', sans-serif;
     font-weight: 700;
     font-size: 13.5px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -2182,7 +2184,7 @@
     border: 1px solid rgba(255, 255, 255, 0.22);
     box-shadow: var(--shadow-float);
     cursor: pointer;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Poppins', 'Plus Jakarta Sans', sans-serif;
     font-weight: 700;
     font-size: 13px;
     user-select: none;

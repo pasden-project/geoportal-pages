@@ -399,7 +399,7 @@ function drawRouteFromData(rd) {
   const info = (rd.volume || rd.perjalanan || rd.jarak_km)
     ? '<div class="rute-info">👥 ' + formatSingkat(rd.volume) + ' penumpang · 🚌 ' + formatSingkat(rd.perjalanan) + ' perjalanan · 📏 ' + (Number(rd.jarak_km) || 0).toLocaleString('id-ID') + ' km</div>'
     : '';
-  const pp = '<div style="font-family:Plus Jakarta Sans,sans-serif;min-width:170px;"><strong>' + (rd.name || 'Trayek') + '</strong>' + info + '<br><button class="btn-hapus-rute-popup" data-id="' + rd.id + '" style="margin-top:8px;background:#ef4444;color:#fff;border:none;padding:6px 12px;border-radius:8px;cursor:pointer;width:100%;">🗑 Hapus</button></div>';
+  const pp = '<div style="font-family:\'Poppins\',\'Plus Jakarta Sans\',sans-serif;min-width:170px;"><strong>' + (rd.name || 'Trayek') + '</strong>' + info + '<br><button class="btn-hapus-rute-popup" data-id="' + rd.id + '" style="margin-top:8px;background:#ef4444;color:#fff;border:none;padding:6px 12px;border-radius:8px;cursor:pointer;width:100%;">🗑 Hapus</button></div>';
   p.bindPopup(pp);
   p.on('popupopen', function () {
     setTimeout(function () {
@@ -431,7 +431,7 @@ function drawRouteFromData(rd) {
     const perj = formatSingkat(rd.perjalanan);
     const jarak = (Number(rd.jarak_km) || 0).toLocaleString('id-ID') + ' km';
     const color = rd.color || '#3b82f6';
-    const popupHtml = '<div style="font-family:Plus Jakarta Sans,sans-serif;min-width:200px;">' +
+    const popupHtml = '<div style="font-family:\'Poppins\',\'Plus Jakarta Sans\',sans-serif;min-width:200px;">' +
       '<strong style="color:' + color + ';">🚌 ' + (rd.name || 'Trayek') + '</strong>' +
       '<div style="margin-top:8px;font-size:12px;line-height:1.6;">' +
       '🏢 <b>PO:</b> ' + po + '<br>' +
@@ -465,7 +465,7 @@ function drawPerintisRoutes() {
     else if (lf >= 30) color = '#f59e0b';
     const pl = L.polyline(poly, { color: color, weight: 5, opacity: 0.85 }).addTo(perintisLayer);
     const popupHtml =
-      '<div style="font-family:Plus Jakarta Sans,sans-serif;min-width:200px;">' +
+      '<div style="font-family:\'Poppins\',\'Plus Jakarta Sans\',sans-serif;min-width:200px;">' +
       '<strong style="color:' + color + ';">🚐 ' + (r.name || 'Perintis') + '</strong>' +
       '<div style="margin-top:8px;font-size:12px;line-height:1.6;">' +
       '🗺️ <b>Kabupaten:</b> ' + (r.kabupaten || '-') + '<br>' +
@@ -8947,7 +8947,7 @@ function renderPerintisLive(body) {
       const pl = L.polyline(poly, { color: color, weight: 5, opacity: 0.9 }).addTo(potretMap);
 
       const popupHtml = `
-        <div style="font-family:'Plus Jakarta Sans',sans-serif;padding:4px;">
+        <div style="font-family:\'Poppins\',\'Plus Jakarta Sans\',sans-serif;padding:4px;">
           <h4 style="margin:0 0 6px 0;color:#0f172a;font-size:14px;">🚐 ${r.name}</h4>
           <div style="font-size:12px;color:#475569;line-height:1.5;">
             <b>Kabupaten:</b> ${r.kabupaten}<br>

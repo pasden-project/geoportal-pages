@@ -1594,7 +1594,7 @@
         var li = document.createElement('li');
         li.className = 'rank-item-anim';
         li.style.cssText = 'display: flex; align-items: center; justify-content: space-between; font-size: 11.5px; animation-delay: ' + (150 + idx * 60) + 'ms;';
-        li.innerHTML = '<span style="color: #FFFFFF;">' + (idx + 1) + '. ' + item.name + '</span><b style="color: ' + colors[idx] + ';">' + pct + '%</b>';
+        li.innerHTML = '<span style="color: var(--ink);">' + (idx + 1) + '. ' + item.name + '</span><b style="color: ' + colors[idx] + ';">' + pct + '%</b>';
         catsEl.appendChild(li);
       });
 
@@ -1650,7 +1650,7 @@
       li.style.animationDelay = (180 + txList.children.length * 60) + 'ms';
       li.innerHTML = '<span class="avatar avatar--sq" style="background: rgba(62, 242, 255, 0.15); color: var(--n-cyan); font-weight: 800; font-size: 11px;">' + initials + '</span>' +
         '<span class="tx__body">' +
-          '<span class="tx__name" style="font-size: 12px; color: #FFFFFF;">' + name + '</span>' +
+          '<span class="tx__name" style="font-size: 12px; color: var(--ink);">' + name + '</span>' +
           '<span class="tx__date" style="font-size: 11px; color: var(--dim);">' + city + '</span>' +
         '</span>' +
         '<span class="tx__amt"><b class="up" style="color: var(--n-lime); font-size: 12px;">+ ' + dep.toLocaleString('id-ID') + ' pnp</b><small style="color: var(--dim);">Keberangkatan</small></span>';
@@ -1670,7 +1670,7 @@
       li.style.animationDelay = (180 + txList.children.length * 60) + 'ms';
       li.innerHTML = '<span class="avatar avatar--sq" style="background: rgba(255, 190, 77, 0.15); color: var(--n-amber); font-weight: 800; font-size: 11px;">' + initials + '</span>' +
         '<span class="tx__body">' +
-          '<span class="tx__name" style="font-size: 12px; color: #FFFFFF;">' + name + '</span>' +
+          '<span class="tx__name" style="font-size: 12px; color: var(--ink);">' + name + '</span>' +
           '<span class="tx__date" style="font-size: 11px; color: var(--dim);">' + loc + '</span>' +
         '</span>' +
         '<span class="tx__amt"><b style="color: var(--n-amber); font-size: 12px;">' + count.toLocaleString('id-ID') + ' truk</b><small style="color: var(--dim);">Penimbangan WIM</small></span>';
@@ -1902,6 +1902,25 @@
       if (board) board.style.display = 'none';
       if (frame) {
         frame.style.display = 'block';
+        if (!frame.__themeSyncBound) {
+          frame.__themeSyncBound = true;
+          frame.addEventListener('load', function () {
+            var cur = document.documentElement.getAttribute('data-theme') || 'dark';
+            var isL = (cur === 'light');
+            try {
+              if (frame.contentWindow) {
+                frame.contentWindow.postMessage({ type: 'GEO_THEME_CHANGE', theme: cur }, '*');
+              }
+              if (frame.contentDocument) {
+                frame.contentDocument.documentElement.setAttribute('data-theme', cur);
+                frame.contentDocument.documentElement.classList.toggle('theme-light', isL);
+                if (frame.contentDocument.body) {
+                  frame.contentDocument.body.classList.toggle('theme-light', isL);
+                }
+              }
+            } catch (_) {}
+          });
+        }
         var embedUrl = pathname + (urlObj.search ? urlObj.search + '&embed=1' : '?embed=1');
         frame.dataset.currentRoute = embedUrl;
         if (frame.getAttribute('src') !== embedUrl) {
@@ -1963,8 +1982,86 @@
     }
   }
 
+  // --- 12b. Dark / Light Mode Theme Manager (Kemenhub Navy & Bone White) ---
+  function initThemeManager() {
+    var themeToggle = document.getElementById('themeToggle');
+    var sideThemeToggle = document.getElementById('sideThemeToggle');
+    var themeToggleLabel = document.getElementById('themeToggleLabel');
+
+    function applyTheme(themeName, persist) {
+      var isLight = (themeName === 'light');
+      document.documentElement.setAttribute('data-theme', isLight ? 'light' : 'dark');
+      document.documentElement.classList.toggle('theme-light', isLight);
+      if (document.body) {
+        document.body.classList.toggle('theme-light', isLight);
+      }
+
+      if (themeToggleLabel) {
+        themeToggleLabel.textContent = isLight ? 'Dark Mode' : 'Light Mode';
+      }
+
+      var metaThemeColor = document.querySelector('meta[name="theme-color"]');
+      if (metaThemeColor) {
+        metaThemeColor.setAttribute('content', isLight ? '#071C3D' : '#050507');
+      }
+
+      if (persist) {
+        try {
+          localStorage.setItem('geoportal-theme', isLight ? 'light' : 'dark');
+        } catch (_) {}
+      }
+
+      // Propagasi tema ke iframe submodul aktif
+      var frame = document.getElementById('submoduleFrame');
+      if (frame) {
+        try {
+          if (frame.contentWindow) {
+            frame.contentWindow.postMessage({ type: 'GEO_THEME_CHANGE', theme: isLight ? 'light' : 'dark' }, '*');
+          }
+          if (frame.contentDocument) {
+            frame.contentDocument.documentElement.setAttribute('data-theme', isLight ? 'light' : 'dark');
+            frame.contentDocument.documentElement.classList.toggle('theme-light', isLight);
+            if (frame.contentDocument.body) {
+              frame.contentDocument.body.classList.toggle('theme-light', isLight);
+            }
+          }
+        } catch (_) {}
+      }
+    }
+
+    // Read pre-initialized theme
+    var currentTheme = document.documentElement.getAttribute('data-theme');
+    if (!currentTheme) {
+      try {
+        currentTheme = localStorage.getItem('geoportal-theme') || 'dark';
+      } catch (_) {
+        currentTheme = 'dark';
+      }
+    }
+    applyTheme(currentTheme, false);
+
+    if (themeToggle) {
+      themeToggle.addEventListener('click', function (e) {
+        e.preventDefault();
+        var cur = document.documentElement.getAttribute('data-theme') || 'dark';
+        var next = (cur === 'light') ? 'dark' : 'light';
+        applyTheme(next, true);
+      });
+    }
+
+    if (sideThemeToggle) {
+      sideThemeToggle.addEventListener('click', function (e) {
+        e.preventDefault();
+        var cur = document.documentElement.getAttribute('data-theme') || 'dark';
+        var next = (cur === 'light') ? 'dark' : 'light';
+        applyTheme(next, true);
+      });
+    }
+  }
+
   // --- 13. Initialize Everything on Load ---
   document.addEventListener('DOMContentLoaded', function () {
+    initThemeManager();
     initClock();
     initNavPill();
     initNavToggle();

@@ -67,8 +67,15 @@
     const authenticMarkup = `
       <div style="display: flex; align-items: center; justify-content: space-between; padding-right: 4px; margin-bottom: 12px;">
         <a class="brand" href="/" aria-label="GeoPORTAL Home" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none;">
-          <span class="brand__mark" aria-hidden="true" style="background: var(--n-lime, #d4ff3f); color: #050507; font-weight: 900; font-size: 13px; display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; box-shadow: 0 0 16px rgba(212, 255, 63, 0.4); flex-shrink: 0;">GP</span>
-          <span class="brand__name" style="letter-spacing: 0.04em; color: #ffffff; font-weight: 800; font-size: 14px;">GeoPORTAL <small style="font-size: 10px; color: var(--n-lime, #d4ff3f); font-weight: 700; margin-left: 2px;">BPTD</small></span>
+          <span class="brand__mark" aria-hidden="true">
+            <img src="/assets/logo-kemenhub.svg" alt="Logo Kemenhub" class="brand__logo-img brand__logo-img--kemenhub" />
+            <img src="/assets/logo-hubdat.png" alt="Logo Ditjen Hubdat" class="brand__logo-img brand__logo-img--hubdat" />
+          </span>
+          <span class="brand__name">
+            <span class="brand__title">GeoPORTAL</span>
+            <span class="brand__instansi">BPTD Jabar</span>
+            <span class="brand__tag">Angkutan</span>
+          </span>
         </a>
         <button class="side__close" type="button" id="sideClose" aria-label="Tutup menu" style="background: transparent; border: 1px solid var(--hair, rgba(255,255,255,0.08)); border-radius: 6px; color: var(--dim, #aab0c2); cursor: pointer; width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center;"><svg class="ico" style="width: 14px; height: 14px; stroke: currentColor;"><use href="#i-x"/></svg></button>
       </div>
@@ -111,7 +118,7 @@
               <ul style="list-style: none; margin: 0; padding: 0;">
                 <li><a class="nav__subitem" href="/command-center/od/" data-route="/command-center/od/">OD Matrix</a></li>
                 <li><a class="nav__subitem" href="/command-center/connectivity/" data-route="/command-center/connectivity/">Connectivity</a></li>
-                <li><a class="nav__subitem" href="/command-center/early-warning/" data-route="/command-center/early-warning/">Early Warning <span class="badge" style="background: rgba(255, 92, 138, 0.25); color: var(--n-pink, #ff5c8a); font-size: 8.5px; padding: 0 4px;">Live</span></a></li>
+                <li><a class="nav__subitem" href="/command-center/early-warning/" data-route="/command-center/early-warning/">Early Warning <span class="badge badge--amber" style="background: rgba(255, 190, 77, 0.25); color: var(--n-amber, #ffbe4d); font-size: 8.5px; padding: 0 4px;">(DEMO)</span></a></li>
               </ul>
             </div>
           </li>
@@ -129,7 +136,7 @@
             </button>
             <div class="nav__sub" id="sub-utility">
               <ul style="list-style: none; margin: 0; padding: 0;">
-                <li><a class="nav__subitem" href="/command-center/program/" data-route="/command-center/program/">Kinerja PSO</a></li>
+                <li><a class="nav__subitem" href="/command-center/program/" data-route="/command-center/program/">Kinerja PSO <span class="badge badge--amber" style="background: rgba(255, 190, 77, 0.25); color: var(--n-amber, #ffbe4d); font-size: 8.5px; padding: 0 4px;">(DEMO)</span></a></li>
                 <li><a class="nav__subitem" href="/command-center/laporan/" data-route="/command-center/laporan/">Laporan Realisasi</a></li>
                 <li><a class="nav__subitem" href="/command-center/data-master/" data-route="/command-center/data-master/">Data Master</a></li>
                 <li><a class="nav__subitem" href="javascript:void(0)" data-modal-target="modal-profil">Profil BPTD</a></li>
@@ -283,8 +290,9 @@
 
   // 4. Sanitizer DOM: Eliminasi Kontras Tabrakan & Normalisasi Bilah Pastel
   function sanitizePastelColors() {
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light' || document.documentElement.classList.contains('theme-light') || (document.body && document.body.classList.contains('theme-light'));
+    if (isLight) return;
     const pastelSignatures = [
-      { target: '#fee2e2', bg: 'rgba(255, 92, 138, 0.15)', col: '#ff5c8a', border: 'rgba(255, 92, 138, 0.3)' },
       { target: '#fef2f2', bg: 'rgba(255, 92, 138, 0.15)', col: '#ff5c8a', border: 'rgba(255, 92, 138, 0.3)' },
       { target: '#fef3c7', bg: 'rgba(255, 190, 77, 0.15)', col: '#ffbe4d', border: 'rgba(255, 190, 77, 0.3)' },
       { target: '#e0f2fe', bg: 'rgba(62, 242, 255, 0.15)', col: '#3ef2ff', border: 'rgba(62, 242, 255, 0.3)' },
@@ -397,6 +405,7 @@
 
   function applyLeafletDarkMatter() {
     interceptLeafletBasemaps();
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light' || document.documentElement.classList.contains('theme-light') || (document.body && document.body.classList.contains('theme-light'));
     document.querySelectorAll('.leaflet-tile-pane').forEach(tilePane => {
       // Pastikan ubin cartocdn lama dialihkan ke OSM jika ada
       tilePane.querySelectorAll('img.leaflet-tile').forEach(img => {
@@ -405,16 +414,45 @@
           img.src = src.replace(/https?:\/\/[a-d]\.basemaps\.cartocdn\.com\/dark_all/g, 'https://tile.openstreetmap.org').replace(/@\d+x|\.png.*$/g, '.png');
         }
       });
-      // Terapkan filter Dark Obsidian standar pada seluruh tile pane peta
-      tilePane.style.filter = 'brightness(0.55) invert(1) contrast(2.6) hue-rotate(205deg) saturate(0.25) brightness(0.72)';
+      // Terapkan filter sesuai mode
+      if (isLight) {
+        tilePane.style.filter = 'contrast(1.05) saturate(0.85) brightness(0.98)';
+      } else {
+        tilePane.style.filter = 'brightness(0.55) invert(1) contrast(2.6) hue-rotate(205deg) saturate(0.25) brightness(0.72)';
+      }
     });
   }
+
+  // Sinkronisasi Tema Otomatis dengan Shell Induk
+  function applyThemeToSubmodule(theme) {
+    const isLight = (theme === 'light');
+    document.documentElement.setAttribute('data-theme', isLight ? 'light' : 'dark');
+    document.documentElement.classList.toggle('theme-light', isLight);
+    if (document.body) {
+      document.body.classList.toggle('theme-light', isLight);
+    }
+    applyLeafletDarkMatter();
+    if (!isLight) {
+      sanitizePastelColors();
+    }
+  }
+
+  window.addEventListener('message', function (e) {
+    if (e && e.data && e.data.type === 'GEO_THEME_CHANGE') {
+      applyThemeToSubmodule(e.data.theme);
+    }
+  });
 
   // Inisialisasi Utama
   function initSubmoduleBridge() {
     interceptLeafletBasemaps();
-    const isEmbedded = (window.self !== window.top) || window.location.search.includes('embed=1');
+    let currentTheme = 'dark';
+    try {
+      currentTheme = localStorage.getItem('geoportal-theme') || 'dark';
+    } catch (_) {}
+    applyThemeToSubmodule(currentTheme);
 
+    const isEmbedded = (window.self !== window.top) || window.location.search.includes('embed=1');
     if (isEmbedded) {
       document.body.classList.add('is-embedded');
       const existingSidebar = document.querySelector('.app-sidebar, aside.side, #appSidebar');
@@ -448,11 +486,22 @@
     setTimeout(sanitizePastelColors, 800);
     setTimeout(sanitizePastelColors, 2000);
 
-    // Amati perubahan DOM untuk sanitasi elemen dinamis
+    // Amati perubahan DOM untuk sanitasi elemen dinamis & jaga kestabilan tema
     const domObserver = new MutationObserver(function () {
+      let curTheme = 'dark';
+      try { curTheme = localStorage.getItem('geoportal-theme') || 'dark'; } catch(_) {}
+      if (curTheme === 'light') {
+        if (document.documentElement.getAttribute('data-theme') !== 'light') {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+        if (!document.documentElement.classList.contains('theme-light')) {
+          document.documentElement.classList.add('theme-light');
+        }
+      }
       sanitizePastelColors();
       applyLeafletDarkMatter();
     });
+    domObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'class'] });
     domObserver.observe(document.body, { childList: true, subtree: true });
   }
 

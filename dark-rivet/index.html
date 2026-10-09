@@ -10,8 +10,24 @@
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet" />
   
+  <!-- Pre-Paint Theme Initialization (Zero FOUC) -->
+  <script>
+    (function() {
+      try {
+        var t = localStorage.getItem('geoportal-theme');
+        if (t === 'light') {
+          document.documentElement.setAttribute('data-theme', 'light');
+          document.documentElement.classList.add('theme-light');
+        } else {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          document.documentElement.classList.remove('theme-light');
+        }
+      } catch (_) {}
+    })();
+  </script>
+
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   
@@ -61,8 +77,15 @@
       <aside class="side" id="side">
         <div style="display: flex; align-items: center; justify-content: space-between; padding-right: 4px;">
           <a class="brand" href="./" aria-label="GeoPORTAL Home">
-            <span class="brand__mark" aria-hidden="true" style="background: var(--n-lime); color: #050507; font-weight: 900; font-size: 14px; display: grid; place-items: center; border-radius: 9px; box-shadow: 0 0 16px rgba(212, 255, 63, 0.4);">GP</span>
-            <span class="brand__name" style="letter-spacing: 0.04em;">GeoPORTAL <small style="font-size: 10px; color: var(--n-lime); font-weight: 700; margin-left: 4px;">BPTD</small></span>
+            <span class="brand__mark" aria-hidden="true">
+              <img src="/assets/logo-kemenhub.svg" alt="Logo Kemenhub" class="brand__logo-img brand__logo-img--kemenhub" />
+              <img src="/assets/logo-hubdat.png" alt="Logo Ditjen Hubdat" class="brand__logo-img brand__logo-img--hubdat" />
+            </span>
+            <span class="brand__name">
+              <span class="brand__title">GeoPORTAL</span>
+              <span class="brand__instansi">BPTD Jabar</span>
+              <span class="brand__tag">Angkutan</span>
+            </span>
           </a>
           <button class="side__close" type="button" id="sideClose" aria-label="Tutup menu"><svg class="ico"><use href="#i-x"/></svg></button>
         </div>
@@ -105,7 +128,7 @@
                 <ul>
                   <li><a class="nav__subitem" href="/command-center/od/">OD Matrix</a></li>
                   <li><a class="nav__subitem" href="/command-center/connectivity/">Connectivity</a></li>
-                  <li><a class="nav__subitem" href="/command-center/early-warning/">Early Warning <span class="badge" style="background: rgba(255, 92, 138, 0.25); color: var(--n-pink); font-size: 8.5px; padding: 0 4px;">Live</span></a></li>
+                  <li><a class="nav__subitem" href="/command-center/early-warning/">Early Warning <span class="badge badge--amber" style="background: rgba(255, 190, 77, 0.25); color: var(--n-amber); font-size: 8.5px; padding: 0 4px;">(DEMO)</span></a></li>
                 </ul>
               </div>
             </li>
@@ -123,7 +146,7 @@
               </button>
               <div class="nav__sub" id="sub-utility">
                 <ul>
-                  <li><a class="nav__subitem" href="/command-center/program/">Kinerja PSO</a></li>
+                  <li><a class="nav__subitem" href="/command-center/program/">Kinerja PSO <span class="badge badge--amber" style="background: rgba(255, 190, 77, 0.25); color: var(--n-amber); font-size: 8.5px; padding: 0 4px;">(DEMO)</span></a></li>
                   <li><a class="nav__subitem" href="/command-center/laporan/">Laporan Realisasi</a></li>
                   <li><a class="nav__subitem" href="/command-center/data-master/">Data Master</a></li>
                   <li><a class="nav__subitem" href="javascript:void(0)" data-modal-target="modal-profil">Profil BPTD</a></li>
@@ -133,6 +156,10 @@
           </ul>
 
         <div class="side__foot" style="margin-top: 10px;">
+          <button class="side-theme-btn" id="sideThemeToggle" type="button" aria-label="Beralih Tema">
+            <span class="side-theme-btn__icon">🌓</span>
+            <span class="side-theme-btn__text">Ganti Mode (Dark / Light)</span>
+          </button>
           <div style="font-size: 11px; color: var(--dim); display: flex; align-items: center; gap: 6px;">
             <span class="status-dot-pulse"></span>
             <span>API Gateway Live</span>
@@ -173,6 +200,17 @@
               </span>
             </button>
 
+            <!-- Dark / Light Mode Switcher Toggle Button -->
+            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Ganti mode tampilan (Dark/Light)" title="Ganti Mode Tampilan (Dark / Light)">
+              <span class="theme-toggle__track">
+                <span class="theme-toggle__thumb">
+                  <svg class="ico ico--theme-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                  <svg class="ico ico--theme-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                </span>
+              </span>
+              <span class="theme-toggle__label" id="themeToggleLabel">Light Mode</span>
+            </button>
+
             <a href="/peta/" target="_blank" class="btn btn--ghost" style="text-decoration: none;">
               <svg class="ico"><use href="#i-flow"/></svg>
               <span>Peta GIS</span>
@@ -191,7 +229,7 @@
               <div class="balance">
                 <div class="balance__head">
                   <div>
-                    <p class="num num--xl" id="heroPax" style="color: #FFFFFF; font-size: 32px; font-weight: 800; letter-spacing: -0.02em;">6.538.609</p>
+                    <p class="num num--xl hero-pax-num" id="heroPax" style="font-size: 32px; font-weight: 800; letter-spacing: -0.02em;">6.538.609</p>
                     <p class="card__sub" id="heroSub" style="color: var(--dim); font-size: 13px;">Pergerakan Penumpang (<span id="activeYearLabel">Tahun 2026</span>)</p>
                   </div>
                   <div class="balance__tools" style="display: flex; align-items: center; gap: 8px;">
@@ -667,7 +705,7 @@
         </div>
 
         <!-- Persistent Seamless Iframe for Submodule Navigation (SPA Shell) -->
-        <iframe id="submoduleFrame" class="submodule-frame" title="GeoPORTAL Menu View" style="display:none; width:100%; height:calc(100vh - 64px); border:none; background:#050507;"></iframe>
+        <iframe id="submoduleFrame" class="submodule-frame" title="GeoPORTAL Menu View" style="display:none; width:100%; height:calc(100vh - 64px); border:none; background:var(--frame);"></iframe>
       </div>
     </section>
   </main>
