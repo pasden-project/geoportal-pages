@@ -1,8 +1,7 @@
 /* functions/api/[[path]].js — Cloudflare Pages API gateway (jalan utama)
  *
  * Frontend (src/) memanggil:  POST /api/<fn>   (lihat src/api.js, apiBase '/api')
- * File ini menangkap "/api/*" dan meneruskan ke Google Apps Script /exec,
- * menyisipkan kunci rahasia (dari env Pages) di query — tidak pernah di UI publik.
+ * File ini menangkap "/api/*" dan meneruskan operasi baca ke Google Apps Script /exec.
  *
  * Architecture Decision: AD-15E-B-001 (SINGLE-READ JSON GATEWAY)
  * Current gateway is JSON-normalizing, not generic streaming; compatibility takes precedence;
@@ -23,17 +22,19 @@
  *
  * ENV yang harus diatur di Cloudflare Pages (Settings → Environment variables):
  *   GAS_EXEC_URL : https://script.google.com/macros/s/<id>/exec
- *   GAS_SECRET   : nilai ScriptProperty REST_SECRET milik Apps Script
  */
 
-const ALLOWED_OPERATIONS = new Set([
+const READ_OPERATIONS = new Set([
   'getAvailableYears',
   'getDashboardData',
   'getAllRawData',
   'getRoutes',
   'getTerminalDetail',
   'getPotretRows',
-  'getPotretBarangMeta',
+  'getPotretBarangMeta'
+]);
+
+const WRITE_OPERATIONS = new Set([
   'saveRoute',
   'updateRoute',
   'deleteRoute',
@@ -72,10 +73,71 @@ async function proxy(context) {
     const { request, env, params } = context || {};
     const rawName = (params && params.path && params.path[0]) ? params.path[0] : 'getDashboardData';
     const name = typeof rawName === 'string' ? rawName : 'getDashboardData';
-    observedOperation = ALLOWED_OPERATIONS.has(name) ? name : 'unknown';
     method = (request && request.method) ? request.method : 'POST';
 
-    // 1. Guard konfigurasi upstream GAS_EXEC_URL
+    // 1. Validasi Endpoint (HTTP 404 jika bukan READ maupun WRITE)
+    if (!READ_OPERATIONS.has(name) && !WRITE_OPERATIONS.has(name)) {
+      const handlerEnd = performance.now();
+      const handler_ms = Math.max(0, Number((handlerEnd - handlerStart).toFixed(1)));
+      logStructured({
+        level: 'warn',
+        request_id: requestId,
+        operation: 'unknown',
+        method: method,
+        upstream_status: null,
+        final_status: 404,
+        upstream_headers_ms: 0,
+        upstream_body_ms: 0,
+        upstream_ms: 0,
+        validation_ms: 0,
+        handler_ms: handler_ms,
+        payload_bytes: 'unknown',
+        observed_at: new Date().toISOString(),
+        error_class: 'NOT_FOUND'
+      });
+      return new Response(JSON.stringify({ ok: false, error: 'endpoint tidak dikenal' }), {
+        status: 404,
+        headers: {
+          'content-type': 'application/json',
+          'X-GeoPortal-Request-Id': requestId,
+          'Server-Timing': `edge;dur=${handler_ms}`
+        }
+      });
+    }
+
+    // 2. Blokir Operasi Tulis (HTTP 403 fail-closed)
+    if (WRITE_OPERATIONS.has(name)) {
+      const handlerEnd = performance.now();
+      const handler_ms = Math.max(0, Number((handlerEnd - handlerStart).toFixed(1)));
+      logStructured({
+        level: 'warn',
+        request_id: requestId,
+        operation: name,
+        method: method,
+        upstream_status: null,
+        final_status: 403,
+        upstream_headers_ms: 0,
+        upstream_body_ms: 0,
+        upstream_ms: 0,
+        validation_ms: 0,
+        handler_ms: handler_ms,
+        payload_bytes: 'unknown',
+        observed_at: new Date().toISOString(),
+        error_class: 'FORBIDDEN_WRITE'
+      });
+      return new Response(JSON.stringify({ ok: false, error: 'Operasi tulis dinonaktifkan sementara.' }), {
+        status: 403,
+        headers: {
+          'content-type': 'application/json',
+          'X-GeoPortal-Request-Id': requestId,
+          'Server-Timing': `edge;dur=${handler_ms}`
+        }
+      });
+    }
+
+    observedOperation = name;
+
+    // 3. Guard konfigurasi upstream GAS_EXEC_URL
     if (!env || !env.GAS_EXEC_URL) {
       const handlerEnd = performance.now();
       const handler_ms = Math.max(0, Number((handlerEnd - handlerStart).toFixed(1)));
@@ -105,19 +167,17 @@ async function proxy(context) {
       });
     }
 
-    // 2. Konstruksi gasUrl presisi (tanpa trace/request ID di query ke GAS)
+    // 4. Konstruksi gasUrl presisi (tanpa forwarding secret / trace di query ke GAS)
     const gasUrl = env.GAS_EXEC_URL +
       (env.GAS_EXEC_URL.indexOf('?') >= 0 ? '&' : '?') +
-      'path=' + encodeURIComponent(name) +
-      '&key=' + encodeURIComponent(env.GAS_SECRET || '');
-
-    // 3. Baca body request masuk (hanya payload RPC kecil dari frontend; tidak menelan error)
+      'path=' + encodeURIComponent(name);
+    // 5. Baca body request masuk (hanya payload RPC kecil dari frontend; tidak menelan error)
     let body = '{}';
     if (request && request.body) {
       body = await request.text();
     }
 
-    // 4. Dispatch upstream fetch dengan pengukuran bertahap (headers vs body)
+    // 6. Dispatch upstream fetch dengan pengukuran bertahap (headers vs body)
     let gas;
     const fetchStart = performance.now();
     try {
