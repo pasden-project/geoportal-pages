@@ -1,3 +1,9 @@
+/**
+ * DEPRECATED / TIDAK DIGUNAKAN:
+ * File ini TIDAK DIGUNAKAN dan TIDAK BOLEH DI-DEPLOY.
+ * Gateway aktif produksi menggunakan Cloudflare Pages Functions di functions/api/[[path]].js.
+ */
+
 /* worker/worker.js — Cloudflare Worker API Gateway (route /api/*)
  *
  * Browser → fetch('/api/<fn>') same-origin → Worker ini →

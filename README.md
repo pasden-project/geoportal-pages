@@ -31,8 +31,8 @@ Geo12-pages/
 │   └── config.js       # config frontend (transport 'gas'/'rest', apiBase) — TANPA secret
 ├── functions/          # → Cloudflare Pages Functions (API gateway, jalan utama)
 │   └── api/[[path]].js # menangkap /api/<fn> → forward ke Apps Script (env GAS_*)
-├── worker/             # → OPSIONAL: Worker terpisah utk subdomain api. (lanjutan)
-│   └── worker.js
+├── worker/             # → DEPRECATED (TIDAK DIGUNAKAN, jangan di-deploy)
+│   └── worker.js       # legacy standalone worker, digantikan Pages Functions
 ├── scripts/
 │   ├── split-frontend.mjs   # Fase4: ekstrak Geo12 → src/ (aman dijalankan ulang)
 │   └── test-rest.mjs        # uji otomatis REST router Fase1
