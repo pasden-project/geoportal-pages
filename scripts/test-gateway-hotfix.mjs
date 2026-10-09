@@ -1,6 +1,7 @@
 // Geo12-pages/scripts/test-gateway-hotfix.mjs
 // Automated verification for Gateway write-blocking & secret sanitization hotfix
 
+import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import { onRequestPost } from '../functions/api/[[path]].js';
 
@@ -125,7 +126,18 @@ async function runTests() {
     passedCount++;
   }
 
-  console.log(`\n=== HASIL: ${passedCount}/3 Skenario Utama LULUS (Semua pengujian berhasil) ===`);
+  // Test 4: Verifikasi sanitasi source code functions/api/[[path]].js bebas "&key=" dan "GAS_SECRET"
+  {
+    console.log('\n[TEST 4] Verifikasi sanitasi source code functions/api/[[path]].js bebas "&key=" dan "GAS_SECRET"...');
+    const gatewayPath = new URL('../functions/api/[[path]].js', import.meta.url);
+    const sourceContent = await fs.promises.readFile(gatewayPath, 'utf8');
+    assert.ok(!sourceContent.includes('&key='), 'Source code must NOT contain "&key="');
+    assert.ok(!sourceContent.includes('GAS_SECRET'), 'Source code must NOT contain "GAS_SECRET"');
+    console.log('  -> PASS: Source code functions/api/[[path]].js terbukti bersih dari "&key=" dan "GAS_SECRET".');
+    passedCount++;
+  }
+
+  console.log(`\n=== HASIL: ${passedCount}/4 Skenario Utama LULUS (Semua pengujian berhasil) ===`);
 }
 
 try {
