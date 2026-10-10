@@ -2246,16 +2246,26 @@ function setChoroplethMetric(m) { choroplethMetric = (m === 'tarikan') ? 'tarika
 
 function inisialisasiTema() {
   let t = null;
-  try { t = localStorage.getItem(THEME_KEY); } catch (e) {}
-  terapkanTema(t === 'dark' ? 'dark' : 'light');
+  try {
+    t = localStorage.getItem('geoportal-theme') || localStorage.getItem(THEME_KEY);
+  } catch (e) {}
+  terapkanTema(t === 'light' ? 'light' : 'dark');
 }
 function terapkanTema(tema) {
   const root = document.documentElement;
-  if (tema === 'dark') root.setAttribute('data-theme', 'dark');
-  else root.removeAttribute('data-theme');
+  if (tema === 'dark') {
+    root.setAttribute('data-theme', 'dark');
+    root.classList.remove('theme-light');
+  } else {
+    root.setAttribute('data-theme', 'light');
+    root.classList.add('theme-light');
+  }
   const btn = document.getElementById('btnTheme');
   if (btn) btn.innerHTML = (tema === 'dark' ? SVG_SUN : SVG_MOON);
-  try { localStorage.setItem(THEME_KEY, tema); } catch (e) {}
+  try {
+    localStorage.setItem(THEME_KEY, tema);
+    localStorage.setItem('geoportal-theme', tema);
+  } catch (e) {}
 }
 
 // ============================================================

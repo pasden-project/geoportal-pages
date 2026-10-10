@@ -1981,18 +1981,33 @@ tbody tr:nth-child(even) {
 /* =====================================================================
    Single Persistent Sidebar Shell — Embedded Submodule Viewport
    ===================================================================== */
+html.is-embedded aside.side,
+html.is-embedded .app-sidebar,
+html.is-embedded #appSidebar,
 body.is-embedded aside.side,
 body.is-embedded .app-sidebar,
+body.is-embedded #appSidebar {
+  display: none !important;
+}
+
+html.is-embedded .top-bar,
+html.is-embedded .app-header,
 body.is-embedded .top-bar,
 body.is-embedded .app-header {
   display: none !important;
 }
 
+html.is-embedded .app-shell,
+html.is-embedded .command-center-layout,
+html.is-embedded .app-main,
+html.is-embedded main,
+body.is-embedded .app-shell,
 body.is-embedded .command-center-layout,
 body.is-embedded .app-main,
 body.is-embedded main {
   margin-left: 0 !important;
   width: 100% !important;
+  max-width: 100% !important;
   padding-top: 0 !important;
   min-height: 100vh !important;
 }

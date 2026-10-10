@@ -1557,7 +1557,7 @@
     --glass-blur: blur(20px) saturate(150%);
   }
   [data-theme="dark"] body {
-    background: #0b1220;
+    background: #050507;
   }
   [data-theme="dark"] .topbar {
     background: rgba(14, 23, 42, 0.92);

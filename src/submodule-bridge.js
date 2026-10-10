@@ -14,6 +14,25 @@
 
 (function () {
   'use strict';
+  // 0. Deteksi Status Embedded / Standalone Secara Pre-Paint
+  var isPreEmbedded = (window.self !== window.top) || window.location.search.includes('embed=1');
+  if (isPreEmbedded) {
+    document.documentElement.classList.add('is-embedded');
+    if (document.body) {
+      document.body.classList.add('is-embedded');
+    }
+  } else {
+    // Standalone access (buka langsung di address bar):
+    // Redirect ke single persistent shell dengan deep-link hash
+    try {
+      var currentPath = window.location.pathname;
+      if (currentPath && currentPath.startsWith('/command-center/')) {
+        window.location.replace('/#' + currentPath);
+        return;
+      }
+    } catch (_) {}
+  }
+
 
   // 1. Injeksi SVG Sprite Otentik Dark Rivet (Bila Belum Tersedia)
   function ensureRivetSvgSprite() {
@@ -448,26 +467,44 @@
     interceptLeafletBasemaps();
     let currentTheme = 'dark';
     try {
-      currentTheme = localStorage.getItem('geoportal-theme') || 'dark';
+      currentTheme = localStorage.getItem('geoportal-theme') || localStorage.getItem('geoterminal_theme') || 'dark';
     } catch (_) {}
     applyThemeToSubmodule(currentTheme);
 
     const isEmbedded = (window.self !== window.top) || window.location.search.includes('embed=1');
     if (isEmbedded) {
-      document.body.classList.add('is-embedded');
-      const existingSidebar = document.querySelector('.app-sidebar, aside.side, #appSidebar');
-      if (existingSidebar) existingSidebar.style.display = 'none';
-      const existingHeader = document.querySelector('.app-header, .top-bar, .topbar, header');
-      if (existingHeader) existingHeader.style.display = 'none';
+      document.documentElement.classList.add('is-embedded');
+      if (document.body) document.body.classList.add('is-embedded');
+
+      const existingSidebars = document.querySelectorAll('.app-sidebar, aside.side, #appSidebar');
+      existingSidebars.forEach(function (el) { el.style.display = 'none'; });
+
+      const existingHeaders = document.querySelectorAll('.app-header, .top-bar, .topbar, header');
+      existingHeaders.forEach(function (el) { el.style.display = 'none'; });
 
       // Delegasi navigasi internal ke shell induk tanpa reload sidebar
       document.addEventListener('click', function (e) {
         const link = e.target.closest('a');
         if (!link) return;
         const href = link.getAttribute('href');
-        if (href && (href.startsWith('/command-center/') || href === '/' || href.startsWith('./'))) {
+        if (!href || href.startsWith('javascript:') || href === '#') return;
+
+        // Tautan peta didelegasikan ke window parent /maps/
+        if (href.startsWith('/maps') || href === '/maps' || href === '/maps/') {
           e.preventDefault();
-          window.parent.postMessage({ type: 'GEO_NAVIGATE', path: href }, '*');
+          try {
+            window.parent.location.href = '/maps/';
+          } catch (_) {
+            window.location.href = '/maps/';
+          }
+          return;
+        }
+
+        // Tautan modul lain didelegasikan ke shell induk via postMessage
+        if (href.startsWith('/command-center/') || href === '/' || href.startsWith('./') || href.startsWith('../')) {
+          e.preventDefault();
+          const targetPath = link.pathname || href;
+          window.parent.postMessage({ type: 'GEO_NAVIGATE', path: targetPath }, '*');
         }
       }, true);
     } else {
@@ -489,7 +526,7 @@
     // Amati perubahan DOM untuk sanitasi elemen dinamis & jaga kestabilan tema
     const domObserver = new MutationObserver(function () {
       let curTheme = 'dark';
-      try { curTheme = localStorage.getItem('geoportal-theme') || 'dark'; } catch(_) {}
+      try { curTheme = localStorage.getItem('geoportal-theme') || localStorage.getItem('geoterminal_theme') || 'dark'; } catch(_) {}
       if (curTheme === 'light') {
         if (document.documentElement.getAttribute('data-theme') !== 'light') {
           document.documentElement.setAttribute('data-theme', 'light');

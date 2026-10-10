@@ -152,18 +152,7 @@ const server = http.createServer((req, res) => {
         res.writeHead(500, { "content-type": "text/plain" });
         return res.end("Error loading Peta GIS: " + err.message);
       }
-      const darkRivetLinks = `
-  <script>(function(){try{var t=localStorage.getItem('geoportal-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');document.documentElement.classList.add('theme-light');}else{document.documentElement.setAttribute('data-theme','dark');document.documentElement.classList.remove('theme-light');}}catch(_){}})();</script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/geoportal-rivet.css">
-  <link rel="stylesheet" href="/submodule-rivet.css">
-</head>`;
-      let modified = html.replace("</head>", darkRivetLinks);
-      if (!modified.includes("submodule-bridge.js")) {
-        modified = modified.replace("</body>", `  <script src="/submodule-bridge.js"></script>\n</body>`);
-      }
+      let modified = html;
       res.writeHead(200, {
         "content-type": "text/html; charset=utf-8",
         "cache-control": "no-cache"
@@ -264,8 +253,10 @@ const server = http.createServer((req, res) => {
               return res.end("Error reading HTML");
             }
             if (pathname.includes("/command-center/")) {
-              const darkRivetLinks = `
-  <script>(function(){try{var t=localStorage.getItem('geoportal-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');document.documentElement.classList.add('theme-light');}else{document.documentElement.setAttribute('data-theme','dark');document.documentElement.classList.remove('theme-light');}}catch(_){}})();</script>
+              let modified = html;
+              if (!modified.includes("submodule-rivet.css")) {
+                const darkRivetLinks = `
+  <script>(function(){try{var t=localStorage.getItem('geoportal-theme')||localStorage.getItem('geoterminal_theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');document.documentElement.classList.add('theme-light');}else{document.documentElement.setAttribute('data-theme','dark');document.documentElement.classList.remove('theme-light');}if(window.self!==window.top||window.location.search.includes('embed=1')){document.documentElement.classList.add('is-embedded');}}catch(_){}})();</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet" />
@@ -273,8 +264,11 @@ const server = http.createServer((req, res) => {
   <link rel="stylesheet" href="/geoportal-rivet.css">
   <link rel="stylesheet" href="/submodule-rivet.css">
 </head>`;
-              let modified = html.replace("</head>", darkRivetLinks);
-              modified = modified.replace("</body>", `  <script src="/submodule-bridge.js"></script>\n</body>`);
+                modified = modified.replace("</head>", darkRivetLinks);
+              }
+              if (!modified.includes("submodule-bridge.js")) {
+                modified = modified.replace("</body>", `  <script src="/submodule-bridge.js"></script>\n</body>`);
+              }
               res.writeHead(200, {
                 "content-type": "text/html; charset=utf-8",
                 "cache-control": "no-cache"

@@ -1971,14 +1971,30 @@
     // Tangani koordinasi navigasi dari submodul embed via postMessage
     window.addEventListener('message', function (e) {
       if (e.data && e.data.type === 'GEO_NAVIGATE' && e.data.path) {
-        navigateTo(e.data.path, true);
+        var p = e.data.path;
+        if (p.startsWith('/maps') || p === '/maps' || p === '/maps/') {
+          window.location.href = '/maps/';
+          return;
+        }
+        navigateTo(p, true);
       }
     });
 
-    // Deteksi rute URL awal saat pertama kali dimuat
-    var currentPath = window.location.pathname;
-    if (currentPath !== '/' && currentPath !== '/command-center' && currentPath !== '/command-center/') {
-      navigateTo(currentPath + window.location.search, false);
+    // Tangani initial deep-linking hash restoration
+    var hashPath = (window.location.hash || '').replace(/^#/, '');
+    if (hashPath && (hashPath.startsWith('/command-center/') || hashPath.startsWith('/maps'))) {
+      if (hashPath.startsWith('/maps')) {
+        window.location.href = '/maps/';
+        return;
+      }
+      window.history.replaceState({ path: hashPath }, '', hashPath);
+      navigateTo(hashPath, false);
+    } else {
+      // Deteksi rute URL awal saat pertama kali dimuat
+      var currentPath = window.location.pathname;
+      if (currentPath !== '/' && currentPath !== '/command-center' && currentPath !== '/command-center/') {
+        navigateTo(currentPath + window.location.search, false);
+      }
     }
   }
 
@@ -2007,7 +2023,9 @@
 
       if (persist) {
         try {
-          localStorage.setItem('geoportal-theme', isLight ? 'light' : 'dark');
+          var val = isLight ? 'light' : 'dark';
+          localStorage.setItem('geoportal-theme', val);
+          localStorage.setItem('geoterminal_theme', val);
         } catch (_) {}
       }
 
@@ -2033,7 +2051,7 @@
     var currentTheme = document.documentElement.getAttribute('data-theme');
     if (!currentTheme) {
       try {
-        currentTheme = localStorage.getItem('geoportal-theme') || 'dark';
+        currentTheme = localStorage.getItem('geoportal-theme') || localStorage.getItem('geoterminal_theme') || 'dark';
       } catch (_) {
         currentTheme = 'dark';
       }
