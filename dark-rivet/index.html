@@ -5,7 +5,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>GeoPORTAL Angkutan BPTD Jabar</title>
-  <meta name="description" content="Dashboard Command Center Transportasi Darat Jawa Barat dengan layout & gaya 100% Dark Rivet." />
+  <meta name="title" content="GeoPORTAL Angkutan BPTD Jabar" />
+  <meta name="description" content="Pusat Komando &amp; Portal Dashboard Informasi Angkutan Jalan BPTD Kelas I Jawa Barat." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="GeoPORTAL Angkutan BPTD Jabar" />
+  <meta property="og:site_name" content="GeoPORTAL Angkutan BPTD Jabar" />
+  <meta property="og:description" content="Pusat Komando &amp; Portal Dashboard Informasi Angkutan Jalan BPTD Kelas I Jawa Barat." />
+  <meta property="og:image" content="/assets/logo-hubdat.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="GeoPORTAL Angkutan BPTD Jabar" />
+  <meta name="twitter:description" content="Pusat Komando &amp; Portal Dashboard Informasi Angkutan Jalan BPTD Kelas I Jawa Barat." />
+  <meta name="twitter:image" content="/assets/logo-hubdat.png" />
   <meta name="theme-color" content="#050507" />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="shortcut icon" href="/favicon.ico" />
@@ -147,7 +157,7 @@
               </button>
               <div class="nav__sub" id="sub-utility">
                 <ul>
-                  <li><a class="nav__subitem" href="/command-center/program/">Kinerja PSO <span class="badge badge--demo"><span class="badge-demo__dot"></span>DEMO</span></a></li>
+                  <li><a class="nav__subitem" href="/command-center/program/" data-route="/command-center/program/" data-nav>Evaluasi Kinerja <span class="badge badge--audit">ANALITIK</span></a></li>
                   <li><a class="nav__subitem" href="/command-center/laporan/">Laporan Realisasi</a></li>
                   <li><a class="nav__subitem" href="/command-center/data-master/">Data Master</a></li>
                   <li><a class="nav__subitem" href="javascript:void(0)" data-modal-target="modal-profil">Profil BPTD</a></li>
@@ -621,10 +631,10 @@
 
                   <div class="card-health__score-row">
                     <div>
-                      <p class="card-health__big-score" id="healthBigScore">88,2<span>/100</span></p>
+                      <p class="card-health__big-score" id="healthBigScore">90,6<span>/100</span></p>
                       <p class="delta delta--up" style="margin-top: 4px; font-size: 11px;">
                         <svg class="ico" style="width:11px; height:11px;"><use href="#i-arrow-ur"/></svg>
-                        <b>+5.4%</b> vs target SPM
+                        <b>90,6%</b> Indeks Terpadu (Sangat Baik)
                       </p>
                     </div>
 
@@ -645,12 +655,12 @@
                         <!-- Track Background (High Contrast Obsidian) -->
                         <path class="health-gauge__track" d="M 20,95 A 80,80 0 0,1 180,95" stroke="#232634" stroke-width="14" stroke-linecap="round"/>
                         <!-- Animated Neon Arc (88% fill -> dashoffset ~30, single continuous unbroken bar) -->
-                        <path id="healthGaugeArc" class="health-gauge__arc" d="M 20,95 A 80,80 0 0,1 180,95" stroke="url(#gaugeNeonGrad)" stroke-width="14" stroke-linecap="round" stroke-dasharray="251.36" stroke-dashoffset="30" filter="url(#neonGlow)"/>
+                        <path id="healthGaugeArc" class="health-gauge__arc" d="M 20,95 A 80,80 0 0,1 180,95" stroke="url(#gaugeNeonGrad)" stroke-width="14" stroke-linecap="round" stroke-dasharray="251.36" stroke-dashoffset="24" filter="url(#neonGlow)"/>
                         <text class="health-gauge__scale" x="18" y="114" text-anchor="middle">0%</text>
                         <text class="health-gauge__scale" x="182" y="114" text-anchor="middle">100%</text>
                       </svg>
                       <div class="card-health__gauge-center">
-                        <p class="card-health__gauge-val" id="healthGaugeVal">88%</p>
+                        <p class="card-health__gauge-val" id="healthGaugeVal">91%</p>
                         <p class="card-health__gauge-label">Indeks Terpadu</p>
                       </div>
                     </div>
@@ -677,16 +687,16 @@
                     </div>
                     <div class="health-breakdown-item">
                       <div class="card-module__detail-row">
-                        <span class="card-module__detail-key">Ketercapaian DIPA</span>
-                        <span class="card-module__detail-val card-module__detail-val--accent">91,4% (On Track)</span>
+                        <span class="card-module__detail-key">Kelulusan Uji Bus</span>
+                        <span class="card-module__detail-val card-module__detail-val--accent">94,0% (Uji Berkala)</span>
                       </div>
                       <div class="health-breakdown-bar">
-                        <div class="health-breakdown-bar__fill health-breakdown-bar__fill--dipa" style="width: 91.4%;"></div>
+                        <div class="health-breakdown-bar__fill health-breakdown-bar__fill--dipa" style="width: 94.0%; background: linear-gradient(90deg, #38bdf8, #818cf8);"></div>
                       </div>
                     </div>
                   </div>
                   <p class="card-health__desc">
-                    Berdasarkan agregasi operasional 12 terminal tipe A, 6 fasilitas UPPKB, dan 6 program DIPA BPTD Jawa Barat.
+                    Berdasarkan agregasi operasional 3 pilar: 12 terminal tipe A (SPM 87,4%), 6 fasilitas UPPKB (WIM 91,8%), dan 1.240 bus angkutan (Uji Berkala 94,0%) BPTD Jawa Barat.
                   </p>
                 </div>
 

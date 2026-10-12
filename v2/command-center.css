@@ -416,6 +416,12 @@ a {
     border: 1px solid rgba(245, 158, 11, 0.45);
 }
 
+.nav-status-audit {
+    background: rgba(62, 242, 255, 0.2);
+    color: #3ef2ff;
+    border: 1px solid rgba(62, 242, 255, 0.45);
+}
+
 .nav-status-soon {
     background: rgba(255, 255, 255, 0.05);
     color: var(--text-on-dark-muted);

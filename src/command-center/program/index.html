@@ -3,10 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Modul Monitoring Program &amp; Kinerja Transportasi Jawa Barat — Transport Command Center BPTD Kelas I Jawa Barat. Pengawasan capaian output fisik, serapan pagu anggaran, dan akuntabilitas KPI 6 program strategis.">
-    <title>Monitoring Program &amp; Kinerja — Transport Command Center | BPTD Jawa Barat</title>
+    <title>Evaluasi Kinerja &amp; Health Score — GeoPORTAL Angkutan BPTD Jabar</title>
+    <meta name="title" content="Evaluasi Kinerja &amp; Health Score — GeoPORTAL Angkutan BPTD Jabar">
+    <meta name="description" content="Modul Evaluasi Kinerja — Health Score Kondisi Layanan Angkutan &amp; Audit Kualitas Dashboard Berbasis Formula Deterministik v0.1-draft.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Evaluasi Kinerja &amp; Health Score — GeoPORTAL Angkutan BPTD Jabar">
+    <meta property="og:site_name" content="GeoPORTAL Angkutan BPTD Jabar">
+    <meta property="og:description" content="Modul Evaluasi Kinerja — Health Score Kondisi Layanan Angkutan &amp; Audit Kualitas Dashboard Berbasis Formula Deterministik v0.1-draft.">
+    <meta property="og:image" content="/assets/logo-hubdat.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Evaluasi Kinerja &amp; Health Score — GeoPORTAL Angkutan BPTD Jabar">
+    <meta name="twitter:description" content="Modul Evaluasi Kinerja — Health Score Kondisi Layanan Angkutan &amp; Audit Kualitas Dashboard Berbasis Formula Deterministik v0.1-draft.">
+    <meta name="twitter:image" content="/assets/logo-hubdat.png">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
     <link rel="stylesheet" href="../command-center.css">
     <link rel="stylesheet" href="program.css">
     <script>
@@ -28,7 +37,7 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/assets/index-CYMQcwqr.css">
     <link rel="stylesheet" href="/geoportal-rivet.css">
     <link rel="stylesheet" href="/submodule-rivet.css">
@@ -46,7 +55,7 @@
                     <div class="brand-text logo-text">
                         <span class="brand-title logo-title brand__title">GeoPORTAL</span>
                         <span class="brand-sub logo-sub brand__instansi">BPTD Jabar</span>
-                        <span class="brand__tag">Angkutan</span>
+                        <span class="brand__tag">Kinerja</span>
                     </div>
                 </a>
                 <button type="button" id="sidebarClose" class="sidebar-close-btn" aria-label="Tutup menu navigasi">
@@ -81,7 +90,7 @@
                     <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
                 </a>
                 <a href="../uppkb/" class="nav-link" data-nav-status="available" title="UPPKB / Barang — Modul Fasilitas Penimbangan &amp; Pengawasan Muatan (Tersedia)">
-                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path></svg>
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h2a1 1 0 001-1v-3a1 1 0 00-1-1H9a1 1 0 00-1 1v3z"></path></svg>
                     <span class="nav-text">UPPKB / Barang</span>
                     <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
                 </a>
@@ -100,10 +109,10 @@
                     <span class="nav-text">Early Warning</span>
                     <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
                 </a>
-                <a href="./" class="nav-link is-active" aria-current="page" data-nav-status="demo" title="Program &amp; Kinerja — Sistem Monitoring Program Strategis &amp; Akuntabilitas KPI (Demo Data)">
+                <a href="./" class="nav-link is-active" aria-current="page" data-nav-status="audit" title="Evaluasi Kinerja — Modul Evaluasi Health Score &amp; Kualitas Kinerja (Analitik)">
                     <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
-                    <span class="nav-text">Program &amp; Kinerja</span>
-                    <span class="nav-status-badge nav-status-demo" data-status="DEMO">Demo</span>
+                    <span class="nav-text">Evaluasi Kinerja</span>
+                    <span class="nav-status-badge nav-status-audit" data-status="ANALITIK">Analitik</span>
                 </a>
                 <a href="../laporan/" class="nav-link" data-nav-status="available" title="Laporan — Modul Laporan &amp; Repositori Dokumen Eksekutif (Tersedia)">
                     <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
@@ -135,8 +144,8 @@
                         <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                     </button>
                     <div class="header-title-block">
-                        <h1 class="header-title">Transport Command Center</h1>
-                        <p class="header-sub">Sistem Monitoring Program &amp; Kinerja Transportasi — Jawa Barat</p>
+                        <h1 class="header-title">Evaluasi Kinerja &amp; Health Score</h1>
+                        <p class="header-sub">Audit Kinerja BPTD Kelas I Jawa Barat — Formula Deterministik v0.1-draft</p>
                     </div>
                 </div>
 
@@ -150,353 +159,330 @@
                     </div>
 
                     <div class="api-status" role="status" aria-live="polite">
-                        <span id="apiStatusOk" class="api-status-pill api-status-ok">
-                            <span class="api-dot" aria-hidden="true"></span>
-                            Data Terverifikasi BPTD
+                        <span class="audit-badge audit-badge--cyan" style="font-size: 11px;">
+                            Indeks Turunan Analitik
                         </span>
                     </div>
                 </div>
             </header>
 
             <div class="app-content">
-                <!-- Module Header & Badges -->
-                <div class="dash-head">
-                    <div class="dash-head-text">
-                        <h2 class="dash-title">Sistem Monitoring Program &amp; Kinerja Transportasi</h2>
-                        <p class="dash-desc">Pengawasan capaian output fisik, serapan anggaran, dan akuntabilitas KPI 6 program strategis BPTD Kelas I Jawa Barat</p>
-                    </div>
-                    <div class="dash-head-meta">
-                        <span class="status-pill status-pill-active" title="Tahun Anggaran Berjalan">
-                            <span class="status-dot status-dot-active" aria-hidden="true"></span>
-                            TA 2025 / 2026
-                        </span>
-                        <span class="status-pill status-pill-active" title="Realisasi Serapan Anggaran">
-                            <span class="status-dot status-dot-active" aria-hidden="true"></span>
-                            91,4% SERAPAN ANGGARAN
-                        </span>
-                        <span class="status-pill status-pill-active" title="Progres Fisik Rata-rata">
-                            <span class="status-dot status-dot-active" aria-hidden="true"></span>
-                            93,6% OUTPUT FISIK
-                        </span>
-                        <span class="status-pill" title="Status Agregat Program">
-                            <span class="status-dot" style="background:#10b981;" aria-hidden="true"></span>
-                            STATUS: ON TRACK
-                        </span>
-                    </div>
-                </div>
+                <div class="audit-layout">
 
-                <!-- 4 Executive KPI Cards -->
-                <div class="kpi-grid">
-                    <div class="card kpi-card">
-                        <div class="kpi-icon-wrap" style="background:#e0f2fe; color:#0284c7;" aria-hidden="true">
-                            <svg class="kpi-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        </div>
-                        <div class="kpi-content">
-                            <span class="kpi-label">Pagu Anggaran Program</span>
-                            <div class="kpi-value-row">
-                                <span id="kpiTotalPagu" class="kpi-value">Rp 33,3 M</span>
+                    <!-- ================= BANNER MODE WAJIB (PRD Bagian 1, 3, 12) ================= -->
+                    <!-- ================= BANNER MODE OPERASIONAL ================= -->
+                    <section class="audit-banner-mode" aria-label="Pemberitahuan Status Mode">
+                        <div class="audit-banner-mode__left">
+                            <span class="audit-banner-mode__badge" style="background:rgba(212,255,63,0.18); color:var(--audit-lime); border-color:rgba(212,255,63,0.45);">
+                                <span>⚡</span> PENILAIAN OPERASIONAL AKTIF
+                            </span>
+                            <div class="audit-banner-mode__text">
+                                <strong>Indeks turunan analitik 3 pilar operasional (A1, B1, C1).</strong>
+                                Health Score dihitung deterministik dari pemenuhan SPM Terminal (87,4%), kepatuhan WIM (91,8%), dan kelulusan uji bus (94,0%). Komponen DIPA dikeluarkan karena berstatus DEMO.
                             </div>
-                            <span id="kpiTotalPaguSub" class="kpi-sub">Total alokasi 6 program strategis BPTD</span>
                         </div>
-                    </div>
+                        <div class="audit-banner-mode__tag">
+                            Spesifikasi: v0.1-draft (12 Okt 2026)
+                        </div>
+                    </section>
 
-                    <div class="card kpi-card">
-                        <div class="kpi-icon-wrap" style="background:#dcfce7; color:#16a34a;" aria-hidden="true">
-                            <svg class="kpi-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        </div>
-                        <div class="kpi-content">
-                            <span class="kpi-label">Realisasi Keuangan</span>
-                            <div class="kpi-value-row">
-                                <span id="kpiRealisasiKeuangan" class="kpi-value text-green">91,4%</span>
+                    <!-- ================= PANEL 5.1: RINGKASAN KINERJA EKSEKUTIF ================= -->
+                    <section class="audit-panel" id="panel-summary" aria-labelledby="title-summary">
+                        <div class="audit-panel__header">
+                            <div class="audit-panel__title-wrap">
+                                <span class="audit-panel__num">Panel 5.1</span>
+                                <h3 class="audit-panel__title" id="title-summary">Ringkasan Kinerja Eksekutif</h3>
+                                <p class="audit-panel__desc">Status agregasi Health Score kondisi simpul dan layanan transportasi BPTD Jabar.</p>
                             </div>
-                            <span id="kpiRealisasiKeuanganSub" class="kpi-sub">Rp 30,44 M terserap akuntabel</span>
-                        </div>
-                    </div>
-
-                    <div class="card kpi-card">
-                        <div class="kpi-icon-wrap" style="background:#fef3c7; color:#d97706;" aria-hidden="true">
-                            <svg class="kpi-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                        </div>
-                        <div class="kpi-content">
-                            <span class="kpi-label">Progres Fisik Agregat</span>
-                            <div class="kpi-value-row">
-                                <span id="kpiProgresFisik" class="kpi-value text-amber">93,6%</span>
+                            <div class="audit-panel__meta">
+                                <span class="audit-badge audit-badge--lime" id="summaryOverallStatus">SANGAT BAIK</span>
+                                <span class="audit-badge audit-badge--dim">YTD 2026</span>
                             </div>
-                            <span id="kpiProgresFisikSub" class="kpi-sub">Realisasi volume output fisik program</span>
                         </div>
-                    </div>
 
-                    <div class="card kpi-card">
-                        <div class="kpi-icon-wrap" style="background:#ede9fe; color:#7c3aed;" aria-hidden="true">
-                            <svg class="kpi-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
-                        </div>
-                        <div class="kpi-content">
-                            <span class="kpi-label">Status Program</span>
-                            <div class="kpi-value-row">
-                                <span id="kpiTotalPrograms" class="kpi-value text-purple">6 Program</span>
-                            </div>
-                            <span id="kpiTotalProgramsSub" class="kpi-sub">100% On Track / Sesuai Rencana</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Spatial Distribution Map Card -->
-                <section class="card program-map-card" aria-labelledby="mapHeading">
-                    <div class="program-map-head">
-                        <div>
-                            <h3 id="mapHeading" class="section-title">Peta Sebaran Program Strategis BPTD Jawa Barat</h3>
-                            <p class="section-sub">Sebaran geografis 6 program strategis perhubungan darat dengan capaian progres fisik dan lokus kegiatan</p>
-                        </div>
-                        <div class="program-map-actions">
-                            <button type="button" id="btnFocusJabar" class="btn-map-control" title="Pusatkan peta ke wilayah Jawa Barat">
-                                <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-                                Fokus Jabar
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Bidang Filter Chips -->
-                    <div class="bidang-filter-bar">
-                        <span class="bidang-filter-title">Filter Bidang:</span>
-                        <div class="bidang-toggle-group" role="group" aria-label="Filter Bidang Program">
-                            <button type="button" id="filterAllBidang" class="bidang-chip is-active" data-bidang="ALL">
-                                <span class="chip-dot chip-dot-all" aria-hidden="true"></span>
-                                Semua Bidang (6)
-                            </button>
-                            <button type="button" id="filterAngkutan" class="bidang-chip" data-bidang="ANGKUTAN">
-                                <span class="chip-dot chip-dot-angkutan" aria-hidden="true"></span>
-                                Angkutan Jalan (2)
-                            </button>
-                            <button type="button" id="filterLalin" class="bidang-chip" data-bidang="LALIN">
-                                <span class="chip-dot chip-dot-lalin" aria-hidden="true"></span>
-                                Lalu Lintas Jalan (2)
-                            </button>
-                            <button type="button" id="filterSarpras" class="bidang-chip" data-bidang="SARPRAS">
-                                <span class="chip-dot chip-dot-sarpras" aria-hidden="true"></span>
-                                Sarana &amp; Prasarana (2)
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Map Canvas Container -->
-                    <div id="programMap" class="program-map" role="region" aria-label="Peta Interaktif Program Strategis Jawa Barat"></div>
-                </section>
-
-                <!-- Analytics Tabs Card -->
-                <section class="card program-analytics-card" aria-labelledby="analyticsHeading">
-                    <div class="section-header-compact">
-                        <h3 id="analyticsHeading" class="section-title">Analitik &amp; Direktori Program Kerja BPTD Jabar</h3>
-                        <p class="section-sub">Eksplorasi direktori 6 program strategis, capaian registri KPI akuntabilitas, dan tren realisasi triwulanan</p>
-                    </div>
-
-                    <!-- Tab Buttons -->
-                    <div class="program-tabs" role="tablist" aria-label="Navigasi Tab Analitik Program">
-                        <button type="button" id="btnTabPrograms" class="tab-btn is-active" role="tab" aria-selected="true" aria-controls="panelPrograms" tabindex="0">
-                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
-                            Direktori 6 Program Strategis &amp; Realisasi
-                            <span class="tab-count-badge" id="badgeTabProgramCount">6 Program</span>
-                        </button>
-                        <button type="button" id="btnTabKpi" class="tab-btn" role="tab" aria-selected="false" aria-controls="panelKpi" tabindex="-1">
-                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                            Registri KPI &amp; Capaian Kinerja
-                            <span class="tab-count-badge">6 KPI</span>
-                        </button>
-                        <button type="button" id="btnTabQuarterly" class="tab-btn" role="tab" aria-selected="false" aria-controls="panelQuarterly" tabindex="-1">
-                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                            Realisasi Triwulanan (Q1–Q4)
-                            <span class="tab-count-badge">4 Triwulan</span>
-                        </button>
-                    </div>
-
-                    <!-- Panel 1: Direktori 6 Program Strategis -->
-                    <div id="panelPrograms" class="program-tabpanel" role="tabpanel" aria-labelledby="btnTabPrograms">
-                        <div class="table-toolbar">
-                            <div class="table-toolbar-left">
-                                <div class="search-input-wrap">
-                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                                    <input type="text" id="searchProgram" class="search-input" placeholder="Cari program, bidang, indikator, atau lokasi fokus..." aria-label="Cari Program Kerja">
+                        <div class="summary-grid">
+                            <div class="summary-card">
+                                <span class="summary-card__label">Skor Keseluruhan (Health Score)</span>
+                                <div class="summary-card__value" id="summaryOverallScore">
+                                    <span class="summary-card__value--score">90,6</span><span style="font-size:16px; color:var(--audit-dim);">/100</span>
                                 </div>
-                                <select id="filterSelectBidang" class="select-filter" aria-label="Filter Bidang Program">
-                                    <option value="ALL">Semua Bidang (3 Bidang)</option>
-                                    <option value="ANGKUTAN">Angkutan Jalan</option>
-                                    <option value="LALIN">Lalu Lintas Jalan</option>
-                                    <option value="SARPRAS">Sarana &amp; Prasarana</option>
-                                </select>
-                                <select id="filterSelectStatus" class="select-filter" aria-label="Filter Status Pelaksanaan">
-                                    <option value="ALL">Semua Status (On Track)</option>
-                                    <option value="On Track">On Track Saja</option>
-                                </select>
+                                <span class="summary-card__sub">Dihitung dari agregasi berbobot 3 pilar operasional: A1 (40%), B1 (35%), dan C1 (25%).</span>
                             </div>
-                            <span id="programCount" class="table-count-info">Menampilkan 6 dari 6 program</span>
+
+                            <div class="summary-card">
+                                <span class="summary-card__label">Periode Waktu Data</span>
+                                <div class="summary-card__value" id="summaryPeriod">YTD 2026</div>
+                                <span class="summary-card__sub">Data operasional konsolidasi Januari s.d. Maret/Oktober 2026.</span>
+                            </div>
+
+                            <div class="summary-card">
+                                <span class="summary-card__label">Tanggal Pemutakhiran Data</span>
+                                <div class="summary-card__value" style="font-size:18px;" id="summaryUpdated">31 Maret 2026 / 12 Okt 2026</div>
+                                <span class="summary-card__sub">Snapshot data produksi terverifikasi dan tanggal audit PRD.</span>
+                            </div>
+
+                            <div class="summary-card">
+                                <span class="summary-card__label">Lokasi Komputasi Skor</span>
+                                <div class="summary-card__value" style="font-size:16px;" id="summaryLocation">client-side analytical runtime</div>
+                                <span class="summary-card__sub">Menunggu konfirmasi arsitektur komputasi backend produksi (K11).</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ================= PANEL 5.2: CAPAIAN 3 PILAR KINERJA ================= -->
+                    <section class="audit-panel" id="panel-pillars" aria-labelledby="title-pillars">
+                        <div class="audit-panel__header">
+                            <div class="audit-panel__title-wrap">
+                                <span class="audit-panel__num">Panel 5.2</span>
+                                <h3 class="audit-panel__title" id="title-pillars">Capaian 3 Pilar Kinerja Operasional</h3>
+                                <p class="audit-panel__desc">Breakdown bobot awal, normalisasi pilar, cakupan unit, dan status data.</p>
+                            </div>
+                            <div class="audit-panel__meta">
+                                <span class="audit-badge audit-badge--cyan">Total Bobot: 100%</span>
+                            </div>
                         </div>
 
-                        <div class="table-wrap">
-                            <table class="program-table" aria-label="Tabel Direktori Program Strategis BPTD Jawa Barat">
+                        <div class="pillars-grid" id="pillarsGrid">
+                            <!-- Diisi via program.js -->
+                        </div>
+
+                        <div class="pillar-callout">
+                            <svg class="pillar-callout__icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <div>
+                                <strong>Catatan Penataan Pilar (PRD Bagian 6.1 &amp; K17):</strong>
+                                Komponen Realisasi Anggaran DIPA (Pilar D / Indikator D1) <em>secara tegas dikeluarkan</em> dari perhitungan Health Score karena data DIPA di sistem masih berstatus DEMO dan mengukur serapan anggaran administratif, bukan mutu layanan fisik. Ketiga pilar operasional (Layanan Terminal 40%, Kepatuhan Barang 35%, Pengawasan Angkutan 25%) telah dinormalisasi ulang menjadi 100%.
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ================= PANEL 5.3: TABEL INDIKATOR KINERJA ================= -->
+                    <section class="audit-panel" id="panel-indicators" aria-labelledby="title-indicators">
+                        <div class="audit-panel__header">
+                            <div class="audit-panel__title-wrap">
+                                <span class="audit-panel__num">Panel 5.3</span>
+                                <h3 class="audit-panel__title" id="title-indicators">Tabel Indikator Kinerja Operasional</h3>
+                                <p class="audit-panel__desc">5 indikator operasional dengan formula, nilai aktual produksi, target acuan, dan status flag.</p>
+                            </div>
+                            <div class="audit-panel__meta">
+                                <span class="audit-badge audit-badge--dim">5 Indikator</span>
+                            </div>
+                        </div>
+
+                        <div class="audit-table-wrap">
+                            <table class="audit-table" aria-label="Tabel Indikator Kinerja">
                                 <thead>
                                     <tr>
-                                        <th class="th-center" style="width: 44px;">No</th>
-                                        <th style="min-width: 220px;">ID &amp; Nama Program</th>
-                                        <th style="width: 140px;">Bidang Unit</th>
-                                        <th style="width: 130px;">Pagu Anggaran</th>
-                                        <th style="width: 130px;">Realisasi Keuangan</th>
-                                        <th style="min-width: 200px;">Target &amp; Output Fisik</th>
-                                        <th style="min-width: 150px;">Progres Fisik</th>
-                                        <th class="th-center" style="width: 90px;">Status</th>
-                                        <th class="th-center" style="width: 90px;">Aksi</th>
+                                        <th>ID</th>
+                                        <th>Pilar</th>
+                                        <th>Nama Indikator &amp; Formula</th>
+                                        <th>Nilai Aktual</th>
+                                        <th>Target Acuan</th>
+                                        <th>Skor Normalisasi</th>
+                                        <th>Sumber Data</th>
+                                        <th>Update Terakhir</th>
+                                        <th>Status Flag</th>
                                     </tr>
                                 </thead>
-                                <tbody id="programTableBody">
-                                    <!-- Populated dynamically via program.js -->
+                                <tbody id="indicatorsTableBody">
+                                    <!-- Diisi via program.js -->
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+                    </section>
 
-                    <!-- Panel 2: Registri KPI & Capaian Kinerja -->
-                    <div id="panelKpi" class="program-tabpanel" role="tabpanel" aria-labelledby="btnTabKpi" hidden>
-                        <div class="table-wrap">
-                            <table class="program-table" aria-label="Tabel Registri KPI &amp; Capaian Kinerja">
+                    <!-- ================= PANEL 5.4: REGISTRI DISKREPANSI DATA ================= -->
+                    <section class="audit-panel" id="panel-discrepancies" aria-labelledby="title-discrepancies">
+                        <div class="audit-panel__header">
+                            <div class="audit-panel__title-wrap">
+                                <span class="audit-panel__num">Panel 5.4</span>
+                                <h3 class="audit-panel__title" id="title-discrepancies">Registri Diskrepansi Data Publik</h3>
+                                <p class="audit-panel__desc">Daftar selisih angka dan inkonsistensi yang ditemukan pada halaman beranda tanpa pemilihan sepihak (FR-04).</p>
+                            </div>
+                            <div class="audit-panel__meta">
+                                <span class="audit-badge audit-badge--amber">4 Diskrepansi Tercatat</span>
+                            </div>
+                        </div>
+
+                        <div class="audit-table-wrap">
+                            <table class="audit-table" aria-label="Tabel Diskrepansi Data">
                                 <thead>
                                     <tr>
-                                        <th class="th-center" style="width: 70px;">Kode</th>
-                                        <th style="min-width: 220px;">Indikator Kinerja Utama (KPI)</th>
-                                        <th style="width: 130px;">Bidang</th>
-                                        <th style="min-width: 200px;">Formula &amp; Definisi Operasional</th>
-                                        <th class="th-center" style="width: 100px;">Target</th>
-                                        <th class="th-center" style="width: 130px;">Realisasi</th>
-                                        <th class="th-center" style="width: 90px;">Deviasi</th>
-                                        <th class="th-center" style="width: 100px;">Status</th>
-                                        <th style="min-width: 220px;">Dasar Regulasi &amp; Akuntabilitas</th>
+                                        <th>ID</th>
+                                        <th>Objek Data &amp; Catatan Diskrepansi</th>
+                                        <th>Nilai A (Publik / Headline)</th>
+                                        <th>Nilai B (Pembanding / Kalkulasi)</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
-                                <tbody id="kpiTableBody">
-                                    <!-- Populated dynamically via program.js -->
+                                <tbody id="discrepanciesTableBody">
+                                    <!-- Diisi via program.js -->
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+                    </section>
 
-                    <!-- Panel 3: Realisasi Triwulanan (Q1–Q4) -->
-                    <div id="panelQuarterly" class="program-tabpanel" role="tabpanel" aria-labelledby="btnTabQuarterly" hidden>
-                        <div class="table-wrap">
-                            <table class="program-table" aria-label="Tabel Realisasi Triwulanan Q1–Q4">
+                    <!-- ================= PANEL 5.5: INPUT BELUM TERSEDIA (K1–K17) ================= -->
+                    <section class="audit-panel" id="panel-missing-inputs" aria-labelledby="title-missing-inputs">
+                        <div class="audit-panel__header">
+                            <div class="audit-panel__title-wrap">
+                                <span class="audit-panel__num">Panel 5.5</span>
+                                <h3 class="audit-panel__title" id="title-missing-inputs">Pelacak Input Belum Tersedia (17 Item Konfirmasi K1–K17)</h3>
+                                <p class="audit-panel__desc">Tracking lengkap item konfirmasi yang menghalangi penerbitan skor resmi produksi (PRD Bagian 13).</p>
+                            </div>
+                            <div class="audit-panel__meta">
+                                <span class="audit-badge audit-badge--amber">17 CONFIRM</span>
+                            </div>
+                        </div>
+
+                        <div class="table-filter-bar">
+                            <input type="text" id="missingInputsFilter" class="table-filter-input" placeholder="🔍 Cari item konfirmasi, dampak, atau pemilik data..." aria-label="Filter item konfirmasi">
+                            <span class="cell-muted">Menampilkan seluruh item K1 s.d. K17</span>
+                        </div>
+
+                        <div class="audit-table-wrap">
+                            <table class="audit-table" aria-label="Tabel Item Konfirmasi K1 sampai K17">
                                 <thead>
                                     <tr>
-                                        <th class="th-center" style="width: 70px;">Triwulan</th>
-                                        <th style="width: 140px;">Periode Pelaksanaan</th>
-                                        <th class="th-center" style="width: 110px;">Target Keuangan</th>
-                                        <th style="min-width: 170px;">Realisasi Keuangan</th>
-                                        <th class="th-center" style="width: 100px;">Target Fisik</th>
-                                        <th class="th-center" style="width: 110px;">Realisasi Fisik</th>
-                                        <th style="min-width: 150px;">Progres Track</th>
-                                        <th class="th-center" style="width: 90px;">Status</th>
-                                        <th style="min-width: 250px;">Catatan Pelaksanaan &amp; Output Lapangan</th>
+                                        <th>ID</th>
+                                        <th>Item Konfirmasi &amp; Temuan Terbuka</th>
+                                        <th>Dampak Jika Belum Terjawab</th>
+                                        <th>Penanggung Jawab / Pemilik Data</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
-                                <tbody id="quarterlyTableBody">
-                                    <!-- Populated dynamically via program.js -->
+                                <tbody id="missingInputsTableBody">
+                                    <!-- Diisi via program.js -->
                                 </tbody>
                             </table>
                         </div>
-                    </div>
-                </section>
+                    </section>
+
+                    <!-- ================= PANEL 5.6: EVALUASI KUALITAS DASHBOARD ================= -->
+                    <section class="audit-panel" id="panel-quality-audit" aria-labelledby="title-quality-audit">
+                        <div class="audit-panel__header">
+                            <div class="audit-panel__title-wrap">
+                                <span class="audit-panel__num">Panel 5.6</span>
+                                <h3 class="audit-panel__title" id="title-quality-audit">Evaluasi Kualitas Dashboard (6 Kriteria Rubrik 1–5)</h3>
+                                <p class="audit-panel__desc">Penilaian formal dashboard eksisting berdasarkan rubrik PRD Bagian 9 per snapshot audit 12 Oktober 2026.</p>
+                            </div>
+                            <div class="audit-panel__meta">
+                                <span class="audit-badge audit-badge--cyan">Audit: 12 Oktober 2026</span>
+                            </div>
+                        </div>
+
+                        <div class="quality-grid" id="qualityGrid">
+                            <!-- Diisi via program.js -->
+                        </div>
+
+                        <div style="font-size:12px; color:var(--audit-dim); padding-top:6px;">
+                            <em>* Ringkasan audit: Belum ada kriteria yang mencapai skor 4 atau 5. Seluruh temuan bersifat snapshot hingga rumus dan audit data mentah disepakati.</em>
+                        </div>
+                    </section>
+
+                    <!-- ================= PANEL 5.7: METODOLOGI & TRANSPARANSI RUMUS ================= -->
+                    <section class="audit-panel" id="panel-methodology" aria-labelledby="title-methodology">
+                        <div class="audit-panel__header">
+                            <div class="audit-panel__title-wrap">
+                                <span class="audit-panel__num">Panel 5.7</span>
+                                <h3 class="audit-panel__title" id="title-methodology">Metodologi &amp; Transparansi Rumus</h3>
+                                <p class="audit-panel__desc">Formulasi matematis deterministik, aturan agregasi, dan ambang batas mutu (PRD Bagian 6).</p>
+                            </div>
+                            <div class="audit-panel__meta">
+                                <span class="audit-badge audit-badge--amber">Status: Draft Terkunci</span>
+                            </div>
+                        </div>
+
+                        <div class="methodology-box">
+                            <h4 style="margin:0 0 8px 0; color:var(--audit-text); font-size:14px;">1. Rumus Normalisasi Nilai Indikator (PRD Bagian 6.3)</h4>
+                            <p style="margin:0; font-size:12.5px; color:var(--audit-muted); line-height:1.5;">
+                                Setiap indikator dinormalisasi ke skala 0 – 100 dengan batas bawah dan target acuan:
+                            </p>
+                            <div class="formula-code">
+                                skor = min(100, max(0, (nilai - batas_bawah) / (target - batas_bawah) * 100))
+                            </div>
+                            <p style="margin:0; font-size:12px; color:var(--audit-dim);">
+                                Aturan wajib: Jika target atau batas bawah belum dikonfirmasi (CONFIRM), skor wajib bernilai <code>null</code> dan flag <code>TARGET_UNCONFIRMED</code> ditambahkan.
+                            </p>
+                        </div>
+
+                        <div class="methodology-box">
+                            <h4 style="margin:0 0 8px 0; color:var(--audit-text); font-size:14px;">2. Tingkat Agregasi &amp; Aturan Coverage (PRD Bagian 6.4 &amp; 6.5)</h4>
+                            <ul style="margin:0; padding-left:18px; font-size:12.5px; color:var(--audit-muted); line-height:1.6;">
+                                <li><strong>Unit ke Indikator:</strong> Rata-rata tidak berbobot dari unit yang terdata (CONFIRM metode volume K8).</li>
+                                <li><strong>Indikator ke Pilar:</strong> Rata-rata berbobot dari indikator aktif dalam pilar.</li>
+                                <li><strong>Pilar ke Skor Keseluruhan:</strong> Rata-rata berbobot dari 3 pilar operasional aktif (A: 40%, B: 35%, C: 25%).</li>
+                                <li><strong>Threshold Coverage:</strong> Minimal 80% unit aktif per indikator. Bila di bawah ambang, status = <code>DATA_TIDAK_LENGKAP</code> dan skor = <code>null</code>.</li>
+                            </ul>
+                        </div>
+
+                        <div class="methodology-box" style="margin-bottom:0;">
+                            <h4 style="margin:0 0 8px 0; color:var(--audit-text); font-size:14px;">3. Standar Status Band Mutu Layanan (PRD Bagian 6.6)</h4>
+                            <div class="band-grid">
+                                <div class="band-pill" style="border-left: 4px solid #4ade80;">
+                                    <span class="band-pill__title" style="color:#4ade80;">Sangat Baik</span>
+                                    <span class="band-pill__range">&ge; 90,0</span>
+                                </div>
+                                <div class="band-pill" style="border-left: 4px solid #38bdf8;">
+                                    <span class="band-pill__title" style="color:#38bdf8;">Baik</span>
+                                    <span class="band-pill__range">80,0 &ndash; 89,9</span>
+                                </div>
+                                <div class="band-pill" style="border-left: 4px solid #f59e0b;">
+                                    <span class="band-pill__title" style="color:#f59e0b;">Perlu Perhatian</span>
+                                    <span class="band-pill__range">70,0 &ndash; 79,9</span>
+                                </div>
+                                <div class="band-pill" style="border-left: 4px solid #ef4444;">
+                                    <span class="band-pill__title" style="color:#ef4444;">Kritis</span>
+                                    <span class="band-pill__range">&lt; 70,0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ================= PANEL 5.8: RIWAYAT RUN & EKSPOR AUDIT JSON ================= -->
+                    <section class="audit-panel" id="panel-run-history" aria-labelledby="title-run-history">
+                        <div class="audit-panel__header">
+                            <div class="audit-panel__title-wrap">
+                                <span class="audit-panel__num">Panel 5.8</span>
+                                <h3 class="audit-panel__title" id="title-run-history">Riwayat Run &amp; Ekspor Audit JSON</h3>
+                                <p class="audit-panel__desc">Ekspor payload deterministik yang mematuhi kontrak JSON output PRD Bagian 8 (FR-12).</p>
+                            </div>
+                            <div class="audit-panel__meta">
+                                <span class="audit-badge audit-badge--cyan">FR-12 Validated</span>
+                            </div>
+                        </div>
+
+                        <div class="run-meta-row">
+                            <div class="run-meta-items">
+                                <span>Spesifikasi: <strong id="runVersion">v0.1-draft</strong></span>
+                                <span>Mode: <strong id="runMode">dry_run</strong></span>
+                                <span>Waktu Komputasi: <strong id="runComputedAt">-</strong></span>
+                                <span>Engine: <strong id="runLocation">client-side</strong></span>
+                            </div>
+
+                            <div class="export-btn-group">
+                                <button type="button" id="btnToggleJson" class="btn-audit btn-audit--secondary">
+                                    Lihat Raw JSON Output
+                                </button>
+                                <button type="button" id="btnExportJson" class="btn-audit">
+                                    <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                                    Unduh Output JSON (Skema Bagian 8)
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="jsonPreviewWrap" class="json-preview-wrap" style="display: none;">
+                            <pre id="jsonPreviewCode" class="json-preview-code"></pre>
+                        </div>
+                    </section>
+
+                </div>
             </div>
         </main>
     </div>
 
-    <!-- ================= DETAIL MODAL DIALOG ================= -->
-    <div id="modalBackdrop" class="modal-backdrop" hidden></div>
-    <div id="programDetailModal" class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalProgramTitle" aria-describedby="modalProgramSub" hidden>
-        <div class="modal-header">
-            <div class="modal-title-group">
-                <div class="modal-badge-row">
-                    <span id="modalBidangBadge" class="bidang-badge bidang-angkutan">Angkutan Jalan</span>
-                    <span id="modalCodeBadge" class="code-pill">PRG-01</span>
-                    <span id="modalStatusBadge" class="badge-status-on-track">ON TRACK</span>
-                </div>
-                <h3 id="modalProgramTitle" class="modal-title">Nama Program Strategis</h3>
-                <p id="modalProgramSub" class="modal-sub">Lokasi Fokus — Wilayah Jawa Barat</p>
-            </div>
-            <button type="button" id="modalCloseBtn" class="modal-close-btn" aria-label="Tutup jendela rincian program">
-                <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-        </div>
-
-        <div class="modal-body">
-            <!-- Deskripsi Program -->
-            <div class="modal-section">
-                <h4 class="modal-section-title">Deskripsi &amp; Sasaran Program</h4>
-                <p id="modalDescBox" class="modal-desc-box">—</p>
-            </div>
-
-            <!-- Ringkasan Finansial & Output Fisik -->
-            <div class="modal-section">
-                <h4 class="modal-section-title">Realisasi Anggaran &amp; Output Fisik</h4>
-                <div class="modal-stats-grid">
-                    <div class="modal-stat-card">
-                        <span class="modal-stat-label">Pagu Anggaran</span>
-                        <p id="modalPaguVal" class="modal-stat-val text-blue font-mono">—</p>
-                        <span class="modal-stat-sub">DIPA TA Berjalan</span>
-                    </div>
-                    <div class="modal-stat-card">
-                        <span class="modal-stat-label">Realisasi Keuangan</span>
-                        <p id="modalRealisasiKeuanganVal" class="modal-stat-val text-green font-mono">—</p>
-                        <span id="modalPersenKeuanganVal" class="modal-stat-sub">0% Terserap</span>
-                    </div>
-                    <div class="modal-stat-card">
-                        <span class="modal-stat-label">Progres Fisik</span>
-                        <p id="modalProgresFisikVal" class="modal-stat-val text-amber font-mono">—</p>
-                        <span id="modalRealisasiFisikSub" class="modal-stat-sub">Target Volume</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- KPI Utama & Capaian -->
-            <div class="modal-section">
-                <h4 class="modal-section-title">Indikator Kinerja Utama (KPI) &amp; Akuntabilitas</h4>
-                <div class="modal-stats-grid">
-                    <div class="modal-stat-card" style="grid-column: span 2;">
-                        <span class="modal-stat-label">Indikator KPI Terkait</span>
-                        <p id="modalKpiTitle" class="modal-stat-val text-blue" style="font-size:0.875rem; font-weight:600;">—</p>
-                        <span class="modal-stat-sub">Formula Pengukuran Kinerja Hubdat</span>
-                    </div>
-                    <div class="modal-stat-card">
-                        <span class="modal-stat-label">Status &amp; Capaian</span>
-                        <p id="modalKpiStatusVal" class="modal-stat-val text-green">—</p>
-                        <span id="modalKpiActualVal" class="modal-stat-sub">Realisasi vs Target</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Breakdown Sub-Kegiatan -->
-            <div class="modal-section">
-                <h4 class="modal-section-title">Rincian Paket &amp; Sub-Kegiatan Operasional</h4>
-                <div id="modalSubKegiatanList" class="modal-subkegiatan-list">
-                    <!-- Populated dynamically via program.js -->
-                </div>
-            </div>
-
-            <!-- Catatan Evaluasi & Dampak Lapangan -->
-            <div class="modal-section">
-                <h4 class="modal-section-title">Evaluasi Pelaksanaan &amp; Dampak Layanan</h4>
-                <p id="modalEvaluationBox" class="modal-evaluation-box">—</p>
-            </div>
-        </div>
-
-        <div class="modal-footer">
-            <button type="button" id="modalFocusMapBtn" class="btn btn-primary">Fokus Pada Peta</button>
-            <button type="button" id="modalCloseFooterBtn" class="btn btn-secondary">Tutup</button>
-        </div>
-    </div>
-
     <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-    <script>
-        if (typeof L === 'undefined') {
-            document.write('<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"><\/script>');
-        }
-    </script>
     <script src="/submodule-bridge.js"></script>
+    <script src="kinerja-engine.js"></script>
     <script src="program.js"></script>
 </body>
 </html>

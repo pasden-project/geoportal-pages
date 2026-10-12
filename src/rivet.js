@@ -1522,7 +1522,7 @@
   }
 
   function renderHealthScoreGauge(score) {
-    var s = (typeof score === 'number') ? score : 88.2;
+    var s = (typeof score === 'number') ? score : 90.6;
     var arcEl = document.getElementById('healthGaugeArc');
     var valEl = document.getElementById('healthGaugeVal');
     var scoreEl = document.getElementById('healthBigScore');
@@ -1573,7 +1573,7 @@
     renderTerminalRanking(currentTerminalMetric);
     renderTrayekRanking(currentTrayekCategory);
     renderBangkitanTarikan();
-    renderHealthScoreGauge(88.2);
+    renderHealthScoreGauge(90.6);
   }
 
   // Backward compatibility wrapper
@@ -1903,6 +1903,9 @@
         if (typeof moveNavPill === 'function' && link.classList.contains('nav__item')) {
           moveNavPill(link);
         }
+        try {
+          link.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        } catch (_) {}
       } else {
         link.classList.remove('is-active');
       }
@@ -1939,17 +1942,8 @@
         }
         var embedUrl = pathname + (urlObj.search ? urlObj.search + '&embed=1' : '?embed=1');
         frame.dataset.currentRoute = embedUrl;
-        if (frame.getAttribute('src') !== embedUrl) {
-          if (frame.contentWindow && frame.getAttribute('src')) {
-            try {
-              frame.contentWindow.location.replace(embedUrl);
-            } catch (_) {
-              frame.setAttribute('src', embedUrl);
-            }
-          } else {
-            frame.setAttribute('src', embedUrl);
-          }
-        }
+        frame.setAttribute('src', embedUrl);
+        frame.src = embedUrl;
       }
       if (pushState && window.location.pathname !== pathname) {
         window.history.pushState({ path: pathname }, '', pathname);
@@ -1967,7 +1961,7 @@
       var href = link.getAttribute('href');
       if (!href || href.startsWith('javascript:') || href === '#') return;
 
-      if (href.startsWith('/command-center/') || href === '/' || href === './' || href.startsWith('./')) {
+      if (href.startsWith('/command-center/') || href === '/' || href === './' || href.startsWith('./') || href.startsWith('../')) {
         e.preventDefault();
         navigateTo(href, true);
         if (window.innerWidth <= 1024) {

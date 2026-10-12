@@ -106,6 +106,7 @@ const PROGRAM_FILES = [
     "index.html",
     "program.css",
     "program.js",
+    "kinerja-engine.js",
 ];
 const LAPORAN_SOURCE_DIR = resolve(SOURCE_DIR, "laporan");
 const LAPORAN_OUT_DIR = resolve(OUT_DIR, "laporan");
