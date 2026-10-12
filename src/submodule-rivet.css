@@ -705,6 +705,34 @@ h1, h2, h3, h4, h5, h6,
   border: 1px solid rgba(255, 190, 77, 0.3) !important;
 }
 
+.badge--demo {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4.5px !important;
+  background: linear-gradient(135deg, rgba(255, 190, 77, 0.2) 0%, rgba(255, 140, 0, 0.12) 100%) !important;
+  color: #ffbe4d !important;
+  border: 1px solid rgba(255, 190, 77, 0.45) !important;
+  border-radius: 999px !important;
+  padding: 1.5px 7px !important;
+  font-family: 'JetBrains Mono', 'Poppins', monospace !important;
+  font-size: 9px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em !important;
+  box-shadow: 0 0 10px rgba(255, 190, 77, 0.15) !important;
+  line-height: 1.4 !important;
+}
+
+.badge-demo__dot {
+  display: inline-block !important;
+  width: 5.5px !important;
+  height: 5.5px !important;
+  border-radius: 50% !important;
+  background: #ffbe4d !important;
+  box-shadow: 0 0 6px #ffbe4d, 0 0 10px rgba(255, 190, 77, 0.9) !important;
+  flex-shrink: 0 !important;
+  animation: demoDotPulse 2s ease-in-out infinite !important;
+}
+
 .badge-danger,
 .badge-red {
   background: rgba(255, 92, 138, 0.15) !important;

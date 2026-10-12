@@ -137,7 +137,7 @@
               <ul style="list-style: none; margin: 0; padding: 0;">
                 <li><a class="nav__subitem" href="/command-center/od/" data-route="/command-center/od/">OD Matrix</a></li>
                 <li><a class="nav__subitem" href="/command-center/connectivity/" data-route="/command-center/connectivity/">Connectivity</a></li>
-                <li><a class="nav__subitem" href="/command-center/early-warning/" data-route="/command-center/early-warning/">Early Warning <span class="badge badge--amber" style="background: rgba(255, 190, 77, 0.25); color: var(--n-amber, #ffbe4d); font-size: 8.5px; padding: 0 4px;">(DEMO)</span></a></li>
+                <li><a class="nav__subitem" href="/command-center/early-warning/" data-route="/command-center/early-warning/">Early Warning <span class="badge badge--demo"><span class="badge-demo__dot"></span>DEMO</span></a></li>
               </ul>
             </div>
           </li>
@@ -155,7 +155,7 @@
             </button>
             <div class="nav__sub" id="sub-utility">
               <ul style="list-style: none; margin: 0; padding: 0;">
-                <li><a class="nav__subitem" href="/command-center/program/" data-route="/command-center/program/">Kinerja PSO <span class="badge badge--amber" style="background: rgba(255, 190, 77, 0.25); color: var(--n-amber, #ffbe4d); font-size: 8.5px; padding: 0 4px;">(DEMO)</span></a></li>
+                <li><a class="nav__subitem" href="/command-center/program/" data-route="/command-center/program/">Kinerja PSO <span class="badge badge--demo"><span class="badge-demo__dot"></span>DEMO</span></a></li>
                 <li><a class="nav__subitem" href="/command-center/laporan/" data-route="/command-center/laporan/">Laporan Realisasi</a></li>
                 <li><a class="nav__subitem" href="/command-center/data-master/" data-route="/command-center/data-master/">Data Master</a></li>
                 <li><a class="nav__subitem" href="javascript:void(0)" data-modal-target="modal-profil">Profil BPTD</a></li>
