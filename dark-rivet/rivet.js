@@ -345,8 +345,21 @@
     if (!el) return;
     function tick() {
       var now = new Date();
-      var opt = { timeZone: 'Asia/Jakarta', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-      el.textContent = now.toLocaleTimeString('id-ID', opt) + ' WIB';
+      var dateStr = now.toLocaleDateString('id-ID', {
+        timeZone: 'Asia/Jakarta',
+        weekday: 'long',
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric'
+      });
+      var timeStr = now.toLocaleTimeString('id-ID', {
+        timeZone: 'Asia/Jakarta',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+      }).replace(/:/g, '.');
+      el.innerHTML = '<span class="clock-date">' + dateStr + ' · </span><span class="clock-time">' + timeStr + ' WIB</span>';
     }
     tick();
     setInterval(tick, 1000);
@@ -1821,21 +1834,24 @@
 
   // --- 12. Year Selector Event Listeners ---
   function initEvents() {
-    var yearBtns = document.querySelectorAll('.year-pill-btn');
-    yearBtns.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var y = parseInt(btn.getAttribute('data-year'), 10);
+    var yearSelect = document.getElementById('yearSelect');
+    if (yearSelect) {
+      yearSelect.addEventListener('change', function () {
+        var y = parseInt(yearSelect.value, 10);
         if (y === currentYear) return;
         currentYear = y;
-        yearBtns.forEach(function (b) { b.classList.remove('is-active'); });
-        btn.classList.add('is-active');
-
         var yrLabel = document.getElementById('activeYearLabel');
         if (yrLabel) yrLabel.textContent = 'Tahun ' + currentYear;
-
         fetchDashboard(currentYear);
       });
-    });
+    }
+
+    var userProfileBtn = document.getElementById('userProfileBtn');
+    if (userProfileBtn) {
+      userProfileBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+      });
+    }
   }
 
   // --- 12. Single Persistent Sidebar SPA Shell Navigation ---
