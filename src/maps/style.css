@@ -385,10 +385,10 @@
   .close-btn {
     background: #f1f5f9;
     border: none;
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
     color: var(--gray-text);
     cursor: pointer;
@@ -1806,11 +1806,51 @@
   .chart-card .chart-container.chart-doughnut { height: 240px; }
 
   /* Topbar sempit: sembunyikan teks tombol supaya tidak meluber melibihi layar */
+  /* Topbar sempit: responsive header polish, anti-collision & anti-clipping */
   @media (max-width: 520px) {
-    .topbar { gap: 8px; padding: 10px 12px; }
-    .update-btn span { display: none; }
-    .update-btn { padding: 0 13px; }
-    .title-block p { display: none; }
+    .topbar {
+      gap: 5px !important;
+      padding: 8px 10px !important;
+      left: 10px !important;
+      right: 10px !important;
+    }
+    .brand-shortcut .brand__mark {
+      padding: 2px 4px !important;
+      gap: 2px !important;
+    }
+    .brand-shortcut .brand__mark img {
+      height: 18px !important;
+    }
+    .title-block {
+      min-width: 0 !important;
+      flex: 1 1 auto !important;
+    }
+    .title-block h1 {
+      font-size: 13px !important;
+      max-width: 130px !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      line-height: 1.2 !important;
+    }
+    .title-block p {
+      display: none !important;
+    }
+    .icon-btn {
+      width: 36px !important;
+      height: 36px !important;
+      flex-shrink: 0 !important;
+    }
+    .icon-btn svg {
+      width: 18px !important;
+      height: 18px !important;
+    }
+    #btnCommandCenter {
+      display: none !important;
+    }
+    #btnUpdateData {
+      display: none !important;
+    }
   }
 
   /* =============================================================
@@ -2227,6 +2267,5 @@
     color: #f8fafc;
   }
   @media (max-width: 520px) {
-    .nav-cc-btn span { display: none; }
-    .nav-cc-btn { padding: 0 12px; }
+    .nav-cc-btn { display: none !important; }
   }

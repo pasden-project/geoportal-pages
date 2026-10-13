@@ -1756,7 +1756,9 @@
     var navItems = side.querySelectorAll('.nav__item');
     navItems.forEach(function (item) {
       item.addEventListener('click', function () {
-        if (window.innerWidth <= 1024) closeMenu();
+        if (window.innerWidth <= 980 && !item.classList.contains('nav__item--toggle')) {
+          closeMenu();
+        }
       });
     });
   }
@@ -1964,7 +1966,7 @@
       if (href.startsWith('/command-center/') || href === '/' || href === './' || href.startsWith('./') || href.startsWith('../')) {
         e.preventDefault();
         navigateTo(href, true);
-        if (window.innerWidth <= 1024) {
+        if (window.innerWidth <= 980) {
           var side = document.getElementById('side');
           var backdrop = document.getElementById('sideBackdrop');
           if (side) side.classList.remove('is-open');

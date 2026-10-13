@@ -335,6 +335,64 @@ html, body {
     padding-top: 16px !important;
   }
 }
+
+/* Card Balance Responsive Controls & Grid Optimization (Mobile <= 640px) */
+@media (max-width: 640px) {
+  .balance__head {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+  }
+  .hero-pax-num {
+    font-size: 26px !important;
+    line-height: 1.15 !important;
+  }
+  .balance__tools {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    width: 100% !important;
+    gap: 8px !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+  #metricSeg {
+    flex: 1 1 calc(50% - 4px) !important;
+    min-width: 140px !important;
+    display: inline-flex !important;
+    justify-content: center !important;
+  }
+  #metricSeg .seg__btn {
+    flex: 1 !important;
+    text-align: center !important;
+    padding: 3px 6px !important;
+  }
+  .chart-period-select-wrap {
+    flex: 1 1 calc(50% - 40px) !important;
+    min-width: 130px !important;
+  }
+  .chart-period-select {
+    width: 100% !important;
+  }
+  .chart-view-toggle {
+    flex: 0 0 auto !important;
+    display: inline-flex !important;
+  }
+  .transport-mode-bar {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    flex-wrap: nowrap !important;
+    padding-bottom: 6px !important;
+    padding-right: 16px !important;
+  }
+  .card--balance .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+  .card--balance .stats > *:nth-child(3) {
+    grid-column: span 2 !important;
+  }
+}
 /* Segmented Control Button in Dark Rivet */
 .seg__btn {
   width: auto !important;
@@ -689,7 +747,8 @@ html, body {
   font-family: inherit;
   font-size: 12px;
   font-weight: 700;
-  padding: 5px 28px 5px 12px;
+  padding: 6px 28px 6px 12px;
+  min-height: 36px;
   border-radius: 8px;
   cursor: pointer;
   outline: none;
@@ -751,6 +810,98 @@ html, body {
 @media (max-width: 860px) {
   .topbar-clock .clock-date {
     display: none;
+  }
+}
+
+/* Responsive Topbar Shell Polish (Mobile <= 640px & <= 480px) */
+@media (max-width: 640px) {
+  .topbar {
+    gap: 6px !important;
+  }
+  .topbar > div:not(.topbar__right) {
+    gap: 6px !important;
+  }
+  .topbar__right {
+    gap: 6px !important;
+  }
+  .status-pill {
+    padding: 3px 8px !important;
+    font-size: 10px !important;
+    gap: 4px !important;
+    flex-shrink: 0 !important;
+  }
+  .status-pill > span:last-child {
+    display: none !important;
+  }
+  .status-pill::after {
+    content: "API" !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.02em !important;
+  }
+  .topbar-clock {
+    font-size: 10.5px !important;
+    gap: 4px !important;
+  }
+  .theme-toggle {
+    padding: 0 !important;
+    min-width: 36px !important;
+    width: 36px !important;
+    height: 36px !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    flex-shrink: 0 !important;
+  }
+  .theme-toggle__label {
+    display: none !important;
+  }
+  .theme-toggle__track {
+    background: transparent !important;
+    padding: 0 !important;
+    width: auto !important;
+    height: auto !important;
+  }
+  .theme-toggle__thumb {
+    transform: none !important;
+    width: 24px !important;
+    height: 24px !important;
+    box-shadow: none !important;
+  }
+  .theme-toggle__thumb .ico {
+    width: 14px !important;
+    height: 14px !important;
+  }
+  [data-theme="light"] .theme-toggle__thumb,
+  .theme-light .theme-toggle__thumb {
+    transform: none !important;
+  }
+  .user--login-trigger {
+    padding: 0 !important;
+    min-width: 34px !important;
+    width: 34px !important;
+    height: 34px !important;
+    justify-content: center !important;
+    border-radius: 8px !important;
+    flex-shrink: 0 !important;
+  }
+  .user--login-trigger .user__text {
+    display: none !important;
+  }
+  .user--login-trigger .avatar {
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 8px !important;
+    margin: 0 !important;
+    font-size: 11px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar-clock {
+    display: none !important;
   }
 }
 
@@ -834,8 +985,8 @@ html, body {
   position: absolute;
   top: 16px;
   right: 16px;
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   border-radius: 8px;
   border: 1px solid var(--hair);
   background: var(--well);
@@ -871,9 +1022,9 @@ html, body {
 
 .side__close {
   display: none;
-  width: 28px;
-  height: 28px;
-  border-radius: 6px;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
   border: 1px solid var(--hair);
   background: var(--well);
   color: var(--dim);
@@ -888,18 +1039,69 @@ html, body {
   border-color: var(--n-lime);
 }
 
-@media (max-width: 1024px) {
+/* Desktop & Landscape Tablet Layout (min-width: 981px): Persistent Sidebar Visible */
+@media (min-width: 981px) {
+  .frame {
+    grid-template-columns: var(--side-w, 236px) minmax(0, 1fr) !important;
+  }
+  .side {
+    position: static !important;
+    left: auto !important;
+    transform: none !important;
+    width: 236px !important;
+    min-width: 236px !important;
+    max-width: 236px !important;
+    display: flex !important;
+    height: 100% !important;
+    max-height: 100vh !important;
+    max-height: 100dvh !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
+    border-right: 1px solid var(--hair) !important;
+    box-shadow: none !important;
+    z-index: 10 !important;
+  }
+  .side__close {
+    display: none !important;
+  }
+  .topbar .topbar__menu {
+    display: none !important;
+  }
+}
+
+/* Tablet Portrait & Mobile Layout (max-width: 980px): Sliding Drawer */
+@media (max-width: 980px) {
+  .frame {
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 100% !important;
+  }
+  .main {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-bottom: max(36px, env(safe-area-inset-bottom, 24px)) !important;
+  }
   .side {
     position: fixed !important;
     left: -270px !important;
     top: 0 !important;
     bottom: 0 !important;
-    z-index: 999 !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    max-height: 100vh !important;
+    max-height: 100dvh !important;
+    z-index: 9999 !important;
     width: 260px !important;
     background: #090a0d !important;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.8) !important;
     transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1) !important;
     transform: translateX(0);
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
   }
   .side.is-open {
     transform: translateX(270px) !important;
@@ -907,10 +1109,28 @@ html, body {
   .side__close {
     display: flex !important;
   }
+  .topbar .topbar__menu {
+    display: inline-grid !important;
+  }
 }
 
+/* General Sidebar Touch Scrolling Polish & Safe Bottom Spacing */
 .side {
-  padding-bottom: 30px !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-y !important;
+  padding-bottom: max(40px, env(safe-area-inset-bottom, 28px)) !important;
+}
+
+.side, .nav, .nav__list {
+  touch-action: pan-y !important;
+}
+
+/* Ensure .main Always Has Unrestricted Vertical Scrolling Across All Displays */
+.main {
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
 }
 .side::-webkit-scrollbar {
   width: 5px !important;
@@ -951,7 +1171,8 @@ html, body {
   font-family: inherit;
   font-size: 12px;
   font-weight: 600;
-  padding: 4px 26px 4px 10px;
+  padding: 6px 26px 6px 10px;
+  min-height: 36px;
   border: none;
   appearance: none;
   -webkit-appearance: none;
@@ -1504,9 +1725,57 @@ html, body {
   width: 100%;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 860px) {
   .module-grid--left {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+
+/* Card Module Header Responsiveness Across All Viewports (Anti-Truncation) */
+.card-module:has(.rank-tabs) .card-module__head,
+.card-module__head {
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+}
+.card-module__title-wrap {
+  flex: 1 1 auto !important;
+  min-width: 140px !important;
+}
+.card-module .rank-tabs {
+  margin-left: auto !important;
+}
+
+/* Stacking & Legibility Kartu Modul di Mobile (max-width: 580px) */
+@media (max-width: 580px) {
+  .card-module__head {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+  }
+  .card-module__title-wrap {
+    width: 100% !important;
+    white-space: normal !important;
+  }
+  .card-module__title {
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    line-height: 1.35 !important;
+  }
+  .rank-tabs {
+    width: 100% !important;
+    display: flex !important;
+    gap: 4px !important;
+    box-sizing: border-box !important;
+  }
+  .rank-tab-btn {
+    flex: 1 1 0 !important;
+    text-align: center !important;
+    padding: 7px 10px !important;
+    min-height: 38px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 }
 
@@ -1890,7 +2159,10 @@ html, body {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  transition: gap 0.2s ease, color 0.2s ease;
+  padding: 6px 10px;
+  margin: -4px -6px;
+  border-radius: 6px;
+  transition: gap 0.2s ease, color 0.2s ease, background 0.2s ease;
 }
 
 .card-module__link:hover {

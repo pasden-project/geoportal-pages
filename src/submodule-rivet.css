@@ -293,6 +293,14 @@ aside.side::-webkit-scrollbar {
 }
 
 .sidebar-close-btn {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  min-height: 40px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 8px !important;
   color: #8e95a5 !important;
 }
 
