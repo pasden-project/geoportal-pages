@@ -34,74 +34,171 @@
         return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     }
   }
-  // Baseline Data Verifikasi Produksi Resmi 2026
-  var baselineData = {
-    summary: {
-      keberangkatan_penumpang: 3878703,
-      kedatangan_penumpang: 3362251,
-      total_penumpang: 7240954,
-      keberangkatan_kendaraan: 424243,
-      kedatangan_kendaraan: 377760,
-      total_kendaraan: 802003
-    },
-    trend: [
-      { bulan: "Jan", keberangkatan_penumpang: 370002, kedatangan_penumpang: 323925, keberangkatan_kendaraan: 43581, kedatangan_kendaraan: 36587 },
-      { bulan: "Feb", keberangkatan_penumpang: 298410, kedatangan_penumpang: 268420, keberangkatan_kendaraan: 34120, kedatangan_kendaraan: 29840 },
-      { bulan: "Mar", keberangkatan_penumpang: 331200, kedatangan_penumpang: 299800, keberangkatan_kendaraan: 37800, kedatangan_kendaraan: 33100 },
-      { bulan: "Apr", keberangkatan_penumpang: 489500, kedatangan_penumpang: 442100, keberangkatan_kendaraan: 52400, kedatangan_kendaraan: 48900 },
-      { bulan: "Mei", keberangkatan_penumpang: 388900, kedatangan_penumpang: 351200, keberangkatan_kendaraan: 41200, kedatangan_kendaraan: 37400 },
-      { bulan: "Jun", keberangkatan_penumpang: 372100, kedatangan_penumpang: 339400, keberangkatan_kendaraan: 39800, kedatangan_kendaraan: 36200 },
-      { bulan: "Jul", keberangkatan_penumpang: 412500, kedatangan_penumpang: 375600, keberangkatan_kendaraan: 44100, kedatangan_kendaraan: 39500 },
-      { bulan: "Agu", keberangkatan_penumpang: 384200, kedatangan_penumpang: 348900, keberangkatan_kendaraan: 40900, kedatangan_kendaraan: 36800 },
-      { bulan: "Sep", keberangkatan_penumpang: 358900, kedatangan_penumpang: 326700, keberangkatan_kendaraan: 38500, kedatangan_kendaraan: 34700 },
-      { bulan: "Okt", keberangkatan_penumpang: 344100, kedatangan_penumpang: 315400, keberangkatan_kendaraan: 36700, kedatangan_kendaraan: 33200 },
-      { bulan: "Nov", keberangkatan_penumpang: 332400, kedatangan_penumpang: 308900, keberangkatan_kendaraan: 35400, kedatangan_kendaraan: 32100 },
-      { bulan: "Des", keberangkatan_penumpang: 446491, kedatangan_penumpang: 411906, keberangkatan_kendaraan: 49742, kedatangan_kendaraan: 44433 }
-    ]
-  };
-
-  // Baseline Data Multi-Moda Transportasi Jawa Barat (Tahun 2026)
-  var transportModes = {
-    akap: {
+  // Dataset Multi-Tahun Terverifikasi AKAP & AKDP (2026 YTD Resmi, 2025 12-Bulan Rekap, 2024 Tahunan)
+  var yearlyAkapData = {
+    2026: {
       id: 'akap',
       name: 'AKAP / AKDP',
-      periodKeterangan: 'YTD',
-      title: 'Pergerakan Angkutan AKAP & AKDP (<span id="activeYearLabel">YTD</span>)',
+      year: 2026,
+      isYtd: true,
+      periodKeterangan: 'YTD 2026',
+      title: 'Pergerakan Angkutan AKAP & AKDP (<span id="activeYearLabel">YTD 2026</span>)',
       primaryLabel: 'Penumpang',
       secondaryLabel: 'Kendaraan',
       primaryUnit: ' pnp',
       secondaryUnit: ' knd',
       legendPrimary: 'Keberangkatan',
       legendSecondary: 'Kedatangan',
-      primaryValue: 7240954,
-      secondaryValue: 802003,
+      primaryValue: 6030494,
+      secondaryValue: 629698,
+      summary: {
+        keberangkatan_penumpang: 3245446,
+        kedatangan_penumpang: 2785048,
+        total_penumpang: 6030494,
+        keberangkatan_kendaraan: 331405,
+        kedatangan_kendaraan: 298293,
+        total_kendaraan: 629698
+      },
       stats: {
         s1Label: 'Pergerakan Kendaraan',
-        s1Value: '802.003',
-        s1Delta: '<svg class="ico"><use href="#i-arrow-ur"/></svg><b>+8.4%</b> vs 2025',
+        s1Value: '629.698',
+        s1Delta: '<svg class="ico"><use href="#i-arrow-ur"/></svg><b>+15.2%</b> vs 2025 YTD',
+        s1DeltaClass: 'delta--up',
+        s2Label: 'Terminal Penumpang',
+        s2Value: '12 Simpul Tipe A',
+        s2Delta: 'Wilayah BPTD Jabar',
+        s2DeltaColor: 'var(--n-cyan)',
+        s3Label: 'Trayek Berizin',
+        s3Value: '777 Koridor',
+        s3Delta: 'Aktif Terpetakan',
+        s3DeltaColor: 'var(--n-lime)'
+      },
+      trend: [
+        { bulan: "Jan", primary: 332806, secondary: 274772, altPrimary: 37150, altSecondary: 31973 },
+        { bulan: "Feb", primary: 262343, secondary: 227923, altPrimary: 31029, altSecondary: 26664 },
+        { bulan: "Mar", primary: 509555, secondary: 394413, altPrimary: 36244, altSecondary: 30682 },
+        { bulan: "Apr", primary: 292353, secondary: 255334, altPrimary: 33256, altSecondary: 29285 },
+        { bulan: "Mei", primary: 344753, secondary: 295060, altPrimary: 37827, altSecondary: 33642 },
+        { bulan: "Jun", primary: 382182, secondary: 326015, altPrimary: 38495, altSecondary: 35610 },
+        { bulan: "Jul", primary: 389471, secondary: 361839, altPrimary: 39654, altSecondary: 37685 },
+        { bulan: "Agu", primary: 376980, secondary: 340342, altPrimary: 39639, altSecondary: 37430 },
+        { bulan: "Sep", primary: 355003, secondary: 309350, altPrimary: 38111, altSecondary: 35322 },
+        { bulan: "Okt", primary: 0, secondary: 0, altPrimary: 0, altSecondary: 0 },
+        { bulan: "Nov", primary: 0, secondary: 0, altPrimary: 0, altSecondary: 0 },
+        { bulan: "Des", primary: 0, secondary: 0, altPrimary: 0, altSecondary: 0 }
+      ]
+    },
+    2025: {
+      id: 'akap',
+      name: 'AKAP / AKDP',
+      year: 2025,
+      isYtd: false,
+      periodKeterangan: 'Tahun 2025',
+      title: 'Pergerakan Angkutan AKAP & AKDP (<span id="activeYearLabel">Tahun 2025</span>)',
+      primaryLabel: 'Penumpang',
+      secondaryLabel: 'Kendaraan',
+      primaryUnit: ' pnp',
+      secondaryUnit: ' knd',
+      legendPrimary: 'Keberangkatan',
+      legendSecondary: 'Kedatangan',
+      primaryValue: 7099215,
+      secondaryValue: 820646,
+      summary: {
+        keberangkatan_penumpang: 3692885,
+        kedatangan_penumpang: 3406330,
+        total_penumpang: 7099215,
+        keberangkatan_kendaraan: 457305,
+        kedatangan_kendaraan: 363341,
+        total_kendaraan: 820646
+      },
+      stats: {
+        s1Label: 'Pergerakan Kendaraan',
+        s1Value: '820.646',
+        s1Delta: '<svg class="ico"><use href="#i-arrow-ur"/></svg><b>+10.6%</b> vs 2024',
+        s1DeltaClass: 'delta--up',
+        s2Label: 'Terminal Penumpang',
         s2Value: '12 Simpul Tipe A',
         s2Delta: 'Wilayah BPTD Jabar',
         s2DeltaColor: 'var(--n-cyan)',
         s3Label: 'Trayek Berizin',
         s3Value: '1.248 Trayek',
-        s3Delta: 'Aktif Beroperasi',
+        s3Delta: 'Realisasi 12 Bulan',
         s3DeltaColor: 'var(--n-lime)'
       },
       trend: [
-        { bulan: "Jan", primary: 370002, secondary: 323925, altPrimary: 43581, altSecondary: 36587 },
-        { bulan: "Feb", primary: 298410, secondary: 268420, altPrimary: 34120, altSecondary: 29840 },
-        { bulan: "Mar", primary: 331200, secondary: 299800, altPrimary: 37800, altSecondary: 33100 },
-        { bulan: "Apr", primary: 489500, secondary: 442100, altPrimary: 52400, altSecondary: 48900 },
-        { bulan: "Mei", primary: 388900, secondary: 351200, altPrimary: 41200, altSecondary: 37400 },
-        { bulan: "Jun", primary: 372100, secondary: 339400, altPrimary: 39800, altSecondary: 36200 },
-        { bulan: "Jul", primary: 412500, secondary: 375600, altPrimary: 44100, altSecondary: 39500 },
-        { bulan: "Agu", primary: 384200, secondary: 348900, altPrimary: 40900, altSecondary: 36800 },
-        { bulan: "Sep", primary: 358900, secondary: 326700, altPrimary: 38500, altSecondary: 34700 },
-        { bulan: "Okt", primary: 344100, secondary: 315400, altPrimary: 36700, altSecondary: 33200 },
-        { bulan: "Nov", primary: 332400, secondary: 308900, altPrimary: 35400, altSecondary: 32100 },
-        { bulan: "Des", primary: 446491, secondary: 411906, altPrimary: 49742, altSecondary: 44433 }
+        { bulan: "Jan", primary: 312287, secondary: 264072, altPrimary: 41286, altSecondary: 33776 },
+        { bulan: "Feb", primary: 234311, secondary: 193859, altPrimary: 35036, altSecondary: 27696 },
+        { bulan: "Mar", primary: 266597, secondary: 296862, altPrimary: 39646, altSecondary: 31207 },
+        { bulan: "Apr", primary: 477352, secondary: 316399, altPrimary: 40051, altSecondary: 31903 },
+        { bulan: "Mei", primary: 287023, secondary: 278739, altPrimary: 36963, altSecondary: 29816 },
+        { bulan: "Jun", primary: 320234, secondary: 315818, altPrimary: 38120, altSecondary: 30532 },
+        { bulan: "Jul", primary: 320776, secondary: 294644, altPrimary: 40266, altSecondary: 31527 },
+        { bulan: "Agu", primary: 303185, secondary: 276329, altPrimary: 38730, altSecondary: 30458 },
+        { bulan: "Sep", primary: 298071, secondary: 388219, altPrimary: 37107, altSecondary: 29956 },
+        { bulan: "Okt", primary: 289795, secondary: 260166, altPrimary: 38983, altSecondary: 29679 },
+        { bulan: "Nov", primary: 268963, secondary: 243002, altPrimary: 34197, altSecondary: 27408 },
+        { bulan: "Des", primary: 314291, secondary: 278221, altPrimary: 36920, altSecondary: 29383 }
       ]
     },
+    2024: {
+      id: 'akap',
+      name: 'AKAP / AKDP',
+      year: 2024,
+      isYtd: false,
+      periodKeterangan: 'Tahun 2024',
+      title: 'Pergerakan Angkutan AKAP & AKDP (<span id="activeYearLabel">Tahun 2024</span>)',
+      primaryLabel: 'Penumpang',
+      secondaryLabel: 'Kendaraan',
+      primaryUnit: ' pnp',
+      secondaryUnit: ' knd',
+      legendPrimary: 'Keberangkatan',
+      legendSecondary: 'Kedatangan',
+      primaryValue: 6420938,
+      secondaryValue: 849010,
+      summary: {
+        keberangkatan_penumpang: 3527463,
+        kedatangan_penumpang: 2893475,
+        total_penumpang: 6420938,
+        keberangkatan_kendaraan: 464831,
+        kedatangan_kendaraan: 384179,
+        total_kendaraan: 849010
+      },
+      stats: {
+        s1Label: 'Pergerakan Kendaraan',
+        s1Value: '849.010',
+        s1Delta: '<svg class="ico"><use href="#i-arrow-ur"/></svg><b>Tahun 2024</b> Baseline',
+        s1DeltaClass: 'delta--up',
+        s2Label: 'Terminal Penumpang',
+        s2Value: '10 Simpul Tipe A',
+        s2Delta: 'Wilayah BPTD Jabar',
+        s2DeltaColor: 'var(--n-cyan)',
+        s3Label: 'Trayek Berizin',
+        s3Value: '1.248 Trayek',
+        s3Delta: 'Realisasi Tahunan',
+        s3DeltaColor: 'var(--n-lime)'
+      },
+      trend: [
+        { bulan: "Jan", primary: 293955, secondary: 241123, altPrimary: 38736, altSecondary: 32015 },
+        { bulan: "Feb", primary: 270420, secondary: 220810, altPrimary: 35620, altSecondary: 29540 },
+        { bulan: "Mar", primary: 285600, secondary: 235400, altPrimary: 37500, altSecondary: 31200 },
+        { bulan: "Apr", primary: 412500, secondary: 338900, altPrimary: 54200, altSecondary: 44800 },
+        { bulan: "Mei", primary: 295400, secondary: 242100, altPrimary: 38900, altSecondary: 32100 },
+        { bulan: "Jun", primary: 301200, secondary: 246800, altPrimary: 39600, altSecondary: 32800 },
+        { bulan: "Jul", primary: 315400, secondary: 258900, altPrimary: 41500, altSecondary: 34300 },
+        { bulan: "Agu", primary: 298500, secondary: 244700, altPrimary: 39200, altSecondary: 32500 },
+        { bulan: "Sep", primary: 284300, secondary: 232900, altPrimary: 37400, altSecondary: 31100 },
+        { bulan: "Okt", primary: 276800, secondary: 227100, altPrimary: 36500, altSecondary: 30200 },
+        { bulan: "Nov", primary: 268900, secondary: 220600, altPrimary: 35400, altSecondary: 29300 },
+        { bulan: "Des", primary: 324488, secondary: 264142, altPrimary: 42775, altSecondary: 35324 }
+      ]
+    }
+  };
+
+  var baselineData = yearlyAkapData[2026];
+
+  // Baseline Data Multi-Moda Transportasi Jawa Barat (Tahun 2026)
+  var transportModes = {
+    akap: yearlyAkapData[2026],
     perintis: {
       id: 'perintis',
       name: 'Perintis PSO',
@@ -718,8 +815,8 @@
     var isPariwisata = (cfg.id === 'pariwisata');
     var isBarang = (cfg.id === 'barang');
     var isPri = (metric === 'primary');
-    var data = (isAkap && dashboardData && dashboardData.trend && dashboardData.trend.length)
-      ? dashboardData.trend
+    var data = isAkap
+      ? ((yearlyAkapData[currentYear] || cfg).trend)
       : cfg.trend;
 
     var unit = isAkap
@@ -988,6 +1085,7 @@
     btn1.className = 'seg__btn' + (activeMetric === 'primary' ? ' is-active' : '');
     btn1.type = 'button';
     btn1.setAttribute('data-metric', 'primary');
+    btn1.setAttribute('data-type', 'penumpang');
     btn1.setAttribute('title', cfg.primaryLabel);
     btn1.innerHTML = '<span>' + cfg.primaryLabel + '</span>';
 
@@ -995,6 +1093,7 @@
     btn2.className = 'seg__btn' + (activeMetric === 'secondary' ? ' is-active' : '');
     btn2.type = 'button';
     btn2.setAttribute('data-metric', 'secondary');
+    btn2.setAttribute('data-type', 'kendaraan');
     btn2.setAttribute('title', cfg.secondaryLabel);
     btn2.innerHTML = '<span>' + cfg.secondaryLabel + '</span>';
 
@@ -1022,8 +1121,10 @@
     currentMode = modeKey || currentMode || 'akap';
     currentMetric = metric || currentMetric || 'primary';
     var isPri = (currentMetric === 'primary');
+    if (currentMode === 'akap') {
+      transportModes.akap = yearlyAkapData[currentYear] || yearlyAkapData[2026];
+    }
     var cfg = transportModes[currentMode] || transportModes.akap;
-
     var heroPax = document.getElementById('heroPax');
     var heroSub = document.getElementById('heroSub');
     var legendDatang = document.getElementById('legendDatang');
@@ -1041,16 +1142,12 @@
     // 1. Calculate active hero value (Full Keberangkatan + Kedatangan)
     var heroVal = 0;
     if (cfg.id === 'akap') {
-      var sum = (dashboardData && dashboardData.summary) ? dashboardData.summary : baselineData.summary;
-      var totalPax = sum.total_penumpang || ((Number(sum.keberangkatan_penumpang) || 0) + (Number(sum.kedatangan_penumpang) || 0));
-      var totalVeh = sum.total_kendaraan || ((Number(sum.keberangkatan_kendaraan) || 0) + (Number(sum.kedatangan_kendaraan) || 0));
-      heroVal = isPri
-        ? (totalPax || cfg.primaryValue)
-        : (totalVeh || cfg.secondaryValue);
+      var yAkap = yearlyAkapData[currentYear] || yearlyAkapData[2026];
+      cfg = Object.assign({}, cfg, yAkap);
+      heroVal = isPri ? cfg.primaryValue : cfg.secondaryValue;
     } else {
       heroVal = isPri ? cfg.primaryValue : cfg.secondaryValue;
     }
-    console.log('[DEBUG_UPDATE_UI]', JSON.stringify({ isPri: isPri, totalPax: totalPax, totalVeh: totalVeh, heroVal: heroVal, hasDashboardData: !!dashboardData }));
     if (heroPax) {
       var curHeroStr = heroPax.textContent ? heroPax.textContent.replace(/\D/g, '') : '0';
       var startHero = parseInt(curHeroStr, 10) || 0;
@@ -1087,9 +1184,7 @@
       var vehTarget = 0;
       var suffix = '';
       if (cfg.id === 'akap') {
-        var sumV = (dashboardData && dashboardData.summary) ? dashboardData.summary : baselineData.summary;
-        vehTarget = sumV.total_kendaraan || ((Number(sumV.keberangkatan_kendaraan) || 0) + (Number(sumV.kedatangan_kendaraan) || 0));
-        if (!vehTarget) vehTarget = cfg.secondaryValue;
+        vehTarget = cfg.secondaryValue;
       } else {
         var rawStr = String(cfg.stats.s1Value || '');
         vehTarget = parseInt(rawStr.replace(/\D/g, ''), 10) || 0;
@@ -1105,13 +1200,8 @@
       }
     }
     if (statDelta1) {
-      if (cfg.id === 'akap' && currentYear === 2025) {
-        statDelta1.innerHTML = '<svg class="ico"><use href="#i-arrow-ur"/></svg><b>Tahun 2025</b> Baseline';
-        statDelta1.className = 'delta delta--up';
-      } else {
-        statDelta1.innerHTML = cfg.stats.s1Delta;
-        statDelta1.className = 'delta ' + (cfg.stats.s1DeltaClass || 'delta--up');
-      }
+      statDelta1.innerHTML = cfg.stats.s1Delta;
+      statDelta1.className = 'delta ' + (cfg.stats.s1DeltaClass || 'delta--up');
     }
 
     if (statLabel2) statLabel2.textContent = cfg.stats.s2Label;
@@ -1835,16 +1925,53 @@
   }
 
   // --- 12. Year Selector Event Listeners ---
+  function setYear(y) {
+    y = parseInt(y, 10);
+    if (!y || isNaN(y)) return;
+    currentYear = y;
+
+    // Sinkronkan dropdown topbar
+    var yearSelect = document.getElementById('yearSelect');
+    if (yearSelect && parseInt(yearSelect.value, 10) !== currentYear) {
+      yearSelect.value = String(currentYear);
+    }
+
+    // Sinkronkan segmented button di kartu
+    var cardYearBtns = document.querySelectorAll('#cardYearSeg .seg__btn');
+    cardYearBtns.forEach(function (btn) {
+      var by = parseInt(btn.getAttribute('data-year'), 10);
+      btn.classList.toggle('is-active', by === currentYear);
+    });
+
+    if (yearlyAkapData[currentYear]) {
+      transportModes.akap = yearlyAkapData[currentYear];
+    }
+
+    var yrLabel = document.getElementById('activeYearLabel');
+    if (yrLabel) {
+      var yData = yearlyAkapData[currentYear];
+      yrLabel.textContent = (yData && yData.periodKeterangan) ? yData.periodKeterangan : ('Tahun ' + currentYear);
+    }
+
+    updateModeUI(currentMode, currentMetric);
+    fetchDashboard(currentYear);
+  }
+
   function initEvents() {
     var yearSelect = document.getElementById('yearSelect');
     if (yearSelect) {
       yearSelect.addEventListener('change', function () {
-        var y = parseInt(yearSelect.value, 10);
-        if (y === currentYear) return;
-        currentYear = y;
-        var yrLabel = document.getElementById('activeYearLabel');
-        if (yrLabel) yrLabel.textContent = 'Tahun ' + currentYear;
-        fetchDashboard(currentYear);
+        setYear(yearSelect.value);
+      });
+    }
+
+    var cardYearSeg = document.getElementById('cardYearSeg');
+    if (cardYearSeg) {
+      cardYearSeg.querySelectorAll('.seg__btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var y = btn.getAttribute('data-year');
+          setYear(y);
+        });
       });
     }
 
@@ -1855,7 +1982,6 @@
       });
     }
   }
-
   // --- 12. Single Persistent Sidebar SPA Shell Navigation ---
   function navigateTo(targetUrl, pushState) {
     if (pushState === undefined) pushState = true;
