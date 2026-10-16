@@ -411,21 +411,71 @@
     }
   };
 
-  // Baseline 12 Terminal Tipe A Resmi
-  var defaultTerminals = [
-    { nama_terminal: "LEUWIPANJANG", kabupaten_kota: "Kota Bandung", tipe: "A", lat: -6.9472, lng: 107.5947, stats: { keberangkatan_penumpang: 715420, kedatangan_penumpang: 852514, keberangkatan_kendaraan: 71410, kedatangan_kendaraan: 71410 } },
-    { nama_terminal: "BARANANGSIANG", kabupaten_kota: "Kota Bogor", tipe: "A", lat: -6.6022, lng: 106.8086, stats: { keberangkatan_penumpang: 284100, kedatangan_penumpang: 245200, keberangkatan_kendaraan: 51200, kedatangan_kendaraan: 47210 } },
-    { nama_terminal: "GUNTUR MELATI", kabupaten_kota: "Kab. Garut", tipe: "A", lat: -7.1995, lng: 107.8988, stats: { keberangkatan_penumpang: 783627, kedatangan_penumpang: 1029987, keberangkatan_kendaraan: 41120, kedatangan_kendaraan: 43200 } },
-    { nama_terminal: "CIAKAR", kabupaten_kota: "Kab. Sumedang", tipe: "A", lat: -6.8491, lng: 107.9304, stats: { keberangkatan_penumpang: 182300, kedatangan_penumpang: 154100, keberangkatan_kendaraan: 21050, kedatangan_kendaraan: 21100 } },
-    { nama_terminal: "KH AHMAD SANUSI", kabupaten_kota: "Kota Sukabumi", tipe: "A", lat: -6.9388, lng: 106.9211, stats: { keberangkatan_penumpang: 312092, kedatangan_penumpang: 358638, keberangkatan_kendaraan: 26110, kedatangan_kendaraan: 28100 } },
-    { nama_terminal: "JATIJAJAR", kabupaten_kota: "Kota Depok", tipe: "A", lat: -6.4267, lng: 106.8587, stats: { keberangkatan_penumpang: 172234, kedatangan_penumpang: 89054, keberangkatan_kendaraan: 13200, kedatangan_kendaraan: 11900 } },
-    { nama_terminal: "INDIHIANG", kabupaten_kota: "Kota Tasikmalaya", tipe: "A", lat: -7.3006, lng: 108.1939, stats: { keberangkatan_penumpang: 664931, kedatangan_penumpang: 13920, keberangkatan_kendaraan: 9100, kedatangan_kendaraan: 9100 } },
-    { nama_terminal: "KLARI", kabupaten_kota: "Kab. Karawang", tipe: "A", lat: -6.3402, lng: 107.3541, stats: { keberangkatan_penumpang: 142100, kedatangan_penumpang: 118400, keberangkatan_kendaraan: 4250, kedatangan_kendaraan: 4250 } },
-    { nama_terminal: "BANJAR", kabupaten_kota: "Kota Banjar", tipe: "A", lat: -7.3732, lng: 108.5442, stats: { keberangkatan_penumpang: 266107, kedatangan_penumpang: 253305, keberangkatan_kendaraan: 3200, kedatangan_kendaraan: 3200 } },
-    { nama_terminal: "SUBANG", kabupaten_kota: "Kab. Subang", tipe: "A", lat: -6.5641, lng: 107.7633, stats: { keberangkatan_penumpang: 124300, kedatangan_penumpang: 98400, keberangkatan_kendaraan: 1250, kedatangan_kendaraan: 1250 } },
-    { nama_terminal: "HARJAMUKTI", kabupaten_kota: "Kota Cirebon", tipe: "A", lat: -6.7497, lng: 108.5524, stats: { keberangkatan_penumpang: 215400, kedatangan_penumpang: 187200, keberangkatan_kendaraan: 600, kedatangan_kendaraan: 600 } },
-    { nama_terminal: "KERTAWANGUNAN", kabupaten_kota: "Kab. Kuningan", tipe: "A", lat: -6.9822, lng: 108.5133, stats: { keberangkatan_penumpang: 134200, kedatangan_penumpang: 112100, keberangkatan_kendaraan: 450, kedatangan_kendaraan: 450 } }
-  ];
+  // Dataset Peringkat Terminal Resmi Multi-Tahun BPTD Jabar (2026 YTD, 2025 12-Bulan Rekap, 2024 Tahunan)
+  var yearlyTerminalPoints = {
+    2026: [
+      { kode_terminal: "TRM-012", nama_terminal: "LEUWIPANJANG", kabupaten_kota: "Kota Bandung", tipe: "A", lat: -6.9472, lng: 107.5947, stats: { keberangkatan_penumpang: 748111, kedatangan_penumpang: 878403, keberangkatan_kendaraan: 69309, kedatangan_kendaraan: 64735 } },
+      { kode_terminal: "TRM-007", nama_terminal: "GUNTUR MELATI", kabupaten_kota: "Kab. Garut", tipe: "A", lat: -7.1995, lng: 107.8988, stats: { keberangkatan_penumpang: 413897, kedatangan_penumpang: 676931, keberangkatan_kendaraan: 44595, kedatangan_kendaraan: 44393 } },
+      { kode_terminal: "TRM-006", nama_terminal: "INDIHIANG", kabupaten_kota: "Kota Tasikmalaya", tipe: "A", lat: -7.3006, lng: 108.1939, stats: { keberangkatan_penumpang: 686727, kedatangan_penumpang: 14546, keberangkatan_kendaraan: 97433, kedatangan_kendaraan: 3243 } },
+      { kode_terminal: "TRM-003", nama_terminal: "KH AHMAD SANUSI", kabupaten_kota: "Kota Sukabumi", tipe: "A", lat: -6.9388, lng: 106.9211, stats: { keberangkatan_penumpang: 323703, kedatangan_penumpang: 372011, keberangkatan_kendaraan: 26680, kedatangan_kendaraan: 25529 } },
+      { kode_terminal: "TRM-009", nama_terminal: "BANJAR", kabupaten_kota: "Kota Banjar", tipe: "A", lat: -7.3732, lng: 108.5442, stats: { keberangkatan_penumpang: 274074, kedatangan_penumpang: 261455, keberangkatan_kendaraan: 29584, kedatangan_kendaraan: 32249 } },
+      { kode_terminal: "TRM-002", nama_terminal: "BARANANGSIANG", kabupaten_kota: "Kota Bogor", tipe: "A", lat: -6.6022, lng: 106.8086, stats: { keberangkatan_penumpang: 270616, kedatangan_penumpang: 178797, keberangkatan_kendaraan: 42174, kedatangan_kendaraan: 37680 } },
+      { kode_terminal: "TRM-008", nama_terminal: "CIAKAR", kabupaten_kota: "Kab. Sumedang", tipe: "A", lat: -6.8491, lng: 107.9304, stats: { keberangkatan_penumpang: 212587, kedatangan_penumpang: 206805, keberangkatan_kendaraan: 19336, kedatangan_kendaraan: 18902 } },
+      { kode_terminal: "TRM-010", nama_terminal: "KERTAWANGUNAN", kabupaten_kota: "Kab. Kuningan", tipe: "A", lat: -6.9822, lng: 108.5133, stats: { keberangkatan_penumpang: 158147, kedatangan_penumpang: 144838, keberangkatan_kendaraan: 24167, kedatangan_kendaraan: 24027 } },
+      { kode_terminal: "TRM-001", nama_terminal: "JATIJAJAR", kabupaten_kota: "Kota Depok", tipe: "A", lat: -6.4267, lng: 106.8587, stats: { keberangkatan_penumpang: 176893, kedatangan_penumpang: 93713, keberangkatan_kendaraan: 31761, kedatangan_kendaraan: 30992 } },
+      { kode_terminal: "TRM-005", nama_terminal: "KLARI", kabupaten_kota: "Kab. Karawang", tipe: "A", lat: -6.3402, lng: 107.3541, stats: { keberangkatan_penumpang: 170262, kedatangan_penumpang: 79889, keberangkatan_kendaraan: 16598, kedatangan_kendaraan: 15917 } },
+      { kode_terminal: "TRM-004", nama_terminal: "SUBANG", kabupaten_kota: "Kab. Subang", tipe: "A", lat: -6.5641, lng: 107.7633, stats: { keberangkatan_penumpang: 109776, kedatangan_penumpang: 123081, keberangkatan_kendaraan: 12593, kedatangan_kendaraan: 13692 } },
+      { kode_terminal: "TRM-011", nama_terminal: "HARJAMUKTI", kabupaten_kota: "Kota Cirebon", tipe: "A", lat: -6.7497, lng: 108.5524, stats: { keberangkatan_penumpang: 92480, kedatangan_penumpang: 75262, keberangkatan_kendaraan: 14078, kedatangan_kendaraan: 13590 } }
+    ],
+    2025: [
+      { kode_terminal: "TRM-012", nama_terminal: "LEUWIPANJANG", kabupaten_kota: "Kota Bandung", tipe: "A", lat: -6.9472, lng: 107.5947, stats: { keberangkatan_penumpang: 1064694, kedatangan_penumpang: 1414206, keberangkatan_kendaraan: 84373, kedatangan_kendaraan: 93087 } },
+      { kode_terminal: "TRM-007", nama_terminal: "GUNTUR MELATI", kabupaten_kota: "Kab. Garut", tipe: "A", lat: -7.1995, lng: 107.8988, stats: { keberangkatan_penumpang: 562354, kedatangan_penumpang: 746845, keberangkatan_kendaraan: 45795, kedatangan_kendaraan: 57755 } },
+      { kode_terminal: "TRM-006", nama_terminal: "INDIHIANG", kabupaten_kota: "Kota Tasikmalaya", tipe: "A", lat: -7.3006, lng: 108.1939, stats: { keberangkatan_penumpang: 835083, kedatangan_penumpang: 105764, keberangkatan_kendaraan: 131147, kedatangan_kendaraan: 14128 } },
+      { kode_terminal: "TRM-003", nama_terminal: "KH AHMAD SANUSI", kabupaten_kota: "Kota Sukabumi", tipe: "A", lat: -6.9388, lng: 106.9211, stats: { keberangkatan_penumpang: 413046, kedatangan_penumpang: 426977, keberangkatan_kendaraan: 41541, kedatangan_kendaraan: 36310 } },
+      { kode_terminal: "TRM-008", nama_terminal: "CIAKAR", kabupaten_kota: "Kab. Sumedang", tipe: "A", lat: -6.8491, lng: 107.9304, stats: { keberangkatan_penumpang: 189713, kedatangan_penumpang: 209233, keberangkatan_kendaraan: 19818, kedatangan_kendaraan: 18695 } },
+      { kode_terminal: "TRM-010", nama_terminal: "KERTAWANGUNAN", kabupaten_kota: "Kab. Kuningan", tipe: "A", lat: -6.9822, lng: 108.5133, stats: { keberangkatan_penumpang: 170402, kedatangan_penumpang: 171435, keberangkatan_kendaraan: 35085, kedatangan_kendaraan: 33978 } },
+      { kode_terminal: "TRM-004", nama_terminal: "SUBANG", kabupaten_kota: "Kab. Subang", tipe: "A", lat: -6.5641, lng: 107.7633, stats: { keberangkatan_penumpang: 125256, kedatangan_penumpang: 141687, keberangkatan_kendaraan: 13192, kedatangan_kendaraan: 14820 } },
+      { kode_terminal: "TRM-011", nama_terminal: "HARJAMUKTI", kabupaten_kota: "Kota Cirebon", tipe: "A", lat: -6.7497, lng: 108.5524, stats: { keberangkatan_penumpang: 95410, kedatangan_penumpang: 99794, keberangkatan_kendaraan: 20156, kedatangan_kendaraan: 20908 } },
+      { kode_terminal: "TRM-005", nama_terminal: "KLARI", kabupaten_kota: "Kab. Karawang", tipe: "A", lat: -6.3402, lng: 107.3541, stats: { keberangkatan_penumpang: 156501, kedatangan_penumpang: 38686, keberangkatan_kendaraan: 19567, kedatangan_kendaraan: 19567 } },
+      { kode_terminal: "TRM-009", nama_terminal: "BANJAR", kabupaten_kota: "Kota Banjar", tipe: "A", lat: -7.3732, lng: 108.5442, stats: { keberangkatan_penumpang: 80426, kedatangan_penumpang: 51703, keberangkatan_kendaraan: 46631, kedatangan_kendaraan: 54093 } }
+    ],
+    2024: [
+      { kode_terminal: "TRM-012", nama_terminal: "LEUWIPANJANG", kabupaten_kota: "Kota Bandung", tipe: "A", lat: -6.9472, lng: 107.5947, stats: { keberangkatan_penumpang: 945429, kedatangan_penumpang: 1124936, keberangkatan_kendaraan: 106886, kedatangan_kendaraan: 113273 } },
+      { kode_terminal: "TRM-006", nama_terminal: "INDIHIANG", kabupaten_kota: "Kota Tasikmalaya", tipe: "A", lat: -7.3006, lng: 108.1939, stats: { keberangkatan_penumpang: 1034481, kedatangan_penumpang: 203805, keberangkatan_kendaraan: 135384, kedatangan_kendaraan: 45424 } },
+      { kode_terminal: "TRM-007", nama_terminal: "GUNTUR MELATI", kabupaten_kota: "Kab. Garut", tipe: "A", lat: -7.1995, lng: 107.8988, stats: { keberangkatan_penumpang: 495749, kedatangan_penumpang: 580540, keberangkatan_kendaraan: 34720, kedatangan_kendaraan: 40807 } },
+      { kode_terminal: "TRM-003", nama_terminal: "KH AHMAD SANUSI", kabupaten_kota: "Kota Sukabumi", tipe: "A", lat: -6.9388, lng: 106.9211, stats: { keberangkatan_penumpang: 323976, kedatangan_penumpang: 282627, keberangkatan_kendaraan: 42725, kedatangan_kendaraan: 36594 } },
+      { kode_terminal: "TRM-008", nama_terminal: "CIAKAR", kabupaten_kota: "Kab. Sumedang", tipe: "A", lat: -6.8491, lng: 107.9304, stats: { keberangkatan_penumpang: 252532, kedatangan_penumpang: 270779, keberangkatan_kendaraan: 23657, kedatangan_kendaraan: 24287 } },
+      { kode_terminal: "TRM-010", nama_terminal: "KERTAWANGUNAN", kabupaten_kota: "Kab. Kuningan", tipe: "A", lat: -6.9822, lng: 108.5133, stats: { keberangkatan_penumpang: 151472, kedatangan_penumpang: 157676, keberangkatan_kendaraan: 31840, kedatangan_kendaraan: 25502 } },
+      { kode_terminal: "TRM-004", nama_terminal: "SUBANG", kabupaten_kota: "Kab. Subang", tipe: "A", lat: -6.5641, lng: 107.7633, stats: { keberangkatan_penumpang: 127276, kedatangan_penumpang: 134683, keberangkatan_kendaraan: 15079, kedatangan_kendaraan: 15815 } },
+      { kode_terminal: "TRM-011", nama_terminal: "HARJAMUKTI", kabupaten_kota: "Kota Cirebon", tipe: "A", lat: -6.7497, lng: 108.5524, stats: { keberangkatan_penumpang: 70025, kedatangan_penumpang: 82863, keberangkatan_kendaraan: 21853, kedatangan_kendaraan: 21673 } },
+      { kode_terminal: "TRM-009", nama_terminal: "BANJAR", kabupaten_kota: "Kota Banjar", tipe: "A", lat: -7.3732, lng: 108.5442, stats: { keberangkatan_penumpang: 80094, kedatangan_penumpang: 41931, keberangkatan_kendaraan: 46142, kedatangan_kendaraan: 54351 } },
+      { kode_terminal: "TRM-005", nama_terminal: "KLARI", kabupaten_kota: "Kab. Karawang", tipe: "A", lat: -6.3402, lng: 107.3541, stats: { keberangkatan_penumpang: 46429, kedatangan_penumpang: 13635, keberangkatan_kendaraan: 6545, kedatangan_kendaraan: 6453 } }
+    ]
+  };
+
+  // Baseline defaultTerminals memakai dataset terverifikasi 2026
+  var defaultTerminals = yearlyTerminalPoints[2026];
+
+  function getActiveTerminalPoints() {
+    var year = currentYear || 2026;
+    if (year === 2026) {
+      if (dashboardData && dashboardData.points && dashboardData.points.length) {
+        var validPts = dashboardData.points.filter(function (p) {
+          var t = String(p.tipe || '').trim().toUpperCase();
+          var hasStats = p.stats && ((p.stats.keberangkatan_penumpang || 0) + (p.stats.kedatangan_penumpang || 0) + (p.stats.keberangkatan_kendaraan || 0) + (p.stats.kedatangan_kendaraan || 0)) > 0;
+          return (t === 'A' || t === 'TIPE A') && hasStats;
+        });
+        if (validPts.length >= 5) {
+          return dashboardData.points.filter(function (p) {
+            var t = String(p.tipe || '').trim().toUpperCase();
+            return t === 'A' || t === 'TIPE A';
+          });
+        }
+      }
+      return yearlyTerminalPoints[2026] || defaultTerminals;
+    }
+    return yearlyTerminalPoints[year] || yearlyTerminalPoints[2026] || defaultTerminals;
+  }
   // Baseline 6 Fasilitas UPPKB Resmi
   var defaultUppkb = [
     { nama: "Balonggandu", kabupaten: "Kab. Karawang (Pantura)", lat: -6.3773, lng: 107.5149, stats: { diperiksa: 49980, pelanggaran: 7709 } },
@@ -1271,7 +1321,7 @@
     }).addTo(mapInstance);
 
     markerLayerGroup = L.layerGroup().addTo(mapInstance);
-    renderMapPoints(defaultTerminals, defaultUppkb);
+    renderMapPoints(getActiveTerminalPoints(), defaultUppkb);
 
     setTimeout(function () {
       if (mapInstance) {
@@ -1305,10 +1355,10 @@
           var t = String(p.tipe || '').trim().toUpperCase();
           return t === 'A' || t === 'TIPE A';
         })
-      : defaultTerminals;
+      : getActiveTerminalPoints();
 
     if (!terminals || !terminals.length) {
-      terminals = defaultTerminals;
+      terminals = getActiveTerminalPoints();
     }
 
     terminals.forEach(function (t) {
@@ -1426,12 +1476,7 @@
     var listEl = document.getElementById('terminalRankList');
     if (!listEl) return;
 
-    var pts = (dashboardData && dashboardData.points && dashboardData.points.length)
-      ? dashboardData.points.filter(function (p) {
-          var t = String(p.tipe || '').trim().toUpperCase();
-          return t === 'A' || t === 'TIPE A';
-        })
-      : defaultTerminals;
+    var pts = getActiveTerminalPoints();
     if (!pts || !pts.length) pts = defaultTerminals;
 
     var isPnp = (currentTerminalMetric === 'penumpang');
@@ -1677,8 +1722,8 @@
             var t = String(p.tipe || '').trim().toUpperCase();
             return t === 'A' || t === 'TIPE A';
           })
-        : defaultTerminals;
-      if (!pts || !pts.length) pts = defaultTerminals;
+        : getActiveTerminalPoints();
+      if (!pts || !pts.length) pts = getActiveTerminalPoints();
       var list = pts.map(function (p) {
         var total = (p.stats ? ((p.stats.keberangkatan_penumpang || 0) + (p.stats.kedatangan_penumpang || 0)) : 0);
         var rawName = p.nama_terminal || p.name || 'Terminal';
@@ -1724,8 +1769,8 @@
           var t = String(p.tipe || '').trim().toUpperCase();
           return t === 'A' || t === 'TIPE A';
         })
-      : defaultTerminals;
-    if (!pts || !pts.length) pts = defaultTerminals;
+      : getActiveTerminalPoints();
+    if (!pts || !pts.length) pts = getActiveTerminalPoints();
     var ups = (uppkbPoints && uppkbPoints.length) ? uppkbPoints : defaultUppkb;
 
     var topTerminals = pts.slice().sort(function (a, b) {
@@ -1866,12 +1911,11 @@
       dashboardData = dashboardCache[year];
       updateMetricUI(currentMetric);
 
-      if (dashboardData.points) {
-        renderMapPoints(dashboardData.points, dashboardData.uppkbPoints);
-        renderRanking(dashboardData.points);
-        renderTerminalRanking(currentTerminalMetric);
-        renderActivityFeed(dashboardData.points, dashboardData.uppkbPoints);
-      }
+      var activePts = getActiveTerminalPoints();
+      renderMapPoints(activePts, dashboardData.uppkbPoints || defaultUppkb);
+      renderRanking(activePts);
+      renderTerminalRanking(currentTerminalMetric);
+      renderActivityFeed(activePts, dashboardData.uppkbPoints || defaultUppkb);
       return;
     }
 
@@ -1888,12 +1932,11 @@
         dashboardData = pack.data;
         updateMetricUI(currentMetric);
 
-        if (pack.data.points) {
-          renderMapPoints(pack.data.points, pack.data.uppkbPoints);
-          renderRanking(pack.data.points);
-          renderTerminalRanking(currentTerminalMetric);
-          renderActivityFeed(pack.data.points, pack.data.uppkbPoints);
-        }
+        var activePts = getActiveTerminalPoints();
+        renderMapPoints(activePts, pack.data.uppkbPoints || defaultUppkb);
+        renderRanking(activePts);
+        renderTerminalRanking(currentTerminalMetric);
+        renderActivityFeed(activePts, pack.data.uppkbPoints || defaultUppkb);
       }
     })
     .catch(function (err) {
@@ -1938,7 +1981,6 @@
       yearSelect.value = String(currentYear);
     }
 
-
     if (yearlyAkapData[currentYear]) {
       transportModes.akap = yearlyAkapData[currentYear];
     }
@@ -1950,6 +1992,13 @@
     }
 
     updateModeUI(currentMode, currentMetric);
+
+    var activePts = getActiveTerminalPoints();
+    renderTerminalRanking(currentTerminalMetric);
+    renderRanking(activePts);
+    renderMapPoints(activePts, defaultUppkb);
+    renderActivityFeed(activePts, defaultUppkb);
+
     fetchDashboard(currentYear);
   }
 
@@ -2217,8 +2266,10 @@
     initQuadCards();
     // Baseline render langsung tanpa flicker / tanpa menunggu cold-start API
     updateModeUI('akap', 'primary');
-    renderRanking(defaultTerminals);
-    renderActivityFeed(defaultTerminals, defaultUppkb);
+    var initPts = getActiveTerminalPoints();
+    renderRanking(initPts);
+    renderTerminalRanking(currentTerminalMetric);
+    renderActivityFeed(initPts, defaultUppkb);
     initMap();
 
     // Animate SPM Gauge on entrance
