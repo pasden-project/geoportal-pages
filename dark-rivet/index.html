@@ -194,7 +194,7 @@
             </span>
             <div class="year-select-wrap">
               <select id="yearSelect" class="year-select" aria-label="Pilih tahun data operasional">
-                <option value="2026" selected>2026 (YTD)</option>
+                <option value="2026" selected>2026</option>
                 <option value="2025">2025</option>
                 <option value="2024">2024</option>
               </select>
@@ -244,20 +244,6 @@
                     <p class="card__sub" id="heroSub" style="color: var(--dim); font-size: 13px;">Pergerakan Penumpang (<span id="activeYearLabel">Tahun 2026</span>)</p>
                   </div>
                   <div class="balance__tools" style="display: flex; align-items: center; gap: 8px;">
-                    <!-- Segmented Control Toggle Penumpang vs Kendaraan -->
-                    <!-- Segmented Control Toggle Tahun [ 2026 | 2025 | 2024 ] -->
-                    <div class="seg" id="cardYearSeg" role="radiogroup" aria-label="Pilih Tahun Operasional">
-                      <button class="seg__btn is-active" type="button" data-year="2026" title="Tahun 2026 (YTD Resmi)">
-                        <span>2026</span>
-                      </button>
-                      <button class="seg__btn" type="button" data-year="2025" title="Tahun 2025 (12 Bulan Penuh)">
-                        <span>2025</span>
-                      </button>
-                      <button class="seg__btn" type="button" data-year="2024" title="Tahun 2024 (Tahunan)">
-                        <span>2024</span>
-                      </button>
-                    </div>
-
                     <div class="seg" id="metricSeg" role="radiogroup" aria-label="Pilih Metrik">
                       <button class="seg__btn is-active" type="button" data-metric="penumpang" title="Metrik Penumpang">
                         <span>Penumpang</span>

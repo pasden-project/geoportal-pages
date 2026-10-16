@@ -41,49 +41,49 @@
       name: 'AKAP / AKDP',
       year: 2026,
       isYtd: true,
-      periodKeterangan: 'YTD 2026',
-      title: 'Pergerakan Angkutan AKAP & AKDP (<span id="activeYearLabel">YTD 2026</span>)',
+      periodKeterangan: 'YTD',
+      title: 'Pergerakan Angkutan AKAP & AKDP (<span id="activeYearLabel">YTD</span>)',
       primaryLabel: 'Penumpang',
       secondaryLabel: 'Kendaraan',
       primaryUnit: ' pnp',
       secondaryUnit: ' knd',
       legendPrimary: 'Keberangkatan',
       legendSecondary: 'Kedatangan',
-      primaryValue: 6030494,
-      secondaryValue: 629698,
+      primaryValue: 6743004,
+      secondaryValue: 753257,
       summary: {
-        keberangkatan_penumpang: 3245446,
-        kedatangan_penumpang: 2785048,
-        total_penumpang: 6030494,
-        keberangkatan_kendaraan: 331405,
-        kedatangan_kendaraan: 298293,
-        total_kendaraan: 629698
+        keberangkatan_penumpang: 3637273,
+        kedatangan_penumpang: 3105731,
+        total_penumpang: 6743004,
+        keberangkatan_kendaraan: 402430,
+        kedatangan_kendaraan: 350827,
+        total_kendaraan: 753257
       },
       stats: {
         s1Label: 'Pergerakan Kendaraan',
-        s1Value: '629.698',
-        s1Delta: '<svg class="ico"><use href="#i-arrow-ur"/></svg><b>+15.2%</b> vs 2025 YTD',
+        s1Value: '753.257',
+        s1Delta: '<svg class="ico"><use href="#i-arrow-ur"/></svg><b>+8.4%</b> vs 2025',
         s1DeltaClass: 'delta--up',
         s2Label: 'Terminal Penumpang',
         s2Value: '12 Simpul Tipe A',
         s2Delta: 'Wilayah BPTD Jabar',
         s2DeltaColor: 'var(--n-cyan)',
         s3Label: 'Trayek Berizin',
-        s3Value: '777 Koridor',
-        s3Delta: 'Aktif Terpetakan',
+        s3Value: '1.248 Trayek',
+        s3Delta: 'Aktif Beroperasi',
         s3DeltaColor: 'var(--n-lime)'
       },
       trend: [
-        { bulan: "Jan", primary: 332806, secondary: 274772, altPrimary: 37150, altSecondary: 31973 },
-        { bulan: "Feb", primary: 262343, secondary: 227923, altPrimary: 31029, altSecondary: 26664 },
-        { bulan: "Mar", primary: 509555, secondary: 394413, altPrimary: 36244, altSecondary: 30682 },
-        { bulan: "Apr", primary: 292353, secondary: 255334, altPrimary: 33256, altSecondary: 29285 },
-        { bulan: "Mei", primary: 344753, secondary: 295060, altPrimary: 37827, altSecondary: 33642 },
-        { bulan: "Jun", primary: 382182, secondary: 326015, altPrimary: 38495, altSecondary: 35610 },
-        { bulan: "Jul", primary: 389471, secondary: 361839, altPrimary: 39654, altSecondary: 37685 },
-        { bulan: "Agu", primary: 376980, secondary: 340342, altPrimary: 39639, altSecondary: 37430 },
-        { bulan: "Sep", primary: 355003, secondary: 309350, altPrimary: 38111, altSecondary: 35322 },
-        { bulan: "Okt", primary: 0, secondary: 0, altPrimary: 0, altSecondary: 0 },
+        { bulan: "Jan", primary: 370002, secondary: 323925, altPrimary: 43581, altSecondary: 36587 },
+        { bulan: "Feb", primary: 287088, secondary: 277337, altPrimary: 37622, altSecondary: 31240 },
+        { bulan: "Mar", primary: 546863, secondary: 430516, altPrimary: 44221, altSecondary: 37536 },
+        { bulan: "Apr", primary: 390474, secondary: 296929, altPrimary: 42147, altSecondary: 34072 },
+        { bulan: "Mei", primary: 383737, secondary: 317808, altPrimary: 41982, altSecondary: 36296 },
+        { bulan: "Jun", primary: 377916, secondary: 324592, altPrimary: 42211, altSecondary: 37778 },
+        { bulan: "Jul", primary: 355806, secondary: 340872, altPrimary: 43111, altSecondary: 40043 },
+        { bulan: "Agu", primary: 406118, secondary: 348578, altPrimary: 43091, altSecondary: 39014 },
+        { bulan: "Sep", primary: 329939, secondary: 283878, altPrimary: 43488, altSecondary: 39195 },
+        { bulan: "Okt", primary: 189330, secondary: 161296, altPrimary: 20976, altSecondary: 19066 },
         { bulan: "Nov", primary: 0, secondary: 0, altPrimary: 0, altSecondary: 0 },
         { bulan: "Des", primary: 0, secondary: 0, altPrimary: 0, altSecondary: 0 }
       ]
@@ -816,7 +816,9 @@
     var isBarang = (cfg.id === 'barang');
     var isPri = (metric === 'primary');
     var data = isAkap
-      ? ((yearlyAkapData[currentYear] || cfg).trend)
+      ? ((currentYear === 2026 && dashboardData && dashboardData.trend && dashboardData.trend.length)
+          ? dashboardData.trend
+          : (yearlyAkapData[currentYear] || cfg).trend)
       : cfg.trend;
 
     var unit = isAkap
@@ -1936,12 +1938,6 @@
       yearSelect.value = String(currentYear);
     }
 
-    // Sinkronkan segmented button di kartu
-    var cardYearBtns = document.querySelectorAll('#cardYearSeg .seg__btn');
-    cardYearBtns.forEach(function (btn) {
-      var by = parseInt(btn.getAttribute('data-year'), 10);
-      btn.classList.toggle('is-active', by === currentYear);
-    });
 
     if (yearlyAkapData[currentYear]) {
       transportModes.akap = yearlyAkapData[currentYear];
@@ -1965,15 +1961,6 @@
       });
     }
 
-    var cardYearSeg = document.getElementById('cardYearSeg');
-    if (cardYearSeg) {
-      cardYearSeg.querySelectorAll('.seg__btn').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          var y = btn.getAttribute('data-year');
-          setYear(y);
-        });
-      });
-    }
 
     var userProfileBtn = document.getElementById('userProfileBtn');
     if (userProfileBtn) {

@@ -62,7 +62,7 @@ class CDPClient {
 
 async function runTest() {
   console.log('======================================================================');
-  console.log('GeoPORTAL — Multi-Year (2026/2025/2024) Accuracy Verification Suite');
+  console.log('GeoPORTAL — Multi-Year (2026 Live/2025/2024) Accuracy Verification');
   console.log('======================================================================\n');
 
   let passCount = 0;
@@ -80,7 +80,7 @@ async function runTest() {
 
   const edge = spawn(EDGE_PATH, [
     '--headless=new',
-    '--remote-debugging-port=9226',
+    '--remote-debugging-port=9227',
     '--window-size=1440,900',
     '--hide-scrollbars',
     'http://localhost:8080/'
@@ -91,13 +91,13 @@ async function runTest() {
     for (let retry = 0; retry < 20; retry++) {
       await new Promise(r => setTimeout(r, 400));
       try {
-        const res = await fetch('http://127.0.0.1:9226/json');
+        const res = await fetch('http://127.0.0.1:9227/json');
         const tabs = await res.json();
         targetTab = tabs.find(t => t.type === 'page') || tabs[0];
         if (targetTab && targetTab.webSocketDebuggerUrl) break;
       } catch (_) {}
     }
-    if (!targetTab) throw new Error('Target tab not found on port 9226');
+    if (!targetTab) throw new Error('Target tab not found on port 9227');
 
     const cdp = new CDPClient(targetTab.webSocketDebuggerUrl);
     await cdp.connect();
@@ -122,36 +122,57 @@ async function runTest() {
     await cdp.send('Page.navigate', { url: 'http://localhost:8080/' });
     await new Promise(r => setTimeout(r, 1500));
 
-    // Test 1: 2026 Default Accuracy
-    console.log('--- Test 1: 2026 YTD Accurate Official Numbers ---');
+    // Test 1: Poin 1 Verification (cardYearSeg removed, topbar select exists)
+    console.log('--- Test 1: Verification of Poin 1 (cardYearSeg Removed) ---');
+    const cardYearSegExists = await cdp.eval(`!!document.getElementById('cardYearSeg')`);
+    assert('Segment selector in card header removed (#cardYearSeg is null)', !cardYearSegExists);
+
+    const topbarOptions = await cdp.eval(`
+      Array.from(document.querySelectorAll('#yearSelect option')).map(o => o.value)
+    `);
+    assert('Topbar dropdown contains [2026, 2025, 2024]', JSON.stringify(topbarOptions) === JSON.stringify(['2026', '2025', '2024']), `Options: ${topbarOptions}`);
+
+    // Test 2: Poin 2 Verification (2026 Live Data & October Presence)
+    console.log('\n--- Test 2: Verification of Poin 2 (2026 Live Data with October Bar) ---');
     const heroPax2026 = await cdp.eval(`document.getElementById('heroPax')?.textContent?.trim()`);
-    assert('2026 Hero Penumpang displays accurate 6.030.494 (not 6.743.004)', heroPax2026 === '6.030.494', `Actual: ${heroPax2026}`);
+    assert('2026 Hero Penumpang displays live 6.743.004', heroPax2026 === '6.743.004', `Actual: ${heroPax2026}`);
 
     const statVehicles2026 = await cdp.eval(`document.getElementById('statVehicles')?.textContent?.trim()`);
-    assert('2026 Kendaraan displays accurate 629.698 (not 753.257)', statVehicles2026 === '629.698', `Actual: ${statVehicles2026}`);
+    assert('2026 Kendaraan displays live 753.257', statVehicles2026 === '753.257', `Actual: ${statVehicles2026}`);
 
-    const heroSub2026 = await cdp.eval(`document.getElementById('activeYearLabel')?.textContent?.trim()`);
-    assert('2026 Label shows YTD 2026', heroSub2026 === 'YTD 2026', `Actual: ${heroSub2026}`);
+    // Verify October bar is present and has height > 0
+    const oktoHeight = await cdp.eval(`
+      var colOkto = document.querySelectorAll('#cols .col')[9]; // Index 9 = Oktober
+      var barIncome = colOkto ? colOkto.querySelector('.bar--income') : null;
+      barIncome ? barIncome.style.height : '0%';
+    `);
+    assert('October bar is rendered and active (height > 0)', oktoHeight && parseFloat(oktoHeight) > 0, `Height: ${oktoHeight}`);
 
-    const delta2026 = await cdp.eval(`document.getElementById('statDelta1')?.textContent?.trim()`);
-    assert('2026 Delta compares vs 2025 YTD', delta2026 && delta2026.includes('+15.2% vs 2025 YTD'), `Actual: ${delta2026}`);
+    const activeCols2026 = await cdp.eval(`
+      Array.from(document.querySelectorAll('#cols .col')).filter(c => {
+        var h = c.querySelector('.bar--income')?.style?.height || '';
+        return h && parseFloat(h) > 0;
+      }).length
+    `);
+    assert('2026 Chart has 10 active monthly bars (Jan–Okt)', activeCols2026 === 10, `Active bars: ${activeCols2026}`);
 
-    // Test 2: Switch to 2025
-    console.log('\n--- Test 2: Year Selection 2025 (Full 12 Months REKAP) ---');
-    await cdp.eval(`document.querySelector('#cardYearSeg button[data-year="2025"]')?.click();`);
+    // Test 3: Topbar Switch to 2025
+    console.log('\n--- Test 3: Topbar Switch to 2025 (Full 12 Months REKAP) ---');
+    await cdp.eval(`
+      var sel = document.getElementById('yearSelect');
+      sel.value = '2025';
+      sel.dispatchEvent(new Event('change'));
+    `);
     await new Promise(r => setTimeout(r, 800));
 
     const heroPax2025 = await cdp.eval(`document.getElementById('heroPax')?.textContent?.trim()`);
-    assert('2025 Hero Penumpang displays accurate 7.099.215 (not 757k)', heroPax2025 === '7.099.215', `Actual: ${heroPax2025}`);
+    assert('2025 Hero Penumpang displays accurate 7.099.215', heroPax2025 === '7.099.215', `Actual: ${heroPax2025}`);
 
     const statVehicles2025 = await cdp.eval(`document.getElementById('statVehicles')?.textContent?.trim()`);
     assert('2025 Kendaraan displays accurate 820.646', statVehicles2025 === '820.646', `Actual: ${statVehicles2025}`);
 
     const heroSub2025 = await cdp.eval(`document.getElementById('activeYearLabel')?.textContent?.trim()`);
     assert('2025 Label shows Tahun 2025', heroSub2025 === 'Tahun 2025', `Actual: ${heroSub2025}`);
-
-    const topbarSelect2025 = await cdp.eval(`document.getElementById('yearSelect')?.value`);
-    assert('Topbar dropdown synchronized to 2025', topbarSelect2025 === '2025', `Actual: ${topbarSelect2025}`);
 
     const cols2025Count = await cdp.eval(`
       Array.from(document.querySelectorAll('#cols .col')).filter(c => {
@@ -161,9 +182,13 @@ async function runTest() {
     `);
     assert('2025 Chart renders all 12 active monthly bars', cols2025Count === 12, `Active bars: ${cols2025Count}`);
 
-    // Test 3: Switch to 2024
-    console.log('\n--- Test 3: Year Selection 2024 (Annual Master REKAP) ---');
-    await cdp.eval(`document.querySelector('#cardYearSeg button[data-year="2024"]')?.click();`);
+    // Test 4: Topbar Switch to 2024
+    console.log('\n--- Test 4: Topbar Switch to 2024 (Annual Master REKAP) ---');
+    await cdp.eval(`
+      var sel = document.getElementById('yearSelect');
+      sel.value = '2024';
+      sel.dispatchEvent(new Event('change'));
+    `);
     await new Promise(r => setTimeout(r, 800));
 
     const heroPax2024 = await cdp.eval(`document.getElementById('heroPax')?.textContent?.trim()`);
@@ -175,11 +200,8 @@ async function runTest() {
     const heroSub2024 = await cdp.eval(`document.getElementById('activeYearLabel')?.textContent?.trim()`);
     assert('2024 Label shows Tahun 2024', heroSub2024 === 'Tahun 2024', `Actual: ${heroSub2024}`);
 
-    const topbarSelect2024 = await cdp.eval(`document.getElementById('yearSelect')?.value`);
-    assert('Topbar dropdown synchronized to 2024', topbarSelect2024 === '2024', `Actual: ${topbarSelect2024}`);
-
-    // Test 4: Topbar Select Switch to 2026
-    console.log('\n--- Test 4: Topbar Select Switch to 2026 ---');
+    // Test 5: Switch back to 2026 and toggle to Kendaraan
+    console.log('\n--- Test 5: Switch Back to 2026 & Metric Toggle to Kendaraan ---');
     await cdp.eval(`
       var sel = document.getElementById('yearSelect');
       sel.value = '2026';
@@ -187,21 +209,12 @@ async function runTest() {
     `);
     await new Promise(r => setTimeout(r, 800));
 
-    const cardBtn2026Active = await cdp.eval(`
-      document.querySelector('#cardYearSeg button[data-year="2026"]')?.classList.contains('is-active')
-    `);
-    assert('Card year button 2026 reflects is-active from topbar change', cardBtn2026Active);
-
-    const heroPaxBack2026 = await cdp.eval(`document.getElementById('heroPax')?.textContent?.trim()`);
-    assert('Hero Penumpang restored to 6.030.494', heroPaxBack2026 === '6.030.494', `Actual: ${heroPaxBack2026}`);
-
-    // Test 5: Metric Toggle to Kendaraan
-    console.log('\n--- Test 5: Metric Toggle to Kendaraan ---');
     await cdp.eval(`document.querySelector('#metricSeg button[data-metric="secondary"]')?.click();`);
     await new Promise(r => setTimeout(r, 600));
 
     const heroVeh2026 = await cdp.eval(`document.getElementById('heroPax')?.textContent?.trim()`);
-    assert('Hero switches to Kendaraan 629.698', heroVeh2026 === '629.698', `Actual: ${heroVeh2026}`);
+    assert('Hero switches to Kendaraan 753.257', heroVeh2026 === '753.257', `Actual: ${heroVeh2026}`);
+
     // Test 6: Zero Console Errors
     console.log('\n--- Test 6: Console Error Invariant ---');
     assert('Zero console errors throughout multi-year switching', consoleErrors.length === 0, consoleErrors.join('; '));
