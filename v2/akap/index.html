@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoPORTAL BPTD Jabar — Evaluasi Kinerja AKAP & AKDP (YTD 2026)</title>
+    <meta name="description" content="Dashboard Infografis Analitik Kinerja Operasional Angkutan AKAP dan AKDP Jawa Barat YTD 2026 berdasarkan agregat Terminal Online System (TOS) 12 Terminal Tipe A.">
+    <link rel="stylesheet" href="../command-center.css">
+    <link rel="stylesheet" href="akap.css">
+    <script>
+      (function() {
+        try {
+          var t = localStorage.getItem('geoportal-theme') || localStorage.getItem('geoterminal_theme');
+          if (t === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.documentElement.classList.add('theme-light');
+          } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.documentElement.classList.remove('theme-light');
+          }
+          if (window.self !== window.top || window.location.search.includes('embed=1')) {
+            document.documentElement.classList.add('is-embedded');
+          }
+        } catch (_) {}
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/index-CYMQcwqr.css">
+    <link rel="stylesheet" href="/geoportal-rivet.css">
+    <link rel="stylesheet" href="/submodule-rivet.css">
+</head>
+<body>
+    <div class="app-shell">
+        <!-- ================= SIDEBAR ================= -->
+        <aside id="appSidebar" class="app-sidebar" aria-label="Navigasi utama">
+            <div class="sidebar-logo">
+                <a href="/" class="brand-link" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;" title="Kembali ke Dashboard Utama">
+                    <span class="brand__mark" aria-hidden="true">
+                        <img src="/assets/logo-kemenhub.svg" alt="Logo Kemenhub" class="brand__logo-img brand__logo-img--kemenhub" />
+                        <img src="/assets/logo-hubdat.png" alt="Logo Ditjen Hubdat" class="brand__logo-img brand__logo-img--hubdat" />
+                    </span>
+                    <div class="logo-text">
+                        <span class="logo-title brand__title">GeoPORTAL</span>
+                        <span class="logo-sub brand__instansi">BPTD Jabar</span>
+                        <span class="brand__tag">AKAP / AKDP</span>
+                    </div>
+                </a>
+                <button type="button" id="sidebarClose" class="sidebar-close-btn" aria-label="Tutup menu navigasi">
+                    <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav" aria-label="Navigasi utama modul">
+                <a href="/" class="nav-link" data-nav-status="available" title="Ringkasan">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    <span class="nav-text">Ringkasan</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="/maps/" class="nav-link" data-nav-status="available" title="Peta Transportasi">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+                    <span class="nav-text">Peta Transportasi</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../terminal/" class="nav-link" data-nav-status="available" title="Terminal — Modul Terminal Penumpang">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                    <span class="nav-text">Terminal</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../trayek/" class="nav-link" data-nav-status="available" title="Trayek — Modul Trayek Angkutan Jalan">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    <span class="nav-text">Trayek</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="./" class="nav-link is-active" aria-current="page" data-nav-status="active" title="AKAP / AKDP — Evaluasi Kinerja (Aktif)">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    <span class="nav-text">AKAP / AKDP</span>
+                    <span class="nav-status-badge nav-status-active" data-status="ACTIVE" style="background: rgba(0, 229, 255, 0.18); color: var(--n-cyan);">6,03M</span>
+                </a>
+                <a href="../perintis/" class="nav-link" data-nav-status="available" title="Angkutan Perintis — Layanan Bus Perintis BPTD Jabar">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                    <span class="nav-text">Angkutan Perintis</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../uppkb/" class="nav-link" data-nav-status="available" title="UPPKB — Jembatan Timbang & Pengawasan Muatan">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
+                    <span class="nav-text">UPPKB</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../od/" class="nav-link" data-nav-status="available" title="OD Matrix — Matriks Asal Tujuan Angkutan Jalan">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                    <span class="nav-text">OD Matrix</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../connectivity/" class="nav-link" data-nav-status="available" title="Konektivitas Wilayah">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                    <span class="nav-text">Konektivitas</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../early-warning/" class="nav-link" data-nav-status="available" title="Sistem Peringatan Dini">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    <span class="nav-text">Early Warning</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../program/" class="nav-link" data-nav-status="available" title="Evaluasi Kinerja Program">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+                    <span class="nav-text">Evaluasi Program</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../laporan/" class="nav-link" data-nav-status="available" title="Laporan Realisasi">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    <span class="nav-text">Laporan</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+                <a href="../data-master/" class="nav-link" data-nav-status="available" title="Data Master">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>
+                    <span class="nav-text">Data Master</span>
+                    <span class="nav-status-badge nav-status-available" data-status="AVAILABLE">Tersedia</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <svg class="logo-mark logo-mark-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path><path d="M12 2v20"></path></svg>
+                <span class="footer-title">BPTD Jawa Barat</span>
+                <span class="footer-sub">Transportasi Darat Lebih Terintegrasi</span>
+            </div>
+        </aside>
+
+        <!-- ================= OVERLAY (mobile) ================= -->
+        <div id="sidebarOverlay" class="sidebar-overlay" hidden></div>
+
+        <!-- ================= MAIN ================= -->
+        <main class="app-main">
+            <header class="app-header">
+                <div class="header-left">
+                    <button type="button" id="sidebarToggle" class="header-menu-btn" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="appSidebar">
+                        <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                    <div class="header-title-block">
+                        <h1 class="header-title">Transport Command Center</h1>
+                        <p class="header-sub">Evaluasi Kinerja Operasional AKAP & AKDP — Jawa Barat</p>
+                    </div>
+                </div>
+
+                <div class="header-right">
+                    <div class="header-clock">
+                        <div class="clock-date">
+                            <svg class="icon-sm icon-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            <span id="current-date">Memuat tanggal...</span>
+                        </div>
+                        <span id="current-time" class="clock-time">--:-- WIB</span>
+                    </div>
+
+                    <div class="api-status" role="status" aria-live="polite">
+                        <span class="api-status-pill api-status-ok">
+                            <span class="api-dot" aria-hidden="true"></span>
+                            TOS YTD 2026 Terverifikasi
+                        </span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="app-content">
+                <!-- ================= HEADER BANNER & IDENTITAS ================= -->
+                <div class="akap-header-banner">
+                    <div>
+                        <div class="akap-brand-meta">
+                            <span class="akap-badge-hubdat">Ditjen Perhubungan Darat</span>
+                            <span class="akap-badge-jurnal">Kajian Ilmiah Operasional</span>
+                            <span style="font-size: 11px; color: var(--dim); font-family: var(--font-mono);">BPTD KELAS I JAWA BARAT</span>
+                        </div>
+                        <h2 class="akap-title">Evaluasi Kinerja Operasional Angkutan AKAP & AKDP Jawa Barat</h2>
+                        <p class="akap-sub">Agregat Terminal Online System (TOS) 12 Terminal Tipe A Jawa Barat &bull; Periode Aktual 01 Januari s.d. 30 September 2026 (273 Hari Kalender)</p>
+                    </div>
+                    <div class="akap-banner-actions">
+                        <button type="button" id="btn-print-laporan" class="btn-print" title="Cetak Naskah Eksekutif Formal">
+                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                            <span>Cetak Laporan</span>
+                        </button>
+                        <button type="button" id="btn-download-json" class="btn-download" title="Unduh Dataset Analitik JSON">
+                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                            <span>Unduh JSON</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ================= 4 EXECUTIVE KPI CARDS ================= -->
+                <div class="kpi-quad-grid">
+                    <!-- Card 1: Total Penumpang -->
+                    <div class="kpi-card kpi-card-lime">
+                        <div class="kpi-header">
+                            <span class="kpi-label">Volume Penumpang Terlayani</span>
+                            <div class="kpi-icon-pill kpi-icon-pill-lime">
+                                <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                            </div>
+                        </div>
+                        <div class="kpi-value-row">
+                            <div class="kpi-value" id="kpi-pnp-total">6,03 Juta</div>
+                            <div class="kpi-unit">pax (YTD)</div>
+                        </div>
+                        <div class="kpi-sub-metrics">
+                            <div>Keberangkatan: <strong id="kpi-pnp-berangkat" style="color:var(--ink);">3.245.446</strong> pax (53,8%)</div>
+                            <div>Kedatangan: <strong id="kpi-pnp-datang" style="color:var(--ink);">2.785.048</strong> pax (46,2%)</div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Total Ritase TOS -->
+                    <div class="kpi-card kpi-card-cyan">
+                        <div class="kpi-header">
+                            <span class="kpi-label">Total Ritase Operasional (TOS)</span>
+                            <div class="kpi-icon-pill kpi-icon-pill-cyan">
+                                <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path></svg>
+                            </div>
+                        </div>
+                        <div class="kpi-value-row">
+                            <div class="kpi-value" id="kpi-cat-total">629.698</div>
+                            <div class="kpi-unit">catatan bus</div>
+                        </div>
+                        <div class="kpi-sub-metrics">
+                            <div>Berangkat: <strong id="kpi-cat-berangkat" style="color:var(--ink);">331.405</strong> | Datang: <strong>298.293</strong></div>
+                            <div>Coverage OD Berangkat: <strong id="kpi-coverage" style="color:var(--n-cyan);">97,44%</strong> pax</div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Pangsa Layanan (AKAP vs AKDP) -->
+                    <div class="kpi-card kpi-card-amber">
+                        <div class="kpi-header">
+                            <span class="kpi-label">Pangsa Layanan Berangkat</span>
+                            <div class="kpi-icon-pill kpi-icon-pill-amber">
+                                <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
+                            </div>
+                        </div>
+                        <div class="kpi-value-row">
+                            <div class="kpi-value"><span id="kpi-pangsa-akap" style="color:var(--n-lime);">55,42%</span> <span style="font-size:16px;color:var(--dim);">:</span> <span id="kpi-pangsa-akdp" style="color:var(--n-cyan);">44,58%</span></div>
+                        </div>
+                        <div class="kpi-sub-metrics">
+                            <div style="display:flex;justify-content:space-between;">
+                                <span>AKAP: <strong>1.798.719</strong></span>
+                                <span>AKDP: <strong>1.446.727</strong></span>
+                            </div>
+                            <div class="kpi-ratio-bar">
+                                <div id="kpi-ratio-bar-akap" class="kpi-ratio-fill-akap" style="width: 55.4%;"></div>
+                                <div id="kpi-ratio-bar-akdp" class="kpi-ratio-fill-akdp" style="width: 44.6%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Produktivitas Rerata -->
+                    <div class="kpi-card kpi-card-purple">
+                        <div class="kpi-header">
+                            <span class="kpi-label">Produktivitas Pencatatan</span>
+                            <div class="kpi-icon-pill kpi-icon-pill-purple">
+                                <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                            </div>
+                        </div>
+                        <div class="kpi-value-row">
+                            <div class="kpi-value" id="kpi-prod-rerata">9,79</div>
+                            <div class="kpi-unit">pax / trip catatan</div>
+                        </div>
+                        <div class="kpi-sub-metrics">
+                            <div>Puncak MoM: <strong id="kpi-prod-puncak" style="color:var(--n-lime);">14,06 (Maret)</strong></div>
+                            <div>Lonjakan Mudik: <strong style="color:var(--n-lime);">+94,23%</strong> (509.555 pax)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= TAB NAVIGATION ================= -->
+                <div class="tab-nav-wrapper">
+                    <ul class="tab-nav-list" role="tablist">
+                        <li>
+                            <button type="button" class="tab-btn" data-tab="panel-bulanan" role="tab" aria-selected="true" aria-controls="panel-bulanan">
+                                <span>1. Tren Bulanan & Musiman</span>
+                                <span class="tab-badge">9 Bulan</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="tab-btn" data-tab="panel-terminal" role="tab" aria-selected="false" aria-controls="panel-terminal">
+                                <span>2. Simpul Terminal & Ketergantungan (RD3)</span>
+                                <span class="tab-badge">12 Simpul</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="tab-btn" data-tab="panel-koridor" role="tab" aria-selected="false" aria-controls="panel-koridor">
+                                <span>3. Koridor Trayek & Matriks OD</span>
+                                <span class="tab-badge">777 Koridor</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="tab-btn" data-tab="panel-operator" role="tab" aria-selected="false" aria-controls="panel-operator">
+                                <span>4. Struktur Operator (PO) & Pasar HHI</span>
+                                <span class="tab-badge">378 PO</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="tab-btn" data-tab="panel-waktu" role="tab" aria-selected="false" aria-controls="panel-waktu">
+                                <span>5. Distribusi Waktu & Jam Puncak</span>
+                                <span class="tab-badge">24 Jam</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="tab-btn" data-tab="panel-kebijakan" role="tab" aria-selected="false" aria-controls="panel-kebijakan">
+                                <span>6. Rekomendasi Kebijakan</span>
+                                <span class="tab-badge">4 Pilar</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- ================= TAB 1: TREN BULANAN & MUSIMAN ================= -->
+                <div id="panel-bulanan" class="tab-panel is-active" role="tabpanel">
+                    <div class="content-card">
+                        <div class="card-header-flex">
+                            <div>
+                                <h3 class="card-title">
+                                    <svg class="icon-sm" style="color:var(--n-cyan);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
+                                    Dinamika Pergerakan Bulanan & Produktivitas Catatan (Januari–September 2026)
+                                </h3>
+                                <p class="card-subtitle">Grafik batang volume penumpang berangkat (cyan) vs datang (ungu), serta garis produktivitas penumpang per catatan (lime, skala kanan).</p>
+                            </div>
+                        </div>
+
+                        <!-- SVG Chart Bulanan -->
+                        <div class="chart-container" id="chart-bulanan-svg">
+                            <!-- Injected by akap.js -->
+                        </div>
+
+                        <div class="chart-legend">
+                            <div class="legend-item">
+                                <div class="legend-box" style="background:var(--n-cyan);"></div>
+                                <span>Penumpang Berangkat</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-box" style="background:var(--n-purple);"></div>
+                                <span>Penumpang Datang</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-line-dot"></div>
+                                <span>Produktivitas (Pnp/Catatan)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rekapitulasi Tabel Bulanan -->
+                    <div class="content-card">
+                        <div class="card-header-flex">
+                            <div>
+                                <h3 class="card-title">Tabel Rekapitulasi Kinerja Bulanan AKAP & AKDP</h3>
+                                <p class="card-subtitle">Data resmi agregat 12 Terminal Tipe A Jawa Barat (Januari–September 2026)</p>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Bulan</th>
+                                        <th class="num-cell">Catatan Berangkat</th>
+                                        <th class="num-cell">Pnp Berangkat</th>
+                                        <th class="num-cell">MoM Pnp (%)</th>
+                                        <th class="num-cell">Catatan Datang</th>
+                                        <th class="num-cell">Pnp Datang</th>
+                                        <th class="num-cell">Pnp/Catatan</th>
+                                        <th class="num-cell">AKAP Berangkat</th>
+                                        <th class="num-cell">AKDP Berangkat</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-bulanan-body">
+                                    <!-- Injected by akap.js -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= TAB 2: SIMPUL TERMINAL & RD3 ================= -->
+                <div id="panel-terminal" class="tab-panel" role="tabpanel">
+                    <!-- Info Alert -->
+                    <div style="background:rgba(255,190,77,0.1);border-left:3px solid var(--n-amber);padding:14px 18px;border-radius:6px;margin-bottom:20px;">
+                        <strong style="color:var(--n-amber);font-size:13px;display:block;margin-bottom:4px;">Temuan Kritis Evaluasi Ketergantungan Rute Terminal (RD3):</strong>
+                        <span style="font-size:12px;color:var(--ink);line-height:1.5;">Sebanyak <strong>6 dari 12 Terminal Tipe A Jawa Barat</strong> memiliki Indeks Ketergantungan Rute 3 Teratas (RD3) ≥ 50%. Tingkat kerentanan tertinggi tercatat di <strong>Terminal Subang (97,80%)</strong>, <strong>Terminal KH. Ahmad Sanusi (76,44%)</strong>, dan <strong>Terminal Guntur Melati (72,52%)</strong>, yang membutuhkan diversifikasi rute strategis guna mencegah risiko kelumpuhan operasional akibat gangguan pada koridor utama.</span>
+                    </div>
+
+                    <!-- Cards Grid -->
+                    <div class="card-header-flex">
+                        <div>
+                            <h3 class="card-title">Matriks Evaluasi 12 Simpul Terminal Tipe A Jawa Barat</h3>
+                            <p class="card-subtitle">Klik kartu atau baris tabel untuk melihat rincian 3 rute terbesar dan rekomendasi operasional spesifik</p>
+                        </div>
+                    </div>
+                    <div class="kpi-quad-grid" id="terminal-cards-grid" style="margin-bottom:24px;">
+                        <!-- Injected by akap.js -->
+                    </div>
+
+                    <!-- Tabel Terminal -->
+                    <div class="content-card">
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Kode</th>
+                                        <th>Nama Terminal & Wilayah</th>
+                                        <th class="num-cell">Koridor Terlayani</th>
+                                        <th class="num-cell">Pnp Berangkat</th>
+                                        <th class="num-cell">Porsi Top-1 (RD1)</th>
+                                        <th style="min-width:160px;">Meter RD3 (Top-3 Rute)</th>
+                                        <th>Klasifikasi Risiko</th>
+                                        <th class="num-cell">Coverage TOS</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-terminal-body">
+                                    <!-- Injected by akap.js -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= TAB 3: KORIDOR TRAYEK & MATRIKS OD ================= -->
+                <div id="panel-koridor" class="tab-panel" role="tabpanel">
+                    <!-- Top Koridor Dua Arah -->
+                    <div class="content-card">
+                        <div class="card-header-flex">
+                            <div>
+                                <h3 class="card-title">Peringkat 25 Koridor Dua Arah Terbesar Jawa Barat</h3>
+                                <p class="card-subtitle">Pasangan koridor kabupaten/kota gabungan dua arah beserta kelas dominan dan produktivitas</p>
+                            </div>
+                            <div class="search-wrapper">
+                                <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                                <input type="text" id="search-koridor" class="search-input" placeholder="Cari koridor / kelas..." />
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Rank</th>
+                                        <th>Koridor Antarkota (Dua Arah)</th>
+                                        <th>Kelas</th>
+                                        <th class="num-cell">Catatan Berangkat</th>
+                                        <th class="num-cell">Pnp Berangkat</th>
+                                        <th class="num-cell">Catatan Datang</th>
+                                        <th class="num-cell">Pnp Datang</th>
+                                        <th class="num-cell">Pnp/Trip</th>
+                                        <th class="num-cell">Pangsa (%)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-koridor-body">
+                                    <!-- Injected by akap.js -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="content-grid-2">
+                        <!-- Top 10 OD Berarah -->
+                        <div class="content-card">
+                            <div class="card-header-flex">
+                                <div>
+                                    <h3 class="card-title">Top 10 Pasangan OD Berarah & Asimetri Arah</h3>
+                                    <p class="card-subtitle">Arus berarah terkuat (Sukabumi → Bandung rasio 1,84 terhadap arus balik)</p>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Rank</th>
+                                            <th>Pasangan OD (Asal → Tujuan)</th>
+                                            <th class="num-cell">Trip</th>
+                                            <th class="num-cell">Penumpang</th>
+                                            <th class="num-cell">Pangsa</th>
+                                            <th class="num-cell">Pnp/Trip</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table-od-body">
+                                        <!-- Injected by akap.js -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Bangkitan Tarikan Wilayah -->
+                        <div class="content-card">
+                            <div class="card-header-flex">
+                                <div>
+                                    <h3 class="card-title">Bangkitan & Tarikan Wilayah (12 Simpul)</h3>
+                                    <p class="card-subtitle">Rasio Bangkitan/Tarikan (R > 1,2 = Pembangkit Neto; R < 0,8 = Penarik Neto)</p>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Kabupaten / Kota</th>
+                                            <th class="num-cell">Trip Berangkat</th>
+                                            <th class="num-cell">Bangkitan Pax</th>
+                                            <th class="num-cell">Trip Datang</th>
+                                            <th class="num-cell">Tarikan Pax</th>
+                                            <th class="num-cell">Rasio O/D</th>
+                                            <th>Status Aliran</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table-bt-body">
+                                        <!-- Injected by akap.js -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= TAB 4: OPERATOR & PASAR HHI ================= -->
+                <div id="panel-operator" class="tab-panel" role="tabpanel">
+                    <!-- HHI Analysis Card -->
+                    <div class="content-card" style="border-left:3px solid var(--n-coral);">
+                        <div class="card-header-flex">
+                            <div>
+                                <h3 class="card-title" style="color:var(--n-coral);">
+                                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                                    Struktur Pasar & Konsentrasi Herfindahl-Hirschman Index (HHI)
+                                </h3>
+                                <p class="card-subtitle">Karakteristik persaingan pada 769 koridor terpetakan yang memiliki pergerakan penumpang aktif</p>
+                            </div>
+                        </div>
+                        <div class="kpi-quad-grid" style="margin-bottom:0;">
+                            <div class="kpi-card" style="border-left:3px solid var(--n-coral);">
+                                <span class="kpi-label">Oligopoli Ketat (HHI &ge; 0,25)</span>
+                                <div class="kpi-value" style="color:var(--n-coral);font-size:24px;">91,68%</div>
+                                <div style="font-size:11px;color:var(--dim);margin-top:4px;"><strong>705 dari 769 koridor</strong> didominasi 1–2 operator utama</div>
+                            </div>
+                            <div class="kpi-card" style="border-left:3px solid var(--n-amber);">
+                                <span class="kpi-label">Konsentrasi Moderat</span>
+                                <div class="kpi-value" style="color:var(--n-amber);font-size:24px;">6,63%</div>
+                                <div style="font-size:11px;color:var(--dim);margin-top:4px;"><strong>51 koridor</strong> (0,15 &le; HHI &lt; 0,25)</div>
+                            </div>
+                            <div class="kpi-card" style="border-left:3px solid var(--n-lime);">
+                                <span class="kpi-label">Pasar Kompetitif</span>
+                                <div class="kpi-value" style="color:var(--n-lime);font-size:24px;">1,69%</div>
+                                <div style="font-size:11px;color:var(--dim);margin-top:4px;"><strong>13 koridor</strong> (HHI &lt; 0,15)</div>
+                            </div>
+                            <div class="kpi-card" style="border-left:3px solid var(--n-purple);">
+                                <span class="kpi-label">Dominasi Top-3 PO</span>
+                                <div class="kpi-value" style="color:var(--n-purple);font-size:24px;">58,24%</div>
+                                <div style="font-size:11px;color:var(--dim);margin-top:4px;">Primajasa, MGI, dan Budiman menguasai mayoritas pasar</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tabel PO -->
+                    <div class="content-card">
+                        <div class="card-header-flex">
+                            <div>
+                                <h3 class="card-title">Scorecard Kinerja 25 Perusahaan Otobus (PO) Terbesar Jawa Barat</h3>
+                                <p class="card-subtitle">Volume angkut, pangsa pasar, produktivitas trip, dan utilisasi armada kendaraan unik teramati</p>
+                            </div>
+                            <div class="search-wrapper">
+                                <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                                <input type="text" id="search-po" class="search-input" placeholder="Cari nama PO..." />
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Rank</th>
+                                        <th>Nama Perusahaan Otobus (PO Baku)</th>
+                                        <th class="num-cell">Trip Berangkat</th>
+                                        <th class="num-cell">Pnp Berangkat</th>
+                                        <th class="num-cell">Pangsa Pasar</th>
+                                        <th class="num-cell">Pnp/Trip</th>
+                                        <th class="num-cell">Armada Teramati</th>
+                                        <th class="num-cell">Pnp / Armada</th>
+                                        <th class="num-cell">Koridor Aktif</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-po-body">
+                                    <!-- Injected by akap.js -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= TAB 5: DISTRIBUSI WAKTU & JAM PUNCAK ================= -->
+                <div id="panel-waktu" class="tab-panel" role="tabpanel">
+                    <!-- Highlights -->
+                    <div class="kpi-quad-grid">
+                        <div class="kpi-card kpi-card-cyan">
+                            <span class="kpi-label">Jam Puncak Keberangkatan</span>
+                            <div class="kpi-value" style="color:var(--n-cyan);font-size:22px;">08.00–08.59 WIB</div>
+                            <div style="font-size:11px;color:var(--dim);margin-top:4px;"><strong>269.705 pnp</strong> pada 26.539 catatan bus</div>
+                        </div>
+                        <div class="kpi-card kpi-card-purple">
+                            <span class="kpi-label">Jam Puncak Kedatangan</span>
+                            <div class="kpi-value" style="color:var(--n-purple);font-size:22px;">13.00–13.59 WIB</div>
+                            <div style="font-size:11px;color:var(--dim);margin-top:4px;"><strong>199.957 pnp</strong> pada 19.830 catatan bus</div>
+                        </div>
+                        <div class="kpi-card kpi-card-lime">
+                            <span class="kpi-label">Golden Window Keberangkatan</span>
+                            <div class="kpi-value" style="color:var(--n-lime);font-size:22px;">07.00–10.59 WIB</div>
+                            <div style="font-size:11px;color:var(--dim);margin-top:4px;"><strong>994.431 pnp (30,64%)</strong> berangkat dalam 4 jam ini</div>
+                        </div>
+                        <div class="kpi-card kpi-card-amber">
+                            <span class="kpi-label">Rekor Harian Tertinggi YTD</span>
+                            <div class="kpi-value" style="color:var(--n-amber);font-size:22px;">Selasa, 24 Maret 2026</div>
+                            <div style="font-size:11px;color:var(--dim);margin-top:4px;"><strong>35.645 pnp</strong> (Puncak Arus Mudik H-7 Lebaran)</div>
+                        </div>
+                    </div>
+
+                    <!-- SVG Chart Profil 24 Jam -->
+                    <div class="content-card">
+                        <div class="card-header-flex">
+                            <div>
+                                <h3 class="card-title">Profil Pergerakan Penumpang 24 Jam di Simpul Terminal Jawa Barat</h3>
+                                <p class="card-subtitle">Kurva fluktuasi per jam antara arus keberangkatan (cyan) dan arus kedatangan (ungu)</p>
+                            </div>
+                        </div>
+                        <div class="chart-container" id="chart-waktu-svg">
+                            <!-- Injected by akap.js -->
+                        </div>
+                        <div class="chart-legend">
+                            <div class="legend-item">
+                                <div class="legend-box" style="background:var(--n-cyan);"></div>
+                                <span>Kurva Arus Keberangkatan (Puncak 08.00 WIB)</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-box" style="background:var(--n-purple);"></div>
+                                <span>Kurva Arus Kedatangan (Puncak 13.00 WIB)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tabel Distribusi Jam -->
+                    <div class="content-card">
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Rentang Jam Pengamatan (WIB)</th>
+                                        <th class="num-cell">Catatan Berangkat</th>
+                                        <th class="num-cell">Pnp Berangkat</th>
+                                        <th class="num-cell">Catatan Datang</th>
+                                        <th class="num-cell">Pnp Datang</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-waktu-body">
+                                    <!-- Injected by akap.js -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= TAB 6: REKOMENDASI KEBIJAKAN ================= -->
+                <div id="panel-kebijakan" class="tab-panel" role="tabpanel">
+                    <div class="card-header-flex" style="margin-bottom:16px;">
+                        <div>
+                            <h3 class="card-title">4 Pilar Rekomendasi Manajerial & Kebijakan Transportasi BPTD Jawa Barat</h3>
+                            <p class="card-subtitle">Arahan strategis berdasarkan temuan empiris evaluasi operasional AKAP & AKDP YTD 2026</p>
+                        </div>
+                    </div>
+
+                    <div class="pilar-grid" id="pilar-rekomendasi-grid">
+                        <!-- Injected by akap.js -->
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- ================= MODAL DETAIL TERMINAL ================= -->
+    <div id="terminalDetailModal" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h4 class="modal-title" id="termModalTitle">Detail Terminal</h4>
+                <button type="button" class="modal-close-btn" aria-label="Tutup jendela modal">
+                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="modal-body" id="termModalBody">
+                <!-- Injected by akap.js -->
+            </div>
+        </div>
+    </div>
+
+    <script src="akap.js"></script>
+</body>
+</html>

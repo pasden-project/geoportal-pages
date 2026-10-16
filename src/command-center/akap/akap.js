@@ -1,0 +1,2420 @@
+/* =====================================================================
+   GeoPORTAL BPTD Jabar — Modul Infografis Analitik AKAP & AKDP (YTD 2026)
+   Runtime Engine & Dynamic Visualizer
+   ===================================================================== */
+
+(function () {
+  'use strict';
+
+  // Fallback Data Terintegrasi (Jurnal & Workbook TOS YTD 2026)
+  var FALLBACK_DATA = {
+  "meta": {
+    "judul": "Evaluasi Kinerja Operasional Angkutan AKAP & AKDP Jawa Barat (YTD 2026)",
+    "instansi": "BPTD Kelas I Jawa Barat — Direktorat Jenderal Perhubungan Darat",
+    "periode": "Januari – September 2026 (YTD 2026)",
+    "sumber": "Agregat Terminal Online System (TOS) 12 Terminal Tipe A Jawa Barat",
+    "durasi_hari": 273,
+    "tanggal_rekor": "2026-03-24",
+    "penumpang_rekor": 35645,
+    "coverage_catatan": 0.9775,
+    "coverage_penumpang": 0.9744
+  },
+  "ringkasan": {
+    "catatan_total": 629698,
+    "catatan_berangkat": 331405,
+    "catatan_datang": 298293,
+    "penumpang_total": 6030494,
+    "penumpang_berangkat": 3245446,
+    "penumpang_datang": 2785048,
+    "penumpang_akap": 1798719,
+    "penumpang_akdp": 1446727,
+    "pangsa_akap": 0.5542286,
+    "pangsa_akdp": 0.4457714,
+    "produktivitas_rerata": 9.79299,
+    "koridor_terpetakan": 777,
+    "terminal_count": 12,
+    "po_count": 378,
+    "jam_puncak_berangkat": "08:00–08:59",
+    "pnp_puncak_berangkat": 269705,
+    "jam_puncak_datang": "13:00–13:59",
+    "pnp_puncak_datang": 199957,
+    "golden_window": "07:00–10:59",
+    "golden_window_pnp": 994431,
+    "golden_window_share": 0.3064
+  },
+  "kinerja_bulanan": [
+    {
+      "bulan": "Januari 2026",
+      "label": "Jan",
+      "catatan_berangkat": 37150,
+      "pnp_berangkat": 332806,
+      "mom_pnp": 0.0,
+      "catatan_datang": 31973,
+      "pnp_datang": 274772,
+      "mom_pnp_datang": 0.0,
+      "pnp_per_catatan": 8.96,
+      "akap_berangkat": 187320,
+      "akdp_berangkat": 145486
+    },
+    {
+      "bulan": "Februari 2026",
+      "label": "Feb",
+      "catatan_berangkat": 31029,
+      "pnp_berangkat": 262343,
+      "mom_pnp": -0.2117,
+      "catatan_datang": 26664,
+      "pnp_datang": 227923,
+      "mom_pnp_datang": -0.1705,
+      "pnp_per_catatan": 8.45,
+      "akap_berangkat": 146247,
+      "akdp_berangkat": 116096
+    },
+    {
+      "bulan": "Maret 2026",
+      "label": "Mar",
+      "catatan_berangkat": 36244,
+      "pnp_berangkat": 509555,
+      "mom_pnp": 0.9423,
+      "catatan_datang": 30682,
+      "pnp_datang": 394413,
+      "mom_pnp_datang": 0.7305,
+      "pnp_per_catatan": 14.06,
+      "akap_berangkat": 269511,
+      "akdp_berangkat": 240044
+    },
+    {
+      "bulan": "April 2026",
+      "label": "Apr",
+      "catatan_berangkat": 33256,
+      "pnp_berangkat": 292353,
+      "mom_pnp": -0.4263,
+      "catatan_datang": 29285,
+      "pnp_datang": 255334,
+      "mom_pnp_datang": -0.3526,
+      "pnp_per_catatan": 8.79,
+      "akap_berangkat": 160782,
+      "akdp_berangkat": 131571
+    },
+    {
+      "bulan": "Mei 2026",
+      "label": "Mei",
+      "catatan_berangkat": 37827,
+      "pnp_berangkat": 344753,
+      "mom_pnp": 0.1792,
+      "catatan_datang": 33642,
+      "pnp_datang": 295060,
+      "mom_pnp_datang": 0.1556,
+      "pnp_per_catatan": 9.11,
+      "akap_berangkat": 186585,
+      "akdp_berangkat": 158168
+    },
+    {
+      "bulan": "Juni 2026",
+      "label": "Jun",
+      "catatan_berangkat": 38495,
+      "pnp_berangkat": 382182,
+      "mom_pnp": 0.1086,
+      "catatan_datang": 35610,
+      "pnp_datang": 326015,
+      "mom_pnp_datang": 0.1049,
+      "pnp_per_catatan": 9.93,
+      "akap_berangkat": 217859,
+      "akdp_berangkat": 164323
+    },
+    {
+      "bulan": "Juli 2026",
+      "label": "Jul",
+      "catatan_berangkat": 39654,
+      "pnp_berangkat": 389471,
+      "mom_pnp": 0.0191,
+      "catatan_datang": 37685,
+      "pnp_datang": 361839,
+      "mom_pnp_datang": 0.1099,
+      "pnp_per_catatan": 9.82,
+      "akap_berangkat": 221665,
+      "akdp_berangkat": 167806
+    },
+    {
+      "bulan": "Agustus 2026",
+      "label": "Agu",
+      "catatan_berangkat": 39639,
+      "pnp_berangkat": 376980,
+      "mom_pnp": -0.0321,
+      "catatan_datang": 37430,
+      "pnp_datang": 340342,
+      "mom_pnp_datang": -0.0594,
+      "pnp_per_catatan": 9.51,
+      "akap_berangkat": 213250,
+      "akdp_berangkat": 163730
+    },
+    {
+      "bulan": "September 2026",
+      "label": "Sep",
+      "catatan_berangkat": 38111,
+      "pnp_berangkat": 355003,
+      "mom_pnp": -0.0583,
+      "catatan_datang": 35322,
+      "pnp_datang": 309350,
+      "mom_pnp_datang": -0.0911,
+      "pnp_per_catatan": 9.31,
+      "akap_berangkat": 195500,
+      "akdp_berangkat": 159503
+    }
+  ],
+  "terminal_evaluasi": [
+    {
+      "kode": "IDH",
+      "nama": "Terminal Indihiang",
+      "kab_kota": "Kota Tasikmalaya",
+      "lat": -7.3005,
+      "lng": 108.2045,
+      "catatan_berangkat": 90698,
+      "pnp_berangkat": 653683,
+      "pnp_mapped": 646528,
+      "coverage_pnp": 0.9891,
+      "rd1": 0.2036,
+      "rd3": 0.4624,
+      "koridor_mapped": 71,
+      "klasifikasi": "Moderat",
+      "status_rekomendasi": "Ketergantungan Moderat; pantau perubahan rute",
+      "top_routes": [
+        {
+          "rute": "Kota Tasikmalaya → Kota Jakarta Timur",
+          "pnp": 131639,
+          "share": 0.2036
+        },
+        {
+          "rute": "Kota Tasikmalaya → Kota Bekasi",
+          "pnp": 113775,
+          "share": 0.176
+        },
+        {
+          "rute": "Kota Tasikmalaya → Kota Jakarta Selatan",
+          "pnp": 53545,
+          "share": 0.0828
+        }
+      ],
+      "unit_akap_berangkat": 40309,
+      "unit_akdp_berangkat": 50389,
+      "total_berangkat": 90698,
+      "unit_akap_datang": 478,
+      "unit_akdp_datang": 4144,
+      "total_datang": 4622,
+      "total_unit": 95320,
+      "share_akap": 0.4279,
+      "share_akdp": 0.5721,
+      "kontribusi_jabar": 0.1514
+    },
+    {
+      "kode": "LWP",
+      "nama": "Terminal Leuwipanjang",
+      "kab_kota": "Kota Bandung",
+      "lat": -6.9442,
+      "lng": 107.5925,
+      "catatan_berangkat": 51280,
+      "pnp_berangkat": 603566,
+      "pnp_mapped": 579122,
+      "coverage_pnp": 0.9595,
+      "rd1": 0.1715,
+      "rd3": 0.449,
+      "koridor_mapped": 91,
+      "klasifikasi": "Moderat",
+      "status_rekomendasi": "Ketergantungan Moderat; pantau perubahan rute",
+      "top_routes": [
+        {
+          "rute": "Kota Bandung → Kota Bekasi",
+          "pnp": 99336,
+          "share": 0.1715
+        },
+        {
+          "rute": "Kota Bandung → Kota Sukabumi",
+          "pnp": 96194,
+          "share": 0.1661
+        },
+        {
+          "rute": "Kota Bandung → Kabupaten Bekasi",
+          "pnp": 64483,
+          "share": 0.1113
+        }
+      ],
+      "unit_akap_berangkat": 18287,
+      "unit_akdp_berangkat": 32993,
+      "total_berangkat": 51280,
+      "unit_akap_datang": 31766,
+      "unit_akdp_datang": 44513,
+      "total_datang": 76279,
+      "total_unit": 127559,
+      "share_akap": 0.3924,
+      "share_akdp": 0.6076,
+      "kontribusi_jabar": 0.2026
+    },
+    {
+      "kode": "GMT",
+      "nama": "Terminal Guntur Melati",
+      "kab_kota": "Kabupaten Garut",
+      "lat": -7.2023,
+      "lng": 107.9042,
+      "catatan_berangkat": 22540,
+      "pnp_berangkat": 350576,
+      "pnp_mapped": 348858,
+      "coverage_pnp": 0.9951,
+      "rd1": 0.3474,
+      "rd3": 0.7252,
+      "koridor_mapped": 23,
+      "klasifikasi": "Tinggi",
+      "status_rekomendasi": "Ketergantungan Tinggi; tinjau koridor utama",
+      "top_routes": [
+        {
+          "rute": "Kabupaten Garut → Kota Bekasi",
+          "pnp": 121182,
+          "share": 0.3474
+        },
+        {
+          "rute": "Kabupaten Garut → Kota Jakarta Timur",
+          "pnp": 73687,
+          "share": 0.2112
+        },
+        {
+          "rute": "Kabupaten Garut → Kota Bogor",
+          "pnp": 58130,
+          "share": 0.1666
+        }
+      ],
+      "unit_akap_berangkat": 10263,
+      "unit_akdp_berangkat": 12277,
+      "total_berangkat": 22540,
+      "unit_akap_datang": 19864,
+      "unit_akdp_datang": 23454,
+      "total_datang": 43318,
+      "total_unit": 65858,
+      "share_akap": 0.4575,
+      "share_akdp": 0.5425,
+      "kontribusi_jabar": 0.1046
+    },
+    {
+      "kode": "KAS",
+      "nama": "Terminal KH. Ahmad Sanusi",
+      "kab_kota": "Kota Sukabumi",
+      "lat": -6.9385,
+      "lng": 106.9288,
+      "catatan_berangkat": 24806,
+      "pnp_berangkat": 308011,
+      "pnp_mapped": 307683,
+      "coverage_pnp": 0.9989,
+      "rd1": 0.5757,
+      "rd3": 0.7644,
+      "koridor_mapped": 51,
+      "klasifikasi": "Tinggi",
+      "status_rekomendasi": "Ketergantungan Tinggi; tinjau koridor utama",
+      "top_routes": [
+        {
+          "rute": "Kota Sukabumi → Kota Bandung",
+          "pnp": 177145,
+          "share": 0.5757
+        },
+        {
+          "rute": "Kota Sukabumi → Kota Jakarta Timur",
+          "pnp": 43219,
+          "share": 0.1405
+        },
+        {
+          "rute": "Kota Sukabumi → Kota Jakarta Barat",
+          "pnp": 14822,
+          "share": 0.0482
+        }
+      ],
+      "unit_akap_berangkat": 9814,
+      "unit_akdp_berangkat": 14992,
+      "total_berangkat": 24806,
+      "unit_akap_datang": 10061,
+      "unit_akdp_datang": 14165,
+      "total_datang": 24226,
+      "total_unit": 49032,
+      "share_akap": 0.4053,
+      "share_akdp": 0.5947,
+      "kontribusi_jabar": 0.0779
+    },
+    {
+      "kode": "BJR",
+      "nama": "Terminal Banjar",
+      "kab_kota": "Kota Banjar",
+      "lat": -7.3685,
+      "lng": 108.5397,
+      "catatan_berangkat": 27426,
+      "pnp_berangkat": 277114,
+      "pnp_mapped": 272152,
+      "coverage_pnp": 0.9821,
+      "rd1": 0.1397,
+      "rd3": 0.356,
+      "koridor_mapped": 82,
+      "klasifikasi": "Moderat",
+      "status_rekomendasi": "Ketergantungan Moderat; pantau perubahan rute",
+      "top_routes": [
+        {
+          "rute": "Kota Banjar → Kabupaten Pangandaran",
+          "pnp": 38029,
+          "share": 0.1397
+        },
+        {
+          "rute": "Kota Banjar → Kota Tasikmalaya",
+          "pnp": 29594,
+          "share": 0.1087
+        },
+        {
+          "rute": "Kota Banjar → Kabupaten Banyumas",
+          "pnp": 29261,
+          "share": 0.1075
+        }
+      ],
+      "unit_akap_berangkat": 17956,
+      "unit_akdp_berangkat": 9470,
+      "total_berangkat": 27426,
+      "unit_akap_datang": 20631,
+      "unit_akdp_datang": 10442,
+      "total_datang": 31073,
+      "total_unit": 58499,
+      "share_akap": 0.6596,
+      "share_akdp": 0.3404,
+      "kontribusi_jabar": 0.0929
+    },
+    {
+      "kode": "JJR",
+      "nama": "Terminal Jatijajar",
+      "kab_kota": "Kota Depok",
+      "lat": -6.4429,
+      "lng": 106.8631,
+      "catatan_berangkat": 29407,
+      "pnp_berangkat": 271844,
+      "pnp_mapped": 269873,
+      "coverage_pnp": 0.9927,
+      "rd1": 0.1668,
+      "rd3": 0.3022,
+      "koridor_mapped": 95,
+      "klasifikasi": "Moderat",
+      "status_rekomendasi": "Ketergantungan Moderat; pantau perubahan rute",
+      "top_routes": [
+        {
+          "rute": "Kota Depok → Kota Yogyakarta",
+          "pnp": 45012,
+          "share": 0.1668
+        },
+        {
+          "rute": "Kota Depok → Kota Malang",
+          "pnp": 20796,
+          "share": 0.0771
+        },
+        {
+          "rute": "Kota Depok → Kabupaten Wonogiri",
+          "pnp": 15742,
+          "share": 0.0583
+        }
+      ],
+      "unit_akap_berangkat": 26728,
+      "unit_akdp_berangkat": 2679,
+      "total_berangkat": 29407,
+      "unit_akap_datang": 25255,
+      "unit_akdp_datang": 3976,
+      "total_datang": 29231,
+      "total_unit": 58638,
+      "share_akap": 0.8865,
+      "share_akdp": 0.1135,
+      "kontribusi_jabar": 0.0931
+    },
+    {
+      "kode": "BSG",
+      "nama": "Terminal Baranangsiang",
+      "kab_kota": "Kota Bogor",
+      "lat": -6.6025,
+      "lng": 106.8087,
+      "catatan_berangkat": 20972,
+      "pnp_berangkat": 201360,
+      "pnp_mapped": 199325,
+      "coverage_pnp": 0.9899,
+      "rd1": 0.1623,
+      "rd3": 0.3489,
+      "koridor_mapped": 125,
+      "klasifikasi": "Moderat",
+      "status_rekomendasi": "Ketergantungan Moderat; pantau perubahan rute",
+      "top_routes": [
+        {
+          "rute": "Kota Bogor → Kabupaten Sukabumi",
+          "pnp": 32349,
+          "share": 0.1623
+        },
+        {
+          "rute": "Kota Bogor → Kabupaten Garut",
+          "pnp": 21194,
+          "share": 0.1063
+        },
+        {
+          "rute": "Kota Bogor → Kota Bandung",
+          "pnp": 15995,
+          "share": 0.0802
+        }
+      ],
+      "unit_akap_berangkat": 13049,
+      "unit_akdp_berangkat": 7923,
+      "total_berangkat": 20972,
+      "unit_akap_datang": 13391,
+      "unit_akdp_datang": 11168,
+      "total_datang": 24559,
+      "total_unit": 45531,
+      "share_akap": 0.5807,
+      "share_akdp": 0.4193,
+      "kontribusi_jabar": 0.0723
+    },
+    {
+      "kode": "CKR",
+      "nama": "Terminal Ciakar",
+      "kab_kota": "Kabupaten Sumedang",
+      "lat": -6.8436,
+      "lng": 107.9255,
+      "catatan_berangkat": 18279,
+      "pnp_berangkat": 198990,
+      "pnp_mapped": 177998,
+      "coverage_pnp": 0.8945,
+      "rd1": 0.3799,
+      "rd3": 0.6479,
+      "koridor_mapped": 57,
+      "klasifikasi": "Tinggi",
+      "status_rekomendasi": "Ketergantungan Tinggi; tinjau koridor utama",
+      "top_routes": [
+        {
+          "rute": "Kabupaten Sumedang → Kota Jakarta Timur",
+          "pnp": 67627,
+          "share": 0.3799
+        },
+        {
+          "rute": "Kabupaten Sumedang → Kota Bekasi",
+          "pnp": 31538,
+          "share": 0.1772
+        },
+        {
+          "rute": "Kabupaten Sumedang → Kota Bandung",
+          "pnp": 16163,
+          "share": 0.0908
+        }
+      ],
+      "unit_akap_berangkat": 10159,
+      "unit_akdp_berangkat": 8120,
+      "total_berangkat": 18279,
+      "unit_akap_datang": 8753,
+      "unit_akdp_datang": 8000,
+      "total_datang": 16753,
+      "total_unit": 35032,
+      "share_akap": 0.5398,
+      "share_akdp": 0.4602,
+      "kontribusi_jabar": 0.0556
+    },
+    {
+      "kode": "KTW",
+      "nama": "Terminal Kuningan",
+      "kab_kota": "Kabupaten Kuningan",
+      "lat": -6.9745,
+      "lng": 108.4842,
+      "catatan_berangkat": 21525,
+      "pnp_berangkat": 133558,
+      "pnp_mapped": 130188,
+      "coverage_pnp": 0.9748,
+      "rd1": 0.2332,
+      "rd3": 0.5378,
+      "koridor_mapped": 45,
+      "klasifikasi": "Tinggi",
+      "status_rekomendasi": "Ketergantungan Tinggi; tinjau koridor utama",
+      "top_routes": [
+        {
+          "rute": "Kabupaten Kuningan → Kota Jakarta Barat",
+          "pnp": 30355,
+          "share": 0.2332
+        },
+        {
+          "rute": "Kabupaten Kuningan → Kota Tangerang Selatan",
+          "pnp": 20712,
+          "share": 0.1591
+        },
+        {
+          "rute": "Kabupaten Kuningan → Kota Jakarta Selatan",
+          "pnp": 18946,
+          "share": 0.1455
+        }
+      ],
+      "unit_akap_berangkat": 14746,
+      "unit_akdp_berangkat": 6779,
+      "total_berangkat": 21525,
+      "unit_akap_datang": 13145,
+      "unit_akdp_datang": 9187,
+      "total_datang": 22332,
+      "total_unit": 43857,
+      "share_akap": 0.636,
+      "share_akdp": 0.364,
+      "kontribusi_jabar": 0.0696
+    },
+    {
+      "kode": "KLR",
+      "nama": "Terminal Klari",
+      "kab_kota": "Kabupaten Karawang",
+      "lat": -6.3456,
+      "lng": 107.3541,
+      "catatan_berangkat": 10379,
+      "pnp_berangkat": 129081,
+      "pnp_mapped": 126671,
+      "coverage_pnp": 0.9813,
+      "rd1": 0.1309,
+      "rd3": 0.3138,
+      "koridor_mapped": 103,
+      "klasifikasi": "Moderat",
+      "status_rekomendasi": "Ketergantungan Moderat; pantau perubahan rute",
+      "top_routes": [
+        {
+          "rute": "Kabupaten Karawang → Kota Jakarta Utara",
+          "pnp": 16585,
+          "share": 0.1309
+        },
+        {
+          "rute": "Kabupaten Karawang → Kota Bogor",
+          "pnp": 12628,
+          "share": 0.0997
+        },
+        {
+          "rute": "Kabupaten Karawang → Kota Yogyakarta",
+          "pnp": 10533,
+          "share": 0.0832
+        }
+      ],
+      "unit_akap_berangkat": 9743,
+      "unit_akdp_berangkat": 636,
+      "total_berangkat": 10379,
+      "unit_akap_datang": 9174,
+      "unit_akdp_datang": 1014,
+      "total_datang": 10188,
+      "total_unit": 20567,
+      "share_akap": 0.9198,
+      "share_akdp": 0.0802,
+      "kontribusi_jabar": 0.0327
+    },
+    {
+      "kode": "HJM",
+      "nama": "Terminal Harjamukti",
+      "kab_kota": "Kota Cirebon",
+      "lat": -6.7495,
+      "lng": 108.5524,
+      "catatan_berangkat": 12946,
+      "pnp_berangkat": 87867,
+      "pnp_mapped": 77248,
+      "coverage_pnp": 0.8791,
+      "rd1": 0.2466,
+      "rd3": 0.5598,
+      "koridor_mapped": 60,
+      "klasifikasi": "Tinggi",
+      "status_rekomendasi": "Ketergantungan Tinggi; tinjau koridor utama",
+      "top_routes": [
+        {
+          "rute": "Kota Cirebon → Kota Bekasi",
+          "pnp": 19050,
+          "share": 0.2466
+        },
+        {
+          "rute": "Kota Cirebon → Kabupaten Sidoarjo",
+          "pnp": 16787,
+          "share": 0.2173
+        },
+        {
+          "rute": "Kota Cirebon → Kota Semarang",
+          "pnp": 7410,
+          "share": 0.0959
+        }
+      ],
+      "unit_akap_berangkat": 7884,
+      "unit_akdp_berangkat": 5062,
+      "total_berangkat": 12946,
+      "unit_akap_datang": 8121,
+      "unit_akdp_datang": 5025,
+      "total_datang": 13146,
+      "total_unit": 26092,
+      "share_akap": 0.6134,
+      "share_akdp": 0.3866,
+      "kontribusi_jabar": 0.0414
+    },
+    {
+      "kode": "SUB",
+      "nama": "Terminal Subang",
+      "kab_kota": "Kabupaten Subang",
+      "lat": -6.5684,
+      "lng": 107.7588,
+      "catatan_berangkat": 1147,
+      "pnp_berangkat": 29796,
+      "pnp_mapped": 26860,
+      "coverage_pnp": 0.9015,
+      "rd1": 0.9284,
+      "rd3": 0.978,
+      "koridor_mapped": 11,
+      "klasifikasi": "Tinggi",
+      "status_rekomendasi": "Ketergantungan Tinggi; tinjau koridor utama",
+      "top_routes": [
+        {
+          "rute": "Kabupaten Subang → Kota Jakarta Timur",
+          "pnp": 24937,
+          "share": 0.9284
+        },
+        {
+          "rute": "Kabupaten Subang → Kota Cilegon",
+          "pnp": 856,
+          "share": 0.0319
+        },
+        {
+          "rute": "Kabupaten Subang → Kota Jakarta Barat",
+          "pnp": 476,
+          "share": 0.0177
+        }
+      ],
+      "unit_akap_berangkat": 980,
+      "unit_akdp_berangkat": 167,
+      "total_berangkat": 1147,
+      "unit_akap_datang": 2346,
+      "unit_akdp_datang": 220,
+      "total_datang": 2566,
+      "total_unit": 3713,
+      "share_akap": 0.8958,
+      "share_akdp": 0.1042,
+      "kontribusi_jabar": 0.0059
+    }
+  ],
+  "top_koridor": [
+    {
+      "peringkat": 1,
+      "koridor": "Kota Bandung ↔ Kota Sukabumi",
+      "kelas": "AKDP",
+      "catatan_berangkat": 22006,
+      "pnp_berangkat": 273339,
+      "catatan_datang": 24471,
+      "pnp_datang": 314452,
+      "pnp_per_catatan": 12.42,
+      "pangsa_jaringan": 0.0842
+    },
+    {
+      "peringkat": 2,
+      "koridor": "Kota Jakarta Timur ↔ Kota Tasikmalaya",
+      "kelas": "AKAP",
+      "catatan_berangkat": 15934,
+      "pnp_berangkat": 131639,
+      "catatan_datang": 32,
+      "pnp_datang": 131,
+      "pnp_per_catatan": 8.26,
+      "pangsa_jaringan": 0.0406
+    },
+    {
+      "peringkat": 3,
+      "koridor": "Kabupaten Garut ↔ Kota Bekasi",
+      "kelas": "AKDP",
+      "catatan_berangkat": 6798,
+      "pnp_berangkat": 121182,
+      "catatan_datang": 11298,
+      "pnp_datang": 182333,
+      "pnp_per_catatan": 17.83,
+      "pangsa_jaringan": 0.0373
+    },
+    {
+      "peringkat": 4,
+      "koridor": "Kota Bekasi ↔ Kota Tasikmalaya",
+      "kelas": "AKDP",
+      "catatan_berangkat": 14489,
+      "pnp_berangkat": 113775,
+      "catatan_datang": 44,
+      "pnp_datang": 272,
+      "pnp_per_catatan": 7.85,
+      "pangsa_jaringan": 0.0351
+    },
+    {
+      "peringkat": 5,
+      "koridor": "Kota Bandung ↔ Kota Bekasi",
+      "kelas": "AKDP",
+      "catatan_berangkat": 9079,
+      "pnp_berangkat": 99336,
+      "catatan_datang": 10192,
+      "pnp_datang": 86352,
+      "pnp_per_catatan": 10.94,
+      "pangsa_jaringan": 0.0306
+    },
+    {
+      "peringkat": 6,
+      "koridor": "Kabupaten Garut ↔ Kota Bogor",
+      "kelas": "AKDP",
+      "catatan_berangkat": 6337,
+      "pnp_berangkat": 79324,
+      "catatan_datang": 7937,
+      "pnp_datang": 84719,
+      "pnp_per_catatan": 12.52,
+      "pangsa_jaringan": 0.0244
+    },
+    {
+      "peringkat": 7,
+      "koridor": "Kabupaten Garut ↔ Kota Jakarta Timur",
+      "kelas": "AKAP",
+      "catatan_berangkat": 5311,
+      "pnp_berangkat": 73687,
+      "catatan_datang": 7719,
+      "pnp_datang": 106656,
+      "pnp_per_catatan": 13.87,
+      "pangsa_jaringan": 0.0227
+    },
+    {
+      "peringkat": 8,
+      "koridor": "Kabupaten Sumedang ↔ Kota Jakarta Timur",
+      "kelas": "AKAP",
+      "catatan_berangkat": 5575,
+      "pnp_berangkat": 67627,
+      "catatan_datang": 5363,
+      "pnp_datang": 65911,
+      "pnp_per_catatan": 12.13,
+      "pangsa_jaringan": 0.0208
+    },
+    {
+      "peringkat": 9,
+      "koridor": "Kota Banjar ↔ Kota Tasikmalaya",
+      "kelas": "AKAP",
+      "catatan_berangkat": 7605,
+      "pnp_berangkat": 65886,
+      "catatan_datang": 13183,
+      "pnp_datang": 98174,
+      "pnp_per_catatan": 8.66,
+      "pangsa_jaringan": 0.0203
+    },
+    {
+      "peringkat": 10,
+      "koridor": "Kabupaten Bekasi ↔ Kota Bandung",
+      "kelas": "AKDP",
+      "catatan_berangkat": 5712,
+      "pnp_berangkat": 64483,
+      "catatan_datang": 6840,
+      "pnp_datang": 51510,
+      "pnp_per_catatan": 11.29,
+      "pangsa_jaringan": 0.0199
+    },
+    {
+      "peringkat": 11,
+      "koridor": "Kota Bandung ↔ Kota Bogor",
+      "kelas": "AKDP",
+      "catatan_berangkat": 4865,
+      "pnp_berangkat": 56156,
+      "catatan_datang": 6217,
+      "pnp_datang": 53806,
+      "pnp_per_catatan": 11.54,
+      "pangsa_jaringan": 0.0173
+    },
+    {
+      "peringkat": 12,
+      "koridor": "Kota Bandung ↔ Kota Jakarta Barat",
+      "kelas": "AKAP",
+      "catatan_berangkat": 5315,
+      "pnp_berangkat": 55683,
+      "catatan_datang": 5919,
+      "pnp_datang": 46060,
+      "pnp_per_catatan": 10.48,
+      "pangsa_jaringan": 0.0172
+    },
+    {
+      "peringkat": 13,
+      "koridor": "Kota Jakarta Selatan ↔ Kota Tasikmalaya",
+      "kelas": "AKDP",
+      "catatan_berangkat": 4733,
+      "pnp_berangkat": 53545,
+      "catatan_datang": 5,
+      "pnp_datang": 19,
+      "pnp_per_catatan": 11.31,
+      "pangsa_jaringan": 0.0165
+    },
+    {
+      "peringkat": 14,
+      "koridor": "Kota Bandung ↔ Kota Cilegon",
+      "kelas": "AKAP",
+      "catatan_berangkat": 4047,
+      "pnp_berangkat": 45089,
+      "catatan_datang": 3428,
+      "pnp_datang": 27187,
+      "pnp_per_catatan": 11.14,
+      "pangsa_jaringan": 0.0139
+    },
+    {
+      "peringkat": 15,
+      "koridor": "Kota Depok ↔ Kota Yogyakarta",
+      "kelas": "AKAP",
+      "catatan_berangkat": 4906,
+      "pnp_berangkat": 45012,
+      "catatan_datang": 30,
+      "pnp_datang": 238,
+      "pnp_per_catatan": 9.17,
+      "pangsa_jaringan": 0.0139
+    },
+    {
+      "peringkat": 16,
+      "koridor": "Kota Tangerang Selatan ↔ Kota Tasikmalaya",
+      "kelas": "AKAP",
+      "catatan_berangkat": 4770,
+      "pnp_berangkat": 44688,
+      "catatan_datang": 6,
+      "pnp_datang": 31,
+      "pnp_per_catatan": 9.37,
+      "pangsa_jaringan": 0.0138
+    },
+    {
+      "peringkat": 17,
+      "koridor": "Kota Jakarta Timur ↔ Kota Sukabumi",
+      "kelas": "AKAP",
+      "catatan_berangkat": 4168,
+      "pnp_berangkat": 43219,
+      "catatan_datang": 3028,
+      "pnp_datang": 45501,
+      "pnp_per_catatan": 10.37,
+      "pangsa_jaringan": 0.0133
+    },
+    {
+      "peringkat": 18,
+      "koridor": "Kabupaten Bogor ↔ Kota Bandung",
+      "kelas": "AKDP",
+      "catatan_berangkat": 3486,
+      "pnp_berangkat": 40095,
+      "catatan_datang": 4239,
+      "pnp_datang": 37126,
+      "pnp_per_catatan": 11.5,
+      "pangsa_jaringan": 0.0124
+    },
+    {
+      "peringkat": 19,
+      "koridor": "Kabupaten Pangandaran ↔ Kota Banjar",
+      "kelas": "AKDP",
+      "catatan_berangkat": 4616,
+      "pnp_berangkat": 38029,
+      "catatan_datang": 5194,
+      "pnp_datang": 42585,
+      "pnp_per_catatan": 8.24,
+      "pangsa_jaringan": 0.0117
+    },
+    {
+      "peringkat": 20,
+      "koridor": "Kota Bandung ↔ Kota Tasikmalaya",
+      "kelas": "AKDP",
+      "catatan_berangkat": 3374,
+      "pnp_berangkat": 32652,
+      "catatan_datang": 1397,
+      "pnp_datang": 11639,
+      "pnp_per_catatan": 9.68,
+      "pangsa_jaringan": 0.0101
+    },
+    {
+      "peringkat": 21,
+      "koridor": "Kabupaten Sukabumi ↔ Kota Bogor",
+      "kelas": "AKDP",
+      "catatan_berangkat": 2608,
+      "pnp_berangkat": 32349,
+      "catatan_datang": 3946,
+      "pnp_datang": 47355,
+      "pnp_per_catatan": 12.4,
+      "pangsa_jaringan": 0.01
+    },
+    {
+      "peringkat": 22,
+      "koridor": "Kabupaten Sumedang ↔ Kota Bekasi",
+      "kelas": "AKDP",
+      "catatan_berangkat": 3425,
+      "pnp_berangkat": 31538,
+      "catatan_datang": 3714,
+      "pnp_datang": 35505,
+      "pnp_per_catatan": 9.21,
+      "pangsa_jaringan": 0.0097
+    },
+    {
+      "peringkat": 23,
+      "koridor": "Kota Bandung ↔ Kota Jakarta Timur",
+      "kelas": "AKAP",
+      "catatan_berangkat": 2686,
+      "pnp_berangkat": 31335,
+      "catatan_datang": 3739,
+      "pnp_datang": 33728,
+      "pnp_per_catatan": 11.67,
+      "pangsa_jaringan": 0.0097
+    },
+    {
+      "peringkat": 24,
+      "koridor": "Kabupaten Kuningan ↔ Kota Jakarta Barat",
+      "kelas": "AKAP",
+      "catatan_berangkat": 4483,
+      "pnp_berangkat": 30355,
+      "catatan_datang": 4677,
+      "pnp_datang": 21483,
+      "pnp_per_catatan": 6.77,
+      "pangsa_jaringan": 0.0094
+    },
+    {
+      "peringkat": 25,
+      "koridor": "Kabupaten Banyumas ↔ Kota Banjar",
+      "kelas": "AKAP",
+      "catatan_berangkat": 3470,
+      "pnp_berangkat": 29261,
+      "catatan_datang": 2436,
+      "pnp_datang": 18437,
+      "pnp_per_catatan": 8.43,
+      "pangsa_jaringan": 0.009
+    }
+  ],
+  "top_od_berarah": [
+    {
+      "peringkat": 1,
+      "od": "Kota Sukabumi → Kota Bandung",
+      "catatan": 14509,
+      "penumpang": 177145,
+      "pangsa_jaringan": 0.0546,
+      "pnp_per_catatan": 12.21
+    },
+    {
+      "peringkat": 2,
+      "od": "Kota Tasikmalaya → Kota Jakarta Timur",
+      "catatan": 15934,
+      "penumpang": 131639,
+      "pangsa_jaringan": 0.0406,
+      "pnp_per_catatan": 8.26
+    },
+    {
+      "peringkat": 3,
+      "od": "Kabupaten Garut → Kota Bekasi",
+      "catatan": 6798,
+      "penumpang": 121182,
+      "pangsa_jaringan": 0.0373,
+      "pnp_per_catatan": 17.83
+    },
+    {
+      "peringkat": 4,
+      "od": "Kota Tasikmalaya → Kota Bekasi",
+      "catatan": 14489,
+      "penumpang": 113775,
+      "pangsa_jaringan": 0.0351,
+      "pnp_per_catatan": 7.85
+    },
+    {
+      "peringkat": 5,
+      "od": "Kota Bandung → Kota Bekasi",
+      "catatan": 9079,
+      "penumpang": 99336,
+      "pangsa_jaringan": 0.0306,
+      "pnp_per_catatan": 10.94
+    },
+    {
+      "peringkat": 6,
+      "od": "Kota Bandung → Kota Sukabumi",
+      "catatan": 7497,
+      "penumpang": 96194,
+      "pangsa_jaringan": 0.0296,
+      "pnp_per_catatan": 12.83
+    },
+    {
+      "peringkat": 7,
+      "od": "Kabupaten Garut → Kota Jakarta Timur",
+      "catatan": 5311,
+      "penumpang": 73687,
+      "pangsa_jaringan": 0.0227,
+      "pnp_per_catatan": 13.87
+    },
+    {
+      "peringkat": 8,
+      "od": "Kabupaten Sumedang → Kota Jakarta Timur",
+      "catatan": 5575,
+      "penumpang": 67627,
+      "pangsa_jaringan": 0.0208,
+      "pnp_per_catatan": 12.13
+    },
+    {
+      "peringkat": 9,
+      "od": "Kota Bandung → Kabupaten Bekasi",
+      "catatan": 5712,
+      "penumpang": 64483,
+      "pangsa_jaringan": 0.0199,
+      "pnp_per_catatan": 11.29
+    },
+    {
+      "peringkat": 10,
+      "od": "Kabupaten Garut → Kota Bogor",
+      "catatan": 3937,
+      "penumpang": 58130,
+      "pangsa_jaringan": 0.0179,
+      "pnp_per_catatan": 14.77
+    }
+  ],
+  "bangkitan_tarikan": [
+    {
+      "kab_kota": "Kota Tasikmalaya",
+      "trip_berangkat": 90698,
+      "bangkitan_pax": 653683,
+      "trip_datang": 4622,
+      "tarikan_pax": 13676,
+      "rasio_od": 47.8,
+      "status_aliran": "Pembangkit Neto",
+      "peringkat_bangkitan": 1,
+      "peringkat_tarikan": 12
+    },
+    {
+      "kab_kota": "Kota Bandung",
+      "trip_berangkat": 51280,
+      "bangkitan_pax": 603566,
+      "trip_datang": 76279,
+      "tarikan_pax": 672104,
+      "rasio_od": 0.9,
+      "status_aliran": "Simpul Seimbang",
+      "peringkat_bangkitan": 2,
+      "peringkat_tarikan": 1
+    },
+    {
+      "kab_kota": "Kabupaten Garut",
+      "trip_berangkat": 22540,
+      "bangkitan_pax": 350576,
+      "trip_datang": 43318,
+      "tarikan_pax": 662519,
+      "rasio_od": 0.53,
+      "status_aliran": "Penarik Neto",
+      "peringkat_bangkitan": 3,
+      "peringkat_tarikan": 2
+    },
+    {
+      "kab_kota": "Kota Sukabumi",
+      "trip_berangkat": 24806,
+      "bangkitan_pax": 308011,
+      "trip_datang": 24226,
+      "tarikan_pax": 353989,
+      "rasio_od": 0.87,
+      "status_aliran": "Simpul Seimbang",
+      "peringkat_bangkitan": 4,
+      "peringkat_tarikan": 3
+    },
+    {
+      "kab_kota": "Kota Banjar",
+      "trip_berangkat": 27426,
+      "bangkitan_pax": 277114,
+      "trip_datang": 31073,
+      "tarikan_pax": 255104,
+      "rasio_od": 1.09,
+      "status_aliran": "Simpul Seimbang",
+      "peringkat_bangkitan": 5,
+      "peringkat_tarikan": 4
+    },
+    {
+      "kab_kota": "Kota Depok",
+      "trip_berangkat": 29407,
+      "bangkitan_pax": 271844,
+      "trip_datang": 29231,
+      "tarikan_pax": 149279,
+      "rasio_od": 1.82,
+      "status_aliran": "Pembangkit Neto",
+      "peringkat_bangkitan": 6,
+      "peringkat_tarikan": 7
+    },
+    {
+      "kab_kota": "Kota Bogor",
+      "trip_berangkat": 20972,
+      "bangkitan_pax": 201360,
+      "trip_datang": 24559,
+      "tarikan_pax": 175114,
+      "rasio_od": 1.15,
+      "status_aliran": "Simpul Seimbang",
+      "peringkat_bangkitan": 7,
+      "peringkat_tarikan": 6
+    },
+    {
+      "kab_kota": "Kabupaten Sumedang",
+      "trip_berangkat": 18279,
+      "bangkitan_pax": 198990,
+      "trip_datang": 16753,
+      "tarikan_pax": 190719,
+      "rasio_od": 1.04,
+      "status_aliran": "Simpul Seimbang",
+      "peringkat_bangkitan": 8,
+      "peringkat_tarikan": 5
+    },
+    {
+      "kab_kota": "Kabupaten Kuningan",
+      "trip_berangkat": 21525,
+      "bangkitan_pax": 133558,
+      "trip_datang": 22332,
+      "tarikan_pax": 119365,
+      "rasio_od": 1.12,
+      "status_aliran": "Simpul Seimbang",
+      "peringkat_bangkitan": 9,
+      "peringkat_tarikan": 8
+    },
+    {
+      "kab_kota": "Kabupaten Karawang",
+      "trip_berangkat": 10379,
+      "bangkitan_pax": 129081,
+      "trip_datang": 10188,
+      "tarikan_pax": 71704,
+      "rasio_od": 1.8,
+      "status_aliran": "Pembangkit Neto",
+      "peringkat_bangkitan": 10,
+      "peringkat_tarikan": 9
+    },
+    {
+      "kab_kota": "Kota Cirebon",
+      "trip_berangkat": 12946,
+      "bangkitan_pax": 87867,
+      "trip_datang": 13146,
+      "tarikan_pax": 70928,
+      "rasio_od": 1.24,
+      "status_aliran": "Pembangkit Neto",
+      "peringkat_bangkitan": 11,
+      "peringkat_tarikan": 10
+    },
+    {
+      "kab_kota": "Kabupaten Subang",
+      "trip_berangkat": 1147,
+      "bangkitan_pax": 29796,
+      "trip_datang": 2566,
+      "tarikan_pax": 50547,
+      "rasio_od": 0.59,
+      "status_aliran": "Penarik Neto",
+      "peringkat_bangkitan": 12,
+      "peringkat_tarikan": 11
+    }
+  ],
+  "kinerja_po": [
+    {
+      "peringkat": 1,
+      "nama": "Primajasa",
+      "catatan_berangkat": 96299,
+      "pnp_berangkat": 967274,
+      "pangsa_pasar": 0.298,
+      "pnp_per_catatan": 10.04,
+      "kendaraan_unik": 899,
+      "trip_per_kendaraan": 107.1,
+      "koridor_aktif": 147,
+      "catatan_datang": 84578,
+      "pnp_datang": 836795,
+      "pnp_per_kendaraan": 1075.9
+    },
+    {
+      "peringkat": 2,
+      "nama": "HS Budiman 45",
+      "catatan_berangkat": 52519,
+      "pnp_berangkat": 416279,
+      "pangsa_pasar": 0.1283,
+      "pnp_per_catatan": 7.93,
+      "kendaraan_unik": 588,
+      "trip_per_kendaraan": 89.3,
+      "koridor_aktif": 159,
+      "catatan_datang": 26779,
+      "pnp_datang": 177204,
+      "pnp_per_kendaraan": 708.0
+    },
+    {
+      "peringkat": 3,
+      "nama": "Maya Gapura Intan",
+      "catatan_berangkat": 41651,
+      "pnp_berangkat": 506446,
+      "pangsa_pasar": 0.156,
+      "pnp_per_catatan": 12.16,
+      "kendaraan_unik": 160,
+      "trip_per_kendaraan": 260.3,
+      "koridor_aktif": 26,
+      "catatan_datang": 49981,
+      "pnp_datang": 561372,
+      "pnp_per_kendaraan": 3165.3
+    },
+    {
+      "peringkat": 4,
+      "nama": "Sinar Jaya",
+      "catatan_berangkat": 14885,
+      "pnp_berangkat": 172171,
+      "pangsa_pasar": 0.0531,
+      "pnp_per_catatan": 11.57,
+      "kendaraan_unik": 762,
+      "trip_per_kendaraan": 19.5,
+      "koridor_aktif": 328,
+      "catatan_datang": 15943,
+      "pnp_datang": 106606,
+      "pnp_per_kendaraan": 225.9
+    },
+    {
+      "peringkat": 5,
+      "nama": "Agra Mas / Anugerah Mas",
+      "catatan_berangkat": 7725,
+      "pnp_berangkat": 82805,
+      "pangsa_pasar": 0.0255,
+      "pnp_per_catatan": 10.72,
+      "kendaraan_unik": 235,
+      "trip_per_kendaraan": 32.9,
+      "koridor_aktif": 90,
+      "catatan_datang": 9555,
+      "pnp_datang": 76944,
+      "pnp_per_kendaraan": 352.4
+    },
+    {
+      "peringkat": 6,
+      "nama": "Selamat Sugeng Rahayu",
+      "catatan_berangkat": 7558,
+      "pnp_berangkat": 84914,
+      "pangsa_pasar": 0.0262,
+      "pnp_per_catatan": 11.23,
+      "kendaraan_unik": 115,
+      "trip_per_kendaraan": 65.7,
+      "koridor_aktif": 51,
+      "catatan_datang": 6016,
+      "pnp_datang": 59101,
+      "pnp_per_kendaraan": 738.4
+    },
+    {
+      "peringkat": 7,
+      "nama": "Cahaya Bakti Utama",
+      "catatan_berangkat": 6967,
+      "pnp_berangkat": 81999,
+      "pangsa_pasar": 0.0253,
+      "pnp_per_catatan": 11.77,
+      "kendaraan_unik": 29,
+      "trip_per_kendaraan": 240.2,
+      "koridor_aktif": 6,
+      "catatan_datang": 7233,
+      "pnp_datang": 89616,
+      "pnp_per_kendaraan": 2827.6
+    },
+    {
+      "peringkat": 8,
+      "nama": "Arimbi Jaya Agung",
+      "catatan_berangkat": 5392,
+      "pnp_berangkat": 57379,
+      "pangsa_pasar": 0.0177,
+      "pnp_per_catatan": 10.64,
+      "kendaraan_unik": 101,
+      "trip_per_kendaraan": 53.4,
+      "koridor_aktif": 21,
+      "catatan_datang": 5981,
+      "pnp_datang": 47929,
+      "pnp_per_kendaraan": 568.1
+    },
+    {
+      "peringkat": 9,
+      "nama": "Doa Ibu Tasikmalaya",
+      "catatan_berangkat": 3727,
+      "pnp_berangkat": 21168,
+      "pangsa_pasar": 0.0065,
+      "pnp_per_catatan": 5.68,
+      "kendaraan_unik": 66,
+      "trip_per_kendaraan": 56.5,
+      "koridor_aktif": 20,
+      "catatan_datang": 296,
+      "pnp_datang": 3923,
+      "pnp_per_kendaraan": 320.7
+    },
+    {
+      "peringkat": 10,
+      "nama": "Gunung Harta",
+      "catatan_berangkat": 3145,
+      "pnp_berangkat": 32889,
+      "pangsa_pasar": 0.0101,
+      "pnp_per_catatan": 10.46,
+      "kendaraan_unik": 137,
+      "trip_per_kendaraan": 23.0,
+      "koridor_aktif": 147,
+      "catatan_datang": 3028,
+      "pnp_datang": 26991,
+      "pnp_per_kendaraan": 240.1
+    },
+    {
+      "peringkat": 11,
+      "nama": "Sahabat Prima Abadi",
+      "catatan_berangkat": 3058,
+      "pnp_berangkat": 23194,
+      "pangsa_pasar": 0.0071,
+      "pnp_per_catatan": 7.58,
+      "kendaraan_unik": 51,
+      "trip_per_kendaraan": 60.0,
+      "koridor_aktif": 22,
+      "catatan_datang": 2954,
+      "pnp_datang": 17687,
+      "pnp_per_kendaraan": 454.8
+    },
+    {
+      "peringkat": 12,
+      "nama": "Teguh Muda Abadi",
+      "catatan_berangkat": 3038,
+      "pnp_berangkat": 17910,
+      "pangsa_pasar": 0.0055,
+      "pnp_per_catatan": 5.9,
+      "kendaraan_unik": 14,
+      "trip_per_kendaraan": 217.0,
+      "koridor_aktif": 20,
+      "catatan_datang": 2276,
+      "pnp_datang": 15980,
+      "pnp_per_kendaraan": 1279.3
+    },
+    {
+      "peringkat": 13,
+      "nama": "Angkutan Kota Tasikmalaya",
+      "catatan_berangkat": 2848,
+      "pnp_berangkat": 7059,
+      "pangsa_pasar": 0.0022,
+      "pnp_per_catatan": 2.48,
+      "kendaraan_unik": 39,
+      "trip_per_kendaraan": 73.0,
+      "koridor_aktif": 19,
+      "catatan_datang": 628,
+      "pnp_datang": 1778,
+      "pnp_per_kendaraan": 181.0
+    },
+    {
+      "peringkat": 14,
+      "nama": "Rosalia Indah",
+      "catatan_berangkat": 2836,
+      "pnp_berangkat": 37252,
+      "pangsa_pasar": 0.0115,
+      "pnp_per_catatan": 13.14,
+      "kendaraan_unik": 198,
+      "trip_per_kendaraan": 14.3,
+      "koridor_aktif": 54,
+      "catatan_datang": 2888,
+      "pnp_datang": 29001,
+      "pnp_per_kendaraan": 188.1
+    },
+    {
+      "peringkat": 15,
+      "nama": "Saluyu Prima Group",
+      "catatan_berangkat": 2828,
+      "pnp_berangkat": 24435,
+      "pangsa_pasar": 0.0075,
+      "pnp_per_catatan": 8.64,
+      "kendaraan_unik": 36,
+      "trip_per_kendaraan": 78.6,
+      "koridor_aktif": 35,
+      "catatan_datang": 3751,
+      "pnp_datang": 48433,
+      "pnp_per_kendaraan": 678.8
+    },
+    {
+      "peringkat": 16,
+      "nama": "Angkutan Kabupaten Tasikmalaya",
+      "catatan_berangkat": 2729,
+      "pnp_berangkat": 6885,
+      "pangsa_pasar": 0.0021,
+      "pnp_per_catatan": 2.52,
+      "kendaraan_unik": 86,
+      "trip_per_kendaraan": 31.7,
+      "koridor_aktif": 12,
+      "catatan_datang": 1119,
+      "pnp_datang": 2838,
+      "pnp_per_kendaraan": 80.1
+    },
+    {
+      "peringkat": 17,
+      "nama": "Lana Jaya Prima",
+      "catatan_berangkat": 2303,
+      "pnp_berangkat": 23573,
+      "pangsa_pasar": 0.0073,
+      "pnp_per_catatan": 10.24,
+      "kendaraan_unik": 9,
+      "trip_per_kendaraan": 255.9,
+      "koridor_aktif": 2,
+      "catatan_datang": 1712,
+      "pnp_datang": 26636,
+      "pnp_per_kendaraan": 2619.2
+    },
+    {
+      "peringkat": 18,
+      "nama": "Karunia Bakti Utama",
+      "catatan_berangkat": 2266,
+      "pnp_berangkat": 42890,
+      "pangsa_pasar": 0.0132,
+      "pnp_per_catatan": 18.93,
+      "kendaraan_unik": 68,
+      "trip_per_kendaraan": 33.3,
+      "koridor_aktif": 16,
+      "catatan_datang": 7198,
+      "pnp_datang": 130961,
+      "pnp_per_kendaraan": 630.7
+    },
+    {
+      "peringkat": 19,
+      "nama": "Warga Baru Express",
+      "catatan_berangkat": 2144,
+      "pnp_berangkat": 22944,
+      "pangsa_pasar": 0.0071,
+      "pnp_per_catatan": 10.7,
+      "kendaraan_unik": 26,
+      "trip_per_kendaraan": 82.5,
+      "koridor_aktif": 10,
+      "catatan_datang": 2802,
+      "pnp_datang": 22950,
+      "pnp_per_kendaraan": 882.5
+    },
+    {
+      "peringkat": 20,
+      "nama": "Murni Anugrah Jaya Usaha",
+      "catatan_berangkat": 2037,
+      "pnp_berangkat": 21360,
+      "pangsa_pasar": 0.0066,
+      "pnp_per_catatan": 10.49,
+      "kendaraan_unik": 96,
+      "trip_per_kendaraan": 21.2,
+      "koridor_aktif": 64,
+      "catatan_datang": 2004,
+      "pnp_datang": 13586,
+      "pnp_per_kendaraan": 222.5
+    },
+    {
+      "peringkat": 21,
+      "nama": "Bima Suci Jaya Agung",
+      "catatan_berangkat": 2026,
+      "pnp_berangkat": 22240,
+      "pangsa_pasar": 0.0069,
+      "pnp_per_catatan": 10.98,
+      "kendaraan_unik": 30,
+      "trip_per_kendaraan": 67.5,
+      "koridor_aktif": 12,
+      "catatan_datang": 1390,
+      "pnp_datang": 10078,
+      "pnp_per_kendaraan": 741.3
+    },
+    {
+      "peringkat": 22,
+      "nama": "Sinar Aladdin Putra Ciamis",
+      "catatan_berangkat": 1854,
+      "pnp_berangkat": 10931,
+      "pangsa_pasar": 0.0034,
+      "pnp_per_catatan": 5.9,
+      "kendaraan_unik": 22,
+      "trip_per_kendaraan": 84.3,
+      "koridor_aktif": 19,
+      "catatan_datang": 978,
+      "pnp_datang": 8064,
+      "pnp_per_kendaraan": 496.9
+    },
+    {
+      "peringkat": 23,
+      "nama": "Garuda Mas Putera Esa",
+      "catatan_berangkat": 1754,
+      "pnp_berangkat": 14867,
+      "pangsa_pasar": 0.0046,
+      "pnp_per_catatan": 8.48,
+      "kendaraan_unik": 88,
+      "trip_per_kendaraan": 19.9,
+      "koridor_aktif": 57,
+      "catatan_datang": 1811,
+      "pnp_datang": 9121,
+      "pnp_per_kendaraan": 168.9
+    },
+    {
+      "peringkat": 24,
+      "nama": "TKM",
+      "catatan_berangkat": 1706,
+      "pnp_berangkat": 3910,
+      "pangsa_pasar": 0.0012,
+      "pnp_per_catatan": 2.29,
+      "kendaraan_unik": 60,
+      "trip_per_kendaraan": 28.4,
+      "koridor_aktif": 5,
+      "catatan_datang": 266,
+      "pnp_datang": 691,
+      "pnp_per_kendaraan": 65.2
+    },
+    {
+      "peringkat": 25,
+      "nama": "Eka Mira Prima Sentosa",
+      "catatan_berangkat": 1694,
+      "pnp_berangkat": 19190,
+      "pangsa_pasar": 0.0059,
+      "pnp_per_catatan": 11.33,
+      "kendaraan_unik": 30,
+      "trip_per_kendaraan": 56.5,
+      "koridor_aktif": 47,
+      "catatan_datang": 1468,
+      "pnp_datang": 14558,
+      "pnp_per_kendaraan": 639.7
+    }
+  ],
+  "analisis_waktu": [
+    {
+      "jam": "00:00–00:59",
+      "hour": 0,
+      "catatan_berangkat": 779,
+      "pnp_berangkat": 10375,
+      "catatan_datang": 5707,
+      "pnp_datang": 51354
+    },
+    {
+      "jam": "01:00–01:59",
+      "hour": 1,
+      "catatan_berangkat": 863,
+      "pnp_berangkat": 10345,
+      "catatan_datang": 3740,
+      "pnp_datang": 32760
+    },
+    {
+      "jam": "02:00–02:59",
+      "hour": 2,
+      "catatan_berangkat": 933,
+      "pnp_berangkat": 11408,
+      "catatan_datang": 2452,
+      "pnp_datang": 20576
+    },
+    {
+      "jam": "03:00–03:59",
+      "hour": 3,
+      "catatan_berangkat": 2926,
+      "pnp_berangkat": 28857,
+      "catatan_datang": 1974,
+      "pnp_datang": 13550
+    },
+    {
+      "jam": "04:00–04:59",
+      "hour": 4,
+      "catatan_berangkat": 5995,
+      "pnp_berangkat": 54644,
+      "catatan_datang": 2292,
+      "pnp_datang": 12361
+    },
+    {
+      "jam": "05:00–05:59",
+      "hour": 5,
+      "catatan_berangkat": 10842,
+      "pnp_berangkat": 93672,
+      "catatan_datang": 5624,
+      "pnp_datang": 30074
+    },
+    {
+      "jam": "06:00–06:59",
+      "hour": 6,
+      "catatan_berangkat": 23654,
+      "pnp_berangkat": 173832,
+      "catatan_datang": 10943,
+      "pnp_datang": 64314
+    },
+    {
+      "jam": "07:00–07:59",
+      "hour": 7,
+      "catatan_berangkat": 27539,
+      "pnp_berangkat": 238528,
+      "catatan_datang": 12384,
+      "pnp_datang": 85199
+    },
+    {
+      "jam": "08:00–08:59",
+      "hour": 8,
+      "catatan_berangkat": 26539,
+      "pnp_berangkat": 269705,
+      "catatan_datang": 16567,
+      "pnp_datang": 154296
+    },
+    {
+      "jam": "09:00–09:59",
+      "hour": 9,
+      "catatan_berangkat": 24609,
+      "pnp_berangkat": 253323,
+      "catatan_datang": 17034,
+      "pnp_datang": 181366
+    },
+    {
+      "jam": "10:00–10:59",
+      "hour": 10,
+      "catatan_berangkat": 22265,
+      "pnp_berangkat": 232875,
+      "catatan_datang": 18903,
+      "pnp_datang": 197887
+    },
+    {
+      "jam": "11:00–11:59",
+      "hour": 11,
+      "catatan_berangkat": 20598,
+      "pnp_berangkat": 206470,
+      "catatan_datang": 17960,
+      "pnp_datang": 189584
+    },
+    {
+      "jam": "12:00–12:59",
+      "hour": 12,
+      "catatan_berangkat": 17268,
+      "pnp_berangkat": 171787,
+      "catatan_datang": 17812,
+      "pnp_datang": 185972
+    },
+    {
+      "jam": "13:00–13:59",
+      "hour": 13,
+      "catatan_berangkat": 20468,
+      "pnp_berangkat": 197889,
+      "catatan_datang": 19830,
+      "pnp_datang": 199957
+    },
+    {
+      "jam": "14:00–14:59",
+      "hour": 14,
+      "catatan_berangkat": 21003,
+      "pnp_berangkat": 204949,
+      "catatan_datang": 19191,
+      "pnp_datang": 194149
+    },
+    {
+      "jam": "15:00–15:59",
+      "hour": 15,
+      "catatan_berangkat": 20851,
+      "pnp_berangkat": 196688,
+      "catatan_datang": 19305,
+      "pnp_datang": 184260
+    },
+    {
+      "jam": "16:00–16:59",
+      "hour": 16,
+      "catatan_berangkat": 20739,
+      "pnp_berangkat": 192810,
+      "catatan_datang": 18847,
+      "pnp_datang": 171755
+    },
+    {
+      "jam": "17:00–17:59",
+      "hour": 17,
+      "catatan_berangkat": 15735,
+      "pnp_berangkat": 161664,
+      "catatan_datang": 15379,
+      "pnp_datang": 140579
+    },
+    {
+      "jam": "18:00–18:59",
+      "hour": 18,
+      "catatan_berangkat": 14595,
+      "pnp_berangkat": 148585,
+      "catatan_datang": 14495,
+      "pnp_datang": 123833
+    },
+    {
+      "jam": "19:00–19:59",
+      "hour": 19,
+      "catatan_berangkat": 13330,
+      "pnp_berangkat": 148239,
+      "catatan_datang": 14621,
+      "pnp_datang": 144298
+    },
+    {
+      "jam": "20:00–20:59",
+      "hour": 20,
+      "catatan_berangkat": 8880,
+      "pnp_berangkat": 108054,
+      "catatan_datang": 14739,
+      "pnp_datang": 146411
+    },
+    {
+      "jam": "21:00–21:59",
+      "hour": 21,
+      "catatan_berangkat": 5278,
+      "pnp_berangkat": 64129,
+      "catatan_datang": 12869,
+      "pnp_datang": 124642
+    },
+    {
+      "jam": "22:00–22:59",
+      "hour": 22,
+      "catatan_berangkat": 3427,
+      "pnp_berangkat": 40348,
+      "catatan_datang": 9395,
+      "pnp_datang": 84084
+    },
+    {
+      "jam": "23:00–23:59",
+      "hour": 23,
+      "catatan_berangkat": 2289,
+      "pnp_berangkat": 26270,
+      "catatan_datang": 6230,
+      "pnp_datang": 51787
+    }
+  ],
+  "konsentrasi_hhi": {
+    "summary": {
+      "tinggi": {
+        "count": 705,
+        "pct": 91.68,
+        "label": "Oligopoli Ketat (HHI ≥ 0,25)"
+      },
+      "sedang": {
+        "count": 51,
+        "pct": 6.63,
+        "label": "Konsentrasi Moderat (0,15 ≤ HHI < 0,25)"
+      },
+      "rendah": {
+        "count": 13,
+        "pct": 1.69,
+        "label": "Pasar Kompetitif (HHI < 0,15)"
+      },
+      "total_koridor": 769
+    }
+  },
+  "rekomendasi_kebijakan": [
+    {
+      "pilar": 1,
+      "judul": "Penyempurnaan Basis Data Terminal Online System (TOS)",
+      "kategori": "Standardisasi Data & Sistem",
+      "urgensi": "Tinggi",
+      "deskripsi": "Mengintegrasikan Single Trip ID lintas-terminal untuk memasangkan pergerakan bus antara keberangkatan dan kedatangan serta mencatat kapasitas tempat duduk riil per kendaraan guna menghitung load factor akurat.",
+      "tindakan": [
+        "Penetapan ID perjalanan unik lintas simpul pada arsitektur database TOS terpusat Ditjen Hubdat.",
+        "Pencatatan kapasitas kursi terverifikasi sesuai buku uji / kartu pengawasan armada bus.",
+        "Penghapusan anomali pencatatan ganda melalui validasi nomor kendaraan otomatis."
+      ]
+    },
+    {
+      "pilar": 2,
+      "judul": "Penertiban Pencatatan Arus Kedatangan di Simpul Terminal",
+      "kategori": "Tata Kelola Operasional",
+      "urgensi": "Tinggi",
+      "deskripsi": "Memperbaiki gap pencatatan kedatangan di simpul seperti Terminal Harjamukti (coverage 87,91%) dan Terminal Ciakar (89,45%), serta mengurai disparitas pencatatan arus datang di Kota Tasikmalaya (rasio bangkitan/tarikan 47,80).",
+      "tindakan": [
+        "Sinkronisasi manifes kedatangan pada jalur masuk terminal Tipe A.",
+        "Standardisasi kamus nama kota/terminal tujuan agar tidak terjadi pembacaan unmapped.",
+        "Penyelarasan SOP petugas pencatat TOS shift malam dan dini hari."
+      ]
+    },
+    {
+      "pilar": 3,
+      "judul": "Penataan Ulang Frekuensi (Re-scheduling) & Manajemen Jam Puncak",
+      "kategori": "Manajemen Kapasitas Jaringan",
+      "urgensi": "Moderat",
+      "deskripsi": "Mengoptimalkan distribusi slot keberangkatan pada golden window (07.00–10.59 WIB yang melayani 30,64% penumpang) dan mengantisipasi jam puncak kedatangan pukul 13.00 WIB (199.957 penumpang) untuk mencegah stagnasi terminal.",
+      "tindakan": [
+        "Pemberian insentif penjadwalan di luar jam padat (off-peak incentives).",
+        "Penambahan jalur pengendapan dan kapasitas peron kedatangan pada pukul 12.00–15.00 WIB.",
+        "Penyusunan contingency plan lonjakan penumpang mudik/liburan berbasis data harian (puncak Maret +94,2%)."
+      ]
+    },
+    {
+      "pilar": 4,
+      "judul": "Diversifikasi Trayek pada Simpul Terminal Berketergantungan Kritis",
+      "kategori": "Keseimbangan Jaringan Trayek",
+      "urgensi": "Tinggi",
+      "deskripsi": "Mengurangi kerentanan simpul terminal dengan indeks ketergantungan rute 3 teratas (RD3) ≥ 50%, khususnya Terminal Subang (RD3 97,80%), Terminal KH. Ahmad Sanusi (76,44%), Terminal Guntur Melati (72,52%), dan Terminal Ciakar (64,79%).",
+      "tindakan": [
+        "Studi potensi pembukaan koridor baru antarkota lintas wilayah non-radial (bypass koridor utama).",
+        "Pemberian izin rute perintis atau komersial sekunder untuk memperluas konektivitas hinterland.",
+        "Mitigasi risiko monopoli koridor melalui penataan kuota armada pada trayek dengan HHI mendekati 1,0."
+      ]
+    }
+  ]
+};
+
+  var appData = FALLBACK_DATA;
+
+  // Format Helper
+  function fmtNum(n) {
+    if (n === null || n === undefined || isNaN(n)) return '—';
+    return Number(n).toLocaleString('id-ID');
+  }
+
+  function fmtDec(n, d) {
+    if (n === null || n === undefined || isNaN(n)) return '—';
+    return Number(n).toFixed(d !== undefined ? d : 2).replace('.', ',');
+  }
+
+  function fmtPct(p) {
+    if (p === null || p === undefined || isNaN(p)) return '—';
+    var val = fmtDec(Number(p) * 100, 2);
+    return (Number(p) > 0 ? '+' : '') + val + '%';
+  }
+
+  function fmtPctRaw(p) {
+    if (p === null || p === undefined || isNaN(p)) return '—';
+    return fmtDec(Number(p) * 100, 2) + '%';
+  }
+
+  // DOM Elements
+  var tabs = document.querySelectorAll('.tab-btn');
+  var panels = document.querySelectorAll('.tab-panel');
+
+  // Tab Switching
+  function initTabs() {
+    tabs.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var targetId = btn.getAttribute('data-tab');
+        tabs.forEach(function (b) {
+          b.setAttribute('aria-selected', 'false');
+        });
+        panels.forEach(function (p) {
+          p.classList.remove('is-active');
+        });
+        btn.setAttribute('aria-selected', 'true');
+        var targetPanel = document.getElementById(targetId);
+        if (targetPanel) {
+          targetPanel.classList.add('is-active');
+        }
+      });
+    });
+  }
+
+  // Live Clock
+  function initClock() {
+    var timeEl = document.getElementById('current-time');
+    var dateEl = document.getElementById('current-date');
+    function tick() {
+      var now = new Date();
+      if (timeEl) {
+        timeEl.textContent = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' }) + ' WIB';
+      }
+      if (dateEl) {
+        dateEl.textContent = now.toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+      }
+    }
+    tick();
+    setInterval(tick, 1000);
+  }
+
+  // 1. Render KPI Cards
+  function renderKpiCards() {
+    var r = appData.ringkasan;
+    var elPnpTotal = document.getElementById('kpi-pnp-total');
+    var elPnpBerangkat = document.getElementById('kpi-pnp-berangkat');
+    var elPnpDatang = document.getElementById('kpi-pnp-datang');
+    var elCatTotal = document.getElementById('kpi-cat-total');
+    var elCatBerangkat = document.getElementById('kpi-cat-berangkat');
+    var elCoverage = document.getElementById('kpi-coverage');
+    var elPangsaAkap = document.getElementById('kpi-pangsa-akap');
+    var elPangsaAkdp = document.getElementById('kpi-pangsa-akdp');
+    var elRatioBarAkap = document.getElementById('kpi-ratio-bar-akap');
+    var elRatioBarAkdp = document.getElementById('kpi-ratio-bar-akdp');
+    var elProdRerata = document.getElementById('kpi-prod-rerata');
+    var elProdPuncak = document.getElementById('kpi-prod-puncak');
+
+    if (elPnpTotal) elPnpTotal.textContent = fmtDec(r.penumpang_total / 1000000, 2) + ' Juta';
+    if (elPnpBerangkat) elPnpBerangkat.textContent = fmtNum(r.penumpang_berangkat);
+    if (elPnpDatang) elPnpDatang.textContent = fmtNum(r.penumpang_datang);
+
+    if (elCatTotal) elCatTotal.textContent = fmtNum(r.catatan_total);
+    if (elCatBerangkat) elCatBerangkat.textContent = fmtNum(r.catatan_berangkat);
+    if (elCoverage) elCoverage.textContent = fmtPctRaw(appData.meta.coverage_penumpang);
+
+    if (elPangsaAkap) elPangsaAkap.textContent = fmtPctRaw(r.pangsa_akap);
+    if (elPangsaAkdp) elPangsaAkdp.textContent = fmtPctRaw(r.pangsa_akdp);
+    if (elRatioBarAkap) elRatioBarAkap.style.width = (r.pangsa_akap * 100).toFixed(1) + '%';
+    if (elRatioBarAkdp) elRatioBarAkdp.style.width = (r.pangsa_akdp * 100).toFixed(1) + '%';
+
+    if (elProdRerata) elProdRerata.textContent = fmtDec(r.produktivitas_rerata, 2);
+    if (elProdPuncak) elProdPuncak.textContent = '14,06 (Maret)';
+  }
+
+  // 2. Render Tab 1 — Tren Bulanan
+  function renderTabBulanan() {
+    var container = document.getElementById('chart-bulanan-svg');
+    var tbody = document.getElementById('table-bulanan-body');
+    var list = appData.kinerja_bulanan;
+    if (!list) return;
+
+    // Render Table
+    if (tbody) {
+      tbody.innerHTML = list.map(function (m) {
+        var momClass = m.mom_pnp > 0 ? 'color: var(--n-lime); font-weight:700;' : (m.mom_pnp < 0 ? 'color: var(--n-coral); font-weight:700;' : 'color: var(--dim);');
+        var momText = m.mom_pnp === 0 ? '—' : fmtPct(m.mom_pnp);
+        return '<tr>' +
+          '<td><strong>' + m.bulan + '</strong></td>' +
+          '<td class="num-cell">' + fmtNum(m.catatan_berangkat) + '</td>' +
+          '<td class="num-cell font-bold">' + fmtNum(m.pnp_berangkat) + '</td>' +
+          '<td class="num-cell" style="' + momClass + '">' + momText + '</td>' +
+          '<td class="num-cell">' + fmtNum(m.catatan_datang) + '</td>' +
+          '<td class="num-cell">' + fmtNum(m.pnp_datang) + '</td>' +
+          '<td class="num-cell" style="color:var(--n-lime);font-weight:700;">' + m.pnp_per_catatan.toFixed(2) + '</td>' +
+          '<td class="num-cell">' + fmtNum(m.akap_berangkat) + '</td>' +
+          '<td class="num-cell">' + fmtNum(m.akdp_berangkat) + '</td>' +
+        '</tr>';
+      }).join('');
+    }
+
+    // Render SVG Chart
+    if (container) {
+      var w = 860;
+      var h = 320;
+      var padL = 60, padR = 60, padT = 30, padB = 40;
+      var chartW = w - padL - padR;
+      var chartH = h - padT - padB;
+
+      var maxPnp = 550000;
+      var maxProd = 16;
+
+      var n = list.length;
+      var groupW = chartW / n;
+      var barW = Math.min(22, (groupW - 12) / 2);
+
+      var gridLines = [0, 100000, 200000, 300000, 400000, 500000];
+      var gridSvg = gridLines.map(function (val) {
+        var y = padT + chartH - (val / maxPnp) * chartH;
+        return '<line x1="' + padL + '" y1="' + y + '" x2="' + (w - padR) + '" y2="' + y + '" class="chart-grid-line" />' +
+          '<text x="' + (padL - 10) + '" y="' + (y + 3) + '" text-anchor="end" class="chart-label-mono">' + (val / 1000) + 'k</text>';
+      }).join('');
+
+      // Right axis for productivity
+      var prodLines = [0, 4, 8, 12, 16];
+      var prodAxisSvg = prodLines.map(function (val) {
+        var y = padT + chartH - (val / maxProd) * chartH;
+        return '<text x="' + (w - padR + 10) + '" y="' + (y + 3) + '" text-anchor="start" class="chart-label-mono" style="fill:var(--n-lime);">' + val + '</text>';
+      }).join('');
+
+      // Bars & Line Points
+      var barsSvg = '';
+      var linePoints = [];
+
+      list.forEach(function (m, idx) {
+        var cx = padL + idx * groupW + groupW / 2;
+        var hB = (m.pnp_berangkat / maxPnp) * chartH;
+        var hD = (m.pnp_datang / maxPnp) * chartH;
+
+        var xB = cx - barW - 2;
+        var yB = padT + chartH - hB;
+        var xD = cx + 2;
+        var yD = padT + chartH - hD;
+
+        barsSvg += '<rect x="' + xB + '" y="' + yB + '" width="' + barW + '" height="' + hB + '" rx="3" class="chart-bar-berangkat chart-bar-hover" data-tip="' + m.bulan + ' (Berangkat): ' + fmtNum(m.pnp_berangkat) + ' pnp" />' +
+          '<rect x="' + xD + '" y="' + yD + '" width="' + barW + '" height="' + hD + '" rx="3" class="chart-bar-datang chart-bar-hover" data-tip="' + m.bulan + ' (Datang): ' + fmtNum(m.pnp_datang) + ' pnp" />' +
+          '<text x="' + cx + '" y="' + (h - 15) + '" text-anchor="middle" class="chart-label">' + m.label + '</text>';
+
+        var lineY = padT + chartH - (m.pnp_per_catatan / maxProd) * chartH;
+        linePoints.push({ x: cx, y: lineY, val: m.pnp_per_catatan, label: m.label });
+      });
+
+      var polyPoints = linePoints.map(function (p) { return p.x + ',' + p.y; }).join(' ');
+      var lineSvg = '<polyline points="' + polyPoints + '" class="chart-line chart-line-prod" />';
+      var dotsSvg = linePoints.map(function (p) {
+        return '<circle cx="' + p.x + '" cy="' + p.y + '" r="3.5" class="chart-dot" data-tip="' + p.label + ' Produktivitas: ' + p.val.toFixed(2) + ' pnp/trip" />';
+      }).join('');
+
+      container.innerHTML = '<svg viewBox="0 0 ' + w + ' ' + h + '" class="chart-svg">' +
+        gridSvg + prodAxisSvg +
+        '<line x1="' + padL + '" y1="' + (h - padB) + '" x2="' + (w - padR) + '" y2="' + (h - padB) + '" class="chart-axis-line" />' +
+        barsSvg + lineSvg + dotsSvg +
+      '</svg>';
+
+      attachTooltips(container);
+    }
+  }
+
+  // 3. Render Tab 2 — Simpul Terminal & RD3
+  function renderTabTerminal() {
+    var tbody = document.getElementById('table-terminal-body');
+    var cardsContainer = document.getElementById('terminal-cards-grid');
+    var list = appData.terminal_evaluasi;
+    if (!list) return;
+
+    // Render Table
+    if (tbody) {
+      tbody.innerHTML = list.map(function (t) {
+        var meterFillClass = t.rd3 >= 0.70 ? 'kritis' : (t.rd3 >= 0.50 ? 'tinggi' : 'moderat');
+        var badgeClass = t.rd3 >= 0.70 ? 'badge-kritis' : (t.rd3 >= 0.50 ? 'badge-tinggi' : 'badge-moderat');
+        var top1Text = t.top_routes && t.top_routes[0] ? t.top_routes[0].rute.split('→')[1] || t.top_routes[0].rute : '—';
+        return '<tr class="clickable-row" data-term-code="' + t.kode + '">' +
+          '<td><span class="badge-status ' + badgeClass + '">' + t.kode + '</span></td>' +
+          '<td><strong>' + t.nama + '</strong><br><small style="color:var(--dim);">' + t.kab_kota + '</small></td>' +
+          '<td class="num-cell">' + t.koridor_mapped + '</td>' +
+          '<td class="num-cell font-bold">' + fmtNum(t.pnp_berangkat) + '</td>' +
+          '<td class="num-cell">' + fmtPctRaw(t.rd1) + '<br><small style="color:var(--dim);">' + top1Text + '</small></td>' +
+          '<td>' +
+            '<div class="rd-meter-wrap">' +
+              '<div class="rd-meter-track">' +
+                '<div class="rd-meter-fill ' + meterFillClass + '" style="width:' + (t.rd3 * 100).toFixed(1) + '%;"></div>' +
+              '</div>' +
+              '<span class="font-mono font-bold" style="font-size:11px;">' + fmtPctRaw(t.rd3) + '</span>' +
+            '</div>' +
+          '</td>' +
+          '<td><span class="badge-status ' + badgeClass + '">' + t.klasifikasi + '</span></td>' +
+          '<td class="num-cell">' + fmtPctRaw(t.coverage_pnp) + '</td>' +
+        '</tr>';
+      }).join('');
+
+      tbody.querySelectorAll('.clickable-row').forEach(function (tr) {
+        tr.addEventListener('click', function () {
+          var code = tr.getAttribute('data-term-code');
+          openTerminalModal(code);
+        });
+      });
+    }
+
+    // Render Cards
+    if (cardsContainer) {
+      cardsContainer.innerHTML = list.map(function (t) {
+        var meterFillClass = t.rd3 >= 0.70 ? 'kritis' : (t.rd3 >= 0.50 ? 'tinggi' : 'moderat');
+        var badgeClass = t.rd3 >= 0.70 ? 'badge-kritis' : (t.rd3 >= 0.50 ? 'badge-tinggi' : 'badge-moderat');
+        return '<div class="kpi-card clickable-row" data-term-code="' + t.kode + '" style="cursor:pointer;">' +
+          '<div class="kpi-header">' +
+            '<span class="badge-status ' + badgeClass + '">' + t.kode + ' &bull; ' + t.klasifikasi + '</span>' +
+            '<span class="font-mono" style="font-size:11px;color:var(--dim);">' + t.koridor_mapped + ' Koridor</span>' +
+          '</div>' +
+          '<div style="font-size:14px;font-weight:700;color:var(--ink);margin:4px 0 2px;">' + t.nama + '</div>' +
+          '<div style="font-size:11px;color:var(--dim);margin-bottom:8px;">' + t.kab_kota + '</div>' +
+          '<div class="kpi-value-row">' +
+            '<div class="kpi-value" style="font-size:20px;">' + fmtNum(t.pnp_berangkat) + '</div>' +
+            '<div class="kpi-unit">pnp</div>' +
+          '</div>' +
+          '<div style="font-size:11px;color:var(--dim);margin-bottom:4px;">Ketergantungan RD3: <strong style="color:var(--ink);">' + fmtPctRaw(t.rd3) + '</strong></div>' +
+          '<div class="rd-meter-track" style="margin-bottom:8px;">' +
+            '<div class="rd-meter-fill ' + meterFillClass + '" style="width:' + (t.rd3 * 100).toFixed(1) + '%;"></div>' +
+          '</div>' +
+          '<div style="font-size:10px;color:var(--faint);">' + t.status_rekomendasi + '</div>' +
+        '</div>';
+      }).join('');
+
+      cardsContainer.querySelectorAll('.clickable-row').forEach(function (card) {
+        card.addEventListener('click', function () {
+          var code = card.getAttribute('data-term-code');
+          openTerminalModal(code);
+        });
+      });
+    }
+  }
+
+  // 4. Render Tab 3 — Koridor & Matriks OD
+  function renderTabKoridor() {
+    var tbodyKoridor = document.getElementById('table-koridor-body');
+    var tbodyOd = document.getElementById('table-od-body');
+    var tbodyBt = document.getElementById('table-bt-body');
+
+    // Top 25 Koridor
+    if (tbodyKoridor) {
+      window._allKoridor = appData.top_koridor;
+      renderFilteredKoridor(appData.top_koridor);
+    }
+
+    // Top 10 OD Berarah
+    if (tbodyOd) {
+      tbodyOd.innerHTML = appData.top_od_berarah.map(function (od) {
+        return '<tr>' +
+          '<td><strong>#' + od.peringkat + '</strong></td>' +
+          '<td><strong>' + od.od + '</strong></td>' +
+          '<td class="num-cell">' + fmtNum(od.catatan) + '</td>' +
+          '<td class="num-cell font-bold" style="color:var(--n-cyan);">' + fmtNum(od.penumpang) + '</td>' +
+          '<td class="num-cell">' + fmtPctRaw(od.pangsa_jaringan) + '</td>' +
+          '<td class="num-cell" style="color:var(--n-lime);font-weight:700;">' + od.pnp_per_catatan.toFixed(2) + '</td>' +
+        '</tr>';
+      }).join('');
+    }
+
+    // Bangkitan Tarikan
+    if (tbodyBt) {
+      tbodyBt.innerHTML = appData.bangkitan_tarikan.map(function (bt) {
+        var badgeClass = bt.status_aliran === 'Pembangkit Neto' ? 'badge-pembangkit' : (bt.status_aliran === 'Penarik Neto' ? 'badge-penarik' : 'badge-seimbang');
+        return '<tr>' +
+          '<td><strong>' + bt.kab_kota + '</strong></td>' +
+          '<td class="num-cell">' + fmtNum(bt.trip_berangkat) + '</td>' +
+          '<td class="num-cell font-bold" style="color:var(--n-lime);">' + fmtNum(bt.bangkitan_pax) + '</td>' +
+          '<td class="num-cell">' + fmtNum(bt.trip_datang) + '</td>' +
+          '<td class="num-cell font-bold" style="color:var(--n-purple);">' + fmtNum(bt.tarikan_pax) + '</td>' +
+          '<td class="num-cell font-mono font-bold">' + bt.rasio_od.toFixed(2) + '</td>' +
+          '<td><span class="badge-status ' + badgeClass + '">' + bt.status_aliran + '</span></td>' +
+        '</tr>';
+      }).join('');
+    }
+  }
+
+  function renderFilteredKoridor(list) {
+    var tbody = document.getElementById('table-koridor-body');
+    if (!tbody) return;
+    tbody.innerHTML = list.map(function (k) {
+      var badgeClass = k.kelas === 'AKAP' ? 'badge-mode-akap' : 'badge-mode-akdp';
+      return '<tr>' +
+        '<td><strong>#' + k.peringkat + '</strong></td>' +
+        '<td><strong>' + k.koridor + '</strong></td>' +
+        '<td><span class="badge-mode ' + badgeClass + '">' + k.kelas + '</span></td>' +
+        '<td class="num-cell">' + fmtNum(k.catatan_berangkat) + '</td>' +
+        '<td class="num-cell font-bold">' + fmtNum(k.pnp_berangkat) + '</td>' +
+        '<td class="num-cell">' + fmtNum(k.catatan_datang) + '</td>' +
+        '<td class="num-cell">' + fmtNum(k.pnp_datang) + '</td>' +
+        '<td class="num-cell" style="color:var(--n-lime);font-weight:700;">' + k.pnp_per_catatan.toFixed(2) + '</td>' +
+        '<td class="num-cell">' + fmtPctRaw(k.pangsa_jaringan) + '</td>' +
+      '</tr>';
+    }).join('');
+  }
+
+  // 5. Render Tab 4 — Operator & Pasar HHI
+  function renderTabOperator() {
+    var tbodyPo = document.getElementById('table-po-body');
+    if (!tbodyPo) return;
+    window._allPo = appData.kinerja_po;
+    renderFilteredPo(appData.kinerja_po);
+  }
+
+  function renderFilteredPo(list) {
+    var tbody = document.getElementById('table-po-body');
+    if (!tbody) return;
+    tbody.innerHTML = list.map(function (p) {
+      return '<tr>' +
+        '<td><strong>#' + p.peringkat + '</strong></td>' +
+        '<td><strong>' + p.nama + '</strong></td>' +
+        '<td class="num-cell">' + fmtNum(p.catatan_berangkat) + '</td>' +
+        '<td class="num-cell font-bold" style="color:var(--n-cyan);">' + fmtNum(p.pnp_berangkat) + '</td>' +
+        '<td class="num-cell font-bold">' + fmtPctRaw(p.pangsa_pasar) + '</td>' +
+        '<td class="num-cell" style="color:var(--n-lime);font-weight:700;">' + p.pnp_per_catatan.toFixed(2) + '</td>' +
+        '<td class="num-cell">' + fmtNum(p.kendaraan_unik) + '</td>' +
+        '<td class="num-cell font-mono" style="color:var(--n-amber);">' + fmtNum(p.pnp_per_kendaraan) + '</td>' +
+        '<td class="num-cell">' + p.koridor_aktif + '</td>' +
+      '</tr>';
+    }).join('');
+  }
+
+  // 6. Render Tab 5 — Distribusi Waktu
+  function renderTabWaktu() {
+    var container = document.getElementById('chart-waktu-svg');
+    var tbody = document.getElementById('table-waktu-body');
+    var list = appData.analisis_waktu;
+    if (!list) return;
+
+    if (tbody) {
+      tbody.innerHTML = list.map(function (w) {
+        var isPeakBerangkat = w.hour === 8;
+        var isPeakDatang = w.hour === 13;
+        var rowClass = isPeakBerangkat || isPeakDatang ? 'row-highlight' : '';
+        return '<tr class="' + rowClass + '">' +
+          '<td><strong>' + w.jam + '</strong>' +
+            (isPeakBerangkat ? ' <span class="badge-status badge-tinggi">Puncak Berangkat</span>' : '') +
+            (isPeakDatang ? ' <span class="badge-status badge-penarik">Puncak Datang</span>' : '') +
+          '</td>' +
+          '<td class="num-cell">' + fmtNum(w.catatan_berangkat) + '</td>' +
+          '<td class="num-cell font-bold" style="color:var(--n-cyan);">' + fmtNum(w.pnp_berangkat) + '</td>' +
+          '<td class="num-cell">' + fmtNum(w.catatan_datang) + '</td>' +
+          '<td class="num-cell font-bold" style="color:var(--n-purple);">' + fmtNum(w.pnp_datang) + '</td>' +
+        '</tr>';
+      }).join('');
+    }
+
+    if (container) {
+      var w = 860;
+      var h = 320;
+      var padL = 60, padR = 40, padT = 30, padB = 40;
+      var chartW = w - padL - padR;
+      var chartH = h - padT - padB;
+
+      var maxPnp = 280000;
+      var n = list.length;
+      var stepX = chartW / (n - 1);
+
+      var gridLines = [0, 50000, 100000, 150000, 200000, 250000];
+      var gridSvg = gridLines.map(function (val) {
+        var y = padT + chartH - (val / maxPnp) * chartH;
+        return '<line x1="' + padL + '" y1="' + y + '" x2="' + (w - padR) + '" y2="' + y + '" class="chart-grid-line" />' +
+          '<text x="' + (padL - 10) + '" y="' + (y + 3) + '" text-anchor="end" class="chart-label-mono">' + (val / 1000) + 'k</text>';
+      }).join('');
+
+      var ptsB = [];
+      var ptsD = [];
+      var labelsSvg = '';
+
+      list.forEach(function (d, i) {
+        var cx = padL + i * stepX;
+        var yB = padT + chartH - (d.pnp_berangkat / maxPnp) * chartH;
+        var yD = padT + chartH - (d.pnp_datang / maxPnp) * chartH;
+        ptsB.push({ x: cx, y: yB, val: d.pnp_berangkat, jam: d.jam });
+        ptsD.push({ x: cx, y: yD, val: d.pnp_datang, jam: d.jam });
+
+        if (d.hour % 2 === 0) {
+          labelsSvg += '<text x="' + cx + '" y="' + (h - 15) + '" text-anchor="middle" class="chart-label-mono">' + (d.hour < 10 ? '0' : '') + d.hour + '</text>';
+        }
+      });
+
+      var polyB = ptsB.map(function (p) { return p.x + ',' + p.y; }).join(' ');
+      var polyD = ptsD.map(function (p) { return p.x + ',' + p.y; }).join(' ');
+
+      var dotsBSvg = ptsB.map(function (p) {
+        return '<circle cx="' + p.x + '" cy="' + p.y + '" r="3" style="fill:var(--bg);stroke:var(--n-cyan);stroke-width:2;" data-tip="' + p.jam + ' Berangkat: ' + fmtNum(p.val) + ' pnp" class="chart-dot" />';
+      }).join('');
+
+      var dotsDSvg = ptsD.map(function (p) {
+        return '<circle cx="' + p.x + '" cy="' + p.y + '" r="3" style="fill:var(--bg);stroke:var(--n-purple);stroke-width:2;" data-tip="' + p.jam + ' Datang: ' + fmtNum(p.val) + ' pnp" class="chart-dot" />';
+      }).join('');
+
+      container.innerHTML = '<svg viewBox="0 0 ' + w + ' ' + h + '" class="chart-svg">' +
+        gridSvg +
+        '<line x1="' + padL + '" y1="' + (h - padB) + '" x2="' + (w - padR) + '" y2="' + (h - padB) + '" class="chart-axis-line" />' +
+        '<polyline points="' + polyB + '" class="chart-line" style="stroke:var(--n-cyan);" />' +
+        '<polyline points="' + polyD + '" class="chart-line" style="stroke:var(--n-purple);" />' +
+        dotsBSvg + dotsDSvg + labelsSvg +
+      '</svg>';
+
+      attachTooltips(container);
+    }
+  }
+
+  // 7. Render Tab 6 — Rekomendasi Kebijakan
+  function renderTabKebijakan() {
+    var grid = document.getElementById('pilar-rekomendasi-grid');
+    if (!grid) return;
+    var list = appData.rekomendasi_kebijakan;
+    if (!list) return;
+
+    grid.innerHTML = list.map(function (p) {
+      var listItems = p.tindakan.map(function (t) { return '<li>' + t + '</li>'; }).join('');
+      return '<div class="pilar-card pilar-card-' + p.pilar + '">' +
+        '<div style="display:flex;justify-content:space-between;align-items:center;">' +
+          '<span class="pilar-badge" style="background:rgba(0,229,255,0.15);color:var(--n-cyan);">Pilar 0' + p.pilar + ' &bull; ' + p.kategori + '</span>' +
+          '<span class="badge-status badge-' + (p.urgensi === 'Tinggi' ? 'kritis' : 'tinggi') + '">' + p.urgensi + '</span>' +
+        '</div>' +
+        '<h3 class="pilar-title">' + p.judul + '</h3>' +
+        '<p class="pilar-desc">' + p.deskripsi + '</p>' +
+        '<strong style="font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:0.05em;display:block;margin-bottom:6px;">Rekomendasi Tindakan Strategis:</strong>' +
+        '<ul class="pilar-list">' + listItems + '</ul>' +
+      '</div>';
+    }).join('');
+  }
+
+  // Tooltip Helper
+  function attachTooltips(container) {
+    var tip = document.getElementById('chart-global-tooltip');
+    if (!tip) {
+      tip = document.createElement('div');
+      tip.id = 'chart-global-tooltip';
+      tip.className = 'chart-tooltip';
+      document.body.appendChild(tip);
+    }
+
+    var targets = container.querySelectorAll('[data-tip]');
+    targets.forEach(function (el) {
+      el.addEventListener('mouseenter', function (e) {
+        tip.textContent = el.getAttribute('data-tip');
+        tip.style.opacity = '1';
+      });
+      el.addEventListener('mousemove', function (e) {
+        tip.style.left = (e.pageX + 12) + 'px';
+        tip.style.top = (e.pageY - 28) + 'px';
+      });
+      el.addEventListener('mouseleave', function () {
+        tip.style.opacity = '0';
+      });
+    });
+  }
+
+  // Modal Detail Terminal
+  function openTerminalModal(code) {
+    var t = (appData.terminal_evaluasi || []).find(function (item) { return item.kode === code; });
+    if (!t) return;
+
+    var modal = document.getElementById('terminalDetailModal');
+    var title = document.getElementById('termModalTitle');
+    var body = document.getElementById('termModalBody');
+    if (!modal || !title || !body) return;
+
+    title.textContent = t.nama + ' (' + t.kode + ')';
+
+    var topRoutesHtml = (t.top_routes || []).map(function (r, idx) {
+      return '<div class="modal-kv-row">' +
+        '<span class="modal-kv-label">Top ' + (idx + 1) + ': ' + r.rute + '</span>' +
+        '<span class="modal-kv-val">' + fmtNum(r.pnp) + ' pnp (' + fmtPctRaw(r.share) + ')</span>' +
+      '</div>';
+    }).join('');
+
+    body.innerHTML = '' +
+      '<div class="modal-kv-row"><span class="modal-kv-label">Wilayah Simpul</span><span class="modal-kv-val">' + t.kab_kota + '</span></div>' +
+      '<div class="modal-kv-row"><span class="modal-kv-label">Total Ritase Operasional (YTD)</span><span class="modal-kv-val">' + fmtNum(t.total_unit || (t.catatan_berangkat + (t.total_datang || 0))) + ' unit</span></div>' +
+      '<div class="modal-kv-row"><span class="modal-kv-label">Penumpang Keberangkatan</span><span class="modal-kv-val" style="color:var(--n-lime);">' + fmtNum(t.pnp_berangkat) + ' pnp</span></div>' +
+      '<div class="modal-kv-row"><span class="modal-kv-label">Coverage Pencatatan OD</span><span class="modal-kv-val">' + fmtPctRaw(t.coverage_pnp) + '</span></div>' +
+      '<div class="modal-kv-row"><span class="modal-kv-label">Porsi Rute Teratas (RD1)</span><span class="modal-kv-val">' + fmtPctRaw(t.rd1) + '</span></div>' +
+      '<div class="modal-kv-row"><span class="modal-kv-label">Indeks Ketergantungan 3 Rute (RD3)</span><span class="modal-kv-val" style="color:' + (t.rd3 >= 0.5 ? 'var(--n-amber)' : 'var(--n-cyan)') + ';">' + fmtPctRaw(t.rd3) + ' (' + t.klasifikasi + ')</span></div>' +
+      '<div style="margin:16px 0 8px;"><strong style="font-size:12px;color:var(--ink);">3 Rute Berangkat Terbesar:</strong></div>' +
+      topRoutesHtml +
+      '<div style="margin-top:16px;padding:12px;background:var(--surface-2);border-radius:6px;border-left:3px solid var(--n-cyan);">' +
+        '<div style="font-size:11px;font-weight:700;color:var(--n-cyan);text-transform:uppercase;">Rekomendasi BPTD Jabar:</div>' +
+        '<div style="font-size:12px;color:var(--ink);margin-top:4px;">' + t.status_rekomendasi + '</div>' +
+      '</div>';
+
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+  }
+
+  function closeModals() {
+    document.querySelectorAll('.modal-backdrop').forEach(function (m) {
+      m.classList.remove('is-open');
+      m.setAttribute('aria-hidden', 'true');
+    });
+  }
+
+  function initModals() {
+    document.querySelectorAll('.modal-close-btn').forEach(function (btn) {
+      btn.addEventListener('click', closeModals);
+    });
+    document.querySelectorAll('.modal-backdrop').forEach(function (backdrop) {
+      backdrop.addEventListener('click', function (e) {
+        if (e.target === backdrop) closeModals();
+      });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeModals();
+    });
+  }
+
+  // Search Filters
+  function initSearchFilters() {
+    var inputKoridor = document.getElementById('search-koridor');
+    if (inputKoridor) {
+      inputKoridor.addEventListener('input', function (e) {
+        var q = e.target.value.toLowerCase().trim();
+        var filtered = (window._allKoridor || []).filter(function (k) {
+          return k.koridor.toLowerCase().includes(q) || k.kelas.toLowerCase().includes(q);
+        });
+        renderFilteredKoridor(filtered);
+      });
+    }
+
+    var inputPo = document.getElementById('search-po');
+    if (inputPo) {
+      inputPo.addEventListener('input', function (e) {
+        var q = e.target.value.toLowerCase().trim();
+        var filtered = (window._allPo || []).filter(function (p) {
+          return p.nama.toLowerCase().includes(q);
+        });
+        renderFilteredPo(filtered);
+      });
+    }
+  }
+
+  // Action Buttons
+  function initActions() {
+    var btnPrint = document.getElementById('btn-print-laporan');
+    if (btnPrint) {
+      btnPrint.addEventListener('click', function () {
+        window.print();
+      });
+    }
+
+    var btnDownload = document.getElementById('btn-download-json');
+    if (btnDownload) {
+      btnDownload.addEventListener('click', function () {
+        var blob = new Blob([JSON.stringify(appData, null, 2)], { type: 'application/json' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'akap-akdp-jabar-ytd-2026.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      });
+    }
+  }
+
+  // Main Initialize
+  function init() {
+    initClock();
+    initTabs();
+    initModals();
+    initSearchFilters();
+    initActions();
+
+    // Fetch JSON with fallback
+    fetch('/data/akap-akdp-jabar-2026.json')
+      .then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json();
+      })
+      .then(function (json) {
+        appData = json;
+      })
+      .catch(function (err) {
+        console.warn('Menggunakan fallback data terintegrasi (offline/local):', err);
+        appData = FALLBACK_DATA;
+      })
+      .finally(function () {
+        renderKpiCards();
+        renderTabBulanan();
+        renderTabTerminal();
+        renderTabKoridor();
+        renderTabOperator();
+        renderTabWaktu();
+        renderTabKebijakan();
+      });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();

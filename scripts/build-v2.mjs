@@ -125,6 +125,14 @@ const DATA_MASTER_FILES = [
     "data-master.css",
     "data-master.js",
 ];
+const AKAP_SOURCE_DIR = resolve(SOURCE_DIR, "akap");
+const AKAP_OUT_DIR = resolve(OUT_DIR, "akap");
+
+const AKAP_FILES = [
+    "index.html",
+    "akap.css",
+    "akap.js",
+];
 function build() {
     mkdirSync(OUT_DIR, { recursive: true });
 
@@ -386,6 +394,30 @@ function build() {
 
         writeFileSync(outPath, data);
         results.push({ name: `data-master/${name}`, size: data.length });
+    }
+    // Direktori akap dan ketiga filenya wajib ada setelah modul AKAP/AKDP dirilis
+    if (!existsSync(AKAP_SOURCE_DIR)) {
+        console.error(`ERROR: direktori source akap wajib ada dan tidak ditemukan: ${AKAP_SOURCE_DIR}`);
+        process.exitCode = 1;
+        return;
+    }
+
+    mkdirSync(AKAP_OUT_DIR, { recursive: true });
+    for (const name of AKAP_FILES) {
+        const srcPath = resolve(AKAP_SOURCE_DIR, name);
+        const outPath = resolve(AKAP_OUT_DIR, name);
+
+        let data;
+        try {
+            data = readFileSync(srcPath);
+        } catch (err) {
+            console.error(`ERROR: file source akap wajib tidak ditemukan: ${srcPath} (${err.code})`);
+            process.exitCode = 1;
+            return;
+        }
+
+        writeFileSync(outPath, data);
+        results.push({ name: `akap/${name}`, size: data.length });
     }
 
     for (const r of results) {
