@@ -3592,11 +3592,10 @@
         if (confirmBtn) confirmBtn.setAttribute('disabled', 'true');
 
         try {
-            const res = await fetch('/api/savePotretRows', {
+            const res = await fetch('/api/syncPotretRows', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'X-Admin-PIN': pin
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     section: cmsState.activeModule,
