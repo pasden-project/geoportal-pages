@@ -910,9 +910,109 @@ function initFilterListeners() {
 }
 
 /**
- * Fetch live data from /api/getDashboardData in background (non-blocking)
+ * Merge dynamic metrics from Data Master / Google Spreadsheet into UPPKB dataset
+ * sambil mempertahankan keutuhan koordinat GIS dan profil stasiun.
+ */
+function mergeUppkbDynamicMetrics(rows) {
+  if (!rows || !rows.length || !uppkbData || !uppkbData.stations) return;
+  var modified = false;
+  var sumDiperiksa = 0;
+  var sumPelanggaran = 0;
+
+  rows.forEach(function (row) {
+    var rawName = String(row.uppkb || '').trim().toUpperCase();
+    var station = uppkbData.stations.find(function (s) {
+      var sName = String(s.nama || '').trim().toUpperCase();
+      return sName === rawName || rawName.indexOf(sName) >= 0 || sName.indexOf(rawName) >= 0;
+    });
+
+    if (station) {
+      modified = true;
+      if (row.diperiksa !== undefined) {
+        var dip = Number(row.diperiksa);
+        if (!isNaN(dip) && dip >= 0) station.diperiksa_2025 = dip;
+      }
+      if (row.pelanggaran !== undefined) {
+        var pel = Number(row.pelanggaran);
+        if (!isNaN(pel) && pel >= 0) station.pelanggaran_2025 = pel;
+      }
+      if (row.kepatuhan_pct !== undefined) {
+        var kep = Number(row.kepatuhan_pct);
+        if (!isNaN(kep) && kep >= 0) station.kepatuhan_pct = kep;
+      }
+      if (!station.penindakan) station.penindakan = {};
+      if (row.tilang !== undefined) {
+        var til = Number(row.tilang);
+        if (!isNaN(til) && til >= 0) station.penindakan.tilang_uppkb = til;
+      }
+      if (row.tilang_polisi !== undefined) {
+        var tp = Number(row.tilang_polisi);
+        if (!isNaN(tp) && tp >= 0) station.penindakan.tilang_polisi = tp;
+      }
+      if (row.transfer !== undefined) {
+        var trf = Number(row.transfer);
+        if (!isNaN(trf) && trf >= 0) station.penindakan.transfer_muatan = trf;
+      }
+    }
+  });
+
+  if (modified) {
+    uppkbData.stations.forEach(function (s) {
+      sumDiperiksa += (Number(s.diperiksa_2025) || 0);
+      sumPelanggaran += (Number(s.pelanggaran_2025) || 0);
+    });
+
+    if (!uppkbData.summary) uppkbData.summary = {};
+    uppkbData.summary.total_diperiksa_2025 = sumDiperiksa;
+    uppkbData.summary.total_pelanggaran_2025 = sumPelanggaran;
+    uppkbData.summary.total_penindakan_2025 = sumPelanggaran;
+    if (sumDiperiksa > 0) {
+      uppkbData.summary.tingkat_kepatuhan = (sumDiperiksa - sumPelanggaran) / sumDiperiksa;
+    }
+
+    renderKPIs();
+    renderGrid(uppkbData.stations);
+    if (typeof renderMapStations === "function") {
+      renderMapStations();
+    }
+  }
+}
+
+/**
+ * Fetch live data from /api/getPotretRows & /api/getDashboardData in background (non-blocking)
  */
 async function loadData() {
+  // 1. Cek cache lokal draf sinkronisasi dari Data Master
+  try {
+    var localRaw = localStorage.getItem("potret_barang");
+    if (localRaw) {
+      var localData = JSON.parse(localRaw);
+      if (localData && Array.isArray(localData.rows) && localData.rows.length) {
+        mergeUppkbDynamicMetrics(localData.rows);
+      }
+    }
+  } catch (_) {}
+
+  // 2. Ambil data termutakhir dari Data Master Google Spreadsheet
+  try {
+    var resPotret = await fetch("/api/getPotretRows", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ section: "barang" })
+    });
+    if (resPotret.ok) {
+      var potretData = await resPotret.json();
+      var pRows = (potretData && potretData.data && Array.isArray(potretData.data.rows)) ? potretData.data.rows :
+                  (potretData && Array.isArray(potretData.rows)) ? potretData.rows : [];
+      if (pRows && pRows.length) {
+        mergeUppkbDynamicMetrics(pRows);
+      }
+    }
+  } catch (pe) {
+    // Graceful fallback: gunakan embedded baseline tanpa interupsi
+  }
+
+  // 3. Status indikator gateway
   try {
     var controller = typeof AbortController !== "undefined" ? new AbortController() : null;
     var timeoutId = controller ? setTimeout(function () { controller.abort(); }, 3500) : null;

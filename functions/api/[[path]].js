@@ -105,39 +105,94 @@ async function proxy(context) {
       });
     }
 
-    // 2. Blokir Operasi Tulis (HTTP 403 fail-closed)
+    // 2. Baca body request masuk
+    let body = '{}';
+    if (request && request.body) {
+      body = await request.text();
+    }
+    let parsedBody = {};
+    try { parsedBody = JSON.parse(body); } catch (_) { parsedBody = {}; }
+
+    // 3. Blokir Operasi Tulis (fail-closed), KECUALI savePotretRows dengan otentikasi PIN
     if (WRITE_OPERATIONS.has(name)) {
-      const handlerEnd = performance.now();
-      const handler_ms = Math.max(0, Number((handlerEnd - handlerStart).toFixed(1)));
-      logStructured({
-        level: 'warn',
-        request_id: requestId,
-        operation: name,
-        method: method,
-        upstream_status: null,
-        final_status: 403,
-        upstream_headers_ms: 0,
-        upstream_body_ms: 0,
-        upstream_ms: 0,
-        validation_ms: 0,
-        handler_ms: handler_ms,
-        payload_bytes: 'unknown',
-        observed_at: new Date().toISOString(),
-        error_class: 'FORBIDDEN_WRITE'
-      });
-      return new Response(JSON.stringify({ ok: false, error: 'Operasi tulis dinonaktifkan sementara.' }), {
-        status: 403,
-        headers: {
-          'content-type': 'application/json',
-          'X-GeoPortal-Request-Id': requestId,
-          'Server-Timing': `edge;dur=${handler_ms}`
+      if (name === 'savePotretRows') {
+        const adminPin = (env && (env.ADMIN_PIN || env.REST_SECRET)) || 'BPTD1JABAR';
+        const clientPin = (request && request.headers ? request.headers.get('x-admin-pin') : null) ||
+                          parsedBody.pin ||
+                          parsedBody.key ||
+                          (request && request.url ? new URL(request.url).searchParams.get('key') : null);
+
+        if (!clientPin || clientPin !== adminPin) {
+          const handlerEnd = performance.now();
+          const handler_ms = Math.max(0, Number((handlerEnd - handlerStart).toFixed(1)));
+          logStructured({
+            level: 'warn',
+            request_id: requestId,
+            operation: name,
+            method: method,
+            upstream_status: null,
+            final_status: 403,
+            upstream_headers_ms: 0,
+            upstream_body_ms: 0,
+            upstream_ms: 0,
+            validation_ms: 0,
+            handler_ms: handler_ms,
+            payload_bytes: 'unknown',
+            observed_at: new Date().toISOString(),
+            error_class: 'UNAUTHORIZED_ADMIN_PIN'
+          });
+          return new Response(JSON.stringify({ ok: false, error: 'Otorisasi admin ditolak: PIN tidak valid' }), {
+            status: 403,
+            headers: {
+              'content-type': 'application/json',
+              'X-GeoPortal-Request-Id': requestId,
+              'Server-Timing': `edge;dur=${handler_ms}`
+            }
+          });
         }
-      });
+
+        // PIN Valid: pastikan payload membawa atribut key/args yang sesuai ke Apps Script
+        parsedBody.key = adminPin;
+        if (!parsedBody.args && parsedBody.section) {
+          parsedBody.args = [parsedBody.section, parsedBody.rows || []];
+        }
+        body = JSON.stringify(parsedBody);
+      } else {
+        const handlerEnd = performance.now();
+        const handler_ms = Math.max(0, Number((handlerEnd - handlerStart).toFixed(1)));
+        logStructured({
+          level: 'warn',
+          request_id: requestId,
+          operation: name,
+          method: method,
+          upstream_status: null,
+          final_status: 403,
+          upstream_headers_ms: 0,
+          upstream_body_ms: 0,
+          upstream_ms: 0,
+          validation_ms: 0,
+          handler_ms: handler_ms,
+          payload_bytes: 'unknown',
+          observed_at: new Date().toISOString(),
+          error_class: 'FORBIDDEN_WRITE'
+        });
+        return new Response(JSON.stringify({ ok: false, error: 'Operasi tulis dinonaktifkan sementara.' }), {
+          status: 403,
+          headers: {
+            'content-type': 'application/json',
+            'X-GeoPortal-Request-Id': requestId,
+            'Server-Timing': `edge;dur=${handler_ms}`
+          }
+        });
+      }
+    } else if (name === 'getPotretRows' && parsedBody.section && !parsedBody.args) {
+      parsedBody.args = [parsedBody.section];
+      body = JSON.stringify(parsedBody);
     }
 
     observedOperation = name;
 
-    // 3. Guard konfigurasi upstream GAS_EXEC_URL
+    // 4. Guard konfigurasi upstream GAS_EXEC_URL
     if (!env || !env.GAS_EXEC_URL) {
       const handlerEnd = performance.now();
       const handler_ms = Math.max(0, Number((handlerEnd - handlerStart).toFixed(1)));
@@ -167,16 +222,10 @@ async function proxy(context) {
       });
     }
 
-    // 4. Konstruksi gasUrl presisi (tanpa forwarding secret / trace di query ke GAS)
+    // 5. Konstruksi gasUrl presisi (tanpa forwarding secret / trace di query ke GAS)
     const gasUrl = env.GAS_EXEC_URL +
       (env.GAS_EXEC_URL.indexOf('?') >= 0 ? '&' : '?') +
       'path=' + encodeURIComponent(name);
-    // 5. Baca body request masuk (hanya payload RPC kecil dari frontend; tidak menelan error)
-    let body = '{}';
-    if (request && request.body) {
-      body = await request.text();
-    }
-
     // 6. Dispatch upstream fetch dengan pengukuran bertahap (headers vs body)
     let gas;
     const fetchStart = performance.now();

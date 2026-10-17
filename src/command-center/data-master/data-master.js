@@ -2455,6 +2455,7 @@
         initExport();
         initModal();
         initMap();
+        initCmsManager();
         loadData();
     });
 
@@ -2518,7 +2519,8 @@
         const tabBtns = [
             { btn: document.getElementById('btnTabMap'), panel: document.getElementById('panelTabMap'), id: 'map' },
             { btn: document.getElementById('btnTabDirectory'), panel: document.getElementById('panelTabDirectory'), id: 'directory' },
-            { btn: document.getElementById('btnTabDictionary'), panel: document.getElementById('panelTabDictionary'), id: 'dictionary' }
+            { btn: document.getElementById('btnTabDictionary'), panel: document.getElementById('panelTabDictionary'), id: 'dictionary' },
+            { btn: document.getElementById('btnTabManagement'), panel: document.getElementById('panelTabManagement'), id: 'management' }
         ];
 
         tabBtns.forEach(t => {
@@ -2549,6 +2551,10 @@
                     setTimeout(() => {
                         state.map.invalidateSize();
                     }, 100);
+                }
+                // Jika beralih ke tab kelola data master (CMS), pastikan data termuat
+                if (t.id === 'management' && typeof loadCmsModuleData === 'function') {
+                    loadCmsModuleData(cmsState.activeModule);
                 }
             });
         });
@@ -3163,5 +3169,537 @@
             grid.appendChild(card);
         });
     }
+
+    // =====================================================================
+    //  PUSAT KELOLA DATA MASTER (CMS - GOOGLE SPREADSHEET BACKEND HUB)
+    // =====================================================================
+    const CMS_MODULE_SCHEMAS = {
+        perintis: [
+            { key: 'kode_trayek', label: 'Kode Trayek', type: 'text', required: true },
+            { key: 'nama_trayek', label: 'Nama Trayek / Rute', type: 'text', required: true },
+            { key: 'kabupaten', label: 'Kabupaten/Kota', type: 'text', required: true },
+            { key: 'operator', label: 'Operator', type: 'text', required: true },
+            { key: 'armada', label: 'Jumlah Armada', type: 'number', required: true },
+            { key: 'ritase', label: 'Target Ritase', type: 'number', required: true },
+            { key: 'penumpang', label: 'Realisasi Penumpang', type: 'number', required: true },
+            { key: 'load_factor', label: 'Load Factor (%)', type: 'number', required: true },
+            { key: 'pagu', label: 'Pagu Kontrak (Rp)', type: 'number', required: true },
+            { key: 'status', label: 'Status', type: 'select', options: ['Aktif', 'Nonaktif', 'Perbaikan'], required: true }
+        ],
+        barang: [
+            { key: 'uppkb', label: 'Nama UPPKB', type: 'text', required: true },
+            { key: 'kabupaten', label: 'Kabupaten/Kota', type: 'text', required: true },
+            { key: 'diperiksa', label: 'Kendaraan Diperiksa', type: 'number', required: true },
+            { key: 'pelanggaran', label: 'Total Pelanggaran', type: 'number', required: true },
+            { key: 'kepatuhan_pct', label: 'Kepatuhan (%)', type: 'number', required: true },
+            { key: 'tilang', label: 'Tilang UPPKB', type: 'number', required: true },
+            { key: 'tilang_polisi', label: 'Tilang Polisi', type: 'number', required: true },
+            { key: 'transfer', label: 'Transfer Muatan', type: 'number', required: true },
+            { key: 'status', label: 'Status', type: 'select', options: ['Aktif', 'Kalibrasi', 'Nonaktif'], required: true }
+        ],
+        brt: [
+            { key: 'koridor', label: 'Kode Koridor', type: 'text', required: true },
+            { key: 'nama_koridor', label: 'Nama Koridor / Trayek', type: 'text', required: true },
+            { key: 'operator', label: 'Operator', type: 'text', required: true },
+            { key: 'armada', label: 'Jumlah Bus Aktif', type: 'number', required: true },
+            { key: 'panjang_km', label: 'Panjang Rute (km)', type: 'number', required: true },
+            { key: 'headway_menit', label: 'Headway (Menit)', type: 'number', required: true },
+            { key: 'tarif', label: 'Tarif (Rp)', type: 'text', required: true },
+            { key: 'status', label: 'Status', type: 'select', options: ['Aktif', 'Dibatasi', 'Nonaktif'], required: true }
+        ],
+        ajap: [
+            { key: 'perusahaan', label: 'Nama Operator Shuttle', type: 'text', required: true },
+            { key: 'jenis', label: 'Jenis Izin', type: 'select', options: ['AJAP', 'AJDP'], required: true },
+            { key: 'jumlah', label: 'Jumlah Kendaraan', type: 'number', required: true },
+            { key: 'wilayah', label: 'Wilayah Layanan', type: 'text', required: true },
+            { key: 'status', label: 'Status', type: 'select', options: ['Aktif', 'Peringatan', 'Dibekukan'], required: true },
+            { key: 'keterangan', label: 'Keterangan', type: 'text', required: false }
+        ],
+        pariwisata: [
+            { key: 'wilayah', label: 'Wilayah / Kab-Kota', type: 'text', required: true },
+            { key: 'po', label: 'Perusahaan Otobus (PO)', type: 'text', required: true },
+            { key: 'armada', label: 'Jumlah Armada', type: 'number', required: true },
+            { key: 'laik', label: 'Kelaikan (KPS)', type: 'text', required: true },
+            { key: 'status', label: 'Status Operasional', type: 'select', options: ['Operasional Penuh', 'Sebagian', 'Nonaktif'], required: true }
+        ],
+        akap: [
+            { key: 'terminal', label: 'Terminal', type: 'text', required: true },
+            { key: 'karakter', label: 'Karakter (AKAP/AKDP)', type: 'text', required: true },
+            { key: 'okupansi', label: 'Status Okupansi', type: 'text', required: true },
+            { key: 'insight', label: 'Keterangan/Insight', type: 'text', required: false }
+        ]
+    };
+
+    const CMS_BASELINE_DATA = {
+        perintis: [
+            { kode_trayek: 'PERINTIS-001', nama_trayek: 'Surade - Sagaranten', kabupaten: 'Kab. Sukabumi', operator: 'Perum Damri Cab. Bandung', armada: '2', ritase: '888', penumpang: '5251', load_factor: '35.6', pagu: '5479744000', status: 'Aktif' },
+            { kode_trayek: 'PERINTIS-002', nama_trayek: 'Sagaranten - Pelabuhan Ratu', kabupaten: 'Kab. Sukabumi', operator: 'Perum Damri Cab. Bandung', armada: '2', ritase: '720', penumpang: '4810', load_factor: '31.2', pagu: '4820150000', status: 'Aktif' },
+            { kode_trayek: 'PERINTIS-003', nama_trayek: 'Tegal Buleud - Sagaranten', kabupaten: 'Kab. Sukabumi', operator: 'Perum Damri Cab. Bandung', armada: '2', ritase: '650', penumpang: '3980', load_factor: '28.5', pagu: '4250100000', status: 'Aktif' },
+            { kode_trayek: 'PERINTIS-004', nama_trayek: 'Leuwiliang - Cikidang', kabupaten: 'Kab. Bogor', operator: 'Perum Damri Cab. Bogor', armada: '2', ritase: '600', penumpang: '3620', load_factor: '30.1', pagu: '3980200000', status: 'Aktif' },
+            { kode_trayek: 'PERINTIS-005', nama_trayek: 'Jasinga - Parung Panjang', kabupaten: 'Kab. Bogor', operator: 'Perum Damri Cab. Bogor', armada: '2', ritase: '580', penumpang: '3450', load_factor: '29.4', pagu: '3820000000', status: 'Aktif' },
+            { kode_trayek: 'PERINTIS-006', nama_trayek: 'Sadang - Wanakerta', kabupaten: 'Kab. Purwakarta', operator: 'Perum Damri Cab. Purwakarta', armada: '2', ritase: '540', penumpang: '3120', load_factor: '32.8', pagu: '3650000000', status: 'Aktif' }
+        ],
+        barang: [
+            { uppkb: 'Balonggandu', kabupaten: 'Kabupaten Karawang', diperiksa: '39623', pelanggaran: '5900', kepatuhan_pct: '85.1', tilang: '2384', tilang_polisi: '427', transfer: '32', status: 'Aktif' },
+            { uppkb: 'Losarang', kabupaten: 'Kabupaten Indramayu', diperiksa: '41250', pelanggaran: '3820', kepatuhan_pct: '90.7', tilang: '1820', tilang_polisi: '110', transfer: '12', status: 'Aktif' },
+            { uppkb: 'Tomo', kabupaten: 'Kabupaten Sumedang', diperiksa: '25410', pelanggaran: '1650', kepatuhan_pct: '93.5', tilang: '720', tilang_polisi: '45', transfer: '4', status: 'Aktif' },
+            { uppkb: 'Kemang', kabupaten: 'Kabupaten Bogor', diperiksa: '31200', pelanggaran: '2190', kepatuhan_pct: '93.0', tilang: '980', tilang_polisi: '68', transfer: '2', status: 'Aktif' },
+            { uppkb: 'Gentong', kabupaten: 'Kabupaten Tasikmalaya', diperiksa: '28900', pelanggaran: '1420', kepatuhan_pct: '95.1', tilang: '410', tilang_polisi: '28', transfer: '1', status: 'Aktif' },
+            { uppkb: 'Cibaragalan', kabupaten: 'Kabupaten Purwakarta', diperiksa: '28009', pelanggaran: '1328', kepatuhan_pct: '95.3', tilang: '249', tilang_polisi: '20', transfer: '2', status: 'Aktif' }
+        ],
+        brt: [
+            { koridor: 'TMP-K1', nama_koridor: 'Leuwipanjang - Soreang', operator: 'Perum DAMRI', armada: '18', panjang_km: '28', headway_menit: '10', tarif: '4900', status: 'Aktif' },
+            { koridor: 'TMP-K2', nama_koridor: 'Kota Baru Parahyangan - Alun-Alun', operator: 'Big Bird / TMP', armada: '18', panjang_km: '35', headway_menit: '12', tarif: '4900', status: 'Aktif' },
+            { koridor: 'TMP-K3', nama_koridor: 'Baleendah - BEC', operator: 'Perum DAMRI', armada: '16', panjang_km: '22', headway_menit: '15', tarif: '4900', status: 'Aktif' },
+            { koridor: 'TMP-K4', nama_koridor: 'Leuwipanjang - Dago', operator: 'Perum DAMRI', armada: '15', panjang_km: '18', headway_menit: '12', tarif: '4900', status: 'Aktif' },
+            { koridor: 'TMP-K5', nama_koridor: 'Dipatiukur - Jatinangor', operator: 'Perum DAMRI', armada: '20', panjang_km: '32', headway_menit: '10', tarif: '4900', status: 'Aktif' },
+            { koridor: 'TMP-FEEDER', nama_koridor: 'Feeder Stasiun Whoosh Tegalluar', operator: 'Perum DAMRI / KCIC', armada: '8', panjang_km: '15', headway_menit: '20', tarif: '0 (Integrasi)', status: 'Aktif' }
+        ],
+        ajap: [
+            { perusahaan: 'DayTrans Shuttle', jenis: 'AJAP', jumlah: '120', wilayah: 'Bandung - Jakarta / Jabodetabek', status: 'Aktif', keterangan: 'KPS Lengkap & Berizin Resmi' },
+            { perusahaan: 'Baraya Travel', jenis: 'AJAP', jumlah: '95', wilayah: 'Bandung - Jakarta / Tangerang', status: 'Aktif', keterangan: 'KPS Lengkap & Berizin Resmi' },
+            { perusahaan: 'Bhinneka Shuttle', jenis: 'AJDP', jumlah: '85', wilayah: 'Bandung - Cirebon - Kuningan', status: 'Aktif', keterangan: 'KPS Lengkap & Berizin Resmi' },
+            { perusahaan: 'Pasteur Trans', jenis: 'AJAP', jumlah: '50', wilayah: 'Bandung - Jabodetabek', status: 'Aktif', keterangan: 'KPS Lengkap & Berizin Resmi' },
+            { perusahaan: 'Jackal Holidays Shuttle', jenis: 'AJAP', jumlah: '65', wilayah: 'Bandung - Jakarta / Bandara Soetta', status: 'Aktif', keterangan: 'KPS Lengkap & Berizin Resmi' },
+            { perusahaan: 'Cititrans', jenis: 'AJAP', jumlah: '70', wilayah: 'Bandung - Jakarta', status: 'Aktif', keterangan: 'KPS Lengkap & Berizin Resmi' }
+        ],
+        pariwisata: [
+            { wilayah: 'Kota Bandung', po: 'PO Sinar Jaya Pariwisata', armada: '45', laik: 'Laik (KPS Aktif)', status: 'Operasional Penuh' },
+            { wilayah: 'Kab. Bogor', po: 'PO Primajasa Pariwisata', armada: '50', laik: 'Laik (KPS Aktif)', status: 'Operasional Penuh' },
+            { wilayah: 'Kab. Bekasi', po: 'PO Subur Jaya Pariwisata', armada: '35', laik: 'Laik (KPS Aktif)', status: 'Operasional Penuh' },
+            { wilayah: 'Kota Depok', po: 'PO Blue Star', armada: '30', laik: 'Laik (KPS Aktif)', status: 'Operasional Penuh' },
+            { wilayah: 'Kota Bandung', po: 'PO Jackal Holidays Pariwisata', armada: '40', laik: 'Laik (KPS Aktif)', status: 'Operasional Penuh' },
+            { wilayah: 'Kab. Karawang', po: 'PO City Miles Transport', armada: '25', laik: 'Laik (KPS Aktif)', status: 'Operasional Penuh' }
+        ],
+        akap: [
+            { terminal: 'Leuwipanjang', karakter: 'AKAP / AKDP Jalur Barat', okupansi: 'Tinggi (85-95%)', insight: 'Pusat integrasi komuter barat & bandara' },
+            { terminal: 'Cicaheum', karakter: 'AKAP / AKDP Jalur Timur', okupansi: 'Moderat (60-75%)', insight: 'Koridor utama Jawa Tengah & Timur' },
+            { terminal: 'Harjamukti Cirebon', karakter: 'AKAP Simpul Pantura', okupansi: 'Tinggi (80-90%)', insight: 'Hub transit pantura timur Jabar' },
+            { terminal: 'Baranangsiang Bogor', karakter: 'AKAP Jabodetabek', okupansi: 'Sangat Tinggi (90-98%)', insight: 'Simpul komuter tersibuk selatan' }
+        ]
+    };
+
+    const cmsState = {
+        activeModule: 'perintis',
+        rows: [],
+        columns: [],
+        editIndex: -1,
+        isLoaded: false
+    };
+
+    function showCmsAlert(message, type = 'success') {
+        const banner = document.getElementById('cmsAlertBanner');
+        if (!banner) return;
+        banner.className = 'cms-alert ' + (type === 'success' ? 'cms-alert-success' : 'cms-alert-error');
+        banner.textContent = message;
+        banner.removeAttribute('hidden');
+        setTimeout(() => {
+            banner.setAttribute('hidden', '');
+        }, 6000);
+    }
+
+    async function loadCmsModuleData(moduleKey) {
+        cmsState.activeModule = moduleKey || 'perintis';
+        cmsState.columns = CMS_MODULE_SCHEMAS[cmsState.activeModule] || [];
+
+        const syncText = document.getElementById('cmsSyncStatus');
+        if (syncText) syncText.textContent = 'Memeriksa sinkronisasi...';
+
+        // Coba periksa cache lokal terlebih dahulu
+        let localCache = null;
+        try {
+            const raw = localStorage.getItem('potret_' + cmsState.activeModule);
+            if (raw) localCache = JSON.parse(raw);
+        } catch (_) {}
+
+        try {
+            const res = await fetch('/api/getPotretRows', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ section: cmsState.activeModule })
+            });
+
+            if (res.ok) {
+                const data = await res.json();
+                const rows = (data && data.data && Array.isArray(data.data.rows)) ? data.data.rows :
+                             (data && Array.isArray(data.rows)) ? data.rows : [];
+
+                if (rows && rows.length) {
+                    cmsState.rows = rows;
+                    if (syncText) syncText.textContent = 'Tersinkronkan Google Sheets';
+                } else if (localCache && localCache.rows && localCache.rows.length) {
+                    cmsState.rows = localCache.rows;
+                    if (syncText) syncText.textContent = 'Draf Tersimpan Lokal';
+                } else {
+                    cmsState.rows = JSON.parse(JSON.stringify(CMS_BASELINE_DATA[cmsState.activeModule] || []));
+                    if (syncText) syncText.textContent = 'Baseline Terverifikasi';
+                }
+            } else {
+                throw new Error('Respons backend HTTP ' + res.status);
+            }
+        } catch (err) {
+            // Offline atau dev server tanpa gateway GAS: gunakan cache lokal atau baseline resmi
+            if (localCache && localCache.rows && localCache.rows.length) {
+                cmsState.rows = localCache.rows;
+                if (syncText) syncText.textContent = 'Draf Tersimpan Lokal';
+            } else {
+                cmsState.rows = JSON.parse(JSON.stringify(CMS_BASELINE_DATA[cmsState.activeModule] || []));
+                if (syncText) syncText.textContent = 'Baseline Terverifikasi';
+            }
+        }
+
+        cmsState.isLoaded = true;
+        renderCmsTable();
+    }
+
+    function renderCmsTable() {
+        const thead = document.getElementById('cmsTableHead');
+        const tbody = document.getElementById('cmsTableBody');
+        const rowCountEl = document.getElementById('cmsRowCount');
+        if (!thead || !tbody) return;
+
+        if (rowCountEl) {
+            rowCountEl.textContent = `${cmsState.rows.length} entitas terdaftar`;
+        }
+
+        // Render Headers
+        let thHtml = '<tr><th scope="col" style="width: 48px;">No</th>';
+        cmsState.columns.forEach(col => {
+            thHtml += `<th scope="col">${col.label}</th>`;
+        });
+        thHtml += '<th scope="col" style="width: 140px; text-align: center;">Aksi</th></tr>';
+        thead.innerHTML = thHtml;
+
+        // Render Body
+        if (!cmsState.rows.length) {
+            tbody.innerHTML = `<tr><td colspan="${cmsState.columns.length + 2}" style="text-align: center; padding: 24px; color: var(--text-secondary);">Belum ada data pada modul ini. Klik "Tambah Entitas" untuk menambahkan data.</td></tr>`;
+            return;
+        }
+
+        let trHtml = '';
+        cmsState.rows.forEach((row, idx) => {
+            trHtml += `<tr><td>${idx + 1}</td>`;
+            cmsState.columns.forEach(col => {
+                const val = row[col.key] !== undefined && row[col.key] !== null ? row[col.key] : '-';
+                if (col.key === 'status') {
+                    const statusClass = String(val).toLowerCase().includes('aktif') ? 'badge-manual' : 'badge-auto';
+                    trHtml += `<td><span class="cms-badge ${statusClass}">${val}</span></td>`;
+                } else if (col.type === 'number') {
+                    const num = Number(val);
+                    const formatted = !isNaN(num) ? num.toLocaleString('id-ID') : val;
+                    trHtml += `<td style="font-family: monospace;">${formatted}</td>`;
+                } else {
+                    trHtml += `<td>${val}</td>`;
+                }
+            });
+            trHtml += `
+                <td style="text-align: center; white-space: nowrap;">
+                    <button type="button" class="btn-xs btn-edit" data-action="edit" data-index="${idx}" aria-label="Edit baris ${idx + 1}">
+                        <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 12px; height: 12px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+                        Edit
+                    </button>
+                    <button type="button" class="btn-xs btn-delete" data-action="delete" data-index="${idx}" aria-label="Hapus baris ${idx + 1}">
+                        <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 12px; height: 12px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                        Hapus
+                    </button>
+                </td>
+            </tr>`;
+        });
+        tbody.innerHTML = trHtml;
+    }
+
+    function openEntityModal(index = -1) {
+        cmsState.editIndex = index;
+        const modal = document.getElementById('cmsEntityModal');
+        const titleEl = document.getElementById('cmsEntityModalTitle');
+        const subEl = document.getElementById('cmsEntityModalSub');
+        const fieldsContainer = document.getElementById('cmsEntityFormFields');
+        const errorEl = document.getElementById('cmsFormError');
+        if (!modal || !fieldsContainer) return;
+
+        if (errorEl) errorEl.setAttribute('hidden', '');
+
+        const isEdit = index >= 0 && index < cmsState.rows.length;
+        const rowData = isEdit ? cmsState.rows[index] : {};
+
+        if (titleEl) {
+            titleEl.textContent = isEdit ? `Edit Entitas Data Master (${cmsState.activeModule.toUpperCase()})` : `Tambah Entitas Baru (${cmsState.activeModule.toUpperCase()})`;
+        }
+        if (subEl) {
+            subEl.textContent = isEdit ? `Memperbarui data baris #${index + 1}` : 'Masukkan data atribut entitas baru';
+        }
+
+        // Bangun kolom input form dinamis sesuai skema modul
+        let fieldsHtml = '';
+        cmsState.columns.forEach(col => {
+            const currentVal = rowData[col.key] !== undefined ? rowData[col.key] : '';
+            fieldsHtml += `<div class="cms-form-group">
+                <label for="field_${col.key}" class="cms-form-label">${col.label} ${col.required ? '<span style="color: #f87171;">*</span>' : ''}</label>`;
+
+            if (col.type === 'select') {
+                fieldsHtml += `<select id="field_${col.key}" name="${col.key}" class="cms-form-input" ${col.required ? 'required' : ''}>`;
+                (col.options || []).forEach(opt => {
+                    const selected = String(opt).toLowerCase() === String(currentVal).toLowerCase() ? 'selected' : '';
+                    fieldsHtml += `<option value="${opt}" ${selected}>${opt}</option>`;
+                });
+                fieldsHtml += `</select>`;
+            } else if (col.type === 'number') {
+                fieldsHtml += `<input type="number" step="any" min="0" id="field_${col.key}" name="${col.key}" class="cms-form-input" value="${currentVal}" ${col.required ? 'required' : ''} placeholder="Masukkan ${col.label.toLowerCase()}">`;
+            } else {
+                fieldsHtml += `<input type="text" id="field_${col.key}" name="${col.key}" class="cms-form-input" value="${currentVal}" ${col.required ? 'required' : ''} placeholder="Masukkan ${col.label.toLowerCase()}">`;
+            }
+
+            fieldsHtml += `</div>`;
+        });
+
+        fieldsContainer.innerHTML = fieldsHtml;
+        modal.removeAttribute('hidden');
+
+        // Focus first input
+        const firstInput = fieldsContainer.querySelector('input, select');
+        if (firstInput) firstInput.focus();
+    }
+
+    function closeEntityModal() {
+        const modal = document.getElementById('cmsEntityModal');
+        if (modal) modal.setAttribute('hidden', '');
+        cmsState.editIndex = -1;
+    }
+
+    function handleSaveEntityForm(e) {
+        e.preventDefault();
+        const errorEl = document.getElementById('cmsFormError');
+        const form = document.getElementById('cmsEntityForm');
+        if (!form) return;
+
+        const newRow = {};
+        let hasError = false;
+        let errorMsg = '';
+
+        cmsState.columns.forEach(col => {
+            const input = document.getElementById(`field_${col.key}`);
+            if (!input) return;
+            const val = input.value.trim();
+
+            if (col.required && !val) {
+                hasError = true;
+                errorMsg = `Kolom "${col.label}" wajib diisi.`;
+            }
+
+            if (col.type === 'number' && val) {
+                const num = Number(val);
+                if (isNaN(num) || num < 0) {
+                    hasError = true;
+                    errorMsg = `Kolom "${col.label}" harus bernilai angka positif (≥ 0).`;
+                }
+                newRow[col.key] = num;
+            } else {
+                newRow[col.key] = val;
+            }
+        });
+
+        if (hasError) {
+            if (errorEl) {
+                errorEl.textContent = errorMsg;
+                errorEl.removeAttribute('hidden');
+            }
+            return;
+        }
+
+        if (cmsState.editIndex >= 0 && cmsState.editIndex < cmsState.rows.length) {
+            // Update existing
+            cmsState.rows[cmsState.editIndex] = Object.assign({}, cmsState.rows[cmsState.editIndex], newRow);
+        } else {
+            // Add new
+            cmsState.rows.push(newRow);
+        }
+
+        // Simpan draf ke localStorage
+        try {
+            localStorage.setItem('potret_' + cmsState.activeModule, JSON.stringify({
+                rows: cmsState.rows,
+                updatedAt: new Date().toISOString()
+            }));
+        } catch (_) {}
+
+        closeEntityModal();
+        renderCmsTable();
+
+        const syncText = document.getElementById('cmsSyncStatus');
+        if (syncText) syncText.textContent = 'Draf Lokal (Belum Diterapkan)';
+
+        showCmsAlert('Draf data berhasil diperbarui. Klik tombol "Terapkan Perubahan" untuk menyimpan ke Google Spreadsheet.', 'success');
+    }
+
+    function handleDeleteEntity(index) {
+        if (index < 0 || index >= cmsState.rows.length) return;
+        const target = cmsState.rows[index];
+        const name = target.nama_trayek || target.uppkb || target.nama_koridor || target.perusahaan || target.po || target.terminal || `Baris #${index + 1}`;
+        if (!confirm(`Apakah Anda yakin ingin menghapus entitas "${name}"?`)) return;
+
+        cmsState.rows.splice(index, 1);
+        try {
+            localStorage.setItem('potret_' + cmsState.activeModule, JSON.stringify({
+                rows: cmsState.rows,
+                updatedAt: new Date().toISOString()
+            }));
+        } catch (_) {}
+
+        renderCmsTable();
+        showCmsAlert(`Entitas "${name}" telah dihapus dari draf.`, 'success');
+    }
+
+    function openPinModal() {
+        const modal = document.getElementById('cmsPinModal');
+        const pinInput = document.getElementById('cmsAdminPinInput');
+        const pinError = document.getElementById('cmsPinError');
+        const loadingEl = document.getElementById('cmsPinLoading');
+        const confirmBtn = document.getElementById('btnCmsConfirmPin');
+        if (!modal) return;
+
+        if (pinInput) pinInput.value = '';
+        if (pinError) pinError.setAttribute('hidden', '');
+        if (loadingEl) loadingEl.setAttribute('hidden', '');
+        if (confirmBtn) confirmBtn.removeAttribute('disabled');
+
+        modal.removeAttribute('hidden');
+        if (pinInput) setTimeout(() => pinInput.focus(), 100);
+    }
+
+    function closePinModal() {
+        const modal = document.getElementById('cmsPinModal');
+        if (modal) modal.setAttribute('hidden', '');
+    }
+
+    async function handleApplyDataToBackend() {
+        const pinInput = document.getElementById('cmsAdminPinInput');
+        const pinError = document.getElementById('cmsPinError');
+        const loadingEl = document.getElementById('cmsPinLoading');
+        const confirmBtn = document.getElementById('btnCmsConfirmPin');
+        const pin = pinInput ? pinInput.value.trim() : '';
+
+        if (!pin) {
+            if (pinError) {
+                pinError.textContent = 'Silakan masukkan PIN otorisasi admin BPTD.';
+                pinError.removeAttribute('hidden');
+            }
+            if (pinInput) pinInput.focus();
+            return;
+        }
+
+        if (pinError) pinError.setAttribute('hidden', '');
+        if (loadingEl) loadingEl.removeAttribute('hidden');
+        if (confirmBtn) confirmBtn.setAttribute('disabled', 'true');
+
+        try {
+            const res = await fetch('/api/savePotretRows', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Admin-PIN': pin
+                },
+                body: JSON.stringify({
+                    section: cmsState.activeModule,
+                    rows: cmsState.rows,
+                    pin: pin
+                })
+            });
+
+            const data = await res.json();
+
+            if (res.ok && data && (data.ok || data.data && data.data.ok)) {
+                // Sukses
+                closePinModal();
+                try {
+                    localStorage.setItem('potret_' + cmsState.activeModule, JSON.stringify({
+                        rows: cmsState.rows,
+                        updatedAt: new Date().toISOString()
+                    }));
+                } catch (_) {}
+
+                const syncText = document.getElementById('cmsSyncStatus');
+                if (syncText) syncText.textContent = `Tersinkron (${new Date().toLocaleTimeString('id-ID')} WIB)`;
+
+                showCmsAlert(`Sukses: Perubahan dataset ${cmsState.activeModule.toUpperCase()} berhasil diterapkan ke Google Spreadsheet backend dan tersinkronkan ke seluruh sistem!`, 'success');
+            } else {
+                const errMsg = (data && data.error) ? data.error : 'Otorisasi ditolak: PIN tidak valid atau Google Apps Script gagal memperbarui sheet.';
+                if (pinError) {
+                    pinError.textContent = errMsg;
+                    pinError.removeAttribute('hidden');
+                }
+                if (confirmBtn) confirmBtn.removeAttribute('disabled');
+                if (loadingEl) loadingEl.setAttribute('hidden', '');
+            }
+        } catch (err) {
+            if (pinError) {
+                pinError.textContent = 'Gagal menghubungi server gateway: ' + (err.message || 'Koneksi terputus');
+                pinError.removeAttribute('hidden');
+            }
+            if (confirmBtn) confirmBtn.removeAttribute('disabled');
+            if (loadingEl) loadingEl.setAttribute('hidden', '');
+        }
+    }
+
+    function initCmsManager() {
+        const moduleSelect = document.getElementById('cmsModuleSelect');
+        if (moduleSelect) {
+            moduleSelect.addEventListener('change', (e) => {
+                loadCmsModuleData(e.target.value);
+            });
+        }
+
+        const addBtn = document.getElementById('btnCmsAddEntity');
+        if (addBtn) {
+            addBtn.addEventListener('click', () => {
+                openEntityModal(-1);
+            });
+        }
+
+        const applyBtn = document.getElementById('btnCmsApplyData');
+        if (applyBtn) {
+            applyBtn.addEventListener('click', () => {
+                openPinModal();
+            });
+        }
+
+        // Modal Editor Events
+        const entityForm = document.getElementById('cmsEntityForm');
+        if (entityForm) {
+            entityForm.addEventListener('submit', handleSaveEntityForm);
+        }
+        const closeEntityBtn = document.getElementById('cmsEntityModalCloseBtn');
+        if (closeEntityBtn) closeEntityBtn.addEventListener('click', closeEntityModal);
+        const cancelEntityBtn = document.getElementById('btnCmsCancelEntity');
+        if (cancelEntityBtn) cancelEntityBtn.addEventListener('click', closeEntityModal);
+
+        // Modal PIN Events
+        const closePinBtn = document.getElementById('cmsPinModalCloseBtn');
+        if (closePinBtn) closePinBtn.addEventListener('click', closePinModal);
+        const cancelPinBtn = document.getElementById('btnCmsCancelPin');
+        if (cancelPinBtn) cancelPinBtn.addEventListener('click', closePinModal);
+        const confirmPinBtn = document.getElementById('btnCmsConfirmPin');
+        if (confirmPinBtn) confirmPinBtn.addEventListener('click', handleApplyDataToBackend);
+
+        // Delegated clicks for table buttons
+        const tableBody = document.getElementById('cmsTableBody');
+        if (tableBody) {
+            tableBody.addEventListener('click', (e) => {
+                const btn = e.target.closest('button[data-action]');
+                if (!btn) return;
+                const action = btn.getAttribute('data-action');
+                const idx = parseInt(btn.getAttribute('data-index'), 10);
+                if (isNaN(idx)) return;
+
+                if (action === 'edit') {
+                    openEntityModal(idx);
+                } else if (action === 'delete') {
+                    handleDeleteEntity(idx);
+                }
+            });
+        }
+    }
+
+    // Buat loadCmsModuleData dapat diakses global di file ini
+    window.loadCmsModuleData = loadCmsModuleData;
 
 })();

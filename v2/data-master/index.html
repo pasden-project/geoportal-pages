@@ -316,6 +316,10 @@
                         <svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
                         Kamus Data &amp; Metrik Hubdat
                     </button>
+                    <button type="button" id="btnTabManagement" class="tab-btn" role="tab" aria-selected="false" aria-controls="panelTabManagement">
+                        <svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        Kelola Data Master (CMS)
+                    </button>
                 </div>
 
                 <!-- ================= TAB 1: PETA GEOSPASIAL ================= -->
@@ -417,6 +421,63 @@
                         <!-- Populated dynamically by JS -->
                     </div>
                 </div>
+                <!-- ================= TAB 4: PUSAT KELOLA DATA MASTER (ADMIN HUB) ================= -->
+                <div id="panelTabManagement" class="tab-panel" role="tabpanel" aria-labelledby="btnTabManagement" hidden>
+                    <div class="cms-header-card">
+                        <div class="cms-header-main">
+                            <div class="cms-header-title-box">
+                                <h3 class="cms-title">Pusat Kendali Data Operasional &amp; Master Referensi</h3>
+                                <p class="cms-desc">Kelola dataset operasional BPTD Jawa Barat secara terpusat. Perubahan disimpan langsung ke Google Spreadsheet dan seketika disinkronkan ke seluruh modul publik (Perintis, UPPKB, BRT) tanpa perlu redeploy kode.</p>
+                            </div>
+                            <div class="cms-header-actions">
+                                <a id="linkGoogleSheets" href="https://docs.google.com/spreadsheets/d/13Fo4WXvPuSYA4zz1jEATMmOtNvc04V_yUQhzDNOCi9g/edit" target="_blank" rel="noopener" class="btn btn-secondary cms-btn-sheets">
+                                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                    Buka Spreadsheet Sumber
+                                </a>
+                                <button type="button" id="btnCmsAddEntity" class="btn btn-secondary">
+                                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                                    Tambah Entitas
+                                </button>
+                                <button type="button" id="btnCmsApplyData" class="btn btn-primary btn-apply">
+                                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                    Terapkan Perubahan
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="cms-toolbar">
+                            <div class="cms-module-selector-box">
+                                <label for="cmsModuleSelect" class="cms-label">Modul Dataset:</label>
+                                <select id="cmsModuleSelect" class="form-select cms-select">
+                                    <option value="perintis" selected>Angkutan Jalan Perintis PSO (6 Trayek)</option>
+                                    <option value="barang">UPPKB / Jembatan Timbang (6 Fasilitas)</option>
+                                    <option value="brt">BRT Trans Metro Pasundan (6 Koridor)</option>
+                                    <option value="ajap">AJAP / AJDP Shuttle Antarkota</option>
+                                    <option value="pariwisata">Angkutan Pariwisata Resmi</option>
+                                    <option value="akap">Terminal &amp; Koridor AKAP/AKDP</option>
+                                </select>
+                            </div>
+                            <div class="cms-pipeline-info">
+                                <span id="cmsPipelineBadge" class="cms-badge badge-manual">Terkelola CMS &bull; Spreadsheet</span>
+                                <span id="cmsSyncStatus" class="cms-sync-text">Sinkron</span>
+                                <span id="cmsRowCount" class="cms-count-text">6 entitas terdaftar</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="cmsAlertBanner" class="cms-alert" hidden></div>
+
+                    <div class="table-responsive cms-table-wrapper">
+                        <table id="cmsDataTable" class="master-table cms-table">
+                            <thead id="cmsTableHead">
+                                <!-- Populated dynamically by JS based on module schema -->
+                            </thead>
+                            <tbody id="cmsTableBody">
+                                <!-- Populated dynamically by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </main>
     </div>
@@ -490,6 +551,59 @@
                     Fokus Pada Peta
                 </button>
                 <button type="button" id="modalCloseFooterBtn" class="btn btn-secondary">Tutup</button>
+            </div>
+        </div>
+    </div>
+    <!-- ================= MODAL EDITOR ENTITAS CMS ================= -->
+    <div id="cmsEntityModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="cmsEntityModalTitle" hidden>
+        <div class="modal-dialog modal-dialog-cms">
+            <div class="modal-header">
+                <div>
+                    <h3 id="cmsEntityModalTitle" class="modal-title">Edit Entitas Data Master</h3>
+                    <p id="cmsEntityModalSub" class="modal-sub">Perbarui atribut dan metrik operasional entitas</p>
+                </div>
+                <button type="button" id="cmsEntityModalCloseBtn" class="modal-close-btn" aria-label="Tutup form editor">
+                    <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <form id="cmsEntityForm" class="modal-body">
+                <div id="cmsEntityFormFields" class="cms-form-grid">
+                    <!-- Populated dynamically based on columns -->
+                </div>
+                <div id="cmsFormError" class="cms-form-error" hidden></div>
+                <div class="modal-footer">
+                    <button type="button" id="btnCmsCancelEntity" class="btn btn-secondary">Batal</button>
+                    <button type="submit" id="btnCmsSaveEntityDraft" class="btn btn-primary">Simpan ke Draft</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= MODAL PIN OTORISASI ADMIN BPTD ================= -->
+    <div id="cmsPinModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="cmsPinModalTitle" hidden>
+        <div class="modal-dialog modal-dialog-sm">
+            <div class="modal-header">
+                <div>
+                    <h3 id="cmsPinModalTitle" class="modal-title">Otorisasi Admin BPTD</h3>
+                    <p class="modal-sub">Verifikasi hak akses untuk menerapkan data ke Google Spreadsheet</p>
+                </div>
+                <button type="button" id="cmsPinModalCloseBtn" class="modal-close-btn" aria-label="Tutup dialog PIN">
+                    <svg class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="cms-pin-prompt">Masukkan PIN Petugas / Kunci Akses Admin BPTD Kelas I Jawa Barat untuk menyinkronkan data:</p>
+                <div class="cms-pin-input-group">
+                    <input type="password" id="cmsAdminPinInput" class="form-input cms-pin-input" placeholder="Masukkan PIN Admin (cth: BPTD1JABAR)" autocomplete="current-password">
+                </div>
+                <div id="cmsPinError" class="cms-form-error" hidden></div>
+                <div id="cmsPinLoading" class="cms-pin-loading" hidden>
+                    <div class="spinner-sm"></div> Menyimpan dan menyinkronkan ke backend...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnCmsCancelPin" class="btn btn-secondary">Batal</button>
+                    <button type="button" id="btnCmsConfirmPin" class="btn btn-primary btn-apply">Terapkan Sekarang</button>
+                </div>
             </div>
         </div>
     </div>

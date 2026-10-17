@@ -1839,6 +1839,9 @@
         if (modal) {
           modal.classList.add('is-open');
         }
+        if (targetId === 'modal-brt') {
+          syncBrtCorridorsDynamic();
+        }
       });
     });
 
@@ -1866,6 +1869,48 @@
         if (backdrop) backdrop.classList.remove('is-open');
       }
     });
+  }
+
+  function syncBrtCorridorsDynamic() {
+    var ul = document.getElementById('brtCorridorList');
+    if (!ul) return;
+
+    function renderBrtRows(rows) {
+      if (!rows || !rows.length) return;
+      var html = '';
+      rows.forEach(function (r) {
+        var name = r.nama_koridor || r.koridor || 'Koridor BRT';
+        var armada = r.armada ? (r.armada + ' Armada') : (r.status || 'Aktif');
+        var color = String(r.status || '').toLowerCase().includes('non') ? 'var(--dim)' : 'var(--n-lime)';
+        html += '<li style="display: flex; justify-content: space-between; padding: 8px 10px; background: var(--card-top); border-radius: 8px; border: 1px solid var(--hair); font-size: 12px;">' +
+          '<span>' + name + '</span>' +
+          '<b style="color: ' + color + ';">' + armada + '</b>' +
+        '</li>';
+      });
+      ul.innerHTML = html;
+    }
+
+    try {
+      var localRaw = localStorage.getItem('potret_brt');
+      if (localRaw) {
+        var localData = JSON.parse(localRaw);
+        if (localData && Array.isArray(localData.rows) && localData.rows.length) {
+          renderBrtRows(localData.rows);
+        }
+      }
+    } catch (_) {}
+
+    fetch('/api/getPotretRows', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ section: 'brt' })
+    }).then(function (res) {
+      if (res.ok) return res.json();
+    }).then(function (data) {
+      var rows = (data && data.data && Array.isArray(data.data.rows)) ? data.data.rows :
+                 (data && Array.isArray(data.rows)) ? data.rows : [];
+      if (rows && rows.length) renderBrtRows(rows);
+    }).catch(function () { /* silent fallback */ });
   }
 
   function initMobileMenu() {

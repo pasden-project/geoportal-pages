@@ -6493,21 +6493,130 @@ async function initPerintisModule() {
     initModalEvents();
     initFilterEvents();
 
-    // Try fetching fresh JSON from data directory, fallback to embedded
+    // 1. Render INSTAN 0 ms dengan embedded authoritative baseline (Zero Blank Screen)
+    initMap();
+    renderCorridorGrid();
+
+    // 2. Cek cache lokal draf / sinkronisasi terakhir dari Data Master
     try {
-        const res = await fetch('/data/perintis-jabar-2025.json');
+        const localRaw = localStorage.getItem('potret_perintis');
+        if (localRaw) {
+            const localData = JSON.parse(localRaw);
+            if (localData && Array.isArray(localData.rows) && localData.rows.length) {
+                mergePerintisDynamicMetrics(localData.rows);
+            }
+        }
+    } catch (_) {}
+
+    // 3. Asynchronous non-blocking background fetch ke API Data Master / Google Spreadsheet
+    fetchPerintisMasterData();
+}
+
+async function fetchPerintisMasterData() {
+    try {
+        // Coba periksa endpoint master Google Spreadsheet
+        const res = await fetch('/api/getPotretRows', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ section: 'perintis' })
+        });
         if (res.ok) {
-            const freshData = await res.json();
-            if (freshData && freshData.routes && freshData.routes.length > 0) {
-                activeDataset = freshData;
+            const data = await res.json();
+            const rows = (data && data.data && Array.isArray(data.data.rows)) ? data.data.rows :
+                         (data && Array.isArray(data.rows)) ? data.rows : [];
+            if (rows && rows.length) {
+                mergePerintisDynamicMetrics(rows);
+                return;
             }
         }
     } catch (err) {
-        // Fallback silently to embedded dataset
+        // Non-blocking error: fallback ke static json bila tersedia
     }
 
-    initMap();
-    renderCorridorGrid();
+    // Fallback sekunder: static json /data/perintis-jabar-2025.json jika ada
+    try {
+        const resFallback = await fetch('/data/perintis-jabar-2025.json');
+        if (resFallback.ok) {
+            const freshData = await resFallback.json();
+            if (freshData && freshData.routes && freshData.routes.length > 0) {
+                // Perbarui metrik tanpa merusak polyline
+                activeDataset.routes.forEach(r => {
+                    const match = freshData.routes.find(fr => fr.id === r.id);
+                    if (match) {
+                        if (match.pagu) r.pagu = match.pagu;
+                        if (match.summary_ytd) r.summary_ytd = match.summary_ytd;
+                    }
+                });
+                renderCorridorGrid();
+            }
+        }
+    } catch (_) {
+        // Silent fallback: baseline dataset tetap aktif sempurna
+    }
+}
+
+function mergePerintisDynamicMetrics(rows) {
+    if (!rows || !rows.length || !activeDataset || !activeDataset.routes) return;
+    let modified = false;
+
+    rows.forEach((row, idx) => {
+        const code = String(row.kode_trayek || '').trim().toUpperCase();
+        const name = String(row.nama_trayek || '').trim().toLowerCase();
+
+        // Cocokkan rute berdasarkan ID, nama, atau index urutan
+        const targetRoute = activeDataset.routes.find(r =>
+            (code && String(r.id || '').toUpperCase() === code) ||
+            (name && String(r.name || '').toLowerCase() === name) ||
+            (name && String(r.name || '').toLowerCase().includes(name.split('-')[0].trim())) ||
+            (idx === r.no - 1)
+        );
+
+        if (targetRoute) {
+            modified = true;
+            if (row.pagu !== undefined) {
+                const p = Number(row.pagu);
+                if (!isNaN(p) && p > 0) targetRoute.pagu = p;
+            }
+            if (row.penumpang !== undefined) {
+                const pen = Number(row.penumpang);
+                if (!isNaN(pen) && pen >= 0) {
+                    if (!targetRoute.summary_ytd) targetRoute.summary_ytd = {};
+                    targetRoute.summary_ytd.total_penumpang = pen;
+                }
+            }
+            if (row.ritase !== undefined) {
+                const rit = Number(row.ritase);
+                if (!isNaN(rit) && rit >= 0) {
+                    if (!targetRoute.summary_ytd) targetRoute.summary_ytd = {};
+                    targetRoute.summary_ytd.total_ritase = rit;
+                }
+            }
+            if (row.load_factor !== undefined) {
+                const lf = Number(row.load_factor);
+                if (!isNaN(lf) && lf >= 0) {
+                    if (!targetRoute.summary_ytd) targetRoute.summary_ytd = {};
+                    targetRoute.summary_ytd.avg_load_factor = lf > 1 ? lf / 100 : lf;
+                }
+            }
+            if (row.armada !== undefined) {
+                const arm = Number(row.armada);
+                if (!isNaN(arm) && arm >= 0) {
+                    if (!targetRoute.armada) targetRoute.armada = {};
+                    targetRoute.armada.jumlah = arm;
+                }
+            }
+            if (row.operator) targetRoute.operator = row.operator;
+            if (row.status) targetRoute.status = row.status;
+            // Geometri peta Leaflet (geometry.polyline) TETAP TERKUNCI pada master GIS
+        }
+    });
+
+    if (modified) {
+        renderCorridorGrid();
+        if (typeof drawRoutesOnMap === 'function') {
+            drawRoutesOnMap();
+        }
+    }
 }
 
 if (document.readyState === 'loading') {
