@@ -77,7 +77,7 @@ console.log('\n--- Suite 2: HTML & CSS Structure Verification ---');
   assert('Test 2.3: cmsModuleSelect dropdown exists in v2/data-master/index.html', v2Html.includes('id="cmsModuleSelect"'));
   assert('Test 2.4: btnCmsAddEntity button exists in v2/data-master/index.html', v2Html.includes('id="btnCmsAddEntity"'));
   assert('Test 2.5: btnCmsApplyData button exists in v2/data-master/index.html', v2Html.includes('id="btnCmsApplyData"'));
-  assert('Test 2.6: linkGoogleSheets exists in v2/data-master/index.html', v2Html.includes('id="linkGoogleSheets"'));
+  assert('Test 2.6: linkGoogleSheets removed from v2/data-master/index.html (headless secure DB)', !v2Html.includes('id="linkGoogleSheets"'));
   assert('Test 2.7: cmsEntityModal exists in v2/data-master/index.html', v2Html.includes('id="cmsEntityModal"'));
   assert('Test 2.8: cmsPinModal exists in v2/data-master/index.html', v2Html.includes('id="cmsPinModal"'));
 
@@ -128,7 +128,7 @@ console.log('\n--- Suite 4: Cloudflare API Gateway Security Logic ---');
   assert('Test 4.2: savePotretRows is handled with PIN verification', gatewayCode.includes("name === 'savePotretRows'"));
   assert('Test 4.3: X-Admin-PIN header or pin attribute checked', gatewayCode.includes("request.headers.get('x-admin-pin')") && gatewayCode.includes("parsedBody.pin"));
   assert('Test 4.4: 403 returned if PIN is invalid', gatewayCode.includes("status: 403") && gatewayCode.includes("Otorisasi admin ditolak: PIN tidak valid"));
-  assert('Test 4.5: adminPin injected into parsedBody.key for GAS upstream', gatewayCode.includes("parsedBody.key = adminPin"));
+  assert('Test 4.5: Secret key injected into parsedBody.key for GAS upstream', gatewayCode.includes("parsedBody.key = gasSecret") || gatewayCode.includes("parsedBody.key = adminPin"));
 }
 
 // -----------------------------------------------------------------------------
@@ -203,7 +203,7 @@ async function runBrowserSmokeTest() {
       return;
     }
 
-    if (pathname === '/api/savePotretRows') {
+    if (pathname === '/api/savePotretRows' || pathname === '/api/syncPotretRows') {
       let bodyStr = '';
       req.on('data', c => bodyStr += c);
       req.on('end', () => {
@@ -311,7 +311,7 @@ async function runBrowserSmokeTest() {
   try {
     const listRes = await fetch(`http://localhost:${cdpPort}/json/list`);
     const pages = await listRes.json();
-    const targetWs = pages[0]?.webSocketDebuggerUrl;
+    const targetWs = (pages.find(p => p.type === 'page') || pages[0])?.webSocketDebuggerUrl;
     if (!targetWs) throw new Error('No target page found');
 
     cdp = new SimpleCDP(targetWs);
@@ -320,7 +320,7 @@ async function runBrowserSmokeTest() {
     await cdp.send('Runtime.enable');
 
     // 1. Test Data Master page & CMS tab
-    await cdp.send('Page.navigate', { url: `http://localhost:${TEST_PORT}/command-center/data-master/` });
+    await cdp.send('Page.navigate', { url: `http://localhost:${TEST_PORT}/command-center/data-master/?embed=1` });
     await new Promise(r => setTimeout(r, 2000));
 
     // Verify Tab 4 button exists and click it
@@ -447,7 +447,7 @@ async function runBrowserSmokeTest() {
     assert('Test 6.6: Submitting valid PIN (BPTD1JABAR) executes apply and displays success banner', testValidPin.result?.value?.modalClosed && testValidPin.result?.value?.bannerVisible);
 
     // 2. Test Perintis Consumer Menu
-    await cdp.send('Page.navigate', { url: `http://localhost:${TEST_PORT}/command-center/perintis/` });
+    await cdp.send('Page.navigate', { url: `http://localhost:${TEST_PORT}/command-center/perintis/?embed=1` });
     await new Promise(r => setTimeout(r, 1500));
     const perintisCheck = await cdp.send('Runtime.evaluate', {
       expression: `
@@ -463,7 +463,7 @@ async function runBrowserSmokeTest() {
     assert('Test 6.7: Menu Perintis renders 6 corridor cards and map without blank screen', perintisCheck.result?.value?.cards === 6 && perintisCheck.result?.value?.mapExists, `cards=${perintisCheck.result?.value?.cards}`);
 
     // 3. Test UPPKB Consumer Menu
-    await cdp.send('Page.navigate', { url: `http://localhost:${TEST_PORT}/command-center/uppkb/` });
+    await cdp.send('Page.navigate', { url: `http://localhost:${TEST_PORT}/command-center/uppkb/?embed=1` });
     await new Promise(r => setTimeout(r, 1500));
     const uppkbCheck = await cdp.send('Runtime.evaluate', {
       expression: `

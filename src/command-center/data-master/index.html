@@ -427,16 +427,12 @@
                         <div class="cms-header-main">
                             <div class="cms-header-title-box">
                                 <h3 class="cms-title">Pusat Kendali Data Operasional &amp; Master Referensi</h3>
-                                <p class="cms-desc">Kelola dataset operasional BPTD Jawa Barat secara terpusat. Perubahan disimpan langsung ke Google Spreadsheet dan seketika disinkronkan ke seluruh modul publik (Perintis, UPPKB, BRT) tanpa perlu redeploy kode.</p>
+                                <p class="cms-desc">Pusat input, pemutakhiran, dan pengeditan data operasional terpadu BPTD Kelas I Jawa Barat. Seluruh perubahan diproses langsung melalui formulir ini dan tersinkronisasi otomatis ke basis data aman di balik layar tanpa perlu membuka lembar kerja eksternal.</p>
                             </div>
                             <div class="cms-header-actions">
-                                <a id="linkGoogleSheets" href="https://docs.google.com/spreadsheets/d/13Fo4WXvPuSYA4zz1jEATMmOtNvc04V_yUQhzDNOCi9g/edit" target="_blank" rel="noopener" class="btn btn-secondary cms-btn-sheets">
-                                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                                    Buka Spreadsheet Sumber
-                                </a>
-                                <button type="button" id="btnCmsAddEntity" class="btn btn-secondary">
+                                <button type="button" id="btnCmsAddEntity" class="btn btn-primary cms-btn-add">
                                     <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                                    Tambah Entitas
+                                    Tambah / Input Data Baru
                                 </button>
                                 <button type="button" id="btnCmsApplyData" class="btn btn-primary btn-apply">
                                     <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
@@ -449,7 +445,8 @@
                             <div class="cms-module-selector-box">
                                 <label for="cmsModuleSelect" class="cms-label">Modul Dataset:</label>
                                 <select id="cmsModuleSelect" class="form-select cms-select">
-                                    <option value="perintis" selected>Angkutan Jalan Perintis PSO (6 Trayek)</option>
+                                    <option value="perintis" selected>Angkutan Jalan Perintis PSO (Ringkasan 6 Trayek)</option>
+                                    <option value="perintis_detail">Rincian Kontrak Bulanan Perintis (72 Baris)</option>
                                     <option value="barang">UPPKB / Jembatan Timbang (6 Fasilitas)</option>
                                     <option value="brt">BRT Trans Metro Pasundan (6 Koridor)</option>
                                     <option value="ajap">AJAP / AJDP Shuttle Antarkota</option>
@@ -457,8 +454,23 @@
                                     <option value="akap">Terminal &amp; Koridor AKAP/AKDP</option>
                                 </select>
                             </div>
+                            <div class="cms-module-selector-box" id="cmsTrayekFilterBox" style="display: none;">
+                                <label for="cmsTrayekFilter" class="cms-label">Filter Trayek:</label>
+                                <select id="cmsTrayekFilter" class="form-select cms-select">
+                                    <option value="ALL">Semua Trayek (72 Baris)</option>
+                                    <option value="PERINTIS-001">PERINTIS-001: Surade - Sagaranten</option>
+                                    <option value="PERINTIS-002">PERINTIS-002: Sagaranten - Pelabuhan Ratu</option>
+                                    <option value="PERINTIS-003">PERINTIS-003: Tegal Buleud - Sagaranten</option>
+                                    <option value="PERINTIS-004">PERINTIS-004: Leuwiliang - Cikidang</option>
+                                    <option value="PERINTIS-005">PERINTIS-005: Jasinga - Parung Panjang</option>
+                                    <option value="PERINTIS-006">PERINTIS-006: Sadang - Wanakerta</option>
+                                </select>
+                            </div>
                             <div class="cms-pipeline-info">
-                                <span id="cmsPipelineBadge" class="cms-badge badge-manual">Terkelola CMS &bull; Spreadsheet</span>
+                                <span id="cmsPipelineBadge" class="cms-badge badge-headless">
+                                    <svg class="icon-xs" style="width: 14px; height: 14px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                                    Basis Data Tersembunyi &amp; Terkelola Otomatis &bull; Seluruh Pengeditan Terpusat via Formulir
+                                </span>
                                 <span id="cmsSyncStatus" class="cms-sync-text">Sinkron</span>
                                 <span id="cmsRowCount" class="cms-count-text">6 entitas terdaftar</span>
                             </div>

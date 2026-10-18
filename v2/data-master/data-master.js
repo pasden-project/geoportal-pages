@@ -2457,6 +2457,7 @@
         initMap();
         initCmsManager();
         loadData();
+        handleUrlParams();
     });
 
     // ================= REALTIME CLOCK (WIB) =================
@@ -2514,6 +2515,8 @@
         if (overlay) overlay.addEventListener('click', closeSidebar);
     }
 
+    let switchTab = null;
+
     // ================= TAB NAVIGATION =================
     function initTabs() {
         const tabBtns = [
@@ -2523,39 +2526,48 @@
             { btn: document.getElementById('btnTabManagement'), panel: document.getElementById('panelTabManagement'), id: 'management' }
         ];
 
+        switchTab = function (targetId, shouldLoadCms = true) {
+            tabBtns.forEach(other => {
+                if (other.btn) {
+                    other.btn.classList.remove('is-active');
+                    other.btn.setAttribute('aria-selected', 'false');
+                }
+                if (other.panel) {
+                    other.panel.classList.remove('is-active');
+                    other.panel.setAttribute('hidden', '');
+                }
+            });
+
+            const activeItem = tabBtns.find(t => t.id === targetId);
+            if (!activeItem) return;
+
+            if (activeItem.btn) {
+                activeItem.btn.classList.add('is-active');
+                activeItem.btn.setAttribute('aria-selected', 'true');
+            }
+            if (activeItem.panel) {
+                activeItem.panel.classList.add('is-active');
+                activeItem.panel.removeAttribute('hidden');
+            }
+
+            state.activeTab = targetId;
+
+            // Jika beralih ke tab peta, perbarui ukuran leaflet
+            if (targetId === 'map' && state.map) {
+                setTimeout(() => {
+                    state.map.invalidateSize();
+                }, 100);
+            }
+            // Jika beralih ke tab kelola data master (CMS), pastikan data termuat
+            if (targetId === 'management' && shouldLoadCms && typeof loadCmsModuleData === 'function') {
+                loadCmsModuleData(cmsState.activeModule);
+            }
+        };
+
         tabBtns.forEach(t => {
             if (!t.btn) return;
             t.btn.addEventListener('click', () => {
-                tabBtns.forEach(other => {
-                    if (other.btn) {
-                        other.btn.classList.remove('is-active');
-                        other.btn.setAttribute('aria-selected', 'false');
-                    }
-                    if (other.panel) {
-                        other.panel.classList.remove('is-active');
-                        other.panel.setAttribute('hidden', '');
-                    }
-                });
-
-                t.btn.classList.add('is-active');
-                t.btn.setAttribute('aria-selected', 'true');
-                if (t.panel) {
-                    t.panel.classList.add('is-active');
-                    t.panel.removeAttribute('hidden');
-                }
-
-                state.activeTab = t.id;
-
-                // Jika beralih ke tab peta, perbarui ukuran leaflet
-                if (t.id === 'map' && state.map) {
-                    setTimeout(() => {
-                        state.map.invalidateSize();
-                    }, 100);
-                }
-                // Jika beralih ke tab kelola data master (CMS), pastikan data termuat
-                if (t.id === 'management' && typeof loadCmsModuleData === 'function') {
-                    loadCmsModuleData(cmsState.activeModule);
-                }
+                switchTab(t.id, true);
             });
         });
     }
@@ -3180,9 +3192,9 @@
             { key: 'kabupaten', label: 'Kabupaten/Kota', type: 'text', required: true },
             { key: 'operator', label: 'Operator', type: 'text', required: true },
             { key: 'armada', label: 'Jumlah Armada', type: 'number', required: true },
-            { key: 'ritase', label: 'Target Ritase', type: 'number', required: true },
-            { key: 'penumpang', label: 'Realisasi Penumpang', type: 'number', required: true },
-            { key: 'load_factor', label: 'Load Factor (%)', type: 'number', required: true },
+            { key: 'ritase', label: 'Target Ritase', type: 'number', required: false, readonly: true, badgeText: 'Otomatis dari Rincian Bulanan' },
+            { key: 'penumpang', label: 'Realisasi Penumpang', type: 'number', required: false, readonly: true, badgeText: 'Otomatis dari Rincian Bulanan' },
+            { key: 'load_factor', label: 'Load Factor (%)', type: 'number', required: false, readonly: true, badgeText: 'Otomatis dari Rincian Bulanan' },
             { key: 'pagu', label: 'Pagu Kontrak (Rp)', type: 'number', required: true },
             { key: 'status', label: 'Status', type: 'select', options: ['Aktif', 'Nonaktif', 'Perbaikan'], required: true }
         ],
@@ -3227,6 +3239,18 @@
             { key: 'karakter', label: 'Karakter (AKAP/AKDP)', type: 'text', required: true },
             { key: 'okupansi', label: 'Status Okupansi', type: 'text', required: true },
             { key: 'insight', label: 'Keterangan/Insight', type: 'text', required: false }
+        ],
+        perintis_detail: [
+            { key: 'kode_trayek', label: 'Kode Trayek', type: 'select', options: ['PERINTIS-001', 'PERINTIS-002', 'PERINTIS-003', 'PERINTIS-004', 'PERINTIS-005', 'PERINTIS-006'], required: true },
+            { key: 'bulan', label: 'Bulan', type: 'select', options: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'], required: true },
+            { key: 'target_ritase', label: 'Target Ritase', type: 'number', required: true },
+            { key: 'realisasi_ritase', label: 'Realisasi Ritase', type: 'number', required: true },
+            { key: 'target_penumpang', label: 'Target Penumpang', type: 'number', required: false, readonly: true, badgeText: 'Target Ritase × 19' },
+            { key: 'realisasi_penumpang', label: 'Realisasi Penumpang', type: 'number', required: true },
+            { key: 'load_factor', label: 'Load Factor (%)', type: 'number', required: false, readonly: true, badgeText: 'Realisasi / Kapasitas %' },
+            { key: 'target_keuangan', label: 'Target Keuangan (Rp)', type: 'number', required: true },
+            { key: 'realisasi_keuangan', label: 'Realisasi Keuangan (Rp)', type: 'number', required: true },
+            { key: 'keterangan', label: 'Keterangan', type: 'text', required: false }
         ]
     };
 
@@ -3276,11 +3300,878 @@
             { terminal: 'Cicaheum', karakter: 'AKAP / AKDP Jalur Timur', okupansi: 'Moderat (60-75%)', insight: 'Koridor utama Jawa Tengah & Timur' },
             { terminal: 'Harjamukti Cirebon', karakter: 'AKAP Simpul Pantura', okupansi: 'Tinggi (80-90%)', insight: 'Hub transit pantura timur Jabar' },
             { terminal: 'Baranangsiang Bogor', karakter: 'AKAP Jabodetabek', okupansi: 'Sangat Tinggi (90-98%)', insight: 'Simpul komuter tersibuk selatan' }
-        ]
+        ],
+        perintis_detail: [
+          {
+                    "kode_trayek": "PERINTIS-001",
+                    "bulan": "Januari",
+                    "target_ritase": 20,
+                    "realisasi_ritase": 20,
+                    "target_penumpang": 380,
+                    "realisasi_penumpang": 305,
+                    "load_factor": 80.3,
+                    "target_keuangan": 55077575,
+                    "realisasi_keuangan": 55077575,
+                    "keterangan": "Januari menggunakan skema Pengadaan Langsung untuk menghindari kekosongan pelayanan"
+          },
+          {
+                    "kode_trayek": "PERINTIS-001",
+                    "bulan": "Februari",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 0,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 0,
+                    "load_factor": 0,
+                    "target_keuangan": 0,
+                    "realisasi_keuangan": 0,
+                    "keterangan": ""
+          },
+          {
+                    "kode_trayek": "PERINTIS-001",
+                    "bulan": "Maret",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 0,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 0,
+                    "load_factor": 0,
+                    "target_keuangan": 0,
+                    "realisasi_keuangan": 0,
+                    "keterangan": ""
+          },
+          {
+                    "kode_trayek": "PERINTIS-001",
+                    "bulan": "April",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 0,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 0,
+                    "load_factor": 0,
+                    "target_keuangan": 0,
+                    "realisasi_keuangan": 0,
+                    "keterangan": ""
+          },
+          {
+                    "kode_trayek": "PERINTIS-001",
+                    "bulan": "Mei",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 92,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 524,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 91608000,
+                    "keterangan": "0.5549199085"
+          },
+          {
+                    "kode_trayek": "PERINTIS-001",
+                    "bulan": "Juni",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 120,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 684,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 87352000,
+                    "keterangan": "0.5862573099"
+          },
+          {
+                    "kode_trayek": "PERINTIS-001",
+                    "bulan": "Juli",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 108,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 615,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 91397000,
+                    "keterangan": "0.6351526966"
+          },
+          {
+                    "kode_trayek": "PERINTIS-001",
+                    "bulan": "Agustus",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 108,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 615,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 94087000,
+                    "keterangan": "0.4532163743"
+          },
+          {
+                    "kode_trayek": "PERINTIS-001",
+                    "bulan": "September",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 110,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 627,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 111242604,
+                    "keterangan": "0.5789473684"
+          },
+          {
+                    "kode_trayek": "PERINTIS-001",
+                    "bulan": "Oktober",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 110,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 627,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 111242604,
+                    "keterangan": "0.4657097289"
+          },
+          {
+                    "kode_trayek": "PERINTIS-001",
+                    "bulan": "November",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 110,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 627,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 111242604,
+                    "keterangan": "0.4657097289"
+          },
+          {
+                    "kode_trayek": "PERINTIS-001",
+                    "bulan": "Desember",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 110,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 627,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 111242604,
+                    "keterangan": "0.639553429"
+          },
+          {
+                    "kode_trayek": "PERINTIS-002",
+                    "bulan": "Januari",
+                    "target_ritase": 20,
+                    "realisasi_ritase": 20,
+                    "target_penumpang": 380,
+                    "realisasi_penumpang": 103,
+                    "load_factor": 27.1,
+                    "target_keuangan": 53056775,
+                    "realisasi_keuangan": 53056775,
+                    "keterangan": ""
+          },
+          {
+                    "kode_trayek": "PERINTIS-002",
+                    "bulan": "Februari",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 0,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 0,
+                    "load_factor": 0,
+                    "target_keuangan": 0,
+                    "realisasi_keuangan": 0,
+                    "keterangan": ""
+          },
+          {
+                    "kode_trayek": "PERINTIS-002",
+                    "bulan": "Maret",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 0,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 0,
+                    "load_factor": 0,
+                    "target_keuangan": 0,
+                    "realisasi_keuangan": 0,
+                    "keterangan": ""
+          },
+          {
+                    "kode_trayek": "PERINTIS-002",
+                    "bulan": "April",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 0,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 0,
+                    "load_factor": 0,
+                    "target_keuangan": 0,
+                    "realisasi_keuangan": 0,
+                    "keterangan": ""
+          },
+          {
+                    "kode_trayek": "PERINTIS-002",
+                    "bulan": "Mei",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 46,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 262,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 82177000,
+                    "keterangan": "0.03051106026"
+          },
+          {
+                    "kode_trayek": "PERINTIS-002",
+                    "bulan": "Juni",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 60,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 342,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 65172000,
+                    "keterangan": "0.0730994152"
+          },
+          {
+                    "kode_trayek": "PERINTIS-002",
+                    "bulan": "Juli",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 58,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 330,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 62551000,
+                    "keterangan": "0.07864488808"
+          },
+          {
+                    "kode_trayek": "PERINTIS-002",
+                    "bulan": "Agustus",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 58,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 330,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 62740000,
+                    "keterangan": "0.09679370841"
+          },
+          {
+                    "kode_trayek": "PERINTIS-002",
+                    "bulan": "September",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 60,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 342,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 88839453,
+                    "keterangan": "0.1666666667"
+          },
+          {
+                    "kode_trayek": "PERINTIS-002",
+                    "bulan": "Oktober",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 60,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 342,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 88839453,
+                    "keterangan": "0.2251461988"
+          },
+          {
+                    "kode_trayek": "PERINTIS-002",
+                    "bulan": "November",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 60,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 342,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 88839453,
+                    "keterangan": "0.2251461988"
+          },
+          {
+                    "kode_trayek": "PERINTIS-002",
+                    "bulan": "Desember",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 60,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 342,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 88839453,
+                    "keterangan": "0.0730994152"
+          },
+          {
+                    "kode_trayek": "PERINTIS-003",
+                    "bulan": "Januari",
+                    "target_ritase": 30,
+                    "realisasi_ritase": 30,
+                    "target_penumpang": 570,
+                    "realisasi_penumpang": 115,
+                    "load_factor": 20.2,
+                    "target_keuangan": 66034726,
+                    "realisasi_keuangan": 66034726,
+                    "keterangan": ""
+          },
+          {
+                    "kode_trayek": "PERINTIS-003",
+                    "bulan": "Februari",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 0,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 0,
+                    "load_factor": 0,
+                    "target_keuangan": 0,
+                    "realisasi_keuangan": 0,
+                    "keterangan": ""
+          },
+          {
+                    "kode_trayek": "PERINTIS-003",
+                    "bulan": "Maret",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 0,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 0,
+                    "load_factor": 0,
+                    "target_keuangan": 0,
+                    "realisasi_keuangan": 0,
+                    "keterangan": ""
+          },
+          {
+                    "kode_trayek": "PERINTIS-003",
+                    "bulan": "April",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 0,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 0,
+                    "load_factor": 0,
+                    "target_keuangan": 0,
+                    "realisasi_keuangan": 0,
+                    "keterangan": ""
+          },
+          {
+                    "kode_trayek": "PERINTIS-003",
+                    "bulan": "Mei",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 69,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 393,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 73894000,
+                    "keterangan": "0.8771929825"
+          },
+          {
+                    "kode_trayek": "PERINTIS-003",
+                    "bulan": "Juni",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 90,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 513,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 80167000,
+                    "keterangan": "0.7115009747"
+          },
+          {
+                    "kode_trayek": "PERINTIS-003",
+                    "bulan": "Juli",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 68,
+                    "target_penumpang": 1,
+                    "realisasi_penumpang": 387,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 69543000,
+                    "keterangan": "1.093911249"
+          },
+          {
+                    "kode_trayek": "PERINTIS-003",
+                    "bulan": "Agustus",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 68,
+                    "target_penumpang": 1,
+                    "realisasi_penumpang": 387,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 67442000,
+                    "keterangan": "1.124871001"
+          },
+          {
+                    "kode_trayek": "PERINTIS-003",
+                    "bulan": "September",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 80,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 456,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 87090694,
+                    "keterangan": "0.9035087719"
+          },
+          {
+                    "kode_trayek": "PERINTIS-003",
+                    "bulan": "Oktober",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 80,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 456,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 93090694,
+                    "keterangan": "0.8026315789"
+          },
+          {
+                    "kode_trayek": "PERINTIS-003",
+                    "bulan": "November",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 80,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 456,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 93090694,
+                    "keterangan": "0.8026315789"
+          },
+          {
+                    "kode_trayek": "PERINTIS-003",
+                    "bulan": "Desember",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 80,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 456,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 93090694,
+                    "keterangan": "0.8004385965"
+          },
+          {
+                    "kode_trayek": "PERINTIS-004",
+                    "bulan": "Januari",
+                    "target_ritase": 30,
+                    "realisasi_ritase": 30,
+                    "target_penumpang": 570,
+                    "realisasi_penumpang": 21,
+                    "load_factor": 3.7,
+                    "target_keuangan": 66946742,
+                    "realisasi_keuangan": 66946742,
+                    "keterangan": ""
+          },
+          {
+                    "kode_trayek": "PERINTIS-004",
+                    "bulan": "Februari",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 0,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 0,
+                    "load_factor": 0,
+                    "target_keuangan": 0,
+                    "realisasi_keuangan": 0,
+                    "keterangan": ""
+          },
+          {
+                    "kode_trayek": "PERINTIS-004",
+                    "bulan": "Maret",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 0,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 0,
+                    "load_factor": 0,
+                    "target_keuangan": 0,
+                    "realisasi_keuangan": 0,
+                    "keterangan": ""
+          },
+          {
+                    "kode_trayek": "PERINTIS-004",
+                    "bulan": "April",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 0,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 0,
+                    "load_factor": 0,
+                    "target_keuangan": 0,
+                    "realisasi_keuangan": 0,
+                    "keterangan": ""
+          },
+          {
+                    "kode_trayek": "PERINTIS-004",
+                    "bulan": "Mei",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 69,
+                    "target_penumpang": 2,
+                    "realisasi_penumpang": 393,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 76326000,
+                    "keterangan": "2.491736588"
+          },
+          {
+                    "kode_trayek": "PERINTIS-004",
+                    "bulan": "Juni",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 90,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 513,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 73025000,
+                    "keterangan": "0.8479532164"
+          },
+          {
+                    "kode_trayek": "PERINTIS-004",
+                    "bulan": "Juli",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 74,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 421,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 70313000,
+                    "keterangan": "0.8487434803"
+          },
+          {
+                    "kode_trayek": "PERINTIS-004",
+                    "bulan": "Agustus",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 74,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 421,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 68154000,
+                    "keterangan": "0.929350403"
+          },
+          {
+                    "kode_trayek": "PERINTIS-004",
+                    "bulan": "September",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 80,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 456,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 80273167,
+                    "keterangan": "0.8026315789"
+          },
+          {
+                    "kode_trayek": "PERINTIS-004",
+                    "bulan": "Oktober",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 80,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 456,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 90273167,
+                    "keterangan": "0.7960526316"
+          },
+          {
+                    "kode_trayek": "PERINTIS-004",
+                    "bulan": "November",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 80,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 456,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 90273167,
+                    "keterangan": "0.7960526316"
+          },
+          {
+                    "kode_trayek": "PERINTIS-004",
+                    "bulan": "Desember",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 80,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 456,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 90273167,
+                    "keterangan": "0.9539473684"
+          },
+          {
+                    "kode_trayek": "PERINTIS-005",
+                    "bulan": "Januari",
+                    "target_ritase": 30,
+                    "realisasi_ritase": 30,
+                    "target_penumpang": 570,
+                    "realisasi_penumpang": 488,
+                    "load_factor": 85.6,
+                    "target_keuangan": 51048728,
+                    "realisasi_keuangan": 51048728,
+                    "keterangan": ""
+          },
+          {
+                    "kode_trayek": "PERINTIS-005",
+                    "bulan": "Februari",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 0,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 0,
+                    "load_factor": 0,
+                    "target_keuangan": 0,
+                    "realisasi_keuangan": 0,
+                    "keterangan": ""
+          },
+          {
+                    "kode_trayek": "PERINTIS-005",
+                    "bulan": "Maret",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 0,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 0,
+                    "load_factor": 0,
+                    "target_keuangan": 0,
+                    "realisasi_keuangan": 0,
+                    "keterangan": ""
+          },
+          {
+                    "kode_trayek": "PERINTIS-005",
+                    "bulan": "April",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 0,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 0,
+                    "load_factor": 0,
+                    "target_keuangan": 0,
+                    "realisasi_keuangan": 0,
+                    "keterangan": ""
+          },
+          {
+                    "kode_trayek": "PERINTIS-005",
+                    "bulan": "Mei",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 92,
+                    "target_penumpang": 3,
+                    "realisasi_penumpang": 524,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 58806000,
+                    "keterangan": "3.209382151"
+          },
+          {
+                    "kode_trayek": "PERINTIS-005",
+                    "bulan": "Juni",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 120,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 684,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 63102000,
+                    "keterangan": "0.9356725146"
+          },
+          {
+                    "kode_trayek": "PERINTIS-005",
+                    "bulan": "Juli",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 90,
+                    "target_penumpang": 1,
+                    "realisasi_penumpang": 513,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 55907000,
+                    "keterangan": "1.475633528"
+          },
+          {
+                    "kode_trayek": "PERINTIS-005",
+                    "bulan": "Agustus",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 90,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 513,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 54708000,
+                    "keterangan": "0.61208577"
+          },
+          {
+                    "kode_trayek": "PERINTIS-005",
+                    "bulan": "September",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 60,
+                    "target_penumpang": 1,
+                    "realisasi_penumpang": 342,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 56858138,
+                    "keterangan": "1.421052632"
+          },
+          {
+                    "kode_trayek": "PERINTIS-005",
+                    "bulan": "Oktober",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 60,
+                    "target_penumpang": 1,
+                    "realisasi_penumpang": 342,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 40858138,
+                    "keterangan": "1.812865497"
+          },
+          {
+                    "kode_trayek": "PERINTIS-005",
+                    "bulan": "November",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 60,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 342,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 40858138,
+                    "keterangan": "1.812865497"
+          },
+          {
+                    "kode_trayek": "PERINTIS-005",
+                    "bulan": "Desember",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 60,
+                    "target_penumpang": 1,
+                    "realisasi_penumpang": 342,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 40858138,
+                    "keterangan": "1.871345029"
+          },
+          {
+                    "kode_trayek": "PERINTIS-006",
+                    "bulan": "Januari",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 0,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 0,
+                    "load_factor": 0,
+                    "target_keuangan": 0,
+                    "realisasi_keuangan": 0,
+                    "keterangan": ""
+          },
+          {
+                    "kode_trayek": "PERINTIS-006",
+                    "bulan": "Februari",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 0,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 0,
+                    "load_factor": 0,
+                    "target_keuangan": 0,
+                    "realisasi_keuangan": 0,
+                    "keterangan": ""
+          },
+          {
+                    "kode_trayek": "PERINTIS-006",
+                    "bulan": "Maret",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 0,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 0,
+                    "load_factor": 0,
+                    "target_keuangan": 0,
+                    "realisasi_keuangan": 0,
+                    "keterangan": ""
+          },
+          {
+                    "kode_trayek": "PERINTIS-006",
+                    "bulan": "April",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 0,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 0,
+                    "load_factor": 0,
+                    "target_keuangan": 0,
+                    "realisasi_keuangan": 0,
+                    "keterangan": ""
+          },
+          {
+                    "kode_trayek": "PERINTIS-006",
+                    "bulan": "Mei",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 138,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 786,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 47574000,
+                    "keterangan": "0.008899059242"
+          },
+          {
+                    "kode_trayek": "PERINTIS-006",
+                    "bulan": "Juni",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 180,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 1026,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 45281000,
+                    "keterangan": "0.01169590643"
+          },
+          {
+                    "kode_trayek": "PERINTIS-006",
+                    "bulan": "Juli",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 156,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 889,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 49867000,
+                    "keterangan": "0.002249212776"
+          },
+          {
+                    "kode_trayek": "PERINTIS-006",
+                    "bulan": "Agustus",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 156,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 889,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 53537000,
+                    "keterangan": "0"
+          },
+          {
+                    "kode_trayek": "PERINTIS-006",
+                    "bulan": "September",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 172,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 980,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 63510726,
+                    "keterangan": "0"
+          },
+          {
+                    "kode_trayek": "PERINTIS-006",
+                    "bulan": "Oktober",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 175,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 997,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 64618471,
+                    "keterangan": "0"
+          },
+          {
+                    "kode_trayek": "PERINTIS-006",
+                    "bulan": "November",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 172,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 980,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 63510726,
+                    "keterangan": "0"
+          },
+          {
+                    "kode_trayek": "PERINTIS-006",
+                    "bulan": "Desember",
+                    "target_ritase": 0,
+                    "realisasi_ritase": 172,
+                    "target_penumpang": 0,
+                    "realisasi_penumpang": 980,
+                    "load_factor": 30,
+                    "target_keuangan": 1,
+                    "realisasi_keuangan": 63510726,
+                    "keterangan": "0.00203998368"
+          }
+]
     };
 
     const cmsState = {
         activeModule: 'perintis',
+        trayekFilter: 'ALL',
         rows: [],
         columns: [],
         editIndex: -1,
@@ -3298,10 +4189,24 @@
         }, 6000);
     }
 
-    async function loadCmsModuleData(moduleKey) {
+    async function loadCmsModuleData(moduleKey, options = {}) {
         cmsState.activeModule = moduleKey || 'perintis';
         cmsState.columns = CMS_MODULE_SCHEMAS[cmsState.activeModule] || [];
+        cmsState.trayekFilter = (options && options.trayek) ? options.trayek : 'ALL';
 
+        const moduleSelect = document.getElementById('cmsModuleSelect');
+        if (moduleSelect && moduleSelect.value !== cmsState.activeModule) {
+            moduleSelect.value = cmsState.activeModule;
+        }
+
+        const trayekFilterBox = document.getElementById('cmsTrayekFilterBox');
+        if (trayekFilterBox) {
+            trayekFilterBox.style.display = cmsState.activeModule === 'perintis_detail' ? 'flex' : 'none';
+        }
+        const trayekFilterSelect = document.getElementById('cmsTrayekFilter');
+        if (trayekFilterSelect) {
+            trayekFilterSelect.value = cmsState.trayekFilter;
+        }
         const syncText = document.getElementById('cmsSyncStatus');
         if (syncText) syncText.textContent = 'Memeriksa sinkronisasi...';
 
@@ -3358,8 +4263,17 @@
         const rowCountEl = document.getElementById('cmsRowCount');
         if (!thead || !tbody) return;
 
+        let displayRows = cmsState.rows.map((row, origIdx) => ({ row, origIdx }));
+        if (cmsState.activeModule === 'perintis_detail' && cmsState.trayekFilter && cmsState.trayekFilter !== 'ALL') {
+            displayRows = displayRows.filter(item => String(item.row.kode_trayek || '').toUpperCase() === cmsState.trayekFilter.toUpperCase());
+        }
+
         if (rowCountEl) {
-            rowCountEl.textContent = `${cmsState.rows.length} entitas terdaftar`;
+            if (cmsState.activeModule === 'perintis_detail' && cmsState.trayekFilter !== 'ALL') {
+                rowCountEl.textContent = `${displayRows.length} entitas ditampilkan (${cmsState.rows.length} total)`;
+            } else {
+                rowCountEl.textContent = `${cmsState.rows.length} entitas terdaftar`;
+            }
         }
 
         // Render Headers
@@ -3371,14 +4285,16 @@
         thead.innerHTML = thHtml;
 
         // Render Body
-        if (!cmsState.rows.length) {
+        if (!displayRows.length) {
             tbody.innerHTML = `<tr><td colspan="${cmsState.columns.length + 2}" style="text-align: center; padding: 24px; color: var(--text-secondary);">Belum ada data pada modul ini. Klik "Tambah Entitas" untuk menambahkan data.</td></tr>`;
             return;
         }
 
         let trHtml = '';
-        cmsState.rows.forEach((row, idx) => {
-            trHtml += `<tr><td>${idx + 1}</td>`;
+        displayRows.forEach((item, displayIdx) => {
+            const row = item.row;
+            const origIdx = item.origIdx;
+            trHtml += `<tr><td>${displayIdx + 1}</td>`;
             cmsState.columns.forEach(col => {
                 const val = row[col.key] !== undefined && row[col.key] !== null ? row[col.key] : '-';
                 if (col.key === 'status') {
@@ -3394,11 +4310,11 @@
             });
             trHtml += `
                 <td style="text-align: center; white-space: nowrap;">
-                    <button type="button" class="btn-xs btn-edit" data-action="edit" data-index="${idx}" aria-label="Edit baris ${idx + 1}">
+                    <button type="button" class="btn-xs btn-edit" data-action="edit" data-index="${origIdx}" aria-label="Edit baris ${origIdx + 1}">
                         <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 12px; height: 12px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
                         Edit
                     </button>
-                    <button type="button" class="btn-xs btn-delete" data-action="delete" data-index="${idx}" aria-label="Hapus baris ${idx + 1}">
+                    <button type="button" class="btn-xs btn-delete" data-action="delete" data-index="${origIdx}" aria-label="Hapus baris ${origIdx + 1}">
                         <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 12px; height: 12px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                         Hapus
                     </button>
@@ -3420,8 +4336,14 @@
         if (errorEl) errorEl.setAttribute('hidden', '');
 
         const isEdit = index >= 0 && index < cmsState.rows.length;
-        const rowData = isEdit ? cmsState.rows[index] : {};
+        const rowData = isEdit ? Object.assign({}, cmsState.rows[index]) : {};
 
+        // Inisialisasi awal entitas baru jika filter trayek sedang aktif
+        if (!isEdit) {
+            if (cmsState.activeModule === 'perintis_detail' && cmsState.trayekFilter && cmsState.trayekFilter !== 'ALL') {
+                rowData.kode_trayek = cmsState.trayekFilter;
+            }
+        }
         if (titleEl) {
             titleEl.textContent = isEdit ? `Edit Entitas Data Master (${cmsState.activeModule.toUpperCase()})` : `Tambah Entitas Baru (${cmsState.activeModule.toUpperCase()})`;
         }
@@ -3433,8 +4355,14 @@
         let fieldsHtml = '';
         cmsState.columns.forEach(col => {
             const currentVal = rowData[col.key] !== undefined ? rowData[col.key] : '';
+            const isReadonly = Boolean(col.readonly);
+            const readonlyAttr = isReadonly ? 'readonly tabindex="-1"' : '';
+            const readonlyStyle = isReadonly ? 'style="background-color: rgba(255, 255, 255, 0.05); color: #94a3b8; cursor: not-allowed; border-color: rgba(148, 163, 184, 0.2);"' : '';
+            const badgeLabel = col.badgeText || 'Otomatis Rumus';
+            const helpBadge = isReadonly ? `<span class="cms-readonly-badge">${badgeLabel}</span>` : '';
+
             fieldsHtml += `<div class="cms-form-group">
-                <label for="field_${col.key}" class="cms-form-label">${col.label} ${col.required ? '<span style="color: #f87171;">*</span>' : ''}</label>`;
+                <label for="field_${col.key}" class="cms-form-label">${col.label} ${col.required ? '<span style="color: #f87171;">*</span>' : ''} ${helpBadge}</label>`;
 
             if (col.type === 'select') {
                 fieldsHtml += `<select id="field_${col.key}" name="${col.key}" class="cms-form-input" ${col.required ? 'required' : ''}>`;
@@ -3444,19 +4372,61 @@
                 });
                 fieldsHtml += `</select>`;
             } else if (col.type === 'number') {
-                fieldsHtml += `<input type="number" step="any" min="0" id="field_${col.key}" name="${col.key}" class="cms-form-input" value="${currentVal}" ${col.required ? 'required' : ''} placeholder="Masukkan ${col.label.toLowerCase()}">`;
+                fieldsHtml += `<input type="number" step="any" min="0" id="field_${col.key}" name="${col.key}" class="cms-form-input" value="${currentVal}" ${col.required ? 'required' : ''} ${readonlyAttr} ${readonlyStyle} placeholder="Masukkan ${col.label.toLowerCase()}">`;
             } else {
-                fieldsHtml += `<input type="text" id="field_${col.key}" name="${col.key}" class="cms-form-input" value="${currentVal}" ${col.required ? 'required' : ''} placeholder="Masukkan ${col.label.toLowerCase()}">`;
+                fieldsHtml += `<input type="text" id="field_${col.key}" name="${col.key}" class="cms-form-input" value="${currentVal}" ${col.required ? 'required' : ''} ${readonlyAttr} ${readonlyStyle} placeholder="Masukkan ${col.label.toLowerCase()}">`;
             }
 
             fieldsHtml += `</div>`;
         });
 
         fieldsContainer.innerHTML = fieldsHtml;
+
+        // Kalkulasi real-time interaktif untuk perintis_detail
+        if (cmsState.activeModule === 'perintis_detail') {
+            const inputTargetRitase = document.getElementById('field_target_ritase');
+            const inputRealRitase = document.getElementById('field_realisasi_ritase');
+            const inputRealPax = document.getElementById('field_realisasi_penumpang');
+            const inputTargetPax = document.getElementById('field_target_penumpang');
+            const inputLoadFactor = document.getElementById('field_load_factor');
+
+            function updatePerintisDetailCalculations() {
+                if (inputTargetRitase && inputTargetPax) {
+                    const tRit = parseFloat(inputTargetRitase.value) || 0;
+                    inputTargetPax.value = tRit > 0 ? Math.round(tRit * 19) : 0;
+                }
+                if (inputRealRitase && inputRealPax && inputLoadFactor) {
+                    const rRit = parseFloat(inputRealRitase.value) || 0;
+                    const rPax = parseFloat(inputRealPax.value) || 0;
+                    if (rRit > 0 && rPax >= 0) {
+                        inputLoadFactor.value = ((rPax / (rRit * 19)) * 100).toFixed(1);
+                    } else {
+                        inputLoadFactor.value = '0';
+                    }
+                }
+            }
+
+            if (inputTargetRitase) inputTargetRitase.addEventListener('input', updatePerintisDetailCalculations);
+            if (inputRealRitase) inputRealRitase.addEventListener('input', updatePerintisDetailCalculations);
+            if (inputRealPax) inputRealPax.addEventListener('input', updatePerintisDetailCalculations);
+
+            // Sinkronisasi nilai otomatis saat modal dibuka
+            if (inputTargetPax && (!inputTargetPax.value || inputTargetPax.value === '0')) {
+                const tRitInit = parseFloat(inputTargetRitase ? inputTargetRitase.value : 0) || 0;
+                if (tRitInit > 0) inputTargetPax.value = Math.round(tRitInit * 19);
+            }
+            if (inputLoadFactor && (!inputLoadFactor.value || inputLoadFactor.value === '0')) {
+                const rRitInit = parseFloat(inputRealRitase ? inputRealRitase.value : 0) || 0;
+                const rPaxInit = parseFloat(inputRealPax ? inputRealPax.value : 0) || 0;
+                if (rRitInit > 0 && rPaxInit >= 0) {
+                    inputLoadFactor.value = ((rPaxInit / (rRitInit * 19)) * 100).toFixed(1);
+                }
+            }
+        }
         modal.removeAttribute('hidden');
 
-        // Focus first input
-        const firstInput = fieldsContainer.querySelector('input, select');
+        // Focus first editable input
+        const firstInput = fieldsContainer.querySelector('input:not([readonly]), select');
         if (firstInput) firstInput.focus();
     }
 
@@ -3486,18 +4456,30 @@
                 errorMsg = `Kolom "${col.label}" wajib diisi.`;
             }
 
-            if (col.type === 'number' && val) {
-                const num = Number(val);
-                if (isNaN(num) || num < 0) {
-                    hasError = true;
-                    errorMsg = `Kolom "${col.label}" harus bernilai angka positif (≥ 0).`;
+            if (col.type === 'number') {
+                if (val) {
+                    const num = Number(val);
+                    if (isNaN(num) || num < 0) {
+                        hasError = true;
+                        errorMsg = `Kolom "${col.label}" harus bernilai angka positif (≥ 0).`;
+                    }
+                    newRow[col.key] = num;
+                } else {
+                    newRow[col.key] = 0;
                 }
-                newRow[col.key] = num;
             } else {
                 newRow[col.key] = val;
             }
         });
 
+        if (cmsState.activeModule === 'perintis_detail') {
+            const tRit = parseFloat(newRow.target_ritase) || 0;
+            newRow.target_penumpang = tRit > 0 ? Math.round(tRit * 19) : 0;
+
+            const rRit = parseFloat(newRow.realisasi_ritase) || 0;
+            const rPax = parseFloat(newRow.realisasi_penumpang) || 0;
+            newRow.load_factor = (rRit > 0 && rPax >= 0) ? Number(((rPax / (rRit * 19)) * 100).toFixed(1)) : 0;
+        }
         if (hasError) {
             if (errorEl) {
                 errorEl.textContent = errorMsg;
@@ -3534,7 +4516,7 @@
     function handleDeleteEntity(index) {
         if (index < 0 || index >= cmsState.rows.length) return;
         const target = cmsState.rows[index];
-        const name = target.nama_trayek || target.uppkb || target.nama_koridor || target.perusahaan || target.po || target.terminal || `Baris #${index + 1}`;
+        const name = target.nama_trayek || target.uppkb || target.nama_koridor || target.perusahaan || target.po || target.terminal || (target.kode_trayek ? `${target.kode_trayek} (${target.bulan || ''})` : '') || `Baris #${index + 1}`;
         if (!confirm(`Apakah Anda yakin ingin menghapus entitas "${name}"?`)) return;
 
         cmsState.rows.splice(index, 1);
@@ -3647,6 +4629,14 @@
             });
         }
 
+        const trayekFilter = document.getElementById('cmsTrayekFilter');
+        if (trayekFilter) {
+            trayekFilter.addEventListener('change', (e) => {
+                cmsState.trayekFilter = e.target.value;
+                renderCmsTable();
+            });
+        }
+
         const addBtn = document.getElementById('btnCmsAddEntity');
         if (addBtn) {
             addBtn.addEventListener('click', () => {
@@ -3698,7 +4688,36 @@
         }
     }
 
-    // Buat loadCmsModuleData dapat diakses global di file ini
-    window.loadCmsModuleData = loadCmsModuleData;
+    function handleUrlParams() {
+        if (typeof window === 'undefined' || !window.location || !window.location.search) return;
+        const params = new URLSearchParams(window.location.search);
+        const tabParam = (params.get('tab') || '').toLowerCase();
+        const moduleParam = (params.get('module') || '').toLowerCase();
+        const trayekParam = (params.get('trayek') || '').toUpperCase();
+        const actionParam = (params.get('action') || '').toLowerCase();
 
+        const isManagement = tabParam === 'management' || tabParam === 'cms' || moduleParam !== '';
+        if (isManagement) {
+            if (typeof switchTab === 'function') {
+                switchTab('management', false);
+            }
+            const validModules = Object.keys(CMS_MODULE_SCHEMAS);
+            const targetModule = validModules.includes(moduleParam) ? moduleParam : 'perintis';
+            const targetTrayek = trayekParam || 'ALL';
+
+            loadCmsModuleData(targetModule, { trayek: targetTrayek }).then(() => {
+                if (actionParam === 'add' || actionParam === 'input') {
+                    setTimeout(() => {
+                        openEntityModal(-1);
+                    }, 60);
+                }
+            });
+        }
+    }
+
+    // Buat fungsi penting dapat diakses global
+    window.loadCmsModuleData = loadCmsModuleData;
+    window.openEntityModal = openEntityModal;
+    window.handleUrlParams = handleUrlParams;
+    window.switchTab = switchTab;
 })();

@@ -6337,6 +6337,40 @@ function renderCorridorGrid() {
             </div>
         `;
     }).join('');
+    updatePerintisKpiSummary();
+}
+
+function updatePerintisKpiSummary() {
+    if (!activeDataset || !activeDataset.routes) return;
+    let totalPnp = 0;
+    let totalArm = 0;
+    let sumLf = 0;
+    let countLf = 0;
+
+    activeDataset.routes.forEach(r => {
+        const pnp = Number(r.summary_ytd?.total_penumpang) || 0;
+        const arm = (Number(r.armada?.jumlah) || 0) + (Number(r.armada?.cadangan) || 0);
+        const lf = Number(r.summary_ytd?.avg_load_factor) || 0;
+        totalPnp += pnp;
+        totalArm += arm;
+        if (lf > 0) {
+            sumLf += lf;
+            countLf++;
+        }
+    });
+
+    const elPnp = document.getElementById('kpiTotalPenumpang');
+    if (elPnp && totalPnp > 0) elPnp.textContent = formatNumber(totalPnp);
+
+    const elArm = document.getElementById('kpiTotalArmada');
+    if (elArm && totalArm > 0) elArm.textContent = `${totalArm} Bus`;
+
+    const elLf = document.getElementById('kpiAvgLoadFactor');
+    if (elLf && countLf > 0) {
+        const avg = (sumLf / countLf) * 100;
+        elLf.textContent = avg.toFixed(1).replace('.', ',') + '%';
+        elLf.style.color = avg >= 30 ? '#059669' : '#dc2626';
+    }
 }
 
 // -----------------------------------------------------------------------------
@@ -6496,6 +6530,7 @@ async function initPerintisModule() {
     // 1. Render INSTAN 0 ms dengan embedded authoritative baseline (Zero Blank Screen)
     initMap();
     renderCorridorGrid();
+    updatePerintisKpiSummary();
 
     // 2. Cek cache lokal draf / sinkronisasi terakhir dari Data Master
     try {
@@ -6508,8 +6543,21 @@ async function initPerintisModule() {
         }
     } catch (_) {}
 
+    try {
+        const localDetailRaw = localStorage.getItem('potret_perintis_detail');
+        if (localDetailRaw) {
+            const localDetail = JSON.parse(localDetailRaw);
+            const detailRows = (localDetail && Array.isArray(localDetail.rows)) ? localDetail.rows :
+                               (Array.isArray(localDetail) ? localDetail : []);
+            if (detailRows.length) {
+                mergePerintisMonthlyDetail(detailRows);
+            }
+        }
+    } catch (_) {}
+
     // 3. Asynchronous non-blocking background fetch ke API Data Master / Google Spreadsheet
     fetchPerintisMasterData();
+    fetchPerintisMonthlyDetail();
 }
 
 async function fetchPerintisMasterData() {
@@ -6615,6 +6663,104 @@ function mergePerintisDynamicMetrics(rows) {
         renderCorridorGrid();
         if (typeof drawRoutesOnMap === 'function') {
             drawRoutesOnMap();
+        }
+    }
+}
+
+async function fetchPerintisMonthlyDetail() {
+    try {
+        const res = await fetch('/api/getPotretRows', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ section: 'perintis_detail' })
+        });
+        if (res.ok) {
+            const data = await res.json();
+            const rows = (data && data.data && Array.isArray(data.data.rows)) ? data.data.rows :
+                         (data && Array.isArray(data.rows)) ? data.rows : [];
+            if (rows && rows.length) {
+                mergePerintisMonthlyDetail(rows);
+                try {
+                    localStorage.setItem('potret_perintis_detail', JSON.stringify({
+                        rows: rows,
+                        updatedAt: new Date().toISOString()
+                    }));
+                } catch (_) {}
+            }
+        }
+    } catch (err) {
+        // Non-blocking fallback
+    }
+}
+
+function mergePerintisMonthlyDetail(detailRows) {
+    if (!Array.isArray(detailRows) || !detailRows.length || !activeDataset || !activeDataset.routes) return;
+    let modified = false;
+
+    const byTrayek = {};
+    detailRows.forEach(row => {
+        const code = String(row.kode_trayek || '').trim().toUpperCase();
+        if (!code) return;
+        if (!byTrayek[code]) byTrayek[code] = [];
+        byTrayek[code].push(row);
+    });
+
+    activeDataset.routes.forEach(route => {
+        const code = String(route.id || '').trim().toUpperCase();
+        const rows = byTrayek[code];
+        if (!rows || !rows.length) return;
+
+        modified = true;
+        if (!route.monthly) route.monthly = {};
+
+        let totP = 0;
+        let totR = 0;
+        let totK = 0;
+        let lfSum = 0;
+        let lfCount = 0;
+
+        rows.forEach(r => {
+            const m = String(r.bulan || '').trim();
+            if (!m) return;
+            const tRit = parseFloat(r.target_ritase) || 0;
+            const rRit = parseFloat(r.realisasi_ritase) || 0;
+            const tPax = parseFloat(r.target_penumpang) || 0;
+            const rPax = parseFloat(r.realisasi_penumpang) || 0;
+            const lf = parseFloat(r.load_factor) || 0;
+            const tKeu = parseFloat(r.target_keuangan) || 0;
+            const rKeu = parseFloat(r.realisasi_keuangan) || 0;
+            const ket = r.keterangan !== undefined && r.keterangan !== null ? String(r.keterangan) : '';
+
+            route.monthly[m] = {
+                ritase: { target: tRit, realisasi: rRit },
+                penumpang: { target: tPax, realisasi: rPax },
+                load_factor: { target: 0.3, realisasi: lf > 1 ? lf / 100 : lf },
+                keuangan: { target: tKeu, realisasi: rKeu },
+                keterangan: ket
+            };
+
+            totP += rPax;
+            totR += rRit;
+            totK += rKeu;
+            if (rRit > 0 || rPax > 0 || lf > 0) {
+                lfSum += lf;
+                lfCount++;
+            }
+        });
+
+        if (!route.summary_ytd) route.summary_ytd = {};
+        route.summary_ytd.total_penumpang = totP;
+        route.summary_ytd.total_ritase = totR;
+        route.realisasi_keuangan_ytd = totK;
+        route.summary_ytd.avg_load_factor = lfCount > 0 ? (lfSum / lfCount) / 100 : 0;
+    });
+
+    if (modified) {
+        renderCorridorGrid();
+        updatePerintisKpiSummary();
+        const modal = document.getElementById('perintisModal');
+        if (modal && !modal.hidden && currentSelectedRoute) {
+            window.openRouteDetail(currentSelectedRoute.id);
         }
     }
 }

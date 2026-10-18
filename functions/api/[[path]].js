@@ -31,6 +31,7 @@ const READ_OPERATIONS = new Set([
   'getRoutes',
   'getTerminalDetail',
   'getPotretRows',
+  'getPerintisDetail',
   'getPotretBarangMeta'
 ]);
 
@@ -197,6 +198,9 @@ async function proxy(context) {
       }
     } else if (name === 'getPotretRows' && parsedBody.section && !parsedBody.args) {
       parsedBody.args = [parsedBody.section];
+      body = JSON.stringify(parsedBody);
+    } else if (name === 'getPerintisDetail' && !parsedBody.args) {
+      parsedBody.args = [parsedBody.kode_trayek || parsedBody.kodeTrayek || ''];
       body = JSON.stringify(parsedBody);
     }
 
