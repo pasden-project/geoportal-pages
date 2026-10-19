@@ -155,7 +155,7 @@
             </button>
             <div class="nav__sub" id="sub-utility">
               <ul style="list-style: none; margin: 0; padding: 0;">
-                <li><a class="nav__subitem" href="/command-center/program/" data-route="/command-center/program/">Evaluasi Kinerja <span class="badge badge--audit">ANALITIK</span></a></li>
+                <li><a class="nav__subitem" href="/command-center/program/" data-route="/command-center/program/">Evaluasi Kinerja</a></li>
                 <li><a class="nav__subitem" href="/command-center/laporan/" data-route="/command-center/laporan/">Laporan Realisasi</a></li>
                 <li><a class="nav__subitem" href="/command-center/data-master/" data-route="/command-center/data-master/">Data Master</a></li>
                 <li><a class="nav__subitem" href="javascript:void(0)" data-modal-target="modal-profil">Profil BPTD</a></li>

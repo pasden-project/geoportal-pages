@@ -1658,21 +1658,211 @@
     });
   }
 
-  function renderHealthScoreGauge(score) {
-    var s = (typeof score === 'number') ? score : 90.6;
-    var arcEl = document.getElementById('healthGaugeArc');
-    var valEl = document.getElementById('healthGaugeVal');
+  /**
+   * Mengumpulkan data metrik operasional seluruh modul dashboard untuk kalkulasi Health Score.
+   */
+  function gatherDashboardHealthScoreData() {
+    // 1. Data Terminal (12 Simpul Tipe A)
+    var terminals = getActiveTerminalPoints();
+    if (!terminals || !terminals.length) terminals = defaultTerminals || [];
+
+    var totalPax = 0;
+    var top5Pax = 0;
+    var sortedTerms = terminals.slice().sort(function (a, b) {
+      var pA = a.stats ? ((a.stats.keberangkatan_penumpang || 0) + (a.stats.kedatangan_penumpang || 0)) : 0;
+      var pB = b.stats ? ((b.stats.keberangkatan_penumpang || 0) + (b.stats.kedatangan_penumpang || 0)) : 0;
+      return pB - pA;
+    });
+
+    for (var k = 0; k < sortedTerms.length; k++) {
+      var pCount = sortedTerms[k].stats ? ((sortedTerms[k].stats.keberangkatan_penumpang || 0) + (sortedTerms[k].stats.kedatangan_penumpang || 0)) : 0;
+      totalPax += pCount;
+      if (k < 5) top5Pax += pCount;
+    }
+    var rTop5 = totalPax > 0 ? (top5Pax / totalPax) : 0.689;
+
+    var terminalData = {
+      top5Ratio: rTop5,
+      activeSyncCount: terminals.length,
+      growthYoY: 8.4
+    };
+
+    // 2. Data Trayek (1.248 rute aktif)
+    var trayekData = {
+      totalBerizin: 1248,
+      aktifBeroperasi: 1248,
+      realisasiTripRate: 88.50,
+      rerataLoadFactor: 58.00,
+      targetLoadFactor: 70.00,
+      kepatuhanKpsRate: 90.00
+    };
+
+    // 3. Data Activity & Moda
+    var modaData = {
+      akapEfficiency: 92.00,
+      uppkbTaatPct: 91.80,
+      uppkbOdolScore: 99.73,
+      brtArmadaAktif: 95,
+      brtTargetArmada: 95,
+      pariwisataKir: 94.00,
+      pariwisataInspeksi: 1240,
+      pariwisataTargetInspeksi: 1240,
+      perintisTrip: 4655,
+      perintisTargetTrip: 4800,
+      perintisLf: 31.30,
+      perintisTargetLf: 50.00,
+      ajapArmada: 864,
+      ajapTargetArmada: 960
+    };
+
+    // Ambil nilai aktual dari transportModes jika ada
+    if (typeof transportModes !== 'undefined' && transportModes) {
+      if (transportModes.barang && transportModes.barang.stats) {
+        var bStats = transportModes.barang.stats;
+        var taatMatch = String(bStats.s3Value || '').match(/[\d.]+/);
+        if (taatMatch) modaData.uppkbTaatPct = parseFloat(taatMatch[0]);
+      }
+      if (transportModes.pariwisata && transportModes.pariwisata.stats) {
+        var pStats = transportModes.pariwisata.stats;
+        var kirMatch = String(pStats.s1Delta || '').match(/[\d.]+/);
+        if (kirMatch) modaData.pariwisataKir = parseFloat(kirMatch[0]);
+      }
+      if (transportModes.ajap && transportModes.ajap.stats) {
+        var aStats = transportModes.ajap.stats;
+        var ajapMatch = String(aStats.s1Value || '').match(/\d+/);
+        if (ajapMatch) modaData.ajapArmada = parseInt(ajapMatch[0], 10);
+      }
+    }
+
+    // 4. Data Intelligence & EWS
+    var critEl = document.querySelector('.card-module__pill--crit');
+    var warnEl = document.querySelector('.card-module__pill--warn');
+    var attnEl = document.querySelector('.card-module__pill--attn');
+    var parsePillCount = function (el, fallback) {
+      if (!el) return fallback;
+      var m = el.textContent.match(/\d+/);
+      return m ? parseInt(m[0], 10) : fallback;
+    };
+
+    var ewsData = {
+      critical_count: parsePillCount(critEl, 4),
+      warning_count: parsePillCount(warnEl, 8),
+      advisory_count: parsePillCount(attnEl, 6)
+    };
+
+    var intelData = {
+      kabKotaTercakup: (typeof odBangkitanData !== 'undefined' && odBangkitanData && odBangkitanData.length) ? 27 : 27,
+      totalKabKota: 27,
+      balanceOd: 97.30,
+      connectivityScore: 86.00
+    };
+
+    return {
+      terminalsList: terminals,
+      terminal: terminalData,
+      trayek: trayekData,
+      moda: modaData,
+      intelligence: intelData,
+      ews: ewsData
+    };
+  }
+
+  /**
+   * Memperbarui antarmuka kartu Health Score secara reaktif dan deterministik.
+   */
+  function updateHealthScoreUI() {
+    if (typeof computeBptdHealthScore !== 'function') {
+      return;
+    }
+
+    var data = gatherDashboardHealthScoreData();
+    var hs = computeBptdHealthScore(data);
+
     var scoreEl = document.getElementById('healthBigScore');
+    var valEl = document.getElementById('healthGaugeVal');
+    var arcEl = document.getElementById('healthGaugeArc');
+    var deltaPct = document.getElementById('healthDeltaPct');
+    var deltaLabel = document.getElementById('healthDeltaLabel');
+    var deltaWrap = document.getElementById('healthDeltaWrap');
 
     if (scoreEl) {
-      scoreEl.innerHTML = s.toFixed(1).replace('.', ',') + '<span>/100</span>';
+      scoreEl.innerHTML = hs.displayScore + '<span>/100</span>';
     }
+
+    if (deltaPct) {
+      deltaPct.textContent = hs.displayScore + '%';
+    }
+    if (deltaLabel) {
+      deltaLabel.textContent = 'Indeks Terpadu (' + hs.predicate + ')';
+    }
+    if (deltaWrap) {
+      deltaWrap.className = 'delta ' + hs.statusBadgeClass;
+    }
+
     if (valEl) {
-      animateValue(valEl, 0, Math.round(s), 900, '%');
+      animateValue(valEl, 0, hs.gauge.value, 900, '%');
     }
+
     if (arcEl) {
-      var offset = Math.round(251.36 * (1 - s / 100));
-      arcEl.style.strokeDashoffset = offset;
+      arcEl.style.strokeDashoffset = hs.gauge.dashoffset;
+    }
+
+    // Pembaruan 4 Baris Rincian Kategori
+    var cats = hs.categories;
+
+    // 1. Terminal
+    var vTerm = document.getElementById('healthValTerminal');
+    var bTerm = document.getElementById('healthBarTerminal');
+    if (vTerm && cats.terminal) vTerm.textContent = cats.terminal.detailLabel;
+    if (bTerm && cats.terminal) bTerm.style.width = cats.terminal.barWidth;
+
+    // 2. Trayek
+    var vTray = document.getElementById('healthValTrayek');
+    var bTray = document.getElementById('healthBarTrayek');
+    if (vTray && cats.trayek) vTray.textContent = cats.trayek.detailLabel;
+    if (bTray && cats.trayek) bTray.style.width = cats.trayek.barWidth;
+
+    // 3. Activity Moda
+    var vModa = document.getElementById('healthValModa');
+    var bModa = document.getElementById('healthBarModa');
+    if (vModa && cats.moda) vModa.textContent = cats.moda.detailLabel;
+    if (bModa && cats.moda) bModa.style.width = cats.moda.barWidth;
+
+    // 4. Intelligence
+    var vIntel = document.getElementById('healthValIntel');
+    var bIntel = document.getElementById('healthBarIntel');
+    if (vIntel && cats.intelligence) vIntel.textContent = cats.intelligence.detailLabel;
+    if (bIntel && cats.intelligence) bIntel.style.width = cats.intelligence.barWidth;
+
+    // Footer Deskripsi
+    var descEl = document.getElementById('healthDesc');
+    if (descEl) {
+      var tSpm = cats.terminal ? cats.terminal.subMetrics.t1 : 90.0;
+      var spmText = (typeof formatIndoDecimal === 'function')
+        ? formatIndoDecimal(tSpm, 1)
+        : tSpm.toFixed(1).replace('.', ',');
+      descEl.innerHTML = 'Berdasarkan agregasi operasional 4 pilar: <strong>Terminal Tipe A</strong> (Kelaikan &amp; Ritase ' +
+        spmText + '%), <strong>1.248 Trayek</strong>, <strong>6 Activity Moda &amp; UPPKB</strong> (WIM 91,8%, Uji Bus 94,0%), serta deteksi <strong>Intelligence &amp; EWS</strong> BPTD Jawa Barat.';
+    }
+  }
+
+  function renderHealthScoreGauge(score) {
+    if (typeof score === 'number' && !isNaN(score)) {
+      var arcEl = document.getElementById('healthGaugeArc');
+      var valEl = document.getElementById('healthGaugeVal');
+      var scoreEl = document.getElementById('healthBigScore');
+      if (scoreEl) {
+        scoreEl.innerHTML = (typeof formatIndoDecimal === 'function' ? formatIndoDecimal(score, 1) : score.toFixed(1).replace('.', ',')) + '<span>/100</span>';
+      }
+      if (valEl) {
+        animateValue(valEl, 0, Math.round(score), 900, '%');
+      }
+      if (arcEl) {
+        var offset = Math.round(251.36 * (1 - score / 100));
+        arcEl.style.strokeDashoffset = offset;
+      }
+    } else {
+      updateHealthScoreUI();
     }
   }
 
@@ -1710,7 +1900,7 @@
     renderTerminalRanking(currentTerminalMetric);
     renderTrayekRanking(currentTrayekCategory);
     renderBangkitanTarikan();
-    renderHealthScoreGauge(90.6);
+    updateHealthScoreUI();
   }
 
   // Backward compatibility wrapper
@@ -1961,6 +2151,7 @@
       renderRanking(activePts);
       renderTerminalRanking(currentTerminalMetric);
       renderActivityFeed(activePts, dashboardData.uppkbPoints || defaultUppkb);
+      updateHealthScoreUI();
       return;
     }
 
@@ -1982,6 +2173,7 @@
         renderRanking(activePts);
         renderTerminalRanking(currentTerminalMetric);
         renderActivityFeed(activePts, pack.data.uppkbPoints || defaultUppkb);
+        updateHealthScoreUI();
       }
     })
     .catch(function (err) {
@@ -1997,6 +2189,7 @@
         currentChartPeriod = this.value || '12m';
         var cfg = transportModes[currentMode] || transportModes.akap;
         renderTrendChart(cfg, currentMetric);
+        updateHealthScoreUI();
       });
     }
 
@@ -2043,6 +2236,7 @@
     renderRanking(activePts);
     renderMapPoints(activePts, defaultUppkb);
     renderActivityFeed(activePts, defaultUppkb);
+    updateHealthScoreUI();
 
     fetchDashboard(currentYear);
   }

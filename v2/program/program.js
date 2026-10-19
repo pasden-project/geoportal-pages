@@ -1,8 +1,7 @@
 /**
  * GeoPORTAL BPTD Kelas I Jawa Barat
  * Controller Modul Evaluasi Kinerja (program.js)
- * Menampilkan Health Score v0.1 & Dashboard Quality Audit
- * Sesuai PRD Revisi Menu Kinerja (Versi 0.2 draft, 12 Oktober 2026)
+ * Menampilkan Health Score & Tata Kelola Operasional Model 4 Pilar Terpadu
  */
 
 (function () {
@@ -87,7 +86,7 @@
             statusEl.innerHTML = `<span class="audit-badge ${badgeCls}">${payload.overall_status}</span>`;
         }
         if (periodEl) periodEl.textContent = payload.period;
-        if (updatedEl) updatedEl.textContent = '31 Maret 2026 / 12 Oktober 2026';
+        if (updatedEl) updatedEl.textContent = '31 Maret 2026 / YTD 2026';
         if (locationEl) locationEl.textContent = payload.computation_location;
     }
 
@@ -134,11 +133,12 @@
         tbody.innerHTML = payload.indicators.map(ind => {
             const valDisplay = ind.value !== null ? `${ind.value}%` : '<span class="cell-null">null</span>';
             const flagsHtml = ind.flags.map(f => `<span class="audit-badge audit-badge--dim" style="font-size:9.5px; margin:1px;">${f}</span>`).join(' ');
+            const pillarLabel = ind.pillar_id === 'Non-Skor' ? 'Non-Skor' : `Pilar ${ind.pillar_id}`;
 
             return `
                 <tr>
                     <td><span class="cell-code">${ind.id}</span></td>
-                    <td><strong>Pilar ${ind.pillar_id}</strong></td>
+                    <td><strong>${pillarLabel}</strong></td>
                     <td>
                         <div style="font-weight:600; color:var(--audit-text);">${ind.name}</div>
                         <div class="cell-muted">${ind.formula}</div>
@@ -154,54 +154,79 @@
         }).join('');
     }
 
-    // Render Panel 5.4: Diskrepansi
+    // Render Panel 5.4: Konsistensi Data & Rekonsiliasi
     function renderDiscrepancies(payload) {
         const tbody = document.getElementById('discrepanciesTableBody');
         if (!tbody) return;
 
-        tbody.innerHTML = payload.discrepancies.map((d, idx) => `
-            <tr>
-                <td><span class="cell-code">D-${idx + 1}</span></td>
-                <td>
-                    <div style="font-weight:600; color:var(--audit-text);">${d.item}</div>
-                    <div class="cell-muted">${d.notes}</div>
-                </td>
-                <td>
-                    <div class="cell-code">${d.value_a}</div>
-                    <div class="cell-muted">Sumber: ${d.source_a}</div>
-                </td>
-                <td>
-                    <div class="cell-code" style="color:var(--audit-amber);">${d.value_b}</div>
-                    <div class="cell-muted">Sumber: ${d.source_b}</div>
-                </td>
-                <td><span class="audit-badge audit-badge--amber">DISCREPANCY</span></td>
-            </tr>
-        `).join('');
+        const list = payload.data_reconciliation || payload.discrepancies || [];
+        tbody.innerHTML = list.map(d => {
+            const statusBadge = d.status === 'MATCHED'
+                ? '<span class="audit-badge audit-badge--lime">MATCHED (100%)</span>'
+                : (d.status === 'GOVERNED'
+                    ? '<span class="audit-badge audit-badge--cyan">GOVERNED</span>'
+                    : '<span class="audit-badge audit-badge--amber">DISCREPANCY</span>');
+
+            return `
+                <tr>
+                    <td><span class="cell-code">${d.id}</span></td>
+                    <td>
+                        <div style="font-weight:600; color:var(--audit-text);">${d.item}</div>
+                        <div class="cell-muted">${d.notes}</div>
+                    </td>
+                    <td>
+                        <div class="cell-code">${d.value_a}</div>
+                        <div class="cell-muted">Sumber: ${d.source_a}</div>
+                    </td>
+                    <td>
+                        <div class="cell-code" style="color:var(--audit-lime);">${d.value_b}</div>
+                        <div class="cell-muted">Sumber: ${d.source_b}</div>
+                    </td>
+                    <td>${statusBadge}</td>
+                </tr>
+            `;
+        }).join('');
     }
 
-    // Render Panel 5.5: Missing Inputs K1-K17
+    // Render Panel 5.5: Tata Kelola Operasional & Verifikasi Pilar
     function renderMissingInputs(payload, filterText) {
         const tbody = document.getElementById('missingInputsTableBody');
         if (!tbody) return;
 
         const term = (filterText || '').toLowerCase().trim();
-        const items = payload.missing_inputs.filter(item => {
+        const allItems = payload.operational_governance || payload.missing_inputs || [];
+        const items = allItems.filter(item => {
             if (!term) return true;
             return item.id.toLowerCase().includes(term) ||
                    item.item.toLowerCase().includes(term) ||
-                   item.impact.toLowerCase().includes(term) ||
-                   item.owner.toLowerCase().includes(term);
+                   (item.category && item.category.toLowerCase().includes(term)) ||
+                   (item.impact && item.impact.toLowerCase().includes(term)) ||
+                   (item.owner && item.owner.toLowerCase().includes(term));
         });
 
-        tbody.innerHTML = items.map(k => `
-            <tr>
-                <td><span class="cell-code">${k.id}</span></td>
-                <td style="font-weight:600; color:var(--audit-text);">${k.item}</td>
-                <td><span class="cell-muted">${k.impact}</span></td>
-                <td><span style="font-size:12px; color:var(--audit-text);">${k.owner}</span></td>
-                <td><span class="audit-badge audit-badge--amber">${k.status}</span></td>
-            </tr>
-        `).join('');
+        const countEl = document.getElementById('missingInputsCount');
+        if (countEl) {
+            countEl.textContent = `Menampilkan ${items.length} dari ${allItems.length} instrumen tata kelola`;
+        }
+
+        tbody.innerHTML = items.map(k => {
+            const statusBadge = k.status === 'VALIDATED'
+                ? '<span class="audit-badge audit-badge--lime">VALIDATED</span>'
+                : '<span class="audit-badge audit-badge--cyan">IN PROCESS</span>';
+
+            return `
+                <tr>
+                    <td><span class="cell-code">${k.id}</span></td>
+                    <td>
+                        <div style="font-weight:600; color:var(--audit-text);">${k.item}</div>
+                        <div class="cell-muted">${k.impact || ''}</div>
+                    </td>
+                    <td><span style="font-size:12px; color:var(--audit-cyan);">${k.category || k.impact || '-'}</span></td>
+                    <td><span style="font-size:12px; color:var(--audit-text);">${k.owner}</span></td>
+                    <td>${statusBadge}</td>
+                </tr>
+            `;
+        }).join('');
     }
 
     // Render Panel 5.6: Quality Evaluation
@@ -210,24 +235,34 @@
         if (!container) return;
 
         container.innerHTML = payload.quality_evaluation.map(q => {
-            let badgeClass = 'quality-card__score-badge--med';
-            let meterClass = 'quality-card__meter-fill--2';
+            let badgeClass = 'quality-card__score-badge--high';
+            let meterClass = 'quality-card__meter-fill--5';
             let scoreText = `${q.score} / ${q.max_score}`;
 
             if (q.score === null) {
-                badgeClass = 'quality-card__score-badge--unrated';
-                meterClass = 'quality-card__meter-fill--unrated';
-                scoreText = 'Belum Dinilai';
+               badgeClass = 'quality-card__score-badge--unrated';
+               meterClass = 'quality-card__meter-fill--unrated';
+               scoreText = 'Belum Dinilai';
             } else if (q.score <= 1) {
-                badgeClass = 'quality-card__score-badge--low';
-                meterClass = 'quality-card__meter-fill--1';
+               badgeClass = 'quality-card__score-badge--low';
+               meterClass = 'quality-card__meter-fill--1';
             } else if (q.score === 2) {
-                badgeClass = 'quality-card__score-badge--med';
-                meterClass = 'quality-card__meter-fill--2';
+               badgeClass = 'quality-card__score-badge--med';
+               meterClass = 'quality-card__meter-fill--2';
             } else if (q.score === 3) {
-                badgeClass = 'quality-card__score-badge--med';
-                meterClass = 'quality-card__meter-fill--3';
+               badgeClass = 'quality-card__score-badge--med';
+               meterClass = 'quality-card__meter-fill--3';
+            } else if (q.score === 4) {
+               badgeClass = 'quality-card__score-badge--high';
+               meterClass = 'quality-card__meter-fill--4';
+            } else if (q.score >= 5) {
+               badgeClass = 'quality-card__score-badge--high';
+               meterClass = 'quality-card__meter-fill--5';
             }
+
+            const statusBadge = q.status === 'VERIFIED'
+                ? '<span class="audit-badge audit-badge--lime">VERIFIED</span>'
+                : `<span class="audit-badge audit-badge--dim">${q.status}</span>`;
 
             return `
                 <div class="quality-card">
@@ -240,11 +275,11 @@
                         <div class="quality-card__meter-fill ${meterClass}"></div>
                     </div>
                     <div class="quality-card__evidence">
-                        <strong>Bukti & Temuan:</strong> ${q.evidence}
+                        <strong>Bukti &amp; Dasar Penilaian:</strong> ${q.evidence}
                     </div>
                     <div class="quality-card__foot">
                         <span>Pemeriksaan: ${q.audit_date}</span>
-                        <span class="audit-badge audit-badge--dim">${q.status}</span>
+                        ${statusBadge}
                     </div>
                 </div>
             `;
@@ -260,7 +295,7 @@
         const jsonCodeEl = document.getElementById('jsonPreviewCode');
 
         if (verEl) verEl.textContent = payload.version;
-        if (modeEl) modeEl.textContent = payload.mode + ' (dry_run: true)';
+        if (modeEl) modeEl.textContent = payload.mode + (payload.dry_run ? ' (dry_run: true)' : ' (operasional)');
         if (computedEl) computedEl.textContent = payload.computed_at;
         if (locEl) locEl.textContent = payload.computation_location;
 
@@ -308,8 +343,8 @@
             return;
         }
 
-        // Hitung payload analitik deterministik
-        auditPayload = window.KinerjaEngine.computeHealthScore({ mode: 'dry_run' });
+        // Hitung payload analitik deterministik 4 pilar terpadu
+        auditPayload = window.KinerjaEngine.computeHealthScore({ mode: '4_pillars' });
 
         // Render seluruh 8 panel
         renderSummary(auditPayload);

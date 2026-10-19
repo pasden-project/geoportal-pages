@@ -2551,6 +2551,24 @@ html, body {
   animation-delay: 0.35s;
 }
 
+/* 4 Main Pillar Gradients */
+.health-breakdown-bar__fill--terminal {
+  background: linear-gradient(90deg, var(--n-cyan, #3ef2ff), var(--n-lime, #d4ff3f));
+}
+
+.health-breakdown-bar__fill--trayek {
+  background: linear-gradient(90deg, #0284c7, var(--n-cyan, #3ef2ff));
+}
+
+.health-breakdown-bar__fill--moda {
+  background: linear-gradient(90deg, #65a30d, var(--n-lime, #d4ff3f));
+}
+
+.health-breakdown-bar__fill--intel {
+  background: linear-gradient(90deg, var(--n-pink, #ff5c8a), var(--n-amber, #ffb020));
+}
+
+/* Backward compatibility */
 .health-breakdown-bar__fill--spm {
   background: linear-gradient(90deg, var(--n-cyan, #3ef2ff), var(--n-lime, #d4ff3f));
 }
@@ -3532,6 +3550,25 @@ body.theme-light {
 [data-theme="light"] .health-breakdown-bar__fill,
 .theme-light .health-breakdown-bar__fill {
   background: linear-gradient(90deg, #0A2F73, #0284c7) !important;
+}
+[data-theme="light"] .health-breakdown-bar__fill--terminal,
+.theme-light .health-breakdown-bar__fill--terminal {
+  background: linear-gradient(90deg, #0284c7, #06b6d4) !important;
+}
+
+[data-theme="light"] .health-breakdown-bar__fill--trayek,
+.theme-light .health-breakdown-bar__fill--trayek {
+  background: linear-gradient(90deg, #0A2F73, #0284c7) !important;
+}
+
+[data-theme="light"] .health-breakdown-bar__fill--moda,
+.theme-light .health-breakdown-bar__fill--moda {
+  background: linear-gradient(90deg, #15803d, #65a30d) !important;
+}
+
+[data-theme="light"] .health-breakdown-bar__fill--intel,
+.theme-light .health-breakdown-bar__fill--intel {
+  background: linear-gradient(90deg, #be185d, #ea580c) !important;
 }
 
 [data-theme="light"] .tx__amt b.up,

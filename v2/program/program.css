@@ -581,6 +581,11 @@
   color: var(--audit-amber);
   border: 1px solid rgba(255, 190, 77, 0.4);
 }
+.quality-card__score-badge--high {
+  background: rgba(212, 255, 63, 0.18);
+  color: var(--audit-lime);
+  border: 1px solid rgba(212, 255, 63, 0.4);
+}
 
 .quality-card__score-badge--unrated {
   background: rgba(255, 255, 255, 0.06);
